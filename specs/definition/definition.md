@@ -7,7 +7,7 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 ### In scope
 
 - Local puzzle pack of nonograms (10×10 and 15×15)
-- Free-order puzzle selection; completion status and personal-best solve time persisted
+- Free-order puzzle selection; per-puzzle status (not started / in progress / completed), in-progress marks, and personal-best solve time persisted
 - Desktop and mobile play with mouse/keyboard or touch
 
 ### Out of scope
@@ -27,7 +27,7 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 ### Product objectives
 
 - Ship a local pack playable offline on the supported platforms.
-- Persist each puzzle's completed status and personal-best solve time across sessions.
+- Persist each puzzle's status (not started / in progress / completed), in-progress marks, and personal-best solve time across sessions.
 
 ## Supported platforms
 
@@ -54,7 +54,7 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 
 ### Technical
 
-- Fully playable offline after install — no required network for core play, completion saves, or personal-best saves.
+- Fully playable offline after install — no required network for core play, status saves, in-progress marks, or personal-best saves.
 
 ### Market
 
