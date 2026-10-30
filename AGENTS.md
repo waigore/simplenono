@@ -4,16 +4,16 @@ Agent entrypoint for this repo. Keep this file short; put detail in `docs/`, `sp
 
 ## Project
 
-- **Purpose**: <!-- fill in: what this game/project is -->
-- **Language / engine**: <!-- fill in from specs/definition/definition.md (Engine) and its Engine ADR: e.g. GDScript/Godot, C#/Unity, Dart/Flame -->
-- **Frameworks / tools**: <!-- fill in: key libs, build tooling, CI -->
+- **Purpose**: Simple nonogram (picross) puzzle game — local pack, free-order play, calm clinical grid
+- **Language / engine**: Godot (version / GDScript vs C# TBD in Engine ADR) — see `specs/definition/definition.md`
+- **Frameworks / tools**: GitHub Actions CI (Spec lint, PR hygiene, Code lint, Unit tests, Coverage); game tooling TBD after Engine ADR
 
 ## Quick start commands
 
-- **Setup**: <!-- fill in: install deps / clone assets / env -->
-- **Run**: <!-- fill in: launch editor or game -->
-- **Test**: <!-- fill in: unit/integration test command -->
-- **Build / export**: <!-- fill in: build and package/export targets -->
+- **Setup**: TBD — after Engine ADR / `ensure-dev-env-setup`
+- **Run**: TBD — Godot editor / exported build
+- **Test**: TBD — after unit-test CI setup
+- **Build / export**: TBD — desktop + mobile Godot export presets
 
 ## Labels
 

@@ -8,8 +8,8 @@ Characteristics in this table are the source of truth. Each row cites one axis r
 
 | Category | Applicability | Target | Platforms | Axis |
 |----------|---------------|--------|-----------|------|
-| Performance | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | `frame-time` |
-| Performance | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | `hitch-bound` |
+| Performance | Applies | ≤16.7 ms frame time (~60 fps) during grid paint and navigation | all supported | `frame-time` |
+| Performance | Applies | No hitch longer than 100 ms during grid paint on mid-range phones | all supported | `hitch-bound` |
 | Load time / latency | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | `time-to-playable` |
 | Load time / latency | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | `transition-latency` |
 | Load time / latency | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | `response-delay` |
