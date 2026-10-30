@@ -23,7 +23,7 @@ Authoring rules: [`.agents/specs/rules/design/traceability.md`](../../.agents/sp
 | Demo mode | [`demo.md`](demo.md) | <!-- fill in: Applies, N/A — not offered, or leave until Offering decided --> |
 | Difficulty settings | [`difficulty.md`](difficulty.md) | <!-- fill in --> |
 | Scenarios | [`scenarios/`](scenarios/) | <!-- fill in --> |
-| Progress management | [`progression.md`](progression.md) | <!-- fill in --> |
+| Progress management | [`progression.md`](progression.md) | Applies |
 | Sub-games | [`sub-games/`](sub-games/) | <!-- fill in --> |
 | Win and loss conditions | [`end-conditions.md`](end-conditions.md) | <!-- fill in --> |
 | Economy and resources | [`features/`](features/) | <!-- fill in --> |

@@ -126,8 +126,10 @@ class SpecLintTest(unittest.TestCase):
         self.assertTrue(any(f.path == "specs/design/loops/combat.md" for f in self.errors("orphans")))
 
     def test_glossary_order_and_duplicates(self) -> None:
+        # Inject after the Terms table header so the test does not depend on a placeholder row.
         rows = "| Zone | An area. | here |\n| Avatar | The player. | here |\n| zone | Again. | here |\n"
-        self.edit("specs/design/glossary.md", "| <!-- fill in -->", rows + "| <!-- fill in -->")
+        marker = "|------|------------|-------------|\n"
+        self.edit("specs/design/glossary.md", marker, marker + rows)
         messages = [f.message for f in self.errors("glossary")]
         self.assertTrue(any("alphabetical" in m for m in messages))
         self.assertTrue(any("defined twice" in m for m in messages))
