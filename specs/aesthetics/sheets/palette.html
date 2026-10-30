@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Palette</title>
+  <style>
+    :root { --fg: #1a1a1a; --bg: #f7f6f3; --line: #c8c4bc; --muted: #5c574e; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 16px/1.4 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+    article { max-width: 56rem; margin: 0 auto; padding: 1rem; }
+    header p, figcaption { color: var(--muted); margin: 0; }
+    section { margin: 1.5rem 0; }
+    h2 { font-size: 1.125rem; margin: 0 0 0.5rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .chip { width: 8rem; border: 1px solid var(--line); background: #fff; }
+    .chip .swatch { height: 4rem; border-bottom: 1px solid var(--line); }
+    .chip p { margin: 0; padding: 0.25rem 0.5rem; font-size: 0.8125rem; }
+    .pairs { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .pair { border: 1px solid var(--line); background: #fff; padding: 0.5rem; }
+    .pair .sample { display: flex; height: 3rem; width: 12rem; }
+    .pair .sample div { flex: 1; }
+    .pair p { margin: 0.25rem 0 0; font-size: 0.8125rem; }
+  </style>
+</head>
+<body>
+  <!-- Authoring rules: .agents/specs/rules/aesthetics/sheets.md. Replace every fill-in; one chip per swatch, one section per palette set; keep data-element on each drawn element. -->
+  <article data-spec="PAL">
+    <header>
+      <p>PAL</p>
+      <h1>Palette</h1>
+      <p><!-- fill in: medium and color limit summary --></p>
+    </header>
+
+    <section data-element="PAL.S1">
+      <h2>PAL.S1 <!-- fill in: palette set context --></h2>
+      <div class="chips">
+        <figure class="chip" data-element="PAL.C1">
+          <div class="swatch" style="background: #000000;"></div>
+          <p>PAL.C1 <!-- fill in: name --></p>
+          <p><!-- fill in: hex --></p>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Color rules</h2>
+      <div class="pairs">
+        <figure class="pair" data-element="PAL.K1">
+          <div class="sample">
+            <div style="background: #000000;"></div>
+            <div style="background: #ffffff;"></div>
+          </div>
+          <p>PAL.K1 <!-- fill in: swatch pair and required contrast --></p>
+        </figure>
+      </div>
+    </section>
+  </article>
+</body>
+</html>

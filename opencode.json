@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "recraft": {
+      "type": "remote",
+      "url": "https://mcp.recraft.ai/mcp",
+      "enabled": false
+    },
+    "fal": {
+      "type": "remote",
+      "url": "https://mcp.fal.ai/mcp-relay",
+      "enabled": false,
+      "oauth": false,
+      "headers": {
+        "Authorization": "Key {env:FAL_AI_KEY}"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screen: <!-- fill in: name --></title>
+  <style>
+    :root {
+      --fg: #1a1a1a;
+      --bg: #f7f6f3;
+      --line: #c8c4bc;
+      --accent: #0b57d0;
+      --muted: #5c574e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.4 system-ui, sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+    }
+    article { max-width: 40rem; margin: 0 auto; padding: 1rem; }
+    header p { color: var(--muted); margin: 0; }
+    nav[aria-label="States"] { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+    nav[aria-label="States"] a { color: var(--accent); }
+    .states > section { display: none; border: 1px solid var(--line); padding: 1rem; }
+    .states:not(:has(:target)) > section[data-state="default"] { display: block; }
+    .states:has(:target) > section:target { display: block; }
+    [data-region] { border: 1px dashed var(--line); padding: 0.75rem; margin: 0.5rem 0; }
+    [data-region]::before {
+      content: attr(data-region) " " attr(aria-label);
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    button { min-height: 44px; min-width: 44px; }
+  </style>
+</head>
+<body>
+  <!-- Template: copy to mockups/screens/<kebab-name>.html and delete this comment. Authoring rules: .agents/specs/rules/ux/screen-mockup.md -->
+  <article data-screen="UI-<!-- fill in: kebab-name -->">
+    <header>
+      <p>UI-<!-- fill in: kebab-name --></p>
+      <h1><!-- fill in: screen name --></h1>
+      <p><!-- fill in: job --></p>
+    </header>
+    <nav aria-label="States">
+      <a href="#state-default">Default</a>
+      <a href="#ex-loading">EX.loading</a>
+      <!-- fill in: one link per exception this screen uses. Delete the rest. -->
+    </nav>
+    <div class="states">
+      <section id="state-default" data-state="default">
+        <section data-region="R1" aria-label="<!-- fill in: region name -->">
+          <p><!-- fill in: contents and copy --></p>
+          <button type="button" data-control="C1"><!-- fill in: control name --></button>
+        </section>
+      </section>
+      <section id="ex-loading" data-state="EX.loading">
+        <p><!-- fill in: what EX.loading shows on this screen --></p>
+      </section>
+    </div>
+  </article>
+</body>
+</html>

@@ -1,0 +1,48 @@
+name: Unit tests
+
+# Project-owned. Unit tests and Coverage jobs stay in sync with the Unit tests
+# and Coverage tables in docs/coding-conventions.md.
+# Coverage runs only after Unit tests succeeds.
+# With no steps (placeholders, or tables `None`), each job passes with a notice.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # fill in: toolchain setup, then one step per Unit tests table row, e.g.
+      # - name: Unit tests
+      #   run: dotnet test --no-build
+
+      # Remove this step once real steps exist; keep it if Unit tests is `None`.
+      - name: Not configured
+        run: echo "::notice::No unit-test commands configured; see docs/coding-conventions.md"
+
+  coverage:
+    name: Coverage
+    needs: [unit-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # fill in: toolchain setup, then run coverage against Threshold in
+      # docs/coding-conventions.md (default 80), e.g.
+      # - name: Coverage
+      #   run: coverage run && coverage report --fail-under=80
+
+      # Remove this step once real steps exist; keep it if Coverage is `None`.
+      - name: Not configured
+        run: echo "::notice::No coverage commands configured; see docs/coding-conventions.md"

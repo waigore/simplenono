@@ -1,0 +1,31 @@
+name: Spec lint
+
+# Structural checks on specs/ against .agents/specs/rules/, plus the 500-word limit
+# on docs/ and specs/ Markdown (see docs/spec-lint.md).
+# Runs on every PR so it can be a required check; the scan takes about a second.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  spec-lint:
+    name: Spec lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test linter
+        run: python3 -m unittest discover -s .github/scripts/tests
+
+      - name: Lint specs
+        run: python3 .github/scripts/spec_lint.py
+
+      - name: Check asset catalog
+        run: python3 .github/scripts/asset_catalog.py

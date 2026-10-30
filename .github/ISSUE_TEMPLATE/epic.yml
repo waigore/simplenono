@@ -1,0 +1,47 @@
+name: Epic
+description: Broad orchestration of work composed of multiple tasks (sub-issues).
+title: ""
+labels: ["type:epic", "status:pending-review", "priority:normal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use for a broad outcome split into linked tasks. Agents: prefer the `create-project-epic` skill.
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal / outcome
+      description: What "done" looks like for this epic.
+      placeholder: When this epic is complete...
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is in scope and what is explicitly out of scope (out-of-scope items may belong in other epics).
+      value: |
+        ### In scope
+        -
+
+        ### Out of scope
+        -
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Design notes, constraints, relevant specs (if any).
+    validations:
+      required: false
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Blockers and related work. Prefer issue numbers (e.g. #12). Native blocked-by will be set when using the create skill.
+      value: |
+        - Blocked by: none
+        - Blocking: none
+    validations:
+      required: false

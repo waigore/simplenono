@@ -1,0 +1,48 @@
+# Repository labels for issue categorization / agent orchestration.
+# Synced by .github/workflows/sync-labels.yml — create or update by name; never prune.
+# Docs: docs/labels.md
+- name: type:epic
+  color: "6F42C1"
+  description: "Broad orchestration epic"
+- name: type:task
+  color: "0366D6"
+  description: "Concrete unit of agent work"
+- name: type:defect
+  color: "D73A4A"
+  description: "In-game or interface bug (not specs, docs, or planning)"
+- name: status:pending-review
+  color: "FBCA04"
+  description: "Pending review"
+- name: status:pending-refinement
+  color: "E4A8FF"
+  description: "Reviewed; refinements needed"
+- name: status:pending-clarification
+  color: "D93F0B"
+  description: "Needs product-owner clarification"
+- name: status:pending-implementation
+  color: "1D76DB"
+  description: "Ready or in progress"
+- name: status:pending-verification
+  color: "0E8A16"
+  description: "Implemented; awaiting verification"
+- name: status:pending-acceptance
+  color: "006B75"
+  description: "Verified; awaiting acceptance testing"
+- name: status:accepted
+  color: "5319E7"
+  description: "Accepted; leave open until planner closes"
+- name: status:pending-redefinition
+  color: "6E7781"
+  description: "Comment cap hit; conversation locked pending redefine"
+- name: no-automerge
+  color: "B60205"
+  description: "PR: opt out of automatic squash-merge (user-requested only)"
+- name: priority:critical
+  color: "B60205"
+  description: "Handle before high and normal"
+- name: priority:high
+  color: "D93F0B"
+  description: "Handle before normal; after critical"
+- name: priority:normal
+  color: "C5DEF5"
+  description: "Default priority (also implied when unlabeled)"

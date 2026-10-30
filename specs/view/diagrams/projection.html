@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projection</title>
+  <style>
+    :root { --fg: #1a1a1a; --bg: #f7f6f3; --line: #c8c4bc; --accent: #0b57d0; --muted: #5c574e; --warn: #b3261e; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 16px/1.4 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+    article { max-width: 56rem; margin: 0 auto; padding: 1rem; }
+    header p { color: var(--muted); margin: 0; }
+    figure { margin: 1rem 0; border: 1px solid var(--line); padding: 0.5rem; }
+    figcaption { font-size: 0.875rem; color: var(--muted); }
+    svg { width: 100%; height: auto; }
+    svg text { font: 12px system-ui, sans-serif; fill: var(--fg); }
+    .frame { fill: none; stroke: var(--fg); stroke-width: 2; }
+    .safe { fill: none; stroke: var(--accent); stroke-dasharray: 6 4; }
+    .aspect { fill: none; stroke: var(--muted); stroke-dasharray: 2 4; }
+    .ray { stroke: var(--warn); stroke-width: 1.5; }
+    .axis { stroke: var(--fg); stroke-width: 1.5; marker-end: url(#arrow); }
+    .scale { stroke: var(--fg); stroke-width: 3; }
+  </style>
+</head>
+<body>
+  <!-- Authoring rules: .agents/specs/rules/view/diagrams.md. Replace every fill-in; draw to scale; keep data-element on each drawn element. -->
+  <article data-spec="PRJ">
+    <header>
+      <p>PRJ</p>
+      <h1>Projection</h1>
+      <p><!-- fill in: projection type(s) and the scale this drawing uses, e.g. 40 px = 1 unit --></p>
+    </header>
+
+    <figure>
+      <svg viewBox="0 0 640 360" role="img" aria-label="Frame, visible area, aspect range, and safe area">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" />
+          </marker>
+        </defs>
+        <g data-element="PRJ.A1">
+          <rect class="aspect" x="40" y="40" width="560" height="280" />
+          <text x="44" y="34">PRJ.A1 <!-- fill in: supported aspect range --></text>
+        </g>
+        <g data-element="PRJ.V1">
+          <rect class="frame" x="80" y="60" width="480" height="240" />
+          <text x="84" y="76">PRJ.V1 <!-- fill in: visible area in units --></text>
+        </g>
+        <g data-element="PRJ.A2">
+          <rect class="safe" x="104" y="72" width="432" height="216" />
+          <text x="108" y="282">PRJ.A2 <!-- fill in: safe area fraction --></text>
+        </g>
+        <g data-element="SPC.A1">
+          <line class="axis" x1="320" y1="180" x2="380" y2="180" />
+          <line class="axis" x1="320" y1="180" x2="320" y2="120" />
+          <text x="384" y="184"><!-- fill in: axis --></text>
+          <text x="324" y="116"><!-- fill in: axis --></text>
+        </g>
+        <g data-element="scale">
+          <line class="scale" x1="80" y1="340" x2="120" y2="340" />
+          <text x="126" y="344"><!-- fill in: N units --></text>
+        </g>
+      </svg>
+      <figcaption>Front view of the frame. <!-- fill in --></figcaption>
+    </figure>
+
+    <figure>
+      <svg viewBox="0 0 640 240" role="img" aria-label="Side view of the projection">
+        <g data-element="PRJ.P1">
+          <circle cx="60" cy="120" r="6" />
+          <line class="ray" x1="60" y1="120" x2="580" y2="30" />
+          <line class="ray" x1="60" y1="120" x2="580" y2="210" />
+          <text x="72" y="104">PRJ.P1 <!-- fill in: type, field of view or visible height --></text>
+        </g>
+        <g data-element="PRJ.D1">
+          <line class="aspect" x1="520" y1="20" x2="520" y2="220" />
+          <text x="452" y="234">PRJ.D1 <!-- fill in: limit in units --></text>
+        </g>
+      </svg>
+      <figcaption>Side view. For orthographic, draw the rays parallel. <!-- fill in --></figcaption>
+    </figure>
+  </article>
+</body>
+</html>

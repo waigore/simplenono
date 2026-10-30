@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Journey: <!-- fill in: name --></title>
+  <style>
+    :root {
+      --fg: #1a1a1a;
+      --bg: #f7f6f3;
+      --line: #c8c4bc;
+      --accent: #0b57d0;
+      --muted: #5c574e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.4 system-ui, sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+    }
+    header, main { padding: 1rem; }
+    header p { color: var(--muted); margin: 0; }
+    .layout { display: grid; grid-template-columns: 16rem 1fr; gap: 1rem; }
+    ol { margin: 0; padding-left: 1.25rem; }
+    li { margin: 0.5rem 0; }
+    a { color: var(--accent); }
+    iframe { width: 100%; min-height: 40rem; border: 1px solid var(--line); background: #fff; }
+    .note { color: var(--muted); font-size: 0.875rem; }
+    @media (max-width: 48rem) { .layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <!-- Template: copy to mockups/journeys/<kebab-name>.html and delete this comment. Authoring rules: .agents/specs/rules/ux/journey-mockup.md -->
+  <header>
+    <p>J-<!-- fill in: kebab-name --></p>
+    <h1><!-- fill in: journey name --></h1>
+    <p><!-- fill in: actor and goal --></p>
+  </header>
+  <main class="layout">
+    <nav aria-label="Steps">
+      <ol>
+        <li>
+          <a href="../screens/<!-- fill in: screen -->.html#state-default" target="stage">S1 <!-- fill in: step --></a>
+        </li>
+        <li>
+          <a href="../screens/<!-- fill in: screen -->.html#ex-loading" target="stage">B1 <!-- fill in: branch --></a>
+        </li>
+      </ol>
+      <p class="note">If the stage is empty, open the step link in this window.</p>
+    </nav>
+    <iframe name="stage" title="<!-- fill in: journey name --> stage" src="../screens/<!-- fill in: first screen -->.html"></iframe>
+  </main>
+</body>
+</html>

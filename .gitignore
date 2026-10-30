@@ -1,0 +1,18 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+
+# agent-orc / .orc runtime
+.orc/config.local.yaml
+.orc/logs/
+.orc/worktrees/
+agent-orc/.venv/
+agent-orc/dist/
+agent-orc/*.egg-info/
+agent-orc/src/*.egg-info/
+
+# local probes / scratch
+tmp/

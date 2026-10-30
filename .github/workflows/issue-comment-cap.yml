@@ -1,0 +1,74 @@
+name: Issue comment cap
+
+# Tasks and defects: at most 20 comments. When the 21st lands, swap to
+# status:pending-redefinition and lock the conversation permanently.
+# Epics are exempt. Contract: docs/issues/workflow-comment-cap.md
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  enforce-comment-cap:
+    if: github.event.issue.pull_request == null && github.event.issue.state == 'open'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      ISSUE: ${{ github.event.issue.number }}
+      COMMENT_COUNT: ${{ github.event.issue.comments }}
+    steps:
+      - name: Lock and label when comment count reaches 21
+        run: |
+          set -euo pipefail
+
+          if [[ "${COMMENT_COUNT}" -lt 21 ]]; then
+            echo "Comment count ${COMMENT_COUNT} < 21; nothing to do"
+            exit 0
+          fi
+
+          LABELS_JSON=$(gh api "repos/${REPO}/issues/${ISSUE}" --jq '[.labels[].name]')
+          echo "Labels: ${LABELS_JSON}"
+
+          if echo "${LABELS_JSON}" | jq -e 'index("type:epic")' >/dev/null; then
+            echo "Epic exempt"
+            exit 0
+          fi
+
+          if ! echo "${LABELS_JSON}" | jq -e 'index("type:task") or index("type:defect")' >/dev/null; then
+            echo "Not type:task or type:defect; skip"
+            exit 0
+          fi
+
+          ALREADY_REDEF=$(echo "${LABELS_JSON}" | jq -e 'index("status:pending-redefinition")' >/dev/null && echo 1 || echo 0)
+          LOCKED=$(gh api "repos/${REPO}/issues/${ISSUE}" --jq '.locked')
+
+          if [[ "${ALREADY_REDEF}" -eq 1 && "${LOCKED}" == "true" ]]; then
+            echo "Already pending-redefinition and locked"
+            exit 0
+          fi
+
+          if [[ "${ALREADY_REDEF}" -eq 0 ]]; then
+            mapfile -t STATUS_LABELS < <(echo "${LABELS_JSON}" | jq -r '.[] | select(startswith("status:"))')
+            for lab in "${STATUS_LABELS[@]+"${STATUS_LABELS[@]}"}"; do
+              gh issue edit "${ISSUE}" --repo "${REPO}" --remove-label "${lab}"
+            done
+            gh issue edit "${ISSUE}" --repo "${REPO}" --add-label "status:pending-redefinition"
+
+            gh issue comment "${ISSUE}" --repo "${REPO}" --body "$(cat <<'EOF'
+Comment cap (20) exceeded. Conversation locked permanently and labeled `status:pending-redefinition`.
+
+The project planner will redefine this as a new task (`redefine-project-issue`). Do not unlock.
+EOF
+)"
+          fi
+
+          if [[ "${LOCKED}" != "true" ]]; then
+            gh api --method PUT "repos/${REPO}/issues/${ISSUE}/lock" \
+              -f lock_reason='resolved'
+          fi
+
+          echo "Enforced comment cap on #${ISSUE}"

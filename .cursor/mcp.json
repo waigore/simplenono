@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "recraft": {
+      "url": "https://mcp.recraft.ai/mcp",
+      "disabled": true
+    },
+    "fal": {
+      "url": "https://mcp.fal.ai/mcp-relay",
+      "headers": {
+        "Authorization": "Key ${env:FAL_AI_KEY}"
+      },
+      "disabled": true
+    }
+  }
+}

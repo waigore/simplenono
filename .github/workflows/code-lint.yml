@@ -1,0 +1,30 @@
+name: Code lint
+
+# Project-owned. Runs every lint and format command in the Tooling table of
+# docs/coding-conventions.md, one step each; keep the two in sync.
+# With no steps (placeholders, or Tooling `None`), the job passes with a notice.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  code-lint:
+    name: Code lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # fill in: toolchain setup, then one step per Tooling row, e.g.
+      # - name: Format check
+      #   run: fmt --check .
+
+      # Remove this step once real steps exist; keep it if Tooling is `None`.
+      - name: Not configured
+        run: echo "::notice::No lint or format commands configured; see docs/coding-conventions.md"

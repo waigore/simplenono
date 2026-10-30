@@ -1,0 +1,54 @@
+name: Task
+description: Concrete unit of work for agents with clear deliverables and acceptance criteria.
+title: ""
+labels: ["type:task", "status:pending-review", "priority:normal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use for a concrete unit of agent work. Agents: prefer the `create-project-task` skill.
+        Parent may be an epic or another task (max 3 levels from epic to leaf).
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be done.
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      description: Files and areas that need to change — as specific as possible.
+      placeholder: |
+        - path/to/file.ts — …
+        - specs/… — …
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Clear, testable conditions that must be met for this task to be done.
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Parent
+      description: Parent epic or task issue number (e.g. 12). Leave blank if none.
+      placeholder: "12"
+    validations:
+      required: false
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Blockers and related work. Prefer issue numbers (e.g. #12). Native blocked-by will be set when using the create skill.
+      value: |
+        - Blocked by: none
+        - Blocking: none
+    validations:
+      required: false
