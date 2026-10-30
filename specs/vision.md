@@ -8,7 +8,7 @@ A nonogram puzzle game where you mark cells from row and column clues to reveal 
 
 ## High-level description
 
-The player opens a local pack of nonogram puzzles and picks any unfinished board. Clues along each row and column say which cells belong in the picture. Marking filled cells and crosses feels snappy and deliberate; the board stays clear and clinical rather than playful. Completing a puzzle records that it is done. There is no fail state—mistakes are corrected until the grid matches the solution. Sessions are short: one puzzle or a few, then put the game down.
+The player opens a local pack of nonogram puzzles and picks any board, finished or not. Clues along each row and column say which cells belong in the picture. Marking filled cells and crosses feels snappy and deliberate; the board stays clear and clinical rather than playful. Completing a puzzle records that it is done and stores the time taken as that puzzle's personal best. A later solve in a shorter time replaces that best and is the better score. There is no fail state—mistakes are corrected until the grid matches the solution, which is the only way a puzzle ends. Sessions are short: one puzzle or a few, then put the game down.
 
 ## Target audience and player fantasy
 

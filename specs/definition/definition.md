@@ -7,7 +7,7 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 ### In scope
 
 - Local puzzle pack of nonograms (10×10 and 15×15)
-- Free-order puzzle selection; completion status persisted
+- Free-order puzzle selection; completion status and personal-best solve time persisted
 - Desktop and mobile play with mouse/keyboard or touch
 
 ### Out of scope
@@ -22,12 +22,12 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 
 - **Goal**: Correctly fill each puzzle from its row and column clues.
 - **Win / lose conditions**: Win when the grid matches the solution. No lose state; the player may correct marks until solved.
-- **Progression**: Choose any puzzle in any order; completed status is recorded (gallery-style).
+- **Progression**: Choose any puzzle in any order, finished or not. Completed status is recorded (gallery-style). The score is the shortest successful solve time for that puzzle; a shorter later solve replaces it.
 
 ### Product objectives
 
 - Ship a local pack playable offline on the supported platforms.
-- Persist which puzzles the player has completed across sessions.
+- Persist each puzzle's completed status and personal-best solve time across sessions.
 
 ## Supported platforms
 
@@ -49,11 +49,12 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 ### Design
 
 - Free-order selection only — no campaign gate that locks puzzles behind others.
+- Finished puzzles stay selectable — the player may solve one again to improve its personal best.
 - No fail/out state — errors are corrected, not punished.
 
 ### Technical
 
-- Fully playable offline after install — no required network for core play or completion saves.
+- Fully playable offline after install — no required network for core play, completion saves, or personal-best saves.
 
 ### Market
 
