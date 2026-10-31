@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery · mobile · SimpleNono</title>
+  <style>
+    /* Open Design mobile-app seed + aesthetics remap (PAL.S1 / UIS) */
+    :root {
+      --bg: #F4F7F8;
+      --surface: #F4F7F8;
+      --fg: #1B2833;
+      --muted: #6E7F8C;
+      --border: #C5D0D6;
+      --accent: #1B2833;
+      --accent-soft: color-mix(in oklch, var(--accent) 10%, transparent);
+      --fg-soft: color-mix(in oklch, var(--fg) 6%, transparent);
+      --font-display: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+      --fs-h1: 22px;
+      --fs-body: 15px;
+      --radius: 0;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; min-height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: 1.4;
+      display: grid;
+      place-items: center;
+      padding: 24px 16px 40px;
+    }
+    .stage { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; max-width: 420px; }
+    .caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      align-self: stretch;
+    }
+    .caption strong { color: var(--fg); font-weight: 600; }
+    nav[aria-label="States"] { display: flex; gap: 12px; align-self: stretch; font-size: 13px; }
+    nav[aria-label="States"] a { color: var(--fg); text-decoration: underline; }
+    .device {
+      position: relative;
+      width: 390px;
+      height: 844px;
+      border-radius: 56px;
+      padding: 12px;
+      background: linear-gradient(160deg, #2a2a2c 0%, #1a1a1c 50%, #0e0e10 100%);
+      box-shadow: 0 28px 60px -12px rgba(0,0,0,0.45);
+    }
+    .island {
+      position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+      width: 124px; height: 36px; background: #000; border-radius: 999px; z-index: 5;
+    }
+    .screen {
+      position: relative; width: 100%; height: 100%;
+      background: var(--bg); border-radius: 44px; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .statusbar {
+      flex: 0 0 47px; padding: 18px 26px 0;
+      display: flex; justify-content: space-between; font-size: 15px; font-weight: 600;
+    }
+    .content { flex: 1 1 auto; overflow-y: auto; padding: 0 0 12px; position: relative; }
+    .home-indicator { flex: 0 0 28px; position: relative; }
+    .home-indicator::after {
+      content: ""; position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%);
+      width: 134px; height: 5px; background: var(--fg); border-radius: 999px; opacity: 0.85;
+    }
+    .states > section { display: none; }
+    .states:not(:has(:target)) > section[data-state="default"] { display: block; }
+    .states:has(:target) > section:target { display: block; }
+    .header {
+      padding: 8px 20px 12px;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    }
+    .header h1 {
+      font-family: var(--font-display); font-size: var(--fs-h1);
+      letter-spacing: -0.02em; margin: 0; font-weight: 600;
+    }
+    .header .greeting {
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted); margin: 0 0 4px;
+    }
+    button.settings {
+      min-height: 44px; min-width: 44px; padding: 0 12px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); color: var(--fg); font: inherit; font-size: 13px;
+    }
+    .progress {
+      margin: 0 20px 16px; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .progress .label { font-size: 13px; margin: 0 0 8px; }
+    .bar {
+      height: 8px; background: color-mix(in oklch, var(--border) 70%, var(--bg));
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    .bar > span { display: block; height: 100%; width: 18.5%; background: var(--fg); }
+    .grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      padding: 0 20px 20px;
+    }
+    .tile {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); display: flex; flex-direction: column;
+    }
+    .tile .open {
+      display: flex; flex-direction: column; text-align: left;
+      border: 0; background: transparent; color: inherit; font: inherit;
+      padding: 0; cursor: pointer; min-height: 44px; width: 100%;
+    }
+    .tile .thumb {
+      aspect-ratio: 1; border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--fg-soft), var(--accent-soft)), var(--surface);
+      display: grid; place-items: center;
+      font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+    }
+    .tile .thumb.filled {
+      background: repeating-linear-gradient(45deg, #1B2833 0 6px, #3A4A56 6px 12px);
+      color: #F4F7F8;
+    }
+    .tile .meta { padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+    .tile .title { font-size: 13px; font-weight: 600; }
+    .tile .sub { font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
+    .tile .reset {
+      margin: 0 8px 8px; min-height: 44px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: transparent; color: var(--fg); font: inherit; font-size: 12px;
+    }
+    .confirm-overlay {
+      position: absolute; inset: 0; background: color-mix(in oklch, var(--fg) 35%, transparent);
+      display: grid; place-items: end center; padding: 20px; z-index: 2;
+    }
+    .confirm-sheet {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .confirm-sheet p { margin: 0; font-size: 15px; }
+    .confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .confirm-actions button {
+      min-height: 48px; border-radius: var(--radius); font: inherit; font-weight: 600;
+    }
+    .btn-cancel { background: transparent; border: 1px solid var(--border); color: var(--fg); }
+    .btn-confirm { background: var(--fg); border: 1px solid var(--fg); color: var(--bg); }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <p class="caption"><strong>UI-gallery</strong> · mobile · Open Design mobile-app · aesthetics remap</p>
+    <nav aria-label="States">
+      <a href="#state-default">Default</a>
+      <a href="#ex-confirm">EX.confirm</a>
+    </nav>
+    <div class="device">
+      <div class="island" aria-hidden="true"></div>
+      <div class="screen">
+        <div class="statusbar" aria-hidden="true"><span>9:41</span><span>●●●</span></div>
+        <div class="content">
+          <article data-screen="UI-gallery">
+            <div class="states">
+              <section id="state-default" data-state="default">
+                <header class="header" data-region="R3" aria-label="Chrome">
+                  <div>
+                    <p class="greeting">Local pack</p>
+                    <h1>Gallery</h1>
+                  </div>
+                  <button type="button" class="settings" data-control="C3">Settings</button>
+                </header>
+                <section class="progress" data-region="R1" aria-label="Pack progress">
+                  <p class="label">Completed <span class="num">37</span> / 200</p>
+                  <div class="bar" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
+                </section>
+                <section class="grid" data-region="R2" aria-label="Puzzle grid">
+                  <div class="tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb">No thumb</div>
+                      <div class="meta">
+                        <span class="title">10×10 · #001</span>
+                        <span class="sub">Not started</span>
+                      </div>
+                    </button>
+                  </div>
+                  <div class="tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb">No thumb</div>
+                      <div class="meta">
+                        <span class="title">10×10 · #002</span>
+                        <span class="sub">In progress</span>
+                      </div>
+                    </button>
+                    <button type="button" class="reset" data-control="C2">Reset</button>
+                  </div>
+                  <div class="tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb filled">Thumb</div>
+                      <div class="meta">
+                        <span class="title">15×15 · #061</span>
+                        <span class="sub">Done · Best 4:12</span>
+                      </div>
+                    </button>
+                    <button type="button" class="reset" data-control="C2">Reset</button>
+                  </div>
+                  <div class="tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb filled">Thumb</div>
+                      <div class="meta">
+                        <span class="title">15×15 · #062</span>
+                        <span class="sub">Done · In progress · Best 9:01</span>
+                      </div>
+                    </button>
+                    <button type="button" class="reset" data-control="C2">Reset</button>
+                  </div>
+                </section>
+              </section>
+              <section id="ex-confirm" data-state="EX.confirm">
+                <header class="header" data-region="R3" aria-label="Chrome">
+                  <div>
+                    <p class="greeting">Local pack</p>
+                    <h1>Gallery</h1>
+                  </div>
+                  <button type="button" class="settings" data-control="C3" disabled>Settings</button>
+                </header>
+                <section class="progress" data-region="R1" aria-label="Pack progress">
+                  <p class="label">Completed <span class="num">37</span> / 200</p>
+                  <div class="bar" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
+                </section>
+                <div class="confirm-overlay" role="dialog" aria-labelledby="reset-title">
+                  <div class="confirm-sheet">
+                    <p id="reset-title">Reset this puzzle? Progress and best time will be cleared.</p>
+                    <div class="confirm-actions">
+                      <button type="button" class="btn-cancel">Cancel</button>
+                      <button type="button" class="btn-confirm">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </article>
+        </div>
+        <div class="home-indicator" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
