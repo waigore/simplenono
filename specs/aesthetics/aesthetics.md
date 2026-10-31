@@ -37,4 +37,4 @@ None — one style throughout (gallery, board, chrome). Puzzle pictures change c
 
 Global specs: [`glossary.md`](glossary.md), [`ids.md`](ids.md), [`traceability.md`](traceability.md), [`palette.md`](palette.md), [`form.md`](form.md), [`surface.md`](surface.md), [`motion.md`](motion.md), [`ui-style.md`](ui-style.md), [`sound.md`](sound.md), [`references.md`](references.md).
 
-- **Sheets**: [`sheets/palette.html`](sheets/palette.html), [`sheets/lineup.html`](sheets/lineup.html) — content when palette / form formalize.
+- **Sheets**: [`sheets/palette.html`](sheets/palette.html) filled. [`sheets/lineup.html`](sheets/lineup.html) when form formalizes.
