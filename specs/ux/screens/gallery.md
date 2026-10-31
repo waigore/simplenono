@@ -29,7 +29,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 |----|---------|-----------|----------------|--------|
 | C1 | Puzzle tile | `IN.activate` | Always | Open that puzzle ([`ux.md`](../ux.md) puzzle screen) |
 | C2 | Reset | `IN.activate` | Ever-completed or attempt in progress | [`EX.confirm`](../exceptions.md); on confirm [`END.O2`](../../design/end-conditions.md) |
-| C3 | Settings | `IN.activate` | Always | Open settings ([`ux.md`](../ux.md)) |
+| C3 | Settings | `IN.activate` | Always | Open [`settings.md`](settings.md) |
 
 ## States
 

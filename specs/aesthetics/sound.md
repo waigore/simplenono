@@ -33,4 +33,4 @@ N/A — no speaker and no spoken lines ([`experience.md`](../design/experience.m
 | L2 | Mark tick | -28 LUFS | Quieter than the bed; no ducking |
 | L3 | Solve sting | -18 LUFS | In front of the bed for 1 s; the bed continues |
 
-No positional mix ([`audio.md`](../view/audio.md)).
+No positional mix ([`audio.md`](../view/audio.md)). Mute in settings silences the music bed (M1/M2) only; mark ticks and the sting stay audible ([`screens/settings.md`](../ux/screens/settings.md)). Default mute is off.

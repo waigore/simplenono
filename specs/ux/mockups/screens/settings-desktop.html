@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings · desktop · SimpleNono</title>
+  <style>
+    :root {
+      --bg: #F4F7F8;
+      --fg: #1B2833;
+      --muted: #6E7F8C;
+      --line: #C5D0D6;
+      --font: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+      --radius: 0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.45 var(--font);
+      color: var(--fg);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+    .doc { max-width: 28rem; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+    .caption {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+    }
+    .caption strong { color: var(--fg); }
+    nav[aria-label="States"] { margin-bottom: 1rem; font-size: 14px; }
+    nav[aria-label="States"] a { color: var(--fg); }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.25rem;
+    }
+    .options {
+      border: 1px solid var(--line);
+      margin-bottom: 1.25rem;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .row:last-child { border-bottom: 0; }
+    .row .label { font-size: 15px; }
+    .row .hint {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    button.toggle {
+      min-height: 36px;
+      min-width: 64px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--fg);
+      font: inherit;
+      font-size: 13px;
+      font-family: var(--mono);
+      cursor: pointer;
+    }
+    button.toggle[aria-pressed="true"] {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
+    button.back {
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--fg);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+    <p class="caption"><strong>UI-settings</strong> · desktop · Open Design web-prototype · aesthetics remap</p>
+    <nav aria-label="States"><a href="#state-default">Default</a></nav>
+    <article data-screen="UI-settings">
+      <div class="states">
+        <section id="state-default" data-state="default">
+          <h1>Settings</h1>
+          <div class="options" data-region="R1" aria-label="Options">
+            <div class="row">
+              <div>
+                <span class="label">Haptics</span>
+                <span class="hint">Default on · mobile fill/cross</span>
+              </div>
+              <button type="button" class="toggle" data-control="C1" aria-pressed="true">On</button>
+            </div>
+            <div class="row">
+              <div>
+                <span class="label">Mute music</span>
+                <span class="hint">BGM only · SFX stay on · default off</span>
+              </div>
+              <button type="button" class="toggle" data-control="C2" aria-pressed="false">Off</button>
+            </div>
+          </div>
+          <div data-region="R2" aria-label="Chrome">
+            <button type="button" class="back" data-control="C3">Back</button>
+          </div>
+        </section>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
