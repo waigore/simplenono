@@ -51,5 +51,6 @@
   ],
   "acceptable_count": 3,
   "style": "full-colour-pixelated",
+  "requirement": "unique + line-logic only",
   "outcome_met": true
 }

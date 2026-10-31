@@ -169,14 +169,14 @@ def fill_ratio(grid: np.ndarray) -> float:
 
 
 def acceptable(result: SolveResult, grid: np.ndarray) -> tuple[bool, str]:
+    """Hard bar: exactly one solution, and that solution is reached by line logic alone."""
     ratio = fill_ratio(grid)
+    if not result.logic_solved:
+        return False, "not line-logic solvable (needs guessing/DFS)"
     if not result.unique:
         return False, f"not unique (count>={result.solution_count})"
     if ratio < 0.25 or ratio > 0.45:
         return False, f"fill {ratio:.0%} outside 25–45%"
-    # Trivial: fully solved in one sweep with very sparse/dense edge cases already excluded
-    if result.logic_solved and result.sweeps <= 1 and grid.shape[0] <= 10:
+    if result.sweeps <= 1 and grid.shape[0] <= 10:
         return False, f"too easy (logic sweeps={result.sweeps} on {grid.shape[0]}²)"
-    if not result.logic_solved and result.dfs_nodes > 80:
-        return False, f"too hard (dfs_nodes={result.dfs_nodes})"
     return True, "ok"

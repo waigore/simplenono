@@ -151,24 +151,28 @@ def search_threshold(
     return tried[:12]
 
 
-def adapt_unique(
-    grid: np.ndarray, intensities: np.ndarray, max_flips: int = 24
+def adapt_line_logic(
+    grid: np.ndarray, intensities: np.ndarray, max_flips: int = 40
 ) -> tuple[np.ndarray, SolveResult, int]:
+    """Add dark fills until clues are uniquely solvable by line logic alone."""
     g = grid.copy()
     result = solve_and_judge(g)
     flips = 0
-    if result.unique:
+    if result.unique and result.logic_solved:
         return g, result, flips
 
-    order = np.argsort(intensities, axis=None)
+    order = np.argsort(intensities, axis=None)  # darkest first
     h, w = g.shape
     for flat in order:
         if flips >= max_flips:
             break
+        if result.unique and result.logic_solved:
+            break
         y, x = divmod(int(flat), w)
         if g[y, x] != EMPTY:
             continue
-        if intensities[y, x] > np.percentile(intensities, 55):
+        # Prefer subject pixels; allow slightly lighter than before for stubborn grids
+        if intensities[y, x] > np.percentile(intensities, 65):
             continue
         trial = g.copy()
         trial[y, x] = FILL
@@ -176,10 +180,14 @@ def adapt_unique(
         if fill_ratio(trial) > 0.48:
             continue
         jr = solve_and_judge(trial)
+        # Keep flip only if it does not worsen uniqueness / contradiction
+        if jr.solution_count == 0 and not jr.logic_solved and not jr.unique:
+            # skip destructive flips that break clues consistency (shouldn't happen)
+            continue
         flips += 1
         g = trial
         result = jr
-        if jr.unique:
+        if jr.unique and jr.logic_solved:
             break
     return g, result, flips
 
@@ -247,7 +255,7 @@ def build_puzzle_from_image(
         if key in seen_grids:
             continue
         seen_grids.add(key)
-        grid, result, flips = adapt_unique(base, intensities)
+        grid, result, flips = adapt_line_logic(base, intensities)
         ok, reason = acceptable(result, grid)
         rows, cols = clues_from_grid(grid)
         art = PuzzleArtifact(
@@ -269,10 +277,16 @@ def build_puzzle_from_image(
             best = art
             best_grid = grid
             break
-        if best is None or (art.unique and not best.unique) or (
-            art.unique == best.unique
-            and abs(art.fill_ratio - 0.35) < abs(best.fill_ratio - 0.35)
-        ):
+        # Prefer line-logic unique, then closer to 35% fill
+        def rank(a: PuzzleArtifact) -> tuple:
+            return (
+                0 if (a.unique and a.logic_solved) else 1,
+                0 if a.logic_solved else 1,
+                0 if a.unique else 1,
+                abs(a.fill_ratio - 0.35),
+            )
+
+        if best is None or rank(art) < rank(best):
             best = art
             best_grid = grid
 

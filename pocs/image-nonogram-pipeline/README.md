@@ -68,4 +68,4 @@ Outputs under `pocs/image-nonogram-pipeline/out/<slug>/`:
 
 - Not catalogued; not wired into Godot.
 - Line-logic + limited DFS uniqueness; difficulty is heuristic (logic depth / fill band).
-- Acceptable difficulty = unique + fill 28–42% + solvable mostly by line logic (DFS depth ≤ 2).
+- **Acceptance (hard)**: exactly one solution **and** fully solvable by **line logic alone** (no guessing/DFS); fill band 25–45%.
