@@ -14,7 +14,7 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 
 - **Session arc**: Gallery → pick any puzzle → get-set-ready → mark until solved or leave → gallery. Often one puzzle or a few, then stop.
 - **Rhythm**: Quiet deduction; light release on clue dim and on solve (BGM + image fade). No fail pressure.
-- **Durations**: One mark = instant; one puzzle = minutes; session = one puzzle or a few.
+- **Durations**: One mark = instant; the solve fade is 300 ms; one puzzle = minutes; session = one puzzle or a few.
 
 ## Feedback principles
 

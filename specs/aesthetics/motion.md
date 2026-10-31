@@ -2,22 +2,26 @@
 
 Authoring rules: [`.agents/specs/rules/aesthetics/motion.md`](../../.agents/specs/rules/aesthetics/motion.md).
 
-- **Serves**: <!-- fill in -->
+- **Serves**: Snappy restraint ([`AES.P3`](aesthetics.md)) and the win reveal ([`PER.R5`](../view/perception.md)). A mark stays instant ([`experience.md`](../design/experience.md), [`physics.md`](../view/physics.md)). The fade plays after the puzzle is solved ([`END.W1`](../design/end-conditions.md)).
 
 ## Animation principles
 
 | ID | Principle | Strength | Applies to |
 |----|-----------|----------|------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| A1 | Holds | 0% squash, stretch, anticipation, smear, or follow-through | Every [cell](../design/entities/cell.md) while the puzzle is open ([`FRM.S1`](form.md)) |
+| A2 | Easing | Linear, no overshoot | The solve fade only ([`SRF.E1`](surface.md)) |
 
 ## Timing
 
 | ID | Action class | Frame rate | Frames or duration | Fits design timing |
 |----|--------------|------------|--------------------|--------------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| T1 | Mark | None — a mark is not an animation frame | 0 | One mark = instant ([`experience.md`](../design/experience.md)); marks are not simulated motion ([`physics.md`](../view/physics.md)) |
+| T2 | Win reveal | Continuous crossfade, not a stepped cycle | 300 ms | Solve fade is 300 ms ([`experience.md`](../design/experience.md)); the picture reads complete ([`PER.R5`](../view/perception.md)) |
 
 ## Effect motion
 
 | ID | Effect class | Lifetime (s) | Motion rule |
 |----|--------------|--------------|-------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| E1 | Win reveal ([`SRF.E1`](surface.md)) | 0.3 | Each fill fades in place into the solution picture, linear, with no spread. Cells do not move. Clues stay uncovered ([`PER.R2`](../view/perception.md)) |
+
+The fade starts when the puzzle is solved. It does not change when that win occurs ([`END.W1`](../design/end-conditions.md)).
