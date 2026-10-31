@@ -12,9 +12,9 @@ Authoring rules: [`.agents/specs/rules/ux/traceability.md`](../../.agents/specs/
 
 | Topic | Covered in | Applicability |
 |-------|------------|---------------|
-| Actors | [`actors/`](actors/) | <!-- fill in --> |
-| Screens | [`screens/`](screens/), [`navigation.md`](navigation.md) | <!-- fill in --> |
-| Journeys | [`journeys/`](journeys/) | <!-- fill in --> |
+| Actors | [`actors/`](actors/), [`ux.md`](ux.md) | Applies — player indexed; body pending |
+| Screens | [`screens/`](screens/), [`navigation.md`](navigation.md), [`ux.md`](ux.md) | Applies — gallery, puzzle, result, settings indexed; bodies pending |
+| Journeys | [`journeys/`](journeys/), [`ux.md`](ux.md) | Applies — play, leave-resume, gallery-reset, settings indexed; bodies pending |
 | Navigation | [`navigation.md`](navigation.md) | <!-- fill in --> |
 | Exception states | [`exceptions.md`](exceptions.md) | <!-- fill in --> |
 | Controls and bindings | [`controls.md`](controls.md) | <!-- fill in --> |

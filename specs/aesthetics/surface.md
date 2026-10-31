@@ -30,6 +30,6 @@ N/A — flat paper and ink. Marks use one flat color and no texture ([`aesthetic
 
 | ID | Effect class | Shape and color | Largest share of frame |
 |----|--------------|-----------------|------------------------|
-| E1 | Win reveal | Each fill fades in place into the solution picture ([`PER.R5`](../view/perception.md)). Picture pixels stay outside palette set [`PAL.S1`](palette.md) | The cell grid only. Clues stay uncovered ([`PER.R2`](../view/perception.md)) |
+| E1 | Win reveal | On the result screen, each fill fades in place into the solution picture ([`PER.R5`](../view/perception.md)). Picture pixels stay outside palette set [`PAL.S1`](palette.md) | The cell grid only. Clues are not part of the morph ([`PER.R5`](../view/perception.md)) |
 
 Line error and a satisfied clue stay palette color changes ([`PAL.C6`](palette.md), [`PAL.C5`](palette.md)). How long the fade takes belongs in [`motion.md`](motion.md).

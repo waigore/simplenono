@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/aesthetics/motion.md`](../../.agents/specs/rules/aesthetics/motion.md).
 
-- **Serves**: Snappy restraint ([`AES.P3`](aesthetics.md)) and the win reveal ([`PER.R5`](../view/perception.md)). A mark stays instant ([`experience.md`](../design/experience.md), [`physics.md`](../view/physics.md)). The fade plays after the puzzle is solved ([`END.W1`](../design/end-conditions.md)).
+- **Serves**: Snappy restraint ([`AES.P3`](aesthetics.md)) and the win reveal ([`PER.R5`](../view/perception.md)). A mark stays instant ([`experience.md`](../design/experience.md), [`physics.md`](../view/physics.md)). The fade plays on the result screen after the puzzle is solved ([`END.W1`](../design/end-conditions.md)).
 
 ## Animation principles
 
@@ -22,6 +22,6 @@ Authoring rules: [`.agents/specs/rules/aesthetics/motion.md`](../../.agents/spec
 
 | ID | Effect class | Lifetime (s) | Motion rule |
 |----|--------------|--------------|-------------|
-| E1 | Win reveal ([`SRF.E1`](surface.md)) | 0.3 | Each fill fades in place into the solution picture, linear, with no spread. Cells do not move. Clues stay uncovered ([`PER.R2`](../view/perception.md)) |
+| E1 | Win reveal ([`SRF.E1`](surface.md)) | 0.3 | On the result screen, each fill fades in place into the solution picture, linear, with no spread. Cells do not move. Clues are not part of the morph ([`PER.R5`](../view/perception.md)) |
 
-The fade starts when the puzzle is solved. It does not change when that win occurs ([`END.W1`](../design/end-conditions.md)).
+The fade plays on the result screen after the puzzle is solved. It does not change when that win occurs ([`END.W1`](../design/end-conditions.md)).

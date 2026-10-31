@@ -12,8 +12,8 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 
 ## Pacing
 
-- **Session arc**: Gallery → pick any puzzle → get-set-ready → mark until solved or leave → gallery. Often one puzzle or a few, then stop.
-- **Rhythm**: Quiet deduction; light release on clue dim and on solve (BGM + image fade). No fail pressure.
+- **Session arc**: Gallery → pick any puzzle → get-set-ready → mark until solved → result (fill→image morph) → gallery; or leave to gallery. Often one puzzle or a few, then stop.
+- **Rhythm**: Quiet deduction; light release on clue dim and on solve (BGM sting + result-screen image fade). No fail pressure.
 - **Durations**: One mark = instant; the solve fade is 300 ms; one puzzle = minutes; session = one puzzle or a few.
 
 ## Feedback principles
@@ -31,7 +31,7 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 
 - **Mood and style**: Cool, clinical, high-contrast, quiet focus — not warm, cute, or playful.
 - **Sound intent**: Light calm BGM during play; soft/quiet mark SFX under it. On solve, a calm-yet-triumphant sting over the continuing bed. Concrete audio → aesthetics / view.
-- **Clarity rules**: Fill, cross, and clear always distinct; clues readable; line error is contradiction, not fail; solution hidden on the board while solving. On solve, filled cells fade into the actual image (win reveal); gallery thumbnail remains the lasting picture after ever-completed.
+- **Clarity rules**: Fill, cross, and clear always distinct; clues readable; line error is contradiction, not fail; solution hidden on the board while solving. After solve, on the result screen, filled cells fade into the actual image (fills only); then return to gallery. Gallery thumbnail remains the lasting picture after ever-completed.
 
 ## Accessibility
 

@@ -12,7 +12,7 @@ Authoring rules: [`.agents/specs/rules/view/perception.md`](../../.agents/specs/
 | R2 | Clue lines | Readable for the open puzzle; not clipped out of the board framing | all |
 | R3 | Line error | Contradiction cue visible on the affected row or column | all |
 | R4 | Solution image | Hidden on the board while solving | all |
-| R5 | Win reveal | On solve, filled cells fade into the solution image on the board; fade reads as picture-complete | all |
+| R5 | Win reveal | On the result screen after solve, filled cells fade into the solution image (fills only; clues are not part of the morph); fade reads as picture-complete | all |
 | R6 | Open board | Clues + grid stay inside one readable framing on all supported platforms | all |
 
 ## Depth cues
@@ -29,4 +29,4 @@ N/A — accessibility deferred until it Applies in quality ([`experience.md`](..
 
 ## Experience intent
 
-Quiet focus on the clinical grid. On solve, a clear win beat: fills fade into the picture.
+Quiet focus on the clinical grid. After solve, a clear win beat on the result screen: fills fade into the picture, then return to gallery.
