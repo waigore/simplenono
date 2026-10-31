@@ -1,263 +1,438 @@
 <!doctype html>
+<!--
+  OD web-prototype seed.
+
+  Copy this file to <project>/index.html, then fill `<main id="content">` by
+  pasting blocks from `references/layouts.md`. Every class referenced in
+  layouts.md is defined here — DO NOT remove unused ones unless you also
+  remove their callers, and DO NOT invent new global classes (use inline
+  style="…" for one-off tweaks).
+
+  Theme tokens at the top of `<style>` are the *only* place to set palette
+  and type. They map cleanly onto a DESIGN.md — when an active design system
+  is injected, swap these six variables and everything reflows.
+-->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gallery · desktop · SimpleNono</title>
   <style>
-    /* Open Design web-prototype seed + aesthetics remap (PAL.S1 / UIS) */
+    /* ─── tokens ─────────────────────────────────────────────────────────
+       Six variables. Bind them to the active DESIGN.md and stop.
+       Do not introduce raw hex anywhere else in this file. */
     :root {
-      --bg: #F4F7F8;
-      --surface: #F4F7F8;
-      --fg: #1B2833;
-      --muted: #6E7F8C;
-      --border: #C5D0D6;
-      --accent: #1B2833;
-      --accent-soft: color-mix(in oklch, var(--accent) 10%, transparent);
-      --fg-soft: color-mix(in oklch, var(--fg) 6%, transparent);
-      --font-display: "Avenir Next", "Segoe UI", system-ui, sans-serif;
-      --font-body: "Avenir Next", "Segoe UI", system-ui, sans-serif;
-      --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
-      --fs-h1: clamp(28px, 3vw, 36px);
+      --bg:      #F4F7F8;   /* page background — never #fff */
+      --surface: #F4F7F8;   /* cards, modals, raised areas */
+      --fg:      #1B2833;   /* primary text — never #000 */
+      --muted:   #6E7F8C;   /* secondary text, captions */
+      --border:  #C5D0D6;   /* hairlines, dividers */
+      --accent:  #1B2833;   /* one accent — used at most 2× per screen */
+
+      /* derived — do not change */
+      --accent-soft: color-mix(in oklch, var(--accent) 14%, transparent);
+      --fg-soft:     color-mix(in oklch, var(--fg) 6%, transparent);
+
+      /* type — display = serif (default), body = sans, mono for numerics */
+      --font-display: 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+      --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono:    ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+      /* scale — clamp() so it works at 1280, 1440, 1920 without media queries */
+      --fs-h1: clamp(44px, 6vw, 76px);
+      --fs-h2: clamp(32px, 4vw, 48px);
+      --fs-h3: 22px;
+      --fs-lead: 19px;
       --fs-body: 16px;
       --fs-meta: 13px;
+
+      /* spacing — 8-point grid */
+      --gap-xs: 8px;
+      --gap-sm: 12px;
       --gap-md: 20px;
       --gap-lg: 32px;
+      --gap-xl: 56px;
+      --gap-2xl: 96px;
+      --container: 1120px;
       --gutter: 32px;
-      --container: 960px;
+
       --radius: 0;
+      --radius-lg: 0;
     }
+
+    /* ─── reset & base ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--fg);
       font-family: var(--font-body);
       font-size: var(--fs-body);
-      line-height: 1.5;
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
     }
-    .doc-header {
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    p { text-wrap: pretty; }
+    h1, h2, h3, h4 { text-wrap: balance; }
+
+    /* ─── layout primitives ─────────────────────────────────────────── */
+    .container {
       max-width: var(--container);
-      margin: 0 auto;
-      padding: 24px var(--gutter) 0;
+      margin-inline: auto;
+      padding-inline: var(--gutter);
     }
-    .doc-header .caption {
+    .section {
+      padding-block: clamp(48px, 8vw, var(--gap-2xl));
+    }
+    .section + .section { border-top: 1px solid var(--border); }
+    .stack { display: flex; flex-direction: column; }
+    .stack > * + * { margin-top: var(--gap-md); }
+    .row { display: flex; align-items: center; gap: var(--gap-md); }
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--gap-md); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap-lg); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-md); }
+    .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--gap-xl); align-items: start; }
+    .grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: var(--gap-xl); align-items: start; }
+    @media (max-width: 920px) {
+      .grid-2, .grid-3, .grid-4, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
+    }
+
+    /* ─── type ──────────────────────────────────────────────────────── */
+    .h1, h1 { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.04; letter-spacing: -0.02em; margin: 0; }
+    .h2, h2 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.1; letter-spacing: -0.015em; margin: 0; }
+    .h3, h3 { font-size: var(--fs-h3); font-weight: 600; line-height: 1.3; letter-spacing: -0.005em; margin: 0; }
+    .lead   { font-size: var(--fs-lead); line-height: 1.55; color: var(--muted); max-width: 60ch; margin: 0; }
+    .eyebrow {
       font-family: var(--font-mono);
       font-size: 12px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 8px;
+      color: var(--accent);
+      margin: 0 0 var(--gap-md);
     }
-    .doc-header .caption strong { color: var(--fg); }
-    nav[aria-label="States"] { display: flex; gap: 16px; margin-bottom: 16px; font-size: 14px; }
-    nav[aria-label="States"] a { color: var(--fg); }
-    article[data-screen] { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 64px; }
+    .meta { font-family: var(--font-mono); font-size: var(--fs-meta); color: var(--muted); }
+    .num  { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+    /* ─── chrome: nav + footer ──────────────────────────────────────── */
+    .topnav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in oklch, var(--bg) 92%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topnav-inner { display: flex; align-items: center; justify-content: space-between; padding-block: 14px; }
+    .topnav .logo { font-family: var(--font-display); font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .topnav nav { display: flex; gap: var(--gap-lg); }
+    .topnav nav a { font-size: 14px; color: var(--muted); }
+    .topnav nav a:hover { color: var(--fg); }
+    .pagefoot { padding-block: var(--gap-xl); color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+    .pagefoot .row-between { flex-wrap: wrap; gap: var(--gap-md); }
+
+    /* ─── buttons ───────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+    .btn-primary:hover { background: color-mix(in oklch, var(--accent) 88%, black); }
+    .btn-secondary { background: transparent; color: var(--fg); border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--fg); }
+    .btn-ghost { background: transparent; color: var(--fg); border-color: transparent; padding-inline: 8px; }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-arrow::after { content: '→'; transition: transform 0.15s ease; }
+    .btn-arrow:hover::after { transform: translateX(2px); }
+
+    /* ─── card / surface ────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+    .card-flat { background: transparent; border: 0; padding: 0; }
+    .card-rule { background: transparent; border: 0; border-top: 1px solid var(--fg); padding: 24px 0 0; border-radius: 0; }
+
+    /* ─── feature cell (icon + h3 + p) ──────────────────────────────── */
+    .feature .feature-mark {
+      width: 36px; height: 36px;
+      display: grid; place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--accent);
+      margin-bottom: var(--gap-md);
+    }
+    .feature .feature-mark svg { width: 18px; height: 18px; }
+    .feature h3 { margin-bottom: 6px; }
+    .feature p  { margin: 0; color: var(--muted); font-size: 15px; }
+
+    /* ─── stat (big number + label) ─────────────────────────────────── */
+    .stat .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 8vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .stat .stat-label { color: var(--muted); font-size: 14px; margin-top: 8px; max-width: 24ch; }
+    .stat .stat-unit  { font-size: 0.5em; opacity: 0.7; margin-left: 2px; }
+
+    /* ─── quote / testimonial ───────────────────────────────────────── */
+    .quote {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.6vw, 32px);
+      line-height: 1.32;
+      letter-spacing: -0.01em;
+      max-width: 28ch;
+    }
+    .quote-author { color: var(--muted); font-size: 14px; margin-top: var(--gap-md); }
+    .quote-mark   {
+      font-family: var(--font-display);
+      font-size: 140px; line-height: 0.7;
+      color: var(--accent); opacity: 0.18;
+      margin-bottom: -28px;
+    }
+
+    /* ─── pill / badge / tag ────────────────────────────────────────── */
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .tag {
+      display: inline-flex; align-items: center;
+      padding: 4px 10px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    /* ─── form field ────────────────────────────────────────────────── */
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 13px; color: var(--muted); }
+    .input, .textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--fg);
+      font: inherit;
+      font-size: 15px;
+    }
+    .input:focus, .textarea:focus {
+      outline: 2px solid var(--accent-soft);
+      border-color: var(--accent);
+    }
+    .textarea { min-height: 96px; resize: vertical; line-height: 1.55; }
+
+    /* ─── table (data-style, no chrome) ─────────────────────────────── */
+    .ds-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ds-table th, .ds-table td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+    .ds-table th { color: var(--muted); font-weight: 500; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .ds-table tbody tr:hover { background: var(--fg-soft); }
+    .ds-table .num-col { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+
+    /* ─── image placeholder (DS-tinted block, never broken <img>) ──── */
+    .ph-img {
+      background:
+        linear-gradient(135deg, var(--accent-soft), var(--fg-soft)),
+        var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 16 / 10;
+      display: grid; place-items: center;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    .ph-img.square    { aspect-ratio: 1 / 1; }
+    .ph-img.portrait  { aspect-ratio: 3 / 4; }
+    .ph-img.wide      { aspect-ratio: 16 / 9; }
+    .content-img {
+      display: block;
+      max-width: 100%;
+      max-height: min(70vh, 720px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      justify-self: center;
+      border-radius: var(--radius-lg);
+    }
+
+    /* ─── divider ───────────────────────────────────────────────────── */
+    .rule  { border: 0; border-top: 1px solid var(--border); margin: 0; }
+    .rule-strong { border: 0; border-top: 1px solid var(--fg); margin: 0; }
+
+    /* ─── hero variants used by layouts.md ──────────────────────────── */
+    .hero          { padding-block: clamp(80px, 12vw, 160px); }
+    .hero-center   { text-align: center; max-width: 32ch; margin-inline: auto; }
+    .hero h1       { margin-bottom: var(--gap-md); }
+    .hero .lead    { margin-bottom: var(--gap-lg); }
+    .hero-cta      { display: inline-flex; gap: var(--gap-sm); flex-wrap: wrap; }
+    .hero-center .hero-cta { justify-content: center; }
+    .hero-split    { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-2xl); align-items: center; }
+    @media (max-width: 920px) { .hero-split { grid-template-columns: 1fr; } }
+
+    /* ─── log row (newsletter, blog list, changelog) ────────────────── */
+    .log-row { display: grid; grid-template-columns: 120px 1fr 100px; gap: var(--gap-lg); padding: 22px 0; border-top: 1px solid var(--border); align-items: baseline; }
+    .log-row .meta { color: var(--muted); }
+    .log-row h3 { font-size: 19px; }
+    .log-row .pull { text-align: right; }
+
+    nav.ux-states { display:flex; gap:16px; margin: 12px 0 0; font-size:14px; }
+    nav.ux-states a { color: var(--fg); }
+    .doc-cap { font-family: var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin:24px 0 0; }
+    .doc-cap strong { color: var(--fg); }
     .states > section { display: none; }
     .states:not(:has(:target)) > section[data-state="default"] { display: block; }
     .states:has(:target) > section:target { display: block; }
-    .topbar {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      gap: var(--gap-md); padding-block: 16px 24px;
-      border-bottom: 1px solid var(--border); margin-bottom: 24px;
-    }
-    .topbar h1 {
-      font-family: var(--font-display); font-size: var(--fs-h1);
-      letter-spacing: -0.02em; margin: 0; font-weight: 600;
-    }
-    .topbar .eyebrow {
-      font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--muted); margin: 0 0 6px;
-    }
-    button.settings {
-      min-height: 44px; min-width: 44px; padding: 0 16px;
-      border: 1px solid var(--border); border-radius: var(--radius);
-      background: var(--surface); color: var(--fg); font: inherit;
-    }
-    .progress {
-      border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 16px 20px; margin-bottom: 28px;
-      display: grid; gap: 10px;
-    }
-    .progress .label { margin: 0; font-size: 15px; }
-    .bar {
-      height: 10px; background: color-mix(in oklch, var(--border) 70%, var(--bg));
-      border: 1px solid var(--border); overflow: hidden;
-    }
-    .bar > span { display: block; height: 100%; width: 18.5%; background: var(--fg); }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--gap-md);
-    }
-    @media (max-width: 920px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    .tile {
-      border: 1px solid var(--border); border-radius: var(--radius);
-      background: var(--surface); display: flex; flex-direction: column;
-    }
-    .tile .open {
-      display: flex; flex-direction: column; text-align: left;
-      border: 0; background: transparent; color: inherit; font: inherit;
-      padding: 0; cursor: pointer; min-height: 44px;
-    }
-    .tile .thumb {
-      aspect-ratio: 1; border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, var(--fg-soft), var(--accent-soft)), var(--surface);
-      display: grid; place-items: center;
-      font-family: var(--font-mono); font-size: 11px; color: var(--muted);
-    }
-    .tile .thumb.filled {
-      background: repeating-linear-gradient(45deg, #1B2833 0 8px, #3A4A56 8px 16px);
-      color: #F4F7F8;
-    }
-    .tile .meta { padding: 12px; display: flex; flex-direction: column; gap: 4px; }
-    .tile .title { font-weight: 600; font-size: 14px; }
-    .tile .sub { font-family: var(--font-mono); font-size: var(--fs-meta); color: var(--muted); }
-    .tile .reset {
-      margin: 0 12px 12px; min-height: 44px;
-      border: 1px solid var(--border); border-radius: var(--radius);
-      background: transparent; color: var(--fg); font: inherit; font-size: 13px; cursor: pointer;
-    }
-    .confirm-layer {
-      position: relative; min-height: 420px;
-    }
-    .confirm-overlay {
-      position: absolute; inset: 0;
-      background: color-mix(in oklch, var(--fg) 28%, transparent);
-      display: grid; place-items: center; padding: 24px;
-    }
-    .confirm-card {
-      width: min(420px, 100%);
-      background: var(--bg); border: 1px solid var(--border);
-      padding: 24px; display: flex; flex-direction: column; gap: 16px;
-    }
-    .confirm-card p { margin: 0; }
-    .confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .confirm-actions button {
-      min-height: 44px; border-radius: var(--radius); font: inherit; font-weight: 600; cursor: pointer;
-    }
-    .btn-cancel { background: transparent; border: 1px solid var(--border); color: var(--fg); }
-    .btn-confirm { background: var(--fg); border: 1px solid var(--fg); color: var(--bg); }
+    .gallery-shell { position: relative; min-height: 70vh; }
+    .progress-block { border:1px solid var(--border); padding:16px 20px; margin-bottom:28px; }
+    .progress-block .label { margin:0 0 10px; }
+    .progress-track { height:10px; background: color-mix(in oklch, var(--border) 65%, var(--bg)); border:1px solid var(--border); overflow:hidden; }
+    .progress-track > span { display:block; height:100%; width:18.5%; background:var(--fg); }
+    .puzzle-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-md); }
+    @media (max-width: 920px) { .puzzle-grid { grid-template-columns: repeat(2, 1fr); } }
+    .puzzle-tile { border:1px solid var(--border); background:var(--surface); display:flex; flex-direction:column; }
+    .puzzle-tile .open { border:0; background:transparent; color:inherit; font:inherit; padding:0; text-align:left; cursor:pointer; min-height:44px; width:100%; display:flex; flex-direction:column; }
+    .puzzle-tile .thumb { aspect-ratio:1; border-bottom:1px solid var(--border); display:grid; place-items:center; font-family:var(--font-mono); font-size:11px; color:var(--muted);
+      background: linear-gradient(135deg, var(--fg-soft), var(--accent-soft)), var(--surface); }
+    .puzzle-tile .thumb.filled { background: repeating-linear-gradient(45deg, #1B2833 0 8px, #3A4A56 8px 16px); color:#F4F7F8; }
+    .puzzle-tile .meta { padding:12px; display:flex; flex-direction:column; gap:4px; }
+    .puzzle-tile .title { font-weight:600; font-size:14px; }
+    .puzzle-tile .sub { font-family:var(--font-mono); font-size:var(--fs-meta); color:var(--muted); }
+    .puzzle-tile .reset { margin:0 12px 12px; min-height:44px; border:1px solid var(--border); background:transparent; color:var(--fg); font:inherit; font-size:13px; cursor:pointer; }
+    .confirm-overlay { position:absolute; inset:0; z-index:5; background: color-mix(in oklch, var(--fg) 28%, transparent); display:grid; place-items:center; padding:24px; }
+    .confirm-card { width:min(420px,100%); background:var(--bg); border:1px solid var(--border); padding:24px; display:flex; flex-direction:column; gap:16px; }
+    .confirm-card p { margin:0; }
+    .confirm-actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .confirm-actions button { min-height:44px; font:inherit; font-weight:600; cursor:pointer; }
+    .btn-cancel { background:transparent; border:1px solid var(--border); color:var(--fg); }
+    .btn-confirm { background:var(--fg); border:1px solid var(--fg); color:var(--bg); }
+
   </style>
 </head>
+
 <body>
-  <div class="doc-header">
-    <p class="caption"><strong>UI-gallery</strong> · desktop · Open Design web-prototype · aesthetics remap</p>
-    <nav aria-label="States">
-      <a href="#state-default">Default</a>
-      <a href="#ex-confirm">EX.confirm</a>
-    </nav>
+  <div class="container">
+    <p class="doc-cap"><strong>UI-gallery</strong> · desktop · Open Design web-prototype · aesthetics remap</p>
+    <nav class="ux-states" aria-label="States"><a href="#state-default">Default</a><a href="#ex-confirm">EX.confirm</a></nav>
   </div>
   <article data-screen="UI-gallery">
     <div class="states">
       <section id="state-default" data-state="default">
-        <header class="topbar" data-region="R3" aria-label="Chrome">
-          <div>
-            <p class="eyebrow">Local pack</p>
-            <h1>Gallery</h1>
+        <header class="topnav" data-od-id="topnav" data-region="R3" aria-label="Chrome">
+          <div class="container topnav-inner">
+            <div>
+              <p class="eyebrow" style="margin:0 0 4px; color:var(--muted);">Local pack</p>
+              <span class="logo">Gallery</span>
+            </div>
+            <button type="button" class="btn btn-secondary" data-control="C3">Settings</button>
           </div>
-          <button type="button" class="settings" data-control="C3">Settings</button>
         </header>
-        <section class="progress" data-region="R1" aria-label="Pack progress">
-          <p class="label">Completed <span class="num">37</span> / 200</p>
-          <div class="bar" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
-        </section>
-        <section class="grid" data-region="R2" aria-label="Puzzle grid">
-          <div class="tile">
-            <button type="button" class="open" data-control="C1">
-              <div class="thumb">No thumb</div>
-              <div class="meta">
-                <span class="title">10×10 · #001</span>
-                <span class="sub">Not started</span>
-              </div>
-            </button>
-          </div>
-          <div class="tile">
-            <button type="button" class="open" data-control="C1">
-              <div class="thumb">No thumb</div>
-              <div class="meta">
-                <span class="title">10×10 · #002</span>
-                <span class="sub">In progress</span>
-              </div>
-            </button>
-            <button type="button" class="reset" data-control="C2">Reset</button>
-          </div>
-          <div class="tile">
-            <button type="button" class="open" data-control="C1">
-              <div class="thumb filled">Thumb</div>
-              <div class="meta">
-                <span class="title">15×15 · #061</span>
-                <span class="sub">Done · Best 4:12</span>
-              </div>
-            </button>
-            <button type="button" class="reset" data-control="C2">Reset</button>
-          </div>
-          <div class="tile">
-            <button type="button" class="open" data-control="C1">
-              <div class="thumb filled">Thumb</div>
-              <div class="meta">
-                <span class="title">15×15 · #062</span>
-                <span class="sub">Done · In progress · Best 9:01</span>
-              </div>
-            </button>
-            <button type="button" class="reset" data-control="C2">Reset</button>
-          </div>
-          <div class="tile">
-            <button type="button" class="open" data-control="C1">
-              <div class="thumb">No thumb</div>
-              <div class="meta">
-                <span class="title">10×10 · #003</span>
-                <span class="sub">Not started</span>
-              </div>
-            </button>
-          </div>
-          <div class="tile">
-            <button type="button" class="open" data-control="C1">
-              <div class="thumb filled">Thumb</div>
-              <div class="meta">
-                <span class="title">10×10 · #004</span>
-                <span class="sub">Done · Best 2:05</span>
-              </div>
-            </button>
-            <button type="button" class="reset" data-control="C2">Reset</button>
-          </div>
-          <div class="tile">
-            <button type="button" class="open" data-control="C1">
-              <div class="thumb">No thumb</div>
-              <div class="meta">
-                <span class="title">15×15 · #063</span>
-                <span class="sub">Not started</span>
-              </div>
-            </button>
-          </div>
-          <div class="tile">
-            <button type="button" class="open" data-control="C1">
-              <div class="thumb">No thumb</div>
-              <div class="meta">
-                <span class="title">15×15 · #064</span>
-                <span class="sub">In progress</span>
-              </div>
-            </button>
-            <button type="button" class="reset" data-control="C2">Reset</button>
-          </div>
-        </section>
+        <main id="content" class="container" style="padding-block: 28px 64px;">
+          <section class="progress-block" data-region="R1" aria-label="Pack progress">
+            <p class="label">Completed <span class="num">37</span> / 200</p>
+            <div class="progress-track" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
+          </section>
+          <section class="puzzle-grid" data-region="R2" aria-label="Puzzle grid">
+
+                  <div class="puzzle-tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb">No thumb</div>
+                      <div class="meta"><span class="title">10×10 · #001</span><span class="sub">Not started</span></div>
+                    </button>
+                  </div>
+                  <div class="puzzle-tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb">No thumb</div>
+                      <div class="meta"><span class="title">10×10 · #002</span><span class="sub">In progress</span></div>
+                    </button>
+                    <button type="button" class="reset" data-control="C2">Reset</button>
+                  </div>
+                  <div class="puzzle-tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb filled">Thumb</div>
+                      <div class="meta"><span class="title">15×15 · #061</span><span class="sub">Done · Best 4:12</span></div>
+                    </button>
+                    <button type="button" class="reset" data-control="C2">Reset</button>
+                  </div>
+                  <div class="puzzle-tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb filled">Thumb</div>
+                      <div class="meta"><span class="title">15×15 · #062</span><span class="sub">Done · In progress · Best 9:01</span></div>
+                    </button>
+                    <button type="button" class="reset" data-control="C2">Reset</button>
+                  </div>
+
+            <div class="puzzle-tile">
+              <button type="button" class="open" data-control="C1">
+                <div class="thumb">No thumb</div>
+                <div class="meta"><span class="title">10×10 · #003</span><span class="sub">Not started</span></div>
+              </button>
+            </div>
+            <div class="puzzle-tile">
+              <button type="button" class="open" data-control="C1">
+                <div class="thumb filled">Thumb</div>
+                <div class="meta"><span class="title">10×10 · #004</span><span class="sub">Done · Best 2:05</span></div>
+              </button>
+              <button type="button" class="reset" data-control="C2">Reset</button>
+            </div>
+            <div class="puzzle-tile">
+              <button type="button" class="open" data-control="C1">
+                <div class="thumb">No thumb</div>
+                <div class="meta"><span class="title">15×15 · #063</span><span class="sub">Not started</span></div>
+              </button>
+            </div>
+            <div class="puzzle-tile">
+              <button type="button" class="open" data-control="C1">
+                <div class="thumb">No thumb</div>
+                <div class="meta"><span class="title">15×15 · #064</span><span class="sub">In progress</span></div>
+              </button>
+              <button type="button" class="reset" data-control="C2">Reset</button>
+            </div>
+          </section>
+        </main>
       </section>
       <section id="ex-confirm" data-state="EX.confirm">
-        <div class="confirm-layer">
-          <header class="topbar" data-region="R3" aria-label="Chrome">
-            <div>
-              <p class="eyebrow">Local pack</p>
-              <h1>Gallery</h1>
+        <div class="gallery-shell">
+          <header class="topnav" data-region="R3" aria-label="Chrome">
+            <div class="container topnav-inner">
+              <div>
+                <p class="eyebrow" style="margin:0 0 4px; color:var(--muted);">Local pack</p>
+                <span class="logo">Gallery</span>
+              </div>
+              <button type="button" class="btn btn-secondary" data-control="C3" disabled>Settings</button>
             </div>
-            <button type="button" class="settings" data-control="C3" disabled>Settings</button>
           </header>
-          <section class="progress" data-region="R1" aria-label="Pack progress">
-            <p class="label">Completed <span class="num">37</span> / 200</p>
-            <div class="bar" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
-          </section>
+          <main class="container" style="padding-block: 28px 64px;">
+            <section class="progress-block" data-region="R1" aria-label="Pack progress">
+              <p class="label">Completed <span class="num">37</span> / 200</p>
+              <div class="progress-track" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
+            </section>
+          </main>
           <div class="confirm-overlay" role="dialog" aria-labelledby="reset-title-desktop">
             <div class="confirm-card">
               <p id="reset-title-desktop">Reset this puzzle? Progress and best time will be cleared.</p>
@@ -272,4 +447,5 @@
     </div>
   </article>
 </body>
+
 </html>
