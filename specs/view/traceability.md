@@ -20,6 +20,6 @@ Authoring rules: [`.agents/specs/rules/view/traceability.md`](../../.agents/spec
 | Physics feel | [`physics.md`](physics.md) | <!-- fill in --> |
 | Readability and depth | [`perception.md`](perception.md) | <!-- fill in --> |
 | Motion comfort | [`perception.md`](perception.md) | <!-- fill in --> |
-| Spatial audio | [`audio.md`](audio.md) | <!-- fill in --> |
+| Spatial audio | [`audio.md`](audio.md) | N/A — no positional sound ([`audio.md`](audio.md)) |
 | Haptics | [`haptics.md`](haptics.md) | <!-- fill in --> |
 | Diagrams | [`diagrams/`](diagrams/) | <!-- fill in --> |
