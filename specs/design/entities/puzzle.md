@@ -16,7 +16,7 @@ One pack entry the player opens from the [gallery](../glossary.md): fixed size, 
 |----|----------|---------|-----------|
 | P1 | Size | 10×10 or 15×15 grid | Pack data |
 | P2 | Solution fill set | Hidden correct fills | Pack data |
-| P3 | Row and column clues | Run lengths per line | Pack data |
+| P3 | Row and column [clues](clue.md) | Run lengths per line (empty list = all-empty) | Pack data |
 | P4 | Identity | Stable id in the 200-pack | Pack data |
 | P5 | Thumbnail | Solution picture for gallery display | Pack data; visible only when [ever completed](../glossary.md) |
 
