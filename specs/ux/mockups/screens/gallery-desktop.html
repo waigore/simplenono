@@ -315,8 +315,8 @@
     .progress-track > span { display:block; height:100%; width:18.5%; background:var(--fg); }
     .puzzle-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-md); }
     @media (max-width: 920px) { .puzzle-grid { grid-template-columns: repeat(2, 1fr); } }
-    .puzzle-tile { border:1px solid var(--border); background:var(--surface); display:flex; flex-direction:column; }
-    .puzzle-tile .open { border:0; background:transparent; color:inherit; font:inherit; padding:0; text-align:left; cursor:pointer; min-height:44px; width:100%; display:flex; flex-direction:column; }
+    .puzzle-tile { border:1px solid var(--border); background:var(--surface); display:flex; flex-direction:column; height:100%; }
+    .puzzle-tile .open { border:0; background:transparent; color:inherit; font:inherit; padding:0; text-align:left; cursor:pointer; min-height:44px; width:100%; display:flex; flex-direction:column; flex:1 1 auto; }
     .puzzle-tile .thumb { aspect-ratio:1; border-bottom:1px solid var(--border); display:grid; place-items:center; font-family:var(--font-mono); font-size:11px; color:var(--muted);
       background: linear-gradient(135deg, var(--fg-soft), var(--accent-soft)), var(--surface); }
     
@@ -334,8 +334,8 @@
     .puzzle-tile .thumb.filled { background: repeating-linear-gradient(45deg, #1B2833 0 8px, #3A4A56 8px 16px); color:#F4F7F8; }
     .puzzle-tile .meta { padding:12px; display:flex; flex-direction:column; gap:4px; }
     .puzzle-tile .title { font-weight:600; font-size:14px; }
-    .puzzle-tile .sub { font-family:var(--font-mono); font-size:var(--fs-meta); color:var(--muted); }
-    .puzzle-tile .reset { margin:0 12px 12px; min-height:44px; border:1px solid var(--border); background:transparent; color:var(--fg); font:inherit; font-size:13px; cursor:pointer; }
+    .puzzle-tile .sub { font-family:var(--font-mono); font-size:var(--fs-meta); color:var(--muted); min-height: 2.6em; }
+    .puzzle-tile .reset { margin:auto 12px 12px; min-height:44px; border:1px solid var(--border); background:transparent; color:var(--fg); font:inherit; font-size:13px; cursor:pointer; }
     .confirm-overlay { position:absolute; inset:0; z-index:5; background: color-mix(in oklch, var(--fg) 28%, transparent); display:grid; place-items:center; padding:24px; }
     .confirm-card { width:min(420px,100%); background:var(--bg); border:1px solid var(--border); padding:24px; display:flex; flex-direction:column; gap:16px; }
     .confirm-card p { margin:0; }
