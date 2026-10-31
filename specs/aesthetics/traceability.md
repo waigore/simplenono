@@ -12,9 +12,9 @@ Authoring rules: [`.agents/specs/rules/aesthetics/traceability.md`](../../.agent
 
 | Topic | Covered in | Applicability |
 |-------|------------|---------------|
-| Medium and style pillars | [`aesthetics.md`](aesthetics.md) | <!-- fill in --> |
-| Content limits | [`aesthetics.md`](aesthetics.md) | <!-- fill in --> |
-| Variation | [`aesthetics.md`](aesthetics.md) | <!-- fill in --> |
+| Medium and style pillars | [`aesthetics.md`](aesthetics.md) | Applies |
+| Content limits | [`aesthetics.md`](aesthetics.md) | Applies |
+| Variation | [`aesthetics.md`](aesthetics.md) | Applies — none; one style throughout |
 | Palette | [`palette.md`](palette.md) | <!-- fill in --> |
 | Form | [`form.md`](form.md) | <!-- fill in --> |
 | Surface and light | [`surface.md`](surface.md) | <!-- fill in --> |
