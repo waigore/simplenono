@@ -6,7 +6,8 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 
 | Upstream item | Source | Served by |
 |---------------|--------|-----------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| Asset access G1–G3; A1–A3 | assets | [`asset-access.md`](asset-access.md) |
+| Offline local pack; Godot engine | definition | [`asset-access.md`](asset-access.md) (ADR TBDs) |
 
 ## Topic coverage
 
@@ -23,5 +24,5 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | Persistence and save mapping | `persistence.md` | <!-- fill in --> |
 | Config and data-driven tables | `configuration.md` | <!-- fill in --> |
 | Verification hooks | `verification.md` | <!-- fill in --> |
-| Asset access and loading | [`asset-access.md`](asset-access.md) | <!-- fill in --> |
+| Asset access and loading | [`asset-access.md`](asset-access.md) | Applies — paired with [`../assets/access.md`](../assets/access.md); ADR TBDs |
 | Diagrams | [`diagrams/`](diagrams/) | <!-- fill in --> |
