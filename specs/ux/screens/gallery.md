@@ -5,7 +5,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 - **Job**: Browse the local pack; open any puzzle or settings; see pack progress
 - **Actors**: [`player.md`](../actors/player.md)
 - **Serves**: Free-order gallery progress ([`progression.md`](../../design/progression.md)); Calm tactile grid; Cool clinical look
-- **Mockup**: [`gallery.mobile.html`](../mockups/screens/gallery.mobile.html), [`gallery.desktop.html`](../mockups/screens/gallery.desktop.html)
+- **Mockup**: [`gallery-mobile.html`](../mockups/screens/gallery-mobile.html), [`gallery-desktop.html`](../mockups/screens/gallery-desktop.html)
 - **Glossary terms**: [Gallery](../../design/glossary.md), [Completion rate](../../design/glossary.md), [Player](../glossary.md)
 
 ## Shows

@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/ux/navigation.md`](../../.agents/specs/ru
 
 | Screen | Job | Actors | Spec | Mockup |
 |--------|-----|--------|------|--------|
-| `UI-gallery` | Browse pack; open puzzle or settings; see progress | [`player.md`](actors/player.md) | [`screens/gallery.md`](screens/gallery.md) | [`gallery.mobile.html`](mockups/screens/gallery.mobile.html), [`gallery.desktop.html`](mockups/screens/gallery.desktop.html) |
+| `UI-gallery` | Browse pack; open puzzle or settings; see progress | [`player.md`](actors/player.md) | [`screens/gallery.md`](screens/gallery.md) | [`gallery-mobile.html`](mockups/screens/gallery-mobile.html), [`gallery-desktop.html`](mockups/screens/gallery-desktop.html) |
 
 Puzzle, result, and settings rows land when those screen specs are captured ([`ux.md`](ux.md) inventory).
 
