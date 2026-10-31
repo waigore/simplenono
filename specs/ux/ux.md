@@ -18,7 +18,7 @@ Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md)
   - [`play-puzzle.md`](journeys/play-puzzle.md) — gallery → puzzle → result → gallery
   - [`leave-resume.md`](journeys/leave-resume.md) — leave puzzle → gallery → reopen in progress
   - [`gallery-reset.md`](journeys/gallery-reset.md) — gallery reset → puzzle treated as new
-  - `journeys/settings.md` — open slim settings → change haptics or mute → back
+  - [`settings.md`](journeys/settings.md) — open slim settings → change haptics or mute → back
 
 
 ## Traceability
