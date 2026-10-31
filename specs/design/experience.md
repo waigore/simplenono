@@ -6,40 +6,51 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 
 | Vision quality | Moment the player feels it | How the design produces it |
 |----------------|----------------------------|----------------------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| Calm tactile grid | Each fill, cross, or clear | Cell marks; uncluttered board ([`entities/cell.md`](entities/cell.md)) |
+| Snappy solve | Mark lands at once; picture completes | [`loops/solve.md`](loops/solve.md); frame-time in quality |
+| Cool clinical look | Gallery and board stay cool, not cute | Sensory intent → aesthetics |
 
 ## Pacing
 
-- **Session arc**: <!-- fill in -->
-- **Rhythm**: <!-- fill in -->
-- **Durations**: <!-- fill in -->
+- **Session arc**: Gallery → pick any puzzle → get-set-ready → mark until solved or leave → gallery. Often one puzzle or a few, then stop.
+- **Rhythm**: Quiet deduction; light release on clue dim and on solve (BGM + image fade). No fail pressure.
+- **Durations**: One mark = instant; one puzzle = minutes; session = one puzzle or a few.
 
 ## Feedback principles
 
 | Event | Player must understand | Priority |
 |-------|------------------------|----------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| Mark applied | Cell is clear, fill, or cross | high |
+| Line error | This row/col’s fills contradict its clues | high |
+| Clue satisfied | That line’s runs are realized (dim) | medium |
+| Solved | Picture complete; ever-completed / personal best may update | high |
+| Gallery progress | Attempt status, ever-completed, personal best, completion rate | medium |
+| Get-set-ready | Marks not allowed yet | medium |
 
 ## Sensory intent
 
-- **Mood and style**: <!-- fill in -->
-- **Sound intent**: <!-- fill in -->
-- **Clarity rules**: <!-- fill in -->
+- **Mood and style**: Cool, clinical, high-contrast, quiet focus — not warm, cute, or playful.
+- **Sound intent**: Light calm BGM during play; soft/quiet mark SFX under it. On solve, calm-yet-triumphant BGM (sting or switch). Concrete audio → aesthetics / view.
+- **Clarity rules**: Fill, cross, and clear always distinct; clues readable; line error is contradiction, not fail; solution hidden on the board while solving. On solve, filled cells fade into the actual image (win reveal); gallery thumbnail remains the lasting picture after ever-completed.
 
 ## Accessibility
 
-- **Channels**: <!-- fill in -->
-- **Timing and assists**: <!-- fill in -->
-- **Scale**: <!-- fill in -->
+- **Channels**: N/A — deferred until accessibility Applies in quality.
+- **Timing and assists**: N/A — same reason.
+- **Scale**: N/A — same reason.
 
 ## Localization
 
-- <!-- fill in -->
+- N/A — English-only UI.
 
 ## Learning and mastery
 
-<!-- fill in -->
+Learn by marking: clues define groups; crosses are optional; line error teaches contradiction; no forced tutorial campaign. Mastery is faster clean solves and better personal bests.
 
 ## Experiences to avoid
 
-- <!-- fill in -->
+- Punishing mistakes with fail, lives, or lockouts.
+- Cute or noisy chrome that muddies the grid.
+- Live per-cell “wrong” while marking.
+- Forced puzzle order.
+- Requiring crosses to win.
