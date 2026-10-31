@@ -87,7 +87,7 @@
     .board {
       display: grid;
       grid-template-columns: 36px repeat(5, 28px);
-      grid-template-rows: 36px repeat(5, 28px);
+      grid-template-rows: 52px repeat(5, 28px);
       width: max-content;
       margin: 0 auto;
       gap: 0;
@@ -101,8 +101,22 @@
       font-size: 11px;
       color: var(--fg);
       padding: 2px;
+      line-height: 1.15;
     }
-    .clue.row { align-items: center; justify-content: flex-end; padding-right: 6px; }
+    .clue.col {
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1px;
+    }
+    .clue.col .run { display: block; }
+    .clue.row {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 6px;
+      gap: 4px;
+    }
     .clue.dim { color: var(--dim); }
     .clue.error { color: var(--error); font-weight: 600; }
     .cell {
@@ -166,36 +180,36 @@
           <div class="board-wrap" data-region="R2" aria-label="Board">
             <div class="board" role="grid" aria-label="5×5 sample board">
               <div class="corner"></div>
-              <div class="clue">2</div>
-              <div class="clue dim">1 1</div>
-              <div class="clue">3</div>
-              <div class="clue error">1</div>
-              <div class="clue">2</div>
-              <div class="clue row">2</div>
+              <div class="clue col"><span class="run">2</span></div>
+              <div class="clue col dim"><span class="run">1</span><span class="run">1</span></div>
+              <div class="clue col"><span class="run">3</span></div>
+              <div class="clue col error"><span class="run">1</span></div>
+              <div class="clue col"><span class="run">2</span></div>
+              <div class="clue row"><span class="run">2</span></div>
               <button type="button" class="cell fill" data-control="C2" aria-label="r1c1 fill"></button>
               <button type="button" class="cell fill" data-control="C2" aria-label="r1c2 fill"></button>
               <button type="button" class="cell" data-control="C2" aria-label="r1c3 clear"></button>
               <button type="button" class="cell cross" data-control="C2" aria-label="r1c4 cross"></button>
               <button type="button" class="cell" data-control="C2" aria-label="r1c5 clear"></button>
-              <div class="clue row dim">1 1</div>
+              <div class="clue row dim"><span class="run">1</span><span class="run">1</span></div>
               <button type="button" class="cell fill" data-control="C2" aria-label="r2c1 fill"></button>
               <button type="button" class="cell" data-control="C2" aria-label="r2c2 clear"></button>
               <button type="button" class="cell fill" data-control="C2" aria-label="r2c3 fill"></button>
               <button type="button" class="cell cross" data-control="C2" aria-label="r2c4 cross"></button>
               <button type="button" class="cell" data-control="C2" aria-label="r2c5 clear"></button>
-              <div class="clue row">3</div>
+              <div class="clue row"><span class="run">3</span></div>
               <button type="button" class="cell fill" data-control="C2" aria-label="r3c1 fill"></button>
               <button type="button" class="cell fill" data-control="C2" aria-label="r3c2 fill"></button>
               <button type="button" class="cell fill" data-control="C2" aria-label="r3c3 fill"></button>
               <button type="button" class="cell" data-control="C2" aria-label="r3c4 clear"></button>
               <button type="button" class="cell cross" data-control="C2" aria-label="r3c5 cross"></button>
-              <div class="clue row error">1</div>
+              <div class="clue row error"><span class="run">1</span></div>
               <button type="button" class="cell" data-control="C2" aria-label="r4c1 clear"></button>
               <button type="button" class="cell fill" data-control="C2" aria-label="r4c2 fill"></button>
               <button type="button" class="cell" data-control="C2" aria-label="r4c3 clear"></button>
               <button type="button" class="cell" data-control="C2" aria-label="r4c4 clear"></button>
               <button type="button" class="cell" data-control="C2" aria-label="r4c5 clear"></button>
-              <div class="clue row">2</div>
+              <div class="clue row"><span class="run">2</span></div>
               <button type="button" class="cell cross" data-control="C2" aria-label="r5c1 cross"></button>
               <button type="button" class="cell fill" data-control="C2" aria-label="r5c2 fill"></button>
               <button type="button" class="cell fill" data-control="C2" aria-label="r5c3 fill"></button>
@@ -217,36 +231,36 @@
           <div class="board-wrap" data-region="R2" aria-label="Board">
             <div class="board" role="grid" aria-label="5×5 sample board">
               <div class="corner"></div>
-              <div class="clue">2</div>
-              <div class="clue">1 1</div>
-              <div class="clue">3</div>
-              <div class="clue">1</div>
-              <div class="clue">2</div>
-              <div class="clue row">2</div>
+              <div class="clue col"><span class="run">2</span></div>
+              <div class="clue col"><span class="run">1</span><span class="run">1</span></div>
+              <div class="clue col"><span class="run">3</span></div>
+              <div class="clue col"><span class="run">1</span></div>
+              <div class="clue col"><span class="run">2</span></div>
+              <div class="clue row"><span class="run">2</span></div>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r1c1"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r1c2"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r1c3"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r1c4"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r1c5"></button>
-              <div class="clue row">1 1</div>
+              <div class="clue row"><span class="run">1</span><span class="run">1</span></div>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r2c1"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r2c2"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r2c3"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r2c4"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r2c5"></button>
-              <div class="clue row">3</div>
+              <div class="clue row"><span class="run">3</span></div>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r3c1"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r3c2"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r3c3"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r3c4"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r3c5"></button>
-              <div class="clue row">1</div>
+              <div class="clue row"><span class="run">1</span></div>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r4c1"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r4c2"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r4c3"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r4c4"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r4c5"></button>
-              <div class="clue row">2</div>
+              <div class="clue row"><span class="run">2</span></div>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r5c1"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r5c2"></button>
               <button type="button" class="cell" data-control="C2" disabled aria-label="r5c3"></button>
