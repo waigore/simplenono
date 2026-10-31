@@ -11,21 +11,21 @@ Authoring rules: [`.agents/specs/rules/design/loops.md`](../../../.agents/specs/
 
 | ID | Player does | Game responds | Player gains or learns |
 |----|-------------|---------------|------------------------|
-| K1 | Enter [get-set-ready](../glossary.md) | Board loads; marks blocked briefly; solve timer starts when the board is ready | Ready to solve |
-| K2 | Fill a cell, mark a cell empty, or clear a mark | Mark updates; first change sets status to [in progress](../glossary.md) | Deduction progress from clues |
-| K3 | Keep marking | No per-cell correctness. [Solve check](../glossary.md) runs only against the full grid | Whether the picture is complete |
-| K4 | Reach a grid that matches the solution | Timer stops; status → [completed](../glossary.md); [personal best](../glossary.md) updates if this time is shorter | The clean-solve click |
-| K5 | [Reset](../glossary.md) marks | All fills and empty-marks clear; status → [not started](../glossary.md); personal best unchanged; get-set-ready runs again and the timer starts fresh when the board is ready | A fresh attempt on the same board |
-| K6 | Leave mid-puzzle | Marks and in-progress status commit; return to the gallery | Can resume later |
+| K1 | Enter [get-set-ready](../glossary.md) | Board loads; marks blocked briefly; solve timer starts when the board is ready (or resumes persisted elapsed) | Ready to solve |
+| K2 | Fill a cell, place a [cross](../glossary.md), or clear a mark | Mark updates; first fill or cross sets status to [in progress](../glossary.md); [line error](../glossary.md) may update | Deduction progress from clues |
+| K3 | Keep marking | No per-cell correctness. [Solve check](../glossary.md) compares **fills only** to the solution fill set | Whether the picture fills are complete |
+| K4 | Reach a fill set that matches the solution | Timer stops; status → [completed](../glossary.md); [personal best](../glossary.md) updates if this time is shorter | The clean-solve click |
+| K5 | [Reset](../glossary.md) marks | All fills and crosses clear; status → [not started](../glossary.md); personal best unchanged; elapsed cleared; get-set-ready runs again and the timer starts fresh | A fresh attempt on the same board |
+| K6 | Leave mid-puzzle | Marks, in-progress status, and elapsed commit; return to the gallery | Can resume later with the same elapsed |
 
 ## Motivation
 
-Quiet focused deduction: finish the picture, or optionally chase a better personal best on replay.
+Quiet focused deduction: finish the picture, or optionally chase a better personal best on replay. Crosses are optional memory aids.
 
 ## Inputs and outputs
 
-- **In**: Selected puzzle; restored marks when status is in progress; row and column clues.
-- **Out**: Updated marks and status; elapsed solve time; on K4, personal-best update when shorter; on K5, cleared marks and not-started status.
+- **In**: Selected puzzle; restored marks and elapsed when status is in progress; row and column clues.
+- **Out**: Updated marks, status, elapsed, and line errors; on K4, personal-best update when shorter; on K5, cleared marks, not-started status, and zero elapsed.
 
 ## Variation
 
@@ -33,10 +33,10 @@ Which puzzle and size (10×10 or 15×15) the player chose. No randomness during 
 
 ## Exits
 
-- **E1**: Solved — full grid matches the solution (K4); status completed.
-- **E2**: Leave to gallery (K6); in-progress marks persist when applicable.
+- **E1**: Solved — player fills match the solution fill set (K4); status completed.
+- **E2**: Leave to gallery (K6); in-progress marks and elapsed persist when applicable.
 - **E3**: Reset (K5); stays on the board for a fresh attempt. No loss exit.
 
 ## Experience intent
 
-Snappy mark response on a calm clinical board. Tension is deduction, not punishment; no live “wrong cell” feedback.
+Snappy mark response on a calm clinical board. Tension is deduction, not punishment. Crosses aid memory; only fills win. Line errors flag impossible fills, not unfinished lines.
