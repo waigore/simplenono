@@ -30,7 +30,7 @@ Authoring rules: [`.agents/specs/rules/view/spatial-model.md`](../../.agents/spe
 
 | ID | Object | Extent (units) | Anchor | Facing |
 |----|--------|----------------|--------|--------|
-| E1 | Cell | 1 × 1 | Center | N/A |
+| E1 | Cell | 1 × 1 | Center | N/A — cells have no facing |
 
 Clue chrome sits in UI margin outside this world body list.
 
