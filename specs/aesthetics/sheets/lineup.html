@@ -5,54 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lineup</title>
   <style>
-    :root { --fg: #1a1a1a; --bg: #f7f6f3; --line: #c8c4bc; --muted: #5c574e; }
+    :root { --fg: #1B2833; --bg: #F4F7F8; --line: #C5D0D6; --muted: #6E7F8C; }
     * { box-sizing: border-box; }
     body { margin: 0; font: 16px/1.4 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
     article { max-width: 56rem; margin: 0 auto; padding: 1rem; }
     header p, figcaption { color: var(--muted); margin: 0; }
-    figure { margin: 1rem 0; border: 1px solid var(--line); padding: 0.5rem; background: #fff; }
+    figure { margin: 1rem 0; border: 1px solid var(--line); padding: 0.5rem; background: var(--bg); }
     figcaption { font-size: 0.875rem; }
     svg { width: 100%; height: auto; }
     svg text { font: 12px system-ui, sans-serif; fill: var(--fg); }
-    .ground { stroke: var(--muted); stroke-width: 1.5; }
-    .silhouette { fill: var(--fg); }
-    .extent { fill: none; stroke: var(--muted); stroke-dasharray: 4 3; }
+    .ground { stroke: var(--fg); stroke-width: 1.5; }
+    .silhouette { fill: #000000; }
+    .extent { fill: none; stroke: var(--fg); stroke-dasharray: 4 3; }
+    .cross { stroke: #000000; stroke-width: 10; stroke-linecap: butt; }
     .scale { stroke: var(--fg); stroke-width: 3; }
   </style>
 </head>
 <body>
-  <!-- Authoring rules: .agents/specs/rules/aesthetics/sheets.md. Replace every fill-in; draw to scale from SPC.E extents; keep data-element on each drawn element. -->
+  <!-- Authoring rules: .agents/specs/rules/aesthetics/sheets.md -->
   <article data-spec="FRM">
     <header>
       <p>FRM</p>
       <h1>Lineup</h1>
-      <p><!-- fill in: the scale this drawing uses, e.g. 40 px = 1 unit --></p>
+      <p>80 px on this sheet = 1 cell (SPC.E1). Silhouettes are solid black.</p>
     </header>
 
     <figure>
-      <svg viewBox="0 0 640 260" role="img" aria-label="Cast silhouettes to scale on a common ground line">
-        <line class="ground" x1="20" y1="220" x2="620" y2="220" />
-        <g data-element="C-name">
-          <rect class="extent" x="60" y="140" width="40" height="80" />
-          <rect class="silhouette" x="64" y="146" width="32" height="74" rx="10" />
-          <text x="52" y="240">C-name <!-- fill in: character or entity ID --></text>
+      <svg viewBox="0 0 700 210" role="img" aria-label="Cell mark silhouettes at one cell per unit">
+        <line class="ground" x1="24" y1="148" x2="640" y2="148" />
+        <g data-element="E-cell">
+          <rect class="extent" data-element="SPC.E1" x="40" y="68" width="80" height="80" />
+          <rect class="silhouette" data-element="FRM.P1" x="40" y="68" width="80" height="80" />
+          <text data-element="FRM.S1" x="40" y="176">E-cell fill</text>
+          <text x="40" y="192">FRM.S1 FRM.P1</text>
         </g>
-        <g data-element="scale">
-          <line class="scale" x1="520" y1="250" x2="560" y2="250" />
-          <text x="566" y="254"><!-- fill in: N units --></text>
+        <g data-element="E-cell">
+          <rect class="extent" data-element="SPC.E1" x="180" y="68" width="80" height="80" />
+          <g data-element="FRM.P2">
+            <line class="cross" x1="180" y1="68" x2="260" y2="148" />
+            <line class="cross" x1="260" y1="68" x2="180" y2="148" />
+          </g>
+          <text data-element="FRM.S1" x="180" y="176">E-cell cross</text>
+          <text x="180" y="192">FRM.S1 FRM.P2</text>
+        </g>
+        <g data-element="E-cell">
+          <rect class="extent" data-element="SPC.E1" x="320" y="68" width="80" height="80" />
+          <text data-element="FRM.S1" x="320" y="176">E-cell clear</text>
+          <text x="320" y="192">FRM.S1</text>
+        </g>
+        <g data-element="SPC.U1">
+          <line class="scale" x1="500" y1="148" x2="580" y2="148" />
+          <text x="500" y="176">SPC.U1</text>
+          <text x="500" y="192">1 cell</text>
         </g>
       </svg>
-      <figcaption>Reference size, drawn to scale. Dashed boxes are SPC.E extents. <!-- fill in --></figcaption>
+      <figcaption>Reference size. Dashed boxes are SPC.E1. The fill covers the cell. The cross stroke is 1/8 of the cell side. Clear has no solid mass.</figcaption>
     </figure>
 
-    <figure>
-      <svg viewBox="0 0 640 120" role="img" aria-label="Silhouettes at the smallest on-screen size">
-        <g data-element="FRM.L1">
-          <rect class="silhouette" x="60" y="40" width="8" height="18" rx="3" />
-          <text x="52" y="80">FRM.L1 <!-- fill in: subjects and smallest on-screen size --></text>
+    <figure data-element="FRM.L1">
+      <svg viewBox="0 0 700 210" role="img" aria-label="Cell mark silhouettes at the smallest on-screen size">
+        <line class="ground" x1="24" y1="148" x2="640" y2="148" />
+        <g data-element="E-cell">
+          <rect class="extent" data-element="SPC.E1" x="40" y="68" width="80" height="80" />
+          <rect class="silhouette" data-element="FRM.P1" x="40" y="68" width="80" height="80" />
+          <text x="40" y="176">E-cell fill</text>
+          <text x="40" y="192">FRM.L1</text>
+        </g>
+        <g data-element="E-cell">
+          <rect class="extent" data-element="SPC.E1" x="180" y="68" width="80" height="80" />
+          <g data-element="FRM.P2">
+            <line class="cross" x1="180" y1="68" x2="260" y2="148" />
+            <line class="cross" x1="260" y1="68" x2="180" y2="148" />
+          </g>
+          <text x="180" y="176">E-cell cross</text>
+          <text x="180" y="192">FRM.L1</text>
+        </g>
+        <g data-element="E-cell">
+          <rect class="extent" data-element="SPC.E1" x="320" y="68" width="80" height="80" />
+          <text x="320" y="176">E-cell clear</text>
+          <text x="320" y="192">FRM.L1</text>
+        </g>
+        <g data-element="SPC.U1">
+          <line class="scale" x1="500" y1="148" x2="580" y2="148" />
+          <text x="500" y="176">SPC.U1</text>
+          <text x="500" y="192">1 cell</text>
         </g>
       </svg>
-      <figcaption>Smallest on-screen size from each silhouette rule. <!-- fill in --></figcaption>
+      <figcaption>FRM.L1. One cell of a 15×15 board while the whole open board is in one frame. The extent is still 1×1.</figcaption>
     </figure>
   </article>
 </body>

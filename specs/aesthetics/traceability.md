@@ -16,7 +16,7 @@ Authoring rules: [`.agents/specs/rules/aesthetics/traceability.md`](../../.agent
 | Content limits | [`aesthetics.md`](aesthetics.md) | Applies |
 | Variation | [`aesthetics.md`](aesthetics.md) | Applies — none; one style throughout |
 | Palette | [`palette.md`](palette.md) | Applies |
-| Form | [`form.md`](form.md) | <!-- fill in --> |
+| Form | [`form.md`](form.md) | Applies |
 | Surface and light | [`surface.md`](surface.md) | <!-- fill in --> |
 | Motion style | [`motion.md`](motion.md) | <!-- fill in --> |
 | Interface style | [`ui-style.md`](ui-style.md) | <!-- fill in --> |
@@ -24,4 +24,4 @@ Authoring rules: [`.agents/specs/rules/aesthetics/traceability.md`](../../.agent
 | Accessible color and type | [`palette.md`](palette.md), [`ui-style.md`](ui-style.md) | <!-- fill in --> |
 | Script coverage | [`ui-style.md`](ui-style.md) | <!-- fill in --> |
 | Reference images | [`references.md`](references.md) | <!-- fill in --> |
-| Sheets | [`sheets/`](sheets/) | Applies — palette sheet. Lineup sheet when form formalizes |
+| Sheets | [`sheets/`](sheets/) | Applies — palette sheet and lineup sheet |
