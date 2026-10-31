@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery · desktop · SimpleNono</title>
+  <style>
+    /* Open Design web-prototype seed + aesthetics remap (PAL.S1 / UIS) */
+    :root {
+      --bg: #F4F7F8;
+      --surface: #F4F7F8;
+      --fg: #1B2833;
+      --muted: #6E7F8C;
+      --border: #C5D0D6;
+      --accent: #1B2833;
+      --accent-soft: color-mix(in oklch, var(--accent) 10%, transparent);
+      --fg-soft: color-mix(in oklch, var(--fg) 6%, transparent);
+      --font-display: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+      --fs-h1: clamp(28px, 3vw, 36px);
+      --fs-body: 16px;
+      --fs-meta: 13px;
+      --gap-md: 20px;
+      --gap-lg: 32px;
+      --gutter: 32px;
+      --container: 960px;
+      --radius: 0;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .doc-header {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 24px var(--gutter) 0;
+    }
+    .doc-header .caption {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .doc-header .caption strong { color: var(--fg); }
+    nav[aria-label="States"] { display: flex; gap: 16px; margin-bottom: 16px; font-size: 14px; }
+    nav[aria-label="States"] a { color: var(--fg); }
+    article[data-screen] { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 64px; }
+    .states > section { display: none; }
+    .states:not(:has(:target)) > section[data-state="default"] { display: block; }
+    .states:has(:target) > section:target { display: block; }
+    .topbar {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: var(--gap-md); padding-block: 16px 24px;
+      border-bottom: 1px solid var(--border); margin-bottom: 24px;
+    }
+    .topbar h1 {
+      font-family: var(--font-display); font-size: var(--fs-h1);
+      letter-spacing: -0.02em; margin: 0; font-weight: 600;
+    }
+    .topbar .eyebrow {
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin: 0 0 6px;
+    }
+    button.settings {
+      min-height: 44px; min-width: 44px; padding: 0 16px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); color: var(--fg); font: inherit;
+    }
+    .progress {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 20px; margin-bottom: 28px;
+      display: grid; gap: 10px;
+    }
+    .progress .label { margin: 0; font-size: 15px; }
+    .bar {
+      height: 10px; background: color-mix(in oklch, var(--border) 70%, var(--bg));
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .bar > span { display: block; height: 100%; width: 18.5%; background: var(--fg); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap-md);
+    }
+    @media (max-width: 920px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .tile {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); display: flex; flex-direction: column;
+    }
+    .tile .open {
+      display: flex; flex-direction: column; text-align: left;
+      border: 0; background: transparent; color: inherit; font: inherit;
+      padding: 0; cursor: pointer; min-height: 44px;
+    }
+    .tile .thumb {
+      aspect-ratio: 1; border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--fg-soft), var(--accent-soft)), var(--surface);
+      display: grid; place-items: center;
+      font-family: var(--font-mono); font-size: 11px; color: var(--muted);
+    }
+    .tile .thumb.filled {
+      background: repeating-linear-gradient(45deg, #1B2833 0 8px, #3A4A56 8px 16px);
+      color: #F4F7F8;
+    }
+    .tile .meta { padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+    .tile .title { font-weight: 600; font-size: 14px; }
+    .tile .sub { font-family: var(--font-mono); font-size: var(--fs-meta); color: var(--muted); }
+    .tile .reset {
+      margin: 0 12px 12px; min-height: 44px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: transparent; color: var(--fg); font: inherit; font-size: 13px; cursor: pointer;
+    }
+    .confirm-layer {
+      position: relative; min-height: 420px;
+    }
+    .confirm-overlay {
+      position: absolute; inset: 0;
+      background: color-mix(in oklch, var(--fg) 28%, transparent);
+      display: grid; place-items: center; padding: 24px;
+    }
+    .confirm-card {
+      width: min(420px, 100%);
+      background: var(--bg); border: 1px solid var(--border);
+      padding: 24px; display: flex; flex-direction: column; gap: 16px;
+    }
+    .confirm-card p { margin: 0; }
+    .confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .confirm-actions button {
+      min-height: 44px; border-radius: var(--radius); font: inherit; font-weight: 600; cursor: pointer;
+    }
+    .btn-cancel { background: transparent; border: 1px solid var(--border); color: var(--fg); }
+    .btn-confirm { background: var(--fg); border: 1px solid var(--fg); color: var(--bg); }
+  </style>
+</head>
+<body>
+  <div class="doc-header">
+    <p class="caption"><strong>UI-gallery</strong> · desktop · Open Design web-prototype · aesthetics remap</p>
+    <nav aria-label="States">
+      <a href="#state-default">Default</a>
+      <a href="#ex-confirm">EX.confirm</a>
+    </nav>
+  </div>
+  <article data-screen="UI-gallery">
+    <div class="states">
+      <section id="state-default" data-state="default">
+        <header class="topbar" data-region="R3" aria-label="Chrome">
+          <div>
+            <p class="eyebrow">Local pack</p>
+            <h1>Gallery</h1>
+          </div>
+          <button type="button" class="settings" data-control="C3">Settings</button>
+        </header>
+        <section class="progress" data-region="R1" aria-label="Pack progress">
+          <p class="label">Completed <span class="num">37</span> / 200</p>
+          <div class="bar" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
+        </section>
+        <section class="grid" data-region="R2" aria-label="Puzzle grid">
+          <div class="tile">
+            <button type="button" class="open" data-control="C1">
+              <div class="thumb">No thumb</div>
+              <div class="meta">
+                <span class="title">10×10 · #001</span>
+                <span class="sub">Not started</span>
+              </div>
+            </button>
+          </div>
+          <div class="tile">
+            <button type="button" class="open" data-control="C1">
+              <div class="thumb">No thumb</div>
+              <div class="meta">
+                <span class="title">10×10 · #002</span>
+                <span class="sub">In progress</span>
+              </div>
+            </button>
+            <button type="button" class="reset" data-control="C2">Reset</button>
+          </div>
+          <div class="tile">
+            <button type="button" class="open" data-control="C1">
+              <div class="thumb filled">Thumb</div>
+              <div class="meta">
+                <span class="title">15×15 · #061</span>
+                <span class="sub">Done · Best 4:12</span>
+              </div>
+            </button>
+            <button type="button" class="reset" data-control="C2">Reset</button>
+          </div>
+          <div class="tile">
+            <button type="button" class="open" data-control="C1">
+              <div class="thumb filled">Thumb</div>
+              <div class="meta">
+                <span class="title">15×15 · #062</span>
+                <span class="sub">Done · In progress · Best 9:01</span>
+              </div>
+            </button>
+            <button type="button" class="reset" data-control="C2">Reset</button>
+          </div>
+          <div class="tile">
+            <button type="button" class="open" data-control="C1">
+              <div class="thumb">No thumb</div>
+              <div class="meta">
+                <span class="title">10×10 · #003</span>
+                <span class="sub">Not started</span>
+              </div>
+            </button>
+          </div>
+          <div class="tile">
+            <button type="button" class="open" data-control="C1">
+              <div class="thumb filled">Thumb</div>
+              <div class="meta">
+                <span class="title">10×10 · #004</span>
+                <span class="sub">Done · Best 2:05</span>
+              </div>
+            </button>
+            <button type="button" class="reset" data-control="C2">Reset</button>
+          </div>
+          <div class="tile">
+            <button type="button" class="open" data-control="C1">
+              <div class="thumb">No thumb</div>
+              <div class="meta">
+                <span class="title">15×15 · #063</span>
+                <span class="sub">Not started</span>
+              </div>
+            </button>
+          </div>
+          <div class="tile">
+            <button type="button" class="open" data-control="C1">
+              <div class="thumb">No thumb</div>
+              <div class="meta">
+                <span class="title">15×15 · #064</span>
+                <span class="sub">In progress</span>
+              </div>
+            </button>
+            <button type="button" class="reset" data-control="C2">Reset</button>
+          </div>
+        </section>
+      </section>
+      <section id="ex-confirm" data-state="EX.confirm">
+        <div class="confirm-layer">
+          <header class="topbar" data-region="R3" aria-label="Chrome">
+            <div>
+              <p class="eyebrow">Local pack</p>
+              <h1>Gallery</h1>
+            </div>
+            <button type="button" class="settings" data-control="C3" disabled>Settings</button>
+          </header>
+          <section class="progress" data-region="R1" aria-label="Pack progress">
+            <p class="label">Completed <span class="num">37</span> / 200</p>
+            <div class="bar" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
+          </section>
+          <div class="confirm-overlay" role="dialog" aria-labelledby="reset-title-desktop">
+            <div class="confirm-card">
+              <p id="reset-title-desktop">Reset this puzzle? Progress and best time will be cleared.</p>
+              <div class="confirm-actions">
+                <button type="button" class="btn-cancel">Cancel</button>
+                <button type="button" class="btn-confirm">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</body>
+</html>

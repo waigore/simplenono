@@ -8,5 +8,5 @@ Process gate: [`docs/ux-mockups.md`](../../../docs/ux-mockups.md).
 
 | ID | Kind | Spec | Mockup | State | Approver | Date | Reason |
 |----|------|------|--------|-------|----------|------|--------|
-
-No entries yet. Add a row when a filled screen or journey mockup is created (`State` = `draft`). Do not catalog `_template.html` files.
+| `MC.gallery.mobile` | screen | [`screens/gallery.md`](../screens/gallery.md) | [`screens/gallery.mobile.html`](screens/gallery.mobile.html) | draft | None | 2026-10-31 | None |
+| `MC.gallery.desktop` | screen | [`screens/gallery.md`](../screens/gallery.md) | [`screens/gallery.desktop.html`](screens/gallery.desktop.html) | draft | None | 2026-10-31 | None |
