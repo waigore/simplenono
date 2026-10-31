@@ -35,7 +35,7 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
 Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md), [`ids.md`](ids.md), [`stories.md`](stories.md), [`story-coverage.md`](story-coverage.md), [`game-state.md`](game-state.md), [`configuration.md`](configuration.md), [`demo.md`](demo.md), [`difficulty.md`](difficulty.md), [`progression.md`](progression.md), [`end-conditions.md`](end-conditions.md), [`world.md`](world.md), [`experience.md`](experience.md).
 
 - **Characters**: <!-- fill in -->
-- **Entities**: [`puzzle.md`](entities/puzzle.md)
+- **Entities**: [`puzzle.md`](entities/puzzle.md), [`cell.md`](entities/cell.md)
 - **Loops**: [`solve.md`](loops/solve.md)
 - **Features**: <!-- fill in -->
 - **Flows**: <!-- fill in -->
