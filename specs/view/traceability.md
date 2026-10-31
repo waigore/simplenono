@@ -18,8 +18,8 @@ Authoring rules: [`.agents/specs/rules/view/traceability.md`](../../.agents/spec
 | Cameras | [`cameras/`](cameras/) | N/A — fixed board; no cameras ([`view.md`](view.md)) |
 | Camera controls and settings | [`camera-controls.md`](camera-controls.md) | <!-- fill in --> |
 | Physics feel | [`physics.md`](physics.md) | <!-- fill in --> |
-| Readability and depth | [`perception.md`](perception.md) | <!-- fill in --> |
-| Motion comfort | [`perception.md`](perception.md) | <!-- fill in --> |
+| Readability and depth | [`perception.md`](perception.md) | Applies (readability); depth N/A — flat board ([`perception.md`](perception.md)) |
+| Motion comfort | [`perception.md`](perception.md) | N/A — accessibility deferred ([`perception.md`](perception.md)) |
 | Spatial audio | [`audio.md`](audio.md) | N/A — no positional sound ([`audio.md`](audio.md)) |
 | Haptics | [`haptics.md`](haptics.md) | <!-- fill in --> |
 | Diagrams | [`diagrams/`](diagrams/) | <!-- fill in --> |
