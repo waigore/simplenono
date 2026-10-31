@@ -17,7 +17,7 @@ Authoring rules: [`.agents/specs/rules/aesthetics/traceability.md`](../../.agent
 | Variation | [`aesthetics.md`](aesthetics.md) | Applies — none; one style throughout |
 | Palette | [`palette.md`](palette.md) | Applies |
 | Form | [`form.md`](form.md) | Applies |
-| Surface and light | [`surface.md`](surface.md) | <!-- fill in --> |
+| Surface and light | [`surface.md`](surface.md) | Applies |
 | Motion style | [`motion.md`](motion.md) | <!-- fill in --> |
 | Interface style | [`ui-style.md`](ui-style.md) | <!-- fill in --> |
 | Sound style | [`sound.md`](sound.md) | <!-- fill in --> |
