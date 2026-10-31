@@ -15,3 +15,4 @@ Process gate: [`docs/ux-mockups.md`](../../../docs/ux-mockups.md).
 | `MC.result-desktop` | screen | [`screens/result.md`](../screens/result.md) | [`screens/result-desktop.html`](screens/result-desktop.html) | approved | product owner | 2026-10-31 | None |
 | `MC.settings-mobile` | screen | [`screens/settings.md`](../screens/settings.md) | [`screens/settings-mobile.html`](screens/settings-mobile.html) | approved | product owner | 2026-10-31 | None |
 | `MC.settings-desktop` | screen | [`screens/settings.md`](../screens/settings.md) | [`screens/settings-desktop.html`](screens/settings-desktop.html) | approved | product owner | 2026-10-31 | None |
+| `MC.play-puzzle` | journey | [`journeys/play-puzzle.md`](../journeys/play-puzzle.md) | [`journeys/play-puzzle.html`](journeys/play-puzzle.html) | draft | None | 2026-10-31 | None |

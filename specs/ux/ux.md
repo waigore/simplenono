@@ -15,10 +15,11 @@ Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md)
   - [`result.md`](screens/result.md) — after solve: fills morph into the solution image; control returns to gallery
   - [`settings.md`](screens/settings.md) — slim: haptics on/off; mute BGM only (SFX stay on)
 - **Journeys** (bodies and mockups in later runs):
-  - `journeys/play-puzzle.md` — gallery → puzzle → result → gallery
+  - [`play-puzzle.md`](journeys/play-puzzle.md) — gallery → puzzle → result → gallery
   - `journeys/leave-resume.md` — leave puzzle → gallery → reopen in progress
   - `journeys/gallery-reset.md` — gallery reset → puzzle treated as new
   - `journeys/settings.md` — open slim settings → change haptics or mute → back
+
 
 ## Traceability
 
