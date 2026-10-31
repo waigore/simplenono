@@ -20,7 +20,7 @@ Authoring rules: [`.agents/specs/rules/ux/traceability.md`](../../.agents/specs/
 |-------|------------|---------------|
 | Actors | [`actors/`](actors/), [`ux.md`](ux.md) | Applies (`actors/player.md`) |
 | Screens | [`screens/`](screens/), [`navigation.md`](navigation.md), [`ux.md`](ux.md) | Applies — `gallery.md`, `puzzle.md`, `result.md`, `settings.md` |
-| Journeys | [`journeys/`](journeys/), [`ux.md`](ux.md) | Applies — play-puzzle, leave-resume, gallery-reset; settings indexed pending |
+| Journeys | [`journeys/`](journeys/), [`ux.md`](ux.md) | Applies — play-puzzle, leave-resume, gallery-reset, settings |
 | Navigation | [`navigation.md`](navigation.md) | Applies — gallery, puzzle, result, settings; T1–T6 |
 | Exception states | [`exceptions.md`](exceptions.md) | Applies — `EX.confirm` for gallery reset; others omitted until needed |
 | Controls and bindings | [`controls.md`](controls.md) | <!-- fill in --> |

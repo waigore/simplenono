@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Journey: Settings</title>
+  <style>
+    :root {
+      --fg: #1B2833;
+      --bg: #F4F7F8;
+      --line: #C5D0D6;
+      --accent: #1B2833;
+      --muted: #6E7F8C;
+      --font: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.45 var(--font);
+      color: var(--fg);
+      background: var(--bg);
+    }
+    header, main { padding: 1rem 1.25rem; }
+    header p { color: var(--muted); margin: 0.25rem 0 0; }
+    header .id {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0;
+    }
+    h1 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0.35rem 0 0;
+    }
+    .layout { display: grid; grid-template-columns: 16rem 1fr; gap: 1rem; }
+    ol { margin: 0; padding-left: 1.25rem; }
+    li { margin: 0.65rem 0; }
+    a { color: var(--accent); }
+    .via {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+    iframe {
+      width: 100%;
+      min-height: 42rem;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .note { color: var(--muted); font-size: 0.875rem; }
+    @media (max-width: 48rem) { .layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="id">J-settings</p>
+    <h1>Settings</h1>
+    <p>Player · open slim settings, change a preference, return to the gallery</p>
+  </header>
+  <main class="layout">
+    <nav aria-label="Steps">
+      <ol>
+        <li>
+          <a href="../screens/gallery-mobile.html#state-default" target="stage">S1 Gallery → settings</a>
+          <span class="via">UI-gallery.C3</span>
+        </li>
+        <li>
+          <a href="../screens/settings-mobile.html#state-default" target="stage">S2 Toggle haptics</a>
+          <span class="via">UI-settings.C1 · stays</span>
+        </li>
+        <li>
+          <a href="../screens/settings-mobile.html#state-default" target="stage">B1 Toggle mute music</a>
+          <span class="via">UI-settings.C2 · stays</span>
+        </li>
+        <li>
+          <a href="../screens/settings-mobile.html#state-default" target="stage">S3 Back → gallery</a>
+          <span class="via">UI-settings.C3</span>
+        </li>
+      </ol>
+      <p class="note">Desktop uses the same steps (`gallery-desktop` / `settings-desktop`). If the stage is empty, open a step link in this window.</p>
+    </nav>
+    <iframe name="stage" title="Settings journey stage" src="../screens/gallery-mobile.html#state-default"></iframe>
+  </main>
+</body>
+</html>
