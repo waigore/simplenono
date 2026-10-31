@@ -6,21 +6,28 @@ Authoring rules: [`.agents/specs/rules/assets/traceability.md`](../../.agents/sp
 
 | Upstream item | Source | Served by |
 |---------------|--------|-----------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| Cool clinical look; calm tactile grid; snappy solve | vision | [`assets.md`](assets.md); planned kinds |
+| Local 2D pack; offline play; free-order gallery | definition | [`assets.md`](assets.md); [`access.md`](access.md) |
+| Hitch-bound / frame-time | quality | [`access.md`](access.md) G1 |
+| Puzzle thumbnail and solution picture | design | planned `puzzle-pictures`; [`access.md`](access.md) G3 |
+| 2D fixed board; win reveal R5 | view | [`assets.md`](assets.md); [`access.md`](access.md) G3 |
+| Medium, pillars, sound M1/M2/X1; UI type T1/T2 | aesthetics | planned `fonts`, `sfx`, `music`, `puzzle-pictures` |
+| Gallery, puzzle, result, settings (mute bed) | ux | [`access.md`](access.md) G1–G3 |
+| No market license mandates | definition | Sources table in [`assets.md`](assets.md) |
 
 ## Topic coverage
 
 | Topic | Covered in | Applicability |
 |-------|------------|---------------|
-| Asset kinds | [`assets.md`](assets.md), [`kinds/`](kinds/) | <!-- fill in --> |
-| AI generation | [`tools.md`](tools.md), [`kinds/`](kinds/) | <!-- fill in --> |
-| Procedural generation | [`tools.md`](tools.md), [`kinds/`](kinds/) | <!-- fill in --> |
-| Third-party sourcing | [`procedures.md`](procedures.md), [`kinds/`](kinds/) | <!-- fill in --> |
-| Human-made assets | [`procedures.md`](procedures.md), [`catalog.md`](catalog.md) | <!-- fill in --> |
-| Tool roles | [`tools.md`](tools.md) | <!-- fill in --> |
-| Procedures | [`procedures.md`](procedures.md) | <!-- fill in --> |
-| Catalog | [`catalog.md`](catalog.md) | <!-- fill in --> |
-| Asset access and load groups | [`access.md`](access.md) | <!-- fill in --> |
-| Sound assets | [`kinds/`](kinds/) | <!-- fill in --> |
-| Localized assets | [`kinds/`](kinds/) | <!-- fill in --> |
-| Accessible variants | [`kinds/`](kinds/) | <!-- fill in --> |
+| Asset kinds | [`assets.md`](assets.md), [`kinds/`](kinds/) | Applies — four planned kinds |
+| AI generation | [`tools.md`](tools.md), [`kinds/`](kinds/) | Applies — hub Sources |
+| Procedural generation | [`tools.md`](tools.md), [`kinds/`](kinds/) | N/A — hub Sources |
+| Third-party sourcing | [`procedures.md`](procedures.md), [`kinds/`](kinds/) | Applies — licensed font |
+| Human-made assets | [`procedures.md`](procedures.md), [`catalog.md`](catalog.md) | Applies — register path |
+| Tool roles | [`tools.md`](tools.md) | Applies — Pending until roles/ADRs filled |
+| Procedures | [`procedures.md`](procedures.md) | Applies — template procedures |
+| Catalog | [`catalog.md`](catalog.md) | Applies — roots TBD — which Integration ADR sets them? |
+| Asset access and load groups | [`access.md`](access.md) | Applies |
+| Sound assets | [`kinds/`](kinds/) | Applies — planned `sfx`, `music` |
+| Localized assets | [`kinds/`](kinds/) | N/A — localization not yet Applies in quality |
+| Accessible variants | [`kinds/`](kinds/) | N/A — accessibility not yet Applies in quality |
