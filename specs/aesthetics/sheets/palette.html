@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Palette</title>
   <style>
-    :root { --fg: #1a1a1a; --bg: #f7f6f3; --line: #c8c4bc; --muted: #5c574e; }
+    :root { --fg: #1B2833; --bg: #F4F7F8; --line: #C5D0D6; --muted: #6E7F8C; }
     * { box-sizing: border-box; }
     body { margin: 0; font: 16px/1.4 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
     article { max-width: 56rem; margin: 0 auto; padding: 1rem; }
@@ -13,32 +13,57 @@
     section { margin: 1.5rem 0; }
     h2 { font-size: 1.125rem; margin: 0 0 0.5rem; }
     .chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .chip { width: 8rem; border: 1px solid var(--line); background: #fff; }
+    .chip { width: 8rem; border: 1px solid var(--line); background: var(--bg); }
     .chip .swatch { height: 4rem; border-bottom: 1px solid var(--line); }
     .chip p { margin: 0; padding: 0.25rem 0.5rem; font-size: 0.8125rem; }
     .pairs { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .pair { border: 1px solid var(--line); background: #fff; padding: 0.5rem; }
+    .pair { border: 1px solid var(--line); background: var(--bg); padding: 0.5rem; }
     .pair .sample { display: flex; height: 3rem; width: 12rem; }
     .pair .sample div { flex: 1; }
-    .pair p { margin: 0.25rem 0 0; font-size: 0.8125rem; }
+    .pair p { margin: 0.25rem 0 0; font-size: 0.8125rem; color: var(--fg); }
   </style>
 </head>
 <body>
-  <!-- Authoring rules: .agents/specs/rules/aesthetics/sheets.md. Replace every fill-in; one chip per swatch, one section per palette set; keep data-element on each drawn element. -->
+  <!-- Authoring rules: .agents/specs/rules/aesthetics/sheets.md -->
   <article data-spec="PAL">
     <header>
       <p>PAL</p>
       <h1>Palette</h1>
-      <p><!-- fill in: medium and color limit summary --></p>
+      <p>Flat clinical UI. S1 covers the gallery, board, and chrome. Color limit 6.</p>
     </header>
 
     <section data-element="PAL.S1">
-      <h2>PAL.S1 <!-- fill in: palette set context --></h2>
+      <h2>PAL.S1 Gallery, board, and chrome</h2>
       <div class="chips">
         <figure class="chip" data-element="PAL.C1">
-          <div class="swatch" style="background: #000000;"></div>
-          <p>PAL.C1 <!-- fill in: name --></p>
-          <p><!-- fill in: hex --></p>
+          <div class="swatch" style="background: #F4F7F8;"></div>
+          <p>PAL.C1 Paper</p>
+          <p>#F4F7F8</p>
+        </figure>
+        <figure class="chip" data-element="PAL.C2">
+          <div class="swatch" style="background: #1B2833;"></div>
+          <p>PAL.C2 Ink</p>
+          <p>#1B2833</p>
+        </figure>
+        <figure class="chip" data-element="PAL.C3">
+          <div class="swatch" style="background: #5C6B78;"></div>
+          <p>PAL.C3 Cross</p>
+          <p>#5C6B78</p>
+        </figure>
+        <figure class="chip" data-element="PAL.C4">
+          <div class="swatch" style="background: #C5D0D6;"></div>
+          <p>PAL.C4 Rule</p>
+          <p>#C5D0D6</p>
+        </figure>
+        <figure class="chip" data-element="PAL.C5">
+          <div class="swatch" style="background: #6E7F8C;"></div>
+          <p>PAL.C5 Dim</p>
+          <p>#6E7F8C</p>
+        </figure>
+        <figure class="chip" data-element="PAL.C6">
+          <div class="swatch" style="background: #3A6F8F;"></div>
+          <p>PAL.C6 Contradiction</p>
+          <p>#3A6F8F</p>
         </figure>
       </div>
     </section>
@@ -48,10 +73,42 @@
       <div class="pairs">
         <figure class="pair" data-element="PAL.K1">
           <div class="sample">
-            <div style="background: #000000;"></div>
-            <div style="background: #ffffff;"></div>
+            <div data-element="PAL.C2" style="background: #1B2833;"></div>
+            <div data-element="PAL.C1" style="background: #F4F7F8;"></div>
           </div>
-          <p>PAL.K1 <!-- fill in: swatch pair and required contrast --></p>
+          <div class="sample">
+            <div data-element="PAL.C3" style="background: #5C6B78;"></div>
+            <div data-element="PAL.C1" style="background: #F4F7F8;"></div>
+          </div>
+          <p>PAL.K1 Ink and cross on paper, at least 4.5:1</p>
+        </figure>
+        <figure class="pair" data-element="PAL.K2">
+          <div class="sample">
+            <div data-element="PAL.C3" style="background: #5C6B78;"></div>
+            <div data-element="PAL.C2" style="background: #1B2833;"></div>
+          </div>
+          <p>PAL.K2 Cross lighter than ink; both differ from paper</p>
+        </figure>
+        <figure class="pair" data-element="PAL.K3">
+          <div class="sample">
+            <div data-element="PAL.C6" style="background: #3A6F8F;"></div>
+            <div data-element="PAL.C1" style="background: #F4F7F8;"></div>
+          </div>
+          <p>PAL.K3 Contradiction on paper, at least 4.5:1</p>
+        </figure>
+        <figure class="pair" data-element="PAL.K4">
+          <div class="sample">
+            <div data-element="PAL.C5" style="background: #6E7F8C;"></div>
+            <div data-element="PAL.C2" style="background: #1B2833;"></div>
+          </div>
+          <div class="sample">
+            <div data-element="PAL.C5" style="background: #6E7F8C;"></div>
+            <div data-element="PAL.C1" style="background: #F4F7F8;"></div>
+          </div>
+          <p>PAL.K4 Dim lighter than ink; dim on paper at least 3:1</p>
+        </figure>
+        <figure class="pair" data-element="PAL.K5">
+          <p>PAL.K5 C1–C5 are neutral cool grays. C6 is steel blue reserved for the line-error signal.</p>
         </figure>
       </div>
     </section>
