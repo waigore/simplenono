@@ -19,9 +19,9 @@ None — no content gates. Every puzzle is selectable immediately.
 
 | ID | What | Persists across | Lost or reset when |
 |----|------|-----------------|--------------------|
-| P1 | Per-puzzle status: not started, in progress, or completed | Sessions | Never in normal play |
-| P2 | Per-puzzle personal best | Sessions | Replaced only by a shorter successful solve time |
-| P3 | In-progress cell marks | Sessions while status is in progress | Cleared or superseded when the puzzle becomes completed |
+| P1 | Per-puzzle status: not started, in progress, or completed | Sessions | Player [reset](glossary.md) returns status to not started; otherwise never in normal play |
+| P2 | Per-puzzle personal best | Sessions | Replaced only by a shorter successful solve time; kept across reset |
+| P3 | In-progress cell marks | Sessions while status is in progress | Cleared on reset or when the puzzle becomes completed |
 
 ## Committing progress
 
