@@ -14,7 +14,7 @@ Authoring rules: [`.agents/specs/rules/design/traceability.md`](../../.agents/sp
 |-------|------------|---------------|
 | Core loop and mechanics | [`loops/`](loops/), [`features/`](features/) | Applies (`loops/solve.md`) |
 | Characters | [`characters/`](characters/) | <!-- fill in --> |
-| Entities (items, objects, hazards) | [`entities/`](entities/) | <!-- fill in --> |
+| Entities (items, objects, hazards) | [`entities/`](entities/) | Applies (`entities/puzzle.md`) |
 | World and narrative | [`world.md`](world.md) | <!-- fill in --> |
 | Flows and transitions | [`flows/`](flows/) | <!-- fill in --> |
 | Stages and scenes | [`stages/`](stages/) | <!-- fill in --> |

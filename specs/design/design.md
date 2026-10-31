@@ -10,9 +10,10 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
 - **Conventions adopted**:
   - Clue runs. Each line's clues are the lengths of its filled groups, in order. Those clues are the only information that decides which cells are filled.
   - Three mark actions. The player fills a cell, places a cross, or clears a mark. A wrong mark stays until the player changes it. Crosses do not count toward the solution.
-  - Solution match. Solved when the player's fill set equals the solution fill set. Crosses are ignored. Whole-puzzle fills only, not per-cell correctness while marking. That successful time is the personal best (the score); a later solve replaces it only when shorter. A finished puzzle can be solved again.
+  - Solution match. Solved when the player's fill set equals the solution fill set. Crosses are ignored. Whole-puzzle fills only, not per-cell correctness while marking. That successful time is the personal best (the score); a later solve replaces it only when shorter. Ever-completed is sticky and independent of the current attempt, so replay can be both ever-completed and in progress.
   - Line error. Each row and column can signal when fills contradict that line's clues; off while incomplete but still possible.
-  - Reset. From the gallery, reset makes a puzzle new: clears fills, crosses, elapsed, and personal best; status → not started.
+  - Gallery thumbnail. When ever-completed, the gallery may show that puzzle's solution picture; the board does not.
+  - Reset. From the gallery, reset makes a puzzle new: clears fills, crosses, elapsed, personal best, and ever-completed; attempt → not started.
 
 - **Conventions rejected or changed**:
   - Punishing a mistake with lives, a lock, or a failed attempt. Rejected because the vision has no lose state; the player corrects marks until the fills match the picture.
@@ -34,7 +35,7 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
 Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md), [`ids.md`](ids.md), [`stories.md`](stories.md), [`story-coverage.md`](story-coverage.md), [`game-state.md`](game-state.md), [`configuration.md`](configuration.md), [`demo.md`](demo.md), [`difficulty.md`](difficulty.md), [`progression.md`](progression.md), [`end-conditions.md`](end-conditions.md), [`world.md`](world.md), [`experience.md`](experience.md).
 
 - **Characters**: <!-- fill in -->
-- **Entities**: <!-- fill in -->
+- **Entities**: [`puzzle.md`](entities/puzzle.md)
 - **Loops**: [`solve.md`](loops/solve.md)
 - **Features**: <!-- fill in -->
 - **Flows**: <!-- fill in -->

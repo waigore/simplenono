@@ -7,7 +7,7 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 ### In scope
 
 - Local puzzle pack of nonograms (10×10 and 15×15)
-- Free-order puzzle selection; per-puzzle status (not started / in progress / completed), in-progress marks, and personal-best solve time persisted
+- Free-order puzzle selection; per-puzzle ever-completed and attempt status (not started / in progress), in-progress marks, personal-best solve time, and gallery thumbnail when ever-completed, persisted
 - Desktop and mobile play with mouse/keyboard or touch
 
 ### Out of scope
@@ -22,12 +22,12 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 
 - **Goal**: Correctly fill each puzzle from its row and column clues.
 - **Win / lose conditions**: Win when the grid matches the solution. No lose state; the player may correct marks until solved.
-- **Progression**: Choose any puzzle in any order, finished or not. Completed status is recorded (gallery-style). The score is the shortest successful solve time for that puzzle; a shorter later solve replaces it.
+- **Progression**: Choose any puzzle in any order, finished or not. Ever-completed is recorded (gallery-style, with thumbnail); attempt status is separate so replay can be in progress while still ever-completed. The score is the shortest successful solve time for that puzzle; a shorter later solve replaces it.
 
 ### Product objectives
 
 - Ship a local pack playable offline on the supported platforms.
-- Persist each puzzle's status (not started / in progress / completed), in-progress marks, and personal-best solve time across sessions.
+- Persist each puzzle's ever-completed flag, attempt status, in-progress marks, personal-best solve time, and gallery thumbnail visibility across sessions.
 
 ## Supported platforms
 

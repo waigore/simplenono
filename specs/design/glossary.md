@@ -6,14 +6,17 @@ Authoring rules: [`.agents/specs/rules/design/glossary.md`](../../.agents/specs/
 
 | Term | Definition | Detailed in |
 |------|------------|-------------|
-| Completed | Puzzle status after at least one successful solve. | [`progression.md`](progression.md) |
-| Completion rate | Completed puzzles divided by pack size (200). | [`progression.md`](progression.md), [`game-state.md`](game-state.md) |
+| Attempt status | Whether the current attempt is not started or in progress; independent of ever completed. | [`progression.md`](progression.md), [`game-state.md`](game-state.md) |
+| Completion rate | Ever-completed puzzles divided by pack size (200). | [`progression.md`](progression.md), [`game-state.md`](game-state.md) |
 | Cross | Optional mark meaning “I treat this cell as not filled”; ignored by solve check and line-error fill logic. | [`loops/solve.md`](loops/solve.md), [`game-state.md`](game-state.md) |
-| Gallery | Free-order pack selection: every puzzle listed and selectable, each with status and personal best when one exists. | [`progression.md`](progression.md) |
+| Ever completed | Sticky flag after at least one successful solve; may coexist with an in-progress attempt on replay. | [`progression.md`](progression.md), [`entities/puzzle.md`](entities/puzzle.md) |
+| Gallery | Free-order pack selection: every puzzle listed and selectable, with attempt status, ever-completed, personal best, and thumbnail when ever completed. | [`progression.md`](progression.md) |
 | Get-set-ready | Short prep beat before marks are allowed on a puzzle attempt. | [`progression.md`](progression.md), [`loops/solve.md`](loops/solve.md) |
-| In progress | Puzzle status with persisted marks that is not yet solved. | [`progression.md`](progression.md) |
+| In progress | Attempt status with persisted marks not yet solved this attempt. | [`progression.md`](progression.md) |
 | Line error | Per-row or per-column signal that current fills contradict that line’s clues; off when the line is incomplete but still possible. | [`game-state.md`](game-state.md) |
-| Not started | Puzzle status for a board that has never been marked, or after a reset. | [`progression.md`](progression.md) |
+| Not started | Attempt status with no current marks (fresh, after solve clear, or after reset). | [`progression.md`](progression.md) |
 | Personal best | Shortest successful solve time stored for a puzzle. | [`progression.md`](progression.md) |
-| Reset | Gallery action that makes a puzzle new: clears fills, crosses, elapsed, and personal best; status returns to not started. | [`end-conditions.md`](end-conditions.md), [`progression.md`](progression.md) |
+| Puzzle | One pack entry: size, clues, solution, progress, and gallery thumbnail. | [`entities/puzzle.md`](entities/puzzle.md) |
+| Reset | Gallery action that makes a puzzle new: clears marks, elapsed, personal best, and ever completed; attempt → not started. | [`end-conditions.md`](end-conditions.md), [`progression.md`](progression.md) |
 | Solve check | Whether the player’s fill set equals the solution fill set; crosses ignored; not evaluated per cell for correctness while marking. | [`loops/solve.md`](loops/solve.md), [`game-state.md`](game-state.md) |
+| Thumbnail | Solution picture shown in the gallery only when the puzzle is ever completed; not shown on the board. | [`entities/puzzle.md`](entities/puzzle.md) |
