@@ -14,11 +14,12 @@ Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md)
   - [`puzzle.md`](screens/puzzle.md) — get-set-ready and mark loop; Fill / Cross / Clear tools; pause into settings; no win morph on this screen
   - [`result.md`](screens/result.md) — after solve: fills morph into the solution image; control returns to gallery
   - [`settings.md`](screens/settings.md) — slim: haptics on/off; mute BGM only (SFX stay on); Back to gallery or resume paused puzzle
-- **Journeys** (bodies and mockups in later runs):
+- **Journeys**:
   - [`play-puzzle.md`](journeys/play-puzzle.md) — gallery → puzzle → result → gallery
   - [`leave-resume.md`](journeys/leave-resume.md) — leave puzzle → gallery → reopen in progress
   - [`gallery-reset.md`](journeys/gallery-reset.md) — gallery reset → puzzle treated as new
   - [`settings.md`](journeys/settings.md) — open slim settings → change haptics or mute → back
+- **Stories**: [`stories.md`](stories.md) — Full coverage for formalized actors, nav, controls, exceptions, screens, journeys
 
 
 ## Traceability
