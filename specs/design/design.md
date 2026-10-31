@@ -5,17 +5,19 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
 ## Genre and platform profile
 
 - **Serves**: Calm tactile grid, Snappy solve, and Cool clinical look. Local puzzle pack, free-order selection, and persisted completion and personal-best times.
-- **Genre(s)**: Nonogram. Each row and each column lists the lengths of consecutive filled groups, in order. A filled group is a run of filled cells with no empty cell inside it. Groups on the same line are separated by at least one empty cell. The player marks cells from those clues until every cell matches the hidden picture.
+- **Genre(s)**: Nonogram. Each row and each column lists the lengths of consecutive filled groups, in order. A filled group is a run of filled cells with no empty cell inside it. Groups on the same line are separated by at least one empty cell. The player marks fills from those clues until the fill set matches the hidden picture. Crosses are optional memory aids and are not required to solve.
 
 - **Conventions adopted**:
   - Clue runs. Each line's clues are the lengths of its filled groups, in order. Those clues are the only information that decides which cells are filled.
-  - Three mark actions. The player fills a cell, marks a cell empty, or clears a mark. A wrong mark stays until the player changes it.
-  - Solution match. The puzzle is solved when every cell matches the hidden picture. That match is checked only for the whole grid, not cell by cell while marking. The time taken for that successful solve is stored as the puzzle's personal best. The score is that time. A later solve replaces the personal best only when its time is shorter, and that shorter time is the better score. A longer replay leaves the stored best unchanged. A finished puzzle can be solved again.
-  - Reset. The player may clear all marks on the board; status returns to not started and any personal best is kept.
+  - Three mark actions. The player fills a cell, places a cross, or clears a mark. A wrong mark stays until the player changes it. Crosses do not count toward the solution.
+  - Solution match. The puzzle is solved when the player's fill set equals the solution fill set. Crosses are ignored. That check is for the whole puzzle's fills, not per-cell correctness while marking. The time taken for that successful solve is stored as the puzzle's personal best. The score is that time. A later solve replaces the personal best only when its time is shorter. A finished puzzle can be solved again.
+  - Line error. Each row and each column can signal when current fills contradict that line's clues. The signal stays off while the line is incomplete but still possible.
+  - Reset. The player may clear all fills and crosses; status returns to not started and any personal best is kept.
 
 - **Conventions rejected or changed**:
-  - Punishing a mistake with lives, a lock, or a failed attempt. Rejected because the vision has no lose state; the player corrects marks until the grid matches the picture.
-  - Live per-cell correctness while marking. Rejected so the only solve signal is a full-grid match.
+  - Punishing a mistake with lives, a lock, or a failed attempt. Rejected because the vision has no lose state; the player corrects marks until the fills match the picture.
+  - Requiring crosses to solve. Rejected so only fills decide the win.
+  - Live per-cell correctness while marking. Rejected so solve is fill-set match only; line error is contradiction feedback, not a fail state.
   - A campaign that locks later puzzles behind earlier ones. Rejected because the vision rejects a narrative that forces puzzle order.
   - Shared online packs and player-authored puzzles. Rejected because both are vision non-goals.
 

@@ -18,7 +18,7 @@ Authoring rules: [`.agents/specs/rules/design/traceability.md`](../../.agents/sp
 | World and narrative | [`world.md`](world.md) | <!-- fill in --> |
 | Flows and transitions | [`flows/`](flows/) | <!-- fill in --> |
 | Stages and scenes | [`stages/`](stages/) | <!-- fill in --> |
-| Game state | [`game-state.md`](game-state.md) | <!-- fill in --> |
+| Game state | [`game-state.md`](game-state.md) | Applies |
 | Configuration | [`configuration.md`](configuration.md) | <!-- fill in --> |
 | Demo mode | [`demo.md`](demo.md) | <!-- fill in: Applies, N/A — not offered, or leave until Offering decided --> |
 | Difficulty settings | [`difficulty.md`](difficulty.md) | <!-- fill in --> |
