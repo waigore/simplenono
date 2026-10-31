@@ -16,7 +16,7 @@ Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md)
   - [`settings.md`](screens/settings.md) — slim: haptics on/off; mute BGM only (SFX stay on)
 - **Journeys** (bodies and mockups in later runs):
   - [`play-puzzle.md`](journeys/play-puzzle.md) — gallery → puzzle → result → gallery
-  - `journeys/leave-resume.md` — leave puzzle → gallery → reopen in progress
+  - [`leave-resume.md`](journeys/leave-resume.md) — leave puzzle → gallery → reopen in progress
   - `journeys/gallery-reset.md` — gallery reset → puzzle treated as new
   - `journeys/settings.md` — open slim settings → change haptics or mute → back
 
