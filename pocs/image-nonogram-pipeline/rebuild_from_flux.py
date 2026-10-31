@@ -12,7 +12,14 @@ OUT = POC / "out"
 sys.path.insert(0, str(POC))
 from pipeline import build_puzzle_from_image  # noqa: E402
 
-SLUGS = ("cat-sit", "teapot", "sailboat")
+# (slug, size)
+SLUGS = (
+    ("cat-sit", 15),
+    ("teapot", 15),
+    ("sailboat", 15),
+    ("apple-10", 10),
+    ("fish-10", 10),
+)
 
 
 def main() -> None:
@@ -22,14 +29,14 @@ def main() -> None:
         "style": "full-colour-pixelated",
         "requirement": "unique + line-logic only",
     }
-    for slug in SLUGS:
+    for slug, size in SLUGS:
         dest = OUT / slug
         raw = dest / "flux.png"
         if not raw.exists():
             raw = dest / "source_raw.png"
         if not raw.exists():
             raise SystemExit(f"missing flux image for {slug}")
-        art = build_puzzle_from_image(raw, dest, slug=slug, size=15)
+        art = build_puzzle_from_image(raw, dest, slug=slug, size=size)
         entry = {
             "slug": slug,
             "size": art.size,
@@ -55,12 +62,12 @@ def main() -> None:
             f"ok={art.acceptable} ({art.reason})"
         )
 
-    report["outcome_met"] = report["acceptable_count"] >= 3
+    report["outcome_met"] = report["acceptable_count"] == len(SLUGS)
     (OUT / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps(report, indent=2))
     if not report["outcome_met"]:
         raise SystemExit(
-            f"outcome not met: {report['acceptable_count']}/3 line-logic unique puzzles"
+            f"outcome not met: {report['acceptable_count']}/{len(SLUGS)} line-logic unique puzzles"
         )
 
 

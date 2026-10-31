@@ -47,9 +47,41 @@
       "source": "out/sailboat/source.png",
       "source_raw": "out/sailboat/source_raw.png",
       "morph_preview": "out/sailboat/morph_preview.png"
+    },
+    {
+      "slug": "apple-10",
+      "size": 10,
+      "fill_ratio": 0.35,
+      "unique": true,
+      "logic_solved": true,
+      "sweeps": 3,
+      "dfs_nodes": 0,
+      "acceptable": true,
+      "reason": "ok",
+      "threshold": 126.0,
+      "adapt_flips": 0,
+      "source": "out/apple-10/source.png",
+      "source_raw": "out/apple-10/source_raw.png",
+      "morph_preview": "out/apple-10/morph_preview.png"
+    },
+    {
+      "slug": "fish-10",
+      "size": 10,
+      "fill_ratio": 0.26,
+      "unique": true,
+      "logic_solved": true,
+      "sweeps": 3,
+      "dfs_nodes": 0,
+      "acceptable": true,
+      "reason": "ok",
+      "threshold": 201.0,
+      "adapt_flips": 0,
+      "source": "out/fish-10/source.png",
+      "source_raw": "out/fish-10/source_raw.png",
+      "morph_preview": "out/fish-10/morph_preview.png"
     }
   ],
-  "acceptable_count": 3,
+  "acceptable_count": 5,
   "style": "full-colour-pixelated",
   "requirement": "unique + line-logic only",
   "outcome_met": true
