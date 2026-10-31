@@ -12,10 +12,10 @@ Authoring rules: [`.agents/specs/rules/view/traceability.md`](../../.agents/spec
 
 | Topic | Covered in | Applicability |
 |-------|------------|---------------|
-| Dimensionality and embodiment | [`view.md`](view.md) | <!-- fill in --> |
+| Dimensionality and embodiment | [`view.md`](view.md) | Applies |
 | Spatial model and positioning | [`spatial-model.md`](spatial-model.md) | <!-- fill in --> |
 | Projection and visible area | [`projection.md`](projection.md) | <!-- fill in --> |
-| Cameras | [`cameras/`](cameras/) | <!-- fill in --> |
+| Cameras | [`cameras/`](cameras/) | N/A — fixed board; no cameras ([`view.md`](view.md)) |
 | Camera controls and settings | [`camera-controls.md`](camera-controls.md) | <!-- fill in --> |
 | Physics feel | [`physics.md`](physics.md) | <!-- fill in --> |
 | Readability and depth | [`perception.md`](perception.md) | <!-- fill in --> |
