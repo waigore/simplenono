@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Generate three Flux silhouettes and run the image→nonogram pipeline."""
+"""Generate three full-colour Flux subjects, pixelate to grid, build nonograms."""
 
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -17,31 +18,33 @@ SCRIPT = ROOT / ".github" / "scripts" / "cheaperinference_image.py"
 sys.path.insert(0, str(POC))
 from pipeline import build_puzzle_from_image  # noqa: E402
 
+# Full colour, clear subjects, flat even background (no vignette) for clean pixelation.
 SUBJECTS = [
     {
         "slug": "cat-sit",
         "prompt": (
-            "High-contrast flat illustration of a sitting cat in pure side profile silhouette, "
-            "solid dark charcoal shape on a plain light gray background, clear outer outline, "
-            "no texture, no pattern, no text, no cuteness props, calm clinical graphic design, "
-            "centered subject, square composition"
+            "Full-color flat illustration of a sitting cat in side profile, soft teal and coral "
+            "clinical palette, solid readable outer shape, simple cel-shaded colour blocks, "
+            "plain even light gray background with no vignette and no border, centered, "
+            "square composition, no text, calm graphic design"
         ),
     },
     {
         "slug": "teapot",
         "prompt": (
-            "High-contrast flat illustration of a classic teapot silhouette, solid dark shape "
-            "on plain light gray background, clear outer outline with spout and handle readable, "
-            "no texture, no text, calm clinical graphic design, centered, square composition"
+            "Full-color flat illustration of a classic teapot, muted blue body with warm accent "
+            "lid knob, clear spout and handle silhouette, simple cel-shaded colour blocks, "
+            "plain even light gray background with no vignette and no border, centered, "
+            "square composition, no text, calm clinical graphic design"
         ),
     },
     {
         "slug": "sailboat",
         "prompt": (
-            "High-contrast flat illustration of a large sailboat, thick solid black silhouette "
-            "filling most of the frame, big triangular sail and chunky hull as one connected "
-            "dark mass on plain light gray background, bold clear outline, no thin lines, "
-            "no waves, no text, calm clinical graphic design, centered, square composition"
+            "Full-color flat illustration of a sailboat with two sails and a hull, navy and "
+            "cream sails, teal hull, large connected shapes filling the frame, simple cel-shaded "
+            "colour blocks, plain even light gray background with no vignette and no border, "
+            "centered, square composition, no text, calm clinical graphic design"
         ),
     },
 ]
@@ -49,8 +52,7 @@ SUBJECTS = [
 
 def generate_image(prompt: str, out_path: Path) -> Path:
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    env = dict(**{k: v for k, v in __import__("os").environ.items()})
-    # macOS python.org builds often need certifi for TLS
+    env = dict(os.environ)
     try:
         import certifi
 
@@ -78,7 +80,6 @@ def generate_image(prompt: str, out_path: Path) -> Path:
         raise SystemExit(f"image generate failed for {out_path}")
     if proc.stdout.strip():
         print("META", proc.stdout.strip())
-    # script may rewrite extension
     if out_path.exists():
         return out_path
     for alt in out_path.parent.glob(out_path.stem + ".*"):
@@ -91,19 +92,13 @@ def main() -> None:
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
 
-    report = {"puzzles": [], "acceptable_count": 0}
+    report = {"puzzles": [], "acceptable_count": 0, "style": "full-colour-pixelated"}
     for subj in SUBJECTS:
         slug = subj["slug"]
         dest = OUT / slug
         dest.mkdir(parents=True)
-        source = generate_image(subj["prompt"], dest / "source.png")
-        # normalize name
-        if source.name != "source.png" and source.exists():
-            fixed = dest / f"source{source.suffix}"
-            if source != fixed:
-                shutil.move(str(source), str(fixed))
-                source = fixed
-        art = build_puzzle_from_image(source, dest, slug=slug, size=15)
+        raw_path = generate_image(subj["prompt"], dest / "flux.png")
+        art = build_puzzle_from_image(raw_path, dest, slug=slug, size=15)
         entry = {
             "slug": slug,
             "size": art.size,
@@ -116,7 +111,9 @@ def main() -> None:
             "reason": art.reason,
             "threshold": art.threshold,
             "adapt_flips": art.adapt_flips,
-            "source": str(source.relative_to(POC)),
+            "source": f"out/{slug}/source.png",
+            "source_raw": f"out/{slug}/source_raw.png",
+            "morph_preview": f"out/{slug}/morph_preview.png",
         }
         report["puzzles"].append(entry)
         if art.acceptable:

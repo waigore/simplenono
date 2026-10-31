@@ -3,7 +3,23 @@
     {
       "slug": "cat-sit",
       "size": 15,
-      "fill_ratio": 0.3156,
+      "fill_ratio": 0.3467,
+      "unique": true,
+      "logic_solved": true,
+      "sweeps": 4,
+      "dfs_nodes": 0,
+      "acceptable": true,
+      "reason": "ok",
+      "threshold": 208.0,
+      "adapt_flips": 0,
+      "source": "out/cat-sit/source.png",
+      "source_raw": "out/cat-sit/source_raw.png",
+      "morph_preview": "out/cat-sit/morph_preview.png"
+    },
+    {
+      "slug": "teapot",
+      "size": 15,
+      "fill_ratio": 0.2711,
       "unique": true,
       "logic_solved": true,
       "sweeps": 3,
@@ -12,37 +28,28 @@
       "reason": "ok",
       "threshold": 218.0,
       "adapt_flips": 0,
-      "source": "out/cat-sit/source.png"
+      "source": "out/teapot/source.png",
+      "source_raw": "out/teapot/source_raw.png",
+      "morph_preview": "out/teapot/morph_preview.png"
     },
     {
-      "slug": "teapot",
+      "slug": "sailboat",
       "size": 15,
-      "fill_ratio": 0.3556,
+      "fill_ratio": 0.3156,
       "unique": true,
       "logic_solved": true,
       "sweeps": 4,
       "dfs_nodes": 0,
       "acceptable": true,
       "reason": "ok",
-      "threshold": 229.0,
+      "threshold": 197.0,
       "adapt_flips": 0,
-      "source": "out/teapot/source.png"
-    },
-    {
-      "slug": "sailboat",
-      "size": 15,
-      "fill_ratio": 0.36,
-      "unique": true,
-      "logic_solved": true,
-      "sweeps": 5,
-      "dfs_nodes": 0,
-      "acceptable": true,
-      "reason": "ok",
-      "threshold": 230.0,
-      "adapt_flips": 13,
-      "source": "out/sailboat/source.png"
+      "source": "out/sailboat/source.png",
+      "source_raw": "out/sailboat/source_raw.png",
+      "morph_preview": "out/sailboat/morph_preview.png"
     }
   ],
   "acceptable_count": 3,
+  "style": "full-colour-pixelated",
   "outcome_met": true
 }

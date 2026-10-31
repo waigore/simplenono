@@ -1,4 +1,4 @@
-"""Image → binary nonogram pipeline (PoC)."""
+"""Image → pixel-colour solution + binary nonogram pipeline (PoC)."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageFilter, ImageOps
+from PIL import Image, ImageOps
 
 from nonogram import (
     EMPTY,
@@ -37,23 +37,54 @@ class PuzzleArtifact:
     adapt_flips: int
 
 
-def to_greyscale(img: Image.Image) -> Image.Image:
-    return ImageOps.autocontrast(img.convert("L"))
+def pixelate_rgb(img: Image.Image, n: int) -> np.ndarray:
+    """Area-average to n×n RGB uint8 — one colour per nonogram cell (morph target)."""
+    rgb = img.convert("RGB")
+    small = rgb.resize((n, n), Image.Resampling.BOX)
+    return np.asarray(small, dtype=np.uint8)
 
 
-def area_resize_grey(grey: Image.Image, n: int) -> np.ndarray:
-    """Area-average resize to n×n, float intensities 0..255."""
-    small = grey.resize((n, n), Image.Resampling.BOX)
-    return np.asarray(small, dtype=np.float32)
+def luminance(rgb: np.ndarray) -> np.ndarray:
+    """Rec. 601 luma, float 0..255."""
+    r = rgb[:, :, 0].astype(np.float32)
+    g = rgb[:, :, 1].astype(np.float32)
+    b = rgb[:, :, 2].astype(np.float32)
+    return 0.299 * r + 0.587 * g + 0.114 * b
+
+
+def flatten_background(rgb: np.ndarray, edge: int = 1) -> np.ndarray:
+    """Snap near-border cells toward median border colour to kill vignette fills."""
+    out = rgb.copy()
+    h, w, _ = out.shape
+    border = np.concatenate(
+        [
+            out[:edge, :, :].reshape(-1, 3),
+            out[-edge:, :, :].reshape(-1, 3),
+            out[:, :edge, :].reshape(-1, 3),
+            out[:, -edge:, :].reshape(-1, 3),
+        ],
+        axis=0,
+    )
+    bg = np.median(border, axis=0)
+    bg_lum = float(0.299 * bg[0] + 0.587 * bg[1] + 0.114 * bg[2])
+    # Only snap cells that are already bright-ish (background candidates)
+    lum = luminance(out)
+    for y in range(h):
+        for x in range(w):
+            on_edge = y < edge or y >= h - edge or x < edge or x >= w - edge
+            if on_edge and lum[y, x] >= bg_lum - 40:
+                out[y, x] = bg.astype(np.uint8)
+            elif lum[y, x] >= bg_lum - 12 and abs(float(lum[y, x]) - bg_lum) < 18:
+                # near-bg interior noise → bg
+                out[y, x] = bg.astype(np.uint8)
+    return out
 
 
 def threshold_grid(intensities: np.ndarray, t: float) -> np.ndarray:
-    # dark → fill
     return (intensities <= t).astype(np.int8)
 
 
 def morph_clean(grid: np.ndarray) -> np.ndarray:
-    """Remove isolated fills/empties (4-neighbour)."""
     g = grid.copy()
     h, w = g.shape
     for _ in range(2):
@@ -96,12 +127,10 @@ def dilate(grid: np.ndarray, times: int = 1) -> np.ndarray:
 def search_threshold(
     intensities: np.ndarray, lo: float = 0.28, hi: float = 0.42
 ) -> list[tuple[float, np.ndarray, float]]:
-    """Return candidate (threshold, grid, ratio), preferring fill band."""
     tried: list[tuple[float, np.ndarray, float]] = []
     thresholds: list[float] = []
     thresholds.extend(float(t) for t in np.unique(intensities))
     thresholds.extend(float(np.percentile(intensities, p)) for p in range(5, 96, 1))
-    # stable unique-ish order
     seen: set[float] = set()
     for t in thresholds:
         key = round(t, 4)
@@ -116,23 +145,21 @@ def search_threshold(
 
     in_band = [c for c in tried if lo <= c[2] <= hi]
     if in_band:
-        # prefer closer to 35% fill
         in_band.sort(key=lambda c: abs(c[2] - 0.35))
         return in_band
-    # fallback: closest to 35%
     tried.sort(key=lambda c: abs(c[2] - 0.35))
     return tried[:12]
 
 
-def adapt_unique(grid: np.ndarray, intensities: np.ndarray, max_flips: int = 24) -> tuple[np.ndarray, SolveResult, int]:
-    """Flip EMPTY→FILL preferring darkest cells until unique or budget exhausted."""
+def adapt_unique(
+    grid: np.ndarray, intensities: np.ndarray, max_flips: int = 24
+) -> tuple[np.ndarray, SolveResult, int]:
     g = grid.copy()
     result = solve_and_judge(g)
     flips = 0
     if result.unique:
         return g, result, flips
 
-    # candidates: empty cells, darkest first
     order = np.argsort(intensities, axis=None)
     h, w = g.shape
     for flat in order:
@@ -141,15 +168,12 @@ def adapt_unique(grid: np.ndarray, intensities: np.ndarray, max_flips: int = 24)
         y, x = divmod(int(flat), w)
         if g[y, x] != EMPTY:
             continue
-        # only flip if reasonably dark
         if intensities[y, x] > np.percentile(intensities, 55):
             continue
         trial = g.copy()
         trial[y, x] = FILL
         trial = morph_clean(trial)
-        # keep fill band soft check
-        r = fill_ratio(trial)
-        if r > 0.48:
+        if fill_ratio(trial) > 0.48:
             continue
         jr = solve_and_judge(trial)
         flips += 1
@@ -158,6 +182,13 @@ def adapt_unique(grid: np.ndarray, intensities: np.ndarray, max_flips: int = 24)
         if jr.unique:
             break
     return g, result, flips
+
+
+def save_pixel_colour(rgb: np.ndarray, path: Path, scale: int = 64) -> None:
+    """Nearest upscale so each cell is a flat colour block (morph-friendly)."""
+    h, w, _ = rgb.shape
+    img = Image.fromarray(rgb, mode="RGB")
+    img.resize((w * scale, h * scale), Image.Resampling.NEAREST).save(path)
 
 
 def grid_to_png(grid: np.ndarray, path: Path, scale: int = 32) -> None:
@@ -170,6 +201,19 @@ def grid_to_png(grid: np.ndarray, path: Path, scale: int = 32) -> None:
     img.resize((w * scale, h * scale), Image.Resampling.NEAREST).save(path)
 
 
+def overlay_preview(rgb: np.ndarray, grid: np.ndarray, path: Path, scale: int = 64) -> None:
+    """Colour cells where filled; light checker where empty — morph preview."""
+    h, w, _ = rgb.shape
+    out = np.full_like(rgb, 245)
+    for y in range(h):
+        for x in range(w):
+            if grid[y, x] == FILL:
+                out[y, x] = rgb[y, x]
+            else:
+                out[y, x] = (230, 230, 230) if (x + y) % 2 == 0 else (245, 245, 245)
+    save_pixel_colour(out, path, scale=scale)
+
+
 def build_puzzle_from_image(
     source_path: Path,
     out_dir: Path,
@@ -177,11 +221,15 @@ def build_puzzle_from_image(
     size: int = 15,
 ) -> PuzzleArtifact:
     out_dir.mkdir(parents=True, exist_ok=True)
-    img = Image.open(source_path)
-    grey = to_greyscale(img)
-    # slight blur before box resize to reduce alias noise
-    grey = grey.filter(ImageFilter.BoxBlur(1))
-    intensities = area_resize_grey(grey, size)
+    raw = Image.open(source_path)
+    # Keep Flux original for comparison
+    raw.convert("RGB").save(out_dir / "source_raw.png")
+
+    rgb = flatten_background(pixelate_rgb(raw, size))
+    intensities = luminance(rgb)
+    # gentle autocontrast on luma for threshold search only
+    lum_img = Image.fromarray(intensities.astype(np.uint8), mode="L")
+    intensities = np.asarray(ImageOps.autocontrast(lum_img), dtype=np.float32)
 
     best: PuzzleArtifact | None = None
     best_grid: np.ndarray | None = None
@@ -191,8 +239,7 @@ def build_puzzle_from_image(
         bases.append((t, base))
         if ratio < 0.28:
             for d in (1, 2):
-                thick = morph_clean(dilate(base, d))
-                bases.append((t, thick))
+                bases.append((t, morph_clean(dilate(base, d))))
 
     seen_grids: set[bytes] = set()
     for t, base in bases:
@@ -234,11 +281,15 @@ def build_puzzle_from_image(
     if not best.acceptable and size == 15:
         return build_puzzle_from_image(source_path, out_dir, slug, size=10)
 
+    # Solution picture = pixel colour map (1 cell = 1 colour), nearest-scaled
+    save_pixel_colour(rgb, out_dir / "source.png", scale=64)
+    np.save(out_dir / "pixels.npy", rgb)
     grid_to_png(best_grid, out_dir / "grid.png")
+    overlay_preview(rgb, best_grid, out_dir / "morph_preview.png")
     payload = {
         **asdict(best),
         "grid": best_grid.tolist(),
+        "pixels_rgb": rgb.tolist(),
     }
     (out_dir / "puzzle.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    # copy/link source name
     return best

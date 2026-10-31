@@ -2,7 +2,7 @@
 
 Exploration artifact, not production code. Contract: `docs/pocs.md`, `docs/poc-style-assets.md`.
 
-- **Question**: Can Flux (`flux-2-max` / Cheaper Inference) plus area-resize → threshold fill-band → morphology → uniqueness Adapt → solver difficulty yield recognizable, uniquely solvable nonograms of acceptable difficulty?
+- **Question**: Can Flux (`flux-2-max` / Cheaper Inference) full-colour art, pixelated 1:1 to the grid for a natural fill→image morph, plus threshold fill-band → morphology → uniqueness Adapt → solver difficulty, yield recognizable uniquely solvable nonograms of acceptable difficulty?
 - **Type**: engine
 - **Issue**: none
 - **Request log**: `docs/requirements/poc-requests.md` → image-nonogram-pipeline
@@ -37,15 +37,7 @@ Exploration artifact, not production code. Contract: `docs/pocs.md`, `docs/poc-s
 
 ## What was tried
 
-Smoke run produced **3/3 acceptable** puzzles (`out/report.json`, `outcome_met: true`):
-
-| Slug | Size | Fill | Unique | Logic sweeps | Adapt flips | Notes |
-|------|------|------|--------|--------------|-------------|-------|
-| cat-sit | 15 | 32% | yes | 3 | 0 | Clear silhouette; first-pass threshold OK |
-| teapot | 15 | 36% | yes | 4 | 0 | Same |
-| sailboat | 15 | 36% | yes | 5 | 13 | First thin sail failed fill band; thicker prompt + dilate/adapt recovered |
-
-Pipeline: Flux `flux-2-max` 1024² → greyscale/autocontrast → box blur → area resize → threshold search (25–45% fill) → morphology → optional dilate → uniqueness Adapt → line-logic judge. TLS needed `SSL_CERT_FILE`=certifi on this macOS Python.
+See latest `out/report.json` after re-run. Pipeline: Flux full-colour 1024² → BOX pixelate to N×N RGB (flatten border vignette) → luma threshold (25–45% fill) → morph/dilate → uniqueness Adapt → line-logic judge; `source.png` is nearest-upscaled pixel colour for morph. TLS: `SSL_CERT_FILE`=certifi on this macOS Python.
 
 ## Promotion act
 
@@ -63,7 +55,14 @@ python3 -m pip install --user numpy pillow   # once
 python3 pocs/image-nonogram-pipeline/run_poc.py
 ```
 
-Outputs under `pocs/image-nonogram-pipeline/out/<slug>/`: `source.*`, `grid.png`, `puzzle.json`, plus `out/report.json`.
+Outputs under `pocs/image-nonogram-pipeline/out/<slug>/`:
+
+- `source_raw.png` — Flux full-colour 1024²
+- `source.png` — **pixel-colour** solution (N×N colours, nearest-upscaled; morph target)
+- `grid.png` — binary fills
+- `morph_preview.png` — colour only on fill cells
+- `puzzle.json` — clues, grid, `pixels_rgb`
+- `out/report.json`
 
 ## Known limitations
 
