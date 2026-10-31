@@ -51,12 +51,17 @@
       gap: 0.75rem;
       margin-bottom: 0.75rem;
     }
+    .chrome .start {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     .chrome .elapsed {
       font-family: var(--mono);
       font-variant-numeric: tabular-nums;
       font-size: 14px;
     }
-    button.leave, button.tool {
+    button.leave, button.settings, button.tool {
       min-height: 36px;
       min-width: 36px;
       padding: 0 12px;
@@ -174,7 +179,10 @@
       <div class="states">
         <section id="state-default" data-state="default">
           <header class="chrome" data-region="R1" aria-label="Chrome">
-            <button type="button" class="leave" data-control="C1">Leave</button>
+            <div class="start">
+              <button type="button" class="leave" data-control="C1">Leave</button>
+              <button type="button" class="settings" data-control="C6">Settings</button>
+            </div>
             <span class="elapsed" aria-label="Elapsed">1:24</span>
           </header>
           <div class="board-wrap" data-region="R2" aria-label="Board">
@@ -220,12 +228,16 @@
           <div class="tools" data-region="R3" aria-label="Tools">
             <button type="button" class="tool active" data-control="C3">Fill</button>
             <button type="button" class="tool" data-control="C4">Cross</button>
+            <button type="button" class="tool" data-control="C5">Clear</button>
           </div>
-          <p class="hint">Tap cycle + drag-paint bindings → controls.md</p>
+          <p class="hint">Selected tool + drag-paint · right-click complement · P / Settings pauses</p>
         </section>
         <section id="state-get-set-ready" data-state="get-set-ready">
           <header class="chrome" data-region="R1" aria-label="Chrome">
-            <button type="button" class="leave" data-control="C1">Leave</button>
+            <div class="start">
+              <button type="button" class="leave" data-control="C1">Leave</button>
+              <button type="button" class="settings" data-control="C6">Settings</button>
+            </div>
             <span class="elapsed" aria-label="Elapsed">0:00</span>
           </header>
           <div class="board-wrap" data-region="R2" aria-label="Board">
@@ -272,6 +284,7 @@
           <div class="tools" data-region="R3" aria-label="Tools">
             <button type="button" class="tool" data-control="C3" disabled>Fill</button>
             <button type="button" class="tool" data-control="C4" disabled>Cross</button>
+            <button type="button" class="tool" data-control="C5" disabled>Clear</button>
           </div>
         </section>
       </div>
