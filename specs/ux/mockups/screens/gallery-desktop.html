@@ -335,7 +335,19 @@
     .puzzle-tile .meta { padding:12px; display:flex; flex-direction:column; gap:4px; }
     .puzzle-tile .title { font-weight:600; font-size:14px; }
     .puzzle-tile .sub { font-family:var(--font-mono); font-size:var(--fs-meta); color:var(--muted); min-height: 2.6em; }
-    .puzzle-tile .reset { margin:auto 12px 12px; min-height:44px; border:1px solid var(--border); background:transparent; color:var(--fg); font:inherit; font-size:13px; cursor:pointer; }
+    .puzzle-tile .reset {
+      align-self: flex-end;
+      margin: auto 12px 12px;
+      min-height: 28px;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+    }
     .confirm-overlay { position:absolute; inset:0; z-index:5; background: color-mix(in oklch, var(--fg) 28%, transparent); display:grid; place-items:center; padding:24px; }
     .confirm-card { width:min(420px,100%); background:var(--bg); border:1px solid var(--border); padding:24px; display:flex; flex-direction:column; gap:16px; }
     .confirm-card p { margin:0; }
