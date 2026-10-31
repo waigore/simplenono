@@ -25,7 +25,7 @@ Authoring rules: [`.agents/specs/rules/design/traceability.md`](../../.agents/sp
 | Scenarios | [`scenarios/`](scenarios/) | <!-- fill in --> |
 | Progress management | [`progression.md`](progression.md) | Applies |
 | Sub-games | [`sub-games/`](sub-games/) | <!-- fill in --> |
-| Win and loss conditions | [`end-conditions.md`](end-conditions.md) | <!-- fill in --> |
+| Win and loss conditions | [`end-conditions.md`](end-conditions.md) | Applies |
 | Economy and resources | [`features/`](features/) | <!-- fill in --> |
 | Opponent and NPC behavior | [`characters/`](characters/), [`features/`](features/) | <!-- fill in --> |
 | Experience and feel | [`experience.md`](experience.md) | <!-- fill in --> |
