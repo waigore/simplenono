@@ -3,6 +3,9 @@
 Raw notes until a UX capture run consumes them. Not specs.
 
 - Completion rate prominently displayed (e.g. a progress bar) on the gallery — target: `specs/ux/screens/gallery.md`
+- Gallery puzzle tiles: scrollable grid — target: `specs/ux/screens/gallery.md`
+- Gallery reset control only when ever-completed or in progress; confirm before `END.O2` — target: `specs/ux/screens/gallery.md`
+- Gallery Open Design mockups: `gallery.mobile.html` / `gallery.desktop.html` after presentation binding — target: `specs/ux/screens/gallery.md`
 - Both tap cycle and fill/cross tools for marking cells — target: `specs/ux/controls.md`
 - Drag-paint (hold and paint a run of cells) — target: `specs/ux/controls.md`
 - Result screen: fills morph into solution image (fills only), then Back to gallery — target: `specs/ux/screens/result.md`
