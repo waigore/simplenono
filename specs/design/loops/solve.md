@@ -11,8 +11,8 @@ Authoring rules: [`.agents/specs/rules/design/loops.md`](../../../.agents/specs/
 
 | ID | Player does | Game responds | Player gains or learns |
 |----|-------------|---------------|------------------------|
-| K1 | Enter [get-set-ready](../glossary.md) | Board loads; marks blocked briefly; solve timer starts when ready (or resumes persisted elapsed) | Ready to solve |
-| K2 | Fill a cell, place a [cross](../glossary.md), or clear a mark | Mark updates; first fill or cross sets [attempt status](../glossary.md) to [in progress](../glossary.md) without clearing [ever completed](../glossary.md); [line error](../glossary.md) may update | Deduction progress from clues |
+| K1 | Enter [get-set-ready](../glossary.md) | Board loads; marks blocked briefly; when ready, empty-[clue](../entities/clue.md) lines auto-cross still-clear cells (counts as crosses → [in progress](../glossary.md) if any); solve timer starts (or resumes persisted elapsed) | Ready to solve |
+| K2 | Fill a cell, place a [cross](../glossary.md), or clear a mark | Mark updates; first fill or cross (including K1 auto-cross) sets [attempt status](../glossary.md) to [in progress](../glossary.md) without clearing [ever completed](../glossary.md); [line error](../glossary.md) may update; [clue](../entities/clue.md) line may dim when satisfied | Deduction progress from clues |
 | K3 | Keep marking | No per-cell correctness. [Solve check](../glossary.md) compares **fills only** to the solution fill set | Whether the picture fills are complete |
 | K4 | Reach a fill set that matches the solution | Timer stops; ever-completed → true; attempt → not started; marks and elapsed clear; [personal best](../glossary.md) updates if shorter ([`END.W1`](../end-conditions.md)); same on replay | The clean-solve click |
 | K6 | Leave mid-puzzle | Marks, in-progress attempt, and elapsed commit; return to the gallery ([`END.O1`](../end-conditions.md)) | Can resume later with the same elapsed |

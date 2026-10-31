@@ -35,6 +35,7 @@ Solution membership is not a cell field; fills are compared to the solution at p
 | I2 | Solve check | Player fill set vs solution | Fills only; crosses ignored |
 | I3 | Line error | Fills on that row or column | May raise or clear [line error](../glossary.md) |
 | I4 | Get-set-ready | Marks blocked | No mark change until ready |
+| I5 | Empty [clue](clue.md) line | After ready, cell still clear | Auto-cross ([`clue` I3](clue.md)); counts toward [in progress](../glossary.md) |
 
 How the player chooses a mark (tap cycle, tools, drag) is UX, not this entity.
 
