@@ -13,5 +13,5 @@ Process gate: [`docs/ux-mockups.md`](../../../docs/ux-mockups.md).
 | `MC.puzzle` | screen | [`screens/puzzle.md`](../screens/puzzle.md) | [`screens/puzzle.html`](screens/puzzle.html) | approved | product owner | 2026-10-31 | None |
 | `MC.result-mobile` | screen | [`screens/result.md`](../screens/result.md) | [`screens/result-mobile.html`](screens/result-mobile.html) | approved | product owner | 2026-10-31 | None |
 | `MC.result-desktop` | screen | [`screens/result.md`](../screens/result.md) | [`screens/result-desktop.html`](screens/result-desktop.html) | approved | product owner | 2026-10-31 | None |
-| `MC.settings-mobile` | screen | [`screens/settings.md`](../screens/settings.md) | [`screens/settings-mobile.html`](screens/settings-mobile.html) | draft | None | 2026-10-31 | None |
-| `MC.settings-desktop` | screen | [`screens/settings.md`](../screens/settings.md) | [`screens/settings-desktop.html`](screens/settings-desktop.html) | draft | None | 2026-10-31 | None |
+| `MC.settings-mobile` | screen | [`screens/settings.md`](../screens/settings.md) | [`screens/settings-mobile.html`](screens/settings-mobile.html) | approved | product owner | 2026-10-31 | None |
+| `MC.settings-desktop` | screen | [`screens/settings.md`](../screens/settings.md) | [`screens/settings-desktop.html`](screens/settings-desktop.html) | approved | product owner | 2026-10-31 | None |
