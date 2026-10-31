@@ -19,7 +19,7 @@ Authoring rules: [`.agents/specs/rules/aesthetics/traceability.md`](../../.agent
 | Form | [`form.md`](form.md) | Applies |
 | Surface and light | [`surface.md`](surface.md) | Applies |
 | Motion style | [`motion.md`](motion.md) | Applies |
-| Interface style | [`ui-style.md`](ui-style.md) | <!-- fill in --> |
+| Interface style | [`ui-style.md`](ui-style.md) | Applies |
 | Sound style | [`sound.md`](sound.md) | <!-- fill in --> |
 | Accessible color and type | [`palette.md`](palette.md), [`ui-style.md`](ui-style.md) | <!-- fill in --> |
 | Script coverage | [`ui-style.md`](ui-style.md) | <!-- fill in --> |
