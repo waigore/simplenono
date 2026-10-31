@@ -372,6 +372,18 @@
     .puzzle-tile .open { border:0; background:transparent; color:inherit; font:inherit; padding:0; text-align:left; cursor:pointer; min-height:44px; width:100%; display:flex; flex-direction:column; }
     .puzzle-tile .thumb { aspect-ratio:1; border-bottom:1px solid var(--border); display:grid; place-items:center; font-family:var(--font-mono); font-size:10px; color:var(--muted);
       background: linear-gradient(135deg, var(--fg-soft), var(--accent-soft)), var(--surface); }
+    
+    .puzzle-tile .thumb.placeholder {
+      background: #F4F7F8;
+      padding: 0;
+      overflow: hidden;
+    }
+    .puzzle-tile .thumb.placeholder .generic-puzzle {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
     .puzzle-tile .thumb.filled { background: repeating-linear-gradient(45deg, #1B2833 0 6px, #3A4A56 6px 12px); color:#F4F7F8; }
     .puzzle-tile .meta { padding:8px; display:flex; flex-direction:column; gap:3px; }
     .puzzle-tile .title { font-size:13px; font-weight:600; }
@@ -448,13 +460,29 @@
 
                   <div class="puzzle-tile">
                     <button type="button" class="open" data-control="C1">
-                      <div class="thumb">No thumb</div>
+                      <div class="thumb placeholder" aria-hidden="true"><svg class="generic-puzzle" viewBox="0 0 40 40" role="img" aria-label="Unsolved puzzle"><rect width="40" height="40" fill="#F4F7F8"/><g fill="none" stroke="#C5D0D6" stroke-width="0.75">
+  <path d="M8 8h24v24H8z"/>
+  <path d="M8 13h24M8 18h24M8 23h24M8 28h24M13 8v24M18 8v24M23 8v24M28 8v24"/>
+</g><g fill="#1B2833">
+  <rect x="13" y="13" width="5" height="5"/><rect x="18" y="13" width="5" height="5"/><rect x="23" y="13" width="5" height="5"/>
+  <rect x="18" y="18" width="5" height="5"/>
+  <rect x="13" y="23" width="5" height="5"/><rect x="18" y="23" width="5" height="5"/><rect x="23" y="23" width="5" height="5"/>
+  <rect x="18" y="28" width="5" height="5"/>
+</g></svg></div>
                       <div class="meta"><span class="title">10×10 · #001</span><span class="sub">Not started</span></div>
                     </button>
                   </div>
                   <div class="puzzle-tile">
                     <button type="button" class="open" data-control="C1">
-                      <div class="thumb">No thumb</div>
+                      <div class="thumb placeholder" aria-hidden="true"><svg class="generic-puzzle" viewBox="0 0 40 40" role="img" aria-label="Unsolved puzzle"><rect width="40" height="40" fill="#F4F7F8"/><g fill="none" stroke="#C5D0D6" stroke-width="0.75">
+  <path d="M8 8h24v24H8z"/>
+  <path d="M8 13h24M8 18h24M8 23h24M8 28h24M13 8v24M18 8v24M23 8v24M28 8v24"/>
+</g><g fill="#1B2833">
+  <rect x="13" y="13" width="5" height="5"/><rect x="18" y="13" width="5" height="5"/><rect x="23" y="13" width="5" height="5"/>
+  <rect x="18" y="18" width="5" height="5"/>
+  <rect x="13" y="23" width="5" height="5"/><rect x="18" y="23" width="5" height="5"/><rect x="23" y="23" width="5" height="5"/>
+  <rect x="18" y="28" width="5" height="5"/>
+</g></svg></div>
                       <div class="meta"><span class="title">10×10 · #002</span><span class="sub">In progress</span></div>
                     </button>
                     <button type="button" class="reset" data-control="C2">Reset</button>

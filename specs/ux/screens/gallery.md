@@ -13,14 +13,14 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | Shown in | Design element | Visible when |
 |----------|----------------|--------------|
 | R1 | [`GS.completion-rate`](../../design/game-state.md) | Always on this screen |
-| R2 | Per puzzle: [`GS.attempt-status`](../../design/game-state.md), [`GS.ever-completed`](../../design/game-state.md), [`GS.personal-best`](../../design/game-state.md), [`GS.gallery-thumbnail`](../../design/game-state.md), size | Always on each tile; thumbnail only when ever-completed; PB only when set |
+| R2 | Per puzzle: [`GS.attempt-status`](../../design/game-state.md), [`GS.ever-completed`](../../design/game-state.md), [`GS.personal-best`](../../design/game-state.md), [`GS.gallery-thumbnail`](../../design/game-state.md), size | Always on each tile; solution thumbnail when ever-completed, else a generic puzzle placeholder; PB only when set |
 
 ## Regions
 
 | ID | Region | Purpose | Contents |
 |----|--------|---------|----------|
 | R1 | Pack progress | Pack completion at a glance | Completion bar; `copy.completion` |
-| R2 | Puzzle grid | Scrollable free-order tiles for all 200 puzzles | Tile: size; status; PB when set; thumbnail when ever-completed; C1; C2 when allowed |
+| R2 | Puzzle grid | Scrollable free-order tiles for all 200 puzzles | Tile: size; status; PB when set; solution thumbnail when ever-completed, else generic puzzle placeholder; C1; C2 when allowed |
 | R3 | Chrome | Open slim settings | C3 |
 
 ## Controls
