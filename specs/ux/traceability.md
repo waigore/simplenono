@@ -12,15 +12,16 @@ Authoring rules: [`.agents/specs/rules/ux/traceability.md`](../../.agents/specs/
 | Gallery completion rate; statuses; PB; thumbnails; reset | [`progression.md`](../design/progression.md), [`game-state.md`](../design/game-state.md) | [`screens/gallery.md`](screens/gallery.md) |
 | Solve loop; get-set-ready; marks; leave/solve | [`loops/solve.md`](../design/loops/solve.md), [`game-state.md`](../design/game-state.md) | [`screens/puzzle.md`](screens/puzzle.md) |
 | Win reveal morph; return to gallery | [`PER.R5`](../view/perception.md), [`MOT.E1`](../aesthetics/motion.md) | [`screens/result.md`](screens/result.md) |
+| Haptics toggle; mute BGM only | [`HAP.S1`](../view/haptics.md), [`sound.md`](../aesthetics/sound.md) | [`screens/settings.md`](screens/settings.md) |
 
 ## Topic coverage
 
 | Topic | Covered in | Applicability |
 |-------|------------|---------------|
 | Actors | [`actors/`](actors/), [`ux.md`](ux.md) | Applies (`actors/player.md`) |
-| Screens | [`screens/`](screens/), [`navigation.md`](navigation.md), [`ux.md`](ux.md) | Applies — `gallery.md`, `puzzle.md`, `result.md`; settings indexed pending |
+| Screens | [`screens/`](screens/), [`navigation.md`](navigation.md), [`ux.md`](ux.md) | Applies — `gallery.md`, `puzzle.md`, `result.md`, `settings.md` |
 | Journeys | [`journeys/`](journeys/), [`ux.md`](ux.md) | Applies — play, leave-resume, gallery-reset, settings indexed; bodies pending |
-| Navigation | [`navigation.md`](navigation.md) | Applies — `UI-gallery`, `UI-puzzle`, `UI-result`; T2 settings pending |
+| Navigation | [`navigation.md`](navigation.md) | Applies — gallery, puzzle, result, settings; T1–T6 |
 | Exception states | [`exceptions.md`](exceptions.md) | Applies — `EX.confirm` for gallery reset; others omitted until needed |
 | Controls and bindings | [`controls.md`](controls.md) | <!-- fill in --> |
 | Mockups | [`mockups/`](mockups/), [`mockups/catalog.md`](mockups/catalog.md), [`presentation.md`](presentation.md) | Applies — Open Design `minimal`; mobile-app / web-prototype / play template; aesthetics remap ([`presentation.md`](presentation.md)); catalog rows when screens land |
