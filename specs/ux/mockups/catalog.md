@@ -18,4 +18,4 @@ Process gate: [`docs/ux-mockups.md`](../../../docs/ux-mockups.md).
 | `MC.play-puzzle` | journey | [`journeys/play-puzzle.md`](../journeys/play-puzzle.md) | [`journeys/play-puzzle.html`](journeys/play-puzzle.html) | approved | product owner | 2026-10-31 | None |
 | `MC.leave-resume` | journey | [`journeys/leave-resume.md`](../journeys/leave-resume.md) | [`journeys/leave-resume.html`](journeys/leave-resume.html) | approved | product owner | 2026-10-31 | None |
 | `MC.gallery-reset` | journey | [`journeys/gallery-reset.md`](../journeys/gallery-reset.md) | [`journeys/gallery-reset.html`](journeys/gallery-reset.html) | approved | product owner | 2026-10-31 | None |
-| `MC.settings-journey` | journey | [`journeys/settings.md`](../journeys/settings.md) | [`journeys/settings.html`](journeys/settings.html) | draft | None | 2026-10-31 | None |
+| `MC.settings-journey` | journey | [`journeys/settings.md`](../journeys/settings.md) | [`journeys/settings.html`](journeys/settings.html) | approved | product owner | 2026-10-31 | None |
