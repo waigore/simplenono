@@ -7,8 +7,9 @@ Authoring rules: [`.agents/specs/rules/design/glossary.md`](../../.agents/specs/
 | Term | Definition | Detailed in |
 |------|------------|-------------|
 | Attempt status | Whether the current attempt is not started or in progress; independent of ever completed. | [`progression.md`](progression.md), [`game-state.md`](game-state.md) |
+| Cell | One grid square with exactly one mark: clear, fill, or cross. | [`entities/cell.md`](entities/cell.md) |
 | Completion rate | Ever-completed puzzles divided by pack size (200). | [`progression.md`](progression.md), [`game-state.md`](game-state.md) |
-| Cross | Optional mark meaning “I treat this cell as not filled”; ignored by solve check and line-error fill logic. | [`loops/solve.md`](loops/solve.md), [`game-state.md`](game-state.md) |
+| Cross | Optional mark meaning “I treat this cell as not filled”; ignored by solve check and line-error fill logic. | [`entities/cell.md`](entities/cell.md), [`loops/solve.md`](loops/solve.md) |
 | Ever completed | Sticky flag after at least one successful solve; may coexist with an in-progress attempt on replay. | [`progression.md`](progression.md), [`entities/puzzle.md`](entities/puzzle.md) |
 | Gallery | Free-order pack selection: every puzzle listed and selectable, with attempt status, ever-completed, personal best, and thumbnail when ever completed. | [`progression.md`](progression.md) |
 | Get-set-ready | Short prep beat before marks are allowed on a puzzle attempt. | [`progression.md`](progression.md), [`loops/solve.md`](loops/solve.md) |
