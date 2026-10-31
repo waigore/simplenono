@@ -39,4 +39,4 @@ No loss exit. Gallery [reset](../glossary.md) is [`END.O2`](../end-conditions.md
 
 ## Experience intent
 
-Snappy mark response on a calm clinical board. Tension is deduction, not punishment. Crosses aid memory; only fills win. Line errors flag impossible fills, not unfinished lines.
+Snappy mark response on a calm clinical board with soft SFX under calm BGM. Tension is deduction, not punishment. On solve: triumphant calm BGM and fade fills → image ([`experience.md`](../experience.md)). Crosses aid memory; only fills win. Line errors flag impossible fills, not unfinished lines.

@@ -34,4 +34,4 @@ No loss conditions.
 
 ## Experience intent
 
-Win is a quiet earned “picture complete” click, including on replay. Leave is calm pause. Gallery reset is a deliberate start-over as new. There is no loss to make fair.
+Win is a quiet triumph: calm-yet-triumphant BGM and filled cells fading into the picture ([`experience.md`](experience.md)), including on replay. Leave is calm pause. Gallery reset is a deliberate start-over as new. There is no loss to make fair.
