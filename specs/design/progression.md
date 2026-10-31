@@ -19,14 +19,14 @@ None — no content gates. Every puzzle is selectable immediately.
 
 | ID | What | Persists across | Lost or reset when |
 |----|------|-----------------|--------------------|
-| P1 | Per-puzzle status: not started, in progress, or completed | Sessions | Player [reset](glossary.md) returns status to not started; otherwise never in normal play |
-| P2 | Per-puzzle personal best | Sessions | Replaced only by a shorter successful solve time; kept across reset |
-| P3 | In-progress cell marks (clear / fill / cross) | Sessions while status is in progress | Cleared on reset or when the puzzle becomes completed |
-| P4 | In-progress solve elapsed | Sessions while status is in progress | Cleared on reset or when the puzzle becomes completed; resumes on reopen |
+| P1 | Per-puzzle status: not started, in progress, or completed | Sessions | Gallery [reset](glossary.md) ([`END.O2`](end-conditions.md)) returns status to not started; otherwise never in normal play |
+| P2 | Per-puzzle personal best | Sessions | Replaced only by a shorter successful solve time; cleared on gallery reset |
+| P3 | In-progress cell marks (clear / fill / cross) | Sessions while status is in progress | Cleared on gallery reset or when the puzzle becomes completed |
+| P4 | In-progress solve elapsed | Sessions while status is in progress | Cleared on gallery reset or when the puzzle becomes completed; resumes on reopen |
 
 ## Committing progress
 
-- **M1**: Status, marks, elapsed, and personal best commit when they change (marks and elapsed while solving; status and best on a successful solve). After an interruption, play resumes in the gallery. Opening an in-progress puzzle restores its marks and elapsed time.
+- **M1**: Status, marks, elapsed, and personal best commit when they change (marks and elapsed while solving; status and best on a successful solve; wipe on gallery reset). After an interruption, play resumes in the gallery. Opening an in-progress puzzle restores its marks and elapsed time. Gallery reset treats that puzzle as new ([`END.O2`](end-conditions.md)).
 
 ## Failure consequences
 

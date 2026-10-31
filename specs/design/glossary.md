@@ -15,5 +15,5 @@ Authoring rules: [`.agents/specs/rules/design/glossary.md`](../../.agents/specs/
 | Line error | Per-row or per-column signal that current fills contradict that line’s clues; off when the line is incomplete but still possible. | [`game-state.md`](game-state.md) |
 | Not started | Puzzle status for a board that has never been marked, or after a reset. | [`progression.md`](progression.md) |
 | Personal best | Shortest successful solve time stored for a puzzle. | [`progression.md`](progression.md) |
-| Reset | Player action that clears all fills and crosses; status returns to not started; personal best unchanged; elapsed cleared. | [`loops/solve.md`](loops/solve.md) |
+| Reset | Gallery action that makes a puzzle new: clears fills, crosses, elapsed, and personal best; status returns to not started. | [`end-conditions.md`](end-conditions.md), [`progression.md`](progression.md) |
 | Solve check | Whether the player’s fill set equals the solution fill set; crosses ignored; not evaluated per cell for correctness while marking. | [`loops/solve.md`](loops/solve.md), [`game-state.md`](game-state.md) |

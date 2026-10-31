@@ -10,9 +10,9 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
 - **Conventions adopted**:
   - Clue runs. Each line's clues are the lengths of its filled groups, in order. Those clues are the only information that decides which cells are filled.
   - Three mark actions. The player fills a cell, places a cross, or clears a mark. A wrong mark stays until the player changes it. Crosses do not count toward the solution.
-  - Solution match. The puzzle is solved when the player's fill set equals the solution fill set. Crosses are ignored. That check is for the whole puzzle's fills, not per-cell correctness while marking. The time taken for that successful solve is stored as the puzzle's personal best. The score is that time. A later solve replaces the personal best only when its time is shorter. A finished puzzle can be solved again.
-  - Line error. Each row and each column can signal when current fills contradict that line's clues. The signal stays off while the line is incomplete but still possible.
-  - Reset. The player may clear all fills and crosses; status returns to not started and any personal best is kept.
+  - Solution match. Solved when the player's fill set equals the solution fill set. Crosses are ignored. Whole-puzzle fills only, not per-cell correctness while marking. That successful time is the personal best (the score); a later solve replaces it only when shorter. A finished puzzle can be solved again.
+  - Line error. Each row and column can signal when fills contradict that line's clues; off while incomplete but still possible.
+  - Reset. From the gallery, reset makes a puzzle new: clears fills, crosses, elapsed, and personal best; status → not started.
 
 - **Conventions rejected or changed**:
   - Punishing a mistake with lives, a lock, or a failed attempt. Rejected because the vision has no lose state; the player corrects marks until the fills match the picture.

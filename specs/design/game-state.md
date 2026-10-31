@@ -18,11 +18,11 @@ What the game tracks. Persistent fields align with [`progression.md`](progressio
 | Field | Scope | Meaning | Initial value | Changed by | Invariants |
 |-------|-------|---------|---------------|------------|------------|
 | `GS.selected-puzzle` | Session | Puzzle open now, or none in the gallery | none | Open / leave ([`loops/solve.md`](loops/solve.md)) | — |
-| `GS.marks-allowed` | Stage | Whether marks may change | false in get-set-ready | Ready → true; reset → false then ready | false ⇒ no mark changes |
-| `GS.cell-marks` | Stage; Persistent while in progress | Per cell: clear, fill, or [cross](glossary.md) | all clear, or restored | Mark actions, reset, restore | Exactly one of the three |
-| `GS.puzzle-status` | Persistent | not started, in progress, or completed | not started | First mark, solve, reset | See V2–V3 |
-| `GS.solve-elapsed` | Stage; Persistent while in progress | Elapsed this attempt | 0 at start; restored on reopen | Ticks after ready; stops on solve; cleared on reset | ≥ 0 |
-| `GS.personal-best` | Persistent | Shortest successful time for that puzzle | none | Shorter successful solve only | Never increases |
+| `GS.marks-allowed` | Stage | Whether marks may change | false in get-set-ready | Ready → true | false ⇒ no mark changes |
+| `GS.cell-marks` | Stage; Persistent while in progress | Per cell: clear, fill, or [cross](glossary.md) | all clear, or restored | Mark actions, gallery reset, restore | Exactly one of the three |
+| `GS.puzzle-status` | Persistent | not started, in progress, or completed | not started | First mark, solve, gallery reset | See V2–V3 |
+| `GS.solve-elapsed` | Stage; Persistent while in progress | Elapsed this attempt | 0 at start; restored on reopen | Ticks after ready; stops on solve; cleared on gallery reset | ≥ 0 |
+| `GS.personal-best` | Persistent | Shortest successful time for that puzzle | none | Shorter successful solve; cleared on gallery reset | Never increases while set |
 | `GS.solution` | Stage | Hidden correct fill set | Loaded with the puzzle | Never by the player | Fixed for that puzzle |
 
 ## Derived values
