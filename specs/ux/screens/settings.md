@@ -2,9 +2,9 @@
 
 Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/rules/ux/screens.md).
 
-- **Job**: Adjust haptics and BGM mute; return
+- **Job**: Adjust haptics and BGM mute; return to gallery or resume a paused puzzle
 - **Actors**: [`player.md`](../actors/player.md)
-- **Serves**: Calm tactile grid ([`HAP.S1`](../../view/haptics.md)); quiet focus ([`sound.md`](../../aesthetics/sound.md))
+- **Serves**: Calm tactile grid ([`HAP.S1`](../../view/haptics.md)); quiet focus ([`sound.md`](../../aesthetics/sound.md)); pause cover ([`GS.paused`](../../design/game-state.md))
 - **Mockup**: [`settings-mobile.html`](../mockups/screens/settings-mobile.html), [`settings-desktop.html`](../mockups/screens/settings-desktop.html)
 - **Glossary terms**: [Player](../glossary.md)
 
@@ -28,7 +28,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 |----|---------|-----------|----------------|--------|
 | C1 | Haptics | `IN.activate` | Always | Toggle [`HAP.S1`](../../view/haptics.md) on/off |
 | C2 | Mute BGM | `IN.activate` | Always | Toggle BGM mute; mark SFX and sting stay unmuted |
-| C3 | Back | `IN.back` | Always | `UI-gallery` |
+| C3 | Back | `IN.back` | Always | Previous screen: `UI-gallery`, or `UI-puzzle` clearing [`GS.paused`](../../design/game-state.md) |
 
 ## States
 

@@ -9,22 +9,13 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 | Scope | Lifetime | Examples |
 |-------|----------|----------|
 | Moment | Gesture or get-set-ready | Marks blocked in get-set-ready |
-| Stage | Open attempt | Marks, elapsed, marks-allowed, line errors |
+| Stage | Open attempt | Marks, elapsed, paused, marks-allowed, line errors |
 | Session | App open until quit | Open puzzle, or gallery |
 | Persistent | Across sessions | Ever-completed, attempt status, marks, elapsed, personal best |
 
 ## Fields
 
-| Field | Scope | Meaning | Initial | Changed by | Invariants |
-|-------|-------|---------|---------|------------|------------|
-| `GS.selected-puzzle` | Session | Open puzzle, or none | none | Open / leave | — |
-| `GS.marks-allowed` | Stage | Marks may change | false in get-set-ready | Ready → true | false ⇒ no mark changes |
-| `GS.cell-marks` | Stage; Persistent if attempt in progress | clear / fill / [cross](glossary.md) | all clear or restored | Marks, solve clear, gallery reset, restore | One of three |
-| `GS.ever-completed` | Persistent | ≥1 successful solve | false | First [`END.W1`](end-conditions.md); gallery reset clears | Sticky until reset |
-| `GS.attempt-status` | Persistent | not started or in progress | not started | First mark (incl. empty-clue auto-cross) → in progress; solve/reset → not started | Orthogonal to ever-completed |
-| `GS.solve-elapsed` | Stage; Persistent if attempt in progress | Elapsed this attempt | 0; restored on reopen | Ticks after ready; clear on solve or reset | ≥ 0 |
-| `GS.personal-best` | Persistent | Shortest successful time | none | Shorter solve; cleared on gallery reset | Never increases while set |
-| `GS.solution` | Stage | Hidden correct fills | Loaded with puzzle | Never by player | Fixed per puzzle |
+[`game-state/fields.md`](game-state/fields.md).
 
 ## Derived values
 
@@ -32,8 +23,8 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 |-------|--------------|---------|
 | `GS.completion-rate` | Ever-completed count ÷ 200 | [`progression.md`](progression.md) |
 | `GS.is-solved` | Player fills = solution fills (crosses ignored) | [`loops/solve.md`](loops/solve.md) |
-| `GS.row-error[i]` / `GS.col-error[j]` | Fills contradict line [clues](entities/clue.md); off if still possible; crosses ignored | Line error feedback |
-| `GS.clue-satisfied[i|j]` | Fills on that line exactly realize its [clue](entities/clue.md) runs | Dim cue on that clue line |
+| `GS.row-error[i]` / `GS.col-error[j]` | Fills contradict line [clues](entities/clue.md); crosses ignored | Line error feedback |
+| `GS.clue-satisfied[i|j]` | Fills exactly match that [clue](entities/clue.md) line | Dim cue |
 | `GS.gallery-thumbnail` | Pack image when ever-completed; else hidden | Gallery only |
 
 ## Global invariants
@@ -48,7 +39,7 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 ## Hidden and visible state
 
 - **H1**: Solution unknown on the board; gallery thumbnail only after ever-completed.
-- **H2**: Ever-completed, attempt status, marks, elapsed, personal best, completion rate, line errors, clue-satisfied — knowable.
+- **H2**: Ever-completed, attempt, marks, elapsed, paused, personal best, completion rate, line errors, clue-satisfied — knowable.
 
 ## Randomness and determinism
 

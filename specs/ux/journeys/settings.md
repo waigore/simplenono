@@ -4,7 +4,7 @@ Authoring rules: [`.agents/specs/rules/ux/journeys.md`](../../../.agents/specs/r
 
 - **Actor**: [`player.md`](../actors/player.md)
 - **Goal**: Open slim settings, change a preference, return to the gallery
-- **Serves**: Haptics and quiet focus ([`HAP.S1`](../../view/haptics.md), [`sound.md`](../../aesthetics/sound.md)); gallery chrome ([`UI-gallery.C3`](../screens/gallery.md))
+- **Serves**: Haptics and quiet focus ([`HAP.S1`](../../view/haptics.md), [`sound.md`](../../aesthetics/sound.md)); gallery chrome ([`UI-gallery.C3`](../screens/gallery.md)). Puzzle pause (`IN.pause` / [`UI-puzzle.C6`](../screens/puzzle.md)) is a separate path ([`NAV.T7`](../navigation.md)–[`T8`](../navigation.md)), not this journey.
 - **Mockup**: [`settings.html`](../mockups/journeys/settings.html)
 - **Glossary terms**: [Player](../glossary.md), [Journey](../glossary.md)
 
