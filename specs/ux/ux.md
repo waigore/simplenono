@@ -11,7 +11,7 @@ Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md)
 - **Actors**: [`player.md`](actors/player.md) — casual puzzle player; sole operator
 - **Screens** (bodies and mockups in later runs):
   - [`gallery.md`](screens/gallery.md) — browse pack; status / personal best / thumbnails; prominent completion rate; gallery reset; open puzzle or settings
-  - `screens/puzzle.md` — get-set-ready and mark loop; no win morph on this screen
+  - [`puzzle.md`](screens/puzzle.md) — get-set-ready and mark loop; no win morph on this screen
   - `screens/result.md` — after solve: fills morph into the solution image; control returns to gallery
   - `screens/settings.md` — slim: haptics on/off; mute (BGM / SFX)
 - **Journeys** (bodies and mockups in later runs):
