@@ -21,7 +21,7 @@ The person playing for themselves in short sessions—someone who knows or will 
 ## Can operate
 
 - **C1**: Gallery — browse the pack, open a puzzle, reset a puzzle, open settings ([`screens/gallery.md`](../screens/gallery.md))
-- **C2**: Puzzle — mark while allowed; leave to gallery ([`ux.md`](../ux.md))
+- **C2**: Puzzle — mark while allowed; leave to gallery ([`screens/puzzle.md`](../screens/puzzle.md))
 - **C3**: Result — see the fill→image morph; return to gallery ([`ux.md`](../ux.md))
 - **C4**: Settings — change haptics on/off and mute ([`ux.md`](../ux.md))
 

@@ -7,15 +7,18 @@ Authoring rules: [`.agents/specs/rules/ux/navigation.md`](../../.agents/specs/ru
 | Screen | Job | Actors | Spec | Mockup |
 |--------|-----|--------|------|--------|
 | `UI-gallery` | Browse pack; open puzzle or settings; see progress | [`player.md`](actors/player.md) | [`screens/gallery.md`](screens/gallery.md) | [`gallery-mobile.html`](mockups/screens/gallery-mobile.html), [`gallery-desktop.html`](mockups/screens/gallery-desktop.html) |
+| `UI-puzzle` | Mark board from clues; leave or solve to result | [`player.md`](actors/player.md) | [`screens/puzzle.md`](screens/puzzle.md) | [`puzzle.html`](mockups/screens/puzzle.html) |
 
-Puzzle, result, and settings rows land when those screen specs are captured ([`ux.md`](ux.md) inventory).
+Result and settings rows land when those screen specs are captured ([`ux.md`](ux.md) inventory).
 
 ## Transitions
 
 | ID | From | Via | To | Conditions | Actors |
 |----|------|-----|----|------------|--------|
-| T1 | `UI-gallery` | [`UI-gallery.C1`](screens/gallery.md) | puzzle (pending) | Always | Player |
+| T1 | `UI-gallery` | [`UI-gallery.C1`](screens/gallery.md) | `UI-puzzle` | Always | Player |
 | T2 | `UI-gallery` | [`UI-gallery.C3`](screens/gallery.md) | settings (pending) | Always | Player |
+| T3 | `UI-puzzle` | [`UI-puzzle.C1`](screens/puzzle.md) | `UI-gallery` | Always ([`END.O1`](../design/end-conditions.md)) | Player |
+| T4 | `UI-puzzle` | Solve ([`END.W1`](../design/end-conditions.md)) | result (pending) | Fills match solution | Player |
 
 Reset confirm stays on `UI-gallery` ([`EX.confirm`](exceptions.md) → [`END.O2`](../design/end-conditions.md)).
 

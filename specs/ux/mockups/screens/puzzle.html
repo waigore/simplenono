@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Puzzle · play · SimpleNono</title>
+  <style>
+    /* Play template + Open Design token remap (PAL.S1 / UIS) */
+    :root {
+      --bg: #F4F7F8;
+      --fg: #1B2833;
+      --muted: #6E7F8C;
+      --line: #C5D0D6;
+      --cross: #5C6B78;
+      --dim: #6E7F8C;
+      --error: #3A6F8F;
+      --font: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+      --radius: 0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 15px/1.4 var(--font);
+      color: var(--fg);
+      background: var(--bg);
+    }
+    .doc {
+      max-width: 28rem;
+      margin: 0 auto;
+      padding: 1rem 1rem 2rem;
+    }
+    .caption {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+    .caption strong { color: var(--fg); }
+    nav[aria-label="States"] { display: flex; gap: 0.75rem; margin: 0 0 1rem; font-size: 13px; }
+    nav[aria-label="States"] a { color: var(--fg); }
+    .states > section { display: none; }
+    .states:not(:has(:target)) > section[data-state="default"] { display: block; }
+    .states:has(:target) > section:target { display: block; }
+    .chrome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .chrome .elapsed {
+      font-family: var(--mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+    }
+    button.leave, button.tool {
+      min-height: 36px;
+      min-width: 36px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--fg);
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    button.tool.active {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
+    .tools {
+      display: flex;
+      gap: 8px;
+      margin-top: 0.75rem;
+    }
+    .board-wrap {
+      position: relative;
+      border: 1px solid var(--line);
+      padding: 8px;
+      overflow: auto;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: 36px repeat(5, 28px);
+      grid-template-rows: 36px repeat(5, 28px);
+      width: max-content;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .corner { background: transparent; }
+    .clue {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--fg);
+      padding: 2px;
+    }
+    .clue.row { align-items: center; justify-content: flex-end; padding-right: 6px; }
+    .clue.dim { color: var(--dim); }
+    .clue.error { color: var(--error); font-weight: 600; }
+    .cell {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      padding: 0;
+      cursor: pointer;
+      min-height: 28px;
+      min-width: 28px;
+    }
+    .cell.fill { background: var(--fg); }
+    .cell.cross {
+      background: var(--bg);
+      background-image:
+        linear-gradient(45deg, transparent 42%, var(--cross) 42%, var(--cross) 58%, transparent 58%),
+        linear-gradient(-45deg, transparent 42%, var(--cross) 42%, var(--cross) 58%, transparent 58%);
+    }
+    .ready-beat {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: color-mix(in oklch, var(--bg) 72%, transparent);
+      border: 1px solid var(--line);
+      pointer-events: none;
+    }
+    .ready-beat span {
+      font-family: var(--mono);
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg);
+      border: 1px solid var(--line);
+      padding: 10px 18px;
+      background: var(--bg);
+    }
+    .hint {
+      margin: 0.75rem 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+    <p class="caption"><strong>UI-puzzle</strong> · play · template + aesthetics remap</p>
+    <nav aria-label="States">
+      <a href="#state-default">Default (Ready)</a>
+      <a href="#state-get-set-ready">Get-set-ready</a>
+    </nav>
+    <article data-screen="UI-puzzle">
+      <div class="states">
+        <section id="state-default" data-state="default">
+          <header class="chrome" data-region="R1" aria-label="Chrome">
+            <button type="button" class="leave" data-control="C1">Leave</button>
+            <span class="elapsed" aria-label="Elapsed">1:24</span>
+          </header>
+          <div class="board-wrap" data-region="R2" aria-label="Board">
+            <div class="board" role="grid" aria-label="5×5 sample board">
+              <div class="corner"></div>
+              <div class="clue">2</div>
+              <div class="clue dim">1 1</div>
+              <div class="clue">3</div>
+              <div class="clue error">1</div>
+              <div class="clue">2</div>
+              <div class="clue row">2</div>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r1c1 fill"></button>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r1c2 fill"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r1c3 clear"></button>
+              <button type="button" class="cell cross" data-control="C2" aria-label="r1c4 cross"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r1c5 clear"></button>
+              <div class="clue row dim">1 1</div>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r2c1 fill"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r2c2 clear"></button>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r2c3 fill"></button>
+              <button type="button" class="cell cross" data-control="C2" aria-label="r2c4 cross"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r2c5 clear"></button>
+              <div class="clue row">3</div>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r3c1 fill"></button>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r3c2 fill"></button>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r3c3 fill"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r3c4 clear"></button>
+              <button type="button" class="cell cross" data-control="C2" aria-label="r3c5 cross"></button>
+              <div class="clue row error">1</div>
+              <button type="button" class="cell" data-control="C2" aria-label="r4c1 clear"></button>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r4c2 fill"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r4c3 clear"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r4c4 clear"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r4c5 clear"></button>
+              <div class="clue row">2</div>
+              <button type="button" class="cell cross" data-control="C2" aria-label="r5c1 cross"></button>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r5c2 fill"></button>
+              <button type="button" class="cell fill" data-control="C2" aria-label="r5c3 fill"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r5c4 clear"></button>
+              <button type="button" class="cell" data-control="C2" aria-label="r5c5 clear"></button>
+            </div>
+          </div>
+          <div class="tools" data-region="R3" aria-label="Tools">
+            <button type="button" class="tool active" data-control="C3">Fill</button>
+            <button type="button" class="tool" data-control="C4">Cross</button>
+          </div>
+          <p class="hint">Tap cycle + drag-paint bindings → controls.md</p>
+        </section>
+        <section id="state-get-set-ready" data-state="get-set-ready">
+          <header class="chrome" data-region="R1" aria-label="Chrome">
+            <button type="button" class="leave" data-control="C1">Leave</button>
+            <span class="elapsed" aria-label="Elapsed">0:00</span>
+          </header>
+          <div class="board-wrap" data-region="R2" aria-label="Board">
+            <div class="board" role="grid" aria-label="5×5 sample board">
+              <div class="corner"></div>
+              <div class="clue">2</div>
+              <div class="clue">1 1</div>
+              <div class="clue">3</div>
+              <div class="clue">1</div>
+              <div class="clue">2</div>
+              <div class="clue row">2</div>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c1"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c2"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c3"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c4"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c5"></button>
+              <div class="clue row">1 1</div>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c1"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c2"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c3"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c4"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c5"></button>
+              <div class="clue row">3</div>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c1"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c2"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c3"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c4"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c5"></button>
+              <div class="clue row">1</div>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c1"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c2"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c3"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c4"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c5"></button>
+              <div class="clue row">2</div>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c1"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c2"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c3"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c4"></button>
+              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c5"></button>
+            </div>
+            <div class="ready-beat" aria-live="polite"><span>Ready</span></div>
+          </div>
+          <div class="tools" data-region="R3" aria-label="Tools">
+            <button type="button" class="tool" data-control="C3" disabled>Fill</button>
+            <button type="button" class="tool" data-control="C4" disabled>Cross</button>
+          </div>
+        </section>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
