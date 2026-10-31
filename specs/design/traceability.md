@@ -12,7 +12,7 @@ Authoring rules: [`.agents/specs/rules/design/traceability.md`](../../.agents/sp
 
 | Topic | Covered in | Applicability |
 |-------|------------|---------------|
-| Core loop and mechanics | [`loops/`](loops/), [`features/`](features/) | <!-- fill in --> |
+| Core loop and mechanics | [`loops/`](loops/), [`features/`](features/) | Applies (`loops/solve.md`) |
 | Characters | [`characters/`](characters/) | <!-- fill in --> |
 | Entities (items, objects, hazards) | [`entities/`](entities/) | <!-- fill in --> |
 | World and narrative | [`world.md`](world.md) | <!-- fill in --> |

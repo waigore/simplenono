@@ -10,10 +10,12 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
 - **Conventions adopted**:
   - Clue runs. Each line's clues are the lengths of its filled groups, in order. Those clues are the only information that decides which cells are filled.
   - Three mark actions. The player fills a cell, marks a cell empty, or clears a mark. A wrong mark stays until the player changes it.
-  - Solution match. The puzzle is solved when every cell matches the hidden picture. That is the only way a puzzle ends. The time taken for that successful solve is stored as the puzzle's personal best. The score is that time. A later solve replaces the personal best only when its time is shorter, and that shorter time is the better score. A longer replay leaves the stored best unchanged. A finished puzzle can be solved again.
+  - Solution match. The puzzle is solved when every cell matches the hidden picture. That match is checked only for the whole grid, not cell by cell while marking. The time taken for that successful solve is stored as the puzzle's personal best. The score is that time. A later solve replaces the personal best only when its time is shorter, and that shorter time is the better score. A longer replay leaves the stored best unchanged. A finished puzzle can be solved again.
+  - Reset. The player may clear all marks on the board; status returns to not started and any personal best is kept.
 
 - **Conventions rejected or changed**:
   - Punishing a mistake with lives, a lock, or a failed attempt. Rejected because the vision has no lose state; the player corrects marks until the grid matches the picture.
+  - Live per-cell correctness while marking. Rejected so the only solve signal is a full-grid match.
   - A campaign that locks later puzzles behind earlier ones. Rejected because the vision rejects a narrative that forces puzzle order.
   - Shared online packs and player-authored puzzles. Rejected because both are vision non-goals.
 
@@ -31,7 +33,7 @@ Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md)
 
 - **Characters**: <!-- fill in -->
 - **Entities**: <!-- fill in -->
-- **Loops**: <!-- fill in -->
+- **Loops**: [`solve.md`](loops/solve.md)
 - **Features**: <!-- fill in -->
 - **Flows**: <!-- fill in -->
 - **Stages**: <!-- fill in -->
