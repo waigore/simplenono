@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Result · desktop · SimpleNono</title>
+  <style>
+    /* Open Design web-prototype structure + aesthetics remap (PAL.S1) */
+    :root {
+      --bg: #F4F7F8;
+      --fg: #1B2833;
+      --muted: #6E7F8C;
+      --line: #C5D0D6;
+      --font: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+      --radius: 0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.45 var(--font);
+      color: var(--fg);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+    .doc { max-width: 36rem; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+    .caption {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+    .caption strong { color: var(--fg); }
+    nav[aria-label="States"] { display: flex; gap: 1rem; margin-bottom: 1.25rem; font-size: 14px; }
+    nav[aria-label="States"] a { color: var(--fg); }
+    .states > section { display: none; }
+    .states:not(:has(:target)) > section[data-state="default"] { display: block; }
+    .states:has(:target) > section:target { display: block; }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 1rem;
+    }
+    .reveal {
+      border: 1px solid var(--line);
+      padding: 1.25rem;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .morph {
+      position: relative;
+      width: 220px;
+      height: 220px;
+    }
+    .morph .fills,
+    .morph .picture {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      gap: 0;
+    }
+    .morph .fills span {
+      border: 1px solid var(--line);
+      background: var(--bg);
+    }
+    .morph .fills span.on { background: var(--fg); }
+    .morph .picture {
+      background:
+        linear-gradient(135deg, #2a3a48 0%, #1B2833 40%, #4a6578 100%);
+      opacity: 0;
+    }
+    .morph .picture::after {
+      content: "Solution";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #F4F7F8;
+      opacity: 0.85;
+    }
+    /* Default: morph done */
+    section[data-state="default"] .morph .fills { opacity: 0; transition: opacity 0.3s linear; }
+    section[data-state="default"] .morph .picture { opacity: 1; transition: opacity 0.3s linear; }
+    /* Morphing: fills visible, picture rising */
+    section[data-state="morphing"] .morph .fills { opacity: 1; }
+    section[data-state="morphing"] .morph .picture {
+      opacity: 0.55;
+      animation: reveal 0.3s linear forwards;
+    }
+    @keyframes reveal {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    section[data-state="morphing"] .morph .fills {
+      animation: fade-fills 0.3s linear forwards;
+    }
+    @keyframes fade-fills {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    .chrome { display: flex; justify-content: flex-start; }
+    button.back {
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--fg);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    button.back:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+    .note {
+      margin-top: 0.75rem;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+    <p class="caption"><strong>UI-result</strong> · desktop · Open Design web-prototype · aesthetics remap</p>
+    <nav aria-label="States">
+      <a href="#state-default">Default (morph done)</a>
+      <a href="#state-morphing">Morphing</a>
+    </nav>
+    <article data-screen="UI-result">
+      <div class="states">
+        <section id="state-default" data-state="default">
+          <h1>Solved</h1>
+          <div class="reveal" data-region="R1" aria-label="Reveal">
+            <div class="morph" aria-label="Fill to solution morph complete">
+              <div class="fills" aria-hidden="true">
+                <span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+                <span class="on"></span><span></span><span class="on"></span><span></span><span></span>
+                <span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
+                <span></span><span class="on"></span><span></span><span></span><span></span>
+                <span></span><span class="on"></span><span class="on"></span><span></span><span></span>
+              </div>
+              <div class="picture"></div>
+            </div>
+          </div>
+          <div class="chrome" data-region="R2" aria-label="Chrome">
+            <button type="button" class="back" data-control="C1">Back to gallery</button>
+          </div>
+        </section>
+        <section id="state-morphing" data-state="morphing">
+          <h1>Solved</h1>
+          <div class="reveal" data-region="R1" aria-label="Reveal">
+            <div class="morph" aria-label="Fill to solution morph playing">
+              <div class="fills" aria-hidden="true">
+                <span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+                <span class="on"></span><span></span><span class="on"></span><span></span><span></span>
+                <span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
+                <span></span><span class="on"></span><span></span><span></span><span></span>
+                <span></span><span class="on"></span><span class="on"></span><span></span><span></span>
+              </div>
+              <div class="picture"></div>
+            </div>
+          </div>
+          <div class="chrome" data-region="R2" aria-label="Chrome">
+            <button type="button" class="back" data-control="C1" disabled>Back to gallery</button>
+          </div>
+          <p class="note">~300 ms linear fill→picture ([MOT.T2]); clues not in morph</p>
+        </section>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
