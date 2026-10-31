@@ -2,19 +2,12 @@
 
 Authoring rules: [`.agents/specs/rules/view/camera-controls.md`](../../.agents/specs/rules/view/camera-controls.md).
 
-- **Serves**: <!-- fill in -->
+- **Serves**: Calm tactile grid — fixed board framing ([`view.md`](view.md)); the player does not move a camera.
 
 ## Camera actions
 
-| ID | Action | Meaning |
-|----|--------|---------|
-| `CC.orbit` | Orbit | Rotate the camera around its target. |
-| `CC.look` | Look | Turn the view direction from a fixed position. |
-| `CC.zoom` | Zoom | Move the camera nearer to or farther from its target. |
-| `CC.recenter` | Recenter | Return the camera to its default framing behind or above the target. |
+None — fixed board; no player camera control. Orbit, look, zoom, and recenter are unused.
 
 ## Settings
 
-| ID | Setting | Changes | Choices or range | Default |
-|----|---------|---------|------------------|---------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+None — no camera settings. Comfort options stay deferred with accessibility ([`perception.md`](perception.md)).

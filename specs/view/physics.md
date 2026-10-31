@@ -2,26 +2,20 @@
 
 Authoring rules: [`.agents/specs/rules/view/physics.md`](../../.agents/specs/rules/view/physics.md).
 
-- **Serves**: <!-- fill in -->
+- **Serves**: Calm tactile grid, Snappy solve — marks are discrete UI state, not simulated bodies.
 
 ## Motion
 
-| ID | Realizes | Profile | Must reproduce |
-|----|----------|---------|----------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+N/A — no simulated motion. Cell marks change instantly; there is no walk, jump, fall, or continuous travel.
 
 ## Collision
 
-| ID | Colliders | Shape (units) | Response | Passes through |
-|----|-----------|---------------|----------|----------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+N/A — no simulated motion. Cells do not collide; one mark state occupies each cell by design.
 
 ## Contact feel
 
-| ID | Event | Feedback | Linked cues |
-|----|-------|----------|-------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+N/A — no simulated motion. Place feedback is visual, soft SFX, and light haptic ([`haptics.md`](haptics.md)), not physics contact.
 
 ## Experience intent
 
-<!-- fill in -->
+N/A — no weight or impact from physics. Snappy place feel comes from UI response, not a dynamics model.
