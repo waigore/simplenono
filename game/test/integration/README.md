@@ -39,7 +39,7 @@ a missing protocol leaves its axes unobserved.
 |----------|--------|------------|------------|
 | `app-start` | Launch to the first interactive screen, hold, quit | I6 | `time-to-playable` (≤ 3 s) |
 | `paint` | Open, fill every row then cross every column, one mark per frame, pause/resume, quit | I1, I2, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `crash-free` |
-| `navigate` | Gallery→puzzle, then solve across the result's morph stages, result→gallery, back | I1, I2, I7, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `transition-latency` (≤ 500 ms), `crash-free` |
+| `navigate` | Gallery→puzzle, then solve across the result's morph stages, result→gallery, back; samples the gallery and reveal windows and checks the tile layout at both edge widths | I1, I2, I7, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `transition-latency` (≤ 500 ms), `crash-free` |
 | `ui-ack` | Open, settings, back to the puzzle | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
 | `solve-reset` | Open, solve, result, back; open, mark, reset, back | I9 | `crash-free` |
 | `kill-relaunch` | Open, mark, hold, kill, relaunch, reopen | I10 | `resume-after-failure` |
@@ -53,19 +53,21 @@ at least one protocol in the folder without a failed flow or a crashed run.
 The game protocols drive what exists today and fail honestly where a screen or flow
 is still missing. These are product gaps, not harness errors:
 
-- `navigate` now samples frames across the solve and the result reveal (`UI-result`
-  S2/S3), so `frame-time` and `hitch-bound` cover the three-layer morph — the heaviest
-  per-frame work the game does — and no longer depend on `paint` alone. Its
-  `result-gallery` leg is product-acknowledged: the result screen's C1 routes through
-  the shell (#95). The gallery is the shell's real home view since #94.
+- `navigate` samples two named windows — `gallery` (the home screen's frames, including
+  the `refresh()` the shell runs on return) and `reveal` (the solve and the three-layer
+  result morph) — so `frame-time` and `hitch-bound` ("grid paint and navigation",
+  `paint`'s window plus these) no longer rest on `paint` alone. Each window's p95 is
+  named in the I1 observation and tagged per frame in `samples/navigate-samples.ndjson`.
+  Its `result-gallery` leg is product-acknowledged: the result screen's C1 routes
+  through the shell (#95). The gallery is the shell's real home view since #94.
 - `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
   stops when settings is showing (`NAV.T7`), and Back stops at the resumed puzzle on
   settings' C3 (`NAV.T8`). The pause inside the attempt is #96's.
 - `kill-relaunch` fails I10 until progress persistence restores marks and elapsed
   (#96).
-- `app-start` measures launch to the shell's interactive home, labelled as the
-  gallery stand-in in the observation until #94. It claims I6 only: I9 needs one of
-  the open/solve/reset/back flows recorded, and reaching home records none.
+- `app-start` measures launch to the shell's interactive home, the real gallery since
+  #94. It claims I6 only: I9 needs one of the open/solve/reset/back flows recorded,
+  and reaching home records none.
 
 ## Run folder
 

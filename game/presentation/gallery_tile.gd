@@ -24,11 +24,21 @@ const COPY_RESET := "Reset"
 ## Status separator between an ever-completed replay and its in-progress mark.
 const STATUS_SEPARATOR := " · "
 
-## Height of the thumbnail region, above the metadata.
-const THUMB_MIN_HEIGHT := 88.0
+## The tile picture is square and shares its width with the tile, as both approved
+## gallery mockups draw it ([code].puzzle-tile .thumb { aspect-ratio: 1 }[/code]).
+const PICTURE_ASPECT := 1.0
+
+## The tile's floor width, and the first layout's picture width before the tile has a
+## size. The picture's square minimum starts here so the first frame is already square.
+const TILE_WIDTH := 150.0
+
+## Vertical room the metadata needs under a first-layout picture: its 8 px top and
+## bottom margins plus three label lines. Later layouts measure the holder instead.
+const META_FLOOR_HEIGHT := 8.0 + 3.0 * 18.0
 
 var _entry: GalleryEntry
 var _thumb: GalleryThumb
+var _meta_holder: MarginContainer
 var _title_label: Label
 var _status_label: Label
 var _best_label: Label
@@ -94,6 +104,19 @@ func shows_picture() -> bool:
 	return _thumb.shows_picture()
 
 
+## Width ÷ height of the drawn picture region, so a test can hold it to the mockups.
+func picture_aspect() -> float:
+	var box := picture_size()
+	if box.y <= 0.0:
+		return 0.0
+	return box.x / box.y
+
+
+## The drawn picture region's width × height.
+func picture_size() -> Vector2:
+	return _thumb.square().size
+
+
 ## True when C2 is drawn (available) on this tile.
 func reset_visible() -> bool:
 	return _reset_button.visible
@@ -118,14 +141,14 @@ func reset_button() -> Button:
 
 
 func _build() -> void:
-	custom_minimum_size = Vector2(150.0, 0.0)
+	custom_minimum_size = Vector2(TILE_WIDTH, 0.0)
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	add_theme_stylebox_override("panel", _panel_style())
 	var layout := VBoxContainer.new()
 	layout.add_theme_constant_override("separation", 0)
 	add_child(layout)
 	_open_button = Button.new()
-	_open_button.custom_minimum_size = Vector2(0.0, THUMB_MIN_HEIGHT + 56.0)
+	_open_button.custom_minimum_size = Vector2(0.0, TILE_WIDTH / PICTURE_ASPECT + META_FLOOR_HEIGHT)
 	_open_button.tooltip_text = ""
 	_open_button.add_theme_stylebox_override("normal", _flat_style())
 	_open_button.add_theme_stylebox_override("hover", _flat_style())
@@ -135,18 +158,22 @@ func _build() -> void:
 	layout.add_child(_open_button)
 	var content := VBoxContainer.new()
 	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	content.add_theme_constant_override("separation", 2)
+	content.add_theme_constant_override("separation", 0)
 	content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_open_button.add_child(content)
 	_thumb = GalleryThumb.new()
 	_thumb.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_thumb.custom_minimum_size = Vector2(0.0, THUMB_MIN_HEIGHT)
 	_thumb.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	content.add_child(_thumb)
 	var meta := VBoxContainer.new()
 	meta.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	meta.add_theme_constant_override("separation", 2)
-	content.add_child(meta)
+	_meta_holder = MarginContainer.new()
+	_meta_holder.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_meta_holder.add_theme_constant_override("margin_top", 8)
+	_meta_holder.add_theme_constant_override("margin_bottom", 8)
+	_meta_holder.add_child(meta)
+	content.add_child(_meta_holder)
 	_title_label = _make_label(13, PresentationPalette.INK)
 	meta.add_child(_title_label)
 	_status_label = _make_label(11, PresentationPalette.DIM)
@@ -155,6 +182,23 @@ func _build() -> void:
 	meta.add_child(_best_label)
 	_reset_holder = _build_reset_holder()
 	layout.add_child(_reset_holder)
+	_open_button.resized.connect(_hold_picture_square)
+	_meta_holder.minimum_size_changed.connect(_hold_picture_square)
+	_hold_picture_square.call_deferred()
+
+
+## Keeps the picture region as tall as the tile is wide ([code]R2[/code], both approved
+## mockups): the open button's height follows its width, so the picture is the mockup's
+## square over the metadata without a uniform re-layout of the 200-tile grid. The
+## minimum starts square ([constant TILE_WIDTH]) so the first layout is stable.
+func _hold_picture_square() -> void:
+	var width := _open_button.size.x if _open_button.size.x > 0.0 else TILE_WIDTH
+	if _meta_holder == null:
+		return
+	var meta_height := maxf(_meta_holder.get_combined_minimum_size().y, 0.0)
+	_open_button.custom_minimum_size = Vector2(
+		0.0, maxf(width / PICTURE_ASPECT, 44.0) + meta_height
+	)
 
 
 func _build_reset_holder() -> Control:
