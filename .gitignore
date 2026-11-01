@@ -16,3 +16,7 @@ agent-orc/src/*.egg-info/
 
 # local probes / scratch
 tmp/
+
+# Godot 4 local import/cache (ADR-0001 project under game/)
+**/.godot/
+
