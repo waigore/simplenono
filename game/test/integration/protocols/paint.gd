@@ -1,11 +1,12 @@
 extends RefCounted
-## `paint` drive list: open a puzzle, paint every cell at a fixed cadence, pause and
-## resume, then quit (`specs/technical/verification.md` I1, I2, I9).
+## `paint` drive list: open a puzzle, paint every row and every column at a fixed
+## cadence, pause and resume, then quit (`specs/technical/verification.md` I1, I2, I9).
 ##
 ## Sampling covers the paint window only, so `frame-time` and `hitch-bound` describe
-## grid paint rather than launch. One cross is applied per frame, which is the fixed
-## cadence the protocol names; crosses never solve a puzzle ([b]CTR-rules[/b] G2), so
-## the attempt stays open for the whole window.
+## grid paint rather than launch. The row pass fills every cell in row order and the
+## column pass crosses every cell in column order, exactly one mark per processed
+## frame; crosses never solve a puzzle ([b]CTR-rules[/b] G2), so the attempt stays open
+## for the whole window.
 
 const ID := "paint"
 
