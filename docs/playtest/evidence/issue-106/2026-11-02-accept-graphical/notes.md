@@ -12,13 +12,12 @@ paths are the real shell, `PuzzleScreen`, and `MarkInput`; observations come fro
 - **Input:** one tap per cell through `MarkInput.press_cell` / `release_stroke`, the same layer the
   mouse and touch bindings call. Tools go through `PuzzleScreen.select_tool` (C3–C5).
 - **Elapsed:** `PuzzleScreen.tick()` is the same O3 call `_process` makes; the probe disables
-  `_process` so the run is deterministic rather than frame-timing dependent.
+  `_process`, so the run is deterministic.
 - **Pause:** `DBG.1` (`pause_session` / `resume_session`), because C6's routing is #96 and no pause
   chrome exists. This is the one step not driven by a player-facing control; it is declared here.
 - **Fixtures:** `PTD-ready-and-marks` uses the fresh `pack-000` board. `PTD-crosses-and-fills`
-  leaves, resets progress, reopens, ends the beat, then fills every solution cell and crosses every
-  non-solution cell (the beat had already auto-crossed rows 0 and 9). The last required fill,
-  `(8,5)`, is placed after the `08` image and the `SIT.3` dump.
+  leaves, resets, reopens, ends the beat, then fills every solution cell and crosses every
+  non-solution cell; the last fill, `(8,5)`, follows the `08` image and the `SIT.3` dump.
 
 ## Protocol results
 
@@ -44,8 +43,7 @@ paths are the real shell, `PuzzleScreen`, and `MarkInput`; observations come fro
   them. Expected until #96 routes C6 (`06` is pixel-identical to `05`).
 - **No result screen.** After the solve the screen keeps the pre-clear grid the `MarkResult` carries;
   result routing is #95, so `09` is the judged state instead of a screen change.
-- **Leave does not persist elapsed.** The clean board for `PTD-crosses-and-fills` is reached by
-  leaving, resetting progress, and reopening, not by a player leave path. Also #96.
+- **Leave does not persist elapsed** (#96); the clean board is reached by leave, reset, reopen.
 
 Nothing here is a game or interface failure.
 
