@@ -44,7 +44,7 @@ a seam-level result — S1–S3 need `DBG.3` and `DBG.2`.
   ([record](issue-112/2026-11-02-accept/manifest.md)).
 - **`59872bd` (123/123):** picked `#156`; only the screenshots gate remained
   ([record](issue-156/2026-11-02-accept/manifest.md)).
-- **`3f402fe` (139/139):** accepted `#156` graphically — S1–S4 and US1.7
+- **`3f402fe` (139/139):** accepted `#156` graphically — `PTD-ready-and-marks` S1–S4 and US1.7
   ([record](issue-156/2026-11-02-accept-graphical/manifest.md)).
 - **`67e36f5` (125/125):** picked `#108`; `PS1.1`–`PS1.7` passed at the seam, screenshots remain
   ([record](issue-108/2026-11-02-accept/manifest.md)).
