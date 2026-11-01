@@ -1,0 +1,240 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://test/test_cell_mark.gd
+* test_grid_holds_one_cell_per_position
+* test_opened_grid_starts_all_clear
+* test_fill_while_allowed
+* test_clear_while_allowed
+* test_cross_while_allowed
+* test_applying_the_same_mark_changes_nothing
+* test_cross_is_not_a_fill
+* test_marks_are_blocked_until_allowed
+* test_allow_marks_opens_marking
+* test_mark_outside_the_grid_changes_nothing
+* test_unknown_mark_is_rejected
+* test_auto_cross_crosses_still_clear_cells
+* test_auto_cross_leaves_crossed_cells_unchanged
+* test_auto_cross_never_overwrites_a_fill
+* test_auto_cross_changes_nothing_while_blocked
+15/15 passed.
+
+
+res://test/test_clue_lines.gd
+* test_teapot_maps_to_fifteen_rows_and_fifteen_columns
+* test_every_line_carries_its_orientation_and_index
+* test_row_lines_match_the_fixture_row_clues_in_order
+* test_column_lines_match_the_fixture_col_clues_in_order
+* test_named_teapot_lines_hold_their_literals
+* test_row_three_is_not_column_three
+* test_a_mutated_row_clue_reaches_only_its_own_row
+* test_run_order_is_kept_and_nothing_is_merged
+* test_solution_fills_are_never_read
+* test_a_mutated_clue_list_wins_over_disagreeing_solution_fills
+* test_an_empty_clue_line_is_kept_as_zero_runs
+* test_a_non_empty_line_is_not_reported_empty
+* test_too_few_row_clues_is_a_mapping_error
+* test_too_many_column_clues_is_a_mapping_error
+* test_a_missing_clue_list_is_a_mapping_error
+* test_a_missing_size_is_a_mapping_error
+* test_lines_do_not_alias_the_definition_lists
+17/17 passed.
+
+
+res://test/test_game_state.gd
+* test_solve_ignores_crosses
+* test_crosses_are_ignored_for_solve
+* test_an_extra_fill_is_not_solved
+* test_a_missing_fill_is_not_solved
+* test_every_cell_stays_clear_fill_or_cross
+* test_an_incomplete_but_possible_line_has_no_error
+* test_a_contradicting_row_fill_is_an_error
+* test_a_contradicting_column_fill_is_an_error
+* test_a_row_with_a_hole_inside_its_clue_is_an_error
+* test_a_fill_that_still_fits_the_clue_is_no_error
+* test_untouched_lines_have_no_error
+* test_an_exact_run_match_is_satisfied
+* test_an_exact_column_run_match_is_satisfied
+* test_a_diverging_fill_is_not_satisfied
+* test_a_solved_board_satisfies_every_line
+* test_line_status_carries_orientation_and_index
+* test_line_status_tracks_the_fills
+* test_rules_write_neither_the_grid_nor_anything_else
+* test_in_progress_needs_a_mark
+* test_a_cross_alone_sets_in_progress
+* test_an_empty_clue_auto_cross_sets_in_progress
+* test_auto_cross_after_ready_is_in_progress
+* test_a_mark_while_blocked_or_paused_changes_nothing
+* test_elapsed_freezes_while_paused
+* test_clearing_the_last_mark_returns_to_not_started
+* test_not_started_holds_clear_marks_and_zero_elapsed
+* test_identical_mark_sequences_play_identically
+* test_a_solve_returns_the_attempt_to_not_started
+* test_a_solve_sets_ever_completed_with_a_personal_best
+* test_the_thumbnail_flag_is_true_only_when_ever_completed
+* test_the_knowable_values_are_available_after_a_solve
+* test_completion_rate_is_ever_completed_over_pack_size
+* test_completion_rate_is_zero_for_an_empty_pack
+* test_completion_rate_uses_the_fixture_pack_size
+* test_reset_clears_the_derived_values
+* test_a_longer_solve_leaves_the_personal_best
+* test_a_shorter_solve_replaces_the_personal_best
+* test_ever_completed_and_in_progress_coexist_on_replay
+* test_commit_keeps_the_marks_it_was_given
+* test_a_commit_without_marks_is_not_started
+* test_a_restored_grid_sets_the_status_from_its_marks
+* test_only_the_progress_rules_change_a_record
+42/42 passed.
+
+
+res://test/test_mark_input.gd
+* test_desktop_click_applies_fill_and_toggles_it_off
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+* test_desktop_secondary_click_applies_complement_and_toggles
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+* test_tap_toggle_applies_to_cross_too
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+* test_complement_maps_cross_to_fill_and_clear_to_cross
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+* test_desktop_drag_paints_cross_without_per_cell_toggle
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+* test_touch_tap_and_drag_follow_the_same_mark_rules
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+* test_keyboard_f_x_c_select_tools_and_next_tap_applies
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+* test_blocked_marks_send_no_o2_call
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+    270 Orphans
+* test_paused_board_sends_no_o2_call
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+9/9 passed.
+
+
+res://test/test_open_ready.gd
+* test_ready_auto_crosses_empty_clue_lines_and_is_in_progress
+* test_marks_are_blocked_and_no_ready_is_emitted_before_the_beat_ends
+* test_marks_stay_blocked_until_the_beat_ends_at_each_ready_length
+* test_elapsed_ticks_only_after_the_beat
+* test_empty_clue_rows_and_columns_contribute_their_still_clear_cells
+* test_a_line_with_runs_contributes_nothing
+* test_filled_and_crossed_cells_are_not_still_clear
+* test_auto_cross_writes_nothing_and_is_deterministic
+* test_a_definition_with_bad_clues_returns_no_auto_cross_cells
+* test_auto_cross_commits_when_the_marks_changed
+* test_auto_cross_does_not_commit_when_nothing_changed
+* test_ready_emits_once_with_the_id_grid_and_line_status
+* test_an_unknown_id_changes_nothing
+* test_an_unknown_id_during_a_beat_changes_nothing
+* test_a_pause_during_the_beat_waits_for_the_beat_and_revives_marks_on_resume
+* test_advance_adds_elapsed_while_ready_and_nothing_while_blocked
+* test_the_edge_writes_exactly_the_rules_auto_cross
+* test_open_restores_an_in_progress_record
+18/18 passed.
+
+
+res://test/test_pack_load.gd
+* test_shipped_pack_loads_every_entry
+* test_shipped_pack_has_the_entity_sizes
+* test_loaded_definitions_satisfy_the_schema
+* test_field_mapping_from_pack_data
+* test_definition_returns_the_loaded_record
+* test_unknown_id_changes_nothing
+* test_entry_missing_a_field_is_rejected
+* test_size_outside_the_entity_sizes_is_rejected
+* test_clue_lists_that_are_not_the_runs_are_rejected
+* test_fill_outside_the_grid_is_rejected
+* test_malformed_clue_shape_is_rejected
+* test_repeated_puzzle_id_is_rejected
+* test_repeated_pictures_are_rejected
+* test_equal_picture_ids_are_rejected
+* test_rejected_entries_carry_their_raw_entry_and_reason
+* test_missing_file_loads_nothing_and_logs_the_path
+ERROR: Pack file missing or unreadable: res://test/fixtures/pack/absent.json
+   at: push_error (core/variant/variant_utility.cpp:1023)
+* test_invalid_json_loads_nothing_and_logs_the_path
+ERROR: Pack file is not valid JSON: res://test/fixtures/pack/invalid.json (Expected '}')
+   at: push_error (core/variant/variant_utility.cpp:1023)
+* test_json_that_is_not_an_array_loads_nothing_and_logs_the_path
+ERROR: Pack file is not a JSON array: res://test/fixtures/pack/not-array.json
+   at: push_error (core/variant/variant_utility.cpp:1023)
+* test_bad_file_clears_definitions_from_the_last_load
+ERROR: Pack file is not valid JSON: res://test/fixtures/pack/invalid.json (Expected '}')
+   at: push_error (core/variant/variant_utility.cpp:1023)
+19/19 passed.
+
+
+res://test/test_puzzle_screen.gd
+* test_get_set_ready_shows_ready_beat_blocks_marks_and_keeps_chrome
+* test_ready_state_shows_chrome_tools_and_elapsed
+* test_paused_state_keeps_board_and_freezes_elapsed
+* test_tool_selection_cycles_fill_cross_clear
+* test_leave_and_settings_raise_intents
+* test_board_draws_marks_and_clues_without_the_solution
+* test_satisfied_and_error_clues_use_the_palette
+* test_cell_press_changes_nothing_on_the_attempt
+* test_board_does_not_read_the_definition_solution
+9/9 passed.
+
+
+res://test/test_sanity.gd
+* test_sanity_true
+1/1 passed.
+
+
+res://test/test_shell_open.gd
+* test_main_scene_is_the_shell_and_it_holds_a_puzzle_id
+* test_open_by_id_shows_the_puzzle_screen
+* test_every_pack_id_opens_in_free_order
+    1010 Orphans
+* test_unknown_id_changes_nothing
+* test_unknown_id_on_the_shell_view_changes_nothing
+* test_leave_returns_to_the_shell_view
+    470 Orphans
+470 orphans
+6/6 passed.
+
+
+res://test/test_solve_edge.gd
+* test_a_wrong_fill_is_unchanged_and_is_not_a_solve
+* test_a_solving_fill_stops_elapsed_records_the_solve_and_clears_the_attempt
+* test_the_solve_returns_the_pre_clear_grid_and_line_status
+* test_a_longer_solve_keeps_the_personal_best
+* test_a_mark_while_marks_are_blocked_changes_nothing
+* test_a_mark_while_paused_changes_nothing
+* test_a_mark_that_changes_nothing_does_not_save_or_check_for_a_solve
+* test_the_solve_branch_skips_the_commit_and_other_marks_commit
+* test_a_mark_with_no_open_puzzle_returns_nothing
+9/9 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts              10
+Tests               145
+Passing Tests       145
+Asserts           29688
+Time              1.231s
+
+
+---- All tests passed! ----
+
