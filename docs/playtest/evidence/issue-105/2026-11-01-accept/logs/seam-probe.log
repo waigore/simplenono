@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+O8 accepted_count=200 rejected=0
+PS1.1 open id=pack-000 size=10 rows=10 cols=10 fills=42 picture=01a17720-ca00-71f5-8156-87c953625822 pixel=01a17720-ca00-7255-80b3-eb4ab429fc0b
+PS1.1 open id=pack-010 size=15 rows=15 cols=15 fills=123 picture=01a17720-ca00-70f4-8e67-9ff8ea05c14e pixel=01a17720-ca00-72c6-98a7-3a69605e3187
+PS1.1 open id=pack-180 size=20 rows=20 cols=20 fills=220 picture=01a17720-ca00-7321-aee0-7cd7fd419ed0 pixel=01a17720-ca00-73a0-a2ab-f5621b9f08fd
+G2 unknown id no-such-puzzle -> null, definitions still 200
+sizes served: [10, 15, 20]
+PROBE result: PASS (0 failures)
