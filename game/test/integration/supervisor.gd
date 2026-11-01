@@ -159,7 +159,7 @@ func _execute(step: Dictionary) -> bool:
 	elif kind == "reset":
 		result = _reset()
 	elif kind == "sample_start":
-		_sampler.start()
+		_sampler.start(String(step.get("window", IntegrationSampler.MAIN_WINDOW)))
 		result = _passed()
 	elif kind == "sample_stop":
 		_sampler.stop()
@@ -167,7 +167,7 @@ func _execute(step: Dictionary) -> bool:
 	elif kind == "dump":
 		result = _dump()
 	elif kind == "expect":
-		result = _expect(step)
+		result = await _expect(step)
 	elif kind == "quit":
 		_stopped = true
 		result = _passed()
@@ -491,6 +491,8 @@ func _dump() -> bool:
 
 
 func _expect(step: Dictionary) -> bool:
+	if step.has("size"):
+		return await _expect_layout(step)
 	var probe := String(step.get("probe", ""))
 	var actual: Variant = _probe(probe, step)
 	if step.has("value"):
@@ -504,6 +506,41 @@ func _expect(step: Dictionary) -> bool:
 		if float(actual) < minimum:
 			return _failed_with(
 				"%s is %s, expected at least %s" % [probe, str(actual), str(minimum)]
+			)
+	return _passed()
+
+
+## A layout expectation: sizes the shell to [code]size[/code], crosses a frame, then
+## checks the gallery's columns and the tile picture's square shape. For a screen with
+## [code]fills[/code], it also checks the widest tile fits its column beside the page
+## margin, so every column is visible rather than overflowing the screen edge.
+func _expect_layout(step: Dictionary) -> bool:
+	if _shell == null:
+		return _failed_with("no shell to lay out")
+	var wanted: Array = step["size"]
+	var screen := Vector2(float(wanted[0]), float(wanted[1]))
+	_shell.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_shell.size = screen
+	await _frames(1)
+	var gallery := _shell.gallery_screen()
+	var columns := gallery.columns()
+	var where := "%dx%d" % [int(screen.x), int(screen.y)]
+	if step.has("columns") and columns != int(step["columns"]):
+		return _failed_with(
+			"gallery columns at %s is %d, expected %d" % [where, columns, int(step["columns"])]
+		)
+	var picture := gallery.picture_aspect()
+	if not is_equal_approx(picture, 1.0):
+		return _failed_with("gallery picture aspect at %s is %.3f, expected 1" % [where, picture])
+	if step.has("fills"):
+		var widest := gallery.widest_tile_width()
+		var room := (screen.x - 2.0 * GalleryScreen.PAGE_MARGIN) / float(columns)
+		if widest > room + 0.5:
+			return _failed_with(
+				(
+					"gallery tile at %s is %.1f wide, %d columns give %.1f"
+					% [where, widest, columns, room]
+				)
 			)
 	return _passed()
 
@@ -652,11 +689,7 @@ func _row(invariant_id: String) -> Dictionary:
 		"I1":
 			passed = _sampler.frame_time_meets_bar()
 			observation = (
-				"p95 frame time %.2f ms over %d frames"
-				% [
-					_sampler.frame_time_p95_ms(),
-					_sampler.sample_count(),
-				]
+				"p95 frame time %s over %d frames" % [_window_p95_text(), _sampler.sample_count()]
 			)
 			artifact = _sample_artifact(false)
 		"I2":
@@ -672,7 +705,7 @@ func _row(invariant_id: String) -> Dictionary:
 		"I6":
 			passed = _duration_within("time-to-playable", TIME_TO_PLAYABLE_BAR_MS)
 			observation = (
-				"cold launch to the interactive shell home (gallery stand-in until #94): %s"
+				"cold launch to the interactive shell home (gallery): %s"
 				% _duration_text("time-to-playable")
 			)
 			artifact = _log_artifact()
@@ -746,6 +779,27 @@ func _duration_text(name: String) -> String:
 	if name.is_empty() or not _durations.has(name):
 		return "not measured"
 	return "%.1f ms" % float(_durations[name])
+
+
+## The I1 observation's p95, naming each sampling window when a protocol opened several
+## (e.g. `navigate`'s gallery and reveal windows) and the overall figure otherwise.
+func _window_p95_text() -> String:
+	var names := _sampler.windows()
+	if names.size() <= 1:
+		return "%.2f ms" % _sampler.frame_time_p95_ms()
+	var parts: PackedStringArray = []
+	for name in names:
+		parts.append(
+			(
+				"%s %.2f ms over %d frames"
+				% [
+					name,
+					_sampler.window_frame_time_p95_ms(name),
+					_sampler.window_sample_count(name)
+				]
+			)
+		)
+	return "%s (all windows %.2f ms)" % [", ".join(parts), _sampler.frame_time_p95_ms()]
 
 
 func _durations_within(prefix: String, bar_ms: float) -> bool:
