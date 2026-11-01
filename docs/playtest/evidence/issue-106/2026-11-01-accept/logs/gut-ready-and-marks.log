@@ -1,0 +1,43 @@
+# Log excerpt — PTD-ready-and-marks (issue #106, 2026-11-01-accept)
+
+Build `main@eea5f9d`. Source command, full transcript: `gut-accept.log` in this folder.
+
+```
+godot --headless --path game -s addons/gut/gut_cmdln.gd -gdir=res://test -gexit
+```
+
+Judged window — the tests that drive S1/S2/S3 and P2 of `PTD-ready-and-marks`:
+
+```
+res://test/test_cell_mark.gd
+* test_grid_holds_one_cell_per_position          # PS1.1  S2 grid shape
+* test_opened_grid_starts_all_clear              # PS1.1
+* test_fill_while_allowed                        # PS1.2  S2 fill
+* test_clear_while_allowed                       # PS1.2b S2 clear
+* test_cross_while_allowed                       # PS1.2c S2 cross
+* test_applying_the_same_mark_changes_nothing    # SEQ-mark B2
+* test_marks_are_blocked_until_allowed           # PS1.4  S1 blocked
+* test_allow_marks_opens_marking                 # PS1.4  S1 ready
+* test_mark_outside_the_grid_changes_nothing     # S3
+* test_unknown_mark_is_rejected                  # non-mark rejection
+* test_auto_cross_crosses_still_clear_cells      # PS1.5  P2
+* test_auto_cross_leaves_crossed_cells_unchanged # PS1.5
+* test_auto_cross_never_overwrites_a_fill        # PS1.5
+* test_auto_cross_changes_nothing_while_blocked  # PS1.5
+15/15 passed.
+```
+
+Run summary (whole suite, both scripts):
+
+```
+Scripts               2
+Tests                16
+Passing Tests        16
+Asserts             461
+Time              0.484s
+
+---- All tests passed! ----
+EXIT=0
+```
+
+No `DBG.*` / `TEL.*` events exist on this build, so no telemetry correlation (`TEL.1`–`TEL.5`) is available — see `notes.md`.
