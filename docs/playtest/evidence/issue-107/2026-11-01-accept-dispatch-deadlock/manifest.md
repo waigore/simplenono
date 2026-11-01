@@ -11,11 +11,10 @@
 
 This run does **not** re-judge protocols. [`2026-11-01-accept`](../2026-11-01-accept/manifest.md)
 (merged in PR #123) already judged both in-scope protocols pass at the delivered layer and
-held the issue only for graphical screenshots.
-
-A second re-check run exists but is **not yet on `main`**: its PR #125 is still open, so it is
-not cited here. Nothing in this run depends on it; the merged `2026-11-01-accept` folder is
-the authority.
+held the issue only for graphical screenshots. The re-check run
+[`2026-11-01-accept-recheck`](../2026-11-01-accept-recheck/manifest.md) (PR #125, merged after
+this run was written) reached the same verdict on an unchanged build and adds the
+falsification mutation; nothing here depends on it.
 
 This run records *why acceptance cannot advance*, in
 [`accept-dispatch-deadlock.md`](../../accept-dispatch-deadlock.md). So it adds **no story or
