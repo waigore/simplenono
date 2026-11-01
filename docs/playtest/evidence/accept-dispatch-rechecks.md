@@ -25,6 +25,7 @@ or a hold. Context and the remaining holds: [`accept-dispatch-deadlock.md`](acce
 | `a2cdbed` | 198/198 | `#111` | repeat hold — `game/` is identical to `b1c1285`, so the graphical record stands; #203 (`PTU-mark-input`) is still `pending-implementation` with no PR |
 
 | `09c022e` | 215/215 | `#112` | **accepted** graphically — `J-play-puzzle` S1 open leg, 200/200 ids, 5 screenshots on `5e5fe85` (open leg unchanged), plus a deterministic record written for the user-requested run: I7 288.3 ms, I8 7.0 ms, I9 pass ([playtest](issue-112/2026-11-02-accept-graphical/manifest.md), [quality](issue-112/2026-11-02-accept-graphical/quality/manifest.md)) |
+| `a0e6e3a` | 218/218 | `#95` | **failed** graphically — `PTU-settings` pass (toggles stick across reopen); `PTU-play-puzzle` P1 and the ever-completed `P2` pass, but `UI-result` `S1 Default` is blank with every layer empty, and both of `pack-000`'s picture ids are absent from `assets/manifest.json`; defect [#218](https://github.com/waigore/simplenono/issues/218), 12 screenshots ([record](issue-95/2026-11-02-accept-graphical/manifest.md)) |
 
 Earlier, out of this list's order: `#106` was accepted graphically on `269d854`
 ([record](issue-106/2026-11-02-accept-graphical/manifest.md)).
