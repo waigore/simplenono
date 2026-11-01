@@ -73,14 +73,14 @@
         </li>
         <li>
           <a href="../screens/puzzle.html#state-default" target="stage">S2 Puzzle → result</a>
-          <span class="via">END.W1 (solve)</span>
+          <span class="via">END.W1 (solve) · result opens S2 Pixel → S3 Picture · <a href="../screens/result-mobile.html#state-pixel" target="stage">walk the morph</a></span>
         </li>
         <li>
           <a href="../screens/result-mobile.html#state-default" target="stage">S3 Result → gallery</a>
           <span class="via">UI-result.C1</span>
         </li>
       </ol>
-      <p class="note">No branches. Morph completes before Back. Desktop gallery/result share the same steps. If the stage is empty, open a step link in this window.</p>
+      <p class="note">No branches. The result screen plays two 300 ms linear fades (fills → stored pixel picture, then pixel picture → stored generated picture) before its Back control opens (S1). Desktop gallery/result share the same steps. If the stage is empty, open a step link in this window.</p>
     </nav>
     <iframe name="stage" title="Play puzzle stage" src="../screens/gallery-mobile.html#state-default"></iframe>
   </main>
