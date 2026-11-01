@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+run/main_scene=res://presentation/shell.tscn
+puzzle id label=pack-000
+visible=true
+screenshot=/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/issue-101-accept/../accept-101-logs/shell-graphical.png save=0
+exit=0
