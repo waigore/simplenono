@@ -1,20 +1,20 @@
 {
   "slug": "fish-10",
   "size": 10,
-  "fill_ratio": 0.26,
+  "fill_ratio": 0.25,
   "unique": true,
   "logic_solved": true,
   "sweeps": 3,
   "dfs_nodes": 0,
   "acceptable": true,
   "reason": "ok",
-  "threshold": 201.0,
+  "threshold": 198.0,
   "row_clues": [
     [],
     [],
     [],
     [
-      6
+      5
     ],
     [
       8
@@ -35,7 +35,7 @@
       2
     ],
     [
-      3
+      2
     ],
     [
       4
@@ -98,7 +98,7 @@
     [
       0,
       0,
-      1,
+      0,
       1,
       1,
       1,

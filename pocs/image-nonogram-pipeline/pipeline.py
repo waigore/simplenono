@@ -85,23 +85,22 @@ def threshold_grid(intensities: np.ndarray, t: float) -> np.ndarray:
 
 
 def morph_clean(grid: np.ndarray) -> np.ndarray:
+    """Despeckle only: remove isolated fills. Do not close holes (keeps interior empties)."""
     g = grid.copy()
     h, w = g.shape
     for _ in range(2):
         nxt = g.copy()
         for y in range(h):
             for x in range(w):
+                if g[y, x] != FILL:
+                    continue
                 neigh = []
                 for dy, dx in ((-1, 0), (1, 0), (0, -1), (0, 1)):
                     ny, nx = y + dy, x + dx
                     if 0 <= ny < h and 0 <= nx < w:
                         neigh.append(int(g[ny, nx]))
-                if not neigh:
-                    continue
-                if sum(neigh) <= 1 and g[y, x] == FILL:
+                if neigh and sum(neigh) <= 1:
                     nxt[y, x] = EMPTY
-                if sum(neigh) >= len(neigh) - 1 and g[y, x] == EMPTY and sum(neigh) >= 3:
-                    nxt[y, x] = FILL
         g = nxt
     return g
 
