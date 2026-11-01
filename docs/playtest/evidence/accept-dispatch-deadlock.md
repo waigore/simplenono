@@ -1,7 +1,7 @@
-# Acceptance dispatch holds (#105, #106, #107, #108, #109, #111, #112)
+# Acceptance dispatch holds (#106, #107, #108, #109, #111, #112)
 
 Why these issues sit on `status:pending-acceptance`, and what unblocks them.
-Run records: [`#105`](issue-105/2026-11-01-accept-dispatch-hold/manifest.md),
+Run records:
 [`#106`](issue-106/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#107`](issue-107/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#109`](issue-109/2026-11-02-accept/manifest.md),
@@ -9,8 +9,11 @@ Run records: [`#105`](issue-105/2026-11-01-accept-dispatch-hold/manifest.md),
 [`#112`](issue-112/2026-11-02-accept/manifest.md),
 [`#108`](issue-108/2026-11-02-accept/manifest.md).
 
-Two issues left the filter on 2026-11-02:
+Three issues left the filter on 2026-11-02:
 
+- `#105`: with `#169`'s seams and `#110`'s board in place, its `E-puzzle` PS1.1 claim had a screen
+  state for the first time; the graphical re-run accepted it with 8 screenshots
+  ([record](issue-105/2026-11-02-accept-graphical/manifest.md)).
 - `#132`: its run found a real fail on the reopen path and returned it to
   `status:pending-implementation` with a defect
   ([record](issue-132/2026-11-02-accept-fail/manifest.md)).
@@ -23,8 +26,8 @@ Two issues left the filter on 2026-11-02:
 |------|--------|
 | All are `status:pending-acceptance`, `priority:normal`, `type:task`, no wave milestone. | Every accept dispatch picks one. |
 | [`evidence.md`](../../../specs/playtest/evidence.md) requires an image of each pass state from a **graphical run of the same build**, unless the protocol says none. | Each leaf needs one graphical re-run before it can be accepted. |
-| #112 (`f05441c`) routes the shell to `puzzle.tscn`; `#169` (`3f402fe`) adds `DBG.*` / `TEL.*` S1–S5, the [`verification.md`](../../../specs/technical/verification.md) H1 precondition. | A run can now supply screenshots; #156 proved the path. |
-| C6's settings routing (#96) and the gallery/result screens (#94/#95) are absent. | Protocols needing those player paths are judged at the seam, with the drive path declared. |
+| #112 (`f05441c`) routes the shell to `puzzle.tscn`; `#169` (`3f402fe`) adds `DBG.*` / `TEL.*` S1–S5, the [`verification.md`](../../../specs/technical/verification.md) H1 precondition. | A run can now supply screenshots; #156 and #105 proved the path. |
+| C6's settings routing (#96) and the gallery/result screens (#94/#95) are absent. | Protocols needing them are judged at the seam. |
 | [`workflow.md`](../../issues/workflow.md). | `pending-acceptance` exits only by Accept, Fail (+defect), or Clarify. |
 
 `#109` differs: its story (`L-solve`) had an unjudged protocol, `PTD-solve-and-pb`; its run added
@@ -32,24 +35,21 @@ a seam-level result — S1–S3 need `DBG.3` and `DBG.2`.
 
 ## Re-checks
 
-- **`2601fee` (suite 132/132):** #110 merged a drawn board, nothing else moved. Picked `#105`,
-  posted nothing.
-- **`881774e` (145/145):** picked `#111`, the only unjudged screen-layer candidate; all criteria
-  passed at the `CTR-attempt.O2` seam ([record](issue-111/2026-11-02-accept/manifest.md)). Found
-  that `IN` is cited only by `PTU-settings`, which never places a mark.
-- **`b290095` (120/120):** picked `#112`, the only unjudged candidate. All 200 shipped ids opened
-  in reverse pack order with B1 and E3 judged
-  ([record](issue-112/2026-11-02-accept/manifest.md)). Found a second blocker: two Applies
-  deterministic axes can move (`response-delay`, `transition-latency`) and
-  `docs/quality/evidence/` holds no `issue-112` record.
-- **`59872bd` (123/123):** picked `#156`, the only unjudged defect. Every criterion passed at the
-  seam, including the reopen path the #132 run found; only the screenshots gate remained
+- **`2601fee` (132/132):** `#110` drew the board; picked `#105`, posted nothing.
+- **`881774e` (145/145):** picked `#111`; criteria passed at the `O2` seam, though `IN` is cited only
+  by `PTU-settings`, which places no mark ([record](issue-111/2026-11-02-accept/manifest.md)).
+- **`b290095` (120/120):** picked `#112`; all 200 ids opened at the seam, but two Applies
+  deterministic axes can move and no `issue-112` record exists
+  ([record](issue-112/2026-11-02-accept/manifest.md)).
+- **`59872bd` (123/123):** picked `#156`; only the screenshots gate remained
   ([record](issue-156/2026-11-02-accept/manifest.md)).
-- **`3f402fe` (139/139):** picked `#156` again now that `#169` supplies S1–S5. The graphical re-run
-  passed `PTD-ready-and-marks` S1–S4 and US1.7 and accepted it with 8 screenshots
-  ([record](issue-156/2026-11-02-accept-graphical/manifest.md)).
-- **`67e36f5` (125/125):** picked `#108`; `PS1.1`–`PS1.7` passed at the seam and screenshots
-  remain ([record](issue-108/2026-11-02-accept/manifest.md)).
+- **`3f402fe` (139/139):** accepted `#156` graphically — `PTD-ready-and-marks` S1–S4 and US1.7, 8
+  screenshots ([record](issue-156/2026-11-02-accept-graphical/manifest.md)).
+- **`67e36f5` (125/125):** picked `#108`; `PS1.1`–`PS1.7` passed at the seam, screenshots remain
+  ([record](issue-108/2026-11-02-accept/manifest.md)).
+- **`effca0a` (139/139):** picked `#105`, the oldest hold and the pack every later task reads, and
+  accepted it graphically — one puzzle per size, every clue bar matched, a 10×10 solved from its own
+  fills ([record](issue-105/2026-11-02-accept-graphical/manifest.md)).
 
 ## Unblocking — what is left
 

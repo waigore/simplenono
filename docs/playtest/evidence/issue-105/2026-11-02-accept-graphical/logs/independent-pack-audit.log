@@ -1,0 +1,7 @@
+entries 200
+sizes {10: 10, 15: 170, 20: 20}
+unique ids 200 max repeat 1
+unique picture ids 200 unique pixel ids 200
+distinct fill sets 200
+picture/pixel collisions 0
+errors 0
