@@ -4,7 +4,7 @@ Authoring rules: [`.agents/specs/rules/playtest/coverage.md`](../../.agents/spec
 
 ## Mode
 
-Declared on [`playtest.md`](playtest.md): `full` or `critical-only`.
+Declared on [`playtest.md`](playtest.md): `full`.
 
 | Mode | Playtest set |
 |------|----------------|
@@ -17,7 +17,7 @@ View stories are never in the set. Prefer `full` for complex projects; `critical
 
 | ID | Upstream story / journey ID | Why critical |
 |----|-----------------------------|--------------|
-| <!-- fill in: C1… when critical-only; or one row — / — / None — mode is full --> | <!-- fill in --> | <!-- fill in --> |
+| — | — | None — mode is full |
 
 ## Issue mapping
 
