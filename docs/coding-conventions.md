@@ -41,11 +41,11 @@ Every lint or format command listed here runs as a step in [`code-lint.yml`](../
 
 ## Unit tests
 
-Each command runs as a step in the `Unit tests` job of [`unit-tests.yml`](../.github/workflows/unit-tests.yml). Main code only (not `pocs/` or `.github/scripts`). Placeholders or `None — <reason>`: job passes with a notice. Wire via `setup-unit-test-ci`.
+Each command runs as a step in the `Unit tests` job of [`unit-tests.yml`](../.github/workflows/unit-tests.yml). Main code only (not `pocs/` or `.github/scripts`). Placeholders or `None — <reason>`: job passes with a notice. Wire via `setup-unit-test-ci`. Runner: GUT ([ADR-0005](../specs/adr/decisions/0005-gut-unit-tests.md)).
 
 | Tool | Command | Scope |
 |------|---------|-------|
-| <!-- fill in: e.g. test runner --> | <!-- fill in: e.g. `dotnet test` --> | <!-- fill in: main-code paths --> |
+| GUT (Godot Unit Test) | `godot --headless --path game -s addons/gut/gut_cmdln.gd -gdir=res://test -gexit` | `game/test/` (main code under `game/`; not `pocs/` or `.github/scripts/`) |
 
 ## Coverage
 
@@ -54,4 +54,4 @@ Runs after `Unit tests` succeeds (`needs`). Default Threshold **80** (% line cov
 | | |
 |--|--|
 | Threshold | 80 |
-| <!-- fill in: coverage tool --> | <!-- fill in: command that fails below Threshold --> |
+| None — no first-class GDScript CI coverage tool that fails under Threshold yet | — |
