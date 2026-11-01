@@ -1,0 +1,605 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+[4m
+
+res://test/test_cell_mark.gd
+[0m* test_grid_holds_one_cell_per_position
+* test_opened_grid_starts_all_clear
+* test_fill_while_allowed
+* test_clear_while_allowed
+* test_cross_while_allowed
+* test_applying_the_same_mark_changes_nothing
+* test_cross_is_not_a_fill
+* test_marks_are_blocked_until_allowed
+* test_allow_marks_opens_marking
+* test_mark_outside_the_grid_changes_nothing
+* test_unknown_mark_is_rejected
+* test_auto_cross_crosses_still_clear_cells
+* test_auto_cross_leaves_crossed_cells_unchanged
+* test_auto_cross_never_overwrites_a_fill
+* test_auto_cross_changes_nothing_while_blocked
+[1m15/15 passed.
+[0m[4m
+
+res://test/test_clue_lines.gd
+[0m* test_teapot_maps_to_fifteen_rows_and_fifteen_columns
+* test_every_line_carries_its_orientation_and_index
+* test_row_lines_match_the_fixture_row_clues_in_order
+* test_column_lines_match_the_fixture_col_clues_in_order
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  column 2
+      at line 68
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  column 3
+      at line 68
+[31m    [Failed]:  [0mARRAY([5]) != ARRAY([7]).
+    [5] != [7]  1 of 1 indexes do not match.  column 5
+      at line 68
+[31m    [Failed]:  [0mARRAY([1, 9]) != ARRAY([8]).
+    [1, 9] != [8]  2 of 2 indexes do not match.  column 6
+      at line 68
+[31m    [Failed]:  [0mARRAY([10]) != ARRAY([8]).
+    [10] != [8]  1 of 1 indexes do not match.  column 7
+      at line 68
+[31m    [Failed]:  [0mARRAY([10]) != ARRAY([8]).
+    [10] != [8]  1 of 1 indexes do not match.  column 8
+      at line 68
+[31m    [Failed]:  [0mARRAY([9]) != ARRAY([7]).
+    [9] != [7]  1 of 1 indexes do not match.  column 9
+      at line 68
+[31m    [Failed]:  [0mARRAY([7]) != ARRAY([5]).
+    [7] != [5]  1 of 1 indexes do not match.  column 10
+      at line 68
+[31m    [Failed]:  [0mARRAY([3]) != ARRAY([4]).
+    [3] != [4]  1 of 1 indexes do not match.  column 11
+      at line 68
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([1]).
+    [] != [1]  1 of 1 indexes do not match.  column 12
+      at line 68
+* test_named_teapot_lines_hold_their_literals
+[31m    [Failed]:  [0mARRAY([[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], []]) != ARRAY([[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], []]).
+    [[], [], [], [], [5], [5], [1, 9], [10],...], [], []] != [[], [], [3], [3], [5], [7], [8], [8], [...], [], []]  10 of 15 indexes do not match.  
+      at line 77
+* test_row_three_is_not_column_three
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  
+      at line 87
+* test_a_mutated_row_clue_reaches_only_its_own_row
+[31m    [Failed]:  [0mcolumn 6 changed, but only row 6 was mutated
+      at line 105
+* test_run_order_is_kept_and_nothing_is_merged
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([2, 1]).
+    [] != [2, 1]  2 of 2 indexes do not match.  
+      at line 114
+* test_solution_fills_are_never_read
+[31m    [Failed]:  [0mARRAY([[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], []]) != ARRAY([[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], []]).
+    [[], [], [], [], [5], [5], [1, 9], [10],...], [], []] != [[], [], [3], [3], [5], [7], [8], [8], [...], [], []]  10 of 15 indexes do not match.  
+      at line 125
+* test_a_mutated_clue_list_wins_over_disagreeing_solution_fills
+* test_an_empty_clue_line_is_kept_as_zero_runs
+* test_a_non_empty_line_is_not_reported_empty
+[31m    [Failed] [0m
+      at line 157
+* test_too_few_row_clues_is_a_mapping_error
+* test_too_many_column_clues_is_a_mapping_error
+* test_a_missing_clue_list_is_a_mapping_error
+* test_a_missing_size_is_a_mapping_error
+* test_lines_do_not_alias_the_definition_lists
+[1m10/17 passed.
+[0m[4m
+
+res://test/test_game_state.gd
+[0m* test_solve_ignores_crosses
+* test_crosses_are_ignored_for_solve
+* test_an_extra_fill_is_not_solved
+* test_a_missing_fill_is_not_solved
+* test_every_cell_stays_clear_fill_or_cross
+* test_an_incomplete_but_possible_line_has_no_error
+* test_a_contradicting_row_fill_is_an_error
+* test_a_contradicting_column_fill_is_an_error
+* test_a_row_with_a_hole_inside_its_clue_is_an_error
+* test_a_fill_that_still_fits_the_clue_is_no_error
+[31m    [Failed]:  [0mPS1.3: the run can still go where it belongs
+      at line 139
+* test_untouched_lines_have_no_error
+* test_an_exact_run_match_is_satisfied
+* test_an_exact_column_run_match_is_satisfied
+[31m    [Failed]:  [0mPS1.4: GS.clue-satisfied for column 2 is true
+      at line 165
+* test_a_diverging_fill_is_not_satisfied
+* test_a_solved_board_satisfies_every_line
+[31m    [Failed]:  [0mcolumn 2 error=true satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 2 error=true satisfied=false is not in error
+      at line 180
+[31m    [Failed]:  [0mcolumn 3 error=true satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 3 error=true satisfied=false is not in error
+      at line 180
+[31m    [Failed]:  [0mcolumn 5 error=true satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 5 error=true satisfied=false is not in error
+      at line 180
+[31m    [Failed]:  [0mcolumn 6 error=false satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 7 error=false satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 8 error=false satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 9 error=false satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 10 error=false satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 11 error=true satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 11 error=true satisfied=false is not in error
+      at line 180
+[31m    [Failed]:  [0mcolumn 12 error=true satisfied=false is satisfied
+      at line 179
+[31m    [Failed]:  [0mcolumn 12 error=true satisfied=false is not in error
+      at line 180
+* test_line_status_carries_orientation_and_index
+* test_line_status_tracks_the_fills
+[31m    [Failed] [0m
+      at line 204
+[31m    [Failed] [0m
+      at line 205
+* test_rules_write_neither_the_grid_nor_anything_else
+* test_in_progress_needs_a_mark
+* test_a_cross_alone_sets_in_progress
+* test_an_empty_clue_auto_cross_sets_in_progress
+* test_auto_cross_after_ready_is_in_progress
+* test_a_mark_while_blocked_or_paused_changes_nothing
+* test_elapsed_freezes_while_paused
+* test_clearing_the_last_mark_returns_to_not_started
+* test_not_started_holds_clear_marks_and_zero_elapsed
+* test_identical_mark_sequences_play_identically
+* test_a_solve_returns_the_attempt_to_not_started
+* test_a_solve_sets_ever_completed_with_a_personal_best
+* test_the_thumbnail_flag_is_true_only_when_ever_completed
+* test_the_knowable_values_are_available_after_a_solve
+* test_completion_rate_is_ever_completed_over_pack_size
+* test_completion_rate_is_zero_for_an_empty_pack
+* test_completion_rate_uses_the_fixture_pack_size
+* test_reset_clears_the_derived_values
+* test_a_longer_solve_leaves_the_personal_best
+* test_a_shorter_solve_replaces_the_personal_best
+* test_ever_completed_and_in_progress_coexist_on_replay
+* test_commit_keeps_the_marks_it_was_given
+* test_a_commit_without_marks_is_not_started
+* test_a_restored_grid_sets_the_status_from_its_marks
+* test_only_the_progress_rules_change_a_record
+[1m38/42 passed.
+[0m[4m
+
+res://test/test_open_ready.gd
+[0m* test_ready_auto_crosses_empty_clue_lines_and_is_in_progress
+* test_marks_are_blocked_and_no_ready_is_emitted_before_the_beat_ends
+* test_marks_stay_blocked_until_the_beat_ends_at_each_ready_length
+* test_elapsed_ticks_only_after_the_beat
+* test_empty_clue_rows_and_columns_contribute_their_still_clear_cells
+[31m    [Failed]:  [0m[161] expected to equal [137]:  exactly the empty-clue lines' cells
+      at line 196
+* test_a_line_with_runs_contributes_nothing
+[31m    [Failed]:  [0m(4, 2) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(4, 3) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(4, 12) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(5, 2) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(5, 3) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(5, 12) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(6, 2) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(6, 3) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(6, 12) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(7, 2) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(7, 3) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(7, 12) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(8, 2) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(8, 3) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(8, 12) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(9, 2) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(9, 3) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(9, 12) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(10, 2) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(10, 3) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(10, 12) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(11, 2) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(11, 3) sits on an empty-clue line
+      at line 208
+[31m    [Failed]:  [0m(11, 12) sits on an empty-clue line
+      at line 208
+* test_filled_and_crossed_cells_are_not_still_clear
+* test_auto_cross_writes_nothing_and_is_deterministic
+* test_a_definition_with_bad_clues_returns_no_auto_cross_cells
+* test_auto_cross_commits_when_the_marks_changed
+* test_auto_cross_does_not_commit_when_nothing_changed
+* test_ready_emits_once_with_the_id_grid_and_line_status
+* test_an_unknown_id_changes_nothing
+* test_a_pause_during_the_beat_keeps_marks_blocked_and_waits_for_the_beat
+* test_advance_adds_elapsed_while_ready_and_nothing_while_blocked
+* test_the_crossed_cells_are_exactly_the_rules_auto_cross
+* test_open_restores_an_in_progress_record
+[1m15/17 passed.
+[0m[4m
+
+res://test/test_pack_load.gd
+[0m* test_shipped_pack_loads_every_entry
+* test_shipped_pack_has_the_entity_sizes
+* test_loaded_definitions_satisfy_the_schema
+* test_field_mapping_from_pack_data
+* test_definition_returns_the_loaded_record
+* test_unknown_id_changes_nothing
+* test_entry_missing_a_field_is_rejected
+WARNING: Pack entry 1 rejected: missing picture-id
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:180)
+         [3] test_entry_missing_a_field_is_rejected (res://test/test_pack_load.gd:108)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_size_outside_the_entity_sizes_is_rejected
+WARNING: Pack entry 1 rejected: size is not 10, 15, or 20
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:180)
+         [3] test_size_outside_the_entity_sizes_is_rejected (res://test/test_pack_load.gd:112)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_clue_lists_that_are_not_the_runs_are_rejected
+WARNING: Pack entry 1 rejected: row-clues are not the runs of solution-fills
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:180)
+         [3] test_clue_lists_that_are_not_the_runs_are_rejected (res://test/test_pack_load.gd:116)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_fill_outside_the_grid_is_rejected
+WARNING: Pack entry 1 rejected: solution-fills is not a set of positions inside the grid
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:180)
+         [3] test_fill_outside_the_grid_is_rejected (res://test/test_pack_load.gd:120)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_malformed_clue_shape_is_rejected
+WARNING: Pack entry 1 rejected: col-clues is not 10 lists of positive integers
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:180)
+         [3] test_malformed_clue_shape_is_rejected (res://test/test_pack_load.gd:124)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_repeated_puzzle_id_is_rejected
+WARNING: Pack entry 1 rejected: id fixture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_puzzle_id_is_rejected (res://test/test_pack_load.gd:128)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 2 rejected: picture-id picture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_puzzle_id_is_rejected (res://test/test_pack_load.gd:128)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 3 rejected: pixel-picture-id pixel-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_puzzle_id_is_rejected (res://test/test_pack_load.gd:128)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_repeated_pictures_are_rejected
+WARNING: Pack entry 1 rejected: picture-id picture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_pictures_are_rejected (res://test/test_pack_load.gd:136)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 2 rejected: pixel-picture-id pixel-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_pictures_are_rejected (res://test/test_pack_load.gd:136)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_equal_picture_ids_are_rejected
+WARNING: Pack entry 1 rejected: picture-id and pixel-picture-id are the same id
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_equal_picture_ids_are_rejected (res://test/test_pack_load.gd:144)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_rejected_entries_carry_their_raw_entry_and_reason
+WARNING: Pack entry 1 rejected: id fixture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_rejected_entries_carry_their_raw_entry_and_reason (res://test/test_pack_load.gd:150)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 2 rejected: picture-id picture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_rejected_entries_carry_their_raw_entry_and_reason (res://test/test_pack_load.gd:150)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 3 rejected: pixel-picture-id pixel-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:50)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_rejected_entries_carry_their_raw_entry_and_reason (res://test/test_pack_load.gd:150)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_missing_file_loads_nothing_and_logs_the_path
+ERROR: Pack file missing or unreadable: res://test/fixtures/pack/absent.json
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] load_pack (res://records/pack.gd:31)
+       [1] _load (res://test/test_pack_load.gd:13)
+       [2] _assert_bad_file (res://test/test_pack_load.gd:188)
+       [3] test_missing_file_loads_nothing_and_logs_the_path (res://test/test_pack_load.gd:159)
+       [4] _run_test (res://addons/gut/gut.gd:622)
+       [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_invalid_json_loads_nothing_and_logs_the_path
+ERROR: Pack file is not valid JSON: res://test/fixtures/pack/invalid.json (Expected '}')
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] load_pack (res://records/pack.gd:35)
+       [1] _load (res://test/test_pack_load.gd:13)
+       [2] _assert_bad_file (res://test/test_pack_load.gd:188)
+       [3] test_invalid_json_loads_nothing_and_logs_the_path (res://test/test_pack_load.gd:163)
+       [4] _run_test (res://addons/gut/gut.gd:622)
+       [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_json_that_is_not_an_array_loads_nothing_and_logs_the_path
+ERROR: Pack file is not a JSON array: res://test/fixtures/pack/not-array.json
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] load_pack (res://records/pack.gd:38)
+       [1] _load (res://test/test_pack_load.gd:13)
+       [2] _assert_bad_file (res://test/test_pack_load.gd:188)
+       [3] test_json_that_is_not_an_array_loads_nothing_and_logs_the_path (res://test/test_pack_load.gd:167)
+       [4] _run_test (res://addons/gut/gut.gd:622)
+       [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_bad_file_clears_definitions_from_the_last_load
+ERROR: Pack file is not valid JSON: res://test/fixtures/pack/invalid.json (Expected '}')
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] load_pack (res://records/pack.gd:35)
+       [1] test_bad_file_clears_definitions_from_the_last_load (res://test/test_pack_load.gd:173)
+       [2] _run_test (res://addons/gut/gut.gd:622)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:835)
+[1m19/19 passed.
+[0m[4m
+
+res://test/test_sanity.gd
+[0m* test_sanity_true
+[1m1/1 passed.
+[0m[4m
+
+res://test/test_shell_stub.gd
+[0m* test_main_scene_is_the_shell_stub
+* test_shell_stub_displays_the_hardcoded_puzzle_id
+[1m2/2 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m[4m
+res://test/test_clue_lines.gd
+[0m- test_column_lines_match_the_fixture_col_clues_in_order
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  column 2
+          at line 68
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  column 3
+          at line 68
+[31m    [Failed]:  [0mARRAY([5]) != ARRAY([7]).
+    [5] != [7]  1 of 1 indexes do not match.  column 5
+          at line 68
+[31m    [Failed]:  [0mARRAY([1, 9]) != ARRAY([8]).
+    [1, 9] != [8]  2 of 2 indexes do not match.  column 6
+          at line 68
+[31m    [Failed]:  [0mARRAY([10]) != ARRAY([8]).
+    [10] != [8]  1 of 1 indexes do not match.  column 7
+          at line 68
+[31m    [Failed]:  [0mARRAY([10]) != ARRAY([8]).
+    [10] != [8]  1 of 1 indexes do not match.  column 8
+          at line 68
+[31m    [Failed]:  [0mARRAY([9]) != ARRAY([7]).
+    [9] != [7]  1 of 1 indexes do not match.  column 9
+          at line 68
+[31m    [Failed]:  [0mARRAY([7]) != ARRAY([5]).
+    [7] != [5]  1 of 1 indexes do not match.  column 10
+          at line 68
+[31m    [Failed]:  [0mARRAY([3]) != ARRAY([4]).
+    [3] != [4]  1 of 1 indexes do not match.  column 11
+          at line 68
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([1]).
+    [] != [1]  1 of 1 indexes do not match.  column 12
+          at line 68
+- test_named_teapot_lines_hold_their_literals
+[31m    [Failed]:  [0mARRAY([[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], []]) != ARRAY([[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], []]).
+    [[], [], [], [], [5], [5], [1, 9], [10],...], [], []] != [[], [], [3], [3], [5], [7], [8], [8], [...], [], []]  10 of 15 indexes do not match.  
+          at line 77
+- test_row_three_is_not_column_three
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  
+          at line 87
+- test_a_mutated_row_clue_reaches_only_its_own_row
+[31m    [Failed]:  [0mcolumn 6 changed, but only row 6 was mutated
+          at line 105
+- test_run_order_is_kept_and_nothing_is_merged
+[31m    [Failed]:  [0mARRAY([]) != ARRAY([2, 1]).
+    [] != [2, 1]  2 of 2 indexes do not match.  
+          at line 114
+- test_solution_fills_are_never_read
+[31m    [Failed]:  [0mARRAY([[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], []]) != ARRAY([[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], []]).
+    [[], [], [], [], [5], [5], [1, 9], [10],...], [], []] != [[], [], [3], [3], [5], [7], [8], [8], [...], [], []]  10 of 15 indexes do not match.  
+          at line 125
+- test_a_non_empty_line_is_not_reported_empty
+[31m    [Failed]:  [0m
+          at line 157
+[4m
+res://test/test_game_state.gd
+[0m- test_a_fill_that_still_fits_the_clue_is_no_error
+[31m    [Failed]:  [0mPS1.3: the run can still go where it belongs
+          at line 139
+- test_an_exact_column_run_match_is_satisfied
+[31m    [Failed]:  [0mPS1.4: GS.clue-satisfied for column 2 is true
+          at line 165
+- test_a_solved_board_satisfies_every_line
+[31m    [Failed]:  [0mcolumn 2 error=true satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 2 error=true satisfied=false is not in error
+          at line 180
+[31m    [Failed]:  [0mcolumn 3 error=true satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 3 error=true satisfied=false is not in error
+          at line 180
+[31m    [Failed]:  [0mcolumn 5 error=true satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 5 error=true satisfied=false is not in error
+          at line 180
+[31m    [Failed]:  [0mcolumn 6 error=false satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 7 error=false satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 8 error=false satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 9 error=false satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 10 error=false satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 11 error=true satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 11 error=true satisfied=false is not in error
+          at line 180
+[31m    [Failed]:  [0mcolumn 12 error=true satisfied=false is satisfied
+          at line 179
+[31m    [Failed]:  [0mcolumn 12 error=true satisfied=false is not in error
+          at line 180
+- test_line_status_tracks_the_fills
+[31m    [Failed]:  [0m
+          at line 204
+[31m    [Failed]:  [0m
+          at line 205
+[4m
+res://test/test_open_ready.gd
+[0m- test_empty_clue_rows_and_columns_contribute_their_still_clear_cells
+[31m    [Failed]:  [0m[161] expected to equal [137]:  exactly the empty-clue lines' cells
+          at line 196
+- test_a_line_with_runs_contributes_nothing
+[31m    [Failed]:  [0m(4, 2) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(4, 3) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(4, 12) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(5, 2) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(5, 3) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(5, 12) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(6, 2) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(6, 3) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(6, 12) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(7, 2) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(7, 3) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(7, 12) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(8, 2) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(8, 3) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(8, 12) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(9, 2) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(9, 3) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(9, 12) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(10, 2) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(10, 3) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(10, 12) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(11, 2) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(11, 3) sits on an empty-clue line
+          at line 208
+[31m    [Failed]:  [0m(11, 12) sits on an empty-clue line
+          at line 208
+
+Totals
+------
+Scripts               7
+Tests               113
+Passing Tests       100
+Failing Tests        13
+Asserts           29155/29215
+Time              0.723s
+
+
+[31m---- 13 failing tests ----
+[0m

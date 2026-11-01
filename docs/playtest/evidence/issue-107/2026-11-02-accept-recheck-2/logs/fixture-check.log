@@ -1,0 +1,8 @@
+fixture keys: ['col_clues', 'id', 'picture_id', 'pixel_picture_id', 'row_clues', 'size', 'solution_fills']
+identical to PoC size/row/col: True
+size: 15 fills: 59
+row clues match recomputed: True
+col clues match recomputed: True
+empty rows: [0, 1, 2, 3, 12, 13, 14]
+empty cols: [0, 1, 13, 14]
+row0: [] row6: [1, 9] row7: [10]
