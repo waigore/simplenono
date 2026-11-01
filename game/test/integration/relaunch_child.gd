@@ -83,7 +83,7 @@ func _mark_phase(run_folder: String, puzzle_id: String) -> int:
 
 func _verify_phase(run_folder: String, puzzle_id: String) -> int:
 	var shell := _shell()
-	var gallery_entry := shell.view() == Shell.HOME_VIEW
+	var gallery_entry := shell.view() == Shell.GALLERY_VIEW
 	var opened := shell.open_puzzle(puzzle_id)
 	if not opened:
 		return _write_verdict(run_folder, gallery_entry, false, false, false, 0)

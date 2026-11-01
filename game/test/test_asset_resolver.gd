@@ -103,6 +103,14 @@ func test_unknown_asset_id_fails_loudly():
 	assert_push_error("unresolved asset id")
 
 
+# ACC.A3 guard: has() reports presence without the resolve failure an unknown id earns
+func test_has_reports_listed_and_unknown_ids_without_failing():
+	var resolver := AssetResolver.new()
+
+	assert_true(resolver.has(_asset_id(AudioCues.FILL_TICK)), "a listed id is present")
+	assert_false(resolver.has(UNKNOWN_ID), "an unknown id is absent")
+
+
 # ACC.A3: a missing manifest fails loudly at the app-start read and for every resolve
 func test_missing_manifest_fails_loudly():
 	var resolver := AssetResolver.new(_repo_path(ABSENT_MANIFEST))

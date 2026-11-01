@@ -1,0 +1,113 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://presentation/gallery.gd" id="1_gallery"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.956863, 0.968627, 0.972549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.772549, 0.815686, 0.839216, 1)
+
+[node name="Gallery" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gallery")
+
+[node name="Background" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.956863, 0.968627, 0.972549, 1)
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Layout" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Titles" type="VBoxContainer" parent="Margin/Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Greeting" type="Label" parent="Margin/Layout/Header/Titles"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
+theme_override_font_sizes/font_size = 11
+text = "Local pack"
+
+[node name="Title" type="Label" parent="Margin/Layout/Header/Titles"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "Gallery"
+
+[node name="SettingsButton" type="Button" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="ProgressBlock" type="PanelContainer" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_progress")
+
+[node name="ProgressInner" type="VBoxContainer" parent="Margin/Layout/ProgressBlock"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CompletionLabel" type="Label" parent="Margin/Layout/ProgressBlock/ProgressInner"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
+theme_override_font_sizes/font_size = 13
+text = "Completed 0 / 200"
+
+[node name="CompletionBar" type="ProgressBar" parent="Margin/Layout/ProgressBlock/ProgressInner"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+max_value = 200.0
+value = 0.0
+show_percentage = false
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Grid" type="GridContainer" parent="Margin/Layout/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2

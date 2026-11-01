@@ -1,11 +1,12 @@
 extends GutTest
-## Shell → puzzle open leg — [b]CMP-shell[/b] R1/R2 (specs/technical/components/shell.md)
+## Shell → gallery → puzzle legs — [b]CMP-shell[/b] R1/R2 (specs/technical/components/shell.md)
 ## and [code]SEQ-open[/code] S1–S6 / B1 (specs/technical/sequences/open.md); journey
-## [code]J-play-puzzle[/code] S1 of specs/ux/stories/journeys/play-puzzle.md.
+## [code]J-play-puzzle[/code] S1 and [code]NAV.N1[/code]/[code]NAV.T1[/code]/[code]NAV.T3[/code]
+## (specs/ux/stories/navigation.md).
 ##
 ## The shell runs against the shipped pack it loads itself ([b]CTR-pack[/b] O8), so
-## free order is proved over the real ids. The result/view is [code]SCN-result[/code]
-## (epic #95) and gallery browsing is #94: those scenarios are not claimed here.
+## free order is proved over the real ids. The gallery screen's own scenarios live in
+## [code]test_gallery.gd[/code]; the result and settings screens are #95's.
 
 const SHELL_SCENE := "res://presentation/shell.tscn"
 const PROJECT_FILE := "res://project.godot"
@@ -25,8 +26,8 @@ func _control(node_name: String) -> Control:
 	return _shell.get_node("%" + node_name) as Control
 
 
-# J-play-puzzle S1 / N1: the app boots into the shell and can open a puzzle by id
-func test_main_scene_is_the_shell_and_it_holds_a_puzzle_id():
+# NAV.N1 / US1.9: the app boots into the gallery, not the puzzle
+func test_main_scene_is_the_shell_and_it_shows_the_gallery():
 	var project := ConfigFile.new()
 	assert_eq(project.load(PROJECT_FILE), OK, "project.godot loads")
 	assert_eq(
@@ -34,9 +35,26 @@ func test_main_scene_is_the_shell_and_it_holds_a_puzzle_id():
 		"res://presentation/shell.tscn",
 		"the shell is the run entry",
 	)
-	assert_eq(_shell.view(), Shell.HOME_VIEW, "the app starts on the shell view")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the app starts on the gallery")
 	assert_eq(_shell.puzzle_id(), "", "nothing is open yet")
-	assert_eq(_control("PuzzleIdLabel").text, Shell.STUB_PUZZLE_ID, "the shell shows its id")
+	assert_true(_control("Gallery").visible, "UI-gallery is the shown screen")
+
+
+# UI-gallery R2: the gallery lists the whole shipped pack in free order
+func test_gallery_lists_every_shipped_puzzle():
+	var gallery := _shell.gallery_screen()
+	assert_eq(gallery.tile_count(), 200, "one tile per accepted definition")
+	assert_not_null(gallery.tile("pack-000"), "pack order starts at the first id")
+	assert_not_null(gallery.tile("pack-199"), "the last id has a tile")
+	assert_eq(gallery.completion_text(), "Completed %d / 200" % gallery.completion_count())
+
+
+# NAV.T1 / US1.1: C1 on a tile opens that puzzle through the shell
+func test_a_tile_opens_its_puzzle():
+	assert_true(_shell.gallery_screen().activate_tile("pack-042"), "C1 fires for a live id")
+	assert_eq(_shell.view(), Shell.PUZZLE_VIEW, "S6: the puzzle screen shows")
+	assert_eq(_shell.puzzle_id(), "pack-042", "the attempt holds the tile's id")
+	assert_false(_control("Gallery").visible, "the gallery is hidden")
 
 
 # J-play-puzzle S1 / SEQ-open S1-S6: an id in the local pack opens and the screen shows
@@ -47,7 +65,7 @@ func test_open_by_id_shows_the_puzzle_screen():
 	assert_eq(_shell.attempt().puzzle_id(), "pack-000", "the attempt holds the id")
 	assert_eq(_shell.view(), Shell.PUZZLE_VIEW, "S6: the puzzle screen shows")
 	assert_true(_control("Puzzle").visible, "the puzzle screen is on")
-	assert_false(_control("Home").visible, "the shell view is hidden")
+	assert_false(_control("Gallery").visible, "the gallery is hidden")
 	var screen: PuzzleScreen = _control("Puzzle")
 	assert_same(screen.attempt(), _shell.attempt(), "the screen shows that attempt")
 	assert_eq(_shell.get_node("%Puzzle").state_id(), "S2", "S5-S6: the Ready beat runs")
@@ -82,17 +100,17 @@ func test_unknown_id_changes_nothing():
 	assert_eq(attempt.state().marks().snapshot(), marks_before, "CTR-attempt G3: no mark written")
 
 
-# SEQ-open B1: an unknown id with nothing open leaves the shell view as it was
-func test_unknown_id_on_the_shell_view_changes_nothing():
+# SEQ-open B1: an unknown id with nothing open leaves the gallery as it was
+func test_unknown_id_on_the_gallery_view_changes_nothing():
 	assert_false(_shell.open_puzzle("no-such-puzzle"), "an unknown id is refused")
-	assert_eq(_shell.view(), Shell.HOME_VIEW, "the shell view stays")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery stays")
 	assert_null(_shell.attempt(), "no attempt is opened")
 
 
-# J-play-puzzle S3 (open leg only): C1 ends the attempt and returns to the shell view
-func test_leave_returns_to_the_shell_view():
+# NAV.T3 / US1.3: C1 on the puzzle ends the attempt and returns to the gallery
+func test_leave_returns_to_the_gallery():
 	assert_true(_shell.open_puzzle("pack-199"), "a puzzle is open")
 	_shell.get_node("%Puzzle").leave_requested.emit()
-	assert_eq(_shell.view(), Shell.HOME_VIEW, "the shell view shows again")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery shows again")
 	assert_null(_shell.attempt(), "the attempt is cleared")
 	assert_false(_control("Puzzle").visible, "E2: the puzzle screen is off")

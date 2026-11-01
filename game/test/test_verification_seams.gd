@@ -73,7 +73,7 @@ func _event_names() -> Array:
 func test_flag_off_hides_every_seam_and_keeps_the_boot():
 	_boot(false)
 
-	assert_eq(_shell.view(), Shell.HOME_VIEW, "the app still starts on the shell view")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the app still starts on the gallery")
 	assert_eq(_shell.pack().load_result().accepted_count, 200, "the shipped pack still loads")
 	assert_null(_seams.telemetry(), "no telemetry sink")
 	assert_null(_seams.severity_log(), "no severity sink")
