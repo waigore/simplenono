@@ -49,7 +49,10 @@ var _failure: String = ""
 var _detail: String = ""
 var _stopped: bool = false
 var _finished: bool = false
-var _settings_requested: bool = false
+var _settings_acknowledged: bool = false
+## The route settings' C3 takes (`NAV.T6`/`T8`), recorded when C6 opens the screen: the
+## gallery, or the puzzle paused to open it.
+var _settings_returns_to_puzzle: bool = false
 
 
 ## Sets what this run drives. Call before adding the node to the tree.
@@ -187,6 +190,7 @@ func _launch(scene_path: String) -> bool:
 		_seams = _shell.get_node("%Seams") as DebugSeams
 		_attempt = null
 		_shell.puzzle_screen().settings_requested.connect(_on_settings_requested)
+		_shell.settings_screen().back_requested.connect(_on_settings_back)
 	return _passed()
 
 
@@ -294,7 +298,7 @@ func _wait_beat(timeout_ms: int) -> bool:
 func _open(puzzle_id: String) -> bool:
 	if _seams == null:
 		return _failed_with("no debug seams to open through")
-	_settings_requested = false
+	_settings_acknowledged = false
 	var opened := _seams.open_puzzle(puzzle_id)
 	_attempt = _shell.attempt()
 	_record_flow("open", opened)
@@ -396,11 +400,27 @@ func _leave() -> bool:
 
 
 func _back() -> bool:
-	var pressed := _press_puzzle_button("%LeaveButton")
+	var from_settings := _shell != null and _shell.view() == Shell.SETTINGS_VIEW
+	var pressed := (
+		_press_settings_button("%BackButton")
+		if from_settings
+		else _press_puzzle_button("%LeaveButton")
+	)
 	if pressed:
 		_attempt = null
 		_record_flow("back", true)
 	return pressed
+
+
+## Settings' C3, the screen #95 routes itself (`NAV.T6`/`T8`).
+func _press_settings_button(path: String) -> bool:
+	if _shell == null:
+		return _failed_with("no shell")
+	var button := _shell.settings_screen().get_node(path) as Button
+	if button == null:
+		return _failed_with("no button at %s" % path)
+	button.emit_signal("pressed")
+	return _passed()
 
 
 func _reset() -> bool:
@@ -423,15 +443,27 @@ func _press_puzzle_button(path: String) -> bool:
 	return _passed()
 
 
-## C6's acknowledgement. The settings screen is #95 and the pause it raises is #96's,
-## so the product response this protocol times is the screen's own IN.pause intent.
+## C6's acknowledgement. The pause it raises is #96's; the screen and the route are
+## #95's, so the product response this protocol times is settings showing.
 func _settings() -> bool:
-	_settings_requested = false
-	return _press_puzzle_button("%SettingsButton")
+	_settings_acknowledged = false
+	var pressed := _press_puzzle_button("%SettingsButton")
+	_settings_returns_to_puzzle = _shell != null and _shell.settings_returns_to_puzzle()
+	return pressed
 
 
 func _on_settings_requested() -> void:
-	_settings_requested = true
+	_settings_acknowledged = true
+
+
+## Settings' C3 (`IN.back`): the screen routes itself (`NAV.T6`/`T8`), so this leg times
+## the whole return, from settings to wherever C3 goes. The ack idles while settings
+## shows and turns true on the return, so the clock stops at that frame.
+func _on_settings_back() -> void:
+	if _shell == null:
+		return
+	var returned := Shell.PUZZLE_VIEW if _settings_returns_to_puzzle else Shell.GALLERY_VIEW
+	_settings_acknowledged = _shell.view() == returned
 
 
 func _dump() -> bool:
@@ -471,6 +503,8 @@ func _probe(name: String, step: Dictionary) -> Variant:
 		)
 	elif name == "puzzle_ready":
 		value = _shell != null and _shell.view() == Shell.PUZZLE_VIEW
+	elif name == "settings_ready":
+		value = _shell != null and _shell.view() == Shell.SETTINGS_VIEW
 	elif name == "attempt_open":
 		value = _attempt != null and _attempt.state() != null
 	elif name == "beat_done":
@@ -497,7 +531,7 @@ func _probe(name: String, step: Dictionary) -> Variant:
 	elif name == "fixture_draws":
 		value = (_target.draws() if _target != null and _target.has_method("draws") else -1)
 	elif name == "settings_ack":
-		value = _settings_requested
+		value = _settings_acknowledged
 	elif name == "duration_ms":
 		value = float(_durations.get(String(step.get("mark", "")), -1.0))
 	elif name == "sampled_frames":

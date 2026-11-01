@@ -6,9 +6,9 @@ extends Control
 ## The screen is a read view over [b]CTR-pack[/b] O1 and O2: it draws the completion
 ## rate, one tile per accepted definition, and C2's allowedness from the persisted
 ## facts. It raises player intents instead of routing or writing: opening a puzzle is
-## [b]CMP-shell[/b]'s, the settings transition is #95's, and [code]EX.confirm[/code]
-## plus the reset call are #96's. A successful reset refreshes through [method refresh]
-## ([code]SEQ reset[/code] S5), so the tile reads back as new.
+## [b]CMP-shell[/b]'s, settings is routed there too ([code]NAV.T2[/code]), and
+## [code]EX.confirm[/code] plus the reset call are #96's. A successful reset refreshes
+## through [method refresh] ([code]SEQ reset[/code] S5), so the tile reads back as new.
 
 ## C1 ([code]IN.activate[/code]): the player asked to open [param puzzle_id].
 signal puzzle_requested(puzzle_id: String)
