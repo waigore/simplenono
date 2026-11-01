@@ -1,0 +1,172 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://test/test_cell_mark.gd
+* test_grid_holds_one_cell_per_position
+* test_opened_grid_starts_all_clear
+* test_fill_while_allowed
+* test_clear_while_allowed
+* test_cross_while_allowed
+* test_applying_the_same_mark_changes_nothing
+* test_cross_is_not_a_fill
+* test_marks_are_blocked_until_allowed
+* test_allow_marks_opens_marking
+* test_mark_outside_the_grid_changes_nothing
+* test_unknown_mark_is_rejected
+* test_auto_cross_crosses_still_clear_cells
+* test_auto_cross_leaves_crossed_cells_unchanged
+* test_auto_cross_never_overwrites_a_fill
+* test_auto_cross_changes_nothing_while_blocked
+15/15 passed.
+
+
+res://test/test_clue_lines.gd
+* test_teapot_maps_to_fifteen_rows_and_fifteen_columns
+* test_every_line_carries_its_orientation_and_index
+* test_row_lines_match_the_fixture_row_clues_in_order
+* test_column_lines_match_the_fixture_col_clues_in_order
+    [Failed]:  ARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  column 2
+      at line 68
+    [Failed]:  ARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  column 3
+      at line 68
+    [Failed]:  ARRAY([5]) != ARRAY([7]).
+    [5] != [7]  1 of 1 indexes do not match.  column 5
+      at line 68
+    [Failed]:  ARRAY([1, 9]) != ARRAY([8]).
+    [1, 9] != [8]  2 of 2 indexes do not match.  column 6
+      at line 68
+    [Failed]:  ARRAY([10]) != ARRAY([8]).
+    [10] != [8]  1 of 1 indexes do not match.  column 7
+      at line 68
+    [Failed]:  ARRAY([10]) != ARRAY([8]).
+    [10] != [8]  1 of 1 indexes do not match.  column 8
+      at line 68
+    [Failed]:  ARRAY([9]) != ARRAY([7]).
+    [9] != [7]  1 of 1 indexes do not match.  column 9
+      at line 68
+    [Failed]:  ARRAY([7]) != ARRAY([5]).
+    [7] != [5]  1 of 1 indexes do not match.  column 10
+      at line 68
+    [Failed]:  ARRAY([3]) != ARRAY([4]).
+    [3] != [4]  1 of 1 indexes do not match.  column 11
+      at line 68
+    [Failed]:  ARRAY([]) != ARRAY([1]).
+    [] != [1]  1 of 1 indexes do not match.  column 12
+      at line 68
+* test_named_teapot_lines_hold_their_literals
+    [Failed]:  ARRAY([[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], []]) != ARRAY([[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], []]).
+    [[], [], [], [], [5], [5], [1, 9], [10],...], [], []] != [[], [], [3], [3], [5], [7], [8], [8], [...], [], []]  10 of 15 indexes do not match.  
+      at line 77
+* test_row_three_is_not_column_three
+    [Failed]:  ARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  
+      at line 87
+* test_a_mutated_row_clue_reaches_only_its_own_row
+    [Failed]:  column 6 changed, but only row 6 was mutated
+      at line 105
+* test_run_order_is_kept_and_nothing_is_merged
+    [Failed]:  ARRAY([]) != ARRAY([2, 1]).
+    [] != [2, 1]  2 of 2 indexes do not match.  
+      at line 114
+* test_solution_fills_are_never_read
+    [Failed]:  ARRAY([[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], []]) != ARRAY([[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], []]).
+    [[], [], [], [], [5], [5], [1, 9], [10],...], [], []] != [[], [], [3], [3], [5], [7], [8], [8], [...], [], []]  10 of 15 indexes do not match.  
+      at line 125
+* test_a_mutated_clue_list_wins_over_disagreeing_solution_fills
+* test_an_empty_clue_line_is_kept_as_zero_runs
+* test_a_non_empty_line_is_not_reported_empty
+    [Failed] 
+      at line 157
+* test_too_few_row_clues_is_a_mapping_error
+* test_too_many_column_clues_is_a_mapping_error
+* test_a_missing_clue_list_is_a_mapping_error
+* test_a_missing_size_is_a_mapping_error
+* test_lines_do_not_alias_the_definition_lists
+10/17 passed.
+
+
+res://test/test_sanity.gd
+* test_sanity_true
+1/1 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+res://test/test_clue_lines.gd
+- test_column_lines_match_the_fixture_col_clues_in_order
+    [Failed]:  ARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  column 2
+          at line 68
+    [Failed]:  ARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  column 3
+          at line 68
+    [Failed]:  ARRAY([5]) != ARRAY([7]).
+    [5] != [7]  1 of 1 indexes do not match.  column 5
+          at line 68
+    [Failed]:  ARRAY([1, 9]) != ARRAY([8]).
+    [1, 9] != [8]  2 of 2 indexes do not match.  column 6
+          at line 68
+    [Failed]:  ARRAY([10]) != ARRAY([8]).
+    [10] != [8]  1 of 1 indexes do not match.  column 7
+          at line 68
+    [Failed]:  ARRAY([10]) != ARRAY([8]).
+    [10] != [8]  1 of 1 indexes do not match.  column 8
+          at line 68
+    [Failed]:  ARRAY([9]) != ARRAY([7]).
+    [9] != [7]  1 of 1 indexes do not match.  column 9
+          at line 68
+    [Failed]:  ARRAY([7]) != ARRAY([5]).
+    [7] != [5]  1 of 1 indexes do not match.  column 10
+          at line 68
+    [Failed]:  ARRAY([3]) != ARRAY([4]).
+    [3] != [4]  1 of 1 indexes do not match.  column 11
+          at line 68
+    [Failed]:  ARRAY([]) != ARRAY([1]).
+    [] != [1]  1 of 1 indexes do not match.  column 12
+          at line 68
+- test_named_teapot_lines_hold_their_literals
+    [Failed]:  ARRAY([[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], []]) != ARRAY([[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], []]).
+    [[], [], [], [], [5], [5], [1, 9], [10],...], [], []] != [[], [], [3], [3], [5], [7], [8], [8], [...], [], []]  10 of 15 indexes do not match.  
+          at line 77
+- test_row_three_is_not_column_three
+    [Failed]:  ARRAY([]) != ARRAY([3]).
+    [] != [3]  1 of 1 indexes do not match.  
+          at line 87
+- test_a_mutated_row_clue_reaches_only_its_own_row
+    [Failed]:  column 6 changed, but only row 6 was mutated
+          at line 105
+- test_run_order_is_kept_and_nothing_is_merged
+    [Failed]:  ARRAY([]) != ARRAY([2, 1]).
+    [] != [2, 1]  2 of 2 indexes do not match.  
+          at line 114
+- test_solution_fills_are_never_read
+    [Failed]:  ARRAY([[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], []]) != ARRAY([[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], []]).
+    [[], [], [], [], [5], [5], [1, 9], [10],...], [], []] != [[], [], [3], [3], [5], [7], [8], [8], [...], [], []]  10 of 15 indexes do not match.  
+          at line 125
+- test_a_non_empty_line_is_not_reported_empty
+    [Failed]:  
+          at line 157
+
+Totals
+------
+Scripts               3
+Tests                33
+Passing Tests        26
+Failing Tests         7
+Asserts           627/643
+Time              0.481s
+
+
+---- 7 failing tests ----
+
