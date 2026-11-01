@@ -1,0 +1,45 @@
+name: Integration harness
+
+# Project-owned. Runs the CI-only `self-test` protocol of game/test/integration/
+# (specs/technical/verification.md H1-H4, #166).
+# #163's seams have merged, so the six game protocols run; they stay out of CI
+# while their product rows are red (#94-#96). Keep this job and the Integration
+# harness table in docs/coding-conventions.md in sync.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integration-harness:
+    name: Integration harness
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Godot
+        env:
+          GODOT_VERSION: "4.7.2"
+        run: |
+          set -euo pipefail
+          zip="Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          url="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/${zip}"
+          curl -fsSL -o "$zip" "$url"
+          unzip -q "$zip"
+          install -m 755 "Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
+          godot --version
+
+      - name: Import Godot project
+        run: godot --headless --path game --import
+
+      - name: Self-test protocol
+        run: |
+          godot --headless --path game -s test/integration/run_protocol.gd -- \
+            --protocol=self-test \
+            --run-dir="$RUNNER_TEMP/integration-self-test"

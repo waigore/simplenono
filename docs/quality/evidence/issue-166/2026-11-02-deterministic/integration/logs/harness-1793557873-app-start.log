@@ -1,0 +1,5 @@
+HARNESS step=launch-start kind=mark_start ok=true 
+HARNESS step=launch kind=launch ok=true 
+HARNESS step=home kind=wait_probe ok=true 
+HARNESS step=launch-stop kind=mark_stop ok=true 
+HARNESS step=quit kind=quit ok=true 

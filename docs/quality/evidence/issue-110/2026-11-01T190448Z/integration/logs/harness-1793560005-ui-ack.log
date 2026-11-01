@@ -1,0 +1,11 @@
+TEL event=open time=1793560005.976 session=session-1793560005 build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+TEL event=ready time=1793560006.479 session=session-1793560005 build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+TEL event=commit time=1793560006.479 session=session-1793560005 build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+TEL event=leave time=1793560006.490 session=session-1793560005 build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+HARNESS step=launch kind=launch ok=true 
+HARNESS step=home kind=wait_probe ok=true 
+HARNESS step=open kind=measure ok=true 
+HARNESS step=beat kind=wait_beat ok=true 
+HARNESS step=settings kind=measure ok=true 
+HARNESS step=back kind=measure ok=true 
+HARNESS step=quit kind=quit ok=true 

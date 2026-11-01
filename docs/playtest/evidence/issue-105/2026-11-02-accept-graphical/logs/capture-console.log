@@ -1,0 +1,445 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+capture: PASS O8: the shell loaded the pack
+capture: PASS O8: 200 accepted entries (got 200)
+capture: PASS O8: no rejected entries (got 0)
+capture: O8 accepted=200 rejected=0
+TEL event=reset time=1793557332.528 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=reset time=1793557332.529 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=reset time=1793557332.529 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=open time=1793557332.530 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: open pack-000 state=S2 marks_allowed=false elapsed=0:00
+capture: PASS pack-000: identity is served
+capture: PASS pack-000: the shell holds the id
+capture: PASS pack-000: size is 10/15/20 (got 10)
+capture: PASS pack-000: the board draws every row clue
+capture: PASS pack-000: the board draws every column clue
+capture: PASS pack-000: row 0 clue · == pack ·
+capture: PASS pack-000: row 1 clue 1 == pack 1
+capture: PASS pack-000: row 2 clue 4 == pack 4
+capture: PASS pack-000: row 3 clue 5 1 == pack 5 1
+capture: PASS pack-000: row 4 clue 10 == pack 10
+capture: PASS pack-000: row 5 clue 10 == pack 10
+capture: PASS pack-000: row 6 clue 1 5 == pack 1 5
+capture: PASS pack-000: row 7 clue 4 == pack 4
+capture: PASS pack-000: row 8 clue 1 == pack 1
+capture: PASS pack-000: row 9 clue · == pack ·
+capture: PASS pack-000: column 0 run count
+capture: PASS pack-000: column 0 run 0 is 4
+capture: PASS pack-000: column 1 run count
+capture: PASS pack-000: column 1 run 0 is 3
+capture: PASS pack-000: column 2 run count
+capture: PASS pack-000: column 2 run 0 is 3
+capture: PASS pack-000: column 3 run count
+capture: PASS pack-000: column 3 run 0 is 4
+capture: PASS pack-000: column 3 run 1 is 1
+capture: PASS pack-000: column 4 run count
+capture: PASS pack-000: column 4 run 0 is 5
+capture: PASS pack-000: column 4 run 1 is 1
+capture: PASS pack-000: column 5 run count
+capture: PASS pack-000: column 5 run 0 is 1
+capture: PASS pack-000: column 5 run 1 is 5
+capture: PASS pack-000: column 6 run count
+capture: PASS pack-000: column 6 run 0 is 1
+capture: PASS pack-000: column 6 run 1 is 4
+capture: PASS pack-000: column 7 run count
+capture: PASS pack-000: column 7 run 0 is 3
+capture: PASS pack-000: column 8 run count
+capture: PASS pack-000: column 8 run 0 is 3
+capture: PASS pack-000: column 9 run count
+capture: PASS pack-000: column 9 run 0 is 4
+capture: pack-000 size=10 fills=42 picture=01a17720-ca00-71f5-8156-87c953625822
+capture: PASS S1: fresh open is get-set-ready
+capture: PASS S1: marks are blocked during get-set-ready
+capture: PASS S1: a mark does not stick
+capture: PASS S1: elapsed stays 0:00 during the beat
+capture: shot 00-ready-blocked-10x10 -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept/worktree/docs/playtest/evidence/issue-105/2026-11-02-accept-graphical/screenshots/00-ready-blocked-10x10.png (error 0)
+capture: PASS S2: the fixture has empty clue rows
+TEL event=ready time=1793557332.604 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.604 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S2: the beat ends
+capture: PASS S2/P2: empty row 0 auto-crosses column 0
+capture: PASS S2/P2: empty row 0 auto-crosses column 1
+capture: PASS S2/P2: empty row 0 auto-crosses column 2
+capture: PASS S2/P2: empty row 0 auto-crosses column 3
+capture: PASS S2/P2: empty row 0 auto-crosses column 4
+capture: PASS S2/P2: empty row 0 auto-crosses column 5
+capture: PASS S2/P2: empty row 0 auto-crosses column 6
+capture: PASS S2/P2: empty row 0 auto-crosses column 7
+capture: PASS S2/P2: empty row 0 auto-crosses column 8
+capture: PASS S2/P2: empty row 0 auto-crosses column 9
+capture: PASS S2/P2: empty row 9 auto-crosses column 0
+capture: PASS S2/P2: empty row 9 auto-crosses column 1
+capture: PASS S2/P2: empty row 9 auto-crosses column 2
+capture: PASS S2/P2: empty row 9 auto-crosses column 3
+capture: PASS S2/P2: empty row 9 auto-crosses column 4
+capture: PASS S2/P2: empty row 9 auto-crosses column 5
+capture: PASS S2/P2: empty row 9 auto-crosses column 6
+capture: PASS S2/P2: empty row 9 auto-crosses column 7
+capture: PASS S2/P2: empty row 9 auto-crosses column 8
+capture: PASS S2/P2: empty row 9 auto-crosses column 9
+TEL event=mark time=1793557332.623 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.623 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S2: fill applies
+TEL event=mark time=1793557332.624 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.624 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S2: clear applies
+TEL event=mark time=1793557332.625 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.625 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S2: cross applies
+capture: PASS S2: DBG.2 returns a payload
+capture: S2 inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "cross", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "cross", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 0, "personal_best": <null> } }
+capture: shot 01-ready-marks-10x10 -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept/worktree/docs/playtest/evidence/issue-105/2026-11-02-accept-graphical/screenshots/01-ready-marks-10x10.png (error 0)
+capture: PASS S3: a non-solution cell exists
+TEL event=mark time=1793557332.648 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.648 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S3: the cell can be cleared
+TEL event=mark time=1793557332.649 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.649 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S3: a wrong fill applies
+capture: PASS S3: the screen stays playable
+capture: PASS S3: the wrong fill does not solve
+capture: S3 wrong fill at (0,0) stays playable
+capture: shot 02-wrong-fill-10x10 -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept/worktree/docs/playtest/evidence/issue-105/2026-11-02-accept-graphical/screenshots/02-wrong-fill-10x10.png (error 0)
+TEL event=mark time=1793557332.664 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.665 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: the S3 wrong fill is cleared
+TEL event=mark time=1793557332.665 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.665 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (1,4)
+TEL event=mark time=1793557332.666 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.666 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (2,3)
+TEL event=mark time=1793557332.666 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.667 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (2,4)
+TEL event=mark time=1793557332.667 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.667 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (2,5)
+TEL event=mark time=1793557332.668 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.668 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (2,6)
+TEL event=mark time=1793557332.668 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.669 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (3,0)
+TEL event=mark time=1793557332.669 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.669 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (3,1)
+TEL event=mark time=1793557332.670 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.670 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (3,2)
+TEL event=mark time=1793557332.670 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.671 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (3,3)
+TEL event=mark time=1793557332.671 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.671 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (3,4)
+TEL event=mark time=1793557332.672 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.672 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (3,9)
+TEL event=mark time=1793557332.673 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.673 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,0)
+TEL event=mark time=1793557332.673 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.673 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,1)
+TEL event=mark time=1793557332.674 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.674 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,2)
+TEL event=mark time=1793557332.675 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.675 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,3)
+TEL event=mark time=1793557332.675 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.675 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,4)
+TEL event=mark time=1793557332.676 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.676 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,5)
+TEL event=mark time=1793557332.677 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.677 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,6)
+TEL event=mark time=1793557332.677 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.678 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,7)
+TEL event=mark time=1793557332.678 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.678 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,8)
+TEL event=mark time=1793557332.679 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.679 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (4,9)
+TEL event=mark time=1793557332.679 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.680 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,0)
+TEL event=mark time=1793557332.680 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.680 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,1)
+TEL event=mark time=1793557332.681 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.681 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,2)
+TEL event=mark time=1793557332.682 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.682 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,3)
+TEL event=mark time=1793557332.682 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.682 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,4)
+TEL event=mark time=1793557332.683 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.683 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,5)
+TEL event=mark time=1793557332.684 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.684 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,6)
+TEL event=mark time=1793557332.684 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.684 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,7)
+TEL event=mark time=1793557332.685 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.685 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,8)
+TEL event=mark time=1793557332.686 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.686 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (5,9)
+TEL event=mark time=1793557332.686 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.686 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (6,0)
+TEL event=mark time=1793557332.687 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.687 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (6,5)
+TEL event=mark time=1793557332.688 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.688 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (6,6)
+TEL event=mark time=1793557332.688 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.688 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (6,7)
+TEL event=mark time=1793557332.689 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.689 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (6,8)
+TEL event=mark time=1793557332.690 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.690 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (6,9)
+TEL event=mark time=1793557332.690 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.691 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (7,3)
+TEL event=mark time=1793557332.691 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.691 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (7,4)
+TEL event=mark time=1793557332.692 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.692 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (7,5)
+TEL event=mark time=1793557332.693 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.693 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (7,6)
+TEL event=solved time=1793557332.693 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=mark time=1793557332.693 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS solve: fill (8,5)
+capture: PASS solve: the attempt is ever-completed
+capture: PASS solve: a personal best exists
+capture: PASS solve: the solved board keeps fill (1,4)
+capture: PASS solve: the solved board keeps fill (2,3)
+capture: PASS solve: the solved board keeps fill (2,4)
+capture: PASS solve: the solved board keeps fill (2,5)
+capture: PASS solve: the solved board keeps fill (2,6)
+capture: PASS solve: the solved board keeps fill (3,0)
+capture: PASS solve: the solved board keeps fill (3,1)
+capture: PASS solve: the solved board keeps fill (3,2)
+capture: PASS solve: the solved board keeps fill (3,3)
+capture: PASS solve: the solved board keeps fill (3,4)
+capture: PASS solve: the solved board keeps fill (3,9)
+capture: PASS solve: the solved board keeps fill (4,0)
+capture: PASS solve: the solved board keeps fill (4,1)
+capture: PASS solve: the solved board keeps fill (4,2)
+capture: PASS solve: the solved board keeps fill (4,3)
+capture: PASS solve: the solved board keeps fill (4,4)
+capture: PASS solve: the solved board keeps fill (4,5)
+capture: PASS solve: the solved board keeps fill (4,6)
+capture: PASS solve: the solved board keeps fill (4,7)
+capture: PASS solve: the solved board keeps fill (4,8)
+capture: PASS solve: the solved board keeps fill (4,9)
+capture: PASS solve: the solved board keeps fill (5,0)
+capture: PASS solve: the solved board keeps fill (5,1)
+capture: PASS solve: the solved board keeps fill (5,2)
+capture: PASS solve: the solved board keeps fill (5,3)
+capture: PASS solve: the solved board keeps fill (5,4)
+capture: PASS solve: the solved board keeps fill (5,5)
+capture: PASS solve: the solved board keeps fill (5,6)
+capture: PASS solve: the solved board keeps fill (5,7)
+capture: PASS solve: the solved board keeps fill (5,8)
+capture: PASS solve: the solved board keeps fill (5,9)
+capture: PASS solve: the solved board keeps fill (6,0)
+capture: PASS solve: the solved board keeps fill (6,5)
+capture: PASS solve: the solved board keeps fill (6,6)
+capture: PASS solve: the solved board keeps fill (6,7)
+capture: PASS solve: the solved board keeps fill (6,8)
+capture: PASS solve: the solved board keeps fill (6,9)
+capture: PASS solve: the solved board keeps fill (7,3)
+capture: PASS solve: the solved board keeps fill (7,4)
+capture: PASS solve: the solved board keeps fill (7,5)
+capture: PASS solve: the solved board keeps fill (7,6)
+capture: PASS solve: the solved board keeps fill (8,5)
+capture: solve pack-000 ever_completed=true
+capture: shot 03-solved-10x10 -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept/worktree/docs/playtest/evidence/issue-105/2026-11-02-accept-graphical/screenshots/03-solved-10x10.png (error 0)
+TEL event=open time=1793557332.710 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: open pack-010 state=S2 marks_allowed=false elapsed=0:00
+capture: PASS pack-010: identity is served
+capture: PASS pack-010: the shell holds the id
+capture: PASS pack-010: size is 10/15/20 (got 15)
+capture: PASS pack-010: the board draws every row clue
+capture: PASS pack-010: the board draws every column clue
+capture: PASS pack-010: row 0 clue 1 2 == pack 1 2
+capture: PASS pack-010: row 1 clue 2 3 == pack 2 3
+capture: PASS pack-010: row 2 clue 8 == pack 8
+capture: PASS pack-010: row 3 clue 8 == pack 8
+capture: PASS pack-010: row 4 clue 9 == pack 9
+capture: PASS pack-010: row 5 clue 10 == pack 10
+capture: PASS pack-010: row 6 clue 12 == pack 12
+capture: PASS pack-010: row 7 clue 13 == pack 13
+capture: PASS pack-010: row 8 clue 12 == pack 12
+capture: PASS pack-010: row 9 clue 10 == pack 10
+capture: PASS pack-010: row 10 clue 9 == pack 9
+capture: PASS pack-010: row 11 clue 8 == pack 8
+capture: PASS pack-010: row 12 clue 8 == pack 8
+capture: PASS pack-010: row 13 clue 3 2 == pack 3 2
+capture: PASS pack-010: row 14 clue 2 1 == pack 2 1
+capture: PASS pack-010: column 0 empty
+capture: PASS pack-010: column 1 run count
+capture: PASS pack-010: column 1 run 0 is 3
+capture: PASS pack-010: column 2 run count
+capture: PASS pack-010: column 2 run 0 is 1
+capture: PASS pack-010: column 2 run 1 is 5
+capture: PASS pack-010: column 3 run count
+capture: PASS pack-010: column 3 run 0 is 9
+capture: PASS pack-010: column 4 run count
+capture: PASS pack-010: column 4 run 0 is 11
+capture: PASS pack-010: column 5 run count
+capture: PASS pack-010: column 5 run 0 is 11
+capture: PASS pack-010: column 6 run count
+capture: PASS pack-010: column 6 run 0 is 14
+capture: PASS pack-010: column 7 run count
+capture: PASS pack-010: column 7 run 0 is 15
+capture: PASS pack-010: column 8 run count
+capture: PASS pack-010: column 8 run 0 is 14
+capture: PASS pack-010: column 9 run count
+capture: PASS pack-010: column 9 run 0 is 11
+capture: PASS pack-010: column 10 run count
+capture: PASS pack-010: column 10 run 0 is 11
+capture: PASS pack-010: column 11 run count
+capture: PASS pack-010: column 11 run 0 is 9
+capture: PASS pack-010: column 12 run count
+capture: PASS pack-010: column 12 run 0 is 5
+capture: PASS pack-010: column 12 run 1 is 1
+capture: PASS pack-010: column 13 run count
+capture: PASS pack-010: column 13 run 0 is 3
+capture: PASS pack-010: column 14 empty
+capture: pack-010 size=15 fills=123 picture=01a17720-ca00-70f4-8e67-9ff8ea05c14e
+TEL event=ready time=1793557332.748 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.748 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS 15x15: ready after the beat
+capture: shot 04-ready-15x15 -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept/worktree/docs/playtest/evidence/issue-105/2026-11-02-accept-graphical/screenshots/04-ready-15x15.png (error 0)
+TEL event=open time=1793557332.811 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: open pack-180 state=S2 marks_allowed=false elapsed=0:00
+capture: PASS pack-180: identity is served
+capture: PASS pack-180: the shell holds the id
+capture: PASS pack-180: size is 10/15/20 (got 20)
+capture: PASS pack-180: the board draws every row clue
+capture: PASS pack-180: the board draws every column clue
+capture: PASS pack-180: row 0 clue 2 == pack 2
+capture: PASS pack-180: row 1 clue 3 == pack 3
+capture: PASS pack-180: row 2 clue 4 2 2 == pack 4 2 2
+capture: PASS pack-180: row 3 clue 9 == pack 9
+capture: PASS pack-180: row 4 clue 6 3 == pack 6 3
+capture: PASS pack-180: row 5 clue 12 == pack 12
+capture: PASS pack-180: row 6 clue 16 == pack 16
+capture: PASS pack-180: row 7 clue 16 == pack 16
+capture: PASS pack-180: row 8 clue 18 == pack 18
+capture: PASS pack-180: row 9 clue 17 == pack 17
+capture: PASS pack-180: row 10 clue 17 == pack 17
+capture: PASS pack-180: row 11 clue 18 == pack 18
+capture: PASS pack-180: row 12 clue 16 == pack 16
+capture: PASS pack-180: row 13 clue 16 == pack 16
+capture: PASS pack-180: row 14 clue 12 == pack 12
+capture: PASS pack-180: row 15 clue 3 6 == pack 3 6
+capture: PASS pack-180: row 16 clue 9 == pack 9
+capture: PASS pack-180: row 17 clue 2 2 4 == pack 2 2 4
+capture: PASS pack-180: row 18 clue 3 == pack 3
+capture: PASS pack-180: row 19 clue 2 == pack 2
+capture: PASS pack-180: column 0 run count
+capture: PASS pack-180: column 0 run 0 is 3
+capture: PASS pack-180: column 1 run count
+capture: PASS pack-180: column 1 run 0 is 4
+capture: PASS pack-180: column 2 run count
+capture: PASS pack-180: column 2 run 0 is 6
+capture: PASS pack-180: column 3 run count
+capture: PASS pack-180: column 3 run 0 is 1
+capture: PASS pack-180: column 3 run 1 is 6
+capture: PASS pack-180: column 3 run 2 is 1
+capture: PASS pack-180: column 4 run count
+capture: PASS pack-180: column 4 run 0 is 1
+capture: PASS pack-180: column 4 run 1 is 1
+capture: PASS pack-180: column 4 run 2 is 9
+capture: PASS pack-180: column 5 run count
+capture: PASS pack-180: column 5 run 0 is 13
+capture: PASS pack-180: column 6 run count
+capture: PASS pack-180: column 6 run 0 is 17
+capture: PASS pack-180: column 7 run count
+capture: PASS pack-180: column 7 run 0 is 18
+capture: PASS pack-180: column 8 run count
+capture: PASS pack-180: column 8 run 0 is 2
+capture: PASS pack-180: column 8 run 1 is 14
+capture: PASS pack-180: column 9 run count
+capture: PASS pack-180: column 9 run 0 is 2
+capture: PASS pack-180: column 9 run 1 is 10
+capture: PASS pack-180: column 9 run 2 is 2
+capture: PASS pack-180: column 10 run count
+capture: PASS pack-180: column 10 run 0 is 2
+capture: PASS pack-180: column 10 run 1 is 10
+capture: PASS pack-180: column 10 run 2 is 2
+capture: PASS pack-180: column 11 run count
+capture: PASS pack-180: column 11 run 0 is 14
+capture: PASS pack-180: column 11 run 1 is 2
+capture: PASS pack-180: column 12 run count
+capture: PASS pack-180: column 12 run 0 is 18
+capture: PASS pack-180: column 13 run count
+capture: PASS pack-180: column 13 run 0 is 17
+capture: PASS pack-180: column 14 run count
+capture: PASS pack-180: column 14 run 0 is 13
+capture: PASS pack-180: column 15 run count
+capture: PASS pack-180: column 15 run 0 is 9
+capture: PASS pack-180: column 15 run 1 is 1
+capture: PASS pack-180: column 15 run 2 is 1
+capture: PASS pack-180: column 16 run count
+capture: PASS pack-180: column 16 run 0 is 1
+capture: PASS pack-180: column 16 run 1 is 6
+capture: PASS pack-180: column 16 run 2 is 1
+capture: PASS pack-180: column 17 run count
+capture: PASS pack-180: column 17 run 0 is 6
+capture: PASS pack-180: column 18 run count
+capture: PASS pack-180: column 18 run 0 is 4
+capture: PASS pack-180: column 19 run count
+capture: PASS pack-180: column 19 run 0 is 3
+capture: pack-180 size=20 fills=220 picture=01a17720-ca00-7321-aee0-7cd7fd419ed0
+TEL event=ready time=1793557332.851 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS 20x20: ready after the beat
+capture: shot 05-ready-20x20 -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept/worktree/docs/playtest/evidence/issue-105/2026-11-02-accept-graphical/screenshots/05-ready-20x20.png (error 0)
+TEL event=open time=1793557332.913 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: open pack-010 state=S2 marks_allowed=false elapsed=0:00
+TEL event=ready time=1793557332.951 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=mark time=1793557332.967 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.967 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S4: a first mark applies
+capture: PASS S4: 0:18 is recorded
+TEL event=pause time=1793557332.984 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557332.984 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S4: the session pauses
+capture: PASS S4: the screen is paused
+capture: PASS S4: a paused mark changes nothing
+capture: PASS S4: elapsed is frozen while paused
+capture: shot 06-paused-15x15 -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept/worktree/docs/playtest/evidence/issue-105/2026-11-02-accept-graphical/screenshots/06-paused-15x15.png (error 0)
+TEL event=resume time=1793557333.029 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S4: the session resumes
+capture: PASS S4: Ready after resume
+TEL event=mark time=1793557333.031 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+TEL event=commit time=1793557333.031 session=issue-105-capture build=4.7.2-stable (official) story=E-puzzle outcome=pass
+capture: PASS S4: marks apply after resume
+capture: shot 07-resumed-15x15 -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept/worktree/docs/playtest/evidence/issue-105/2026-11-02-accept-graphical/screenshots/07-resumed-15x15.png (error 0)
+capture: PASS O3: an unknown id does not open
+capture: PASS O3: an unknown id changes nothing
+capture: RESULT pass

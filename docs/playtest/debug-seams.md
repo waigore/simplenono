@@ -1,6 +1,6 @@
 # Debug seams (S1–S5)
 
-How a playtest run drives the verification seams in [`specs/technical/verification.md`](../../specs/technical/verification.md) and the tools in [`specs/playtest/tools.md`](../../specs/playtest/tools.md). Code: `game/presentation/debug_seams.gd`, `telemetry.gd`, `state_snapshot.gd`, `dump_state.gd`.
+How a playtest run drives the verification seams in [`specs/technical/verification.md`](../../specs/technical/verification.md) and the tools in [`specs/playtest/tools.md`](../../specs/playtest/tools.md). Code: `game/presentation/debug_seams.gd`, `telemetry.gd`, `severity_log.gd`, `state_snapshot.gd`, `dump_state.gd`.
 
 ## One flag
 
@@ -42,6 +42,19 @@ TEL event=mark time=1793555667.727 session=issue-163a build=4.7.2-stable story=L
 ```
 
 Events: `open`, `ready`, `mark`, `solved`, `pause`, `resume`, `leave`, `commit`, `reset`. `commit` is recorded when an action changed the stored progress record; `reset` comes from the seam's stage reset (`reset_puzzle(<id>)`, `CTR-pack` O7) until the gallery owns it (#94).
+
+## Severity log (S4 / `I11`)
+
+The same plain Godot log carries one severity-tagged line per engine error or warning, plus a `session-start` / `session-end` pair. Each line names the run's session, build, and story, so it joins the `TEL` events above:
+
+```
+SEV level=info event=session-start time=1793560722.363 session=issue-163a build=4.7.2-stable story=US1.7 message=
+SEV level=warn event=engine time=1793560722.410 session=issue-163a build=4.7.2-stable story=US1.7 message=seam-probe-warning (core/variant/variant_utility.cpp:1033)
+SEV level=error event=engine time=1793560722.410 session=issue-163a build=4.7.2-stable story=US1.7 message=seam-probe-error (core/variant/variant_utility.cpp:1023)
+SEV level=info event=session-end time=1793560722.410 session=issue-163a build=4.7.2-stable story=US1.7 message=
+```
+
+Levels are `error`, `warn`, and `info`. Godot cannot write a line after it stops, so a log that ends without `session-end` is the crash (or kill) signal a playtest reads; pair it with the last `TEL` event to see where the run stopped. Ordinary `print` output is not duplicated. With the flag off no logger is installed and the log carries no `SEV` lines.
 
 ## Evidence
 

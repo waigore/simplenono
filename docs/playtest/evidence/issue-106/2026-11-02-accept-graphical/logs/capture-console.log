@@ -1,0 +1,232 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+TEL event=reset time=1793557954.655 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+TEL event=open time=1793557954.656 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: open state=S2 marks_allowed=false elapsed=0:00
+capture: PASS S1: fresh open is get-set-ready
+capture: PASS S1: marks are blocked during get-set-ready
+capture: PASS S1: a mark does not stick
+capture: PASS S1: elapsed stays 0:00 during the beat
+capture: shot 00-ready-blocked -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/00-ready-blocked.png (error 0)
+TEL event=ready time=1793557954.730 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+TEL event=commit time=1793557954.731 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: PASS P2: the beat ends, Ready
+capture: PASS P2: auto-cross wrote the rules' cells (20)
+capture: PASS P2: pack-000 has empty clue lines and they were crossed
+capture: PASS P2: elapsed ticks after Ready
+capture: shot 01-ready-auto-crossed -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/01-ready-auto-crossed.png (error 0)
+TEL event=mark time=1793557954.775 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+TEL event=commit time=1793557954.775 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: PASS S2: fill applies
+capture: shot 02-fill -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/02-fill.png (error 0)
+TEL event=mark time=1793557954.791 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+TEL event=commit time=1793557954.791 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: PASS S2: clear applies
+capture: shot 03-clear -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/03-clear.png (error 0)
+TEL event=mark time=1793557954.807 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+TEL event=commit time=1793557954.807 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: PASS S2: cross applies
+capture: PASS S2: DBG.2 returns a payload
+capture: S2 inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 5, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "cross", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "cross", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 5, "personal_best": <null> } }
+capture: shot 04-cross -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/04-cross.png (error 0)
+TEL event=mark time=1793557954.822 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+TEL event=commit time=1793557954.822 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: PASS S3: wrong fill applies
+capture: PASS S3: the wrong fill stays
+capture: PASS S3: the screen stays playable
+capture: PASS S3: the wrong fill does not solve
+capture: PASS S3: no completion is recorded
+capture: S3 wrong fill at (1,1) stays playable
+capture: shot 05-wrong-fill-playable -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/05-wrong-fill-playable.png (error 0)
+TEL event=pause time=1793557954.836 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: PASS S4: the session pauses
+capture: PASS S4: the screen is paused
+capture: PASS S4: a paused mark changes nothing
+capture: PASS S4: elapsed is frozen while paused
+capture: shot 06-paused-mark-blocked -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/06-paused-mark-blocked.png (error 0)
+TEL event=resume time=1793557954.859 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: PASS S4: the session resumes
+capture: PASS S4: Ready after resume
+TEL event=mark time=1793557954.860 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+TEL event=commit time=1793557954.860 session=issue-106-capture build=4.7.2-stable (official) story=PTD-ready-and-marks outcome=pass
+capture: PASS S4: marks apply after resume
+capture: shot 07-resumed-mark-applied -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/07-resumed-mark-applied.png (error 0)
+TEL event=leave time=1793557954.874 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=reset time=1793557954.875 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=open time=1793557954.876 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+capture: open state=S2 marks_allowed=false elapsed=0:00
+TEL event=ready time=1793557954.926 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.926 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+capture: PASS CF: Ready on the clean board
+TEL event=mark time=1793557954.943 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.943 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.944 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.944 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.945 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.945 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.945 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.946 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.946 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.946 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.947 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.947 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.948 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.948 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.949 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.949 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.950 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.950 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.950 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.951 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.951 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.951 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.952 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.952 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.953 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.953 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.954 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.954 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.954 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.955 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.955 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.955 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.956 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.956 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.957 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.957 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.958 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.958 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.958 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.958 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.959 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.959 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.960 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.960 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.961 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.961 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.961 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.961 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.962 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.962 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.963 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.963 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.964 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.964 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.964 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.965 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.965 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.965 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.966 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.966 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.967 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.967 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.967 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.968 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.968 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.968 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.969 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.969 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.970 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.970 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.970 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.971 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.971 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.971 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.972 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.972 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+capture: PASS CF: every non-solution cell is cross (58)
+TEL event=mark time=1793557954.973 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.973 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.973 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.974 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.974 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.974 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.975 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.975 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.976 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.976 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.976 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.976 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.977 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.977 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.978 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.978 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.978 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.978 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.979 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.979 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.980 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.980 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.980 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.981 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.981 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.981 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.982 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.982 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.983 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.983 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.983 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.983 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.984 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.984 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.985 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.985 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.985 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.986 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.986 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.986 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.987 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.987 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.988 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.988 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.988 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.988 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.989 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.989 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.990 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.990 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.990 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.990 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.991 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.991 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.992 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.992 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.993 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.993 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.993 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.993 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.994 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.994 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.995 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.995 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.995 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.995 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.996 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.996 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.997 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.997 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.997 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.998 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.998 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.998 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557954.999 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557954.999 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557955.000 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557955.000 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557955.000 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557955.000 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557955.001 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=commit time=1793557955.001 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+capture: PASS CF: one required fill is still open
+capture: CF before last fill inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["cross", "cross", "cross", "cross", "fill", "cross", "cross", "cross", "cross", "cross"], ["cross", "cross", "cross", "fill", "fill", "fill", "fill", "cross", "cross", "cross"], ["fill", "fill", "fill", "fill", "fill", "cross", "cross", "cross", "cross", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "cross", "cross", "cross", "cross", "fill", "fill", "fill", "fill", "fill"], ["cross", "cross", "cross", "fill", "fill", "fill", "fill", "cross", "cross", "cross"], ["cross", "cross", "cross", "cross", "cross", "clear", "cross", "cross", "cross", "cross"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["cross", "cross", "cross", "cross", "fill", "cross", "cross", "cross", "cross", "cross"], ["cross", "cross", "cross", "fill", "fill", "fill", "fill", "cross", "cross", "cross"], ["fill", "fill", "fill", "fill", "fill", "cross", "cross", "cross", "cross", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "cross", "cross", "cross", "cross", "fill", "fill", "fill", "fill", "fill"], ["cross", "cross", "cross", "fill", "fill", "fill", "fill", "cross", "cross", "cross"], ["cross", "cross", "cross", "cross", "cross", "clear", "cross", "cross", "cross", "cross"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 0, "personal_best": <null> } }
+capture: CF state dump -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/logs/state-pack-000.json
+capture: shot 08-fills-and-crosses -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/08-fills-and-crosses.png (error 0)
+TEL event=solved time=1793557955.017 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+TEL event=mark time=1793557955.017 session=issue-106-capture build=4.7.2-stable (official) story=PTD-crosses-and-fills outcome=pass
+capture: PASS CF: the last fill applies
+capture: PASS CF: the solve cleared the attempt
+capture: PASS CF: the solve is recorded
+capture: CF after solve inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "not_started", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": true, "in_progress": false, "marks": <null>, "elapsed": 0, "personal_best": 0 } }
+capture: shot 09-solved -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-106/docs/playtest/evidence/issue-106/2026-11-02-accept-graphical/screenshots/09-solved.png (error 0)
+capture: RESULT pass
