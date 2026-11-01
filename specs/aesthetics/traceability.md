@@ -23,5 +23,5 @@ Authoring rules: [`.agents/specs/rules/aesthetics/traceability.md`](../../.agent
 | Sound style | [`sound.md`](sound.md) | Applies |
 | Accessible color and type | [`palette.md`](palette.md), [`ui-style.md`](ui-style.md) | <!-- fill in --> |
 | Script coverage | [`ui-style.md`](ui-style.md) | <!-- fill in --> |
-| Reference images | [`references.md`](references.md) | <!-- fill in --> |
+| Reference images | [`references.md`](references.md) | Applies — puzzle screen mockup |
 | Sheets | [`sheets/`](sheets/) | Applies — palette sheet and lineup sheet |
