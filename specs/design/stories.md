@@ -13,3 +13,6 @@ Authoring rules: [`.agents/specs/rules/design/stories.md`](../../.agents/specs/r
 | [`entities/puzzle.md`](entities/puzzle.md) | yes | Full | [`stories/entities/puzzle.md`](stories/entities/puzzle.md) |
 | [`entities/cell.md`](entities/cell.md) | yes | Full | [`stories/entities/cell.md`](stories/entities/cell.md) |
 | [`entities/clue.md`](entities/clue.md) | yes | Full | [`stories/entities/clue.md`](stories/entities/clue.md) |
+| [`difficulty.md`](difficulty.md) | no | None — fixed challenge; no selectable levels to prove | — |
+| [`configuration.md`](configuration.md) | no | None — tunables cited by owner specs | — |
+| [`demo.md`](demo.md) | no | None — not offered | — |
