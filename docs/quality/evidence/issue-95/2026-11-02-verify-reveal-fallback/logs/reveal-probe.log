@@ -1,0 +1,36 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+open=true beat=true in_progress=false fills=42
+both absent 0ms stage=S2 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 150ms stage=S2 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 299ms stage=S2 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 300ms stage=S2 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 301ms stage=S3 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 450ms stage=S3 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 599ms stage=S3 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 600ms stage=S3 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 601ms stage=S1 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent 650ms stage=S1 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both absent: empty_frames=0 stages=["S2", "S3", "S1"] back=true
+picture absent 0ms stage=S2 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+picture absent 150ms stage=S2 fills=0.500 pixel=0.500 picture=0.000 drawable=2
+picture absent 299ms stage=S2 fills=0.003 pixel=0.997 picture=0.000 drawable=2
+picture absent 300ms stage=S2 fills=0.000 pixel=1.000 picture=0.000 drawable=1
+picture absent 301ms stage=S3 fills=0.000 pixel=1.000 picture=0.000 drawable=1
+picture absent 450ms stage=S3 fills=0.000 pixel=1.000 picture=0.000 drawable=1
+picture absent 599ms stage=S3 fills=0.000 pixel=1.000 picture=0.000 drawable=1
+picture absent 600ms stage=S3 fills=0.000 pixel=1.000 picture=0.000 drawable=1
+picture absent 601ms stage=S1 fills=0.000 pixel=1.000 picture=0.000 drawable=1
+picture absent 650ms stage=S1 fills=0.000 pixel=1.000 picture=0.000 drawable=1
+picture absent: empty_frames=0 stages=["S2", "S3", "S1"] back=true
+both present 0ms stage=S2 fills=1.000 pixel=0.000 picture=0.000 drawable=1
+both present 150ms stage=S2 fills=0.500 pixel=0.500 picture=0.000 drawable=2
+both present 299ms stage=S2 fills=0.003 pixel=0.997 picture=0.000 drawable=2
+both present 300ms stage=S2 fills=0.000 pixel=1.000 picture=0.000 drawable=1
+both present 301ms stage=S3 fills=0.000 pixel=0.997 picture=0.003 drawable=2
+both present 450ms stage=S3 fills=0.000 pixel=0.500 picture=0.500 drawable=2
+both present 599ms stage=S3 fills=0.000 pixel=0.003 picture=0.997 drawable=2
+both present 600ms stage=S3 fills=0.000 pixel=0.000 picture=1.000 drawable=1
+both present 601ms stage=S1 fills=0.000 pixel=0.000 picture=1.000 drawable=1
+both present 650ms stage=S1 fills=0.000 pixel=0.000 picture=1.000 drawable=1
+both present: empty_frames=0 stages=["S2", "S3", "S1"] back=true

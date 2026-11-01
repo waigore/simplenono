@@ -1,0 +1,157 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 2050382,
+	"flows_failed": [],
+	"flows_ok": [
+		"open",
+		"solve",
+		"back"
+	],
+	"log": "integration/logs/harness-1793575593-navigate.log",
+	"outcome": "pass",
+	"protocol": "navigate",
+	"reason": "",
+	"rows": [
+		{
+			"artifact": "integration/samples/navigate-samples.ndjson",
+			"axis": "frame-time",
+			"bar": "<= 16.7 ms",
+			"invariant": "I1",
+			"observation": "p95 frame time gallery 6.94 ms over 77 frames, reveal 6.94 ms over 173 frames (all windows 6.94 ms) over 250 frames",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/samples/navigate-hitches.ndjson",
+			"axis": "hitch-bound",
+			"bar": "<= 100 ms",
+			"invariant": "I2",
+			"observation": "longest frame 10.00 ms over 250 frames",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/logs/harness-1793575593-navigate.log",
+			"axis": "transition-latency",
+			"bar": "<= 500 ms",
+			"invariant": "I7",
+			"observation": "longest transition among transition:home-puzzle, transition:puzzle-result, transition:result-gallery: 287.9 ms",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/results/navigate.json",
+			"axis": "crash-free",
+			"bar": "No crash across open, solve, reset, and back",
+			"invariant": "I9",
+			"observation": "flows ran: back, open, solve",
+			"result": "pass"
+		}
+	],
+	"session_id": "harness-1793575593",
+	"started_at": 151215,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-mobile",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-desktop",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-beat",
+			"kind": "wait_frames",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-start",
+			"kind": "sample_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-frames",
+			"kind": "wait_frames",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home-puzzle",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "reveal-start",
+			"kind": "sample_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "puzzle-result",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "result-default",
+			"kind": "wait_ms",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "reveal-stop",
+			"kind": "sample_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "result-gallery",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-return",
+			"kind": "wait_frames",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-stop",
+			"kind": "sample_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Gallery, puzzle, and result navigation"
+}
