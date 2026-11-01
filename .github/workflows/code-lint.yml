@@ -21,10 +21,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # fill in: toolchain setup, then one step per Tooling row, e.g.
-      # - name: Format check
-      #   run: fmt --check .
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      # Remove this step once real steps exist; keep it if Tooling is `None`.
-      - name: Not configured
-        run: echo "::notice::No lint or format commands configured; see docs/coding-conventions.md"
+      # Pin matches the Tooling table in docs/coding-conventions.md (ADR-0007).
+      - name: Install gdtoolkit
+        run: pip install "gdtoolkit==4.5.0"
+
+      - name: Format check
+        run: gdformat --check game
+
+      - name: Lint
+        run: gdlint game
+

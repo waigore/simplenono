@@ -24,6 +24,18 @@ extends RefCounted
 ## calls and owns the open puzzle's rules, never the fields. Pause, resume, and leave
 ## (O4-O6), and the progress file are not built here (#96).
 
+## [b]CTR-attempt[/b] E3: (puzzle id, the post-auto-cross grid, the line status from
+## [b]CTR-rules[/b] O2), emitted each time the beat ends with the puzzle open. Connect
+## with [code]attempt.ready.connect(callable)[/code].
+signal ready(puzzle_id: String, grid: MarkGrid, line_status: LineStatusCheck)
+
+## [b]CTR-attempt[/b] E1: (puzzle id, elapsed). Emitted by the solve branch of
+## [method mark] (specs/technical/sequences/mark.md S13).
+signal solved(puzzle_id: String, elapsed: int)
+
+## [b]CTR-attempt[/b] E2: (puzzle id). Leave emits it (#96).
+signal left(puzzle_id: String)
+
 ## [b]CTR-attempt[/b] E3 bind name, kept so a shell can look the signal up by contract id.
 const READY_SIGNAL := "ready"
 
@@ -45,18 +57,6 @@ var _definition: PuzzleDefinition
 var _rules: Rules
 var _progress: ProgressRules
 var _beat_running: bool = false
-
-## [b]CTR-attempt[/b] E3: (puzzle id, the post-auto-cross grid, the line status from
-## [b]CTR-rules[/b] O2), emitted each time the beat ends with the puzzle open. Connect
-## with [code]attempt.ready.connect(callable)[/code].
-signal ready(puzzle_id: String, grid: MarkGrid, line_status: LineStatusCheck)
-
-## [b]CTR-attempt[/b] E1: (puzzle id, elapsed). Emitted by the solve branch of
-## [method mark] (specs/technical/sequences/mark.md S13).
-signal solved(puzzle_id: String, elapsed: int)
-
-## [b]CTR-attempt[/b] E2: (puzzle id). Leave emits it (#96).
-signal left(puzzle_id: String)
 
 
 ## [param pack] serves definitions and progress ([b]CTR-pack[/b] O3, O4, O5);
@@ -100,7 +100,10 @@ func open_result() -> OpenResult:
 ## the marks or attempt status changed (S11), allows marks when not paused (S12), and
 ## emits E3 with the puzzle id, grid, and line status (S13).
 ## A pause during the beat does not end it early (B3): the auto-cross still waits for this
-## call, and S12 leaves marks blocked while paused, so nothing is written to a paused grid.
+## call, and it is written at S8-S9 even while paused, because [code]GS.paused[/code] blocks
+## the player's marks rather than the beat's own stage change. S12 then leaves marks blocked
+## while paused ([code]GS.marks-allowed[/code] is already true, [code]GS.paused[/code] gates
+## it), so resume() makes them usable without reopening the puzzle.
 ## Returns true when this call ended the beat; otherwise nothing changes and it is false.
 func end_get_set_ready() -> bool:
 	if not _beat_running:
@@ -108,12 +111,11 @@ func end_get_set_ready() -> bool:
 	_beat_running = false
 	var marks_before := _state.marks().snapshot()
 	var was_in_progress := _state.in_progress()
-	var was_paused := _state.paused()
-	# S12 before S8 and S13: the rules report cells the attempt then writes, so the write
-	# needs marks allowed. A paused attempt keeps its still-clear cells clear, and its
-	# progress is untouched because nothing changed.
-	if not was_paused:
-		_state.allow_marks()
+	# S8-S9 need the stage flag: the empty-line auto-cross is the beat's own write, so the
+	# stage ends first. This is not S12's "marks allowed" for the player: AttemptState
+	# keeps [code]GS.paused[/code] on top of the stage flag, so a paused attempt still
+	# rejects player marks and does not tick (B3, pause.md S6).
+	_state.allow_marks()
 	# S8-S9: the rules report, the attempt writes. A cross sets in progress.
 	_state.auto_cross(_rules.auto_cross_cells(_state.marks()))
 	# S10.

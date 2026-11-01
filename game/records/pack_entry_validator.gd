@@ -8,7 +8,13 @@ extends RefCounted
 
 ## The field names of F1–F7 as they appear in the pack.
 const FIELDS: Array[String] = [
-	"id", "size", "row-clues", "col-clues", "solution-fills", "picture-id", "pixel-picture-id",
+	"id",
+	"size",
+	"row-clues",
+	"col-clues",
+	"solution-fills",
+	"picture-id",
+	"pixel-picture-id",
 ]
 const SIZES: Array[int] = [10, 15, 20]
 
@@ -58,15 +64,26 @@ static func definition_for(entry: Variant, reason: Array[String] = []) -> Puzzle
 	if _runs(filled, size, false) != col_clues:
 		reason.append("col-clues are not the runs of solution-fills")
 		return null
-	return PuzzleDefinition.new(
-		fields["id"], size, row_clues, col_clues, filled, fields["picture-id"], fields["pixel-picture-id"],
+	return (
+		PuzzleDefinition
+		. new(
+			fields["id"],
+			size,
+			row_clues,
+			col_clues,
+			filled,
+			fields["picture-id"],
+			fields["pixel-picture-id"],
+		)
 	)
 
 
 ## True when [param entry] repeats a field of an earlier accepted entry ([SCH-puzzle-def]
 ## I4, I5). The loader passes the ids of the entries it has already accepted.
 static func repeats_accepted(
-	entry: Dictionary, accepted_ids: Dictionary, accepted_pictures: Dictionary,
+	entry: Dictionary,
+	accepted_ids: Dictionary,
+	accepted_pictures: Dictionary,
 ) -> String:
 	var id: String = entry.get("id", "")
 	var picture: String = entry.get("picture-id", "")

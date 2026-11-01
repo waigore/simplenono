@@ -38,11 +38,16 @@ func _init(definition: PuzzleDefinition) -> void:
 	_solution_cells.resize(_size * _size)
 	for position in _solution:
 		_solution_cells[position.x * _size + position.y] = 1
-	_lines = ClueLines.from_definition({
-		ClueLines.FIELD_SIZE: definition.size,
-		ClueLines.FIELD_ROW_CLUES: definition.row_clues,
-		ClueLines.FIELD_COL_CLUES: definition.col_clues,
-	})
+	_lines = (
+		ClueLines
+		. from_definition(
+			{
+				ClueLines.FIELD_SIZE: definition.size,
+				ClueLines.FIELD_ROW_CLUES: definition.row_clues,
+				ClueLines.FIELD_COL_CLUES: definition.col_clues,
+			}
+		)
+	)
 
 
 ## O1 ([code]GS.is-solved[/code]): true when the player's fill set equals the solution
@@ -67,9 +72,21 @@ func line_status(marks: MarkGrid) -> LineStatusCheck:
 	var check := LineStatusCheck.new(_size)
 	for line in _lines.lines:
 		var result := _line_runs(_line_cells(cells, line), line)
-		check.statuses.append(LineStatus.new(
-			line.orientation, line.index, result[0], result[1],
-		))
+		(
+			check
+			. statuses
+			. append(
+				(
+					LineStatus
+					. new(
+						line.orientation,
+						line.index,
+						result[0],
+						result[1],
+					)
+				)
+			)
+		)
 	return check
 
 
@@ -85,13 +102,19 @@ func auto_cross_cells(marks: MarkGrid) -> Array[Vector2i]:
 	var positions: Array[Vector2i] = []
 	if not _lines.ok():
 		return positions
-	assert(marks.size == _size, "Grid size %s does not match the puzzle size %s" % [marks.size, _size])
+	assert(
+		marks.size == _size, "Grid size %s does not match the puzzle size %s" % [marks.size, _size]
+	)
 	var reported := {}
 	for line in _lines.lines:
 		if not line.is_empty():
 			continue
 		for step in _size:
-			var position := Vector2i(line.index, step) if line.orientation == ClueLine.Orientation.ROW else Vector2i(step, line.index)
+			var position := (
+				Vector2i(line.index, step)
+				if line.orientation == ClueLine.Orientation.ROW
+				else Vector2i(step, line.index)
+			)
 			if marks.mark_at(position.x, position.y) != CellMark.Mark.CLEAR:
 				continue
 			if reported.has(position):
@@ -112,7 +135,9 @@ func solution_fills() -> Array[Vector2i]:
 ## The player's fills as a row-major bitmap ([SCH-mark-grid] F2). Crosses and clear
 ## cells are 0, so they drop out of both checks (G2).
 func _fill_cells(marks: MarkGrid) -> PackedByteArray:
-	assert(marks.size == _size, "Grid size %s does not match the puzzle size %s" % [marks.size, _size])
+	assert(
+		marks.size == _size, "Grid size %s does not match the puzzle size %s" % [marks.size, _size]
+	)
 	var cells := PackedByteArray()
 	cells.resize(_size * _size)
 	for position in marks.filled_positions():
@@ -126,7 +151,11 @@ func _line_cells(cells: PackedByteArray, line: ClueLine) -> PackedByteArray:
 	var line_cells := PackedByteArray()
 	line_cells.resize(_size)
 	for step in _size:
-		var position := Vector2i(line.index, step) if line.orientation == ClueLine.Orientation.ROW else Vector2i(step, line.index)
+		var position := (
+			Vector2i(line.index, step)
+			if line.orientation == ClueLine.Orientation.ROW
+			else Vector2i(step, line.index)
+		)
 		line_cells[step] = cells[position.x * _size + position.y]
 	return line_cells
 
@@ -199,7 +228,10 @@ static func _arrangements(runs: Array[int], length: int) -> Array[PackedByteArra
 ## starting at [param start] or later. Runs placed before this call stay set in
 ## [param line]; later runs may only start after them.
 static func _place_runs(
-	runs: Array[int], run_index: int, start: int, line: PackedByteArray,
+	runs: Array[int],
+	run_index: int,
+	start: int,
+	line: PackedByteArray,
 	placements: Array[PackedByteArray],
 ) -> void:
 	if run_index == runs.size():

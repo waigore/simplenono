@@ -26,7 +26,8 @@ const RUN_CELL := 7
 
 
 ## The real progress rules plus the pack-call record this test reads.
-class RecordingProgress extends ProgressRules:
+class RecordingProgress:
+	extends ProgressRules
 	var solve_calls: Array = []
 	var commit_calls: int = 0
 
@@ -35,7 +36,10 @@ class RecordingProgress extends ProgressRules:
 		return super.record_solve(puzzle_id, elapsed)
 
 	func commit(
-		puzzle_id: String, marks: MarkGrid, elapsed: int, in_progress: bool,
+		puzzle_id: String,
+		marks: MarkGrid,
+		elapsed: int,
+		in_progress: bool,
 	) -> ProgressRecord:
 		commit_calls += 1
 		return super.commit(puzzle_id, marks, elapsed, in_progress)
@@ -43,7 +47,8 @@ class RecordingProgress extends ProgressRules:
 
 ## A pack that serves one definition and the recording progress, so the attempt under
 ## test reaches O3/O4-O6 through the same calls the shipped pack does.
-class RecordingPack extends Pack:
+class RecordingPack:
+	extends Pack
 	var recording_progress := RecordingProgress.new()
 
 	var _definition: PuzzleDefinition
@@ -123,8 +128,7 @@ func _ready_attempt(elapsed: int = 0) -> Attempt:
 func _listen_solved(attempt: Attempt) -> Array:
 	var emissions: Array = []
 	attempt.solved.connect(
-		func(puzzle_id: String, elapsed: int) -> void:
-			emissions.append([puzzle_id, elapsed])
+		func(puzzle_id: String, elapsed: int) -> void: emissions.append([puzzle_id, elapsed])
 	)
 	return emissions
 
@@ -156,7 +160,9 @@ func test_a_wrong_fill_is_unchanged_and_is_not_a_solve():
 	var result := attempt.mark(wrong.x, wrong.y, CellMark.Mark.FILL)
 
 	assert_not_null(result, "O2 returns the grid and line status")
-	assert_eq(result.marks.mark_at(wrong.x, wrong.y), CellMark.Mark.FILL, "PS1.4: the fill is unchanged")
+	assert_eq(
+		result.marks.mark_at(wrong.x, wrong.y), CellMark.Mark.FILL, "PS1.4: the fill is unchanged"
+	)
 	assert_false(attempt.rules().is_solved(result.marks), "PS1.4: is-solved is false")
 	assert_true(result.line_status.ok(), "S4: the line status is returned with the grid")
 	assert_eq(_pack.recording_progress.solve_calls.size(), 0, "PS1.4: no O6")
@@ -177,9 +183,15 @@ func test_a_solving_fill_stops_elapsed_records_the_solve_and_clears_the_attempt(
 	var result := attempt.mark(last.x, last.y, CellMark.Mark.FILL)
 
 	assert_true(attempt.rules().is_solved(result.marks), "PS1.5: is-solved is true")
-	assert_eq(_pack.recording_progress.solve_calls, [[TEAPOT_ID, 50]], "PS1.5: O6 once with the stopped elapsed")
+	assert_eq(
+		_pack.recording_progress.solve_calls,
+		[[TEAPOT_ID, 50]],
+		"PS1.5: O6 once with the stopped elapsed"
+	)
 	assert_eq(emissions, [[TEAPOT_ID, 50]], "PS1.5: E1 with the puzzle id and elapsed")
-	assert_eq(attempt.state().attempt_status(), AttemptState.Status.NOT_STARTED, "PS1.5: not started")
+	assert_eq(
+		attempt.state().attempt_status(), AttemptState.Status.NOT_STARTED, "PS1.5: not started"
+	)
 	assert_false(attempt.state().marks().has_any_mark(), "PS1.5: cell-marks are clear")
 	assert_eq(attempt.state().elapsed(), 0, "PS1.5: solve-elapsed is 0 after the clear")
 
@@ -199,17 +211,24 @@ func test_the_solve_returns_the_pre_clear_grid_and_line_status():
 
 	var result := attempt.mark(last.x, last.y, CellMark.Mark.FILL)
 
-	assert_eq(result.marks.mark_at(last.x, last.y), CellMark.Mark.FILL, "S12: the completed fill is in the return")
+	assert_eq(
+		result.marks.mark_at(last.x, last.y),
+		CellMark.Mark.FILL,
+		"S12: the completed fill is in the return"
+	)
 	assert_ne(result.marks, attempt.state().marks(), "S12: the return outlives the cleared attempt")
 	var solved_fills: Array[Vector2i] = _definition.solution_fills.duplicate()
 	solved_fills.sort()
 	assert_eq(
-		result.marks.filled_positions(), solved_fills,
+		result.marks.filled_positions(),
+		solved_fills,
 		"S12: the return still carries the solved fills",
 	)
 	assert_true(result.line_status.ok(), "S12: line status from rules O2")
 	for row in _definition.size:
-		assert_true(result.line_status.row(row).satisfied, "S12: row %s is satisfied by the solve" % row)
+		assert_true(
+			result.line_status.row(row).satisfied, "S12: row %s is satisfied by the solve" % row
+		)
 
 
 # PS1.6: Longer keeps PB
@@ -224,11 +243,17 @@ func test_a_longer_solve_keeps_the_personal_best():
 
 	attempt.mark(last.x, last.y, CellMark.Mark.FILL)
 
-	assert_eq(_pack.recording_progress.solve_calls, [[TEAPOT_ID, 50]], "PS1.6: O6 receives the longer solve")
+	assert_eq(
+		_pack.recording_progress.solve_calls,
+		[[TEAPOT_ID, 50]],
+		"PS1.6: O6 receives the longer solve"
+	)
 	var record := _pack.progress().record(TEAPOT_ID)
 	assert_eq(record.personal_best, 30, "PS1.6: PB stays 30")
 	assert_true(record.ever_completed, "PS1.6: ever-completed stays true")
-	assert_eq(attempt.state().attempt_status(), AttemptState.Status.NOT_STARTED, "PS1.6: not started")
+	assert_eq(
+		attempt.state().attempt_status(), AttemptState.Status.NOT_STARTED, "PS1.6: not started"
+	)
 
 
 # CTR-attempt G1: a mark while marks are blocked
@@ -243,7 +268,11 @@ func test_a_mark_while_marks_are_blocked_changes_nothing():
 	assert_not_null(result, "O2 still answers while blocked")
 	assert_eq(attempt.state().marks().snapshot(), before, "G1: the grid does not change")
 	assert_eq(result.marks.snapshot(), before, "G1: the return is the unchanged grid")
-	assert_eq(attempt.state().marks().mark_at(RUN_ROW, RUN_CELL), CellMark.Mark.CLEAR, "G1: the cell stays clear")
+	assert_eq(
+		attempt.state().marks().mark_at(RUN_ROW, RUN_CELL),
+		CellMark.Mark.CLEAR,
+		"G1: the cell stays clear"
+	)
 	assert_eq(_pack.recording_progress.solve_calls.size(), 0, "G1: no O6")
 	assert_eq(_pack.recording_progress.commit_calls, 0, "G1: no O5")
 	assert_eq(emissions.size(), 0, "G1: no E1")
@@ -261,7 +290,9 @@ func test_a_mark_while_paused_changes_nothing():
 
 	assert_not_null(result, "O2 still answers while paused")
 	assert_eq(attempt.state().marks().snapshot(), before, "G1: the grid does not change")
-	assert_eq(result.marks.mark_at(RUN_ROW, RUN_CELL), CellMark.Mark.CLEAR, "G1: the cell stays clear")
+	assert_eq(
+		result.marks.mark_at(RUN_ROW, RUN_CELL), CellMark.Mark.CLEAR, "G1: the cell stays clear"
+	)
 	assert_eq(_pack.recording_progress.solve_calls.size(), 0, "G1: no O6")
 	assert_eq(_pack.recording_progress.commit_calls, commits_before, "G1: no O5")
 	assert_eq(emissions.size(), 0, "G1: no E1")
@@ -296,8 +327,14 @@ func test_the_solve_branch_skips_the_commit_and_other_marks_commit():
 	var wrong := _clear_off_solution(attempt)
 
 	attempt.mark(wrong.x, wrong.y, CellMark.Mark.FILL)
-	assert_eq(_pack.recording_progress.commit_calls, commits_before + 1, "S6: a non-solving mark commits through O5")
-	assert_eq(_pack.recording_progress.solve_calls.size(), 0, "S6: a non-solving mark does not call O6")
+	assert_eq(
+		_pack.recording_progress.commit_calls,
+		commits_before + 1,
+		"S6: a non-solving mark commits through O5"
+	)
+	assert_eq(
+		_pack.recording_progress.solve_calls.size(), 0, "S6: a non-solving mark does not call O6"
+	)
 
 	# Undo the wrong fill: the fills are one short of the solution again.
 	attempt.mark(wrong.x, wrong.y, CellMark.Mark.CLEAR)
@@ -312,6 +349,8 @@ func test_the_solve_branch_skips_the_commit_and_other_marks_commit():
 func test_a_mark_with_no_open_puzzle_returns_nothing():
 	var attempt := Attempt.new(_pack)
 
-	assert_null(attempt.mark(RUN_ROW, RUN_CELL, CellMark.Mark.FILL), "a mark cannot revive a closed attempt")
+	assert_null(
+		attempt.mark(RUN_ROW, RUN_CELL, CellMark.Mark.FILL), "a mark cannot revive a closed attempt"
+	)
 	assert_eq(_pack.recording_progress.commit_calls, 0, "no O5")
 	assert_eq(_pack.recording_progress.solve_calls.size(), 0, "no O6")

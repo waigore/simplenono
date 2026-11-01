@@ -1,0 +1,8 @@
+# gdformat configuration for the main game tree.
+#
+# Same exclusions as .gdlintrc: vendored addons and pocs/ stay out of the
+# formatting pass (docs/coding-conventions.md; docs/pocs.md).
+excluded_directories: !!set
+  addons: null
+  pocs: null
+line_length: 100
