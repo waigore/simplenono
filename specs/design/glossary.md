@@ -21,4 +21,4 @@ Authoring rules: [`.agents/specs/rules/design/glossary.md`](../../.agents/specs/
 | Puzzle | One pack entry: size, clues, solution, progress, and gallery thumbnail. | [`entities/puzzle.md`](entities/puzzle.md) |
 | Reset | Gallery action that makes a puzzle new: clears marks, elapsed, personal best, and ever completed; attempt → not started. | [`end-conditions.md`](end-conditions.md), [`progression.md`](progression.md) |
 | Solve check | Whether the player’s fill set equals the solution fill set; crosses ignored; not evaluated per cell for correctness while marking. | [`loops/solve.md`](loops/solve.md), [`game-state.md`](game-state.md) |
-| Thumbnail | Solution picture shown in the gallery only when the puzzle is ever completed; not shown on the board. | [`entities/puzzle.md`](entities/puzzle.md) |
+| Thumbnail | Full-colour solution picture shown in the gallery only when the puzzle is ever completed; not shown on the board. | [`entities/puzzle.md`](entities/puzzle.md) |
