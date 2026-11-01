@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../../.agents/spe
 | P1 | Orientation row or column | PS1.1 |
 | P2 | Line index | PS1.1 |
 | P3 | Run lengths; empty = all-empty | PS1.1, PS1.4 |
-| S1 | Active when not satisfied | PS1.2 |
+| S1 | Active when not satisfied | PS1.2b |
 | S2 | Satisfied when fills match runs | PS1.2 |
 | I1 | Guides fills (consult) | PS1.3 |
 | I2 | Line error vs runs | PS1.3 |
@@ -34,17 +34,24 @@ Then there are N row clue lines and N column clue lines
 And each has orientation, index 0..N-1, and ordered run lengths (or empty list)
 ```
 
-### PS1.2: Active to satisfied
+### PS1.2: Exact realization satisfies
 
-- **Proves**: S1, S2, I4
+- **Proves**: S2, I4
 
 ```gherkin
-Given fills on a line do not exactly realize its runs
+Given marks-allowed is true and the line's fills do not exactly realize its runs, with exactly one required fill missing
+When the player fills that missing cell
+Then the clue line is Satisfied (S2)
+```
+
+### PS1.2b: Broken match returns to Active
+
+- **Proves**: S1
+
+```gherkin
+Given the clue line is Satisfied (S2) and marks-allowed is true
+When the player clears one fill the runs require
 Then the clue line is Active (S1)
-When fills exactly realize the runs (non-runs are non-fill)
-Then the clue line is Satisfied (S2) with dim cue
-When a fill breaks the match
-Then the clue line returns to Active (S1)
 ```
 
 ### PS1.3: Contradiction raises line error

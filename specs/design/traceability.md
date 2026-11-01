@@ -18,7 +18,7 @@ Authoring rules: [`.agents/specs/rules/design/traceability.md`](../../.agents/sp
 
 | Topic | Covered in | Applicability |
 |-------|------------|---------------|
-| Core loop and mechanics | [`loops/`](loops/), [`features/`](features/) | Applies (`loops/solve.md`) |
+| Core loop and mechanics | [`loops/`](loops/) | Applies (`loops/solve.md`) |
 | Characters | [`characters/`](characters/) | N/A — no avatar or NPCs |
 | Entities (items, objects, hazards) | [`entities/`](entities/) | Applies (`entities/puzzle.md`, `entities/cell.md`, `entities/clue.md`) |
 | World and narrative | [`world.md`](world.md) | Applies (no diegetic story; clinical abstract space) |

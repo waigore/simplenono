@@ -38,7 +38,7 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 
 ## Hidden and visible state
 
-- **H1**: Solution unknown on the board; gallery thumbnail only after ever-completed.
+- **H1**: The player cannot know a puzzle's fill set while solving; the stored pixel picture becomes knowable after a successful solve, the stored generated picture (gallery thumbnail) once ever-completed.
 - **H2**: Ever-completed, attempt, marks, elapsed, paused, personal best, completion rate, line errors, clue-satisfied — knowable.
 
 ## Randomness and determinism
