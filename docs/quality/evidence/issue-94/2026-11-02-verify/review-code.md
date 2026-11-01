@@ -3,8 +3,8 @@
 ## Code review: Pass
 
 **Target:** PR #194 (`9d6ffb7`), PR #199 (`52e8275`), PR #213 (`48d2b58`) code diffs, reviewed at
-`48d2b58`. Sources: [`docs/solid.md`](../../../../docs/solid.md),
-[`docs/coding-conventions.md`](../../../../docs/coding-conventions.md).
+`48d2b58`. Sources: [`docs/solid.md`](../../../../../docs/solid.md),
+[`docs/coding-conventions.md`](../../../../../docs/coding-conventions.md).
 
 ### Findings
 
