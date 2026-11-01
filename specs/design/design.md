@@ -23,7 +23,7 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
   - Shared online packs and player-authored puzzles. Rejected because both are vision non-goals.
 
 - **Platform implications**:
-  - Windows, macOS, Linux, iOS, and Android share one local pack, the same 10×10 and 15×15 boards, free-order selection, and the same personal-best rule.
+  - Windows, macOS, Linux, iOS, and Android share one local pack, the same 10×10, 15×15, and 20×20 boards, free-order selection, and the same personal-best rule.
   - Short sessions on Windows, macOS, Linux, iOS, and Android → a session is one puzzle or a few.
 
 ## Traceability
