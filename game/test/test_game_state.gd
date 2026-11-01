@@ -222,6 +222,21 @@ func test_completion_rate_is_ever_completed_over_pack_size() -> void:
 	assert_eq(progress.completion_rate(), 0.015, "PS1.2: the shipped pack divides by 200")
 
 
+## Z1 / END.W2: the pack is finished only once its completion rate reaches 1, for a pack
+## of any size, and never for an empty pack.
+func test_the_pack_is_finished_only_at_completion_rate_one() -> void:
+	var progress := ProgressRules.new()
+	assert_false(progress.pack_finished(3), "Z1: nothing solved is not finished")
+	assert_false(progress.pack_finished(0), "Z1: an empty pack is never finished")
+	progress.record_solve("a", 10)
+	progress.record_solve("b", 10)
+	assert_false(progress.pack_finished(3), "Z1: two of three is not finished")
+	progress.record_solve("c", 10)
+	assert_true(progress.pack_finished(3), "Z1: three of three is finished")
+	assert_eq(progress.completion_rate(3), 1.0, "END.W2: finished is completion rate 1")
+	assert_false(progress.pack_finished(), "Z1: three of the shipped two hundred")
+
+
 ## PS1.5 / H1: the O1 thumbnail flag is true exactly when the puzzle is ever-completed,
 ## which is what makes the generated picture knowable. The picture itself is deferred to
 ## #94 / #97 / #98.

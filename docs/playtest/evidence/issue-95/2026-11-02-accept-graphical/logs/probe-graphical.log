@@ -1,0 +1,55 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+probe95: build view=gallery
+probe95: PASS PTU-settings S1: start on UI-gallery
+probe95: PASS PTU-settings S1: gallery shows its C3 (Settings)
+probe95: PASS PTU-settings S1 / T2: C3 opens UI-settings
+probe95: shot p0-settings-default -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p0-settings-default.png (error 0)
+probe95: PASS UI-settings US1.1: haptics default on
+probe95: PASS UI-settings US1.1: mute default off
+probe95: PASS UI-settings US1.1 R1: shows Haptics On
+probe95: PASS UI-settings US1.1 R1: shows Mute music Off
+probe95: PASS UI-settings US1.1: C1-C3 available
+probe95: shot p1-settings-before-toggle -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p1-settings-before-toggle.png (error 0)
+probe95: PASS UI-settings US1.2 C1: the flag flips
+probe95: PASS UI-settings US1.2 C1: shows Haptics Off
+probe95: PASS UI-settings US1.3 C2: the flag flips
+probe95: PASS UI-settings US1.3 C2: shows Mute music On
+probe95: shot p2-settings-after-toggle -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p2-settings-after-toggle.png (error 0)
+probe95: PASS PTU-settings S3 / T6: C3 returns to UI-gallery
+probe95: shot p3-gallery-after-settings-back -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p3-gallery-after-settings-back.png (error 0)
+probe95: PASS PTU-settings S3: settings reopens from gallery
+probe95: PASS PTU-settings P2: haptics still Off after reopen
+probe95: PASS PTU-settings P2: mute still On after reopen
+probe95: shot p4-settings-reopened-stuck -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p4-settings-reopened-stuck.png (error 0)
+probe95: PASS PTU-play-puzzle S1: gallery offers a tile for pack-000
+probe95: PASS PTU-play-puzzle P2 setup: pack-000 reads not started before the run
+probe95: shot p5-gallery-before-play -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p5-gallery-before-play.png (error 0)
+probe95: PASS PTU-play-puzzle S1 / T1: tile C1 opens UI-puzzle
+probe95: PASS PTU-play-puzzle S2: the beat blocks marks first
+probe95: shot p6-puzzle-get-set-ready -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p6-puzzle-get-set-ready.png (error 0)
+probe95: PASS PTU-play-puzzle S2: marks are allowed after ready
+probe95: shot p7-puzzle-marks-allowed -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p7-puzzle-marks-allowed.png (error 0)
+probe95: PASS PTU-play-puzzle S3: the pack serves pack-000
+probe95: PASS PTU-play-puzzle US1.4b: a partial grid stays on UI-puzzle (41 staged)
+probe95: shot p8-puzzle-one-fill-left -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p8-puzzle-one-fill-left.png (error 0)
+probe95: PASS PTU-play-puzzle S3 / END.W1: the last fill solves the puzzle
+probe95: PASS PTU-play-puzzle S3 / T4: the solve opens UI-result
+probe95: PASS UI-result US1.1: the morph is running on open
+probe95: PASS UI-result US1.1: no controls during the morph
+probe95: shot p9-result-morph-start -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p9-result-morph-start.png (error 0)
+probe95: morph reached S1 in 560.6 ms over 69 real frames (2 x stage = 600 ms)
+probe95: PASS UI-result US1.2: the morph finishes at S1 Default
+probe95: PASS UI-result US1.2: nothing is morphing after both stages
+probe95: PASS UI-result US1.2: the morph spends both stages (560 ms, 2 x 300)
+probe95: PASS UI-result US1.2 R2: C1 reads Back to gallery
+probe95: PASS UI-result US1.2: C1 Back is available at Default
+probe95: shot p10-result-default -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p10-result-default.png (error 0)
+probe95: PASS PTU-play-puzzle S4: the result shows its C1 control
+probe95: PASS PTU-play-puzzle S4 / T5: C1 returns to UI-gallery
+probe95: shot p11-gallery-after-result-back -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-95/2026-11-02-accept-graphical/screenshots/p11-gallery-after-result-back.png (error 0)
+probe95: PASS PTU-play-puzzle P2: pack-000 reads Done after the solve
+probe95: status before=Not started done_before=false after=Done
+probe95: PASS PTU-play-puzzle P2: gallery completion moved past zero
+probe95: RESULT pass (36 checks, 12 shots)

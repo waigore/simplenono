@@ -1,0 +1,10 @@
+accept95: shipped manifest entries: 5
+  01a19655-13d1-7499-ad4d-6079f4889628 -> ['res://assets/sfx/fill-tick.wav']
+  01a1965b-6869-7ff0-9348-cee90fb49dbc -> ['res://assets/sfx/cross-tick.wav']
+  01a19663-6589-78f1-8c76-c5a42d2a947e -> ['res://assets/sfx/clear-tick.wav']
+  01a19664-1770-773c-a39d-c50fde9479e2 -> ['res://assets/music/bed.mp3']
+  01a19665-8f4b-7165-9cff-1be30a753fd6 -> ['res://assets/music/solve-sting.mp3']
+accept95: pack-000 picture ids and their manifest state
+  picture-id 01a17720-ca00-71f5-8156-87c953625822 -> ABSENT from assets/manifest.json
+  pixel-picture-id 01a17720-ca00-7255-80b3-eb4ab429fc0b -> ABSENT from assets/manifest.json
+accept95: catalog records present: 5 (all audio)
