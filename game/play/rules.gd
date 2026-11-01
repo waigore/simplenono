@@ -1,12 +1,13 @@
 class_name Rules
 extends RefCounted
-## [b]CMP-rules[/b] R1-R2: the whole-puzzle solve check and the clue-line cues.
+## [b]CMP-rules[/b] R1-R3: the whole-puzzle solve check, the clue-line cues, and the
+## empty-line auto-cross cells.
 ##
-## Two pure checks over one open puzzle's clues, solution, and current marks
-## ([b]CTR-rules[/b] O1, O2). The same inputs return the same result (G1), crosses
-## take no part in either check (G2), and nothing here writes the grid or any other
-## state (G3, [SCH-line-status] I2). Not built: R3 auto-cross cells, which sits on the
-## ready sequence and lands with [b]CMP-attempt[/b].
+## Three pure checks over one open puzzle's clues, solution, and current marks
+## ([b]CTR-rules[/b] O1, O2, O3). The same inputs return the same result (G1), crosses
+## take no part in the fill checks (G2), and nothing here writes the grid or any other
+## state (G3, [SCH-line-status] I2). R3 only reports where the attempt should cross
+## (specs/technical/sequences/open.md S8); the attempt writes them at S9.
 ##
 ## Every value this component reports is derived per call. [code]GS.is-solved[/code],
 ## [code]GS.row-error[/code], [code]GS.col-error[/code], and [code]GS.clue-satisfied[/code]
@@ -70,6 +71,35 @@ func line_status(marks: MarkGrid) -> LineStatusCheck:
 			line.orientation, line.index, result[0], result[1],
 		))
 	return check
+
+
+## O3 ([code]GS.auto-cross-cells[/code]): the still-clear positions on every line whose
+## clue run list is empty (R3, specs/design/entities/clue.md I3, P3). Rows come from F3
+## and columns from F4; a line with any run length contributes nothing, and a cell that is
+## already filled or crossed is not still clear (specs/design/entities/cell.md I5). A
+## position where an empty row meets an empty column is returned once, not once per line:
+## it is one still-clear cell. The result is row-major, so the same inputs give the same
+## order (G1). Only the attempt writes them (G3); a definition whose clues do not map to
+## lines returns no positions, like [method line_status] returns its error.
+func auto_cross_cells(marks: MarkGrid) -> Array[Vector2i]:
+	var positions: Array[Vector2i] = []
+	if not _lines.ok():
+		return positions
+	assert(marks.size == _size, "Grid size %s does not match the puzzle size %s" % [marks.size, _size])
+	var reported := {}
+	for line in _lines.lines:
+		if not line.is_empty():
+			continue
+		for step in _size:
+			var position := Vector2i(line.index, step) if line.orientation == ClueLine.Orientation.ROW else Vector2i(step, line.index)
+			if marks.mark_at(position.x, position.y) != CellMark.Mark.CLEAR:
+				continue
+			if reported.has(position):
+				continue
+			reported[position] = true
+			positions.append(position)
+	positions.sort()
+	return positions
 
 
 ## [code]GS.solution[/code] as the open puzzle holds it ([SCH-puzzle-def] F5), row-major.
