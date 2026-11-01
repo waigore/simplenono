@@ -25,7 +25,14 @@ Exactly one of these on each `type:epic` / `type:task` / `type:defect` issue.
 | pending-verification | pending-implementation | Fail verification comment |
 | pending-acceptance | accepted | Accept comment with test evidence |
 | pending-acceptance | pending-implementation | Fail accept (+ defect link) |
+| pending-acceptance | pending-verification | Missing deterministic record: accept returns the issue so verify can produce it |
 | pending-acceptance | pending-clarification | Needs PO clarification |
+
+## Why `pending-acceptance` → `pending-verification` exists
+
+Verification is the only stage that may run `run-quality-evaluators` in `deterministic` mode, and its Pass now requires that record for the deliverable commit ([`workflow-deterministic-record.md`](../../../../docs/issues/workflow-deterministic-record.md)). If an issue nonetheless reaches `pending-acceptance` without a record (the deliverable moved after verification, or verification Passed without one), acceptance must not run that mode and must not dead-end. The accepted return route is this transition: acceptance comments the missing record and gates back so the one legal producer runs on this issue.
+
+It is not a general back-step for a late defect. A game or interface miss at acceptance is still Fail → `pending-implementation` (+ defect).
 
 ## Label swap (`gh`)
 

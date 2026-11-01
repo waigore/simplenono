@@ -14,8 +14,8 @@ Exactly **one** `status:*` label per typed issue. Skills swap via `enforce-task-
 | `status:pending-implementation` | Passed review; ready or in progress |
 | `status:pending-verification` | Implemented; awaiting verification |
 | `status:pending-acceptance` | Verified; awaiting acceptance testing |
-| `status:accepted` | Accepted; acceptance skills **leave open**. [`project-planner-agent`](../../.agents/skills/project-planner-agent/SKILL.md) may **close** accepted issues (leaves first, then parents when children are closed/catered for). |
-| `status:pending-redefinition` | Comment cap hit; locked. Details: [workflow-comment-cap.md](workflow-comment-cap.md). |
+| `status:accepted` | Accepted; acceptance skills **leave open**. [`project-planner-agent`](../../.agents/skills/project-planner-agent/SKILL.md) may **close** accepted issues (leaves first, then parents once children are closed/catered for). |
+| `status:pending-redefinition` | Comment cap hit; locked. [workflow-comment-cap.md](workflow-comment-cap.md). |
 
 Catalog: [`docs/labels.md`](../labels.md). Comment cap: [workflow-comment-cap.md](workflow-comment-cap.md).
 
@@ -30,21 +30,24 @@ Evidence is freeform prose; intent clear. Post it as an issue comment (refinemen
 | From | Action / evidence | To |
 |------|-------------------|-----|
 | pending-review | Pass review (latest comment); body consistent; deliverables/AC align with parent or project vision; note new requirements | pending-implementation |
-| pending-review | Fail review: problems + refinement direction. Cascade another issue only when [workflow-cascade.md](workflow-cascade.md) authorizes it | pending-refinement (self; others only when cascade is authorized) |
+| pending-review | Fail review: problems + refinement direction. Cascade only as [workflow-cascade.md](workflow-cascade.md) allows | pending-refinement |
 | pending-review | Gaps that cannot be inferred from project scope: clarification questions | pending-clarification |
 | pending-refinement | Refined issue body + summary comment | pending-review |
 | pending-clarification | PO clarification comment | pending-review, or pending-refinement if refine still needed |
-| pending-implementation | Comment summarizing deliverables (PRs/commits) | pending-verification |
-| pending-verification | Independent pass: deliverables, standards, tests; deterministic rubric record when an axis applies | pending-acceptance |
+| pending-implementation | Deliverables comment (PRs/commits) | pending-verification |
+| pending-verification | Independent pass: deliverables, standards, tests; deterministic record when an axis applies | pending-acceptance |
 | pending-verification | Fail: detail issues | pending-implementation |
-| pending-acceptance | Accept: AC evidence; related PRs; cite deterministic rubric record; llm-judge record when an axis applies | accepted (acceptance leaves open; planner may close later) |
+| pending-acceptance | Accept: AC evidence; related PRs; cite deterministic record; llm-judge when an axis applies | accepted (leaves open; planner may close later) |
+| pending-acceptance | Missing deterministic record: return to verify | pending-verification |
 | pending-acceptance | Fail (game/interface): link created defect | pending-implementation |
 | pending-acceptance | Spec/ambiguity blocks testing (no defect) | pending-clarification |
 | pending-acceptance | Cannot test without PO input | pending-clarification |
 
-Reviews are holistic against the whole issue and its parent/sibling relationships, including after prior refinements.
+Reviews are holistic against the whole issue and its parent/sibling relationships, including after prior refinements. Fail-review cascades: [workflow-cascade.md](workflow-cascade.md).
 
-Fail-review cascades: [workflow-cascade.md](workflow-cascade.md).
+## Deterministic record
+
+[workflow-deterministic-record.md](workflow-deterministic-record.md).
 
 ## Skills
 

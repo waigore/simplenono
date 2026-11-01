@@ -25,6 +25,17 @@ The harness never writes `manifest.md`: that stays the evaluator's record of the
 
 A run writes a folder only when it selects at least one Applies axis. A run that selects nothing writes nothing.
 
+## Who writes a record
+
+| Mode | Who may write it | Who may cite it |
+|------|------------------|-----------------|
+| `deterministic` | `verify-project-issue` (the only legal producer), or a user-directed `run-quality-evaluators` run | Verification, and acceptance |
+| `llm-judge` | `accept-project-issue`, or a user-directed run | Acceptance |
+
+A `manifest.md` names its issue, mode, and deliverable commit. Whoever writes it does not change the rubric, the target, or the mode.
+
 ## Who cites it
 
-Verification cites the latest `deterministic` run for that issue and deliverable commit. Acceptance cites that same run for deterministic axes and cites the latest `llm-judge` run for qualitative axes. Acceptance does not replace the deterministic run.
+Verification cites the latest `deterministic` run for that issue and deliverable commit, and cannot Pass without it when an Applies deterministic axis can move. Acceptance cites that same run for deterministic axes and cites the latest `llm-judge` run for qualitative axes.
+
+Acceptance cites a deterministic record it did not produce. Citing means linking the path and its deliverable commit in the acceptance comment. Acceptance does not edit, re-run, or re-mode that record. If none covers the deliverable commit, acceptance comments and gates back to `pending-verification` ([`workflow-deterministic-record.md`](../../issues/workflow-deterministic-record.md)) instead of waiting on `pending-acceptance`.
