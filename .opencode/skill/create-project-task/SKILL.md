@@ -2,13 +2,13 @@
 name: create-project-task
 description: |-
   Create a GitHub Task issue (type:task) from docs/issues/; attach parent via
-  sub-issue and wire native blocked-by dependencies.
+  sub-issue. Blocked-by is banned (hierarchy.md).
   Use when the user asks for a concrete unit of agent work or a child of an epic/task.
   Use proactively when breaking an epic into implementable work items.
 
   Examples:
   - user: "Add a task under epic #3 for the movement controller" → create, sub-issue under #3
-  - user: "Task for HUD, blocked by #10, parent #3" → create + parent + blocked-by
+  - user: "Task for HUD, parent #3" → create + parent
   - user: "Draft task only, don't file it" → --no-create
 ---
 

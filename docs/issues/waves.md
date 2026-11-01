@@ -17,7 +17,7 @@ Every wave milestone **must** have a description that states the wave’s **expe
 
 ## Foundation
 
-Wave 1 always includes **bootstrap** and the **asset pipeline** where those are formalized, plus any other formalized framework substrate the wave-1 verticals need. Do not file tasks to fill placeholder specs. Foundation epics/tasks are ordered first with native **blocked-by** so later epics reuse them. Prefer thin foundation that unlocks the wave; do not hide vertical play inside a catch-all “systems” epic.
+Wave 1 always includes **bootstrap** and the **asset pipeline** where those are formalized, plus any other formalized framework substrate the wave-1 verticals need. Do not file tasks to fill placeholder specs. Prefer thin foundation that unlocks the wave; do not hide vertical play inside a catch-all “systems” epic. Do not use blocked-by ([hierarchy.md](hierarchy.md)).
 
 ## Vertical epics
 
@@ -25,7 +25,7 @@ Prefer self-contained vertical slices (design + UX + tech + assets for one outco
 
 ## PoCs and demo mode
 
-There is **no** global “PoC before every main-tree edit” gate. Already-specced work does not need a new PoC. Product behavior that is not in a formalized spec goes back to `capture-requirements`. Open requests in [`docs/requirements/poc-requests.md`](../requirements/poc-requests.md) are planner debt to surface; file as tasks/epics when useful. Use native **blocked-by** only when a dependent claim must wait on that PoC. A kept PoC returns through [`poc-promotion.md`](../poc-promotion.md).
+There is **no** global “PoC before every main-tree edit” gate. Already-specced work does not need a new PoC. Product behavior that is not in a formalized spec goes back to `capture-requirements`. Open requests in [`docs/requirements/poc-requests.md`](../requirements/poc-requests.md) are planner debt to surface; file as tasks/epics when useful. Do not block other issues on a PoC via blocked-by ([hierarchy.md](hierarchy.md)). A kept PoC returns through [`poc-promotion.md`](../poc-promotion.md).
 
 Product **demo mode** (when [`specs/design/demo.md`](../../specs/design/demo.md) Offering is offered) is ordinary main-tree work, not a `pocs/` folder and not a wave-start blocker by itself.
 
@@ -35,7 +35,7 @@ Product **demo mode** (when [`specs/design/demo.md`](../../specs/design/demo.md)
 - Create milestones for every planned wave (title + **expected-deliverable description**); file epics for those waves.
 - File **leaf tasks only for the wave being expanded** (first run: wave 1). Later waves keep epic stubs until a later `plan-project-waves` run expands them.
 - Do not cut new waves to cover gaps in old ones—expand existing epics/tasks instead.
-- Issue bodies use [body-shapes.md](body-shapes.md) only; wave metadata lives in Notes / AC / Dependencies.
+- Issue bodies use [body-shapes.md](body-shapes.md) only; wave metadata lives in Notes / AC.
 
 ## Auditing a filed wave
 

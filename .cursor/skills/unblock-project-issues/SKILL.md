@@ -1,15 +1,14 @@
 ---
 name: unblock-project-issues
 description: |-
-  Clear a native blocked-by link when the default branch already satisfies the
-  blocker's done-conditions, or when the edge is obsolete / never warranted.
-  Acceptance and closed state do not gate clearance. Use when unblocking
-  issues, checking whether a block still holds, or at the start of a
-  project-planner-agent pass. Does not add dependencies or close issues.
+  Critically examine leftover native blocked-by edges and delete those not
+  justified under the hierarchy ban (preferred sequence, soft order, and
+  relatedness are never justified). Does not add dependencies or close issues.
+  Use when unblocking issues or at the start of a project-planner-agent pass.
 
   Examples:
-    - user: "Unblock issues whose blockers are done" → judge every open edge against the default branch
-    - user: "Can #40 proceed?" → judge #40's blockers only
+    - user: "Unblock issues whose blockers are done" → examine every open edge
+    - user: "Can #40 proceed?" → examine #40's blockers only
     - called by project-planner-agent at the start of a pass
 ---
 

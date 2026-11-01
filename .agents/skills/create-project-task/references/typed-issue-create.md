@@ -14,8 +14,8 @@ Shared by `create-project-epic`, `create-project-task`, and `create-project-defe
 4. **Build** the body exactly as `body-shapes.md` specifies.
 5. If `--no-create` / "draft only": print title + body and stop.
 6. **Create** on GitHub with labels `type:<type>`, `status:pending-review`, and exactly one `priority:*`. Default `priority:normal`. Use `priority:high` or `priority:critical` only when the human explicitly requests that priority at create time. Attach a parent at create time when the linking reference supports it.
-7. **Wire** parent and blocked-by per the linking reference and the calling skill. Related-only links stay in the body when that skill says so.
-8. **Report** URL, labels (`type:*`, `status:pending-review`, `priority:*`), and dependency wiring.
+7. **Wire** parent only per the linking reference and the calling skill. Related-only links stay in the body when that skill says so. Never wire blocked-by ([`hierarchy.md`](../../../../docs/issues/hierarchy.md)).
+8. **Report** URL, labels (`type:*`, `status:pending-review`, `priority:*`), and parent wiring.
 
 ## Rules
 

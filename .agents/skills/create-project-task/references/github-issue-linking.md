@@ -1,4 +1,4 @@
-# GitHub issue linking (sub-issues and blocked-by)
+# GitHub issue linking (sub-issues)
 
 Shared procedure for `create-project-epic`, `create-project-task`, and `create-project-defect`. Policy: [`docs/issues/`](../../../../docs/issues/) and [`docs/issues/hierarchy.md`](../../../../docs/issues/hierarchy.md).
 
@@ -81,48 +81,10 @@ gh issue view PARENT_NUMBER --json number,title,labels,body
 
 If GraphQL parent fields are unavailable, infer from the parent's `## Parent` section and labels; ask the user when ambiguous.
 
-## Blocked-by (native dependencies)
+## Blocked-by (banned)
 
-For each issue number that **blocks** the new issue:
-
-1. Resolve the blocking issue's numeric REST `id`:
-
-   ```bash
-   BLOCKER_ID=$(gh api "repos/OWNER/REPO/issues/BLOCKER_NUMBER" --jq .id)
-   ```
-
-2. Add blocked-by on the new issue:
-
-   ```bash
-   gh api \
-     --method POST \
-     "repos/OWNER/REPO/issues/NEW_NUMBER/dependencies/blocked_by" \
-     -f issue_id="$BLOCKER_ID"
-   ```
-
-GraphQL alternative:
-
-```bash
-# Resolve node ids for blocked issue and blocker, then:
-gh api graphql -f query='
-mutation($issueId:ID!,$blockingIssueId:ID!) {
-  addBlockedBy(input: { issueId: $issueId, blockingIssueId: $blockingIssueId }) {
-    issue { number }
-    blockingIssue { number }
-  }
-}' -f issueId=BLOCKED_NODE_ID -f blockingIssueId=BLOCKER_NODE_ID
-```
-
-Always mirror in the body:
-
-```markdown
-## Dependencies
-- Blocked by: #8, #11
-- Blocking: none
-```
-
-Do not remove native dependencies from a create flow except a mistaken link while both issues are still open. GitHub resolves a dependency when its blocker closes. A satisfied blocker that stays open is cleared only by [`unblock-project-issues`](../../unblock-project-issues/SKILL.md).
+Do **not** create native blocked-by / blocking edges or body `Blocked by` / `Blocking` / `## Dependencies` blocker lists. See [`hierarchy.md`](../../../../docs/issues/hierarchy.md). Leftover edges: [`unblock-project-issues`](../../unblock-project-issues/SKILL.md).
 
 ## Related links (defects)
 
-For related tasks/defects that are not blockers, put `#N` references in `## Related tasks or defects` (and optionally `## Dependencies` as non-blocking notes). Do not invent fake blocked-by edges for mere relatedness.
+For related tasks/defects, put `#N` references in `## Related tasks or defects`. Do not invent blocked-by edges for relatedness or preferred sequence.
