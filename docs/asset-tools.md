@@ -2,7 +2,7 @@
 
 Known tools for image and audio generation, editing, and touch-up, and the tools this project bans. Specs stay product-neutral: most generation tools realize a tool role in [`specs/assets/tools.md`](../specs/assets/tools.md) through an Accepted Integration ADR. Tools this file marks **ADR-free**, and touch-up options, need no ADR. Touch-ups run through `APR.touch-up` ([`specs/assets/procedures/touch-up.md`](../specs/assets/procedures/touch-up.md)).
 
-**Style series lock**: visual kinds require **Recraft**; music, SFX, and voice kinds require the **ElevenLabs CLI**.
+**Style series lock**: visual kinds require **Recraft**; music, SFX, and voice kinds require the **ElevenLabs CLI**. Project kind exceptions (e.g. simplenono `puzzle-pictures`) live in [`specs/assets/tools.md`](../specs/assets/tools.md).
 
 ## Banned tools
 

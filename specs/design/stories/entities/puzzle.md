@@ -10,7 +10,7 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../../.agents/spe
 
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
-| P1 | Size 10×10 or 15×15 | PS1.1 |
+| P1 | Size 10×10, 15×15, or 20×20 | PS1.1 |
 | P2 | Solution fill set from pack | PS1.1 |
 | P3 | Row/column clues from pack | PS1.1 |
 | P4 | Stable pack identity | PS1.1 |
@@ -32,9 +32,9 @@ As a player, I open any pack puzzle so that size, clues, and progress behave as 
 - **Proves**: P1, P2, P3, P4
 
 ```gherkin
-Given the local pack of 200 puzzles (60×10×10, 140×15×15)
+Given the local pack of 200 puzzles (10×10×10, 15×15×170, 20×20×20)
 When the player opens puzzle id X
-Then size is 10×10 or 15×15 per pack data
+Then size is 10×10, 15×15, or 20×20 per pack data
 And solution and clues are that pack entry's fixed data
 And identity is X
 ```
