@@ -282,9 +282,12 @@ func _morph_stage_ms() -> int:
 	return int(ProjectSettings.get_setting(MORPH_STAGE_SETTING, ResultReveal.DEFAULT_STAGE_MS))
 
 
-## Drives the result clock only while the morph has real time to spend: not during the
-## get-set-ready beat and not while the attempt is paused ([code]SEQ pause[/code] freezes
-## it with the attempt). With nothing open the morph is never waiting.
+## Drives the result clock and it is the [i]only[/i] driver
+## ([code]UI-result[/code] S2/S3, [code]CFG.MORPH_STAGE_MS[/code]): [ResultScreen] owns
+## no clock of its own, so one frame spends one frame's time. It runs only while the
+## morph has real time to spend: not during the get-set-ready beat and not while the
+## attempt is paused ([code]SEQ pause[/code] freezes it with the attempt). With nothing
+## open the morph is never waiting.
 func _process(delta: float) -> void:
 	if _view != RESULT_VIEW:
 		return

@@ -39,7 +39,7 @@ a missing protocol leaves its axes unobserved.
 |----------|--------|------------|------------|
 | `app-start` | Launch to the first interactive screen, hold, quit | I6 | `time-to-playable` (≤ 3 s) |
 | `paint` | Open, fill every row then cross every column, one mark per frame, pause/resume, quit | I1, I2, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `crash-free` |
-| `navigate` | Gallery→puzzle, puzzle→result, result→gallery, back | I7, I9 | `transition-latency` (≤ 500 ms), `crash-free` |
+| `navigate` | Gallery→puzzle, then solve across the result's morph stages, result→gallery, back | I1, I2, I7, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `transition-latency` (≤ 500 ms), `crash-free` |
 | `ui-ack` | Open, settings, back to the puzzle | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
 | `solve-reset` | Open, solve, result, back; open, mark, reset, back | I9 | `crash-free` |
 | `kill-relaunch` | Open, mark, hold, kill, relaunch, reopen | I10 | `resume-after-failure` |
@@ -53,10 +53,11 @@ at least one protocol in the folder without a failed flow or a crashed run.
 The game protocols drive what exists today and fail honestly where a screen or flow
 is still missing. These are product gaps, not harness errors:
 
-- `navigate` fails I7 until the result screen and its transitions land (#95). The
-  gallery stand-in is the shell's home view until #94. Its `result-gallery` leg is
-  `driver_time`: the shell's own `leave` sets the home view synchronously, so the leg
-  times the driver until #94/#95 own the transition, and the I7 row says so.
+- `navigate` now samples frames across the solve and the result reveal (`UI-result`
+  S2/S3), so `frame-time` and `hitch-bound` cover the three-layer morph — the heaviest
+  per-frame work the game does — and no longer depend on `paint` alone. Its
+  `result-gallery` leg is product-acknowledged: the result screen's C1 routes through
+  the shell (#95). The gallery is the shell's real home view since #94.
 - `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
   stops when settings is showing (`NAV.T7`), and Back stops at the resumed puzzle on
   settings' C3 (`NAV.T8`). The pause inside the attempt is #96's.
