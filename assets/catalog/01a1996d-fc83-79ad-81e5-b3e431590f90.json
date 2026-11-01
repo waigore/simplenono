@@ -1,0 +1,36 @@
+{
+  "id": "01a1996d-fc83-79ad-81e5-b3e431590f90",
+  "handle": "fonts/outfit",
+  "kind_spec": "AK-fonts",
+  "coverage": [
+    "V1"
+  ],
+  "serves": [
+    "UIS.T1",
+    "UIS.T2",
+    "ACC.G1"
+  ],
+  "state": "approved",
+  "version": 1,
+  "files": [
+    "fonts/outfit/outfit-regular.ttf",
+    "fonts/outfit/OFL.txt"
+  ],
+  "source_type": "third-party",
+  "recipe": "AK-fonts.R1",
+  "license": {
+    "source": "Google Fonts — Outfit v1.100 (upstream https://github.com/Outfitio/Outfit-Fonts)",
+    "license": "SIL Open Font License 1.1",
+    "attribution": "Copyright 2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts); designers Smartsheet Inc and Rodrigo Fuenzalida",
+    "terms": "https://openfontlicense.org",
+    "proof": "Upstream file ofl/outfit/Outfit[wght].ttf from the google/fonts repository (version 1.100); OFL.txt shipped beside the font as fonts/outfit/OFL.txt",
+    "modification": "Static Regular (wght=400) instance of the upstream variable font, with the family's own tabular (.tf) digit glyphs baked as the default cmap mapping. Instancing and digit remap only; outlines, spacing, and naming are upstream. No Reserved Font Name is declared by this family, so OFL 1.1 permits the modification and the original name."
+  },
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-02",
+    "reviewer": "agent (review-asset)",
+    "report": "Fonts V1 against AK-fonts S1–S5, B1, K1–K4. S1/K1 geometric sans: Outfit is a geometric sans (near-circular bowls, straight terminals, low contrast; Google Fonts category SANS_SERIF). S2 weight: static instance at wght=400, one Regular family. S3/K2 tabular figures: all ten digits advance 590/1000 em in the shipped file (measured with fontTools); the family's .tf glyphs are the default digit mapping, and rendered string widths agree (10×'1' = 10×'0' at 8/9/10/12/16/20 px). S4 case: lowercase and uppercase Latin present for sentence-case chrome. S5: .ttf imports in Godot 4 as FontFile with no import fix-up. B1: exactly one family for T1/T2. K3 T1/T2 coverage: one Regular face serves clue numbers and chrome/time. K4 clinical fit: neutral, high-contrast, no playful or display features (AES.P1–P3). Readability: clue strings ('1 4 5,1 10 15 20'; personal-best '01:23') legible at 8 px on Paper; no ornament that could muddy a mark (P2/P3). Content limits: no cute, warm, or horror traits. License: OFL 1.1, no Reserved Font Name, OFL.txt shipped with the font; modification recorded in license.modification. No needs-human item."
+  },
+  "guidance": "Static Regular (wght=400) Outfit with tabular digits as default, for UIS.T1 clue numbers and UIS.T2 chrome/personal-best time. Applying the family to a screen's theme belongs to the screen-owning epics (#93 grid, #94 gallery, #95 result/settings)."
+}
