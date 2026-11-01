@@ -1,0 +1,30 @@
+# deliverable commit cd08f79 vs main@52db79a
+## files changed by cd08f79
+cd08f79 Add shell audio, haptics, and the asset resolver (#196)
+ game/presentation/asset_resolver.gd     |  82 ++++++++++
+ game/presentation/asset_resolver.gd.uid |   1 +
+ game/presentation/audio_cues.gd         |  41 +++++
+ game/presentation/audio_cues.gd.uid     |   1 +
+ game/presentation/audio_feedback.gd     | 207 ++++++++++++++++++++++++
+ game/presentation/audio_feedback.gd.uid |   1 +
+ game/presentation/haptics.gd            |  64 ++++++++
+ game/presentation/haptics.gd.uid        |   1 +
+ game/presentation/mark_input.gd         |  23 +++
+ game/presentation/puzzle.gd             |   6 +
+ game/presentation/session_flags.gd      |  49 ++++++
+ game/presentation/session_flags.gd.uid  |   1 +
+ game/presentation/shell.gd              |  63 +++++++-
+ game/test/test_asset_resolver.gd        | 139 ++++++++++++++++
+ game/test/test_asset_resolver.gd.uid    |   1 +
+ game/test/test_audio_feedback.gd        | 274 ++++++++++++++++++++++++++++++++
+ game/test/test_audio_feedback.gd.uid    |   1 +
+ 17 files changed, 954 insertions(+), 1 deletion(-)
+
+## deliverable-path diff cd08f79..HEAD
+(empty = identical)
+
+## non-deliverable changes touching the shell since cd08f79
+ game/presentation/asset_resolver.gd | 10 +++++
+ game/presentation/shell.gd          | 78 +++++++++++++++++++++----------------
+ game/presentation/shell.tscn        | 42 ++------------------
+ 3 files changed, 57 insertions(+), 73 deletions(-)

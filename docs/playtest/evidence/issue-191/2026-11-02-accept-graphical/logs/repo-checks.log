@@ -1,0 +1,5 @@
+Asset manifest: 0 error(s).
+manifest exit=0
+  WARNING: specs/view/glossary.md:12 [glossary] 'Diagram' is also defined in specs/technical/glossary.md; define it once and link
+Spec lint: 0 error(s), 1 warning(s) across 9 checks.
+spec lint exit=0
