@@ -1,0 +1,13 @@
+; Godot project for simplenono (ADR-0001). Prefer editing in the editor.
+; config_version=5 is Godot 4.x.
+
+config_version=5
+
+[application]
+
+config/name="simplenono"
+config/features=PackedStringArray("4.7")
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")

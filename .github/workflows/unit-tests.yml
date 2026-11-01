@@ -22,13 +22,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # fill in: toolchain setup, then one step per Unit tests table row, e.g.
-      # - name: Unit tests
-      #   run: dotnet test --no-build
+      - name: Install Godot
+        env:
+          GODOT_VERSION: "4.7.2"
+        run: |
+          set -euo pipefail
+          zip="Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          url="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/${zip}"
+          curl -fsSL -o "$zip" "$url"
+          unzip -q "$zip"
+          install -m 755 "Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
+          godot --version
 
-      # Remove this step once real steps exist; keep it if Unit tests is `None`.
-      - name: Not configured
-        run: echo "::notice::No unit-test commands configured; see docs/coding-conventions.md"
+      - name: Import Godot project
+        run: godot --headless --path game --import
+
+      - name: GUT (Godot Unit Test)
+        run: godot --headless --path game -s addons/gut/gut_cmdln.gd -gdir=res://test -gexit
 
   coverage:
     name: Coverage
@@ -38,11 +48,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # fill in: toolchain setup, then run coverage against Threshold in
-      # docs/coding-conventions.md (default 80), e.g.
-      # - name: Coverage
-      #   run: coverage run && coverage report --fail-under=80
-
-      # Remove this step once real steps exist; keep it if Coverage is `None`.
+      # Coverage table in docs/coding-conventions.md is intentionally None until a
+      # first-class GDScript CI coverage tool can fail under Threshold.
       - name: Not configured
         run: echo "::notice::No coverage commands configured; see docs/coding-conventions.md"
