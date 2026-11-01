@@ -8,8 +8,8 @@ extends Control
 ## [code]GS.marks-allowed[/code] through [code]CTR-attempt[/code] reads, and it
 ## raises player intents instead of showing other screens. It owns no attempt
 ## state, no rule, and no mark path: cells are inert [PuzzleCell] controls that
-## [MarkInput] drives ([code]CMP-shell[/code] R2), and routing belongs to #112
-## (shell → puzzle) and #95/#96 (leave, pause).
+## [MarkInput] drives ([code]CMP-shell[/code] R2), and the shell routes them
+## ([code]NAV.T3[/code], [code]T7[/code]).
 ##
 ## States: S2 while the attempt's get-set-ready beat runs, S3 while paused, and
 ## S1 otherwise. Elapsed ticks only through [code]CTR-attempt[/code] O3 while the
@@ -19,7 +19,8 @@ extends Control
 ## [code]IN.back[/code]: the player asked to leave (C1). Routing is #94/#95's.
 signal leave_requested
 
-## [code]IN.pause[/code]: the player asked for settings (C6). O4 pause is #96's.
+## [code]IN.pause[/code]: the player asked for settings (C6). The shell pauses through
+## [code]CTR-attempt[/code] O4 and shows settings ([code]NAV.T7[/code]).
 signal settings_requested
 
 ## A tool was selected ([code]C3[/code]-[code]C5[/code]); #111 sends its marks.
