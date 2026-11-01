@@ -6,7 +6,12 @@ Authoring rules: [`.agents/specs/rules/playtest/traceability.md`](../../.agents/
 
 | Upstream item | Source | Served by |
 |---------------|--------|-----------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| Solve loop / endings / progression | design | [`design/ready-and-marks.md`](design/ready-and-marks.md), [`design/solve-and-pb.md`](design/solve-and-pb.md), [`design/crosses-and-fills.md`](design/crosses-and-fills.md), [`design/pack-finished.md`](design/pack-finished.md) |
+| Cell / clue / game-state / puzzle | design | [`design/ready-and-marks.md`](design/ready-and-marks.md), [`design/crosses-and-fills.md`](design/crosses-and-fills.md) |
+| Play / leave-resume / reset / settings journeys | ux | [`ux/play-puzzle.md`](ux/play-puzzle.md), [`ux/leave-resume.md`](ux/leave-resume.md), [`ux/gallery-reset.md`](ux/gallery-reset.md), [`ux/settings.md`](ux/settings.md) |
+| Gallery, puzzle, result, settings screens | ux | Same UX protocols as journeys above |
+| Calm pack play; snappy solve | vision / definition | Hub + all protocols |
+| Debug UI & telemetry | definition / technical | [`tools.md`](tools.md), hub architecture |
 
 ## Topic coverage
 
@@ -16,6 +21,6 @@ Authoring rules: [`.agents/specs/rules/playtest/traceability.md`](../../.agents/
 | Procedures | [`procedures.md`](procedures.md) | Applies |
 | Evidence | [`evidence.md`](evidence.md) | Applies |
 | Coverage mode | [`coverage.md`](coverage.md), [`playtest.md`](playtest.md) | Applies |
-| Design protocols | [`design/`](design/) | <!-- fill in: Applies when design protocols exist; else N/A — none yet --> |
-| UX protocols | [`ux/`](ux/) | <!-- fill in: Applies when UX protocols exist; else N/A — none yet --> |
+| Design protocols | [`design/`](design/) | Applies |
+| UX protocols | [`ux/`](ux/) | Applies |
 | ADR / technical constraints | [`tools.md`](tools.md), hub architecture constraints | Applies |

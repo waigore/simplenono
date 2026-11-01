@@ -44,5 +44,5 @@ ADRs and technical design (including verification seams) must satisfy Must rows.
 
 Global specs: [`glossary.md`](glossary.md), [`ids.md`](ids.md), [`traceability.md`](traceability.md), [`coverage.md`](coverage.md), [`story-rows.md`](story-rows.md), [`tools.md`](tools.md), [`procedures.md`](procedures.md), [`evidence.md`](evidence.md).
 
-- **Design protocols**: None yet — copy [`design/_template.md`](design/_template.md)
-- **UX protocols**: None yet — copy [`ux/_template.md`](ux/_template.md)
+- **Design protocols**: [`ready-and-marks`](design/ready-and-marks.md), [`solve-and-pb`](design/solve-and-pb.md), [`crosses-and-fills`](design/crosses-and-fills.md), [`pack-finished`](design/pack-finished.md)
+- **UX protocols**: [`play-puzzle`](ux/play-puzzle.md), [`leave-resume`](ux/leave-resume.md), [`gallery-reset`](ux/gallery-reset.md), [`settings`](ux/settings.md)
