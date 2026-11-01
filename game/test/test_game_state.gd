@@ -1,24 +1,368 @@
 extends GutTest
-## Game state derived values and invariants — specs/design/stories/game-state.md
-## PS1.1-PS1.7, specs/design/stories/game-state/fields.md PS1.6/PS1.7, and
-## specs/design/game-state.md V1-V6, H1, H2, Q1.
+## Game-state derived values and invariants — specs/design/game-state.md,
+## specs/design/game-state/fields.md, and stories PS1.1-PS1.7 in
+## specs/design/stories/game-state.md, invariants V1-V6, Q1, H1/H2.
 ##
-## Proves [b]CTR-rules[/b] O1/O2, [SCH-line-status], [SCH-attempt] state rules,
-## [SCH-progress] I1-I6, and [b]CTR-pack[/b] O2/O6/O7. Puzzle fixtures come from the
-## pack fixtures beside this test; no screen, input, or shell is involved.
+## One comment per spec reference, following game/test/test_cell_mark.gd.
+## [code]PS1.2[/code] proves completion-rate arithmetic against fixture packs of any
+## size and [code]PS1.5[/code] proves only the thumbnail visibility flag: the 200-puzzle
+## content proof and the shipped generated picture are deferred to #94 / #97 / #98.
 ##
-## Deferred, not dropped here: the [code]PS1.2[/code] proof over 200 ever-completed
-## puzzles and the [code]PS1.5[/code] proof over shipped generated pictures need pack and
-## asset content, so they belong to #94 / #97 / #98. The arithmetic and the thumbnail
-## flag below cover any pack size and prove the visibility rule only.
+## [b]CMP-rules[/b] ([b]CTR-rules[/b] O1/O2) and [b]CMP-pack[/b]
+## ([b]CTR-pack[/b] O1/O2/O5-O7) derive every value per call. Line error, satisfied,
+## and solved are never stored ([SCH-attempt] I1).
 
+const TEAPOT_ID := "teapot"
 const TEAPOT_PATH := "res://test/fixtures/teapot.json"
+const FIXTURE_ID := "fixture"
+const FIXTURE_SIZE := 3
 
 var _definition: PuzzleDefinition
 
 
+## One replayed mark sequence's outcome, so Q1 can compare two runs field by field.
+class Replay:
+	var grid: Array[Array]
+	var solved: bool
+	var status: AttemptState.Status
+
+	func _init(
+		outcome_marks: Array[Array], outcome_solved: bool, outcome_status: AttemptState.Status
+	) -> void:
+		grid = outcome_marks
+		solved = outcome_solved
+		status = outcome_status
+
+
+## Nothing is stored between scenarios: each test builds the definition it drives and a
+## fresh [ProgressRules], so a record cannot leak in from another test.
 func before_each():
+	pass
+
+
+## PS1.1 / V5: fills equal the solution solves, crosses anywhere are ignored, and every
+## cell stays clear, fill, or cross ([SCH-mark-grid] I1).
+func test_a_solve_ignores_crosses() -> void:
+	var rules: Rules = Rules.new(_fixture_definition())
+	var marks := MarkGrid.new(FIXTURE_SIZE, true)
+	assert_true(rules.is_solved(marks), "PS1.1: no fills equals the empty solution")
+	for row in FIXTURE_SIZE:
+		for column in FIXTURE_SIZE:
+			marks.apply_mark(row, column, CellMark.Mark.CROSS)
+	assert_true(rules.is_solved(marks), "PS1.1: crosses are ignored anywhere")
+	# V5: every cell is still one of the three marks.
+	for row in marks.size:
+		for column in marks.size:
+			var mark := marks.mark_at(row, column)
+			assert_true(
+				CellMark.is_mark(mark),
+				"V5: cell %s,%s stays clear, fill, or cross" % [row, column],
+			)
+
+
+## PS1.1: one extra fill fails the solve; one missing fill fails it too.
+func test_a_solve_needs_exactly_the_solution() -> void:
 	_definition = _load_definition(TEAPOT_PATH)
+	var extra := _solution_marks()
+	var filled := _a_crossed_cell()
+	extra.apply_mark(filled.x, filled.y, CellMark.Mark.FILL)
+	assert_false(Rules.new(_definition).is_solved(extra), "PS1.1: an extra fill does not solve")
+
+	var missing := _solution_marks()
+	var solved_cell := _definition.solution_fills[0]
+	missing.apply_mark(solved_cell.x, solved_cell.y, CellMark.Mark.CLEAR)
+	assert_false(Rules.new(_definition).is_solved(missing), "PS1.1: a missing fill does not solve")
+
+
+## PS1.3 / PS1.3b: a line that is incomplete but still possible has no error; fills that
+## contradict the clues do, on both rows and columns.
+func test_line_error_tracks_the_fills() -> void:
+	_definition = _load_definition(TEAPOT_PATH)
+	var rules: Rules = Rules.new(_definition)
+	# PS1.3: a partial fill on row 4's run is still possible.
+	var partial := _marks_with_fills([Vector2i(0, 0)])
+	var status: LineStatusCheck = rules.line_status(partial)
+	assert_false(status.row(4).error, "PS1.3: a partial line is not an error")
+	# PS1.3b: column 0's clue is [3], so a fill at 0,0 and 2,0 with a hole between them
+	# cannot be one run.
+	var contradiction := _marks_with_fills([Vector2i(0, 0), Vector2i(2, 0)])
+	var contradicted: LineStatusCheck = rules.line_status(contradiction)
+	assert_true(contradicted.column(0).error, "PS1.3b: a contradicted column is in error")
+
+
+## PS1.4 / PS1.4b: exact runs satisfy the line; a diverging fill does not.
+func test_line_satisfied_tracks_the_runs() -> void:
+	_definition = _load_definition(TEAPOT_PATH)
+	var rules: Rules = Rules.new(_definition)
+	var marks := _definition_to_marks()
+	# PS1.4: row 4's clue is [5], filled exactly.
+	for column in range(5, 10):
+		marks.apply_mark(4, column, CellMark.Mark.FILL)
+	var satisfied: LineStatusCheck = rules.line_status(marks)
+	assert_true(satisfied.row(4).satisfied, "PS1.4: the exact run is satisfied")
+	# PS1.4b: one more fill on that row diverges from the run.
+	marks.apply_mark(4, 4, CellMark.Mark.FILL)
+	var diverged: LineStatusCheck = rules.line_status(marks)
+	assert_false(diverged.row(4).satisfied, "PS1.4b: a diverging fill is not satisfied")
+
+
+## O2 returns one status per row and per column ([SCH-line-status] F1/F2), which is how
+## the derived row-error / col-error / clue-satisfied values reach the screen.
+func test_line_status_covers_every_row_and_column() -> void:
+	_definition = _load_definition(TEAPOT_PATH)
+	var status: LineStatusCheck = Rules.new(_definition).line_status(_definition_to_marks())
+	assert_true(status.ok(), "O2: the definition maps to lines")
+	assert_eq(
+		status.statuses_for(ClueLine.Orientation.ROW).size(),
+		_definition.size,
+		"O2: one status per row",
+	)
+	assert_eq(
+		status.statuses_for(ClueLine.Orientation.COLUMN).size(),
+		_definition.size,
+		"O2: one status per column",
+	)
+
+
+## PS1.6 / V2: an accepted mark sets in progress, including an empty-clue auto-cross.
+func test_in_progress_needs_a_mark() -> void:
+	var state := _ready_state()
+	assert_eq(state.attempt_status(), AttemptState.Status.NOT_STARTED, "V2: no mark yet")
+	state.apply_mark(4, 5, CellMark.Mark.FILL)
+	assert_eq(state.attempt_status(), AttemptState.Status.IN_PROGRESS, "PS1.6: a fill starts it")
+
+
+## PS1.6 / V2: the open sequence's empty-clue auto-cross alone starts the attempt.
+func test_an_empty_clue_auto_cross_sets_in_progress() -> void:
+	_definition = _load_definition(TEAPOT_PATH)
+	var state := _ready_state()
+	var crossed := state.auto_cross(Rules.new(_definition).auto_cross_cells(state.marks()))
+	assert_gt(crossed, 0, "PS1.6: the teapot has empty-clue lines to cross")
+	assert_eq(
+		state.attempt_status(),
+		AttemptState.Status.IN_PROGRESS,
+		"PS1.6 / V2: a cross is a mark, so the attempt is in progress",
+	)
+	assert_true(state.marks().has_any_mark(), "V2: in progress implies at least one mark")
+
+
+## PS1.6: clearing the last mark returns to not started with elapsed 0.
+func test_clearing_the_last_mark_returns_to_not_started() -> void:
+	var state := _ready_state()
+	state.apply_mark(4, 5, CellMark.Mark.FILL)
+	state.advance(1200)
+	assert_eq(state.elapsed(), 1200, "PS1.6: elapsed runs while in progress")
+	state.apply_mark(4, 5, CellMark.Mark.CLEAR)
+	assert_eq(state.attempt_status(), AttemptState.Status.NOT_STARTED, "PS1.6: last mark cleared")
+	assert_eq(state.elapsed(), 0, "V3: not started has elapsed 0")
+
+
+## PS1.6: solve or reset returns the attempt to not started; a mark while blocked or
+## paused changes nothing.
+func test_a_solve_returns_the_attempt_to_not_started() -> void:
+	var state := _ready_state()
+	state.apply_mark(4, 5, CellMark.Mark.FILL)
+	state.clear_attempt()
+	assert_eq(state.attempt_status(), AttemptState.Status.NOT_STARTED, "PS1.6: solve/reset")
+	assert_eq(state.elapsed(), 0, "PS1.6: solve/reset clears elapsed")
+	assert_false(state.marks().has_any_mark(), "PS1.6: solve/reset clears the marks")
+
+	var paused := _ready_state()
+	paused.apply_mark(4, 5, CellMark.Mark.FILL)
+	paused.pause()
+	assert_false(paused.apply_mark(4, 6, CellMark.Mark.FILL), "SCH-attempt I2: paused rejects")
+	assert_eq(paused.marks().mark_at(4, 6), CellMark.Mark.CLEAR, "SCH-attempt I2: nothing written")
+
+	var blocked := AttemptState.new(FIXTURE_SIZE)
+	assert_false(blocked.apply_mark(0, 0, CellMark.Mark.FILL), "SCH-attempt I2: not ready")
+	assert_eq(
+		blocked.attempt_status(),
+		AttemptState.Status.NOT_STARTED,
+		"SCH-attempt I2: a rejected mark does not start the attempt",
+	)
+
+
+## PS1.7 / Q1: the same fixture and the same mark sequence give the same marks,
+## is-solved, and attempt status, twice over.
+func test_the_same_inputs_give_the_same_outcome() -> void:
+	var sequence := [Vector2i(0, 0), Vector2i(0, 1), Vector2i(1, 1)]
+	var first := _replay(sequence)
+	var second := _replay(sequence)
+	assert_eq(first.grid, second.grid, "PS1.7 / Q1: identical marks")
+	assert_eq(first.solved, second.solved, "PS1.7 / Q1: identical is-solved")
+	assert_eq(first.status, second.status, "PS1.7 / Q1: identical attempt status")
+
+
+## V1 / V4: a solve sets ever-completed with a personal best; a longer solve leaves it,
+## a shorter one replaces it.
+func test_a_solve_sets_ever_completed_with_a_personal_best() -> void:
+	var progress := ProgressRules.new()
+	var first := progress.record_solve(TEAPOT_ID, 90)
+	assert_true(first.ever_completed, "V1: a solve sets ever-completed")
+	assert_eq(first.personal_best, 90, "V1: ever-completed implies a personal best")
+
+	var longer := progress.record_solve(TEAPOT_ID, 120)
+	assert_eq(longer.personal_best, 90, "V4: a longer solve keeps the personal best")
+	var shorter := progress.record_solve(TEAPOT_ID, 45)
+	assert_eq(shorter.personal_best, 45, "V4: a shorter solve replaces it")
+	assert_true(progress.thumbnail_visible(TEAPOT_ID), "PS1.5: the thumbnail flag is set")
+
+
+## PS1.2: completion-rate is ever-completed count ÷ pack size, for packs of any size,
+## and 0.0 for an empty pack. The 200-puzzle content proof is deferred to #94 / #97 / #98.
+func test_completion_rate_is_ever_completed_over_pack_size() -> void:
+	var progress := ProgressRules.new()
+	assert_eq(progress.completion_rate(0), 0.0, "PS1.2: an empty pack is 0.0")
+	assert_eq(progress.completion_rate(50), 0.0, "PS1.2: no solves yet is 0.0")
+	progress.record_solve("a", 10)
+	progress.record_solve("b", 10)
+	progress.record_solve("c", 10)
+	assert_eq(progress.completion_rate(10), 0.3, "PS1.2: 3 of 10 is 0.3")
+	assert_eq(progress.completion_rate(4), 0.75, "PS1.2: 3 of 4 is 0.75")
+	assert_eq(progress.completion_rate(), 0.015, "PS1.2: the shipped pack divides by 200")
+
+
+## PS1.5 / H1: the O1 thumbnail flag is true exactly when the puzzle is ever-completed,
+## which is what makes the generated picture knowable. The picture itself is deferred to
+## #94 / #97 / #98.
+func test_the_thumbnail_flag_is_true_only_when_ever_completed() -> void:
+	var progress := ProgressRules.new()
+	assert_false(progress.thumbnail_visible(TEAPOT_ID), "PS1.5: not completed, hidden")
+	progress.record_solve(TEAPOT_ID, 30)
+	assert_true(progress.thumbnail_visible(TEAPOT_ID), "PS1.5: completed, visible")
+	progress.reset(TEAPOT_ID)
+	assert_false(progress.thumbnail_visible(TEAPOT_ID), "PS1.5: after reset, hidden again")
+
+
+## V3: a not-started record holds clear marks and zero elapsed; reset returns it there.
+func test_not_started_holds_clear_marks_and_zero_elapsed() -> void:
+	_definition = _load_definition(TEAPOT_PATH)
+	var progress := ProgressRules.new()
+	var marks := _definition_to_marks()
+	marks.apply_mark(4, 5, CellMark.Mark.FILL)
+	var committed := progress.commit(TEAPOT_ID, marks, 800, true)
+	assert_true(committed.in_progress, "V3: a marked attempt commits in progress")
+	assert_eq(committed.elapsed, 800, "V3: elapsed is kept while in progress")
+
+	var cleared := progress.commit(TEAPOT_ID, _definition_to_marks(), 800, true)
+	assert_false(cleared.in_progress, "V3: an empty grid is not in progress")
+	assert_eq(cleared.elapsed, 0, "V3: not started has elapsed 0")
+	assert_null(cleared.marks, "V3: not started holds no marks")
+
+	progress.record_solve(TEAPOT_ID, 30)
+	var reset := progress.reset(TEAPOT_ID)
+	assert_false(reset.ever_completed, "V1 reset: resets ever-completed")
+	assert_false(reset.has_personal_best(), "V4 reset: clears the personal best")
+	assert_eq(reset.elapsed, 0, "V3: reset has elapsed 0")
+
+
+## V6: ever-completed and in progress coexist — replaying a completed puzzle starts a new
+## in-progress attempt without losing the solve.
+func test_ever_completed_and_in_progress_coexist_on_replay() -> void:
+	_definition = _load_definition(TEAPOT_PATH)
+	var progress := ProgressRules.new()
+	progress.record_solve(TEAPOT_ID, 30)
+	var marks := _definition_to_marks()
+	marks.apply_mark(4, 5, CellMark.Mark.FILL)
+	var replay := progress.commit(TEAPOT_ID, marks, 100, true)
+	assert_true(replay.ever_completed, "V6: the earlier solve survives the replay")
+	assert_true(replay.in_progress, "V6: the replay is in progress")
+	assert_eq(replay.personal_best, 30, "V6: the personal best survives too")
+
+
+## AC: no code path writes SCH-progress outside CTR-pack O5-O7. Committing copies the
+## grid, so the record never aliases the player's marks.
+func test_only_the_progress_rules_change_a_record() -> void:
+	_definition = _load_definition(TEAPOT_PATH)
+	var progress := ProgressRules.new()
+	var marks := _definition_to_marks()
+	marks.apply_mark(4, 5, CellMark.Mark.FILL)
+	var committed := progress.commit(TEAPOT_ID, marks, 100, true)
+	marks.apply_mark(4, 6, CellMark.Mark.FILL)
+	assert_eq(
+		committed.marks.mark_at(4, 6),
+		CellMark.Mark.CLEAR,
+		"O5: the committed grid is a copy, not the live grid",
+	)
+
+
+## H2: the solution fill set is not an output of any operation here; rules only report
+## derived booleans over a mark grid.
+func test_rules_write_neither_the_grid_nor_the_solution() -> void:
+	_definition = _load_definition(TEAPOT_PATH)
+	var rules: Rules = Rules.new(_definition)
+	var marks := _definition_to_marks()
+	var before := marks.snapshot()
+	rules.is_solved(marks)
+	rules.line_status(marks)
+	assert_eq(marks.snapshot(), before, "R2 / G3: the rules write nothing to the grid")
+	assert_eq(rules.solution_fills(), _definition.solution_fills, "F5: the solution is unchanged")
+
+
+# A fixture definition: size 3 with empty clues, so a small mark sequence drives rules
+# over a fixed input.
+func _fixture_definition() -> PuzzleDefinition:
+	var definition := PuzzleDefinition.new(
+		FIXTURE_ID, FIXTURE_SIZE, [[], [], []], [[], [], []], [], "picture.fixture", "pixel.fixture"
+	)
+	return definition
+
+
+func _definition_to_marks() -> MarkGrid:
+	return MarkGrid.new(_definition.size, true)
+
+
+func _marks_with_fills(fills: Array) -> MarkGrid:
+	var marks := _definition_to_marks()
+	for position in fills:
+		marks.apply_mark(position.x, position.y, CellMark.Mark.FILL)
+	return marks
+
+
+## The solution filled, with a cross on every other cell.
+func _solution_marks() -> MarkGrid:
+	var marks := _definition_to_marks()
+	var filled := {}
+	for position in _definition.solution_fills:
+		filled[position] = true
+	for row in _definition.size:
+		for column in _definition.size:
+			var mark := (
+				CellMark.Mark.FILL if filled.has(Vector2i(row, column)) else CellMark.Mark.CROSS
+			)
+			marks.apply_mark(row, column, mark)
+	return marks
+
+
+func _a_crossed_cell() -> Vector2i:
+	var filled := {}
+	for position in _definition.solution_fills:
+		filled[position] = true
+	for row in _definition.size:
+		for column in _definition.size:
+			if not filled.has(Vector2i(row, column)):
+				return Vector2i(row, column)
+	return Vector2i(0, 0)
+
+
+func _ready_state() -> AttemptState:
+	var state := AttemptState.new(_definition.size)
+	state.allow_marks()
+	return state
+
+
+func _replay(sequence: Array) -> Replay:
+	var state := _ready_state()
+	for position in sequence:
+		state.apply_mark(position.x, position.y, CellMark.Mark.FILL)
+	return (
+		Replay
+		. new(
+			state.marks().snapshot(),
+			Rules.new(_definition).is_solved(state.marks()),
+			state.attempt_status(),
+		)
+	)
 
 
 func _load_definition(path: String) -> PuzzleDefinition:
@@ -31,510 +375,9 @@ func _load_definition(path: String) -> PuzzleDefinition:
 	return definition
 
 
-## The teapot fixture predates the pack schema and names [SCH-puzzle-def] F1-F7 with
-## underscores; the pack names them with hyphens. Renaming here keeps the one fixture.
 func _pack_entry(fixture: Variant) -> Dictionary:
 	var entry: Dictionary = {}
 	for field in PackEntryValidator.FIELDS:
 		var fixture_field := field.replace("-", "_")
 		entry[field] = fixture.get(fixture_field)
 	return entry
-
-
-## A grid with the given marks. A cross that falls on a fill position is applied first,
-## so the fill wins.
-func _grid_with(fills: Array[Vector2i] = [], crosses: Array[Vector2i] = []) -> MarkGrid:
-	var grid := MarkGrid.new(_definition.size, true)
-	for position in crosses:
-		grid.apply_mark(position.x, position.y, CellMark.Mark.CROSS)
-	for position in fills:
-		grid.apply_mark(position.x, position.y, CellMark.Mark.FILL)
-	return grid
-
-
-## The teapot solution filled, plus [param extra_crosses] elsewhere: fills equal the solution.
-func _solved_grid(extra_crosses: Array[Vector2i] = []) -> MarkGrid:
-	return _grid_with(_definition.solution_fills, extra_crosses)
-
-
-## Row 7 of the teapot is one run of 10, cells 2…11.
-func _row_seven_run() -> Array[Vector2i]:
-	var positions: Array[Vector2i] = []
-	for column in range(2, 12):
-		positions.append(Vector2i(7, column))
-	return positions
-
-
-# PS1.1: Solve ignores crosses
-func test_solve_ignores_crosses():
-	# PS1.1: fills match the solution and one other cell is cross → is-solved is true
-	assert_true(Rules.new(_definition).is_solved(_solved_grid([Vector2i(0, 0)])))
-
-
-func test_crosses_are_ignored_for_solve():
-	# PS1.1: crosses alone are never fills, so nothing is solved
-	var crosses: Array[Vector2i] = []
-	for position in _definition.solution_fills:
-		crosses.append(position)
-	var exits := _grid_with([], crosses)
-	assert_eq(exits.filled_positions(), [])
-	assert_false(Rules.new(_definition).is_solved(exits))
-
-
-func test_an_extra_fill_is_not_solved():
-	var fills: Array[Vector2i] = _definition.solution_fills.duplicate()
-	fills.append(Vector2i(0, 0))
-	assert_false(Rules.new(_definition).is_solved(_grid_with(fills)))
-
-
-func test_a_missing_fill_is_not_solved():
-	var fills: Array[Vector2i] = _definition.solution_fills.duplicate()
-	fills.remove_at(0)
-	assert_false(Rules.new(_definition).is_solved(_grid_with(fills)))
-
-
-func test_every_cell_stays_clear_fill_or_cross():
-	# V5: each cell is clear, fill, or cross
-	var grid := _solved_grid([Vector2i(0, 0)])
-	for marks in grid.snapshot():
-		for mark in marks:
-			assert_true(CellMark.is_mark(mark), "every cell holds one of the three marks")
-
-
-# PS1.3: Line error off
-func test_an_incomplete_but_possible_line_has_no_error():
-	# PS1.3: row 7 needs ten fills; six of them leave a legal run
-	var status := Rules.new(_definition).line_status(_grid_with(_row_seven_run().slice(0, 6)))
-	var row := status.row(7)
-	assert_false(row.error, "PS1.3: row 7 is incomplete but still possible")
-	assert_false(row.satisfied, "PS1.3: an incomplete line is not satisfied")
-
-
-# PS1.3b: Line error on
-func test_a_contradicting_row_fill_is_an_error():
-	# PS1.3b: row 7's clue is one run of 10; a fill in column 12 is a second run
-	var fills := _row_seven_run()
-	fills.append(Vector2i(7, 12))
-	var status := Rules.new(_definition).line_status(_grid_with(fills))
-	assert_true(status.row(7).error, "PS1.3b: GS.row-error for row 7 is true")
-	assert_false(status.row(7).satisfied)
-
-
-func test_a_contradicting_column_fill_is_an_error():
-	# PS1.3b: column 2 is one run of 3; fills at rows 0 and 14 can never share that run
-	var status := Rules.new(_definition).line_status(_grid_with([Vector2i(0, 2), Vector2i(14, 2)]))
-	assert_true(status.column(2).error, "PS1.3b: GS.col-error for column 2 is true")
-	assert_false(status.column(2).satisfied)
-
-
-func test_a_row_with_a_hole_inside_its_clue_is_an_error():
-	# PS1.3b: row 6 is 1 then 9; a hole between two fills contradicts that
-	var status := Rules.new(_definition).line_status(_grid_with([Vector2i(6, 2), Vector2i(6, 9)]))
-	assert_true(status.row(6).error, "PS1.3b: GS.row-error for row 6 is true")
-
-
-func test_a_fill_that_still_fits_the_clue_is_no_error():
-	# PS1.3: column 2 needs one run of 3 and a fill at row 11 still allows it
-	var status := Rules.new(_definition).line_status(_grid_with([Vector2i(11, 2)]))
-	assert_false(status.column(2).error, "PS1.3: the run can still go where it belongs")
-
-
-func test_untouched_lines_have_no_error():
-	var fills: Array[Vector2i] = []
-	for column in range(8, 12):
-		fills.append(Vector2i(7, column))
-	var status := Rules.new(_definition).line_status(_grid_with(fills))
-	for index in _definition.size:
-		if index != 7:
-			assert_false(status.row(index).error, "row %s has no fill" % index)
-
-
-# PS1.4: Clue satisfied
-func test_an_exact_run_match_is_satisfied():
-	# PS1.4: fills exactly match row 7's runs → satisfied is true
-	var status := Rules.new(_definition).line_status(_grid_with(_row_seven_run()))
-	assert_true(status.row(7).satisfied, "PS1.4: GS.clue-satisfied for row 7 is true")
-	assert_false(status.row(7).error)
-
-
-func test_an_exact_column_run_match_is_satisfied():
-	# PS1.4: column 2 is one run of 3 at rows 6…8
-	var status := (
-		Rules
-		. new(_definition)
-		. line_status(
-			_grid_with(
-				[
-					Vector2i(6, 2),
-					Vector2i(7, 2),
-					Vector2i(8, 2),
-				]
-			)
-		)
-	)
-	assert_true(status.column(2).satisfied, "PS1.4: GS.clue-satisfied for column 2 is true")
-
-
-# PS1.4b: Clue unsatisfied
-func test_a_diverging_fill_is_not_satisfied():
-	# PS1.4b: a fill at row 11 is legal for column 2's run of 3, but it is not that run
-	var status := Rules.new(_definition).line_status(_grid_with([Vector2i(11, 2)]))
-	assert_false(status.column(2).satisfied, "PS1.4b: GS.clue-satisfied for column 2 is false")
-
-
-func test_a_solved_board_satisfies_every_line():
-	var status := Rules.new(_definition).line_status(_solved_grid([Vector2i(0, 0)]))
-	assert_eq(status.statuses.size(), 2 * _definition.size)
-	for line in status.statuses:
-		assert_true(line.satisfied, "%s is satisfied" % line)
-		assert_false(line.error, "%s is not in error" % line)
-
-
-func test_line_status_carries_orientation_and_index():
-	# SCH-line-status F1/F2: one status per row and column, in index order
-	var status := Rules.new(_definition).line_status(_solved_grid([Vector2i(0, 0)]))
-	var rows := status.statuses_for(ClueLine.Orientation.ROW)
-	var columns := status.statuses_for(ClueLine.Orientation.COLUMN)
-	assert_eq(rows.size(), _definition.size)
-	assert_eq(columns.size(), _definition.size)
-	for position in rows.size():
-		assert_eq(rows[position].orientation, ClueLine.Orientation.ROW)
-		assert_eq(rows[position].index, position)
-		assert_eq(columns[position].orientation, ClueLine.Orientation.COLUMN)
-		assert_eq(columns[position].index, position)
-
-
-func test_line_status_tracks_the_fills():
-	# SCH-line-status I1: F3/F4 come from the current fills
-	var rules := Rules.new(_definition)
-	var contradicting := rules.line_status(_grid_with([Vector2i(0, 2), Vector2i(14, 2)]))
-	assert_true(contradicting.column(2).error, "F3 matches GS.col-error")
-	assert_false(contradicting.column(2).satisfied, "F4 matches GS.clue-satisfied")
-	var matching := rules.line_status(_grid_with([Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2)]))
-	assert_false(matching.column(2).error)
-	assert_true(matching.column(2).satisfied)
-
-
-func test_rules_write_neither_the_grid_nor_anything_else():
-	# AC: [Rules] exposes derived returns only; the grid it checks is untouched
-	var grid := _grid_with([Vector2i(7, 7)], [Vector2i(0, 0)])
-	var before := grid.snapshot()
-	var rules := Rules.new(_definition)
-	rules.line_status(grid)
-	rules.is_solved(grid)
-	assert_eq(grid.snapshot(), before, "rules do not write the grid")
-	var returned := rules.solution_fills()
-	returned.append(Vector2i(0, 0))
-	assert_eq(rules.solution_fills(), _definition.solution_fills, "the solution is not aliased out")
-
-
-# PS1.6: In progress needs a mark
-func test_in_progress_needs_a_mark():
-	# V2: attempt in progress ⇒ at least one fill or cross
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	assert_true(attempt.apply_mark(7, 7, CellMark.Mark.FILL))
-	assert_eq(attempt.attempt_status(), AttemptState.Status.IN_PROGRESS)
-	assert_true(attempt.marks().has_any_mark(), "V2: in progress implies a fill or cross")
-
-
-func test_a_cross_alone_sets_in_progress():
-	# V2: a cross counts as a mark
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	assert_true(attempt.apply_mark(0, 0, CellMark.Mark.CROSS))
-	assert_eq(attempt.attempt_status(), AttemptState.Status.IN_PROGRESS)
-
-
-func test_an_empty_clue_auto_cross_sets_in_progress():
-	# V2: the auto-cross on the empty-clue row 0 starts the attempt
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	assert_eq(attempt.auto_cross([Vector2i(0, 0), Vector2i(0, 1)]), 2)
-	assert_eq(attempt.attempt_status(), AttemptState.Status.IN_PROGRESS)
-	assert_true(attempt.marks().has_any_mark())
-
-
-func test_auto_cross_after_ready_is_in_progress():
-	# V3: auto-cross after ready → in progress, so not started never holds a mark
-	var attempt := AttemptState.new(_definition.size)
-	assert_eq(attempt.auto_cross([Vector2i(0, 0)]), 0, "marks are blocked during get-set-ready")
-	assert_eq(attempt.attempt_status(), AttemptState.Status.NOT_STARTED)
-	attempt.allow_marks()
-	attempt.auto_cross([Vector2i(0, 0)])
-	assert_eq(attempt.attempt_status(), AttemptState.Status.IN_PROGRESS)
-
-
-func test_a_mark_while_blocked_or_paused_changes_nothing():
-	# SCH-attempt I2 / CTR-attempt G1
-	var attempt := AttemptState.new(_definition.size)
-	assert_false(attempt.apply_mark(7, 7, CellMark.Mark.FILL), "marks blocked during get-set-ready")
-	attempt.allow_marks()
-	attempt.pause()
-	assert_false(attempt.apply_mark(7, 7, CellMark.Mark.FILL), "marks blocked while paused")
-	assert_eq(attempt.marks().mark_at(7, 7), CellMark.Mark.CLEAR)
-	assert_eq(attempt.attempt_status(), AttemptState.Status.NOT_STARTED)
-
-
-func test_elapsed_freezes_while_paused():
-	# fields.md PS1.4: paused true → solve-elapsed stays 10
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	attempt.advance(10)
-	attempt.pause()
-	attempt.advance(5)
-	assert_eq(attempt.elapsed(), 10)
-	attempt.resume()
-	attempt.advance(5)
-	assert_eq(attempt.elapsed(), 15, "fields.md PS1.4b: elapsed grows again once unpaused")
-
-
-func test_clearing_the_last_mark_returns_to_not_started():
-	# V3: none left sets not started, elapsed 0 (specs/technical/sequences/mark.md S3)
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	attempt.apply_mark(7, 7, CellMark.Mark.FILL)
-	attempt.advance(12)
-	assert_true(attempt.apply_mark(7, 7, CellMark.Mark.CLEAR))
-	assert_eq(attempt.attempt_status(), AttemptState.Status.NOT_STARTED)
-	assert_eq(attempt.elapsed(), 0)
-	assert_false(attempt.marks().has_any_mark(), "V3: not started holds no mark")
-
-
-# V3: Not started ⇒ all clear, elapsed 0
-func test_not_started_holds_clear_marks_and_zero_elapsed():
-	var attempt := AttemptState.new(_definition.size)
-	assert_eq(attempt.attempt_status(), AttemptState.Status.NOT_STARTED)
-	assert_eq(attempt.elapsed(), 0)
-	for marks in attempt.marks().snapshot():
-		for mark in marks:
-			assert_eq(mark, CellMark.Mark.CLEAR)
-
-
-# PS1.7: Determinism
-func test_identical_mark_sequences_play_identically():
-	# Q1: identical pack data and mark sequences ⇒ identical cell-marks, is-solved, and outcome
-	var first := _play_sequence()
-	var second := _play_sequence()
-	assert_eq(first["marks"], second["marks"], "Q1: cell-marks match")
-	assert_eq(first["solved"], second["solved"], "Q1: is-solved matches")
-	assert_eq(first["status"], second["status"], "Q1: attempt-status outcome matches")
-	assert_eq(first["after_clear"], second["after_clear"], "Q1: end outcome matches")
-	assert_eq(
-		first["status"],
-		AttemptState.Status.IN_PROGRESS,
-		"the sequence left the attempt in progress"
-	)
-	assert_true(first["solved"], "the sequence solves the teapot")
-
-
-func _play_sequence() -> Dictionary:
-	var rules := Rules.new(_definition)
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	for position in _definition.solution_fills:
-		attempt.apply_mark(position.x, position.y, CellMark.Mark.FILL)
-		attempt.advance(1)
-	var solved := rules.is_solved(attempt.marks())
-	var status := attempt.attempt_status()
-	attempt.clear_attempt()
-	return {
-		"marks": attempt.marks().snapshot(),
-		"solved": solved,
-		"status": status,
-		"after_clear": attempt.attempt_status(),
-	}
-
-
-func test_a_solve_returns_the_attempt_to_not_started():
-	# V3 / fields.md PS1.6: solve clears marks and elapsed
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	attempt.apply_mark(7, 7, CellMark.Mark.FILL)
-	attempt.advance(9)
-	attempt.clear_attempt()
-	assert_eq(attempt.attempt_status(), AttemptState.Status.NOT_STARTED)
-	assert_eq(attempt.elapsed(), 0)
-	assert_false(attempt.marks().has_any_mark())
-
-
-# V1: Ever-completed ⇒ personal best exists
-func test_a_solve_sets_ever_completed_with_a_personal_best():
-	# V1 / PS1.5: ever-completed becomes true with personal-best 30
-	var progress := ProgressRules.new()
-	var record := progress.record_solve("teapot", 30)
-	assert_true(record.ever_completed)
-	assert_true(record.has_personal_best(), "V1: ever-completed implies a personal best")
-	assert_eq(record.personal_best, 30)
-	assert_false(record.in_progress, "solve clears the attempt")
-	assert_null(record.marks)
-	assert_eq(record.elapsed, 0)
-
-
-# PS1.5: Thumbnail knowability
-func test_the_thumbnail_flag_is_true_only_when_ever_completed():
-	# PS1.5 / H1: ever-completed false → not knowable; solve → knowable
-	var progress := ProgressRules.new()
-	assert_false(progress.thumbnail_visible("teapot"), "PS1.5: not knowable before ever-completed")
-	progress.record_solve("teapot", 30)
-	assert_true(progress.thumbnail_visible("teapot"), "PS1.5: the thumbnail is knowable now")
-
-
-func test_the_knowable_values_are_available_after_a_solve():
-	# PS1.5 / H2: ever-completed, status, marks, elapsed, paused, personal best, rate, line
-	# status and clue satisfaction are all readable; only the pictures are gated by H1
-	var progress := ProgressRules.new()
-	progress.record_solve("teapot", 30)
-	var record := progress.record("teapot")
-	assert_true(record.ever_completed)
-	assert_false(record.in_progress)
-	assert_null(record.marks)
-	assert_eq(record.elapsed, 0)
-	assert_eq(record.personal_best, 30)
-	assert_eq(progress.completion_rate(1), 1.0)
-	var attempt := AttemptState.new(_definition.size)
-	assert_false(attempt.paused(), "H2: paused is knowable")
-	assert_true(
-		Rules.new(_definition).line_status(attempt.marks()).ok(), "H2: line status is knowable"
-	)
-
-
-# PS1.2: Completion rate
-func test_completion_rate_is_ever_completed_over_pack_size():
-	# PS1.2: 50 of 200 ever-completed → 0.25
-	var progress := ProgressRules.new()
-	for index in 50:
-		progress.record_solve("puzzle-%s" % index, 20)
-	assert_eq(progress.completion_rate(), 0.25)
-
-
-func test_completion_rate_is_zero_for_an_empty_pack():
-	assert_eq(ProgressRules.new().completion_rate(), 0.0)
-	assert_eq(ProgressRules.new().completion_rate(0), 0.0)
-
-
-func test_completion_rate_uses_the_fixture_pack_size():
-	# PS1.2 arithmetic over fixture packs of any size; the 200-puzzle content proof is
-	# deferred to #94 / #97 / #98, so the shipped denominator stays 200.
-	var progress := ProgressRules.new()
-	for index in 3:
-		progress.record_solve("fixture-%s" % index, 15)
-	assert_eq(progress.completion_rate(6), 0.5)
-	assert_eq(progress.completion_rate(12), 0.25)
-
-
-func test_reset_clears_the_derived_values():
-	# V3 / O7: reset clears marks, elapsed, personal best, ever-completed; not started
-	var progress := ProgressRules.new()
-	progress.record_solve("teapot", 22)
-	var record := progress.reset("teapot")
-	assert_false(record.ever_completed)
-	assert_false(record.has_personal_best())
-	assert_false(record.in_progress)
-	assert_null(record.marks)
-	assert_eq(record.elapsed, 0)
-	assert_false(progress.thumbnail_visible("teapot"))
-	assert_eq(progress.completion_rate(1), 0.0)
-
-
-# V4: Personal best only shrinks or stays while set
-func test_a_longer_solve_leaves_the_personal_best():
-	# V4 / fields.md PS1.7: personal-best 20, solve at 35 → personal-best 20
-	var progress := ProgressRules.new()
-	progress.record_solve("teapot", 20)
-	assert_eq(progress.record_solve("teapot", 35).personal_best, 20)
-
-
-func test_a_shorter_solve_replaces_the_personal_best():
-	# V4: it may shrink
-	var progress := ProgressRules.new()
-	progress.record_solve("teapot", 20)
-	assert_eq(progress.record_solve("teapot", 18).personal_best, 18)
-
-
-# V6: Ever-completed and in progress may coexist
-func test_ever_completed_and_in_progress_coexist_on_replay():
-	# V6 / fields.md PS1.5: ever-completed true, personal-best 30, a fill on a new attempt
-	var progress := ProgressRules.new()
-	progress.record_solve("teapot", 30)
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	attempt.apply_mark(7, 7, CellMark.Mark.FILL)
-	var record := (
-		progress
-		. commit(
-			"teapot",
-			attempt.marks(),
-			attempt.elapsed(),
-			attempt.in_progress(),
-		)
-	)
-	assert_true(record.ever_completed, "V6: the replay keeps ever-completed")
-	assert_true(record.in_progress, "V6: and is in progress")
-	assert_eq(record.personal_best, 30)
-
-
-func test_commit_keeps_the_marks_it_was_given():
-	# SCH-progress F4/I2: a committed in-progress record stores a copy of the grid
-	var progress := ProgressRules.new()
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	attempt.apply_mark(7, 7, CellMark.Mark.FILL)
-	attempt.apply_mark(0, 0, CellMark.Mark.CROSS)
-	attempt.advance(4)
-	var record := progress.commit(
-		"teapot", attempt.marks(), attempt.elapsed(), attempt.in_progress()
-	)
-	assert_true(record.marks.has_any_mark(), "I2: in progress stores at least one mark")
-	assert_eq(record.marks.mark_at(7, 7), CellMark.Mark.FILL)
-	assert_eq(record.marks.mark_at(0, 0), CellMark.Mark.CROSS)
-	assert_eq(record.elapsed, 4)
-	attempt.apply_mark(0, 0, CellMark.Mark.CLEAR)
-	assert_eq(record.marks.mark_at(0, 0), CellMark.Mark.CROSS, "the record holds a copy")
-
-
-func test_a_commit_without_marks_is_not_started():
-	# SCH-progress I2/I3: in progress needs a mark; not started clears marks and elapsed
-	var progress := ProgressRules.new()
-	var record := progress.commit("teapot", MarkGrid.new(_definition.size, true), 9, true)
-	assert_false(record.in_progress)
-	assert_null(record.marks)
-	assert_eq(record.elapsed, 0)
-
-
-func test_a_restored_grid_sets_the_status_from_its_marks():
-	# SCH-progress I2/I3 at open: a restored in-progress grid stays in progress
-	var progress := ProgressRules.new()
-	progress.commit("teapot", _grid_with([Vector2i(7, 7)], [Vector2i(0, 0)]), 18, true)
-	var restored := progress.record("teapot").marks_copy()
-	var attempt := AttemptState.new(_definition.size)
-	attempt.show_grid(restored)
-	assert_eq(attempt.attempt_status(), AttemptState.Status.IN_PROGRESS)
-	assert_eq(attempt.marks().filled_positions(), [Vector2i(7, 7)], "crosses are not fills")
-
-
-# AC: no path writes SCH-progress except O5-O7
-func test_only_the_progress_rules_change_a_record():
-	var progress := ProgressRules.new()
-	var record := progress.record("teapot")
-	var before := _record_snapshot(record)
-	Rules.new(_definition).is_solved(_solved_grid())
-	Rules.new(_definition).line_status(_solved_grid())
-	var attempt := AttemptState.new(_definition.size)
-	attempt.allow_marks()
-	attempt.apply_mark(7, 7, CellMark.Mark.FILL)
-	attempt.clear_attempt()
-	assert_eq(
-		_record_snapshot(record), before, "nothing outside progress_rules.gd writes the record"
-	)
-
-
-func _record_snapshot(record: ProgressRecord) -> Array:
-	return [
-		record.puzzle_id,
-		record.ever_completed,
-		record.in_progress,
-		record.marks,
-		record.elapsed,
-		record.personal_best,
-	]
