@@ -36,8 +36,8 @@ Prep and judgement boundary: [`setup-and-seam.md`](setup-and-seam.md). Details a
 | Notes | [`notes.md`](notes.md) | present |
 | Log — `PTD-ready-and-marks` | `logs/gut-ready-and-marks.log` | present |
 | Log — `PTD-crosses-and-fills` | `logs/gut-crosses-and-fills.log` | present |
-| Screenshot — `PTD-ready-and-marks` judged state | `screenshots/ready-and-marks.png` | **waiting on a graphical re-run of the same build** |
-| Screenshot — `PTD-crosses-and-fills` judged state | `screenshots/crosses-and-fills.png` | **waiting on a graphical re-run of the same build** |
+| Screenshot — `PTD-ready-and-marks` judged state | `screenshots/ready-and-marks.png` | **waiting on a graphical re-run of the same build** (still absent at `main@5844364`; see [`../2026-11-01-accept-recheck/manifest.md`](../2026-11-01-accept-recheck/manifest.md)) |
+| Screenshot — `PTD-crosses-and-fills` judged state | `screenshots/crosses-and-fills.png` | **waiting on a graphical re-run of the same build** (still absent at `main@5844364`; see [`../2026-11-01-accept-recheck/manifest.md`](../2026-11-01-accept-recheck/manifest.md)) |
 
 `SIT.3` state dumps live inline in [`notes.md`](notes.md) (seam output); `SIT.1`/`SIT.2` are not cited by either protocol.
 
