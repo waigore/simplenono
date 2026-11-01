@@ -10,7 +10,7 @@
 6. **Crew bridge** (`crew/`): CrewAI Agent/Task/Crew + `ProviderCliTool`; default path invokes the tool directly (no LLM) so CLI cost is the agent run itself. Optional `use_crew_kickoff` for future LLM-driven use.
 7. **Providers** (`providers/`): render configured argv templates.
 8. **Messaging** (`messaging.py`): no-op `publish` / `subscribe` for later agent-to-agent hooks.
-9. **Shutdown** (`shutdown.py`): SIGINT confirm, kill process groups, purge worktrees.
+9. **Shutdown** (`shutdown.py`): SIGINT confirm, delete tracked OpenCode sessions, kill process groups, purge worktrees.
 10. **github_gh** (`github_gh.py`): thin `gh` wrapper for e2e (not used by the daemon loop).
 
 ## Parallelism

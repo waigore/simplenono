@@ -44,6 +44,8 @@ Shipped defaults (see [`.orc/config.yaml`](../../.orc/config.yaml)):
 | opencode-qwen38-max | `opencode` | `run --auto --model opencode-go/qwen3.8-max {prompt}` ([OpenCode Go](https://opencode.ai/docs/go/)) |
 | opencode-deepseek-v41-flash | `opencode` | `run --auto --model opencode-go/deepseek-v4.1-flash {prompt}` |
 
+OpenCode providers: agent-orc injects `--session <id>` when missing, then runs `opencode session delete <id>` when the run ends or on forced shutdown (before process kill — kill alone is not enough; the OpenCode server can respawn killed sessions).
+
 Default agent→provider: planner → `opencode-qwen38-max`; refine → `grok`; verify → `opencode-deepseek-v41-flash`; others → `cursor`.
 
 ## Agents

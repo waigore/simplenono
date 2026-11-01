@@ -23,7 +23,7 @@ from agent_orc.config import (
 )
 from agent_orc.crew.factory import run_skill_once
 from agent_orc.gate import gate_passes, next_gate_backoff
-from agent_orc.shutdown import ShutdownController
+from agent_orc.shutdown import OpenCodeSessionRef, ShutdownController
 from agent_orc.worktree import (
     WorktreeSession,
     create_worktree,
@@ -200,6 +200,23 @@ async def _skill_loop(
             def on_pid_done(pid: int) -> None:
                 shutdown.unregister_pid(pid)
 
+            def on_opencode_session(session_id: str) -> None:
+                assert session is not None
+                binary = "opencode"
+                template = config.providers.get(agent.provider) or []
+                if template:
+                    binary = template[0]
+                shutdown.register_opencode_session(
+                    OpenCodeSessionRef(
+                        session_id=session_id,
+                        cwd=session.path,
+                        binary=binary,
+                    )
+                )
+
+            def on_opencode_session_done(session_id: str) -> None:
+                shutdown.unregister_opencode_session(session_id)
+
             running = replace(
                 agent,
                 prompt=render_agent_prompt(
@@ -214,6 +231,8 @@ async def _skill_loop(
                 logs_dir=logs_dir,
                 on_pid=on_pid,
                 on_pid_done=on_pid_done,
+                on_opencode_session=on_opencode_session,
+                on_opencode_session_done=on_opencode_session_done,
                 parallel_id=parallel_id,
                 issue=issue_label,
             )
