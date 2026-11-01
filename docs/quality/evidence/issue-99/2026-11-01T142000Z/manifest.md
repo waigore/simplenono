@@ -22,4 +22,4 @@ Other Applies axes (`frame-time`, `hitch-bound`, `time-to-playable`, `transition
 ## Verdict
 
 `Fail` — two Applies deterministic axes evaluated as blocked (`no-invariant`). Per
-[`run-quality-evaluators`](../../../../.agents/skills/run-quality-evaluators/SKILL.md), a blocked row fails the run.
+[`run-quality-evaluators`](../../../../../.agents/skills/run-quality-evaluators/SKILL.md), a blocked row fails the run.
