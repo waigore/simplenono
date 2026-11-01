@@ -10,11 +10,16 @@ extends RefCounted
 ## `result-gallery` waits for the result's `S1` Default, which the shell's clock reaches
 ## after two `CFG.MORPH_STAGE_MS` stages; the harness then sends the result's own C1.
 ##
-## A sampling window spans the solve and the reveal it opens, so `frame-time` and
-## `hitch-bound` describe the result morph's frames rather than only the gallery-to-puzzle
-## leg (the reveal is the heaviest per-frame work the game does: three fading layers).
+## Two named sampling windows describe `frame-time` (≤ 16.7 ms, "grid paint and
+## navigation"): `gallery` covers the gallery's own frames, including the `refresh()`
+## the shell runs in its return frame, and `reveal` covers the solve and the reveal it
+## opens. Grid paint is `paint`'s window; the harness reads each window separately.
 
 const ID := "navigate"
+
+## Sampling window names, as the I1 observation and the samples NDJSON report them.
+const GALLERY_WINDOW := "gallery"
+const REVEAL_WINDOW := "reveal"
 
 
 static func spec() -> Dictionary:
@@ -28,6 +33,26 @@ static func spec() -> Dictionary:
 		[
 			{"id": "launch", "kind": "launch", "scene": "res://presentation/shell.tscn"},
 			{"id": "home", "kind": "wait_probe", "probe": "home_ready", "timeout_ms": 10000},
+			# R2 layout: the tile picture is square, and both edge states show every column.
+			{
+				"id": "gallery-mobile",
+				"kind": "expect",
+				"size": [390, 844],
+				"columns": 2,
+				"fills": true,
+			},
+			{
+				"id": "gallery-desktop",
+				"kind": "expect",
+				"size": [1100, 900],
+				"columns": 4,
+				"fills": true,
+			},
+			# Let the gallery render, then open the `gallery` window over the screen and the
+			# return frame the shell refreshes in (SEQ reset S5).
+			{"id": "gallery-beat", "kind": "wait_frames", "frames": 3},
+			{"id": "gallery-start", "kind": "sample_start", "window": GALLERY_WINDOW},
+			{"id": "gallery-frames", "kind": "wait_frames", "frames": 3},
 			{
 				"id": "home-puzzle",
 				"kind": "measure",
@@ -36,7 +61,7 @@ static func spec() -> Dictionary:
 				"until": {"probe": "view", "value": "puzzle"},
 			},
 			{"id": "beat", "kind": "wait_beat", "timeout_ms": 5000},
-			{"id": "reveal-start", "kind": "sample_start"},
+			{"id": "reveal-start", "kind": "sample_start", "window": REVEAL_WINDOW},
 			{
 				"id": "puzzle-result",
 				"kind": "measure",
@@ -54,6 +79,8 @@ static func spec() -> Dictionary:
 				"action": {"kind": "back"},
 				"until": {"probe": "view", "value": "gallery"},
 			},
+			{"id": "gallery-return", "kind": "wait_frames", "frames": 3},
+			{"id": "gallery-stop", "kind": "sample_stop"},
 			{"id": "quit", "kind": "quit"},
 		],
 	}

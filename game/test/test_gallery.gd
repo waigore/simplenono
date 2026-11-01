@@ -215,3 +215,39 @@ func test_columns_follow_the_screen_width() -> void:
 	assert_eq(_gallery.columns(), 2, "the mobile mockup's two columns")
 	_gallery.size = Vector2(1024.0, 800.0)
 	assert_eq(_gallery.columns(), 4, "the desktop mockup's four columns")
+
+
+# R2 layout: the tile picture region is square in both column counts, as the mockups draw
+# it (`.puzzle-tile .thumb { aspect-ratio: 1 }`), and shares the tile's inner width.
+func test_tile_picture_is_square_at_both_widths() -> void:
+	_present(ConfigFile.new())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	for width: float in [390.0, 1100.0]:
+		_gallery.size = Vector2(width, 844.0)
+		await get_tree().process_frame
+		var target := _gallery.tile("pack-000")
+		assert_almost_eq(
+			_gallery.picture_width(),
+			target.size.x,
+			1.0,
+			"the picture shares the tile width at %d px" % int(width)
+		)
+		assert_almost_eq(
+			_gallery.picture_aspect(), 1.0, 0.01, "square picture region at %d px" % int(width)
+		)
+
+
+# R2 layout: every column is visible — the widest tile fits its share of an edge width,
+# so a later column never runs off the screen.
+func test_every_column_fits_an_edge_width() -> void:
+	_present(ConfigFile.new())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	for width: float in [390.0, 1100.0]:
+		_gallery.size = Vector2(width, 844.0)
+		await get_tree().process_frame
+		var room := (width - 2.0 * GalleryScreen.PAGE_MARGIN) / float(_gallery.columns())
+		assert_lte(
+			_gallery.widest_tile_width(),
+			room + 0.5,
+			"the widest tile fits %d columns at %d px" % [_gallery.columns(), int(width)]
+		)
