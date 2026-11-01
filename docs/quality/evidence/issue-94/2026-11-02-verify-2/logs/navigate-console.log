@@ -1,0 +1,96 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SEV level=info event=session-start time=1793574126.189 session=session-1793574126 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793574126.344 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793574126.853 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.853 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.859 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.859 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.866 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.866 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.873 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.873 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.880 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.880 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.887 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.887 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.893 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.893 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.900 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.901 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.907 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.907 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.914 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.914 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.921 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.921 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.928 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.928 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.935 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.935 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.942 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.942 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.949 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.949 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.956 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.956 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.962 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.963 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.969 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.969 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.976 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.976 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.983 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.983 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.990 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.990 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574126.997 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574126.997 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.004 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.004 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.011 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.011 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.018 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.018 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.025 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.025 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.031 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.032 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.038 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.039 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.045 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.045 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.052 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.052 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.059 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.059 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.066 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.066 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.073 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.073 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.080 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.080 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.087 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.087 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.094 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.094 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.100 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.101 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.107 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.108 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.114 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.114 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.121 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.121 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.128 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.128 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.135 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574127.135 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=solved time=1793574127.142 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793574127.142 session=session-1793574126 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793574128.098 session=session-1793574126 build=4.7.2-stable (official) story=- message=
+HARNESS protocol=navigate outcome=pass run=integration/logs/harness-1793574126-navigate.log
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

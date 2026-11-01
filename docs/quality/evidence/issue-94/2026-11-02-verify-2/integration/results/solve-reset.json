@@ -1,0 +1,110 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 1586248,
+	"flows_failed": [],
+	"flows_ok": [
+		"open",
+		"solve",
+		"back",
+		"reset"
+	],
+	"log": "integration/logs/harness-1793574137-solve-reset.log",
+	"outcome": "pass",
+	"protocol": "solve-reset",
+	"reason": "",
+	"rows": [
+		{
+			"artifact": "integration/results/solve-reset.json",
+			"axis": "crash-free",
+			"bar": "No crash across open, solve, reset, and back",
+			"invariant": "I9",
+			"observation": "flows ran: back, open, reset, solve",
+			"result": "pass"
+		}
+	],
+	"session_id": "harness-1793574137",
+	"started_at": 158775,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "open",
+			"kind": "open",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "puzzle",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "solve",
+			"kind": "solve",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "leave",
+			"kind": "leave",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "reopen",
+			"kind": "open",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "second-beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "mark",
+			"kind": "mark",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "reset",
+			"kind": "reset",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "back",
+			"kind": "back",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Solve, reset, and back flows"
+}

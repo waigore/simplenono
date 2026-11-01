@@ -1,0 +1,57 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 263477,
+	"flows_failed": [],
+	"flows_ok": [],
+	"log": "integration/logs/harness-1793574114-app-start.log",
+	"outcome": "pass",
+	"protocol": "app-start",
+	"reason": "",
+	"rows": [
+		{
+			"artifact": "integration/logs/harness-1793574114-app-start.log",
+			"axis": "time-to-playable",
+			"bar": "<= 3 s",
+			"invariant": "I6",
+			"observation": "cold launch to the interactive shell home (gallery): 252.5 ms",
+			"result": "pass"
+		}
+	],
+	"session_id": "harness-1793574114",
+	"started_at": 154254,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch-start",
+			"kind": "mark_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "launch-stop",
+			"kind": "mark_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Cold launch to the first interactive screen"
+}
