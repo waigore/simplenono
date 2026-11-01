@@ -14,7 +14,7 @@ The game runs as one Godot project under `game/` written in GDScript, 2D and UI-
 | Frameworks | N/A — no app/UI framework beyond Godot | — |
 | Libraries | GUT (test-only); no third-party runtime gameplay addons | [ADR-0005](decisions/0005-gut-unit-tests.md) |
 | Data storage | Godot `user://` progress ConfigFile | [ADR-0002](decisions/0002-user-data-dir.md) |
-| Integrations | Catalog / asset roots and asset manifest | [ADR-0003](decisions/0003-catalog-asset-roots.md) |
+| Integrations | Catalog / asset roots; asset manifest generator | [ADR-0003](decisions/0003-catalog-asset-roots.md), [ADR-0006](decisions/0006-asset-manifest-generator.md) |
 | Game architecture | Shell · attempt · rules · pack; L1–L3 | [ADR-0004](decisions/0004-shell-attempt-rules-pack.md) |
 
 ## Traceability
@@ -25,4 +25,4 @@ The game runs as one Godot project under `game/` written in GDScript, 2D and UI-
 
 Global specs: [`traceability.md`](traceability.md). Superseded and deprecated decisions: [`archive/`](archive/README.md).
 
-- **Decisions**: [ADR-0001: Godot with GDScript](decisions/0001-godot-gdscript.md) — Accepted. [ADR-0002: User data directory](decisions/0002-user-data-dir.md) — Accepted. [ADR-0003: Catalog and asset roots](decisions/0003-catalog-asset-roots.md) — Accepted. [ADR-0004: Shell, attempt, rules, and pack](decisions/0004-shell-attempt-rules-pack.md) — Accepted. [ADR-0005: GUT for unit tests](decisions/0005-gut-unit-tests.md) — Accepted
+- **Decisions**: [ADR-0001: Godot with GDScript](decisions/0001-godot-gdscript.md) — Accepted. [ADR-0002: User data directory](decisions/0002-user-data-dir.md) — Accepted. [ADR-0003: Catalog and asset roots](decisions/0003-catalog-asset-roots.md) — Accepted. [ADR-0004: Shell, attempt, rules, and pack](decisions/0004-shell-attempt-rules-pack.md) — Accepted. [ADR-0005: GUT for unit tests](decisions/0005-gut-unit-tests.md) — Accepted. [ADR-0006: Asset manifest generator](decisions/0006-asset-manifest-generator.md) — Accepted
