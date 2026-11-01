@@ -15,10 +15,10 @@ Why these sit on `status:pending-acceptance`. Full re-check log:
 
 ## Why each still sits here
 
-- **`#111`** — marked input passes at the `CTR-attempt` O2 seam
-  ([record](issue-111/2026-11-02-accept/manifest.md)), but `IN` is cited only by `PTU-settings`,
-  which never places a mark. Even a seam-complete build has no protocol that photographs a mark
-  transition for `IN`.
+- **`#111`** — `IN` US1.6–US1.8 judged graphically on `b1c1285`, five screenshots
+  ([record](issue-111/2026-11-02-accept-graphical/manifest.md)), but `IN` is still cited only by
+  `PTU-settings`, which never places a mark, so the images have no protocol row to sit under.
+  The build gate (H1) closed with #169; only the protocol gap is left (#203).
 - **`#112`** — all 200 ids open at the seam
   ([record](issue-112/2026-11-02-accept/manifest.md)); two Applies deterministic axes
   (`response-delay`, `transition-latency`) can move and no `issue-112` record exists for the commit.

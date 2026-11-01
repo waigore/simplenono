@@ -1,0 +1,14 @@
+$ grep -rn "attempt\.\(mark\|open\|advance\)\|\.mark(" game/presentation
+game/presentation/dump_state.gd:39:	if not attempt.open(puzzle_id):
+game/presentation/mark_input.gd:196:	var result := attempt.mark(row, column, mark_value)
+game/presentation/puzzle.gd:200:	_attempt.advance(whole)
+game/presentation/shell.gd:92:	if not attempt.open(puzzle_id):
+
+$ grep -rn "cell_marks\|GS.cell-marks" game/presentation
+game/presentation/puzzle.gd:6:## The screen is a view over one [Attempt]: it reads [code]GS.cell-marks[/code],
+game/presentation/puzzle.gd:168:	_board.set_marks(result.marks, result.line_status)
+game/presentation/puzzle.gd:181:	_board.set_marks(state.marks(), _line_status)
+game/presentation/puzzle.gd:182:	_board.set_marks_allowed(state.marks_allowed())
+
+$ grep -rn "mark(" game/presentation/mark_input.gd
+196:	var result := attempt.mark(row, column, mark_value)
