@@ -22,13 +22,4 @@ because the repair under review exists to make them measurable.
 | `crash-free` | deterministic | I9 open, solve, reset, and back all ran across the six protocols, no failed flow and no crashed run; `navigate` and `kill-relaunch` exit 1 on their own axes, which I9 records rather than treating as a harness error | No crash across open, solve, reset, and back | pass | — | `integration/results.md` |
 | `resume-after-failure` | deterministic | I10 next launch entry is the gallery stand-in (true), reopen succeeded, but `marks restored: false` and `elapsed restored: false` — progress persistence (#96) does not restore yet | Gallery entry; reopen restores marks and elapsed | fail | — | `integration/logs/relaunch-verify.json` |
 
-## Not selected
-
-`runtime-signals` (I11) — smoke level, outside the harness scope named in the issue body. `save-survives` / `failed-write`
-(I4) — settled by the persistence diff, not this harness. N/A accessibility and localization axes are not scored.
-
-## Verdict
-
-`Fail` — two Applies deterministic axes (`transition-latency`, `resume-after-failure`) exceed their bars on this
-deliverable's own observations. Both rows are failed by product gaps #95 and #96 that the issue body records as
-out of scope, not by harness defects.
+Selection notes and verdict: [verdict.md](verdict.md).
