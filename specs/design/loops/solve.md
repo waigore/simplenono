@@ -29,7 +29,7 @@ Quiet focused deduction: finish the picture, or optionally chase a better person
 
 ## Variation
 
-Which puzzle and size (10×10 or 15×15) the player chose. No randomness during a solve.
+Which puzzle and size (10×10, 15×15, or 20×20) the player chose. No randomness during a solve.
 
 ## Exits
 

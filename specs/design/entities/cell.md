@@ -41,7 +41,7 @@ How the player chooses a mark (tap cycle, tools, drag) is UX, not this entity.
 
 ## Placement and availability
 
-Exactly `size × size` cells for the open puzzle (10×10 or 15×15). Fixed grid; no random placement.
+Exactly `size × size` cells for the open puzzle (10×10, 15×15, or 20×20). Fixed grid; no random placement.
 
 ## Experience intent
 
