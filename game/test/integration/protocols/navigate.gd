@@ -9,6 +9,10 @@ extends RefCounted
 ##
 ## `result-gallery` waits for the result's `S1` Default, which the shell's clock reaches
 ## after two `CFG.MORPH_STAGE_MS` stages; the harness then sends the result's own C1.
+##
+## A sampling window spans the solve and the reveal it opens, so `frame-time` and
+## `hitch-bound` describe the result morph's frames rather than only the gallery-to-puzzle
+## leg (the reveal is the heaviest per-frame work the game does: three fading layers).
 
 const ID := "navigate"
 
@@ -19,7 +23,7 @@ static func spec() -> Dictionary:
 		"title": "Gallery, puzzle, and result navigation",
 		"seams": true,
 		"ci_only": false,
-		"invariants": ["I7", "I9"],
+		"invariants": ["I1", "I2", "I7", "I9"],
 		"steps":
 		[
 			{"id": "launch", "kind": "launch", "scene": "res://presentation/shell.tscn"},
@@ -32,6 +36,7 @@ static func spec() -> Dictionary:
 				"until": {"probe": "view", "value": "puzzle"},
 			},
 			{"id": "beat", "kind": "wait_beat", "timeout_ms": 5000},
+			{"id": "reveal-start", "kind": "sample_start"},
 			{
 				"id": "puzzle-result",
 				"kind": "measure",
@@ -41,6 +46,7 @@ static func spec() -> Dictionary:
 			},
 			# Both morph stages run CFG.MORPH_STAGE_MS; C1 is refused until S1 (US1.5b).
 			{"id": "result-default", "kind": "wait_ms", "ms": 900},
+			{"id": "reveal-stop", "kind": "sample_stop"},
 			{
 				"id": "result-gallery",
 				"kind": "measure",

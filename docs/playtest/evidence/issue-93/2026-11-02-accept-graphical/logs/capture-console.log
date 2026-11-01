@@ -1,0 +1,1031 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+SEV level=info event=session-start time=1793571093.458 session=issue-93-capture build=main@94e6c55 story=L-solve message=
+TEL event=reset time=1793571093.883 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=reset time=1793571093.883 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=reset time=1793571093.883 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: shot 00-s1-gallery-start -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/00-s1-gallery-start.png (error 0, size (900, 1200), hash 3915209981)
+capture: PASS P-reg: the app starts on UI-gallery
+capture: PASS P-reg: nothing is completed yet
+TEL event=reset time=1793571093.923 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg S1: pack-000 starts not started
+TEL event=open time=1793571093.952 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg S1: gallery C1 opens pack-000
+capture: PASS P-reg S1: the puzzle screen shows
+capture: PASS P-reg S1: get-set-ready runs
+capture: press @Control@2645 rect=[P: (331.2, 440.0), S: (40.0, 40.0)] disabled=false
+capture: press @Control@2667 rect=[P: (411.2, 520.0), S: (40.0, 40.0)] disabled=false
+capture: PASS P-reg P1: marks do not stick during get-set-ready
+capture: PASS P-reg P1: tools are unavailable during the beat
+capture: shot 01-s2-get-set-ready-blocked -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/01-s2-get-set-ready-blocked.png (error 0, size (900, 1200), hash 1017646474)
+TEL event=ready time=1793571094.098 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571094.098 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg S2: the beat ends into S1
+capture: PASS P-reg S2: marks are allowed in S1
+capture: PASS P-reg P2: the fixture has empty-clue rows
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 0 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 1 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 2 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 3 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 4 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 5 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 6 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 7 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 8 after ready
+capture: PASS P-reg P2: empty-clue row 0 auto-crossed column 9 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 0 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 1 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 2 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 3 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 4 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 5 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 6 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 7 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 8 after ready
+capture: PASS P-reg P2: empty-clue row 9 auto-crossed column 9 after ready
+capture: PASS P-reg P2: the auto-cross committed a change
+capture: shot 02-s3-s1-ready-empty-clues-crossed -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/02-s3-s1-ready-empty-clues-crossed.png (error 0, size (900, 1200), hash 1685328699)
+capture: press ClearButton rect=[P: (138.0, 1148.0), S: (60.0, 36.0)] disabled=false
+capture: PASS P-reg S2: the Clear tool selects
+capture: press @Control@2658 rect=[P: (451.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571094.199 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg P1: Clear on a clear cell writes nothing
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS P-reg S2: the Fill tool selects
+capture: press @Control@2658 rect=[P: (451.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571094.275 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571094.275 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg P1: after Ready a tap fills the cell
+capture: shot 03-s4-tap-fill -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/03-s4-tap-fill.png (error 0, size (900, 1200), hash 2368793024)
+capture: press ClearButton rect=[P: (138.0, 1148.0), S: (60.0, 36.0)] disabled=false
+capture: PASS P-reg S2: the Clear tool re-selects
+capture: press @Control@2658 rect=[P: (451.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571094.373 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571094.373 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg P1: after Ready a tap clears the cell
+capture: shot 04-s5-tap-clear -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/04-s5-tap-clear.png (error 0, size (900, 1200), hash 3349080326)
+capture: press CrossButton rect=[P: (68.0, 1148.0), S: (62.0, 36.0)] disabled=false
+capture: PASS P-reg S2: the Cross tool selects
+capture: press @Control@2667 rect=[P: (411.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571094.473 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571094.473 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg P1: the Cross tool crosses a clear cell
+capture: shot 05-s6-tool-cross-and-tap -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/05-s6-tool-cross-and-tap.png (error 0, size (900, 1200), hash 2295569320)
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS P-reg S3: the Fill tool selects
+capture: press @Control@2644 rect=[P: (291.2, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571094.572 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571094.572 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg S3: the contradicting fill is written
+capture: PASS P-reg S3: the contradicted row cues its error (GS.row-error)
+capture: PASS P-reg S3: the wrong fill does not solve
+capture: PASS P-reg P3: a wrong fill enters no fail state
+capture: PASS P-reg P3: the attempt stays playable
+capture: shot 06-s7-contradiction-cue -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/06-s7-contradiction-cue.png (error 0, size (900, 1200), hash 3395687649)
+capture: press SettingsButton rect=[P: (88.0, 16.0), S: (79.0, 36.0)] disabled=false
+capture: PASS P-reg S4: puzzle C6 opens settings
+capture: PASS P-reg S4: settings shows
+capture: PASS P-reg S4: opening settings pauses the attempt
+capture: PASS P-reg S4: the puzzle reads S3
+capture: PASS P-reg P3: pause freezes elapsed (0)
+capture: PASS P-reg P3: a paused board receives no mark (no O2 call at the input layer)
+TEL event=resume time=1793571095.437 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg S4: F9 halts the session (DBG.1)
+capture: PASS P-reg S4: F9 continued the paused session (DBG.1)
+TEL event=pause time=1793571095.470 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg S4: F9 pauses again
+capture: PASS P-reg S4: the attempt is paused through O4 again
+TEL event=resume time=1793571095.504 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg S4: the session resumes through O5
+capture: shot 07-s8-paused-marks-blocked -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/07-s8-paused-marks-blocked.png (error 0, size (900, 1200), hash 2441084510)
+capture: PASS P-reg S4: settings Back returns to the puzzle
+capture: PASS P-reg S4: settings Back resumes the attempt through O5
+capture: PASS P-reg S4: the puzzle reads S1 again
+capture: PASS P-reg P3: elapsed continues after resume
+capture: press @Control@2684 rect=[P: (291.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.346 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.346 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg P3: marks are accepted again after resume
+capture: PASS P-reg P3: the resumed tap commits a change
+capture: shot 08-s9-resumed-after-settings-back -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/08-s9-resumed-after-settings-back.png (error 0, size (900, 1200), hash 4065270196)
+capture: press LeaveButton rect=[P: (16.0, 16.0), S: (64.0, 36.0)] disabled=false
+TEL event=leave time=1793571096.394 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-reg: puzzle C1 Leave activates
+capture: PASS P-reg: Leave returns to UI-gallery
+TEL event=reset time=1793571096.465 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-cross S1: pack-001 starts not started
+TEL event=open time=1793571096.510 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-cross S1: pack-001 opens
+TEL event=ready time=1793571096.575 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.575 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS P-cross S1: the Fill tool selects
+capture: press @Control@2780 rect=[P: (442.0, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.666 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.666 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2781 rect=[P: (482.0, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.682 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.682 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2789 rect=[P: (402.0, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.699 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.699 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2790 rect=[P: (442.0, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.716 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.716 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2791 rect=[P: (482.0, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.732 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.732 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2799 rect=[P: (402.0, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.750 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.750 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2800 rect=[P: (442.0, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.766 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.766 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2801 rect=[P: (482.0, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.783 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.783 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2802 rect=[P: (522.0, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.799 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.799 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2803 rect=[P: (562.0, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.815 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.815 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2808 rect=[P: (362.0, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.832 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.832 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2809 rect=[P: (402.0, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.849 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.850 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2810 rect=[P: (442.0, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.866 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.866 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2811 rect=[P: (482.0, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.882 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.882 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2812 rect=[P: (522.0, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.899 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.899 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2813 rect=[P: (562.0, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.916 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.916 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2819 rect=[P: (402.0, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.933 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.933 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2820 rect=[P: (442.0, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.949 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.949 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2821 rect=[P: (482.0, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.966 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.966 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2822 rect=[P: (522.0, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571096.982 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571096.982 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2823 rect=[P: (562.0, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.000 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.000 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2828 rect=[P: (362.0, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.016 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.016 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2829 rect=[P: (402.0, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.032 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.032 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2830 rect=[P: (442.0, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.049 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.049 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2831 rect=[P: (482.0, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.065 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.066 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2832 rect=[P: (522.0, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.082 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.082 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2838 rect=[P: (362.0, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.099 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.100 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2839 rect=[P: (402.0, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.116 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.116 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2840 rect=[P: (442.0, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.132 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.133 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2841 rect=[P: (482.0, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.149 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.149 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2842 rect=[P: (522.0, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.165 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.165 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2843 rect=[P: (562.0, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.182 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.182 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2848 rect=[P: (362.0, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.200 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.200 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2849 rect=[P: (402.0, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.216 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.216 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2850 rect=[P: (442.0, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.232 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.233 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2851 rect=[P: (482.0, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.249 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.249 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2852 rect=[P: (522.0, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.265 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.265 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2860 rect=[P: (442.0, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.283 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.283 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2861 rect=[P: (482.0, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.300 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.300 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2862 rect=[P: (522.0, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.316 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.316 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2870 rect=[P: (442.0, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.333 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.333 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-cross S1: the board is one fill short
+capture: press CrossButton rect=[P: (68.0, 1148.0), S: (62.0, 36.0)] disabled=false
+capture: PASS P-cross S1: the Cross tool selects
+capture: press @Control@2778 rect=[P: (362.0, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.407 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.407 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2779 rect=[P: (402.0, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.424 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.424 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2782 rect=[P: (522.0, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.441 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.441 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2783 rect=[P: (562.0, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.457 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.458 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2788 rect=[P: (362.0, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.474 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.474 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2792 rect=[P: (522.0, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.491 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.491 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2793 rect=[P: (562.0, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.508 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.508 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2798 rect=[P: (362.0, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.524 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.524 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2818 rect=[P: (362.0, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.540 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.540 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2833 rect=[P: (562.0, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.558 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.558 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2853 rect=[P: (562.0, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.574 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.575 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2858 rect=[P: (362.0, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.591 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.591 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2859 rect=[P: (402.0, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.607 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.608 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2863 rect=[P: (562.0, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.624 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.624 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2868 rect=[P: (362.0, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.640 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.640 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2869 rect=[P: (402.0, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.658 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.658 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2872 rect=[P: (522.0, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.674 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.674 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2873 rect=[P: (562.0, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571097.691 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571097.691 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-cross S1: crosses cover the non-solution cells (58)
+capture: PASS P-cross P2: crosses are not counted as fills
+capture: shot 10-crosses-filled-and-crossed -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/10-crosses-filled-and-crossed.png (error 0, size (900, 1200), hash 2904328175)
+capture: PASS P-cross S2: one required fill remains
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS P-cross S2: the Fill tool selects
+capture: press @Control@2871 rect=[P: (482.0, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=solved time=1793571097.790 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=mark time=1793571097.790 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-cross P1: correct fills plus crosses solve
+capture: PASS P-cross P1: the solve recorded ever-completed
+capture: PASS P-cross S3: the morph starts on the pixel stage
+capture: shot 11-solve-result-morph-pixel -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/11-solve-result-morph-pixel.png (error 0, size (900, 1200), hash 179255017)
+capture: PASS P-cross S3: the result morph reaches S1
+capture: shot 12-solve-result-stage-default -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/12-solve-result-stage-default.png (error 0, size (900, 1200), hash 1621414751)
+TEL event=reset time=1793571097.945 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S1: pack-002 starts not started
+capture: PASS P-pb: result C1 returns to the gallery
+TEL event=open time=1793571098.002 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S1: pack-002 opens
+TEL event=ready time=1793571098.066 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S1: no personal best yet
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS the Fill tool selects
+capture: press @Control@2915 rect=[P: (411.2, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.150 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.150 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2923 rect=[P: (331.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.166 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.166 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2924 rect=[P: (371.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.182 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.182 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2925 rect=[P: (411.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.200 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.200 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2926 rect=[P: (451.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.217 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.217 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2928 rect=[P: (531.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.233 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.233 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2934 rect=[P: (371.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.249 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.250 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2935 rect=[P: (411.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.266 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.266 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2936 rect=[P: (451.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.282 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.282 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2937 rect=[P: (491.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.300 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.300 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2938 rect=[P: (531.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.316 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.316 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2945 rect=[P: (411.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.333 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.333 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2946 rect=[P: (451.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.349 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.350 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2947 rect=[P: (491.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.366 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.366 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2952 rect=[P: (291.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.383 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.383 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2953 rect=[P: (331.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.400 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.400 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2954 rect=[P: (371.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.416 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.416 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2955 rect=[P: (411.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.433 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.433 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2956 rect=[P: (451.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.449 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.449 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2957 rect=[P: (491.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.467 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.467 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2958 rect=[P: (531.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.483 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.483 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2965 rect=[P: (411.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.499 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.499 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2966 rect=[P: (451.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.516 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.516 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2967 rect=[P: (491.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.532 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.532 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2968 rect=[P: (531.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.550 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.550 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2969 rect=[P: (571.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.566 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.566 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2970 rect=[P: (611.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.583 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.583 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2971 rect=[P: (651.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.599 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.599 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2976 rect=[P: (451.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.617 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.617 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2977 rect=[P: (491.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.633 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.634 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2978 rect=[P: (531.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.650 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.650 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2985 rect=[P: (411.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.666 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.666 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2986 rect=[P: (451.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.683 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.683 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2987 rect=[P: (491.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.699 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.699 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2988 rect=[P: (531.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.716 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.716 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2989 rect=[P: (571.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.733 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.734 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2995 rect=[P: (411.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.750 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.750 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2997 rect=[P: (491.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.766 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.766 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2998 rect=[P: (531.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.783 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.783 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@2999 rect=[P: (571.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.799 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.800 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3000 rect=[P: (611.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571098.816 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571098.816 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S1: exactly one required fill remains
+capture: PASS P-pb S1: elapsed starts at 0
+capture: PASS P-pb S1: elapsed carries the run's time
+capture: press @Control@3008 rect=[P: (531.2, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=solved time=1793571098.833 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=mark time=1793571098.833 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S1: the last fill solves
+capture: PASS P-pb P1: ever-completed is true
+capture: PASS P-pb P1: the attempt is not in progress after a solve
+capture: PASS P-pb P1: the marks are cleared after a solve
+capture: PASS P-pb P1: the attempt's elapsed is cleared after a solve
+capture: PASS P-pb P1: the cleared attempt reads 0 elapsed
+capture: PASS P-pb P1: the personal best is set
+capture: PASS P-pb P1: the PB is the first run's time (90)
+capture: P-pb first PB = 90
+TEL event=open time=1793571098.965 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S2: the same puzzle reopens
+TEL event=ready time=1793571099.029 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S2: the prior PB loads
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS the Fill tool selects
+capture: press @Control@3051 rect=[P: (411.2, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.113 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.113 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3059 rect=[P: (331.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.129 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.129 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3060 rect=[P: (371.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.145 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.146 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3061 rect=[P: (411.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.163 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.163 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3062 rect=[P: (451.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.180 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.180 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3064 rect=[P: (531.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.196 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.196 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3070 rect=[P: (371.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.212 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.212 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3071 rect=[P: (411.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.229 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.229 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3072 rect=[P: (451.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.246 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.246 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3073 rect=[P: (491.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.263 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.263 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3074 rect=[P: (531.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.279 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.279 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3081 rect=[P: (411.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.296 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.296 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3082 rect=[P: (451.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.312 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.312 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3083 rect=[P: (491.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.329 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.329 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3088 rect=[P: (291.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.346 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.346 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3089 rect=[P: (331.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.362 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.363 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3090 rect=[P: (371.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.379 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.379 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3091 rect=[P: (411.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.395 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.395 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3092 rect=[P: (451.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.413 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.413 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3093 rect=[P: (491.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.429 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.429 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3094 rect=[P: (531.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.446 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.446 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3101 rect=[P: (411.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.462 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.462 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3102 rect=[P: (451.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.479 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.479 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3103 rect=[P: (491.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.496 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.496 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3104 rect=[P: (531.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.513 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.513 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3105 rect=[P: (571.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.529 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.529 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3106 rect=[P: (611.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.545 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.546 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3107 rect=[P: (651.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.562 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.562 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3112 rect=[P: (451.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.579 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.579 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3113 rect=[P: (491.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.596 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.597 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3114 rect=[P: (531.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.613 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.613 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3121 rect=[P: (411.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.629 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.629 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3122 rect=[P: (451.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.646 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.646 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3123 rect=[P: (491.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.662 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.662 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3124 rect=[P: (531.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.678 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.679 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3125 rect=[P: (571.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.696 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.696 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3131 rect=[P: (411.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.712 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.713 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3133 rect=[P: (491.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.729 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.729 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3134 rect=[P: (531.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.745 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.746 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3135 rect=[P: (571.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.762 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.762 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3136 rect=[P: (611.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571099.779 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571099.780 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S2: elapsed is clearly longer
+capture: shot 20-replay-in-progress-start -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/20-replay-in-progress-start.png (error 0, size (900, 1200), hash 3383729016)
+capture: press @Control@3144 rect=[P: (531.2, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=solved time=1793571099.828 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=mark time=1793571099.828 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S2: the longer replay solves
+capture: PASS P-pb P2: ever-completed stays true
+capture: PASS P-pb P2: the longer run keeps the prior PB (90)
+capture: shot 21-replay-longer-result -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/21-replay-longer-result.png (error 0, size (900, 1200), hash 1621414751)
+capture: PASS P-pb: the gallery holds the solved puzzle's tile
+capture: PASS P-pb P2: the tile reads Done
+capture: PASS P-pb P2: the tile shows the PB
+capture: shot 22-replay-gallery-leaves-pb -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/22-replay-gallery-leaves-pb.png (error 0, size (900, 1200), hash 1850159028)
+TEL event=open time=1793571100.018 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S3: the same puzzle reopens
+TEL event=ready time=1793571100.083 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S3: a done replay opens clear at 0
+capture: PASS P-pb S3: a done replay opens with no marks
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS the Fill tool selects
+capture: press @Control@3187 rect=[P: (411.2, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.166 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.166 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3195 rect=[P: (331.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.183 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.184 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3196 rect=[P: (371.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.200 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.200 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3197 rect=[P: (411.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.216 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.217 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3198 rect=[P: (451.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.233 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.233 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3200 rect=[P: (531.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.249 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.249 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3206 rect=[P: (371.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.267 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.267 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3207 rect=[P: (411.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.283 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.283 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3208 rect=[P: (451.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.300 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.300 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3209 rect=[P: (491.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.316 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.316 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3210 rect=[P: (531.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.334 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.334 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3217 rect=[P: (411.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.350 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.350 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3218 rect=[P: (451.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.366 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.366 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3219 rect=[P: (491.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.383 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.383 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3224 rect=[P: (291.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.399 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.399 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3225 rect=[P: (331.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.416 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.416 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3226 rect=[P: (371.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.433 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.433 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3227 rect=[P: (411.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.450 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.450 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3228 rect=[P: (451.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.466 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.466 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3229 rect=[P: (491.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.482 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.483 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3230 rect=[P: (531.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.499 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.499 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3237 rect=[P: (411.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.517 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.517 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3238 rect=[P: (451.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.533 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.533 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3239 rect=[P: (491.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.549 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.549 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3240 rect=[P: (531.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.566 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.566 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3241 rect=[P: (571.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.584 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.584 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3242 rect=[P: (611.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.600 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.600 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3243 rect=[P: (651.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.616 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.617 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3248 rect=[P: (451.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.633 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.633 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3249 rect=[P: (491.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.649 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.650 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3250 rect=[P: (531.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.666 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.666 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3257 rect=[P: (411.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.682 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.683 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3258 rect=[P: (451.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.699 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.699 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3259 rect=[P: (491.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.717 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.717 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3260 rect=[P: (531.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.733 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.733 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3261 rect=[P: (571.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.749 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.750 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3267 rect=[P: (411.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.766 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.766 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3269 rect=[P: (491.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.783 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.783 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3270 rect=[P: (531.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.799 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.799 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3271 rect=[P: (571.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.817 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.817 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3272 rect=[P: (611.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571100.833 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571100.833 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S3: elapsed is clearly shorter
+capture: press @Control@3280 rect=[P: (531.2, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=solved time=1793571100.850 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=mark time=1793571100.850 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb S3: the shorter replay solves
+capture: PASS P-pb P3: the shorter run replaces the PB (42)
+capture: PASS P-pb P3: marks clear again after the solve
+capture: shot 23-replay-shorter-result -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/23-replay-shorter-result.png (error 0, size (900, 1200), hash 1621414751)
+TEL event=open time=1793571101.021 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb P3: the puzzle reopens after the shorter PB
+TEL event=ready time=1793571101.085 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS the Fill tool selects
+capture: press @Control@3323 rect=[P: (411.2, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.169 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.169 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3331 rect=[P: (331.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.185 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.185 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3332 rect=[P: (371.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.202 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.202 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3333 rect=[P: (411.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.218 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.218 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3334 rect=[P: (451.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.236 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.236 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3336 rect=[P: (531.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.252 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.252 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3342 rect=[P: (371.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.269 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.269 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3343 rect=[P: (411.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.285 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.285 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3344 rect=[P: (451.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.302 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.302 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3345 rect=[P: (491.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.318 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.318 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3346 rect=[P: (531.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.336 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.336 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3353 rect=[P: (411.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.352 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.352 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3354 rect=[P: (451.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.368 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.369 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3355 rect=[P: (491.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.385 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.385 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3360 rect=[P: (291.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.401 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.401 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3361 rect=[P: (331.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.419 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.419 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3362 rect=[P: (371.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.435 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.435 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3363 rect=[P: (411.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.452 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.452 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3364 rect=[P: (451.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.468 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.468 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3365 rect=[P: (491.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.485 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.485 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3366 rect=[P: (531.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.502 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.503 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3373 rect=[P: (411.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.519 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.519 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3374 rect=[P: (451.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.535 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.535 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3375 rect=[P: (491.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.552 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.552 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3376 rect=[P: (531.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.569 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.569 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3377 rect=[P: (571.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.585 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.585 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3378 rect=[P: (611.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.601 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.601 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3379 rect=[P: (651.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.619 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.619 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3384 rect=[P: (451.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.636 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.636 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3385 rect=[P: (491.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.652 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.652 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3386 rect=[P: (531.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.669 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.669 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3393 rect=[P: (411.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.686 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.686 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3394 rect=[P: (451.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.703 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.703 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3395 rect=[P: (491.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.719 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.719 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3396 rect=[P: (531.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.736 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.736 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3397 rect=[P: (571.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.752 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.752 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3403 rect=[P: (411.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.769 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.770 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3405 rect=[P: (491.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.786 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.786 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3406 rect=[P: (531.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.803 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.803 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3407 rect=[P: (571.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.820 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.820 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3408 rect=[P: (611.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571101.837 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571101.837 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb P3: the final run is clearly longer
+capture: press @Control@3416 rect=[P: (531.2, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=solved time=1793571101.853 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=mark time=1793571101.854 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-pb P2: a later longer run keeps the shorter PB
+capture: PASS P-play S1: the gallery is shown
+TEL event=reset time=1793571101.967 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-play S1: the puzzle resets to not started
+capture: PASS P-play S1: the gallery holds the tile
+capture: PASS P-play S1: the tile reads Not started
+TEL event=open time=1793571102.029 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-play S1: gallery → puzzle opens
+capture: PASS P-play S2: the beat runs
+TEL event=ready time=1793571102.522 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-play S2: marks are allowed after the beat
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS the Fill tool selects
+capture: press @Control@3459 rect=[P: (411.2, 440.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.164 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.164 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3467 rect=[P: (331.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.181 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.182 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3468 rect=[P: (371.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.195 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.195 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3469 rect=[P: (411.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.211 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.212 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3470 rect=[P: (451.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.228 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.228 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3472 rect=[P: (531.2, 480.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.245 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.246 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3478 rect=[P: (371.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.264 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.264 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3479 rect=[P: (411.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.281 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.281 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3480 rect=[P: (451.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.295 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.296 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3481 rect=[P: (491.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.314 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.314 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3482 rect=[P: (531.2, 520.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.331 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.331 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3489 rect=[P: (411.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.347 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.347 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3490 rect=[P: (451.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.363 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.364 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3491 rect=[P: (491.2, 560.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.378 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.379 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3496 rect=[P: (291.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.397 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.398 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3497 rect=[P: (331.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.412 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.412 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3498 rect=[P: (371.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.428 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.428 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3499 rect=[P: (411.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.444 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.444 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3500 rect=[P: (451.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.462 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.462 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3501 rect=[P: (491.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.481 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.481 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3502 rect=[P: (531.2, 600.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.495 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.495 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3509 rect=[P: (411.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.511 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.512 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3510 rect=[P: (451.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.530 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.530 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3511 rect=[P: (491.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.547 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.548 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3512 rect=[P: (531.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.561 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.561 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3513 rect=[P: (571.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.579 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.579 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3514 rect=[P: (611.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.594 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.594 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3515 rect=[P: (651.2, 640.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.612 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.612 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3520 rect=[P: (451.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.628 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.628 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3521 rect=[P: (491.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.644 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.645 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3522 rect=[P: (531.2, 680.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.661 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.661 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3529 rect=[P: (411.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.680 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.680 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3530 rect=[P: (451.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.698 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.699 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3531 rect=[P: (491.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.711 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.711 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3532 rect=[P: (531.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.729 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.729 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3533 rect=[P: (571.2, 720.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.744 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.744 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3539 rect=[P: (411.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.762 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.762 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3541 rect=[P: (491.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.778 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.778 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3542 rect=[P: (531.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.796 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.796 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3543 rect=[P: (571.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.814 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.814 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press @Control@3544 rect=[P: (611.2, 760.0), S: (40.0, 40.0)] disabled=false
+TEL event=mark time=1793571103.829 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=commit time=1793571103.829 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: press FillButton rect=[P: (16.0, 1148.0), S: (44.0, 36.0)] disabled=false
+capture: PASS P-play S3: the Fill tool is selected
+capture: press @Control@3552 rect=[P: (531.2, 800.0), S: (40.0, 40.0)] disabled=false
+TEL event=solved time=1793571103.905 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+TEL event=mark time=1793571103.906 session=issue-93-capture build=main@94e6c55 story=L-solve outcome=pass
+capture: PASS P-play P1: the solve reaches UI-result
+capture: PASS P-play P1: the win morph runs
+capture: PASS P-play S4: result C1 is available at Default
+capture: press BackButton rect=[P: (32.0, 408.0), S: (836.0, 44.0)] disabled=false
+capture: PASS P-play S4: result C1 Back activates
+capture: PASS P-play P1: Back returns to UI-gallery
+capture: PASS P-play P2: the gallery shows the tile again
+capture: PASS P-play P2: the solved tile reads Done
+capture: PASS P-play P2: the solved tile shows a PB
+capture: shot 24-play-puzzle-gallery-done-tile -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/screenshots/24-play-puzzle-gallery-done-tile.png (error 0, size (900, 1200), hash 548079880)
+capture: state dump -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-93/2026-11-02-accept-graphical/logs/state-pack-002.json
+capture: RESULT pass (17 shots)
+SEV level=info event=session-end time=1793571104.865 session=issue-93-capture build=main@94e6c55 story=L-solve message=

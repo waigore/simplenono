@@ -116,32 +116,54 @@ func test_us1_5b_back_is_blocked_while_morphing() -> void:
 	assert_eq(_shell.view(), Shell.RESULT_VIEW, "the screen stays UI-result")
 
 
-# The reveal clock runs at CFG.MORPH_STAGE_MS and stops at S1 on the shell's frames
-func test_the_shell_clock_finishes_the_morph() -> void:
+# The reveal runs on exactly one clock: the shell's frames, at CFG.MORPH_STAGE_MS per
+# stage. Driven on real processed frames — calling _process by hand would not catch a
+# second clock inside the screen, which is how the doubled rate shipped once.
+func test_one_clock_plays_both_stages_on_real_frames() -> void:
 	var attempt := _open_ready()
 	for position: Vector2i in attempt.definition().solution_fills:
 		_mark(attempt, position)
+	var screen := _shell.result_screen()
+	var stage_ms := screen.reveal().stage_ms()
+	# before_each quiets the shell so unit checks drive it by hand; this test needs the
+	# one real clock.
 	_shell.set_process(true)
 
-	_shell._process(0.3)
-	assert_eq(_shell.result_screen().stage(), ResultReveal.STAGE_PICTURE, "T3 starts")
-	_shell._process(0.3)
-	assert_eq(_shell.result_screen().stage(), ResultReveal.STAGE_DEFAULT, "S1 after 600 ms")
-	_shell._process(0.3)
-	assert_eq(_shell.result_screen().stage(), ResultReveal.STAGE_DEFAULT, "a late frame is a no-op")
+	# Let the shell's own _process drive it across real frames and sum the deltas it
+	# received. One clock spends each frame's delta once; a second clock spends it twice,
+	# finishing both stages in one stage's worth of accumulated time.
+	var spent_ms := 0.0
+	var guard_frames := 0
+	while screen.is_morphing() and guard_frames < 1200:
+		await get_tree().process_frame
+		spent_ms += get_process_delta_time() * 1000.0
+		guard_frames += 1
+
+	assert_false(screen.is_morphing(), "the morph finishes")
+	assert_gt(
+		spent_ms,
+		float(stage_ms) * 1.5,
+		"both stages take 2 x %d ms of frame time, not one stage's worth" % stage_ms,
+	)
+	assert_lt(spent_ms, float(stage_ms) * 3.0, "no stage runs long")
+	assert_eq(screen.stage(), ResultReveal.STAGE_DEFAULT, "S1 after both stages")
 
 
-# SEQ pause freezes the morph with the attempt
+# SEQ pause freezes the morph with the attempt, on real frames
 func test_a_paused_attempt_freezes_the_morph() -> void:
 	var attempt := _open_ready()
 	for position: Vector2i in attempt.definition().solution_fills:
 		_mark(attempt, position)
 	attempt.pause()
+	var screen := _shell.result_screen()
 	_shell.set_process(true)
 
-	_shell._process(1.0)
+	var started_us := Time.get_ticks_usec()
+	while float(Time.get_ticks_usec() - started_us) / 1000.0 < float(screen.reveal().stage_ms()):
+		await get_tree().process_frame
 
-	assert_eq(_shell.result_screen().stage(), ResultReveal.STAGE_PIXEL, "the morph waits")
+	assert_eq(screen.stage(), ResultReveal.STAGE_PIXEL, "the morph waits while paused")
+	assert_eq(screen.reveal().progress(), 0.0, "no time is spent while paused")
 
 
 # ACT-player C3 / US1.3: the player reaches the gallery from the result

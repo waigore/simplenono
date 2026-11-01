@@ -30,6 +30,11 @@ var _flags: SessionFlags
 
 @onready var _background: ColorRect = %Background
 @onready var _options: PanelContainer = %Options
+@onready var _title: Label = %Title
+@onready var _haptics_label: Label = %HapticsLabel
+@onready var _haptics_hint: Label = %HapticsHint
+@onready var _mute_label: Label = %MuteLabel
+@onready var _mute_hint: Label = %MuteHint
 @onready var _haptics_button: Button = %HapticsButton
 @onready var _mute_button: Button = %MuteButton
 @onready var _back_button: Button = %BackButton
@@ -38,6 +43,7 @@ var _flags: SessionFlags
 func _ready() -> void:
 	_background.color = PresentationPalette.PAPER
 	_options.add_theme_stylebox_override("panel", _panel_style())
+	_apply_copy()
 	_haptics_button.pressed.connect(_on_haptics_pressed)
 	_mute_button.pressed.connect(_on_mute_pressed)
 	_back_button.pressed.connect(_on_back_pressed)
@@ -124,6 +130,18 @@ func _refresh() -> void:
 	_mute_button.text = mute_text()
 	_apply_toggle_style(_haptics_button, haptics_enabled())
 	_apply_toggle_style(_mute_button, mute_bgm())
+
+
+## One place for the screen's copy: the scene holds the same lines as its placeholder
+## text, and this writes the constants the mockups' approved wording lives in, so a
+## copy change touches the constants rather than a second copy of the strings.
+func _apply_copy() -> void:
+	_title.text = COPY_TITLE
+	_haptics_label.text = COPY_HAPTICS
+	_haptics_hint.text = HINT_HAPTICS
+	_mute_label.text = COPY_MUTE
+	_mute_hint.text = HINT_MUTE
+	_back_button.text = COPY_BACK
 
 
 func _on_haptics_pressed() -> void:
