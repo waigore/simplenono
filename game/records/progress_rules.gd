@@ -33,6 +33,12 @@ func count() -> int:
 	return _records.size()
 
 
+## True when [param puzzle_id] already has a record. A caller that must not create one
+## (the S2 inspect seam) asks this before [method record].
+func holds(puzzle_id: String) -> bool:
+	return _records.has(puzzle_id)
+
+
 ## O1: true exactly when the puzzle is ever-completed, so its stored generated picture
 ## may be shown in the gallery ([code]GS.gallery-thumbnail[/code], [code]PS1.5[/code]).
 ## The picture itself is resolved by [b]CMP-shell[/b] from the definition's F6 id; this

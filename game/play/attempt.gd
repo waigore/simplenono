@@ -189,6 +189,27 @@ func advance(amount: int) -> void:
 		_state.advance(amount)
 
 
+## O4 (specs/technical/sequences/pause.md S1-S3, B3): sets paused, which freezes elapsed
+## and blocks marks, and commits marks and elapsed when there is a mark to persist (S2).
+## With nothing open it changes nothing (B1). The get-set-ready beat keeps running (B2):
+## the auto-cross still waits for [method end_get_set_ready].
+func pause() -> void:
+	if _state == null:
+		return
+	_state.pause()
+	if _state.marks().has_any_mark():
+		_state.commit(_progress, _puzzle_id)
+
+
+## O5 (specs/technical/sequences/pause.md S5-S6): clears paused, so marks follow
+## get-set-ready and the pause rule again, and elapsed continues from the frozen value.
+## With nothing open it changes nothing (B1).
+func resume() -> void:
+	if _state == null:
+		return
+	_state.resume()
+
+
 ## [SCH-attempt] F1: the open puzzle's id, or empty while none is open.
 func puzzle_id() -> String:
 	return _puzzle_id
@@ -207,6 +228,15 @@ func state() -> AttemptState:
 ## [b]CTR-rules[/b] checks for the open puzzle, or null before a successful open.
 func rules() -> Rules:
 	return _rules
+
+
+## The open puzzle's [code]SCH-progress[/code] record, or null while none is open. A read
+## for the S2 inspect seam ([b]CTR-pack[/b] O4, the same record this attempt opens and
+## commits); it writes nothing.
+func progress_record() -> ProgressRecord:
+	if _puzzle_id.is_empty():
+		return null
+	return _pack.progress().record(_puzzle_id)
 
 
 ## S4: an attempt from the progress record; marks and elapsed load when the record is in

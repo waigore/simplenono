@@ -31,6 +31,7 @@ Every file under `docs/` must stay under **500 words**. If content would exceed 
 | [pull-requests.md](pull-requests.md) | PR flow, branch names, body contract, auto-merge holds |
 | [requirements/](requirements/README.md) | Unconfirmed requirement notes awaiting capture into specs (not specs) |
 | [playtest/evidence/](playtest/evidence/) | AI-agent playtest evidence (story IDs, pass/fail, screenshots, notes, logs); requirements in `specs/playtest/` |
+| [playtest/debug-seams.md](playtest/debug-seams.md) | How a playtest run drives S1–S5: the one flag, commands, keys, telemetry log lines |
 | [quality/evidence/](quality/evidence/) | Quality-evaluator evidence: per-axis pass, fail, or blocked for deterministic verification and llm-judge acceptance |
 | [skills.md](skills.md) | Skill authoring and native wiring |
 | [../agent-orc/](../agent-orc/) | agent-orc daemon: spin up workflow skill agents ([usage](../agent-orc/docs/usage.md)) |
