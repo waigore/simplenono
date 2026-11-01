@@ -43,5 +43,5 @@ against a test script being silently skipped by GUT.
 `screenshots/` is absent by design: this is a headless run and the build has no
 scene that draws the clue lines, so a graphical re-run of this build cannot
 produce a judged state either. Per
-[`evidence.md`](../../../evidence.md), that omission is not a protocol fail and
+[`specs/playtest/evidence.md`](../../../../../specs/playtest/evidence.md), that omission is not a protocol fail and
 files no defect.
