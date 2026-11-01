@@ -1,0 +1,126 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://test/probe_accept_109_solve.gd
+* test_probe_s1_first_solve_sets_pb_and_clears_the_attempt
+    probe S1: record after solve { "ever_completed": false, "in_progress": true, "personal_best": -1, "elapsed": 50, "has_marks": true }
+    probe S1: attempt attempt 1 elapsed=50 paused=false
+    [Failed]:  P1: ever-completed true
+      at line 116
+    [Failed]:  P1: record not in progress
+      at line 117
+    [Failed]:  P1: stored marks cleared
+      at line 118
+    [Failed]:  [50] expected to equal [0]:  P1: stored elapsed cleared
+      at line 119
+    [Failed]:  [-1] expected to equal [50]:  P1: PB equals this run's time
+      at line 120
+    [Failed]:  [1] expected to equal [0]:  P1: attempt not started
+      at line 121
+    [Failed]:  P1: attempt marks cleared
+      at line 122
+    [Failed]:  [50] expected to equal [0]:  P1: attempt elapsed 0
+      at line 123
+    [Failed]:  ARRAY([]) != ARRAY([["teapot", 50]]).
+    [] != [["teapot", 50]]  1 of 1 indexes do not match.  E1 emitted once with id + stopped elapsed
+      at line 124
+    [Failed]:  the open grid is no longer solved
+      at line 125
+* test_probe_s2_longer_replay_keeps_the_personal_best
+    [Failed]:  [-1] expected to equal [50]:  setup: PB 50
+      at line 134
+    probe S2: record after longer solve { "ever_completed": false, "in_progress": true, "personal_best": -1, "elapsed": 100, "has_marks": true }
+    [Failed]:  [-1] expected to equal [50]:  P2: longer run keeps PB 50
+      at line 144
+    [Failed]:  P2: ever-completed stays true
+      at line 145
+    [Failed]:  [1] expected to equal [0]:  P2: attempt not started
+      at line 146
+* test_probe_s3_shorter_replay_replaces_the_personal_best
+    [Failed]:  [-1] expected to equal [50]:  setup: PB 50
+      at line 155
+    probe S3: record after shorter solve { "ever_completed": false, "in_progress": true, "personal_best": -1, "elapsed": 15, "has_marks": true }
+    [Failed]:  [-1] expected to equal [15]:  P3: shorter run replaces PB
+      at line 165
+    [Failed]:  P3: ever-completed stays true
+      at line 166
+    [Failed]:  [1] expected to equal [0]:  P3: attempt not started
+      at line 167
+    [Failed]:  P3: marks cleared again
+      at line 168
+    [Failed]:  [15] expected to equal [0]:  P3: elapsed cleared again
+      at line 169
+* test_probe_ps1_4_wrong_fill_continues_and_commits
+* test_probe_g1_paused_fill_does_not_solve
+2/5 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+res://test/probe_accept_109_solve.gd
+- test_probe_s1_first_solve_sets_pb_and_clears_the_attempt
+    [Failed]:  P1: ever-completed true
+          at line 116
+    [Failed]:  P1: record not in progress
+          at line 117
+    [Failed]:  P1: stored marks cleared
+          at line 118
+    [Failed]:  [50] expected to equal [0]:  P1: stored elapsed cleared
+          at line 119
+    [Failed]:  [-1] expected to equal [50]:  P1: PB equals this run's time
+          at line 120
+    [Failed]:  [1] expected to equal [0]:  P1: attempt not started
+          at line 121
+    [Failed]:  P1: attempt marks cleared
+          at line 122
+    [Failed]:  [50] expected to equal [0]:  P1: attempt elapsed 0
+          at line 123
+    [Failed]:  ARRAY([]) != ARRAY([["teapot", 50]]).
+    [] != [["teapot", 50]]  1 of 1 indexes do not match.  E1 emitted once with id + stopped elapsed
+          at line 124
+    [Failed]:  the open grid is no longer solved
+          at line 125
+- test_probe_s2_longer_replay_keeps_the_personal_best
+    [Failed]:  [-1] expected to equal [50]:  setup: PB 50
+          at line 134
+    [Failed]:  [-1] expected to equal [50]:  P2: longer run keeps PB 50
+          at line 144
+    [Failed]:  P2: ever-completed stays true
+          at line 145
+    [Failed]:  [1] expected to equal [0]:  P2: attempt not started
+          at line 146
+- test_probe_s3_shorter_replay_replaces_the_personal_best
+    [Failed]:  [-1] expected to equal [50]:  setup: PB 50
+          at line 155
+    [Failed]:  [-1] expected to equal [15]:  P3: shorter run replaces PB
+          at line 165
+    [Failed]:  P3: ever-completed stays true
+          at line 166
+    [Failed]:  [1] expected to equal [0]:  P3: attempt not started
+          at line 167
+    [Failed]:  P3: marks cleared again
+          at line 168
+    [Failed]:  [15] expected to equal [0]:  P3: elapsed cleared again
+          at line 169
+
+Totals
+------
+Scripts               1
+Tests                 5
+Passing Tests         2
+Failing Tests         3
+Asserts           51/71
+Time              0.471s
+
+
+---- 3 failing tests ----
+
