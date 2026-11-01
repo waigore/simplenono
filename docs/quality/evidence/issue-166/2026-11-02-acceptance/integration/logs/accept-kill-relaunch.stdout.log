@@ -1,0 +1,22 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TEL event=open time=1793561164.740 session=harness-1793561164 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793561164.741 session=harness-1793561164 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793561164.741 session=harness-1793561164 build=4.7.2-stable (official) story=- outcome=pass
+RELAUNCH mark held puzzle=pack-000 elapsed=3
+ERROR: The process 56404 does not exist or is not a child of the calling process.
+   at: _check_pid_is_running (drivers/unix/os_unix.cpp:863)
+   GDScript backtrace (most recent call first):
+       [0] _wait_for_exit (res://test/integration/relaunch.gd:100)
+       [1] run (res://test/integration/relaunch.gd:51)
+       [2] _wait_for_file (res://test/integration/relaunch.gd:92)
+       [3] next_frame (res://test/integration/supervisor.gd:81)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TEL event=open time=1793561164.939 session=harness-1793561164 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793561164.939 session=harness-1793561164 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793561164.939 session=harness-1793561164 build=4.7.2-stable (official) story=- outcome=pass
+RELAUNCH verify gallery=true opened=true marks=false elapsed=false pass=false
+HARNESS protocol=kill-relaunch outcome=fail run=integration/logs/harness-1793561164-kill-relaunch.log

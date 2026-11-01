@@ -1,0 +1,84 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 461645,
+	"flows_failed": [],
+	"flows_ok": [],
+	"log": "integration/logs/harness-1793561156-self-test.log",
+	"outcome": "pass",
+	"protocol": "self-test",
+	"reason": "",
+	"rows": [],
+	"session_id": "harness-1793561156",
+	"started_at": 134390,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "ready",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "sample-start",
+			"kind": "sample_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "measure",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "frames",
+			"kind": "wait_ms",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "sample-stop",
+			"kind": "sample_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "ticked",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "painted",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "measured",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "sampled",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "CI-only harness fixture"
+}

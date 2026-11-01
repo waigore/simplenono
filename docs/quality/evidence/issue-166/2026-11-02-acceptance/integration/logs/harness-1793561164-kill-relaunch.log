@@ -1,0 +1,8 @@
+HARNESS relaunch: mark phase pid 56404
+HARNESS relaunch: killed pid 56404
+HARNESS relaunch: verify phase pid 56405
+HARNESS step=spawn-mark kind=launch ok=true pid 56404
+HARNESS step=mark-hold kind=wait ok=true /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept166/integration/logs/relaunch-mark.json
+HARNESS step=kill kind=kill ok=true pid 56404
+HARNESS step=spawn-verify kind=launch ok=true pid 56405
+HARNESS step=verify-exit kind=exit ok=false exit code 1
