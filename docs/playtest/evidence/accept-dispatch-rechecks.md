@@ -23,7 +23,9 @@ or a hold. Context and the remaining holds: [`accept-dispatch-deadlock.md`](acce
 | `b1c1285` | 198/198 | `#111` | `IN` US1.6–US1.8 now judged **graphically** — 5 screenshots ([record](issue-111/2026-11-02-accept-graphical/manifest.md)); only the missing `PTU-mark-input` protocol remains (#203) |
 | `5e5fe85` | 198/198 | `#112` | open leg now judged **graphically** — gallery start, `S2`/`S1` open, 200/200 ids, 5 screenshots ([record](issue-112/2026-11-02-accept-graphical/manifest.md)); only the deterministic record remains (#204) |
 
+| `09c022e` | 215/215 | `#112` | **accepted** graphically — `J-play-puzzle` S1 open leg, 200/200 ids, 5 screenshots on `5e5fe85` (open leg unchanged), plus a deterministic record written for the user-requested run: I7 288.3 ms, I8 7.0 ms, I9 pass ([playtest](issue-112/2026-11-02-accept-graphical/manifest.md), [quality](issue-112/2026-11-02-accept-graphical/quality/manifest.md)) |
+
 Earlier, out of this list's order: `#106` was accepted graphically on `269d854`
 ([record](issue-106/2026-11-02-accept-graphical/manifest.md)).
 
-`#111` and `#112` remain; see the holds note.
+`#111` remains; see the holds note.
