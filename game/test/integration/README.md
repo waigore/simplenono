@@ -36,7 +36,7 @@ a missing protocol leaves its axes unobserved.
 | Protocol | Drives | Invariants | Axis (bar) |
 |----------|--------|------------|------------|
 | `app-start` | Launch to the first interactive screen, hold, quit | I6, I9 | `time-to-playable` (≤ 3 s), `crash-free` |
-| `paint` | Open, paint every cell at one cross per frame, pause/resume, quit | I1, I2, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `crash-free` |
+| `paint` | Open, fill every row then cross every column, one mark per frame, pause/resume, quit | I1, I2, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `crash-free` |
 | `navigate` | Gallery→puzzle, puzzle→result, result→gallery, back | I7, I9 | `transition-latency` (≤ 500 ms), `crash-free` |
 | `ui-ack` | Open, settings intent, back | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
 | `solve-reset` | Open, solve, result, back; open, mark, reset, back | I9 | `crash-free` |
@@ -53,6 +53,9 @@ is still missing. These are product gaps, not harness errors:
 
 - `navigate` fails I7 until the result screen and its transitions land (#95). The
   gallery stand-in is the shell's home view until #94.
+- `ui-ack` times C6's `IN.pause` intent at the next processed frame: the settings
+  screen (#95) and the pause it raises (#96) do not exist yet, so the settings leg
+  measures the product's intent rather than a settings surface.
 - `kill-relaunch` fails I10 until progress persistence restores marks and elapsed
   (#96).
 - `app-start` measures launch to the shell's interactive home, labelled as the
