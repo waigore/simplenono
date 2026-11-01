@@ -1,0 +1,38 @@
+== DBG/TEL seam grep (game/) ==
+game/test/probe_accept_108.gd:8:## and reads the outcome back, the way `DBG.2` would read `GS` values:
+matches: 1
+
+== deferred content proofs (PS1.2 / PS1.5) ==
+game/records/progress_rules.gd:40:## picture is deferred to #94 / #97 / #98.
+game/records/progress_rules.gd:47:## packs of any size prove the arithmetic here, the 200-puzzle proof is #94 / #97 / #98.
+game/test/test_game_state.gd:9:## content proof and the shipped generated picture are deferred to #94 / #97 / #98.
+game/test/test_game_state.gd:212:## and 0.0 for an empty pack. The 200-puzzle content proof is deferred to #94 / #97 / #98.
+game/test/test_game_state.gd:227:## #94 / #97 / #98.
+
+== V1-V6 named in tests ==
+28
+
+== record field writes outside progress_rules.gd ==
+
+== presentation / main.tscn touched by deliverable commits ==
+04b1510 Add derived game state and invariants (#108)
+ game/play/attempt_state.gd          | 136 ++++++++++
+ game/play/attempt_state.gd.uid      |   1 +
+ game/play/line_status.gd            |  43 +++
+ game/play/line_status.gd.uid        |   1 +
+ game/play/line_status_check.gd      |  50 ++++
+ game/play/line_status_check.gd.uid  |   1 +
+ game/play/mark_grid.gd              |   8 +
+ game/play/rules.gd                  | 187 +++++++++++++
+ game/play/rules.gd.uid              |   1 +
+ game/records/progress_record.gd     |  52 ++++
+ game/records/progress_record.gd.uid |   1 +
+ game/records/progress_rules.gd      | 114 ++++++++
+ game/records/progress_rules.gd.uid  |   1 +
+ game/test/test_game_state.gd        | 510 ++++++++++++++++++++++++++++++++++++
+ game/test/test_game_state.gd.uid    |   1 +
+ 15 files changed, 1107 insertions(+)
+---
+6eeef24 Restore the test_game_state.gd cut by the #112 merge
+ game/test/test_game_state.gd | 819 +++++++++++++++++--------------------------
+ 1 file changed, 331 insertions(+), 488 deletions(-)
