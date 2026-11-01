@@ -34,6 +34,7 @@ var _view := HOME_VIEW
 @onready var _puzzle: PuzzleScreen = %Puzzle
 @onready var _puzzle_id_label: Label = %PuzzleIdLabel
 @onready var _open_button: Button = %OpenButton
+@onready var _seams: DebugSeams = %Seams
 
 
 func _ready() -> void:
@@ -41,6 +42,7 @@ func _ready() -> void:
 	_puzzle_id_label.text = STUB_PUZZLE_ID
 	_open_button.pressed.connect(open_puzzle.bind(STUB_PUZZLE_ID))
 	_puzzle.leave_requested.connect(leave_puzzle)
+	_puzzle.mark_applied.connect(_seams.note_mark)
 	_show_home()
 
 
@@ -56,12 +58,15 @@ func open_puzzle(puzzle_id: String) -> bool:
 	_attempt = attempt
 	_puzzle.present(attempt)
 	_show_puzzle()
+	_seams.note_open(attempt)
 	return true
 
 
 ## [b]CTR-attempt[/b] O6 via the screen's C1 intent, then back to the placeholder.
 ## [code]SEQ-leave[/code] S5's gallery is #94.
 func leave_puzzle() -> void:
+	if _attempt != null:
+		_seams.note_leave(_attempt.puzzle_id())
 	_attempt = null
 	_puzzle.present(null)
 	_show_home()
@@ -70,6 +75,11 @@ func leave_puzzle() -> void:
 ## The live attempt, or null when nothing is open.
 func attempt() -> Attempt:
 	return _attempt
+
+
+## The puzzle screen this shell swaps in ([b]CMP-shell[/b] R1).
+func puzzle_screen() -> PuzzleScreen:
+	return _puzzle
 
 
 ## [constant HOME_VIEW] or [constant PUZZLE_VIEW].
