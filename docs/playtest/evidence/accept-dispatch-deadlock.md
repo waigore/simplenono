@@ -7,7 +7,8 @@ Run records: [`#105`](issue-105/2026-11-01-accept-dispatch-hold/manifest.md),
 [`#109`](issue-109/2026-11-02-accept/manifest.md),
 [`#111`](issue-111/2026-11-02-accept/manifest.md),
 [`#112`](issue-112/2026-11-02-accept/manifest.md),
-[`#156`](issue-156/2026-11-02-accept/manifest.md). `#108` has had no run yet.
+[`#156`](issue-156/2026-11-02-accept/manifest.md),
+[`#108`](issue-108/2026-11-02-accept/manifest.md).
 
 `#132` left this list on 2026-11-02: its run found a real fail on the reopen path and returned it
 to `status:pending-implementation` with a defect
@@ -22,11 +23,11 @@ to `status:pending-implementation` with a defect
 | #112 (`f05441c`) routes the shell to `puzzle.tscn`, so a player can open a puzzle and mark cells. `grep` over `game/` finds no `DBG.*` / `TEL.*` seam, and [`verification.md`](../../../specs/technical/verification.md) H1 bars a gate run without S1–S4. | No build can supply the screenshots, even though a screen draws. |
 | [`workflow.md`](../../issues/workflow.md). | `pending-acceptance` exits only by Accept, Fail (+defect), or Clarify. No blocked edge leaves the filter. |
 
-Each run must therefore repeat a comment already on the threads, state something the specs do not
-support, or record the judgement here and post nothing.
+Each run must repeat a comment already on the threads, state something the specs do not support,
+or record the judgement here and post nothing.
 
-`#109` differs: its story (`L-solve`) had an unjudged protocol, `PTD-solve-and-pb`; its run added
-a seam-level result — S1–S3 need `DBG.3` and `DBG.2`.
+`#109` differs: its story (`L-solve`) had an unjudged protocol, `PTD-solve-and-pb`; its run found S1–S3
+need `DBG.3` and `DBG.2`.
 
 ## Re-checks
 
@@ -44,6 +45,8 @@ a seam-level result — S1–S3 need `DBG.3` and `DBG.2`.
 - **`59872bd` (123/123):** picked #156, the only unjudged defect. Every criterion passed at the
   seam, including the reopen path the #132 run found. Its `resume-after-failure` record exists,
   so only the screenshots gate remains ([record](issue-156/2026-11-02-accept/manifest.md)).
+- **`67e36f5` (125/125):** picked `#108`, the last unjudged candidate; `PS1.1`–`PS1.7` passed at
+  the seam and only screenshots remain ([record](issue-108/2026-11-02-accept/manifest.md)).
 
 ## Unblocking — needs a human
 

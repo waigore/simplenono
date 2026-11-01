@@ -1,0 +1,42 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+[4m
+
+res://test/probe_accept_108.gd
+[0m* test_derived_values_from_the_rules
+[31m    [Failed]:  [0mPS1.1: an extra fill does not solve
+      at line 39
+* test_rules_store_nothing
+* test_attempt_status_transitions
+* test_progress_values
+* test_determinism
+[1m4/5 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m[4m
+res://test/probe_accept_108.gd
+[0m- test_derived_values_from_the_rules
+[31m    [Failed]:  [0mPS1.1: an extra fill does not solve
+          at line 39
+
+Totals
+------
+Scripts               1
+Tests                 5
+Passing Tests         4
+Failing Tests         1
+Asserts           48/49
+Time              0.474s
+
+
+[31m---- 1 failing tests ----
+[0m
