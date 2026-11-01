@@ -22,7 +22,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 
 | ID | Peer | Direction | Via contract | Notes |
 |----|------|-----------|--------------|-------|
-| C1 | [`CMP-shell`](shell.md) | both | [`CTR-attempt`](../contracts/attempt.md) | Shell calls. Attempt emits solved and left |
+| C1 | [`CMP-shell`](shell.md) | both | [`CTR-attempt`](../contracts/attempt.md) | Shell calls. Attempt emits ready, solved, and left |
 | C2 | [`CMP-rules`](rules.md) | calls | [`CTR-rules`](../contracts/rules.md) | Is-solved, line status, and auto-cross cells |
 | C3 | [`CMP-pack`](pack.md) | calls | [`CTR-pack`](../contracts/pack.md) | Definition, progress, commit, and record-solve |
 
