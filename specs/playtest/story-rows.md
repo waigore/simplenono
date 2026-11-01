@@ -10,25 +10,25 @@ One row per playtestable design story and UX journey/story under coverage mode `
 
 | ID | Owner | Note |
 |----|-------|------|
-| `L-solve` | none | Not planned yet — no wave has filed delivery work. |
-| `E-cell` | none | Not planned yet — no wave has filed delivery work. |
-| `E-clue` | none | Not planned yet — no wave has filed delivery work. |
-| `E-puzzle` | none | Not planned yet — no wave has filed delivery work. |
-| `GS` | none | Not planned yet — no wave has filed delivery work. |
-| `END` | none | Not planned yet — no wave has filed delivery work. |
-| `PRG` | none | Not planned yet — no wave has filed delivery work. |
-| `J-play-puzzle` | none | Not planned yet — no wave has filed delivery work. |
-| `J-leave-resume` | none | Not planned yet — no wave has filed delivery work. |
-| `J-gallery-reset` | none | Not planned yet — no wave has filed delivery work. |
-| `J-settings` | none | Not planned yet — no wave has filed delivery work. |
-| `ACT-player` | none | Not planned yet — no wave has filed delivery work. |
-| `NAV` | none | Not planned yet — no wave has filed delivery work. |
-| `IN` | none | Not planned yet — no wave has filed delivery work. |
-| `EX` | none | Not planned yet — no wave has filed delivery work. |
-| `UI-gallery` | none | Not planned yet — no wave has filed delivery work. |
-| `UI-puzzle` | none | Not planned yet — no wave has filed delivery work. |
-| `UI-result` | none | Not planned yet — no wave has filed delivery work. |
-| `UI-settings` | none | Not planned yet — no wave has filed delivery work. |
+| `L-solve` | #109 | — |
+| `E-cell` | #106 | — |
+| `E-clue` | #107 | — |
+| `E-puzzle` | #105 | — |
+| `GS` | #108 | — |
+| `END` | none | Wave 3 — leaves filed when that wave is expanded (epic #97). |
+| `PRG` | none | Wave 2/3 — delivered through #94 and closed via #97; leaves not yet filed. |
+| `J-play-puzzle` | #112 | — |
+| `J-leave-resume` | none | Wave 2 — leaves filed when that wave is expanded (epic #96). |
+| `J-gallery-reset` | none | Wave 2 — leaves filed when that wave is expanded (epic #94). |
+| `J-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
+| `ACT-player` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
+| `NAV` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
+| `IN` | #111 | Mark input in Wave 1; platform bindings continue via epic #96 in Wave 2. |
+| `EX` | none | Wave 2 — leaves filed when that wave is expanded (epic #96). |
+| `UI-gallery` | none | Wave 2 — leaves filed when that wave is expanded (epic #94). |
+| `UI-puzzle` | #110 | — |
+| `UI-result` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
+| `UI-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 
 ## Owner rules
 
