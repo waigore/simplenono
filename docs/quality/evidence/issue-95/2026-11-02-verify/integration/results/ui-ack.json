@@ -1,0 +1,80 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 779796,
+	"flows_failed": [],
+	"flows_ok": [
+		"open",
+		"back"
+	],
+	"log": "integration/logs/harness-1793569927-ui-ack.log",
+	"outcome": "pass",
+	"protocol": "ui-ack",
+	"reason": "",
+	"rows": [
+		{
+			"artifact": "integration/logs/harness-1793569927-ui-ack.log",
+			"axis": "response-delay",
+			"bar": "<= 500 ms",
+			"invariant": "I8",
+			"observation": "longest acknowledgement among ack:back, ack:open, ack:settings: 8.4 ms",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/results/ui-ack.json",
+			"axis": "crash-free",
+			"bar": "No crash across open, solve, reset, and back",
+			"invariant": "I9",
+			"observation": "flows ran: back, open",
+			"result": "pass"
+		}
+	],
+	"session_id": "harness-1793569927",
+	"started_at": 147431,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "open",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "settings",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "back",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Non-paint acknowledgement: open, settings, back"
+}

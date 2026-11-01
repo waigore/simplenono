@@ -1,0 +1,7 @@
+SEV level=info event=session-start time=1793569932.214 session=session-1793569932 build=4.7.2-stable (official) story=- message=
+SEV level=info event=session-end time=1793569932.304 session=session-1793569932 build=4.7.2-stable (official) story=- message=
+HARNESS step=launch-start kind=mark_start ok=true 
+HARNESS step=launch kind=launch ok=true 
+HARNESS step=home kind=wait_probe ok=true 
+HARNESS step=launch-stop kind=mark_stop ok=true 
+HARNESS step=quit kind=quit ok=true 
