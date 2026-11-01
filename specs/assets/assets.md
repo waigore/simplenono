@@ -19,9 +19,9 @@ Catalogued **generated and pixel puzzle pictures** (thumbnail and morph), **font
 | Visual effects | N/A — no VFX set | [`aesthetics.md`](../aesthetics/aesthetics.md) | — |
 | Interface art | N/A — type and panels | [`ui-style.md`](../aesthetics/ui-style.md) | — |
 | Icons | N/A — no icon set | [`ui-style.md`](../aesthetics/ui-style.md) | — |
-| Fonts | Applies | [`ui-style.md`](../aesthetics/ui-style.md) T1/T2 | `fonts` (planned) |
-| Sound effects | Applies | [`sound.md`](../aesthetics/sound.md) X1 | `sfx` (planned) |
-| Music | Applies | [`sound.md`](../aesthetics/sound.md) M1/M2 | `music` (planned) |
+| Fonts | Applies | [`ui-style.md`](../aesthetics/ui-style.md) T1/T2 | [`fonts`](kinds/fonts.md) |
+| Sound effects | Applies | [`sound.md`](../aesthetics/sound.md) X1 | [`sfx`](kinds/sfx.md) |
+| Music | Applies | [`sound.md`](../aesthetics/sound.md) M1/M2 | [`music`](kinds/music.md) |
 | Voice | N/A — no speech | [`sound.md`](../aesthetics/sound.md) | — |
 | Puzzle pictures | Applies | Generated thumbnail and pixel morph stage ([`entities/puzzle.md`](../design/entities/puzzle.md); gallery / result UX; [`perception.md`](../view/perception.md) R5) | [`puzzle-pictures`](kinds/puzzle-pictures.md) |
 
@@ -29,7 +29,7 @@ Catalogued **generated and pixel puzzle pictures** (thumbnail and morph), **font
 
 | Source type | Applicability | Grounds |
 |-------------|---------------|---------|
-| AI generation | Applies | Puzzle pictures via Cheaper Inference (no Recraft series); audio under style series when those kinds exist |
+| AI generation | Applies | Puzzle pictures via Cheaper Inference (no Recraft series); SFX and music via ElevenLabs CLI |
 | Procedural generation | N/A — no cataloged procedural kind | Hub kinds |
 | Third-party | Applies | Licensed geometric sans for T1/T2 |
 | Human-made | Applies | Person-supplied / `register-asset` |
@@ -62,4 +62,4 @@ Asset IDs, format, and integrity: [`catalog.md`](catalog.md). Fields: [`catalog/
 Global specs: [`glossary.md`](glossary.md), [`ids.md`](ids.md), [`traceability.md`](traceability.md), [`tools.md`](tools.md), [`procedures.md`](procedures.md), [`catalog.md`](catalog.md), [`access.md`](access.md).
 
 - **Procedures**: [`procedures/generate.md`](procedures/generate.md), [`procedures/update.md`](procedures/update.md), [`procedures/touch-up.md`](procedures/touch-up.md), [`procedures/establish-style.md`](procedures/establish-style.md).
-- **Kinds**: [`puzzle-pictures`](kinds/puzzle-pictures.md); planned `fonts`, `sfx`, `music`.
+- **Kinds**: [`puzzle-pictures`](kinds/puzzle-pictures.md), [`fonts`](kinds/fonts.md), [`sfx`](kinds/sfx.md), [`music`](kinds/music.md).

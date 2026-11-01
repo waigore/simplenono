@@ -24,6 +24,6 @@ Authoring rules: [`.agents/specs/rules/assets/access.md`](../../.agents/specs/ru
 
 | ID | Group | Members | Load point | Unload point | Serves |
 |----|-------|---------|------------|--------------|--------|
-| G1 | Core UI | `fonts`, `sfx` (planned kinds) | App start / first playable shell | Never unload in a session | Readable chrome and mark tick ([`ui-style.md`](../aesthetics/ui-style.md), [`sound.md`](../aesthetics/sound.md) X1); hitch-bound |
-| G2 | Music | `music` (planned) | Gallery or puzzle opens; solve sting with result | Session end or mute bed only (SFX stay) | M1/M2 ([`sound.md`](../aesthetics/sound.md); [`settings.md`](../ux/screens/settings.md)) |
+| G1 | Core UI | [`fonts`](kinds/fonts.md), [`sfx`](kinds/sfx.md) | App start / first playable shell | Never unload in a session | Readable chrome and mark tick ([`ui-style.md`](../aesthetics/ui-style.md), [`sound.md`](../aesthetics/sound.md) X1); hitch-bound |
+| G2 | Music | [`music`](kinds/music.md) | Gallery or puzzle opens; solve sting with result | Session end or mute bed only (SFX stay) | M1/M2 ([`sound.md`](../aesthetics/sound.md); [`settings.md`](../ux/screens/settings.md)) |
 | G3 | Puzzle pictures | [`puzzle-pictures`](kinds/puzzle-pictures.md) generated and pixel | Generated picture as the thumbnail when ever-completed; both pictures on the result | Leave result / gallery tile not needing it | Gallery thumbnail and the two-stage win reveal ([`gallery.md`](../ux/screens/gallery.md), [`result.md`](../ux/screens/result.md), [`perception.md`](../view/perception.md) R5) |
