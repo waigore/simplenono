@@ -20,7 +20,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 | S5 | CMP-attempt | CMP-rules | CTR-rules.O1 | Fill-set match. Crosses are ignored |
 | S6 | CMP-attempt | CMP-pack | CTR-pack.O5 | Commit changed marks or status |
 | S7 | CMP-attempt | CMP-shell | CTR-attempt.O2 | Return the grid and line status |
-| S8 | CMP-shell | CMP-shell | internal | Matching mark tick ([`SND.X1`](../../aesthetics/sound.md) fill, [`X2`](../../aesthetics/sound.md) cross, [`X3`](../../aesthetics/sound.md) clear). Haptic click when the cell is fill or cross and haptics are on |
+| S8 | CMP-shell | CMP-shell | internal | Mark tick ([`SND.X1`](../../aesthetics/sound.md)–[`X3`](../../aesthetics/sound.md)). Haptic on fill/cross when on |
 | S9 | CMP-attempt | CMP-attempt | internal | Stop elapsed |
 | S10 | CMP-attempt | CMP-pack | CTR-pack.O6 | Record the solve at that elapsed |
 | S11 | CMP-attempt | CMP-attempt | internal | Clear the open attempt |
