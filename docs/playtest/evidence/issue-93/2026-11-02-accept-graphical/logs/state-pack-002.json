@@ -1,0 +1,144 @@
+{
+	"attempt": {
+		"attempt_status": "not_started",
+		"elapsed": 1,
+		"get_set_ready": false,
+		"marks_allowed": true,
+		"paused": false,
+		"puzzle_id": "pack-002"
+	},
+	"mark_grid": {
+		"cells": [
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			],
+			[
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear",
+				"clear"
+			]
+		],
+		"size": 10
+	},
+	"progress": {
+		"elapsed": 0,
+		"ever_completed": true,
+		"in_progress": false,
+		"marks": null,
+		"personal_best": 1,
+		"puzzle_id": "pack-002"
+	},
+	"puzzle_id": "pack-002"
+}
