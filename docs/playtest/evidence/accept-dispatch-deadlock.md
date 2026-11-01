@@ -1,12 +1,13 @@
-# Acceptance dispatch deadlock (#105, #106, #107, #108, #109, #111, #112)
+# Acceptance dispatch deadlock (#105, #106, #107, #108, #109, #111, #112, #156)
 
-Why seven tasks sit on `status:pending-acceptance`, and what unblocks them.
+Why these issues sit on `status:pending-acceptance`, and what unblocks them.
 Run records: [`#105`](issue-105/2026-11-01-accept-dispatch-hold/manifest.md),
 [`#106`](issue-106/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#107`](issue-107/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#109`](issue-109/2026-11-02-accept/manifest.md),
 [`#111`](issue-111/2026-11-02-accept/manifest.md),
-[`#112`](issue-112/2026-11-02-accept/manifest.md). `#108` has had no run yet.
+[`#112`](issue-112/2026-11-02-accept/manifest.md),
+[`#156`](issue-156/2026-11-02-accept/manifest.md). `#108` has had no run yet.
 
 `#132` left this list on 2026-11-02: its run found a real fail on the reopen path and returned it
 to `status:pending-implementation` with a defect
@@ -40,6 +41,9 @@ a seam-level result — S1–S3 need `DBG.3` and `DBG.2`.
   deterministic axes can move (`response-delay` for "open puzzle", `transition-latency` for the
   shell → puzzle swap) and `docs/quality/evidence/` holds no `issue-112` record. `#108` is the
   last unjudged candidate.
+- **`59872bd` (123/123):** picked #156, the only unjudged defect. Every criterion passed at the
+  seam, including the reopen path the #132 run found. Its `resume-after-failure` record exists,
+  so only the screenshots gate remains ([record](issue-156/2026-11-02-accept/manifest.md)).
 
 ## Unblocking — needs a human
 

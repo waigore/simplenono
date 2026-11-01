@@ -1,0 +1,32 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://test/probe_accept_156.gd
+* test_a_fresh_open_blocks_marks_and_freezes_elapsed_until_the_beat_ends
+* test_reopened_in_progress_attempt_keeps_marks_blocked_and_elapsed_frozen
+* test_screen_on_a_reopened_in_progress_attempt_is_s2_blocked_and_frozen
+* test_stored_and_restored_grids_carry_no_marks_allowed_flag
+4/4 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               1
+Tests                 4
+Passing Tests         4
+Asserts              47
+Time              0.516s
+
+
+---- All tests passed! ----
