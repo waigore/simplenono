@@ -1,0 +1,29 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+res://test/probe_accept_112.gd
+* test_run_entry_is_the_shell_on_its_home_view
+* test_open_button_runs_the_open_leg
+* test_every_shipped_id_opens_in_free_order
+    <57300 orphan nodes; GUT node dump suppressed>
+* test_unknown_id_on_the_shell_view_changes_nothing
+* test_unknown_id_with_puzzle_open_changes_nothing
+* test_open_leg_calls_pack_o3_and_o4
+* test_s13_ready_edge_ends_the_beat
+* test_leave_returns_to_the_shell_and_a_new_open_still_works
+    <470 orphan nodes; GUT node dump suppressed>
+* test_shell_has_no_gallery_result_or_persistence_surface
+9/9 passed.
+==============================================
+= Run Summary
+==============================================
+Totals
+------
+Scripts               1
+Tests                 9
+Passing Tests         9
+Asserts            2277
+Time              14.807s
+---- All tests passed! ----

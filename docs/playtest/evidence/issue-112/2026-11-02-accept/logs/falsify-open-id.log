@@ -1,0 +1,838 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+res://test/probe_accept_112.gd
+* test_run_entry_is_the_shell_on_its_home_view
+* test_open_button_runs_the_open_leg
+* test_every_shipped_id_opens_in_free_order
+    [Failed]:  ["pack-000"] expected to equal ["pack-199"]:  the open id is pack-199
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-198"]:  the open id is pack-198
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-197"]:  the open id is pack-197
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-196"]:  the open id is pack-196
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-195"]:  the open id is pack-195
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-194"]:  the open id is pack-194
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-193"]:  the open id is pack-193
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-192"]:  the open id is pack-192
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-191"]:  the open id is pack-191
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-190"]:  the open id is pack-190
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-189"]:  the open id is pack-189
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-188"]:  the open id is pack-188
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-187"]:  the open id is pack-187
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-186"]:  the open id is pack-186
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-185"]:  the open id is pack-185
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-184"]:  the open id is pack-184
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-183"]:  the open id is pack-183
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-182"]:  the open id is pack-182
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-181"]:  the open id is pack-181
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-180"]:  the open id is pack-180
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-179"]:  the open id is pack-179
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-178"]:  the open id is pack-178
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-177"]:  the open id is pack-177
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-176"]:  the open id is pack-176
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-175"]:  the open id is pack-175
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-174"]:  the open id is pack-174
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-173"]:  the open id is pack-173
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-172"]:  the open id is pack-172
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-171"]:  the open id is pack-171
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-170"]:  the open id is pack-170
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-169"]:  the open id is pack-169
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-168"]:  the open id is pack-168
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-167"]:  the open id is pack-167
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-166"]:  the open id is pack-166
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-165"]:  the open id is pack-165
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-164"]:  the open id is pack-164
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-163"]:  the open id is pack-163
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-162"]:  the open id is pack-162
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-161"]:  the open id is pack-161
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-160"]:  the open id is pack-160
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-159"]:  the open id is pack-159
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-158"]:  the open id is pack-158
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-157"]:  the open id is pack-157
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-156"]:  the open id is pack-156
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-155"]:  the open id is pack-155
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-154"]:  the open id is pack-154
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-153"]:  the open id is pack-153
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-152"]:  the open id is pack-152
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-151"]:  the open id is pack-151
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-150"]:  the open id is pack-150
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-149"]:  the open id is pack-149
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-148"]:  the open id is pack-148
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-147"]:  the open id is pack-147
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-146"]:  the open id is pack-146
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-145"]:  the open id is pack-145
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-144"]:  the open id is pack-144
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-143"]:  the open id is pack-143
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-142"]:  the open id is pack-142
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-141"]:  the open id is pack-141
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-140"]:  the open id is pack-140
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-139"]:  the open id is pack-139
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-138"]:  the open id is pack-138
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-137"]:  the open id is pack-137
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-136"]:  the open id is pack-136
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-135"]:  the open id is pack-135
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-134"]:  the open id is pack-134
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-133"]:  the open id is pack-133
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-132"]:  the open id is pack-132
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-131"]:  the open id is pack-131
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-130"]:  the open id is pack-130
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-129"]:  the open id is pack-129
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-128"]:  the open id is pack-128
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-127"]:  the open id is pack-127
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-126"]:  the open id is pack-126
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-125"]:  the open id is pack-125
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-124"]:  the open id is pack-124
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-123"]:  the open id is pack-123
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-122"]:  the open id is pack-122
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-121"]:  the open id is pack-121
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-120"]:  the open id is pack-120
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-119"]:  the open id is pack-119
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-118"]:  the open id is pack-118
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-117"]:  the open id is pack-117
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-116"]:  the open id is pack-116
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-115"]:  the open id is pack-115
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-114"]:  the open id is pack-114
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-113"]:  the open id is pack-113
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-112"]:  the open id is pack-112
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-111"]:  the open id is pack-111
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-110"]:  the open id is pack-110
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-109"]:  the open id is pack-109
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-108"]:  the open id is pack-108
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-107"]:  the open id is pack-107
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-106"]:  the open id is pack-106
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-105"]:  the open id is pack-105
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-104"]:  the open id is pack-104
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-103"]:  the open id is pack-103
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-102"]:  the open id is pack-102
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-101"]:  the open id is pack-101
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-100"]:  the open id is pack-100
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-099"]:  the open id is pack-099
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-098"]:  the open id is pack-098
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-097"]:  the open id is pack-097
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-096"]:  the open id is pack-096
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-095"]:  the open id is pack-095
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-094"]:  the open id is pack-094
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-093"]:  the open id is pack-093
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-092"]:  the open id is pack-092
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-091"]:  the open id is pack-091
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-090"]:  the open id is pack-090
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-089"]:  the open id is pack-089
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-088"]:  the open id is pack-088
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-087"]:  the open id is pack-087
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-086"]:  the open id is pack-086
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-085"]:  the open id is pack-085
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-084"]:  the open id is pack-084
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-083"]:  the open id is pack-083
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-082"]:  the open id is pack-082
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-081"]:  the open id is pack-081
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-080"]:  the open id is pack-080
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-079"]:  the open id is pack-079
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-078"]:  the open id is pack-078
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-077"]:  the open id is pack-077
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-076"]:  the open id is pack-076
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-075"]:  the open id is pack-075
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-074"]:  the open id is pack-074
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-073"]:  the open id is pack-073
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-072"]:  the open id is pack-072
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-071"]:  the open id is pack-071
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-070"]:  the open id is pack-070
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-069"]:  the open id is pack-069
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-068"]:  the open id is pack-068
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-067"]:  the open id is pack-067
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-066"]:  the open id is pack-066
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-065"]:  the open id is pack-065
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-064"]:  the open id is pack-064
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-063"]:  the open id is pack-063
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-062"]:  the open id is pack-062
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-061"]:  the open id is pack-061
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-060"]:  the open id is pack-060
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-059"]:  the open id is pack-059
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-058"]:  the open id is pack-058
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-057"]:  the open id is pack-057
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-056"]:  the open id is pack-056
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-055"]:  the open id is pack-055
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-054"]:  the open id is pack-054
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-053"]:  the open id is pack-053
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-052"]:  the open id is pack-052
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-051"]:  the open id is pack-051
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-050"]:  the open id is pack-050
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-049"]:  the open id is pack-049
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-048"]:  the open id is pack-048
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-047"]:  the open id is pack-047
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-046"]:  the open id is pack-046
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-045"]:  the open id is pack-045
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-044"]:  the open id is pack-044
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-043"]:  the open id is pack-043
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-042"]:  the open id is pack-042
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-041"]:  the open id is pack-041
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-040"]:  the open id is pack-040
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-039"]:  the open id is pack-039
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-038"]:  the open id is pack-038
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-037"]:  the open id is pack-037
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-036"]:  the open id is pack-036
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-035"]:  the open id is pack-035
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-034"]:  the open id is pack-034
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-033"]:  the open id is pack-033
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-032"]:  the open id is pack-032
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-031"]:  the open id is pack-031
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-030"]:  the open id is pack-030
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-029"]:  the open id is pack-029
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-028"]:  the open id is pack-028
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-027"]:  the open id is pack-027
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-026"]:  the open id is pack-026
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-025"]:  the open id is pack-025
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-024"]:  the open id is pack-024
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-023"]:  the open id is pack-023
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-022"]:  the open id is pack-022
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-021"]:  the open id is pack-021
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-020"]:  the open id is pack-020
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-019"]:  the open id is pack-019
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-018"]:  the open id is pack-018
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-017"]:  the open id is pack-017
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-016"]:  the open id is pack-016
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-015"]:  the open id is pack-015
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-014"]:  the open id is pack-014
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-013"]:  the open id is pack-013
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-012"]:  the open id is pack-012
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-011"]:  the open id is pack-011
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-010"]:  the open id is pack-010
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-009"]:  the open id is pack-009
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-008"]:  the open id is pack-008
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-007"]:  the open id is pack-007
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-006"]:  the open id is pack-006
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-005"]:  the open id is pack-005
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-004"]:  the open id is pack-004
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-003"]:  the open id is pack-003
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-002"]:  the open id is pack-002
+      at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-001"]:  the open id is pack-001
+      at line 102
+    <26666 orphan nodes; GUT node dump suppressed>
+* test_unknown_id_on_the_shell_view_changes_nothing
+* test_unknown_id_with_puzzle_open_changes_nothing
+* test_open_leg_calls_pack_o3_and_o4
+    [Failed]:  [10] expected to equal [15]:  grid matches F2
+      at line 155
+* test_s13_ready_edge_ends_the_beat
+    [Failed]:  ["pack-000"] expected to equal ["pack-199"]:  E3 carries the open id
+      at line 172
+* test_leave_returns_to_the_shell_and_a_new_open_still_works
+    <134 orphan nodes; GUT node dump suppressed>
+* test_shell_has_no_gallery_result_or_persistence_surface
+6/9 passed.
+==============================================
+= Run Summary
+==============================================
+res://test/probe_accept_112.gd
+- test_every_shipped_id_opens_in_free_order
+    [Failed]:  ["pack-000"] expected to equal ["pack-199"]:  the open id is pack-199
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-198"]:  the open id is pack-198
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-197"]:  the open id is pack-197
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-196"]:  the open id is pack-196
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-195"]:  the open id is pack-195
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-194"]:  the open id is pack-194
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-193"]:  the open id is pack-193
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-192"]:  the open id is pack-192
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-191"]:  the open id is pack-191
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-190"]:  the open id is pack-190
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-189"]:  the open id is pack-189
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-188"]:  the open id is pack-188
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-187"]:  the open id is pack-187
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-186"]:  the open id is pack-186
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-185"]:  the open id is pack-185
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-184"]:  the open id is pack-184
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-183"]:  the open id is pack-183
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-182"]:  the open id is pack-182
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-181"]:  the open id is pack-181
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-180"]:  the open id is pack-180
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-179"]:  the open id is pack-179
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-178"]:  the open id is pack-178
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-177"]:  the open id is pack-177
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-176"]:  the open id is pack-176
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-175"]:  the open id is pack-175
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-174"]:  the open id is pack-174
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-173"]:  the open id is pack-173
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-172"]:  the open id is pack-172
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-171"]:  the open id is pack-171
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-170"]:  the open id is pack-170
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-169"]:  the open id is pack-169
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-168"]:  the open id is pack-168
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-167"]:  the open id is pack-167
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-166"]:  the open id is pack-166
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-165"]:  the open id is pack-165
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-164"]:  the open id is pack-164
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-163"]:  the open id is pack-163
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-162"]:  the open id is pack-162
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-161"]:  the open id is pack-161
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-160"]:  the open id is pack-160
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-159"]:  the open id is pack-159
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-158"]:  the open id is pack-158
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-157"]:  the open id is pack-157
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-156"]:  the open id is pack-156
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-155"]:  the open id is pack-155
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-154"]:  the open id is pack-154
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-153"]:  the open id is pack-153
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-152"]:  the open id is pack-152
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-151"]:  the open id is pack-151
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-150"]:  the open id is pack-150
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-149"]:  the open id is pack-149
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-148"]:  the open id is pack-148
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-147"]:  the open id is pack-147
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-146"]:  the open id is pack-146
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-145"]:  the open id is pack-145
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-144"]:  the open id is pack-144
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-143"]:  the open id is pack-143
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-142"]:  the open id is pack-142
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-141"]:  the open id is pack-141
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-140"]:  the open id is pack-140
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-139"]:  the open id is pack-139
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-138"]:  the open id is pack-138
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-137"]:  the open id is pack-137
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-136"]:  the open id is pack-136
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-135"]:  the open id is pack-135
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-134"]:  the open id is pack-134
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-133"]:  the open id is pack-133
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-132"]:  the open id is pack-132
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-131"]:  the open id is pack-131
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-130"]:  the open id is pack-130
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-129"]:  the open id is pack-129
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-128"]:  the open id is pack-128
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-127"]:  the open id is pack-127
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-126"]:  the open id is pack-126
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-125"]:  the open id is pack-125
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-124"]:  the open id is pack-124
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-123"]:  the open id is pack-123
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-122"]:  the open id is pack-122
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-121"]:  the open id is pack-121
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-120"]:  the open id is pack-120
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-119"]:  the open id is pack-119
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-118"]:  the open id is pack-118
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-117"]:  the open id is pack-117
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-116"]:  the open id is pack-116
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-115"]:  the open id is pack-115
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-114"]:  the open id is pack-114
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-113"]:  the open id is pack-113
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-112"]:  the open id is pack-112
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-111"]:  the open id is pack-111
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-110"]:  the open id is pack-110
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-109"]:  the open id is pack-109
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-108"]:  the open id is pack-108
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-107"]:  the open id is pack-107
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-106"]:  the open id is pack-106
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-105"]:  the open id is pack-105
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-104"]:  the open id is pack-104
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-103"]:  the open id is pack-103
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-102"]:  the open id is pack-102
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-101"]:  the open id is pack-101
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-100"]:  the open id is pack-100
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-099"]:  the open id is pack-099
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-098"]:  the open id is pack-098
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-097"]:  the open id is pack-097
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-096"]:  the open id is pack-096
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-095"]:  the open id is pack-095
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-094"]:  the open id is pack-094
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-093"]:  the open id is pack-093
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-092"]:  the open id is pack-092
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-091"]:  the open id is pack-091
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-090"]:  the open id is pack-090
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-089"]:  the open id is pack-089
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-088"]:  the open id is pack-088
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-087"]:  the open id is pack-087
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-086"]:  the open id is pack-086
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-085"]:  the open id is pack-085
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-084"]:  the open id is pack-084
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-083"]:  the open id is pack-083
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-082"]:  the open id is pack-082
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-081"]:  the open id is pack-081
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-080"]:  the open id is pack-080
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-079"]:  the open id is pack-079
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-078"]:  the open id is pack-078
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-077"]:  the open id is pack-077
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-076"]:  the open id is pack-076
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-075"]:  the open id is pack-075
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-074"]:  the open id is pack-074
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-073"]:  the open id is pack-073
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-072"]:  the open id is pack-072
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-071"]:  the open id is pack-071
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-070"]:  the open id is pack-070
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-069"]:  the open id is pack-069
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-068"]:  the open id is pack-068
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-067"]:  the open id is pack-067
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-066"]:  the open id is pack-066
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-065"]:  the open id is pack-065
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-064"]:  the open id is pack-064
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-063"]:  the open id is pack-063
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-062"]:  the open id is pack-062
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-061"]:  the open id is pack-061
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-060"]:  the open id is pack-060
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-059"]:  the open id is pack-059
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-058"]:  the open id is pack-058
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-057"]:  the open id is pack-057
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-056"]:  the open id is pack-056
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-055"]:  the open id is pack-055
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-054"]:  the open id is pack-054
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-053"]:  the open id is pack-053
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-052"]:  the open id is pack-052
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-051"]:  the open id is pack-051
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-050"]:  the open id is pack-050
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-049"]:  the open id is pack-049
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-048"]:  the open id is pack-048
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-047"]:  the open id is pack-047
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-046"]:  the open id is pack-046
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-045"]:  the open id is pack-045
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-044"]:  the open id is pack-044
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-043"]:  the open id is pack-043
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-042"]:  the open id is pack-042
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-041"]:  the open id is pack-041
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-040"]:  the open id is pack-040
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-039"]:  the open id is pack-039
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-038"]:  the open id is pack-038
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-037"]:  the open id is pack-037
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-036"]:  the open id is pack-036
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-035"]:  the open id is pack-035
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-034"]:  the open id is pack-034
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-033"]:  the open id is pack-033
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-032"]:  the open id is pack-032
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-031"]:  the open id is pack-031
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-030"]:  the open id is pack-030
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-029"]:  the open id is pack-029
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-028"]:  the open id is pack-028
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-027"]:  the open id is pack-027
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-026"]:  the open id is pack-026
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-025"]:  the open id is pack-025
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-024"]:  the open id is pack-024
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-023"]:  the open id is pack-023
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-022"]:  the open id is pack-022
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-021"]:  the open id is pack-021
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-020"]:  the open id is pack-020
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-019"]:  the open id is pack-019
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-018"]:  the open id is pack-018
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-017"]:  the open id is pack-017
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-016"]:  the open id is pack-016
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-015"]:  the open id is pack-015
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-014"]:  the open id is pack-014
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-013"]:  the open id is pack-013
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-012"]:  the open id is pack-012
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-011"]:  the open id is pack-011
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-010"]:  the open id is pack-010
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-009"]:  the open id is pack-009
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-008"]:  the open id is pack-008
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-007"]:  the open id is pack-007
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-006"]:  the open id is pack-006
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-005"]:  the open id is pack-005
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-004"]:  the open id is pack-004
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-003"]:  the open id is pack-003
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-002"]:  the open id is pack-002
+          at line 102
+    [Failed]:  ["pack-000"] expected to equal ["pack-001"]:  the open id is pack-001
+          at line 102
+- test_open_leg_calls_pack_o3_and_o4
+    [Failed]:  [10] expected to equal [15]:  grid matches F2
+          at line 155
+- test_s13_ready_edge_ends_the_beat
+    [Failed]:  ["pack-000"] expected to equal ["pack-199"]:  E3 carries the open id
+          at line 172
+Totals
+------
+Scripts               1
+Tests                 9
+Passing Tests         6
+Failing Tests         3
+Asserts           2076/2277
+Time              3.349s
+---- 3 failing tests ----
