@@ -40,6 +40,7 @@ var _sampler := IntegrationSampler.new()
 var _marks: Dictionary = {}
 var _durations: Dictionary = {}
 var _steps: Array[Dictionary] = []
+var _driver_time: Array[String] = []
 var _flows_ok: Array[String] = []
 var _flows_failed: Array[String] = []
 var _failed: bool = false
@@ -211,10 +212,17 @@ func _mark_stop(step: Dictionary) -> bool:
 ## then waits for the product to reach the [code]until[/code] condition before stopping
 ## the clock. The step that awaits the acknowledgement owns the measurement, so a
 ## latency row never times the driver's own synchronous call.
+##
+## A step with [code]driver_time[/code] still runs and is still measured, but its mark
+## is recorded as driver-timed: the action sets the state the probe reads, so the leg
+## observes the driver, not the product. The invariant row names the mark so the
+## summary never presents it as a product observation.
 func _measure(step: Dictionary) -> bool:
 	var name := String(step.get("mark", ""))
 	if name.is_empty():
 		return _failed_with("a measure step needs a mark name")
+	if step.has("driver_time"):
+		_driver_time.append("%s: %s" % [name, String(step["driver_time"])])
 	var action: Dictionary = step.get("action", {})
 	if action.is_empty():
 		return _failed_with("a measure step needs an action")
@@ -517,6 +525,7 @@ func _finish() -> void:
 		"rows": _rows(),
 		"flows_ok": _flows_ok,
 		"flows_failed": _flows_failed,
+		"driver_time": _driver_time,
 		"crashed": false,
 	}
 	result["log_lines"] = log_lines
@@ -639,6 +648,8 @@ func _row(invariant_id: String) -> Dictionary:
 		"I10":
 			observation = "kill-relaunch supervisor did not run"
 			artifact = _log_artifact()
+	if invariant_id in ["I6", "I7", "I8"] and not _driver_time.is_empty():
+		observation += " (driver-timed, not a product observation: %s)" % _joined(_driver_time)
 	if invariant_id in ["I6", "I7", "I8"] and _failed:
 		passed = false
 		if not _failure.is_empty():
