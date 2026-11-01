@@ -12,8 +12,9 @@ extends Control
 ## (shell → puzzle) and #95/#96 (leave, pause).
 ##
 ## States: S2 while the attempt's get-set-ready beat runs, S3 while paused, and
-## S1 otherwise. Elapsed ticks only through [code]CTR-attempt[/code] O3, so the
-## attempt itself freezes it while paused ([code]GS.paused[/code]).
+## S1 otherwise. Elapsed ticks only through [code]CTR-attempt[/code] O3 while the
+## screen is in S1: O3's precondition is "puzzle screen is showing", so neither the
+## get-set-ready beat nor pause is counted ([code]CTR-attempt[/code] O3, G1).
 
 ## [code]IN.back[/code]: the player asked to leave (C1). Routing is #94/#95's.
 signal leave_requested
@@ -23,6 +24,15 @@ signal settings_requested
 
 ## A tool was selected ([code]C3[/code]-[code]C5[/code]); #111 sends its marks.
 signal tool_selected(tool: CellMark.Mark)
+
+## Get-set-ready: the load beat runs and marks are blocked ([code]S2[/code]).
+const STATE_GET_SET_READY := "S2"
+
+## Paused: the board is unchanged and elapsed is frozen ([code]S3[/code]).
+const STATE_PAUSED := "S3"
+
+## Ready: the player is playing ([code]S1[/code]).
+const STATE_READY := "S1"
 
 var _attempt: Attempt
 var _selected_tool: CellMark.Mark = CellMark.Mark.FILL
@@ -79,16 +89,16 @@ func present(attempt: Attempt) -> void:
 	refresh()
 
 
-## The current state ID: [code]S2[/code] get-set-ready, [code]S3[/code] paused,
-## [code]S1[/code] Ready, or empty when no puzzle is shown.
+## The current state ID: [constant STATE_GET_SET_READY], [constant STATE_PAUSED],
+## [constant STATE_READY], or empty when no puzzle is shown.
 func state_id() -> String:
 	if _attempt == null or _attempt.state() == null:
 		return ""
 	if _attempt.get_set_ready():
-		return "S2"
+		return STATE_GET_SET_READY
 	if _attempt.state().paused():
-		return "S3"
-	return "S1"
+		return STATE_PAUSED
+	return STATE_READY
 
 
 ## The selected tool ([code]C3[/code]-[code]C5[/code]).
@@ -161,10 +171,14 @@ func refresh() -> void:
 	_set_tools_enabled(not beat)
 
 
-## Adds [param seconds] of elapsed through O3. While paused or during the beat the
-## attempt rejects it, so [code]GS.solve-elapsed[/code] stays frozen.
+## Adds [param seconds] of elapsed through [code]CTR-attempt[/code] O3 while the screen
+## is in [constant STATE_READY]. O3's precondition is "puzzle screen is showing", so the
+## get-set-ready beat ([constant STATE_GET_SET_READY]) and pause ([constant STATE_PAUSED])
+## ask for nothing, and the time spent there is not banked for later
+## ([code]CTR-attempt[/code] O3, G1). The attempt freezes elapsed too; this screen is the
+## single caller, so it gates first.
 func tick(seconds: float) -> void:
-	if _attempt == null or _attempt.state() == null:
+	if seconds <= 0.0 or state_id() != STATE_READY:
 		return
 	_elapsed_remainder += seconds
 	var whole := int(floorf(_elapsed_remainder))

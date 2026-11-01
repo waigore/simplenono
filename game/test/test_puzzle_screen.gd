@@ -78,6 +78,11 @@ func test_get_set_ready_shows_ready_beat_blocks_marks_and_keeps_chrome():
 	var attempt := _shown()
 	assert_eq(_screen.state_id(), "S2", "a just-opened puzzle is get-set-ready")
 	assert_true(_control("ReadyBeat").visible, "copy.ready is visible")
+	assert_eq(
+		_control("ReadyBeat").mouse_filter,
+		Control.MOUSE_FILTER_IGNORE,
+		"copy.ready never swallows a C1 or C6 click",
+	)
 	assert_false(_screen.marks_allowed(), "marks are blocked")
 	assert_eq(_screen.cell_at(0, 0).mouse_filter, Control.MOUSE_FILTER_IGNORE, "C2 is blocked")
 	assert_false(_control("LeaveButton").disabled, "C1 remains available")
@@ -85,9 +90,17 @@ func test_get_set_ready_shows_ready_beat_blocks_marks_and_keeps_chrome():
 	assert_true(_control("FillButton").disabled, "C3 is not available in S2")
 	assert_true(_control("CrossButton").disabled, "C4 is not available in S2")
 	assert_true(_control("ClearButton").disabled, "C5 is not available in S2")
+
+	var intents: Array[String] = []
+	_screen.leave_requested.connect(func() -> void: intents.append("leave"))
+	_screen.settings_requested.connect(func() -> void: intents.append("settings"))
+	_control("LeaveButton").pressed.emit()
+	_control("SettingsButton").pressed.emit()
+	assert_eq(intents, ["leave", "settings"], "C1 and C6 still answer with the beat visible")
+
 	_screen.tick(3.0)
 	assert_eq(_screen.elapsed_text(), "0:00", "elapsed does not tick during the beat")
-	assert_eq(attempt.state().elapsed(), 0, "CTR-attempt O3 rejects the tick")
+	assert_eq(attempt.state().elapsed(), 0, "no O3 call while the screen is in S2")
 
 
 # US1.1 / US1.3: S1 shows the chrome, all controls, and the elapsed copy
@@ -97,10 +110,9 @@ func test_ready_state_shows_chrome_tools_and_elapsed():
 	assert_eq(_screen.state_id(), "S1", "Ready after the beat")
 	assert_false(_control("ReadyBeat").visible, "the Ready beat is gone")
 	assert_eq(_screen.elapsed_text(), "0:00")
-	attempt.state().pause()
-	attempt.state().resume()
 	_screen.tick(12.0)
 	assert_eq(_screen.elapsed_text(), "0:12", "copy.elapsed is m:ss")
+	assert_eq(attempt.state().elapsed(), 12, "GS.solve-elapsed")
 	assert_false(_control("LeaveButton").disabled, "C1")
 	assert_false(_control("SettingsButton").disabled, "C6")
 	assert_false(_control("FillButton").disabled, "C3")
@@ -108,6 +120,37 @@ func test_ready_state_shows_chrome_tools_and_elapsed():
 	assert_false(_control("ClearButton").disabled, "C5")
 	assert_eq(_screen.cell_at(0, 0).mouse_filter, Control.MOUSE_FILTER_STOP, "C2 is available")
 	assert_true(_screen.marks_allowed(), "GS.marks-allowed")
+
+
+# US1.1: Ready shows a pre-existing GS.solve-elapsed without needing a tick first
+func test_ready_state_shows_a_restored_elapsed_without_ticking():
+	var grid := MarkGrid.new(_definition.size, true)
+	grid.apply_mark(7, 2, CellMark.Mark.FILL)
+	_pack.progress().commit(TEAPOT_ID, grid, 12, true)
+
+	var attempt := _shown()
+
+	assert_eq(_screen.state_id(), "S2", "the reopen starts in get-set-ready")
+	assert_eq(_screen.elapsed_text(), "0:12", "S2 already shows the stored elapsed")
+	_screen.finish_ready_beat()
+
+	assert_eq(_screen.state_id(), "S1", "Ready after the beat")
+	assert_eq(_screen.elapsed_text(), "0:12", "US1.1: Ready shows GS.solve-elapsed 12")
+	assert_eq(attempt.state().elapsed(), 12, "reaching Ready adds no elapsed")
+
+
+# CTR-attempt O3: the beat is not play time, so it is not banked and dumped after S1
+func test_elapsed_does_not_bank_time_spent_in_the_beat():
+	var attempt := _shown()
+	_screen.tick(3.0)
+	assert_eq(attempt.state().elapsed(), 0, "no O3 call while the beat runs")
+
+	_screen.finish_ready_beat()
+	assert_eq(_screen.elapsed_text(), "0:00", "the beat is not counted on reaching Ready")
+
+	_screen.tick(1.0)
+	assert_eq(_screen.elapsed_text(), "0:01", "only play time counts")
+	assert_eq(attempt.state().elapsed(), 1, "one second of play")
 
 
 # US1.7: S2 on a reopened in-progress puzzle stays blocked and frozen like a fresh open
