@@ -11,44 +11,21 @@ state was `Not started`.
 
 ## `PTU-settings` — pass
 
-All three steps behaved:
-
-- `S1` the gallery's C3 (`Settings`) opened `UI-settings` through `NAV.T2`.
-- `S2` C1 flipped `haptics` and C2 flipped `mute_bgm` on the one `SCH-preferences` source, and the
-  labels followed (`Haptics On → Off`, `Mute music Off → On`).
-- `S3` C3 returned to `UI-gallery` (`NAV.T6`); reopening showed `Off` and `On` still set, so the
-  session-scoped values stuck across the round trip.
-
-`P1` and `P2` both hold; `F1` and `F2` did not occur. The layout matches the approved
-`MC.settings-mobile` / `MC.settings-desktop` rows: title, two options with their hint lines, the on
-state inverted to ink, Back below.
+C3 (`Settings`) opened `UI-settings` through `NAV.T2`. `S2` flipped `haptics` and `mute_bgm` on the
+one `SCH-preferences` source and the labels followed
+(`Haptics On → Off`, `Mute music Off → On`); `S3` returned via `NAV.T6` and reopening showed `Off` and
+`On` still set, so the session-scoped values stuck across the round trip. `F1` and `F2` did not occur.
+The layout matches `MC.settings-mobile` / `MC.settings-desktop`: title, two options with their hint
+lines, the on state inverted to ink, Back below.
 
 ## `PTU-play-puzzle` — P1 pass, P2 judged state fails
 
-`P1` holds: gallery → puzzle → result → gallery completes, and the morph now spends both stages
-(560.8 ms measured across 69 real frames against `2 × CFG.MORPH_STAGE_MS` = 600 ms, within frame
-quantisation). The ever-completed part of `P2` also holds — `#000` reads `Done`, `Best 0:00`,
-`Completed 1 / 200`.
-
-The judged **result** state does not. At `S1 Default` the screen is empty paper with only the
-`Back to gallery` button:
-
-- `UI-result` R1 is *"Visible when: Always on this screen"*, and it shows nothing at `S1`.
-- `UI-result` S1 says the actor sees the generated picture; they see a blank.
-- The approved mockup's `default` state draws a picture.
-- `PER.R5`, `MOT.E1`, `MOT.E2` name this as the win reveal; the build ends the win on an empty screen.
-
-## Why it happens (and why it is not "assets pending")
-
-`Shell._picture_for()` resolves the definition's two picture ids through the manifest and gets `null`
-for both, because the ids are simply not in `assets/manifest.json`. `ResultMorphSlot.show_picture(null)`
-paints nothing, and `ResultReveal._apply_frames()` at `S1` sets the picture layer to `1.0` while the
-fills and pixel layers go to `0.0`. Every visible layer is therefore empty at the end of the morph.
-
-A build with no assets still has a correct fallback available — finish on the picture that *is* in the
-build (the pixel picture, or the solved fills) — and the mockup shows the screen is never meant to be
-blank. So the defect is in the `S1` fallback, not in #98's asset delivery. It is filed against #95's
-deliverable, which is the result screen and its morph.
+`P1` holds and the morph spends both stages (560.8 ms over 69 real frames against
+`2 × CFG.MORPH_STAGE_MS` = 600 ms, within frame quantisation). `P2`'s ever-completed half also holds —
+`#000` reads `Done`, `Best 0:00`, `Completed 1 / 200`. Its judged **result** state does not: at
+`S1 Default` the screen is empty paper with only `Back to gallery`, contradicting `UI-result` R1 and
+S1, the approved mockup, and the `PER.R5` / `MOT.E1` / `MOT.E2` win reveal. The claim-by-claim
+comparison and the root cause are in [`failure.md`](failure.md).
 
 ## Non-blocking marks
 
