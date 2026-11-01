@@ -40,7 +40,7 @@ a missing protocol leaves its axes unobserved.
 | `app-start` | Launch to the first interactive screen, hold, quit | I6 | `time-to-playable` (≤ 3 s) |
 | `paint` | Open, fill every row then cross every column, one mark per frame, pause/resume, quit | I1, I2, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `crash-free` |
 | `navigate` | Gallery→puzzle, puzzle→result, result→gallery, back | I7, I9 | `transition-latency` (≤ 500 ms), `crash-free` |
-| `ui-ack` | Open, settings intent, back | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
+| `ui-ack` | Open, settings, back to the puzzle | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
 | `solve-reset` | Open, solve, result, back; open, mark, reset, back | I9 | `crash-free` |
 | `kill-relaunch` | Open, mark, hold, kill, relaunch, reopen | I10 | `resume-after-failure` |
 | `self-test` | CI-only fixture with no S1–S5 | none | none (never a quality run) |
@@ -57,9 +57,9 @@ is still missing. These are product gaps, not harness errors:
   gallery stand-in is the shell's home view until #94. Its `result-gallery` leg is
   `driver_time`: the shell's own `leave` sets the home view synchronously, so the leg
   times the driver until #94/#95 own the transition, and the I7 row says so.
-- `ui-ack` times C6's `IN.pause` intent at the next processed frame: the settings
-  screen (#95) and the pause it raises (#96) do not exist yet, so the settings leg
-  measures the product's intent rather than a settings surface.
+- `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
+  stops when settings is showing (`NAV.T7`), and Back stops at the resumed puzzle on
+  settings' C3 (`NAV.T8`). The pause inside the attempt is #96's.
 - `kill-relaunch` fails I10 until progress persistence restores marks and elapsed
   (#96).
 - `app-start` measures launch to the shell's interactive home, labelled as the

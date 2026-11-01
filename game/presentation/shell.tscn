@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://presentation/shell.gd" id="1_shell"]
 [ext_resource type="PackedScene" path="res://presentation/puzzle.tscn" id="2_puzzle"]
 [ext_resource type="Script" path="res://presentation/debug_seams.gd" id="3_seams"]
 [ext_resource type="PackedScene" path="res://presentation/gallery.tscn" id="4_gallery"]
+[ext_resource type="PackedScene" path="res://presentation/settings.tscn" id="5_settings"]
 
 [node name="Shell" type="Control"]
 layout_mode = 3
@@ -19,6 +20,11 @@ unique_name_in_owner = true
 layout_mode = 1
 
 [node name="Puzzle" parent="." instance=ExtResource("2_puzzle")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="Settings" parent="." instance=ExtResource("5_settings")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

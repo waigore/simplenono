@@ -4,10 +4,9 @@ extends RefCounted
 ##
 ## Every leg is a `measure` step: it runs the intent, crosses at least one processed
 ## frame, and stops the clock only when the product reaches its acknowledgement probe.
-## Opening acknowledges with the puzzle view; Back with the home view. The settings
-## screen is #95 and the pause C6 raises is #96's, so the settings leg times the
-## screen's own IN.pause intent at the next processed frame, not a screen that does
-## not exist yet.
+## Opening acknowledges with the puzzle view. The settings route acknowledges with
+## settings showing (`NAV.T7`) and Back with the puzzle it paused, resumed (`NAV.T8`) —
+## both delivered by #95; only the pause inside the attempt is #96's.
 
 const ID := "ui-ack"
 
@@ -36,14 +35,14 @@ static func spec() -> Dictionary:
 				"kind": "measure",
 				"mark": "ack:settings",
 				"action": {"kind": "settings"},
-				"until": {"probe": "settings_ack", "value": true},
+				"until": {"probe": "settings_ready", "value": true},
 			},
 			{
 				"id": "back",
 				"kind": "measure",
 				"mark": "ack:back",
 				"action": {"kind": "back"},
-				"until": {"probe": "view", "value": "home"},
+				"until": {"probe": "view", "value": "puzzle"},
 			},
 			{"id": "quit", "kind": "quit"},
 		],
