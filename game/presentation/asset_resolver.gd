@@ -37,6 +37,16 @@ func _init(manifest_path: String = MANIFEST_PATH) -> void:
 	_read_manifest()
 
 
+## True when the manifest lists [param asset_id] with at least one path. Callers that
+## draw an optional picture (the gallery thumbnail before its kind ships) ask this
+## first so an expected absence is not a resolve failure.
+func has(asset_id: String) -> bool:
+	if not _loaded or not _by_id.has(asset_id):
+		return false
+	var paths: Variant = _by_id[asset_id]
+	return typeof(paths) == TYPE_ARRAY and not (paths as Array).is_empty()
+
+
 ## [code]ACC.A1[/code]: the loaded resource for [param asset_id]'s first manifest path, or
 ## null after a loud failure for an unknown ID or an unavailable manifest
 ## ([code]ACC.A3[/code], [code]asset-access[/code] R2/R3).

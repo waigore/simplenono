@@ -4,15 +4,14 @@ extends RefCounted
 ##
 ## Every transition is a `measure` step: it drives the leg, crosses at least one
 ## processed frame, and stops the clock only when the shell reaches the view that
-## acknowledges it. `UI-gallery` (#94) and `UI-result` (#95) do not exist yet, so the
-## legs that need them wait for a view the shell never shows and fail honestly; the
-## home and puzzle legs run now. `UI-gallery` and `UI-result` replace the stand-in
-## views when those epics land.
+## acknowledges it. `UI-gallery` (#94) exists and is the shell's start view, so the
+## gallery legs run now; `UI-result` (#95) is still a stand-in, so the result legs wait
+## for a view the shell never shows and fail honestly until #95 lands.
 ##
-## `result-gallery` carries `driver_time`: the shell's own `leave` sets the home view
-## synchronously, so that leg times the driver rather than a product acknowledgement.
-## It is measured to keep the flow exercised, and the I7 row says so, until #94/#95
-## own the real transition.
+## `result-gallery` carries `driver_time`: the shell's own `leave` sets the gallery
+## view synchronously, so that leg times the driver rather than a product
+## acknowledgement. It is measured to keep the flow exercised, and the I7 row says so,
+## until #95 owns the real transition.
 
 const ID := "navigate"
 
@@ -48,8 +47,8 @@ static func spec() -> Dictionary:
 				"kind": "measure",
 				"mark": "transition:result-gallery",
 				"action": {"kind": "leave"},
-				"until": {"probe": "view", "value": "home"},
-				"driver_time": "the shell's leave sets its own view; #94/#95 own the transition",
+				"until": {"probe": "view", "value": "gallery"},
+				"driver_time": "the shell's leave sets its own view; #95 owns the transition",
 			},
 			{"id": "quit", "kind": "quit"},
 		],
