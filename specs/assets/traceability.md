@@ -26,7 +26,7 @@ Authoring rules: [`.agents/specs/rules/assets/traceability.md`](../../.agents/sp
 | Human-made assets | [`procedures.md`](procedures.md), [`catalog.md`](catalog.md) | Applies — register path |
 | Tool roles | [`tools.md`](tools.md) | Applies — TL.1/TL.2 for puzzle pictures |
 | Procedures | [`procedures.md`](procedures.md) | Applies — template procedures |
-| Catalog | [`catalog.md`](catalog.md) | Applies — roots TBD — which Integration ADR sets them? |
+| Catalog | [`catalog.md`](catalog.md) | Applies — roots [ADR-0003](../adr/decisions/0003-catalog-asset-roots.md) |
 | Asset access and load groups | [`access.md`](access.md) | Applies |
 | Sound assets | [`kinds/`](kinds/) | Applies — planned `sfx`, `music` |
 | Localized assets | [`kinds/`](kinds/) | N/A — localization not yet Applies in quality |
