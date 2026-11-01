@@ -7,6 +7,7 @@ Authoring rules: [`.agents/specs/rules/design/glossary.md`](../../.agents/specs/
 | Term | Definition | Detailed in |
 |------|------------|-------------|
 | Attempt status | Whether the current attempt is not started or in progress; independent of ever completed. | [`progression.md`](progression.md), [`game-state.md`](game-state.md) |
+| Auto-cross | The automatic crosses placed on every still-clear cell of an empty-clue line when get-set-ready ends; counts as marking, so it sets the attempt in progress. | [`loops/solve.md`](loops/solve.md), [`game-state.md`](game-state.md) |
 | Cell | One grid square with exactly one mark: clear, fill, or cross. | [`entities/cell.md`](entities/cell.md) |
 | Clue | Ordered run lengths for one row or column; empty list means an all-empty line. | [`entities/clue.md`](entities/clue.md) |
 | Completion rate | Ever-completed puzzles divided by pack size (200). | [`progression.md`](progression.md), [`game-state.md`](game-state.md) |
