@@ -14,14 +14,15 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../../.agents/spe
 | P2 | Solution fill set from pack | PS1.1 |
 | P3 | Row/column clues from pack | PS1.1 |
 | P4 | Stable pack identity | PS1.1 |
-| P5 | Thumbnail when ever-completed | PS1.4 |
+| P5 | Thumbnail when ever-completed | PS1.4b, PS1.4c |
+| P6 | Pixel picture shown after a solve | PS1.4 |
 | S1 | Attempt not started | PS1.2 |
 | S2 | Attempt in progress | PS1.2b |
 | S3 | Ever completed sticky | PS1.3 |
 | I1 | Open loads / restores | PS1.2, PS1.2b |
 | I2 | Solve loop outcomes | PS1.3 |
 | I3 | Reset as new | PS1.5 |
-| I4 | Thumbnail view when ever-completed | PS1.4 |
+| I4 | Thumbnail view when ever-completed | PS1.4c |
 
 ## PS1: Pack puzzle
 
@@ -71,16 +72,35 @@ Then P is S3 ever-completed
 And attempt returns to S1
 ```
 
-### PS1.4: Thumbnail only when ever-completed
+### PS1.4: Pixel picture after the first solve
+
+- **Proves**: P6
+
+```gherkin
+Given P is not ever-completed and P's stored pixel picture is not knowable
+When the player first solves P
+Then the player can know P's stored pixel picture
+And the player cannot know it before that solve
+```
+
+### PS1.4b: No thumbnail before a solve
+
+- **Proves**: P5
+
+```gherkin
+Given P is not ever-completed
+When the player consults P's gallery entry
+Then the player cannot know P's stored generated picture
+```
+
+### PS1.4c: Thumbnail after ever-completed
 
 - **Proves**: P5, I4
 
 ```gherkin
-Given ever-completed is false
-Then the player cannot know P's thumbnail picture
-When ever-completed is true
-Then the player can know P's thumbnail in the gallery
-And not as board solution while solving
+Given P is ever-completed
+When the player consults P's gallery entry
+Then the player can know P's stored generated picture
 ```
 
 ### PS1.5: Reset clears S3

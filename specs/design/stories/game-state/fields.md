@@ -4,22 +4,21 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../../.agents/spe
 
 - **Design spec**: [`game-state/fields.md`](../../game-state/fields.md) (parent [`game-state.md`](../../game-state.md))
 - **Spec key**: `GS`
-- **Glossary terms**: [Ever completed](../../glossary.md), [Attempt status](../../glossary.md), [Cross](../../glossary.md)
-- **Parent stories**: [`../game-state.md`](../game-state.md)
+- **Glossary terms**: [Ever completed](../../glossary.md), [Attempt status](../../glossary.md)
 
 ## Coverage
 
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
 | selected-puzzle | Open / leave | PS1.1, PS1.2 |
-| marks-allowed | Blocked then allowed | PS1.3, PS1.3b |
-| paused | Freeze tick/marks | PS1.4, PS1.4b |
-| cell-marks | Persist in progress | PS1.2 |
-| ever-completed | Sticky with attempt | PS1.5 |
-| attempt-status | Orthogonal | PS1.5 |
-| solve-elapsed | Clear on solve | PS1.6 |
-| personal-best | Never increases | PS1.7 |
-| solution | Fixed on open | PS1.1 |
+| marks-allowed | Blocked / allowed | PS1.3, PS1.3b, PS1.8 |
+| paused | Freezes | PS1.4, PS1.4b, PS1.8 |
+| cell-marks | Persist in progress | PS1.2, PS1.8 |
+| ever-completed | Sticky | PS1.5, PS1.8 |
+| attempt-status | Orthogonal | PS1.5, PS1.8 |
+| solve-elapsed | Clear on solve | PS1.6, PS1.8 |
+| personal-best | Never increases | PS1.7, PS1.8 |
+| solution | Fixed on open | PS1.1, PS1.9 |
 | V3, V4 | Not-started clear; PB shrinks | PS1.6, PS1.7 |
 
 ## PS1: Fields
@@ -86,7 +85,9 @@ And marks do not change cell-marks
 ```gherkin
 Given paused true, solve-elapsed 10
 When paused becomes false
-Then solve-elapsed may tick above 10
+Then paused is false
+And solve-elapsed is 10 when the hold lifts
+And increases above 10 while unpaused
 ```
 
 ### PS1.5: Replay dual flags
@@ -105,7 +106,7 @@ And ever-completed is true
 - **Proves**: solve-elapsed, V3
 
 ```gherkin
-Given attempt not started with clear marks and solve-elapsed 0
+Given attempt not started, solve-elapsed 0
 When END.W1 fires after a matching fill set
 Then attempt-status is not started, cell-marks clear, solve-elapsed 0
 ```
@@ -118,4 +119,30 @@ Then attempt-status is not started, cell-marks clear, solve-elapsed 0
 Given personal-best 20
 When END.W1 solves with solve-elapsed 35
 Then personal-best is 20
+```
+
+### PS1.8: Initial values
+
+- **Proves**: marks-allowed, paused, cell-marks, ever-completed, attempt-status, solve-elapsed, personal-best
+
+```gherkin
+Given no saved progress
+When the player first opens puzzle P before ready completes
+Then cell-marks are all clear
+And attempt-status is not started
+And solve-elapsed is 0
+And personal-best is none
+And ever-completed is false
+And marks-allowed is false
+And paused is false
+```
+
+### PS1.9: Solution never changes
+
+- **Proves**: solution
+
+```gherkin
+Given puzzle P is open
+When the player places marks anywhere on the board
+Then solution is unchanged
 ```

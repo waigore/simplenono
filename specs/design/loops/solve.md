@@ -15,7 +15,7 @@ Authoring rules: [`.agents/specs/rules/design/loops.md`](../../../.agents/specs/
 | K2 | Fill a cell, place a [cross](../glossary.md), or clear a mark | Mark updates; first fill or cross (including K1 auto-cross) sets [attempt status](../glossary.md) to [in progress](../glossary.md) without clearing [ever completed](../glossary.md); [line error](../glossary.md) may update; [clue](../entities/clue.md) line may dim when satisfied | Deduction progress from clues |
 | K3 | Keep marking | No per-cell correctness. [Solve check](../glossary.md) compares **fills only** to the solution fill set | Whether the picture fills are complete |
 | K4 | Reach a fill set that matches the solution | Timer stops; ever-completed → true; attempt → not started; marks and elapsed clear; [personal best](../glossary.md) updates if shorter ([`END.W1`](../end-conditions.md)); same on replay | The clean-solve click |
-| K5 | Pause (settings from puzzle, or desktop P) | [`GS.paused`](../game-state.md) → true; elapsed stops; marks blocked; settings opens | Can adjust prefs without quitting the attempt |
+| K5 | Pause the attempt | [`GS.paused`](../game-state.md) → true; elapsed stops; marks blocked; options stay adjustable during the hold | Can adjust options without quitting the attempt |
 | K6 | Leave mid-puzzle | Marks, in-progress attempt, and elapsed commit; clear pause; return to the gallery ([`END.O1`](../end-conditions.md)) | Can resume later with the same elapsed |
 
 ## Motivation
@@ -36,8 +36,8 @@ Which puzzle and size (10×10, 15×15, or 20×20) the player chose. No randomnes
 - **E1**: Solved — fills match the solution (K4); ever-completed; attempt cleared ([`END.W1`](../end-conditions.md)).
 - **E2**: Leave to gallery (K6); in-progress marks and elapsed persist when applicable ([`END.O1`](../end-conditions.md)).
 
-Pause (K5) is not an exit — settings covers the puzzle until Back. No loss exit. Gallery [reset](../glossary.md) is [`END.O2`](../end-conditions.md), outside this loop.
+Pause (K5) is not an exit — the hold covers the puzzle until it is lifted. No loss exit. Gallery [reset](../glossary.md) is [`END.O2`](../end-conditions.md), outside this loop.
 
 ## Experience intent
 
-Snappy mark response on a calm clinical board with soft SFX under calm BGM. Tension is deduction, not punishment. On solve: sting and the result-screen fades, fills then pixel picture then generated picture ([`experience.md`](../experience.md), [`PER.R5`](../../view/perception.md)), then gallery. Crosses aid memory; only fills win. Line errors flag impossible fills, not unfinished lines.
+Snappy mark response on a calm clinical board with soft SFX under calm BGM. Tension is deduction, not punishment. On solve: sting and the fading solve outcome — fills as the stored pixel picture, then the stored generated picture ([`experience.md`](../experience.md), [`PER.R5`](../../view/perception.md)), then gallery. Crosses aid memory; only fills win. Line errors flag impossible fills, not unfinished lines.

@@ -4,20 +4,21 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../../.agents/spe
 
 - **Design spec**: [`loops/solve.md`](../../loops/solve.md)
 - **Spec key**: `L-solve`
-- **Glossary terms**: [Get-set-ready](../../glossary.md), [Solve check](../../glossary.md), [Cross](../../glossary.md), [In progress](../../glossary.md), [Ever completed](../../glossary.md), [Personal best](../../glossary.md)
+- **Glossary terms**: [Get-set-ready](../../glossary.md), [Cross](../../glossary.md), [Ever completed](../../glossary.md), [Personal best](../../glossary.md)
 
 ## Coverage
 
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
-| K1 | Ready; auto-cross; timer | PS1.1, PS1.2 |
-| K2 | Mark → in progress; ever-completed sticky | PS1.3 |
-| K3 | No per-cell correctness | PS1.4 |
-| K4 | Fill-set match; PB if shorter | PS1.5, PS1.6 |
-| K5 | Pause freezes elapsed; blocks marks | PS1.7 |
+| K1 | Ready beat | PS1.1, PS1.2, PS1.9 |
+| K2 | First mark → in progress | PS1.3 |
+| K3 | Fills-only check | PS1.4 |
+| K4 | Solve; PB if shorter | PS1.5, PS1.6 |
+| K5 | Pause freezes | PS1.7 |
 | K6 | Leave commits | PS1.8 |
 | E1 | Solved exit | PS1.5 |
 | E2 | Leave exit | PS1.8 |
+| `CFG.GET_SET_READY_MS` | Ready length: 500 default; 200–1500 | PS1.1, PS1.9 |
 
 ## PS1: Solve attempt
 
@@ -33,7 +34,7 @@ When get-set-ready completes
 Then marks-allowed is true
 And empty-clue lines auto-cross still-clear cells
 And attempt-status is in progress if any auto-cross occurred
-And solve-elapsed may tick from 0
+And solve-elapsed is 0 when ready completes
 ```
 
 ### PS1.2: Resume elapsed
@@ -41,7 +42,7 @@ And solve-elapsed may tick from 0
 - **Proves**: K1
 
 ```gherkin
-Given attempt in progress, solve-elapsed 45, restored cell-marks
+Given attempt in progress, solve-elapsed 45, cell-marks saved
 When get-set-ready completes
 Then cell-marks and solve-elapsed 45 restore
 And solve-elapsed resumes ticking
@@ -120,4 +121,15 @@ Then paused is false
 And attempt-status is in progress
 And cell-marks and solve-elapsed 20 persist
 And selected-puzzle is none
+```
+
+### PS1.9: Ready beat
+
+- **Proves**: K1, `CFG.GET_SET_READY_MS`
+
+```gherkin
+Given P not started, CFG.GET_SET_READY_MS at 200, 500 (default), or 1500
+When get-set-ready completes at GET_SET_READY_MS after P opens
+Then marks-allowed is true
+And solve-elapsed is 0
 ```

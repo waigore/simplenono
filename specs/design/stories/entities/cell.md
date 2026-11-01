@@ -11,11 +11,11 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../../.agents/spe
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
 | P1 | Row/column position | PS1.1 |
-| P2 | Mark clear/fill/cross | PS1.2 |
-| S1 | Clear | PS1.2, PS1.5 |
-| S2 | Fill counts for solve/line-error | PS1.2, PS1.3 |
-| S3 | Cross ignored by solve/line-error fills | PS1.3 |
-| I1 | Mark while allowed | PS1.2, PS1.4 |
+| P2 | Mark clear/fill/cross | PS1.2, PS1.2b, PS1.2c |
+| S1 | Clear | PS1.2, PS1.2b, PS1.2c, PS1.5 |
+| S2 | Fill counts for solve/line-error | PS1.2, PS1.2b, PS1.3 |
+| S3 | Cross ignored by solve/line-error fills | PS1.2c, PS1.3 |
+| I1 | Mark while allowed | PS1.2, PS1.2b, PS1.2c, PS1.4 |
 | I2 | Solve uses fills only | PS1.3 |
 | I3 | Line error from fills | PS1.3 |
 | I4 | Get-set-ready blocks marks | PS1.4 |
@@ -34,7 +34,7 @@ Given an open 10×10 puzzle
 Then there are exactly 100 cells with positions row 0..9 and column 0..9
 ```
 
-### PS1.2: Mark transitions while allowed
+### PS1.2: Fill while allowed
 
 - **Proves**: P2, S1, S2, I1
 
@@ -42,8 +42,24 @@ Then there are exactly 100 cells with positions row 0..9 and column 0..9
 Given marks-allowed is true and a cell is clear (S1)
 When the player fills it
 Then the cell is fill (S2)
+```
+
+### PS1.2b: Clear while allowed
+
+- **Proves**: P2, S2, S1, I1
+
+```gherkin
+Given marks-allowed is true and a cell is fill (S2)
 When the player clears it
 Then the cell is clear (S1)
+```
+
+### PS1.2c: Cross while allowed
+
+- **Proves**: P2, S1, S3, I1
+
+```gherkin
+Given marks-allowed is true and a cell is clear (S1)
 When the player crosses it
 Then the cell is cross (S3)
 ```

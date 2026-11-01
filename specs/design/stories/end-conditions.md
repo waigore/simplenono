@@ -10,7 +10,7 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../.agents/specs/
 
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
-| W1 | Puzzle win on fill-set match | PS1.1, PS1.2 |
+| W1 | Puzzle win on fill-set match | PS1.1, PS1.2, PS1.6, PS1.7 |
 | O1 | Leave to gallery | PS1.3 |
 | O2 | Gallery reset as new | PS1.4 |
 | W2 | Pack finished at rate 1 | PS1.5 |
@@ -77,4 +77,26 @@ When W1 makes this puzzle ever-completed
 Then GS.completion-rate is 1
 And W2 pack finished holds
 And W1 outcomes still apply for that puzzle
+```
+
+### PS1.6: Equal time keeps the best
+
+- **Proves**: W1, `GS.V4`
+
+```gherkin
+Given ever-completed is true, personal-best is 30, marks-allowed is true
+When a mark change makes GS.is-solved true with solve-elapsed 30
+Then personal-best is 30
+And attempt-status is not started
+```
+
+### PS1.7: No solve while marks are blocked
+
+- **Proves**: W1
+
+```gherkin
+Given paused is true, marks-allowed is false, and fills are one mark short of the solution
+When the player attempts the completing fill
+Then cell-marks are unchanged
+And W1 does not fire
 ```

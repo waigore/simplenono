@@ -16,8 +16,9 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../.agents/specs/
 | row/col-error | Contradiction | PS1.3, PS1.3b |
 | clue-satisfied | Exact runs | PS1.4, PS1.4b |
 | gallery-thumbnail | After ever-completed | PS1.5 |
-| V1–V6 | Invariants | PS1.1, PS1.5, PS1.6; fields file |
-| H1–H2 | Hidden / knowable | PS1.5 |
+| V1, V2, V5, V6 | Invariants | PS1.1, PS1.5, PS1.6 |
+| V3, V4 | Invariants | [`fields.md`](game-state/fields.md) |
+| H1, H2 | Hidden / knowable state | PS1.5, PS1.8 |
 | Q1 | Deterministic | PS1.7 |
 | Fields | Init / reset / invariants | [`fields.md`](game-state/fields.md) |
 
@@ -91,9 +92,9 @@ Then GS.clue-satisfied for that line is false
 - **Proves**: gallery-thumbnail, H1, H2, V1, V6
 
 ```gherkin
-Given ever-completed false, solution unknown on the board, thumbnail hidden
+Given ever-completed is false and P's stored generated picture is not knowable
 When ever-completed becomes true with personal-best 30
-Then gallery-thumbnail may show
+Then the player can know P's gallery thumbnail
 And the player can know ever-completed, attempt-status, marks, elapsed, paused, personal-best, completion-rate, line errors, clue-satisfied
 And personal-best exists
 ```
@@ -116,4 +117,15 @@ Then at least one cell is fill or cross
 Given identical pack data and mark sequences on P
 When both attempts run
 Then cell-marks, is-solved, and end outcomes match
+```
+
+### PS1.8: Picture knowledge
+
+- **Proves**: H1
+
+```gherkin
+Given P is not ever-completed and P's fill set is not knowable
+When the player first solves P
+Then the player can know P's stored pixel picture from that solve on
+And P's stored generated picture is knowable in the gallery once ever-completed
 ```
