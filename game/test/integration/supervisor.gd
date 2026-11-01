@@ -401,15 +401,30 @@ func _leave() -> bool:
 
 func _back() -> bool:
 	var from_settings := _shell != null and _shell.view() == Shell.SETTINGS_VIEW
-	var pressed := (
-		_press_settings_button("%BackButton")
-		if from_settings
-		else _press_puzzle_button("%LeaveButton")
-	)
+	var from_result := _shell != null and _shell.view() == Shell.RESULT_VIEW
+	var pressed := false
+	if from_settings:
+		pressed = _press_settings_button("%BackButton")
+	elif from_result:
+		pressed = _press_result_button("%BackButton")
+	else:
+		pressed = _press_puzzle_button("%LeaveButton")
 	if pressed:
 		_attempt = null
 		_record_flow("back", true)
 	return pressed
+
+
+## Result's C1 ([code]NAV.T5[/code]). The screen refuses it before [code]S1[/code]
+## ([code]US1.5b[/code]), so pressing it is only meaningful once the morph finished.
+func _press_result_button(path: String) -> bool:
+	if _shell == null:
+		return _failed_with("no shell")
+	var button := _shell.result_screen().get_node(path) as Button
+	if button == null:
+		return _failed_with("no button at %s" % path)
+	button.emit_signal("pressed")
+	return _passed()
 
 
 ## Settings' C3, the screen #95 routes itself (`NAV.T6`/`T8`).

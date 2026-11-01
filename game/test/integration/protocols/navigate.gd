@@ -4,14 +4,11 @@ extends RefCounted
 ##
 ## Every transition is a `measure` step: it drives the leg, crosses at least one
 ## processed frame, and stops the clock only when the shell reaches the view that
-## acknowledges it. `UI-gallery` (#94) exists and is the shell's start view, so the
-## gallery legs run now; `UI-result` (#95) is still a stand-in, so the result legs wait
-## for a view the shell never shows and fail honestly until #95 lands.
+## acknowledges it. `UI-gallery` (#94) and `UI-result` (#95) are real shell views now,
+## so all four legs (`NAV.T1`, `T4`, `T5`, `T3`) are product-acknowledged.
 ##
-## `result-gallery` carries `driver_time`: the shell's own `leave` sets the gallery
-## view synchronously, so that leg times the driver rather than a product
-## acknowledgement. It is measured to keep the flow exercised, and the I7 row says so,
-## until #95 owns the real transition.
+## `result-gallery` waits for the result's `S1` Default, which the shell's clock reaches
+## after two `CFG.MORPH_STAGE_MS` stages; the harness then sends the result's own C1.
 
 const ID := "navigate"
 
@@ -42,13 +39,14 @@ static func spec() -> Dictionary:
 				"action": {"kind": "solve"},
 				"until": {"probe": "view", "value": "result"},
 			},
+			# Both morph stages run CFG.MORPH_STAGE_MS; C1 is refused until S1 (US1.5b).
+			{"id": "result-default", "kind": "wait_ms", "ms": 900},
 			{
 				"id": "result-gallery",
 				"kind": "measure",
 				"mark": "transition:result-gallery",
-				"action": {"kind": "leave"},
+				"action": {"kind": "back"},
 				"until": {"probe": "view", "value": "gallery"},
-				"driver_time": "the shell's leave sets its own view; #95 owns the transition",
 			},
 			{"id": "quit", "kind": "quit"},
 		],
