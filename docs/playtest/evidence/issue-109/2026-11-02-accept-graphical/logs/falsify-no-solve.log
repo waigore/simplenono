@@ -1,0 +1,121 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+SEV level=info event=session-start time=1793563028.227 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve message=
+capture: PASS probe: the shipped pack serves pack-000
+TEL event=reset time=1793563028.280 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=open time=1793563028.281 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS G1: a blocked fill does not stick
+capture: PASS G1: the grid is unchanged while blocked
+capture: PASS G1: no E1 while blocked
+capture: PASS G1: no record write while blocked
+TEL event=ready time=1793563028.297 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=commit time=1793563028.298 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS open: marks are allowed once the beat ends
+TEL event=mark time=1793563028.313 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=commit time=1793563028.313 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS PS1.4: the wrong fill applies
+capture: PASS PS1.4: the screen stays playable (no fail state)
+capture: PASS PS1.4: the wrong fill does not solve
+capture: PASS PS1.4: no CTR-attempt E1 was emitted
+capture: PASS PS1.4: no personal best was recorded
+capture: PASS PS1.4: ever-completed stays false
+capture: PASS PS1.4: the attempt stays in progress
+capture: PASS B3: a non-solving accepted mark commits through O5
+capture: PS1.4 inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["fill", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["fill", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 0, "personal_best": <null> } }
+capture: shot 00-wrong-fill-playable -> /tmp/falsify-shots/00-wrong-fill-playable.png (error 0)
+TEL event=pause time=1793563028.336 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS G1: DBG.1 pauses the session
+capture: PASS G1: the screen reports paused
+capture: PASS G1: a paused fill does not stick
+capture: PASS G1: the grid is unchanged while paused
+capture: PASS G1: no E1 while paused
+capture: PASS G1: no record write while paused
+capture: shot 01-paused-mark-blocked -> /tmp/falsify-shots/01-paused-mark-blocked.png (error 0)
+TEL event=resume time=1793563028.352 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS G1: DBG.1 resumes the session
+capture: PASS G1: the screen is ready again after resume
+TEL event=open time=1793563028.354 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS G1: a blocked fill does not stick
+capture: PASS G1: the grid is unchanged while blocked
+capture: PASS G1: no E1 while blocked
+capture: PASS G1: no record write while blocked
+TEL event=ready time=1793563028.357 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=commit time=1793563028.357 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS open: marks are allowed once the beat ends
+capture: PASS S1: the open near-solve has no personal best yet
+capture: PASS S1: the near-solve opens at elapsed 59
+capture: PASS S1: the near-solve is one fill short
+capture: shot 02-near-solve-pb-none -> /tmp/falsify-shots/02-near-solve-pb-none.png (error 0)
+TEL event=mark time=1793563028.397 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=commit time=1793563028.397 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: FAIL S1/P1: CTR-attempt E1 solved was emitted once
+capture: FAIL P1: marks are cleared after the solve
+capture: FAIL P1: the attempt is not started
+capture: FAIL P1: solve-elapsed is 0 after the clear
+capture: FAIL P1: ever-completed is true
+capture: FAIL P1: PB is set to that run's time (<null>)
+capture: FAIL P1: the record's attempt is not in progress
+capture: FAIL P1: the record's elapsed is cleared (59)
+capture: P1 record=<null> inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 59, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "fill", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "fill", "fill", "fill", "fill", "clear", "clear", "clear"], ["fill", "fill", "fill", "fill", "fill", "clear", "clear", "clear", "clear", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "clear", "clear", "clear", "clear", "fill", "fill", "fill", "fill", "fill"], ["clear", "clear", "clear", "fill", "fill", "fill", "fill", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "fill", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "fill", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "fill", "fill", "fill", "fill", "clear", "clear", "clear"], ["fill", "fill", "fill", "fill", "fill", "clear", "clear", "clear", "clear", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "clear", "clear", "clear", "clear", "fill", "fill", "fill", "fill", "fill"], ["clear", "clear", "clear", "fill", "fill", "fill", "fill", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "fill", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 59, "personal_best": <null> } }
+capture: shot 03-first-solve -> /tmp/falsify-shots/03-first-solve.png (error 0)
+TEL event=open time=1793563028.426 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS G1: a blocked fill does not stick
+capture: PASS G1: the grid is unchanged while blocked
+capture: PASS G1: no E1 while blocked
+capture: PASS G1: no record write while blocked
+TEL event=ready time=1793563028.428 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=commit time=1793563028.428 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS open: marks are allowed once the beat ends
+capture: FAIL P2: the prior PB survives reopening (<null>)
+capture: PASS S2: the replay opens at elapsed 10:00, clearly longer than the PB
+capture: shot 04-longer-replay-near-solve -> /tmp/falsify-shots/04-longer-replay-near-solve.png (error 0)
+TEL event=mark time=1793563028.468 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=commit time=1793563028.468 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: FAIL P2: E1 solved was emitted once
+capture: PASS P2: the longer replay keeps the prior PB (<null>)
+capture: FAIL P2: ever-completed stays true
+capture: FAIL P2: marks clear again after the solve
+capture: FAIL P2: solve-elapsed is 0 after the clear
+capture: FAIL P2: attempt not started
+capture: P2 record=<null> inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 600, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "fill", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "fill", "fill", "fill", "fill", "clear", "clear", "clear"], ["fill", "fill", "fill", "fill", "fill", "clear", "clear", "clear", "clear", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "clear", "clear", "clear", "clear", "fill", "fill", "fill", "fill", "fill"], ["clear", "clear", "clear", "fill", "fill", "fill", "fill", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "fill", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "fill", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "fill", "fill", "fill", "fill", "clear", "clear", "clear"], ["fill", "fill", "fill", "fill", "fill", "clear", "clear", "clear", "clear", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill", "fill"], ["fill", "clear", "clear", "clear", "clear", "fill", "fill", "fill", "fill", "fill"], ["clear", "clear", "clear", "fill", "fill", "fill", "fill", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "fill", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 600, "personal_best": <null> } }
+capture: shot 05-longer-replay-keeps-pb -> /tmp/falsify-shots/05-longer-replay-keeps-pb.png (error 0)
+TEL event=open time=1793563028.496 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS G1: a blocked fill does not stick
+capture: PASS G1: the grid is unchanged while blocked
+capture: PASS G1: no E1 while blocked
+capture: PASS G1: no record write while blocked
+TEL event=ready time=1793563028.498 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=commit time=1793563028.498 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: PASS open: marks are allowed once the beat ends
+capture: PASS S3: the replay opens at elapsed 0:08, clearly shorter than the PB
+capture: shot 06-shorter-replay-near-solve -> /tmp/falsify-shots/06-shorter-replay-near-solve.png (error 0)
+TEL event=mark time=1793563028.539 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+TEL event=commit time=1793563028.539 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve outcome=pass
+capture: FAIL P3: E1 solved was emitted once
+capture: FAIL P3: a PB exists before and after
+SCRIPT ERROR: Invalid call. Nonexistent 'int' constructor.
+          at: _shorter_replay (res://probe_capture_109.gd:188)
+          GDScript backtrace (most recent call first):
+              [0] _shorter_replay (res://probe_capture_109.gd:188)
+              [1] _shot (res://probe_capture_109.gd:320)
+SEV level=warn event=engine time=1793563028.539 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve message=Invalid call. Nonexistent 'int' constructor. (res://probe_capture_109.gd:188)
+capture: FAIL S1/P1: CTR-attempt E1 solved was emitted once
+capture: FAIL P1: marks are cleared after the solve
+capture: FAIL P1: the attempt is not started
+capture: FAIL P1: solve-elapsed is 0 after the clear
+capture: FAIL P1: ever-completed is true
+capture: FAIL P1: PB is set to that run's time (<null>)
+capture: FAIL P1: the record's attempt is not in progress
+capture: FAIL P1: the record's elapsed is cleared (59)
+capture: FAIL P2: the prior PB survives reopening (<null>)
+capture: FAIL P2: E1 solved was emitted once
+capture: FAIL P2: ever-completed stays true
+capture: FAIL P2: marks clear again after the solve
+capture: FAIL P2: solve-elapsed is 0 after the clear
+capture: FAIL P2: attempt not started
+capture: FAIL P3: E1 solved was emitted once
+capture: FAIL P3: a PB exists before and after
+capture: FAIL the run never reached '07-shorter-replay-improves-pb', so its state was not judged
+capture: RESULT fail (17 failures)
+SEV level=info event=session-end time=1793563028.540 session=issue-109-falsify-nosolve build=4.7.2-stable (official) story=L-solve message=

@@ -1,0 +1,44 @@
+== the deliverable commit (PR #143) ==
+2eb2f12 Add the O2 mark path and solve edge (#109)
+ game/play/attempt.gd             |  61 +++++++-
+ game/play/mark_result.gd         |  21 +++
+ game/play/mark_result.gd.uid     |   1 +
+ game/test/test_solve_edge.gd     | 316 +++++++++++++++++++++++++++++++++++++++
+ game/test/test_solve_edge.gd.uid |   1 +
+ 5 files changed, 395 insertions(+), 5 deletions(-)
+
+== user:// in shipped game code ==
+game/addons/gut/gui/editor_globals.gd
+game/addons/gut/gui/OutputText.gd
+game/addons/gut/gui/panel_controls.gd
+game/addons/gut/gui/ResultsTree.gd
+game/addons/gut/test.gd
+game/addons/gut/update_detector.gd
+game/addons/gut/version_conversion.gd
+game/records/progress_rules.gd
+
+== progress writers ==
+game/records/progress_rules.gd:69:func commit(puzzle_id: String, marks: MarkGrid, elapsed: int, in_progress: bool) -> ProgressRecord:
+game/records/progress_rules.gd:87:func record_solve(puzzle_id: String, elapsed: int) -> ProgressRecord:
+
+== test header owners ==
+extends GutTest
+## Solve-check edge — specs/design/stories/loops/solve.md PS1.4-PS1.6,
+## specs/technical/sequences/mark.md S2-S13 and B3, [b]CTR-attempt[/b] O2/G1,
+## [b]CTR-pack[/b] O5/O6, and [b]CMP-attempt[/b] R4-R5.
+##
+## Proves the attempt's mark operation ([Attempt.mark]) over the real [Rules],
+## [ProgressRecord], and [AttemptState] seams. The pack is a [RecordingPack]: its
+## [RecordingProgress] subclasses the real rules and counts O5/O6 calls, so "called once"
+## and "not called" are observable without reaching into the record. The rules check
+## itself is the real [Rules] over the teapot fixture; [code]is-solved[/code] is a pure
+## check ([b]CTR-rules[/b] G3), so B1/B2 skipping it shows as no O6, no E1, and no write.
+##
+## Out of scope here, with owners: PS1.1/PS1.9 and the open/ready beat are #132; PS1.3,
+## the first-mark transition, and the derived rules are #108; PS1.2/PS1.7/PS1.8,
+## pause/resume/leave, and the progress file are #96; the puzzle screen is #110; and
+## mark input is #111. No screen, input, theme, or persistence code is involved, so the
+## [code]MC.puzzle[/code] draft-mockup gate does not apply.
+
+const TEAPOT_ID := "teapot"
+const TEAPOT_PATH := "res://test/fixtures/teapot.json"
