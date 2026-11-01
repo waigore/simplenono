@@ -110,6 +110,31 @@ func test_ready_state_shows_chrome_tools_and_elapsed():
 	assert_true(_screen.marks_allowed(), "GS.marks-allowed")
 
 
+# US1.7: S2 on a reopened in-progress puzzle stays blocked and frozen like a fresh open
+func test_get_set_ready_on_a_reopened_in_progress_puzzle_stays_blocked():
+	var grid := MarkGrid.new(_definition.size, true)
+	grid.apply_mark(7, 2, CellMark.Mark.FILL)
+	_pack.progress().commit(TEAPOT_ID, grid, 18, true)
+
+	var attempt := _shown()
+
+	assert_eq(_screen.state_id(), "S2", "the reopened puzzle is get-set-ready")
+	assert_false(_screen.marks_allowed(), "US1.7: marks are blocked on a reopen too")
+	assert_eq(_screen.cell_at(7, 2).mark, CellMark.Mark.FILL, "the stored mark is drawn")
+	assert_eq(_screen.cell_at(7, 3).mouse_filter, Control.MOUSE_FILTER_IGNORE, "C2 is blocked")
+	assert_eq(_screen.elapsed_text(), "0:18", "copy.elapsed shows the stored elapsed")
+	_screen.tick(4.0)
+	assert_eq(_screen.elapsed_text(), "0:18", "elapsed does not tick during the beat")
+	assert_eq(attempt.state().elapsed(), 18, "CTR-attempt O3 rejects the tick")
+
+	_screen.finish_ready_beat()
+
+	assert_eq(_screen.state_id(), "S1", "Ready after the beat")
+	assert_eq(_screen.cell_at(7, 3).mouse_filter, Control.MOUSE_FILTER_STOP, "C2 is available")
+	_screen.tick(4.0)
+	assert_eq(_screen.elapsed_text(), "0:22", "elapsed ticks after the beat")
+
+
 # US1.5b / US1.6: S3 keeps the board, blocks marks, and freezes elapsed
 func test_paused_state_keeps_board_and_freezes_elapsed():
 	var attempt := _shown()

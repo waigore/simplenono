@@ -18,7 +18,7 @@ GitHub configuration for this repository: labels, issue forms, and workflows.
 | [`workflows/unit-tests.yml`](workflows/unit-tests.yml) | Required checks: `Unit tests` then `Coverage` per [`docs/coding-conventions.md`](../docs/coding-conventions.md); each passes with a notice when not configured |
 | [`scripts/sync-labels.sh`](scripts/sync-labels.sh) | Local / CI label sync script |
 | [`scripts/asset_catalog.py`](scripts/asset_catalog.py) | CI integrity check of asset catalog entry files per `specs/assets/catalog.md`; roots from ADR-0003 (`assets/catalog/`, `game/assets/`) |
-| [`scripts/new_asset_id.py`](scripts/new_asset_id.py) | Generate asset IDs (UUID version 7) per `specs/assets/catalog.md`; `is_asset_id` validates one |
+| [`scripts/new_asset_id.py`](scripts/new_asset_id.py) | Generate asset IDs (UUID version 7) per `specs/assets/catalog.md`: the only way to mint one — never type or copy a UUID; `is_asset_id` validates one |
 | [`scripts/pr_hygiene.py`](scripts/pr_hygiene.py) | Local / CI PR hygiene lint (one function per rule); tests in [`scripts/tests/`](scripts/tests/) |
 | [`scripts/spec_lint.py`](scripts/spec_lint.py) | Local / CI spec lint; tests in [`scripts/tests/`](scripts/tests/) |
 

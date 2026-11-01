@@ -29,6 +29,8 @@ Errors fail the check. Warnings are printed but pass; add `--strict` to fail on 
 
 The same workflow runs [`asset_catalog.py`](../.github/scripts/asset_catalog.py) (`python3 .github/scripts/asset_catalog.py` locally). It checks the catalog's entry files against the default format and integrity rules in [`specs/assets/catalog.md`](../specs/assets/catalog.md): asset IDs, handles, required fields, approval and exemptions, successors, and that every file under the asset root belongs to one entry. It runs now that [`assets.md`](../specs/assets/assets.md) sets the roots from [ADR-0003](../specs/adr/decisions/0003-catalog-asset-roots.md) (catalog root `assets/catalog/`, asset root `game/assets/`); the cataloged entries pass it.
 
+Asset IDs come only from `python3 .github/scripts/new_asset_id.py`, which mints a UUID version 7 for one new asset: never type, copy, or adapt one, and never reuse a deprecated entry's. `asset_catalog.py` enforces the shape (`I2`); the issuance guidance is [`specs/assets/catalog.md`](../specs/assets/catalog.md) **Asset ID**.
+
 The manifest generator ([ADR-0006](../specs/adr/decisions/0006-asset-manifest-generator.md)) runs as a step in [`code-lint.yml`](../.github/workflows/code-lint.yml), beside the repo-script checks. Run it locally after adding, changing, or deprecating a catalog entry, or after moving cataloged files:
 
 ```bash
