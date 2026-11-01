@@ -8,7 +8,7 @@ Serves free-order pack play, gallery-style completion, and personal-best scoring
 
 | ID | Axis | Kind | Advanced by | Cap |
 |----|------|------|-------------|-----|
-| A1 | Puzzle completion | collection | First successful solve sets ever-completed | 200 (60×10×10, 140×15×15); all available from the start |
+| A1 | Puzzle completion | collection | First successful solve sets ever-completed | 200 (10×10×10, 15×15×170, 20×20×20); all available from the start |
 | A2 | Personal-best times | collection | A successful solve; a shorter time replaces the stored best | One best per puzzle |
 
 ## Unlocks
