@@ -1,0 +1,19 @@
+TEL event=open time=1793557875.950 session=session-1793557875 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793557876.457 session=session-1793557875 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793557876.457 session=session-1793557875 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=leave time=1793557876.458 session=session-1793557875 build=4.7.2-stable (official) story=- outcome=pass
+HARNESS step=launch kind=launch ok=true 
+HARNESS step=home kind=wait_probe ok=true 
+HARNESS step=open-start kind=mark_start ok=true 
+HARNESS step=open kind=open ok=true 
+HARNESS step=open-stop kind=mark_stop ok=true 
+HARNESS step=opened kind=expect ok=true 
+HARNESS step=beat kind=wait_beat ok=true 
+HARNESS step=settings-start kind=mark_start ok=true 
+HARNESS step=settings kind=settings ok=true 
+HARNESS step=settings-stop kind=mark_stop ok=true 
+HARNESS step=back-start kind=mark_start ok=true 
+HARNESS step=back kind=back ok=true 
+HARNESS step=back-stop kind=mark_stop ok=true 
+HARNESS step=home-shown kind=expect ok=true 
+HARNESS step=quit kind=quit ok=true 
