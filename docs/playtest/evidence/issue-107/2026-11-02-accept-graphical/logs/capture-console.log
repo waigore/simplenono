@@ -1,0 +1,41 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+TEL event=reset time=1793558653.009 session=issue-107-capture build=4.7.2-stable (official) story=E-clue outcome=pass
+TEL event=reset time=1793558653.009 session=issue-107-capture build=4.7.2-stable (official) story=E-clue outcome=pass
+TEL event=open time=1793558653.010 session=issue-107-capture build=4.7.2-stable (official) story=E-clue outcome=pass
+capture: PASS case1: fresh open is get-set-ready
+capture: PASS case1: mapper returns 2 x size verbatim lines
+capture: PASS case1: the board shows every pack line
+capture: PASS case1: row 0 renders the empty-line glyph
+capture: PASS case1: row 9 renders the empty-line glyph
+capture: PASS case1: row 1 is not empty
+capture: case1 size=10 rows=10 columns=10 row0=· row1=1 row9=·
+capture: shot 00-fresh-ready-clue-lines -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-107/docs/playtest/evidence/issue-107/2026-11-02-accept-graphical/screenshots/00-fresh-ready-clue-lines.png (error 0)
+TEL event=ready time=1793558653.049 session=issue-107-capture build=4.7.2-stable (official) story=E-clue outcome=pass
+TEL event=commit time=1793558653.050 session=issue-107-capture build=4.7.2-stable (official) story=E-clue outcome=pass
+capture: PASS case1: the beat ends
+capture: PASS case1: exactly row 0 and row 9 auto-crossed
+capture: PASS case1: 20 cells auto-crossed (2 empty rows x 10)
+capture: PASS case1: auto-cross puts the attempt in progress
+capture: PASS case1: cross-checking spends no elapsed
+capture: case1 auto-crossed=20 inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 0, "personal_best": <null> } }
+capture: shot 01-ready-empty-rows-autocrossed -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-107/docs/playtest/evidence/issue-107/2026-11-02-accept-graphical/screenshots/01-ready-empty-rows-autocrossed.png (error 0)
+TEL event=open time=1793558653.094 session=issue-107-capture build=4.7.2-stable (official) story=E-clue outcome=pass
+capture: PASS case2: fresh open is get-set-ready
+capture: PASS case2: the board shows every pack line
+capture: PASS case2: column 0 renders the glyph
+capture: PASS case2: column 1 renders the glyph
+capture: PASS case2: column 8 renders the glyph
+capture: PASS case2: column 9 renders the glyph
+capture: PASS case2: column 2 is not empty
+capture: case2 size=10 col0=· col2=1 3
+capture: shot 02-fresh-ready-empty-columns -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-107/docs/playtest/evidence/issue-107/2026-11-02-accept-graphical/screenshots/02-fresh-ready-empty-columns.png (error 0)
+TEL event=ready time=1793558653.137 session=issue-107-capture build=4.7.2-stable (official) story=E-clue outcome=pass
+TEL event=commit time=1793558653.138 session=issue-107-capture build=4.7.2-stable (official) story=E-clue outcome=pass
+capture: PASS case2: exactly columns 0, 1, 8, 9 auto-crossed
+capture: PASS case2: 40 cells auto-crossed (4 empty columns x 10)
+capture: PASS case2: auto-cross puts the attempt in progress
+capture: case2 auto-crossed=40 inspect={ "puzzle_id": "pack-001", "attempt": { "puzzle_id": "pack-001", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-001", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"], ["cross", "cross", "clear", "clear", "clear", "clear", "clear", "clear", "cross", "cross"]] }, "elapsed": 0, "personal_best": <null> } }
+capture: shot 03-ready-empty-columns-autocrossed -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-107/docs/playtest/evidence/issue-107/2026-11-02-accept-graphical/screenshots/03-ready-empty-columns-autocrossed.png (error 0)
+capture: RESULT pass
