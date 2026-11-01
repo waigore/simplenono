@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 
 | ID | Name | Input | Output / effect | When |
 |----|------|-------|-----------------|------|
-| O1 | open | Puzzle id | Loads the definition and progress. Starts get-set-ready | Gallery opens a puzzle |
+| O1 | open | Puzzle id | Returns the loaded grid and elapsed, and starts get-set-ready | Gallery opens a puzzle |
 | O2 | mark | Row, column, and fill, cross, or clear | Updates the grid when marks are allowed and the puzzle is not paused. Returns the grid and line status | During play |
 | O3 | advance | Elapsed amount to add | Adds to elapsed when marks are allowed and the puzzle is not paused | Puzzle screen is showing |
 | O4 | pause | None | Sets paused, freezes elapsed, blocks marks, and commits marks and elapsed | Settings opened from the puzzle |
@@ -26,6 +26,7 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 |----|------|---------|--------------|-------------------|
 | E1 | solved | Puzzle id and elapsed | The fill set matches after a mark | [`CMP-shell`](../components/shell.md) |
 | E2 | left | Puzzle id | Leave finished | [`CMP-shell`](../components/shell.md) |
+| E3 | ready | Puzzle id, grid, and line status | Get-set-ready ends while the puzzle is still open, after auto-cross and line status | [`CMP-shell`](../components/shell.md) |
 
 ## Guarantees
 
@@ -46,7 +47,8 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 
 ```mermaid
 flowchart TD
-  O1[O1 open] --> O2[O2 mark]
+  O1[O1 open] --> E3[E3 ready]
+  O1 --> O2[O2 mark]
   O1 --> O3[O3 advance]
   O1 --> O4[O4 pause]
   O4 --> O5[O5 resume]
