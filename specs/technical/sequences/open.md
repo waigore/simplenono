@@ -32,7 +32,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 | ID | Condition | Next steps | Outcome |
 |----|-----------|------------|---------|
 | B1 | Unknown puzzle id at S1 | None | No change. The gallery stays |
-| B2 | Leave before the beat ends | None | No auto-cross. Leave commits in-progress marks and elapsed, then clears the attempt |
+| B2 | Leave before the beat ends | None | No auto-cross. Hand off to [`leave.md`](leave.md) B1 |
 | B3 | Pause during the beat | S7 | The beat continues. Auto-cross waits for S7. Marks stay blocked until then, and while paused |
 
 ## Postconditions
