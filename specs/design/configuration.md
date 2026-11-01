@@ -12,7 +12,7 @@ Authoring rules: [`.agents/specs/rules/design/configuration.md`](../../.agents/s
 
 | Option | Choices | Default | Effect on rules | Chosen by / when | Locked when |
 |--------|---------|---------|-----------------|------------------|-------------|
-| — | — | — | None — presentation prefs (haptics, mute BGM) are not rule variants; accessibility assists wait until quality Applies | — | — |
+| — | — | — | None — presentation prefs (haptics, mute BGM) are not rule variants; accessibility is N/A in [`quality.md`](../definition/quality.md) | — | — |
 
 ## Designer tunables
 

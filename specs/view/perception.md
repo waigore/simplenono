@@ -25,7 +25,7 @@ The open puzzle is one face; attention is cell-sized. 10×10, 15×15, and 20×20
 
 ## Comfort options
 
-N/A — accessibility deferred until it Applies in quality ([`experience.md`](../design/experience.md)).
+N/A — accessibility N/A in [`quality.md`](../definition/quality.md) ([`experience.md`](../design/experience.md)).
 
 ## Experience intent
 

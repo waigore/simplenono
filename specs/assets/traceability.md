@@ -29,5 +29,5 @@ Authoring rules: [`.agents/specs/rules/assets/traceability.md`](../../.agents/sp
 | Catalog | [`catalog.md`](catalog.md) | Applies — roots [ADR-0003](../adr/decisions/0003-catalog-asset-roots.md) |
 | Asset access and load groups | [`access.md`](access.md) | Applies |
 | Sound assets | [`kinds/sfx.md`](kinds/sfx.md), [`kinds/music.md`](kinds/music.md) | Applies |
-| Localized assets | [`kinds/`](kinds/) | N/A — localization not yet Applies in quality |
-| Accessible variants | [`kinds/`](kinds/) | N/A — accessibility not yet Applies in quality |
+| Localized assets | [`kinds/`](kinds/) | N/A — localization N/A in quality |
+| Accessible variants | [`kinds/`](kinds/) | N/A — accessibility N/A in quality |
