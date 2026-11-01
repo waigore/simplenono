@@ -335,11 +335,30 @@ func test_an_unknown_id_changes_nothing():
 	assert_eq(emissions.size(), 0, "B1: no E3")
 
 
+# SEQ-open B1: unknown id while a beat is still running
+func test_an_unknown_id_during_a_beat_changes_nothing():
+	# B1 / CTR-attempt G3: the previous attempt and its running beat stay as they were
+	var attempt := _opened()
+	var emissions := _listen_ready(attempt)
+	var marks_before := attempt.state().marks().snapshot()
+	var record_before := _record_snapshot(_pack.progress().record(TEAPOT_ID))
+
+	assert_false(attempt.open("no-such-puzzle"), "B1: the open reports nothing loaded")
+
+	assert_eq(attempt.puzzle_id(), TEAPOT_ID, "B1: the open puzzle stays")
+	assert_true(attempt.get_set_ready(), "B1: the running beat is untouched")
+	assert_eq(attempt.state().marks().snapshot(), marks_before, "B1: no auto-cross write")
+	assert_eq(_record_snapshot(_pack.progress().record(TEAPOT_ID)), record_before, "B1: no O5")
+	assert_true(attempt.end_get_set_ready(), "B1: the open puzzle's beat can still end")
+	assert_eq(emissions.size(), 1, "B1: one E3 for the open puzzle only")
+
+
 # SEQ-open B3: pause during the beat
-func test_a_pause_during_the_beat_keeps_marks_blocked_and_waits_for_the_beat():
-	# B3: the beat continues; the auto-cross still waits for S7, and S12 leaves marks
-	# blocked while paused. The edge writes its crosses before S12 (S9 precedes it in the
-	# sequence) so the ready grid is still complete; what B3 blocks is use of the grid.
+func test_a_pause_during_the_beat_waits_for_the_beat_and_revives_marks_on_resume():
+	# B3: the beat continues; the auto-cross still waits for S7 and is written at S8-S9.
+	# S12 leaves player marks blocked while paused, so the grid is complete but unusable.
+	# GS.marks-allowed turns true at ready regardless of pause, so resume() alone makes the
+	# board markable again (GS.paused gates marks on its own; pause.md S6).
 	var attempt := _opened()
 	attempt.state().pause()
 	var emissions := _listen_ready(attempt)
@@ -350,17 +369,29 @@ func test_a_pause_during_the_beat_keeps_marks_blocked_and_waits_for_the_beat():
 
 	attempt.end_get_set_ready()
 
+	assert_true(
+		attempt.state().marks().mark_at(RUN_ROW, 2) == CellMark.Mark.CLEAR,
+		"B3: a run line contributes no auto-cross"
+	)
+	assert_eq(
+		attempt.state().marks().mark_at(1, 1),
+		CellMark.Mark.CROSS,
+		"B3: the empty-line cross is written"
+	)
+	assert_true(attempt.state().in_progress(), "B3: the auto-cross starts the attempt")
 	assert_false(attempt.state().marks_allowed(), "B3: marks stay blocked while paused")
 	assert_false(
-		attempt.state().apply_mark(1, 1, CellMark.Mark.FILL),
+		attempt.state().apply_mark(RUN_ROW, 2, CellMark.Mark.FILL),
 		"B3: a mark while paused changes nothing"
 	)
 	assert_eq(emissions.size(), 1, "S13: ready is still emitted once")
-	# The attempt is neither ready nor paused after S12, so no mark applies (O3 G1).
-	assert_eq(attempt.state().marks().mark_at(1, 1), CellMark.Mark.CLEAR, "B3: nothing was written")
-	assert_false(attempt.state().in_progress(), "B3: no mark applies")
+
+	attempt.state().resume()
+
+	assert_true(attempt.state().marks_allowed(), "B3: resume allows marks without reopening")
+	assert_true(attempt.state().apply_mark(RUN_ROW, 2, CellMark.Mark.FILL), "B3: a mark applies")
 	attempt.advance(4)
-	assert_eq(attempt.state().elapsed(), 0, "B3: elapsed does not tick")
+	assert_eq(attempt.state().elapsed(), 4, "B3: elapsed ticks after resume")
 
 
 # CTR-attempt O3 / G1: advance
@@ -378,20 +409,16 @@ func test_advance_adds_elapsed_while_ready_and_nothing_while_blocked():
 
 
 # Ready-edge boundary: the crossed cells are exactly what the rules report
-func test_the_crossed_cells_are_exactly_the_rules_auto_cross():
-	# AC: the edge does no rule logic of its own. The S8 -> S9 pair runs here on the
-	# state's own grid (S12 first), and every reported cell must end up crossed once.
+func test_the_edge_writes_exactly_the_rules_auto_cross():
+	# AC: the edge does no rule logic of its own. The S8 -> S9 pair runs through the edge,
+	# and every reported cell must end up crossed with no extra crosses.
 	var attempt := _opened()
-	var at_beat_end := attempt.state().marks()
-	var expected := attempt.rules().auto_cross_cells(at_beat_end)
+	var expected := attempt.rules().auto_cross_cells(attempt.state().marks())
 	assert_gt(expected.size(), 0, "the empty-clue lines report cells")
-	# S9's owned write: every reported cell, exactly once.
-	at_beat_end.allow_marks()
+	assert_true(attempt.end_get_set_ready(), "S7: the beat ends")
 	assert_eq(
-		attempt.state().auto_cross(expected), expected.size(), "S9: each cell is written once"
+		_crossed_positions(attempt.state().marks()), expected, "S9: exactly the reported cells"
 	)
-	var crossed := _crossed_positions(at_beat_end)
-	assert_eq(crossed.size(), expected.size(), "no extra crosses")
 
 
 func test_open_restores_an_in_progress_record():
