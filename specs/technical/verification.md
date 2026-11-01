@@ -15,6 +15,7 @@ Authoring rules: [`.agents/specs/rules/technical/verification.md`](../../.agents
 | S3 | Story-ID overlay | Realizes `DBG.4`: show active story IDs | Debug toggle on [`CMP-shell`](components/shell.md), fed by the running protocol |
 | S4 | Telemetry events | Realizes `TEL.1`–`TEL.5`: open, ready, mark, solved, pause, resume, leave, commit, and reset each emit one event with name, timestamp, session / build id, story id, and outcome | Components emit during play; [`CMP-shell`](components/shell.md) logs one line per event under the debug flag |
 | S5 | State dump | Realizes `SIT.3`: write the full board state of the open attempt to a file, so a headless run records evidence without a display | Command-line invocation of a debug build (same debug flag as S1); dumps [`SCH-attempt`](schemata/attempt.md), [`SCH-mark-grid`](schemata/mark-grid.md), and [`SCH-progress`](schemata/progress.md) for the chosen puzzle id to the run folder under `logs/` |
+| S6 | Pack load check | Realizes O8 ([`CTR-pack`](contracts/pack.md)) and the [`SCH-puzzle-def`](schemata/puzzle-def.md) invariants I1–I5 without a display | GUT test in `game/test/` calling [`CTR-pack`](contracts/pack.md) O8 with a test pack fixture; asserts accepted and rejected entries |
 
 ## Invariants to assert
 

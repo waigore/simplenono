@@ -1,0 +1,82 @@
+[
+ {
+  "id": "fixture-a",
+  "size": 10,
+  "row-clues": [
+   [],
+   [],
+   [],
+   [],
+   [
+    1
+   ],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "col-clues": [
+   [],
+   [],
+   [],
+   [],
+   [
+    1
+   ],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "solution-fills": [
+   [
+    4,
+    4
+   ]
+  ],
+  "picture-id": "picture-a",
+  "pixel-picture-id": "pixel-a"
+ },
+ {
+  "id": "fixture-b",
+  "size": 10,
+  "row-clues": [
+   [
+    1
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "col-clues": [
+   [],
+   [],
+   [],
+   [],
+   [
+    1
+   ],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "solution-fills": [
+   [
+    4,
+    4
+   ]
+  ],
+  "picture-id": "picture-b",
+  "pixel-picture-id": "pixel-b"
+ }
+]

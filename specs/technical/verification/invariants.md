@@ -17,5 +17,6 @@ Parent: [`../verification.md`](../verification.md).
 | I9 | Open, solve, reset, and back complete without a crash (`crash-free`) | integration | Each of those flows |
 | I10 | After kill mid-puzzle, next launch is gallery and reopen restores marks/elapsed (`resume-after-failure`) | integration | Kill-and-relaunch harness |
 | I11 | Severity-tagged error/crash logs, frame/hitch samples, and story-ID telemetry events are present (`runtime-signals`) | smoke | Debug build with S4 |
+| I12 | Each `res://data/pack.json` entry is accepted or rejected exactly as [`SCH-puzzle-def`](../schemata/puzzle-def.md) I1–I5 and [`CTR-pack`](../contracts/pack.md) O8 errors say, and a rejected entry leaves the rest of the pack loadable | unit | Every run of `game/test/` via seam S6 |
 
 An axis holds only where `quality.md` sets Applies (`rubrics.md`: an N/A axis is not scored).
