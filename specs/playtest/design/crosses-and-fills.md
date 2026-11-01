@@ -5,7 +5,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 - **Level**: Design
 - **Spec key**: `PTD-crosses-and-fills`
 - **Cites**: `E-cell`, `GS`, `E-clue`, `L-solve`, `END`
-- **Situational tools**: None
+- **Situational tools**: `SIT.3`
 
 ## Steps
 
