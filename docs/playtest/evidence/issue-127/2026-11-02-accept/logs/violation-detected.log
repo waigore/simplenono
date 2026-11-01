@@ -1,0 +1,14 @@
+DELIBERATE VIOLATION appended to game/play/attempt_state.gd:
+
+func   BadName(  ):
+        return  1
+
+$ gdformat --check game
+would reformat game/play/attempt_state.gd
+1 file would be reformatted, 27 files would be left unchanged.
+exit=1
+
+$ gdlint game
+game/play/attempt_state.gd:155: Error: Function name "BadName" is not valid (function-name)
+Failure: 1 problem found
+exit=1

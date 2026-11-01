@@ -1,0 +1,7 @@
+$ gdformat --check game
+28 files would be left unchanged
+exit=0
+
+$ gdlint game
+Success: no problems found
+exit=0

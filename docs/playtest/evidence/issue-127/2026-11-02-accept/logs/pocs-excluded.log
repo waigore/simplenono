@@ -1,0 +1,13 @@
+probe file pocs/accept-probe/bad.gd holds the same violation
+
+$ gdlint game   (CI command; pocs/ excluded)
+Success: no problems found
+exit=0
+$ gdformat --check game   (CI command; pocs/ excluded)
+28 files would be left unchanged
+exit=0
+
+$ gdlint pocs/accept-probe   (exclusion bypassed, for contrast)
+pocs/accept-probe/bad.gd:1: Error: Function name "BadName" is not valid (function-name)
+Failure: 1 problem found
+exit=1
