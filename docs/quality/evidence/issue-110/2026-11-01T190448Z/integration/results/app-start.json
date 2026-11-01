@@ -1,0 +1,64 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"finished_at": 193278,
+	"flows_failed": [],
+	"flows_ok": [],
+	"log": "integration/logs/harness-1793560000-app-start.log",
+	"outcome": "pass",
+	"protocol": "app-start",
+	"reason": "",
+	"rows": [
+		{
+			"artifact": "integration/logs/harness-1793560000-app-start.log",
+			"axis": "time-to-playable",
+			"bar": "<= 3 s",
+			"invariant": "I6",
+			"observation": "cold launch to the interactive shell home (gallery stand-in until #94): 188.6 ms",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/results/app-start.json",
+			"axis": "crash-free",
+			"bar": "No crash across open, solve, reset, and back",
+			"invariant": "I9",
+			"observation": "flows ran: none",
+			"result": "fail"
+		}
+	],
+	"session_id": "harness-1793560000",
+	"started_at": 131501,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch-start",
+			"kind": "mark_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "launch-stop",
+			"kind": "mark_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Cold launch to the first interactive screen"
+}
