@@ -1,0 +1,123 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 2103928,
+	"flows_failed": [],
+	"flows_ok": [
+		"open"
+	],
+	"log": "integration/logs/harness-1793561456-paint.log",
+	"outcome": "pass",
+	"protocol": "paint",
+	"reason": "",
+	"rows": [
+		{
+			"artifact": "integration/samples/paint-samples.ndjson",
+			"axis": "frame-time",
+			"bar": "<= 16.7 ms",
+			"invariant": "I1",
+			"observation": "p95 frame time 6.94 ms over 203 frames",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/samples/paint-hitches.ndjson",
+			"axis": "hitch-bound",
+			"bar": "<= 100 ms",
+			"invariant": "I2",
+			"observation": "longest frame 7.16 ms over 203 frames",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/results/paint.json",
+			"axis": "crash-free",
+			"bar": "No crash across open, solve, reset, and back",
+			"invariant": "I9",
+			"observation": "flows ran: open",
+			"result": "pass"
+		}
+	],
+	"session_id": "harness-1793561456",
+	"started_at": 129019,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "open",
+			"kind": "open",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "puzzle",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "paint-start",
+			"kind": "sample_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "paint",
+			"kind": "paint",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "pause",
+			"kind": "pause",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "pause-frames",
+			"kind": "wait_frames",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "resume",
+			"kind": "resume",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "paint-stop",
+			"kind": "sample_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "dump",
+			"kind": "dump",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Grid paint at a fixed cadence"
+}
