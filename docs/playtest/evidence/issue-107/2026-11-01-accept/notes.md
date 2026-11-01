@@ -25,17 +25,12 @@ build has — the GUT seam — exactly as the `#106` acceptance runs did. Clause
 that need undelivered IDs (`GS`, `L-solve`, `E-puzzle`, pause, screen result)
 are out of this deliverable's reach and were not judged as pass or fail here.
 
+Per-clause outcome: [`judgement.md`](judgement.md).
+
 ## Judgement
 
-| Protocol | Clause | Outcome |
-|---|---|---|
-| `PTD-ready-and-marks` | P2 — empty-clue lines auto-cross still-clear cells after ready | **Not judgeable at this layer.** Auto-cross is `CMP-rules` R3 / `#108`; this mapper only exposes which lines are empty. The fixture does have 7 all-empty rows and 4 all-empty columns, so the premise is exercised, but the auto-cross action itself is not delivered here. |
-| `PTD-ready-and-marks` | P1, P3, F1, F2 | **Out of scope** — mark transitions (`E-cell`, `#106`), pause (`IN.pause`, `#111`), solve state (`GS`, `#108`), and screen (`UI-puzzle`, `#110`). |
-| `PTD-crosses-and-fills` | P1, P2, F1, F2 | **Out of scope** — all of it is `GS.is-solved` solve checking (`#108`). `E-clue` is cited only because the line runs are the input to the solve check. |
-
-No clause that this deliverable can decide failed. The clue lines themselves
+The clause-by-clause table is in [`judgement.md`](judgement.md). No clause that this deliverable can decide failed. The clue lines themselves
 were verified at the seam as part of the acceptance criteria:
-
 - `teapot` maps to 15 row lines and 15 column lines, indices `0…14`.
 - Row 0 = `[]`, row 6 = `[1, 9]`, row 7 = `[10]`; columns equal the fixture
   `col_clues`.
