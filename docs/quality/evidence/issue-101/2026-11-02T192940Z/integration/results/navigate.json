@@ -1,0 +1,83 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [
+		"transition:result-gallery: the shell's leave sets its own view; #94/#95 own the transition"
+	],
+	"finished_at": 2999385,
+	"flows_failed": [],
+	"flows_ok": [
+		"open",
+		"solve",
+		"back"
+	],
+	"log": "integration/logs/harness-1793561406-navigate.log",
+	"outcome": "fail",
+	"protocol": "navigate",
+	"reason": "puzzle-result: transition:puzzle-result was not acknowledged within 2000 ms",
+	"rows": [
+		{
+			"artifact": "integration/logs/harness-1793561406-navigate.log",
+			"axis": "transition-latency",
+			"bar": "<= 500 ms",
+			"invariant": "I7",
+			"observation": "longest transition among transition:home-puzzle, transition:puzzle-result, transition:result-gallery: 2292.2 ms (driver-timed, not a product observation: transition:result-gallery: the shell's leave sets its own view; #94/#95 own the transition); protocol failed: puzzle-result: transition:puzzle-result was not acknowledged within 2000 ms",
+			"result": "fail"
+		},
+		{
+			"artifact": "integration/results/navigate.json",
+			"axis": "crash-free",
+			"bar": "No crash across open, solve, reset, and back",
+			"invariant": "I9",
+			"observation": "flows ran: back, open, solve",
+			"result": "pass"
+		}
+	],
+	"session_id": "harness-1793561406",
+	"started_at": 130294,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home-puzzle",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "transition:puzzle-result was not acknowledged within 2000 ms",
+			"id": "puzzle-result",
+			"kind": "measure",
+			"ok": false
+		},
+		{
+			"detail": "",
+			"id": "result-gallery",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Gallery, puzzle, and result navigation"
+}
