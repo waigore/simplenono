@@ -1,0 +1,4 @@
+$ gdlint --version
+gdlint 4.5.0
+$ gdformat --version
+gdformat 4.5.0
