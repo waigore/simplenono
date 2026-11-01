@@ -25,7 +25,7 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 | `GS.is-solved` | Player fills = solution fills (crosses ignored) | [`loops/solve.md`](loops/solve.md) |
 | `GS.row-error[i]` / `GS.col-error[j]` | Fills contradict line [clues](entities/clue.md); crosses ignored | Line error feedback |
 | `GS.clue-satisfied[i|j]` | Fills exactly match that [clue](entities/clue.md) line | Dim cue |
-| `GS.gallery-thumbnail` | Pack image when ever-completed; else hidden | Gallery only |
+| `GS.gallery-thumbnail` | Stored generated picture when ever-completed; else hidden | Gallery only |
 
 ## Global invariants
 

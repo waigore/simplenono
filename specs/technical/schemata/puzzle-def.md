@@ -17,8 +17,8 @@ Authoring rules: [`.agents/specs/rules/technical/schemata.md`](../../../.agents/
 | F3 | row-clues | `size` lists of positive integers. An empty list is allowed | required | Run lengths |
 | F4 | col-clues | Same shape as F3 | required | Run lengths |
 | F5 | solution-fills | Set of positions inside the grid | required | Fills only |
-| F6 | picture-id | Asset id | required | Stored generated picture: gallery thumbnail and morph stage 2 |
-| F7 | pixel-picture-id | Asset id | required | Stored pixel picture: morph stage 1 |
+| F6 | picture-id | Asset id | required | Stored generated picture: gallery thumbnail and final result stage |
+| F7 | pixel-picture-id | Asset id | required | Stored pixel picture: first result stage |
 
 ## Invariants
 

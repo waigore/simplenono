@@ -46,8 +46,10 @@ Authoring rules: [`.agents/specs/rules/technical/schemata.md`](../../../.agents/
 stateDiagram-v2
   [*] --> Ready: L1 open
   Ready --> Playing: L2 ready
+  Ready --> Paused: L2 pause during the beat
   Playing --> Paused: L2 pause
   Paused --> Playing: L2 resume
+  Paused --> Ready: L2 resume before the beat ends
   Playing --> [*]: L3 solve or leave
 ```
 
