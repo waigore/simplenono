@@ -19,7 +19,7 @@ Authoring rules: [`.agents/specs/rules/technical/schemata.md`](../../../.agents/
 
 | ID | Invariant |
 |----|-----------|
-| I1 | F2 mutes the bed and leaves the mark tick and the solve sting audible |
+| I1 | F2 mutes the bed and leaves mark ticks and the solve sting audible |
 
 ## Lifecycle
 

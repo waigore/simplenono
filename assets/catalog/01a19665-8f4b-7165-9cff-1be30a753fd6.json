@@ -1,0 +1,92 @@
+{
+  "id": "01a19665-8f4b-7165-9cff-1be30a753fd6",
+  "handle": "music/solve-sting",
+  "kind_spec": "AK-music",
+  "coverage": [
+    "V2"
+  ],
+  "serves": [
+    "SND.M2",
+    "ACC.G2"
+  ],
+  "state": "approved",
+  "version": 2,
+  "files": [
+    "music/solve-sting.mp3"
+  ],
+  "source_type": "ai-generation",
+  "tool_role": {
+    "role": "TL.4",
+    "adr": "adr-free"
+  },
+  "recipe": "AK-music.R1",
+  "generation": {
+    "prompt": "clinical but clearly triumphant puzzle-solve sting. soft synth and quiet mallet like the calm bed, but a brighter resolving major cadence that feels like a win; 70 BPM; short one-second triumphant lift; instrumental only; confident and uplifting without being loud or epic. Avoid: percussion hits; drums; voice; vocals; aggressive EDM; cozy whimsy; dark minor; sad; long build; orchestral fanfare; brass blasts; trailer hits.",
+    "negative_prompt": "percussion hits; drums; voice; vocals; aggressive EDM; cozy whimsy; dark minor; sad; long build; orchestral fanfare; brass blasts; trailer hits",
+    "tool": "ElevenLabs",
+    "operation": "music compose",
+    "settings": {
+      "model": "music_v2_5",
+      "music_length_ms": 4000,
+      "force_instrumental": true,
+      "post_trim_start_s": 3.85,
+      "post_trim_duration_s": 1.0,
+      "loudness_target_lufs": -18
+    },
+    "seed": "n/a \u2014 tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": []
+    },
+    "steps": [
+      "elevenlabs music compose (more triumphant bootstrap)",
+      "ffmpeg atrim crest 1 s; fades",
+      "volume to \u2248 \u221218 LUFS; export mp3"
+    ]
+  },
+  "license": {
+    "grant": "Generated under ElevenLabs Terms of Service; project may use per plan commercial rights",
+    "tool": "ElevenLabs",
+    "terms": "https://elevenlabs.io/terms"
+  },
+  "guidance": "PO listen OK 2026-11-01 (more triumphant v2). Bootstrap while AK-music SS1 is none.",
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-01",
+      "reason": "Too mild; regenerate more triumphant",
+      "generation": {
+        "prompt": "clinical calm triumphant solve sting. same soft synth and quiet mallet as a puzzle bed; 70 BPM; one short resolving chord gesture; calm and triumphant; instrumental only; not a full song. Avoid: percussion hits; drums; voice; vocals; aggressive EDM; cozy whimsy; long build; fanfare brass.",
+        "negative_prompt": "percussion hits; drums; voice; vocals; aggressive EDM; cozy whimsy; long build; fanfare brass",
+        "tool": "ElevenLabs",
+        "operation": "music compose",
+        "settings": {
+          "model": "music_v2_5",
+          "music_length_ms": 3000,
+          "force_instrumental": true,
+          "post_trim_start_s": 2.6,
+          "post_trim_duration_s": 1.0,
+          "loudness_target_lufs": -18
+        },
+        "seed": "n/a \u2014 tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": []
+        },
+        "steps": [
+          "elevenlabs music compose (bootstrap, short instrumental)",
+          "ffmpeg atrim best 1 s resolve; fades",
+          "volume to \u2248 \u221218 LUFS; export mp3"
+        ]
+      }
+    }
+  ],
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-01",
+    "reviewer": "agent+PO",
+    "report": "PO listen-approved each asset in turn (chat). Measured: fill/cross/clear 80ms \u2248\u221232 LUFS; bed 28s loop \u2248\u221223.6 LUFS; sting 1s \u2248\u221218.3 LUFS. Bootstrap series none. Catalog fields + kind S/B/K measured rows OK."
+  }
+}

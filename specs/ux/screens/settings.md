@@ -27,7 +27,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | ID | Control | UI action | Available when | Result |
 |----|---------|-----------|----------------|--------|
 | C1 | Haptics | `IN.activate` | Always | Toggle [`HAP.S1`](../../view/haptics.md) on/off |
-| C2 | Mute BGM | `IN.activate` | Always | Toggle BGM mute; mark SFX and sting stay unmuted |
+| C2 | Mute BGM | `IN.activate` | Always | Toggle BGM mute; mark ticks and sting stay unmuted |
 | C3 | Back | `IN.back` | Always | Previous screen: `UI-gallery`, or `UI-puzzle` clearing [`GS.paused`](../../design/game-state.md) |
 
 ## States

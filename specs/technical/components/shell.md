@@ -15,7 +15,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | R1 | Show the gallery, the open puzzle, the result, or settings |
 | R2 | Send open, mark, advance, pause, resume, and leave to the attempt |
 | R3 | Draw the grid, clues, line cues, and the result fades. Request each stored picture by asset id when the gallery or result shows it |
-| R4 | Play the bed, the mark tick, the solve sting, and the haptic click |
+| R4 | Play the bed, mark ticks (fill/cross/clear), the solve sting, and the haptic click |
 | R5 | Hold session preferences: haptics default on, music mute default off |
 | R6 | Read `assets/manifest.json` and resolve asset IDs for G1–G3 ([ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md)) |
 

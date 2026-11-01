@@ -18,8 +18,10 @@ The bed keeps playing under the sting ([`experience.md`](../design/experience.md
 | ID | Category | Character | Duration range |
 |----|----------|-----------|----------------|
 | X1 | interface | synthesized | 40–120 ms |
+| X2 | interface | synthesized | 40–120 ms |
+| X3 | interface | synthesized | 40–120 ms |
 
-One tick for a fill, a cross, or a clear. It carries the mark-applied feedback ([`experience.md`](../design/experience.md)). Clue dim and line error stay visual.
+Three soft distinct ticks: fill (X1), cross (X2), clear (X3) ([`experience.md`](../design/experience.md)). Clue dim and line error stay visual.
 
 ## Voice
 
@@ -30,7 +32,7 @@ N/A — no speaker and no spoken lines ([`experience.md`](../design/experience.m
 | ID | Category | Target loudness | Relation to other categories |
 |----|----------|-----------------|------------------------------|
 | L1 | Music bed | -23 LUFS integrated | Stays under the sting; no ducking |
-| L2 | Mark tick | -28 LUFS | Quieter than the bed; no ducking |
+| L2 | Mark ticks (X1–X3) | -32 LUFS | Soft under the bed; no ducking |
 | L3 | Solve sting | -18 LUFS | In front of the bed for 1 s; the bed continues |
 
 No positional mix ([`audio.md`](../view/audio.md)). Mute in settings silences the music bed (M1/M2) only; mark ticks and the sting stay audible ([`screens/settings.md`](../ux/screens/settings.md)). Default mute is off.
