@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | [ADR-0003](../adr/decisions/0003-catalog-asset-roots.md) | adr | [`asset-access.md`](asset-access.md), [`components/shell.md`](components/shell.md) |
 | Puzzle, cell, clue, solve loop, game state, end conditions | design | [`components/attempt.md`](components/attempt.md), [`components/rules.md`](components/rules.md), [`components/pack.md`](components/pack.md), [`schemata/`](schemata/), [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
 | Gallery, puzzle, result, settings; leave-resume; pause T7–T8; gallery-reset | ux | [`components/shell.md`](components/shell.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
-| Playtest Must rows: Debug UI, telemetry events ([`playtest.md`](../playtest/playtest.md)) | playtest | TBD — which technical element serves the Debug UI and telemetry Must rows: create `verification.md`, or revise [`playtest.md`](../playtest/playtest.md)? |
+| Playtest Must rows: [`DBG.1`](../playtest/tools.md)–`DBG.4`, `TEL.1`–`TEL.5` | playtest | [`verification.md`](verification.md) S1–S4 |
 | Persisted progress | definition | [`persistence.md`](persistence.md) |
 
 ## Topic coverage
@@ -30,6 +30,6 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | Concurrency and update loop | `concurrency.md` | N/A — the shell advances the attempt on one main thread |
 | Persistence and save mapping | [`persistence.md`](persistence.md) | Applies |
 | Config and data-driven tables | `configuration.md` | N/A — design configuration is unfilled; preferences are session fields on the shell |
-| Verification hooks | `verification.md` | N/A — no verification seam is specified |
+| Verification and seams | [`verification.md`](verification.md) | Applies — [`playtest.md`](../playtest/playtest.md) Must rows, [`tools.md`](../playtest/tools.md) `DBG`/`TEL` |
 | Asset access and loading | [`asset-access.md`](asset-access.md) | Applies — paired with [`../assets/access.md`](../assets/access.md); [ADR-0003](../adr/decisions/0003-catalog-asset-roots.md) |
 | Diagrams | [`diagrams/`](diagrams/) | Applies — diagrams sit in the layer, module, component, contract, schema, and sequence files |
