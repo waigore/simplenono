@@ -10,15 +10,16 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
-| R1 | Fill→image morph | US1.1 |
-| R2 | Back chrome after morph | US1.2 |
+| R1 | Two-stage morph | US1.1, US1.4 |
+| R2 | Back chrome after both stages | US1.2 |
 | C1 | Back when available / not | US1.2b, US1.3 |
-| S2 | Morphing | US1.1 |
+| S2 | Pixel stage | US1.1 |
+| S3 | Picture stage | US1.4 |
 | S1 | Default | US1.2 |
 
 ## US1: Win reveal
 
-As the Player, I watch the morph then return so that the win stays on result, not puzzle.
+As the Player, I watch both stages then return so that the win stays on result, not puzzle.
 
 ### US1.1: Morphing
 
@@ -26,8 +27,8 @@ As the Player, I watch the morph then return so that the win stays on result, no
 
 ```gherkin
 Given UI-result just opened after END.W1
-When S2 Morphing is shown
-Then R1 shows fills morphing into the solution image
+When S2 Pixel is shown
+Then R1 shows fills morphing into the stored pixel picture
 And no controls are available
 ```
 
@@ -36,9 +37,9 @@ And no controls are available
 - **Proves**: R2, S1
 
 ```gherkin
-Given the morph has finished (~300 ms)
+Given both stages have finished (600 ms)
 When S1 Default is shown
-Then the completed picture is visible
+Then the stored generated picture is visible
 And C1 Back to gallery is available
 ```
 
@@ -57,7 +58,18 @@ Then UI-gallery opens
 - **Proves**: C1
 
 ```gherkin
-Given UI-result Morphing
+Given UI-result is in S2 or S3
 When the Player attempts C1
 Then nothing changes and C1 stays unavailable
+```
+
+### US1.4: Picture stage
+
+- **Proves**: R1, S3
+
+```gherkin
+Given S2 Pixel has finished
+When S3 Picture is shown
+Then R1 shows the stored pixel picture morphing into the stored generated picture
+And no controls are available
 ```

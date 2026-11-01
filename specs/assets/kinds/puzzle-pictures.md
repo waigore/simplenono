@@ -7,13 +7,13 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 - **Style**: Cool clinical look ([`AES.P1`](../../aesthetics/aesthetics.md)); calm subjects
 - **Tool roles**: [`TL.1`](../tools.md), [`TL.2`](../tools.md)
 - **Approval**: As hub
-- **Serves**: Pack solution pictures ([`entities/puzzle.md`](../../design/entities/puzzle.md)); gallery thumbnail; result morph ([`PER.R5`](../../view/perception.md))
+- **Serves**: Gallery thumbnail and result morph ([`entities/puzzle.md`](../../design/entities/puzzle.md), [`PER.R5`](../../view/perception.md))
 
 ## Coverage
 
 | ID | Subject | Required variants | Count |
 |----|---------|-------------------|-------|
-| V1 | Each pack [puzzle](../../design/entities/puzzle.md) | One full-colour solution at that size (10 / 15 / 20) | 1 |
+| V1 | Each pack [puzzle](../../design/entities/puzzle.md) | Generated square picture and N×N pixel picture | 2 |
 | V2 | Pack art mix | ~30% single-subject; ~70% multi-subject and/or holed | Across 200 |
 
 ## Specification
@@ -23,8 +23,9 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 | S1 | Pixel grid | 1:1 with puzzle size (N×N colour); nearest-upscale for display |
 | S2 | Fill band | Luma threshold → ~25–45% filled cells |
 | S3 | Clues | Run lengths from the fill set |
-| S4 | Solvability | Unique + fully line-logic; else discard and regenerate |
+| S4 | Solvability | Unique line-logic, else regenerate |
 | S5 | Background | Flatten vignette so border is not false fills |
+| S6 | Generated picture | Stored square output. The pixel file is its BOX downsample to N×N |
 
 ## Budgets
 
@@ -48,8 +49,8 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 #### Prompt policy
 
 - **Compose**: subject-first; append master + negative.
-- **Master**: calm clinical still-life or creatures; clear silhouette; flat light; readable at N×N
-- **Negative**: playful chrome; gore; horror; busy vignettes; tiny unreadable detail
+- **Master**: calm clinical still-life or creatures; clear silhouette; readable at N×N
+- **Negative**: playful chrome; gore; horror
 
 ## Recipes
 
@@ -60,10 +61,10 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 - **Inputs**: size N; subject prompt (V2 mix)
 - **Prompt template (bootstrap)**: clinical {subject}; clear gaps if multi; compose with `prompt_policy`
 - **Prompt template (series)**: N/A — SS1 `none`
-- **Settings**: model `flux-2-max`; square; BOX pixelate to N×N
-- **Seed policy**: n/a unless API exposes seed
-- **Post-processing**: flatten vignette; luma (S2); no hole-close; unique + line-logic (S4); fail → new prompt (no size fallback)
-- **Outputs**: catalogued colour picture + pack fill/clues (authoring/CI only)
+- **Settings**: `flux-2-max`; keep the square file; BOX a copy to N×N
+- **Seed policy**: n/a — no seed
+- **Post-processing**: flatten vignette; luma (S2); no hole-close; line-logic (S4); else a new prompt
+- **Outputs**: both catalogued pictures, plus pack fill/clues
 
 ## Checks
 
@@ -74,8 +75,9 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 | K3 | Unique line-logic | Offline judge | Pass S4 |
 | K4 | Style calm | Review | AES.P1 / prompt_policy |
 | K5 | Mix | Pack audit | Roughly V2 |
+| K6 | Both stored | Inspect | Square file and N×N downsample are both catalogued |
 
 ## Naming
 
-- **Handle name**: `puzzle-pictures/<puzzle-id>`
+- **Handle name**: `puzzle-pictures/<puzzle-id>-generated` and `puzzle-pictures/<puzzle-id>-pixel`
 - **Path**: under asset root from handle — TBD — which Integration ADR sets the asset root?

@@ -32,7 +32,7 @@ Authoring rules: [`.agents/specs/rules/technical/asset-access.md`](../../.agents
 |----|----------|-----------|-------|----------|
 | G1 | `ACC.G1` | TBD — preload list or bootstrap load (Engine ADR) | TBD — `CMP-` | Load at app start; no unload |
 | G2 | `ACC.G2` | TBD — stream or preload bed; sting one-shot on result | TBD — `CMP-` | Load with gallery/puzzle; sting on result; mute bed only per settings |
-| G3 | `ACC.G3` | TBD — on-demand or pack-indexed load | TBD — `CMP-` | Resolve thumbnail / reveal picture by puzzle identity; unload when unused |
+| G3 | `ACC.G3` | TBD — on-demand or pack-indexed load | TBD — `CMP-` | Resolve the generated and pixel picture ids by puzzle identity; unload when unused |
 
 ## Diagram
 

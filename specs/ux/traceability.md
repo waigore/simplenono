@@ -11,7 +11,7 @@ Authoring rules: [`.agents/specs/rules/ux/traceability.md`](../../.agents/specs/
 | Local free-order pack; desktop and mobile | [`specs/definition/definition.md`](../definition/definition.md) | [`actors/player.md`](actors/player.md); [`screens/gallery.md`](screens/gallery.md) |
 | Gallery completion rate; statuses; PB; thumbnails; reset | [`progression.md`](../design/progression.md), [`game-state.md`](../design/game-state.md) | [`screens/gallery.md`](screens/gallery.md) |
 | Solve loop; get-set-ready; marks; leave/pause/solve | [`loops/solve.md`](../design/loops/solve.md), [`game-state.md`](../design/game-state.md) | [`screens/puzzle.md`](screens/puzzle.md); [`controls.md`](controls.md) |
-| Win reveal morph; return to gallery | [`PER.R5`](../view/perception.md), [`MOT.E1`](../aesthetics/motion.md) | [`screens/result.md`](screens/result.md) |
+| Win reveal morph; return to gallery | [`PER.R5`](../view/perception.md), [`MOT.E1`](../aesthetics/motion.md), [`MOT.E2`](../aesthetics/motion.md) | [`screens/result.md`](screens/result.md) |
 | Haptics toggle; mute BGM only | [`HAP.S1`](../view/haptics.md), [`sound.md`](../aesthetics/sound.md) | [`screens/settings.md`](screens/settings.md) |
 
 ## Topic coverage

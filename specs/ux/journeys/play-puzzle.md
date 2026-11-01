@@ -29,4 +29,4 @@ None.
 
 ## Experience intent
 
-Calm free-order pick → focused Ready/mark loop → quiet fill→picture morph → back to the pack.
+Calm free-order pick → focused Ready/mark loop → quiet two-stage morph → back to the pack.

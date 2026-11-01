@@ -27,7 +27,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 | S12 | CMP-attempt | CMP-shell | CTR-attempt.O2 | Return the pre-clear grid and line status |
 | S13 | CMP-attempt | CMP-shell | CTR-attempt.E1 | Solved, with the puzzle id and stopped elapsed |
 | S14 | CMP-shell | CMP-shell | internal | Sting and open the result screen |
-| S15 | CMP-shell | CMP-pack | CTR-pack.O3 | Picture id, then request that picture |
+| S15 | CMP-shell | CMP-pack | CTR-pack.O3 | Both picture ids; request both |
 
 ## Branches
 

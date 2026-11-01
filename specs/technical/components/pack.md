@@ -21,7 +21,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 
 | ID | Peer | Direction | Via contract | Notes |
 |----|------|-----------|--------------|-------|
-| C1 | [`CMP-shell`](shell.md) | listens | [`CTR-pack`](../contracts/pack.md) | List, completion rate, reset, and picture id |
+| C1 | [`CMP-shell`](shell.md) | listens | [`CTR-pack`](../contracts/pack.md) | List, completion rate, reset, and both picture ids |
 | C2 | [`CMP-attempt`](attempt.md) | listens | [`CTR-pack`](../contracts/pack.md) | Definition, progress, commit, and record-solve |
 
 ## Owns / mutates

@@ -22,7 +22,7 @@ The person playing for themselves in short sessions—someone who knows or will 
 
 - **C1**: Gallery — browse the pack, open a puzzle, reset a puzzle, open settings ([`screens/gallery.md`](../screens/gallery.md))
 - **C2**: Puzzle — mark while allowed; Fill / Cross / Clear; leave or pause into settings ([`screens/puzzle.md`](../screens/puzzle.md))
-- **C3**: Result — see the fill→image morph; return to gallery ([`screens/result.md`](../screens/result.md))
+- **C3**: Result — see the pixel picture, then the generated picture; return to gallery ([`screens/result.md`](../screens/result.md))
 - **C4**: Settings — change haptics on/off and mute BGM; return to gallery or resume a paused puzzle ([`screens/settings.md`](../screens/settings.md))
 
 ## Cannot operate

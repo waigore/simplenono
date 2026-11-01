@@ -18,7 +18,7 @@ One pack entry the player opens from the [gallery](../glossary.md): fixed size, 
 | P2 | Solution fill set | Hidden correct fills (from the solution picture) | Pack data |
 | P3 | Row and column [clues](clue.md) | Run lengths per line (empty list = all-empty) | Pack data |
 | P4 | Identity | Stable id in the 200-pack | Pack data |
-| P5 | Thumbnail | Full-colour solution picture for gallery (and result morph) | Pack data; visible only when [ever completed](../glossary.md) |
+| P5 | Thumbnail | Stored generated picture for the gallery and the second morph stage | Pack data; visible only when [ever completed](../glossary.md) |
 
 ## Lifecycle and states
 
@@ -37,7 +37,7 @@ Attempt state and ever-completed are orthogonal ([`game-state.md`](../game-state
 | I1 | Gallery | Open | Load board; [get-set-ready](../glossary.md); restore marks and elapsed if attempt in progress |
 | I2 | Solve loop | Marks, leave, or solve | Per [`loops/solve.md`](../loops/solve.md) and end conditions |
 | I3 | Gallery | Reset | [`END.O2`](../end-conditions.md) — puzzle treated as new |
-| I4 | Gallery | View when ever completed | Thumbnail of the solution picture (gallery only; not on the board) |
+| I4 | Gallery | View when ever completed | Thumbnail of the stored generated picture (gallery only; not on the board) |
 
 ## Placement and availability
 

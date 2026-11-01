@@ -12,7 +12,7 @@ Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md)
 - **Screens**:
   - [`gallery.md`](screens/gallery.md) — browse pack; status / personal best / thumbnails; prominent completion rate; gallery reset; open puzzle or settings
   - [`puzzle.md`](screens/puzzle.md) — get-set-ready and mark loop; Fill / Cross / Clear tools; pause into settings; no win morph on this screen
-  - [`result.md`](screens/result.md) — after solve: fills morph into the solution image; control returns to gallery
+  - [`result.md`](screens/result.md) — after solve: fills, then the stored pixel picture, then the stored generated picture; control returns to gallery
   - [`settings.md`](screens/settings.md) — slim: haptics on/off; mute BGM only (SFX stay on); Back to gallery or resume paused puzzle
 - **Journeys**:
   - [`play-puzzle.md`](journeys/play-puzzle.md) — gallery → puzzle → result → gallery
