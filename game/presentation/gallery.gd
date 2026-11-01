@@ -24,8 +24,10 @@ const COPY_GREETING := "Local pack"
 const COPY_TITLE := "Gallery"
 const COPY_SETTINGS := "Settings"
 
-## [code]CTR-pack[/code] O2 is ever-completed count ÷ the pack size.
-const PACK_SIZE := 200
+## [b]UI-gallery[/b]'s page margin around the grid, from [code]gallery.tscn[/code]'s
+## [code]Margin[/code] container. The harness reads it to check a tile fits its column
+## at each edge screen.
+const PAGE_MARGIN := 16.0
 
 ## Tiles per row: the mobile mockup's two and the desktop mockup's four.
 const NARROW_COLUMNS := 2
@@ -46,7 +48,7 @@ var _picture_for := Callable()
 
 func _ready() -> void:
 	_background.color = PresentationPalette.PAPER
-	_completion_bar.max_value = PACK_SIZE
+	_completion_bar.max_value = pack_size()
 	_completion_bar.show_percentage = false
 	_completion_bar.add_theme_stylebox_override("background", _bar_style(PresentationPalette.PAPER))
 	_completion_bar.add_theme_stylebox_override("fill", _bar_style(PresentationPalette.INK))
@@ -84,9 +86,19 @@ func completion_text() -> String:
 	return _completion_label.text
 
 
-## The ever-completed count R1's [code]{n}[/code] shows (O2 × 200).
+## The ever-completed count R1's [code]{n}[/code] shows, read from
+## [b]CTR-pack[/b]'s O1 entries rather than rebuilt from the rate.
 func completion_count() -> int:
-	return roundi(completion_rate() * PACK_SIZE)
+	var completed := 0
+	for entry in _entries:
+		if entry.ever_completed:
+			completed += 1
+	return completed
+
+
+## The pack size R1 divides by: the definitions the pack holds ([code]PRG[/code] A1).
+func pack_size() -> int:
+	return _entries.size() if not _entries.is_empty() else ProgressRules.PACK_SIZE
 
 
 ## [code]GS.completion-rate[/code] from O2.
@@ -112,6 +124,34 @@ func entries() -> Array[GalleryEntry]:
 ## Tiles per row, from the screen width.
 func columns() -> int:
 	return _grid.columns
+
+
+## The widest drawn tile among the current entries, so a test can check every column
+## fits its share of the screen at an edge width.
+func widest_tile_width() -> float:
+	var widest := 0.0
+	for entry in _entries:
+		var target := tile(entry.id)
+		if target != null:
+			widest = maxf(widest, target.size.x)
+	return widest
+
+
+## The drawn picture region's width ÷ height on the first tile, 0.0 with no tiles.
+func picture_aspect() -> float:
+	if _entries.is_empty():
+		return 0.0
+	var target := tile(_entries[0].id)
+	return target.picture_aspect() if target != null else 0.0
+
+
+## The drawn picture region's width on the first tile, 0.0 with no tiles. The mockups
+## give the picture the tile's full inner width above a square minimum.
+func picture_width() -> float:
+	if _entries.is_empty():
+		return 0.0
+	var target := tile(_entries[0].id)
+	return target.picture_size().x if target != null else 0.0
 
 
 ## Raises C1 for [param puzzle_id]. Returns false and changes nothing for an unknown id.
@@ -158,7 +198,9 @@ func _rebuild() -> void:
 
 func _update_completion() -> void:
 	var count := completion_count()
-	_completion_label.text = COPY_COMPLETION % [count, PACK_SIZE]
+	var size := pack_size()
+	_completion_label.text = COPY_COMPLETION % [count, size]
+	_completion_bar.max_value = size
 	_completion_bar.value = count
 
 

@@ -6,6 +6,11 @@ extends Control
 ## ([code]GS.gallery-thumbnail[/code], [b]CMP-shell[/b] R6 by asset id) and the generic
 ## puzzle placeholder otherwise (US1.3). The tile decides which; this control only
 ## paints what it is given, in the six-swatch palette ([code]PAL.S1[/code]).
+##
+## The region is square, as the approved gallery mockups draw it
+## ([code].puzzle-tile .thumb { aspect-ratio: 1 }[/code]). A stored picture is fitted
+## inside that square by its own proportions, so the N×N puzzle pictures keep their
+## shape instead of stretching into it.
 
 ## The placeholder glyph is five cells square, as the approved mockup draws it.
 const GRID_CELLS := 5
@@ -41,14 +46,36 @@ func shows_picture() -> bool:
 	return _picture != null
 
 
+## The drawn box: the largest square that fits this control, centered.
+func square() -> Rect2:
+	var side := minf(size.x, size.y)
+	return Rect2((size - Vector2(side, side)) * 0.5, Vector2(side, side))
+
+
 func _draw() -> void:
-	var box := Rect2(Vector2.ZERO, size)
-	draw_rect(box, PresentationPalette.PAPER)
+	draw_rect(Rect2(Vector2.ZERO, size), PresentationPalette.PAPER)
+	var box := square()
 	if _picture != null:
-		draw_texture_rect(_picture, box, false)
+		draw_rect(box, PresentationPalette.PAPER)
+		draw_texture_rect_region(
+			_picture,
+			_fitted(box),
+			Rect2(Vector2.ZERO, Vector2(_picture.get_size())),
+		)
 	else:
 		_draw_placeholder(box)
 	draw_rect(box, PresentationPalette.RULE, false, 1.0)
+
+
+## [param box] shrunk to [method _picture]'s own proportions and centered in it, so a
+## non-square source keeps its shape instead of stretching.
+func _fitted(box: Rect2) -> Rect2:
+	var source := Vector2(_picture.get_size())
+	if source.x <= 0.0 or source.y <= 0.0:
+		return box
+	var scale := minf(box.size.x / source.x, box.size.y / source.y)
+	var fitted := source * scale
+	return Rect2(box.position + (box.size - fitted) * 0.5, fitted)
 
 
 func _draw_placeholder(box: Rect2) -> void:
