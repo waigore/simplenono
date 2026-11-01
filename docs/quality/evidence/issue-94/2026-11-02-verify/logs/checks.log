@@ -1,0 +1,8 @@
+commit: 48d2b58ed250c228c48cd058f399d2ef1323c692
+== gdformat
+80 files would be left unchanged
+== gdlint
+Success: no problems found
+== spec lint
+  WARNING: specs/view/glossary.md:12 [glossary] 'Diagram' is also defined in specs/technical/glossary.md; define it once and link
+Spec lint: 0 error(s), 1 warning(s) across 9 checks.
