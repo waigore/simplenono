@@ -14,7 +14,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 |----|----------------|
 | R1 | Show the gallery, the open puzzle, the result, or settings |
 | R2 | Send open, mark, advance, pause, resume, and leave to the attempt |
-| R3 | Draw the grid, clues, line cues, and the result fade. Request a picture by asset id when the gallery or result shows it |
+| R3 | Draw the grid, clues, line cues, and the result fades. Request each stored picture by asset id when the gallery or result shows it |
 | R4 | Play the bed, the mark tick, the solve sting, and the haptic click |
 | R5 | Hold session preferences: haptics default on, music mute default off |
 
@@ -23,7 +23,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | ID | Peer | Direction | Via contract | Notes |
 |----|------|-----------|--------------|-------|
 | C1 | [`CMP-attempt`](attempt.md) | both | [`CTR-attempt`](../contracts/attempt.md) | Calls operations. Listens for ready, solved, and left |
-| C2 | [`CMP-pack`](pack.md) | calls | [`CTR-pack`](../contracts/pack.md) | List, completion rate, reset, and picture id |
+| C2 | [`CMP-pack`](pack.md) | calls | [`CTR-pack`](../contracts/pack.md) | List, completion rate, reset, and both picture ids |
 
 ## Owns / mutates
 

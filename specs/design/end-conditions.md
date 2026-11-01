@@ -34,4 +34,4 @@ No loss conditions.
 
 ## Experience intent
 
-Win is a quiet triumph: calm-yet-triumphant sting and, on the result screen, filled cells fading into the picture ([`experience.md`](experience.md), [`PER.R5`](../view/perception.md)), including on replay; then return to gallery. Leave is calm pause. Gallery reset is a deliberate start-over as new. There is no loss to make fair.
+Win is a quiet triumph: calm-yet-triumphant sting and, on the result screen, fills fading into the stored pixel picture, then into the stored generated picture ([`experience.md`](experience.md), [`PER.R5`](../view/perception.md)), including on replay; then return to gallery. Leave is calm pause. Gallery reset is a deliberate start-over as new. There is no loss to make fair.

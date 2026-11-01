@@ -18,7 +18,7 @@ Authoring rules: [`.agents/specs/rules/technical/modules.md`](../../.agents/spec
 | ID | From | To | Allowed | Forbidden |
 |----|------|----|---------|-----------|
 | B1 | M1 | M2 | [`CTR-attempt`](contracts/attempt.md) | M1 writing marks or progress |
-| B2 | M1 | M3 | [`CTR-pack`](contracts/pack.md) list, completion rate, reset, and picture id | M1 writing progress fields |
+| B2 | M1 | M3 | [`CTR-pack`](contracts/pack.md) list, completion rate, reset, and both picture ids | M1 writing progress fields |
 | B3 | M2 | M3 | [`CTR-pack`](contracts/pack.md) definition, progress, commit, and record-solve | M3 calling M1 or M2 |
 | B4 | CMP-attempt | CMP-rules | [`CTR-rules`](contracts/rules.md) | CMP-rules writing state |
 

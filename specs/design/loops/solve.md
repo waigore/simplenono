@@ -40,4 +40,4 @@ Pause (K5) is not an exit — settings covers the puzzle until Back. No loss exi
 
 ## Experience intent
 
-Snappy mark response on a calm clinical board with soft SFX under calm BGM. Tension is deduction, not punishment. On solve: sting and result-screen fade fills → image ([`experience.md`](../experience.md), [`PER.R5`](../../view/perception.md)), then gallery. Crosses aid memory; only fills win. Line errors flag impossible fills, not unfinished lines.
+Snappy mark response on a calm clinical board with soft SFX under calm BGM. Tension is deduction, not punishment. On solve: sting and the result-screen fades, fills then pixel picture then generated picture ([`experience.md`](../experience.md), [`PER.R5`](../../view/perception.md)), then gallery. Crosses aid memory; only fills win. Line errors flag impossible fills, not unfinished lines.

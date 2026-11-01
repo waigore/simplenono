@@ -7,7 +7,7 @@ Authoring rules: [`.agents/specs/rules/assets/tools.md`](../../.agents/specs/rul
 | ID | Role | Source type | Kinds served | Required capabilities | Realized by |
 |----|------|-------------|--------------|-----------------------|-------------|
 | TL.1 | Full-colour image generate (non-series) | AI generation | [`puzzle-pictures`](kinds/puzzle-pictures.md) | Square canvas; default model `flux-2-max`; no Recraft style id | ADR-free — Cheaper Inference per [`docs/asset-tools.md`](../../docs/asset-tools.md) |
-| TL.2 | Offline image→nonogram derive | Procedural / local tooling | [`puzzle-pictures`](kinds/puzzle-pictures.md) | Pixelate 1:1; luma fill band; uniqueness + line-logic judge; regenerate-on-fail | Local authoring/CI scripts (not in-game) |
+| TL.2 | Offline image→nonogram derive | Procedural / local tooling | [`puzzle-pictures`](kinds/puzzle-pictures.md) | Keep the square generate; pixelate a copy 1:1; luma fill band; uniqueness + line-logic judge; regenerate-on-fail | Local authoring/CI scripts (not in-game) |
 
 ## Access
 

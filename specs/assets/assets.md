@@ -4,7 +4,7 @@ Authoring rules: [`.agents/specs/rules/assets/assets.md`](../../.agents/specs/ru
 
 ## Purpose
 
-Catalogued **puzzle solution pictures** (gallery thumbnail and result morph), **fonts**, **mark SFX**, and **music** (bed and solve sting) for the clinical 2D local pack. Board marks and chrome panels are code-drawn from aesthetics—not catalogued art. No 3D, tiles, icons, or voice.
+Catalogued **generated and pixel puzzle pictures** (thumbnail and morph), **fonts**, **mark SFX**, and **music** (bed and solve sting) for the clinical 2D local pack. Board marks and chrome panels are code-drawn from aesthetics—not catalogued art. No 3D, tiles, icons, or voice.
 
 ## Asset kinds
 
@@ -23,7 +23,7 @@ Catalogued **puzzle solution pictures** (gallery thumbnail and result morph), **
 | Sound effects | Applies | [`sound.md`](../aesthetics/sound.md) X1 | `sfx` (planned) |
 | Music | Applies | [`sound.md`](../aesthetics/sound.md) M1/M2 | `music` (planned) |
 | Voice | N/A — no speech | [`sound.md`](../aesthetics/sound.md) | — |
-| Puzzle pictures | Applies | Puzzle thumbnail / solution ([`entities/puzzle.md`](../design/entities/puzzle.md); gallery / result UX; [`perception.md`](../view/perception.md) R5) | [`puzzle-pictures`](kinds/puzzle-pictures.md) |
+| Puzzle pictures | Applies | Generated thumbnail and pixel morph stage ([`entities/puzzle.md`](../design/entities/puzzle.md); gallery / result UX; [`perception.md`](../view/perception.md) R5) | [`puzzle-pictures`](kinds/puzzle-pictures.md) |
 
 ## Sources
 

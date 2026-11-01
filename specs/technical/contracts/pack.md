@@ -15,7 +15,7 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 |----|------|-------|-----------------|------|
 | O1 | list | None | Id, size, ever-completed, attempt status, personal best, and whether the thumbnail is visible, for each puzzle | Gallery |
 | O2 | completion-rate | None | Ever-completed count ÷ 200 | Gallery |
-| O3 | definition | Puzzle id | Size, clues, solution fills, and picture id | Open |
+| O3 | definition | Puzzle id | Size, clues, solution fills, generated picture id, and pixel picture id | Open |
 | O4 | progress | Puzzle id | The progress record | Open |
 | O5 | commit | Puzzle id, marks, elapsed, and attempt status | Replaces that record and the progress file | When marks or attempt status change, on pause, and on leave |
 | O6 | record-solve | Puzzle id and elapsed | Sets ever-completed, clears the attempt, and replaces personal best only when the time is shorter | Solve |

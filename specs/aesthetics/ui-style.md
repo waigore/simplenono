@@ -38,6 +38,6 @@ N/A — chrome uses type and panels. No icon set and no mascots ([`aesthetics.md
 | ID | Motion class | Duration (s) | Easing |
 |----|--------------|--------------|--------|
 | M1 | Value change | 0 | None — instant, same as a mark ([`MOT.T1`](motion.md)) |
-| M2 | Screen transition | 0 | Cut. The solve fade stays [`MOT.E1`](motion.md) |
+| M2 | Screen transition | 0 | Cut. The solve fades stay [`MOT.E1`](motion.md) and [`MOT.E2`](motion.md) |
 
 Clue dim and line error are value changes. They stay palette color changes ([`surface.md`](surface.md)).
