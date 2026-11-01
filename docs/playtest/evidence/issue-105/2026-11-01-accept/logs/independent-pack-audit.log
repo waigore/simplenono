@@ -1,0 +1,6 @@
+pack: game/data/pack.json
+entries: 200
+sizes: {10: 10, 15: 170, 20: 20}
+unique F1: 200  unique F6: 200  unique F7: 200
+unique fill sets: 200
+invalid entries: 0
