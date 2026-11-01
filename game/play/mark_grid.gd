@@ -33,6 +33,20 @@ func allow_marks() -> void:
 	_marks_allowed = true
 
 
+## A grid of [param grid_size] holding [param marks] with its own marks blocked
+## ([SCH-mark-grid] L1, [SCH-progress] F4). A stored or restored grid is a value, not
+## the open attempt's grid, so it never carries the stage's marks-allowed flag: the
+## attempt that shows it decides when marks open ([SCH-attempt] F5, I2).
+static func restored(grid_size: int, marks: Array[Array]) -> MarkGrid:
+	var grid := MarkGrid.new(grid_size)
+	for row in marks.size():
+		for column in marks[row].size():
+			var mark_value: CellMark.Mark = marks[row][column]
+			if mark_value != CellMark.Mark.CLEAR and grid.is_inside(row, column):
+				grid._write(row, column, mark_value)
+	return grid
+
+
 func is_inside(row: int, column: int) -> bool:
 	return row >= 0 and row < size and column >= 0 and column < size
 
@@ -108,3 +122,9 @@ func snapshot() -> Array[Array]:
 
 func _cell(row: int, column: int) -> MarkCell:
 	return _cells[row * size + column]
+
+
+## Restores one mark past the marks-allowed gate: [method restored] is the only caller,
+## and the grid it builds is stored or shown by an owner that decides when marks open.
+func _write(row: int, column: int, mark_value: CellMark.Mark) -> void:
+	_cell(row, column).mark = mark_value

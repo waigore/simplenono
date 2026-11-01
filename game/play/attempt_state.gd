@@ -120,6 +120,8 @@ func resume() -> void:
 ## Replaces the grid with [param marks] restored from progress ([SCH-mark-grid] L1).
 ## The status is derived from the restored fills and crosses, the same way a mark would
 ## set it ([SCH-progress] I2/I3), and elapsed stays as the open sequence restored it.
+## [param marks] comes from [method MarkGrid.restored] with marks blocked, so a restore
+## never opens marks while get-set-ready still runs ([SCH-attempt] F5).
 func show_grid(marks: MarkGrid) -> void:
 	_marks = marks
 	_refresh_status()
