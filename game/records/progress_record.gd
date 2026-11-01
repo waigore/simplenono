@@ -39,14 +39,9 @@ func has_personal_best() -> bool:
 	return personal_best >= 0
 
 
-## A copy of the in-progress grid, or null ([SCH-progress] F4).
+## A copy of the in-progress grid, or null ([SCH-progress] F4). The copy carries the
+## marks and no marks-allowed flag, so showing it cannot open a beat still running.
 func marks_copy() -> MarkGrid:
 	if marks == null:
 		return null
-	var copy := MarkGrid.new(marks.size, true)
-	for row in marks.size:
-		for column in marks.size:
-			var mark := marks.mark_at(row, column)
-			if mark != CellMark.Mark.CLEAR:
-				copy.apply_mark(row, column, mark)
-	return copy
+	return MarkGrid.restored(marks.size, marks.snapshot())

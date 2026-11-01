@@ -211,6 +211,8 @@ func rules() -> Rules:
 
 ## S4: an attempt from the progress record; marks and elapsed load when the record is in
 ## progress, and a not-started record opens clear at elapsed 0 ([SCH-progress] I3).
+## The restored grid arrives with marks blocked ([method MarkGrid.restored]), so the beat
+## running on this attempt keeps them blocked until S12 ([SCH-attempt] F5, I2).
 func _state_for(size: int, record: ProgressRecord) -> AttemptState:
 	var state := AttemptState.new(size, record.in_progress)
 	if record.in_progress:

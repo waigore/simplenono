@@ -436,6 +436,46 @@ func test_open_restores_an_in_progress_record():
 	assert_false(attempt.state().paused(), "S4: opening is not paused")
 
 
+# SEQ-open S4 / SCH-attempt F5 and I2: a reopened in-progress attempt stays blocked
+func test_open_in_progress_record_keeps_marks_blocked_until_beat_end():
+	# S4 loads progress with marks blocked through the whole beat, exactly like a fresh
+	# open; the restored grid carries marks and elapsed, never the marks-allowed flag.
+	_pack.progress().commit(TEAPOT_ID, _grid_with([Vector2i(ROW_SEVEN, 2)]), 18, true)
+	var attempt := Attempt.new(_pack)
+	assert_true(attempt.open(TEAPOT_ID), "the teapot opens")
+
+	assert_true(attempt.get_set_ready(), "the beat still runs on a reopen")
+	assert_false(attempt.state().marks_allowed(), "F5: marks stay blocked during the beat")
+	assert_false(
+		attempt.state().apply_mark(ROW_SEVEN, 3, CellMark.Mark.FILL), "I2: a mark changes nothing"
+	)
+	var blocked := attempt.mark(ROW_SEVEN, 3, CellMark.Mark.FILL)
+	assert_eq(blocked.marks.mark_at(ROW_SEVEN, 3), CellMark.Mark.CLEAR, "I2: no mark is written")
+	attempt.advance(3)
+	assert_eq(attempt.state().elapsed(), 18, "O3: elapsed stays frozen during the beat")
+	assert_eq(_pack.progress().record(TEAPOT_ID).elapsed, 18, "I2: the record is not written")
+
+	assert_true(attempt.end_get_set_ready(), "S7: the beat ends")
+	assert_true(attempt.state().marks_allowed(), "S12: marks are allowed once the beat ends")
+	assert_true(
+		attempt.state().apply_mark(ROW_SEVEN, 3, CellMark.Mark.FILL), "S12: a mark applies after"
+	)
+	attempt.advance(3)
+	assert_eq(attempt.state().elapsed(), 21, "O3: elapsed ticks after the beat")
+
+
+# SCH-progress F4: the stored grid is a value, so it never carries marks-allowed
+func test_a_committed_record_grid_blocks_its_own_marks():
+	var marks := _grid_with([Vector2i(ROW_SEVEN, 2)])
+	var record := _pack.progress().commit(TEAPOT_ID, marks, 18, true)
+	assert_false(record.marks.marks_allowed(), "F4: a stored grid is not markable")
+	assert_false(
+		record.marks.apply_mark(ROW_SEVEN, 3, CellMark.Mark.FILL),
+		"F4: a stored grid rejects writes"
+	)
+	assert_false(record.marks_copy().marks_allowed(), "F4: a restored copy is not markable either")
+
+
 func _record_snapshot(record: ProgressRecord) -> Array:
 	return [
 		record.puzzle_id,

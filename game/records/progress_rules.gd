@@ -105,10 +105,4 @@ func reset(puzzle_id: String) -> ProgressRecord:
 ## A copy of [param marks] that keeps its marks but blocks further marking, so a
 ## committed grid is never used to mark ([SCH-progress] F4 is a stored value).
 func _copy_of(marks: MarkGrid) -> MarkGrid:
-	var copy := MarkGrid.new(marks.size, true)
-	for row in marks.size:
-		for column in marks.size:
-			var mark: CellMark.Mark = marks.mark_at(row, column)
-			if mark != CellMark.Mark.CLEAR:
-				copy.apply_mark(row, column, mark)
-	return copy
+	return MarkGrid.restored(marks.size, marks.snapshot())
