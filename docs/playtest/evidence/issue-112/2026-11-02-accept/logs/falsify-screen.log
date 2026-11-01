@@ -1,0 +1,2450 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+res://test/probe_accept_112.gd
+* test_run_entry_is_the_shell_on_its_home_view
+* test_open_button_runs_the_open_leg
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows
+      at line 84
+    [Failed]:  the puzzle screen is on
+      at line 85
+    [Failed]:  the shell view is hidden
+      at line 86
+* test_every_shipped_id_opens_in_free_order
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-199
+      at line 103
+    [Failed]:  the screen is on for pack-199
+      at line 104
+    [Failed]:  the shell view is hidden for pack-199
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-198
+      at line 103
+    [Failed]:  the screen is on for pack-198
+      at line 104
+    [Failed]:  the shell view is hidden for pack-198
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-197
+      at line 103
+    [Failed]:  the screen is on for pack-197
+      at line 104
+    [Failed]:  the shell view is hidden for pack-197
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-196
+      at line 103
+    [Failed]:  the screen is on for pack-196
+      at line 104
+    [Failed]:  the shell view is hidden for pack-196
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-195
+      at line 103
+    [Failed]:  the screen is on for pack-195
+      at line 104
+    [Failed]:  the shell view is hidden for pack-195
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-194
+      at line 103
+    [Failed]:  the screen is on for pack-194
+      at line 104
+    [Failed]:  the shell view is hidden for pack-194
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-193
+      at line 103
+    [Failed]:  the screen is on for pack-193
+      at line 104
+    [Failed]:  the shell view is hidden for pack-193
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-192
+      at line 103
+    [Failed]:  the screen is on for pack-192
+      at line 104
+    [Failed]:  the shell view is hidden for pack-192
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-191
+      at line 103
+    [Failed]:  the screen is on for pack-191
+      at line 104
+    [Failed]:  the shell view is hidden for pack-191
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-190
+      at line 103
+    [Failed]:  the screen is on for pack-190
+      at line 104
+    [Failed]:  the shell view is hidden for pack-190
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-189
+      at line 103
+    [Failed]:  the screen is on for pack-189
+      at line 104
+    [Failed]:  the shell view is hidden for pack-189
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-188
+      at line 103
+    [Failed]:  the screen is on for pack-188
+      at line 104
+    [Failed]:  the shell view is hidden for pack-188
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-187
+      at line 103
+    [Failed]:  the screen is on for pack-187
+      at line 104
+    [Failed]:  the shell view is hidden for pack-187
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-186
+      at line 103
+    [Failed]:  the screen is on for pack-186
+      at line 104
+    [Failed]:  the shell view is hidden for pack-186
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-185
+      at line 103
+    [Failed]:  the screen is on for pack-185
+      at line 104
+    [Failed]:  the shell view is hidden for pack-185
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-184
+      at line 103
+    [Failed]:  the screen is on for pack-184
+      at line 104
+    [Failed]:  the shell view is hidden for pack-184
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-183
+      at line 103
+    [Failed]:  the screen is on for pack-183
+      at line 104
+    [Failed]:  the shell view is hidden for pack-183
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-182
+      at line 103
+    [Failed]:  the screen is on for pack-182
+      at line 104
+    [Failed]:  the shell view is hidden for pack-182
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-181
+      at line 103
+    [Failed]:  the screen is on for pack-181
+      at line 104
+    [Failed]:  the shell view is hidden for pack-181
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-180
+      at line 103
+    [Failed]:  the screen is on for pack-180
+      at line 104
+    [Failed]:  the shell view is hidden for pack-180
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-179
+      at line 103
+    [Failed]:  the screen is on for pack-179
+      at line 104
+    [Failed]:  the shell view is hidden for pack-179
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-178
+      at line 103
+    [Failed]:  the screen is on for pack-178
+      at line 104
+    [Failed]:  the shell view is hidden for pack-178
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-177
+      at line 103
+    [Failed]:  the screen is on for pack-177
+      at line 104
+    [Failed]:  the shell view is hidden for pack-177
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-176
+      at line 103
+    [Failed]:  the screen is on for pack-176
+      at line 104
+    [Failed]:  the shell view is hidden for pack-176
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-175
+      at line 103
+    [Failed]:  the screen is on for pack-175
+      at line 104
+    [Failed]:  the shell view is hidden for pack-175
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-174
+      at line 103
+    [Failed]:  the screen is on for pack-174
+      at line 104
+    [Failed]:  the shell view is hidden for pack-174
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-173
+      at line 103
+    [Failed]:  the screen is on for pack-173
+      at line 104
+    [Failed]:  the shell view is hidden for pack-173
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-172
+      at line 103
+    [Failed]:  the screen is on for pack-172
+      at line 104
+    [Failed]:  the shell view is hidden for pack-172
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-171
+      at line 103
+    [Failed]:  the screen is on for pack-171
+      at line 104
+    [Failed]:  the shell view is hidden for pack-171
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-170
+      at line 103
+    [Failed]:  the screen is on for pack-170
+      at line 104
+    [Failed]:  the shell view is hidden for pack-170
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-169
+      at line 103
+    [Failed]:  the screen is on for pack-169
+      at line 104
+    [Failed]:  the shell view is hidden for pack-169
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-168
+      at line 103
+    [Failed]:  the screen is on for pack-168
+      at line 104
+    [Failed]:  the shell view is hidden for pack-168
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-167
+      at line 103
+    [Failed]:  the screen is on for pack-167
+      at line 104
+    [Failed]:  the shell view is hidden for pack-167
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-166
+      at line 103
+    [Failed]:  the screen is on for pack-166
+      at line 104
+    [Failed]:  the shell view is hidden for pack-166
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-165
+      at line 103
+    [Failed]:  the screen is on for pack-165
+      at line 104
+    [Failed]:  the shell view is hidden for pack-165
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-164
+      at line 103
+    [Failed]:  the screen is on for pack-164
+      at line 104
+    [Failed]:  the shell view is hidden for pack-164
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-163
+      at line 103
+    [Failed]:  the screen is on for pack-163
+      at line 104
+    [Failed]:  the shell view is hidden for pack-163
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-162
+      at line 103
+    [Failed]:  the screen is on for pack-162
+      at line 104
+    [Failed]:  the shell view is hidden for pack-162
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-161
+      at line 103
+    [Failed]:  the screen is on for pack-161
+      at line 104
+    [Failed]:  the shell view is hidden for pack-161
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-160
+      at line 103
+    [Failed]:  the screen is on for pack-160
+      at line 104
+    [Failed]:  the shell view is hidden for pack-160
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-159
+      at line 103
+    [Failed]:  the screen is on for pack-159
+      at line 104
+    [Failed]:  the shell view is hidden for pack-159
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-158
+      at line 103
+    [Failed]:  the screen is on for pack-158
+      at line 104
+    [Failed]:  the shell view is hidden for pack-158
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-157
+      at line 103
+    [Failed]:  the screen is on for pack-157
+      at line 104
+    [Failed]:  the shell view is hidden for pack-157
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-156
+      at line 103
+    [Failed]:  the screen is on for pack-156
+      at line 104
+    [Failed]:  the shell view is hidden for pack-156
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-155
+      at line 103
+    [Failed]:  the screen is on for pack-155
+      at line 104
+    [Failed]:  the shell view is hidden for pack-155
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-154
+      at line 103
+    [Failed]:  the screen is on for pack-154
+      at line 104
+    [Failed]:  the shell view is hidden for pack-154
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-153
+      at line 103
+    [Failed]:  the screen is on for pack-153
+      at line 104
+    [Failed]:  the shell view is hidden for pack-153
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-152
+      at line 103
+    [Failed]:  the screen is on for pack-152
+      at line 104
+    [Failed]:  the shell view is hidden for pack-152
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-151
+      at line 103
+    [Failed]:  the screen is on for pack-151
+      at line 104
+    [Failed]:  the shell view is hidden for pack-151
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-150
+      at line 103
+    [Failed]:  the screen is on for pack-150
+      at line 104
+    [Failed]:  the shell view is hidden for pack-150
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-149
+      at line 103
+    [Failed]:  the screen is on for pack-149
+      at line 104
+    [Failed]:  the shell view is hidden for pack-149
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-148
+      at line 103
+    [Failed]:  the screen is on for pack-148
+      at line 104
+    [Failed]:  the shell view is hidden for pack-148
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-147
+      at line 103
+    [Failed]:  the screen is on for pack-147
+      at line 104
+    [Failed]:  the shell view is hidden for pack-147
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-146
+      at line 103
+    [Failed]:  the screen is on for pack-146
+      at line 104
+    [Failed]:  the shell view is hidden for pack-146
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-145
+      at line 103
+    [Failed]:  the screen is on for pack-145
+      at line 104
+    [Failed]:  the shell view is hidden for pack-145
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-144
+      at line 103
+    [Failed]:  the screen is on for pack-144
+      at line 104
+    [Failed]:  the shell view is hidden for pack-144
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-143
+      at line 103
+    [Failed]:  the screen is on for pack-143
+      at line 104
+    [Failed]:  the shell view is hidden for pack-143
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-142
+      at line 103
+    [Failed]:  the screen is on for pack-142
+      at line 104
+    [Failed]:  the shell view is hidden for pack-142
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-141
+      at line 103
+    [Failed]:  the screen is on for pack-141
+      at line 104
+    [Failed]:  the shell view is hidden for pack-141
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-140
+      at line 103
+    [Failed]:  the screen is on for pack-140
+      at line 104
+    [Failed]:  the shell view is hidden for pack-140
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-139
+      at line 103
+    [Failed]:  the screen is on for pack-139
+      at line 104
+    [Failed]:  the shell view is hidden for pack-139
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-138
+      at line 103
+    [Failed]:  the screen is on for pack-138
+      at line 104
+    [Failed]:  the shell view is hidden for pack-138
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-137
+      at line 103
+    [Failed]:  the screen is on for pack-137
+      at line 104
+    [Failed]:  the shell view is hidden for pack-137
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-136
+      at line 103
+    [Failed]:  the screen is on for pack-136
+      at line 104
+    [Failed]:  the shell view is hidden for pack-136
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-135
+      at line 103
+    [Failed]:  the screen is on for pack-135
+      at line 104
+    [Failed]:  the shell view is hidden for pack-135
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-134
+      at line 103
+    [Failed]:  the screen is on for pack-134
+      at line 104
+    [Failed]:  the shell view is hidden for pack-134
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-133
+      at line 103
+    [Failed]:  the screen is on for pack-133
+      at line 104
+    [Failed]:  the shell view is hidden for pack-133
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-132
+      at line 103
+    [Failed]:  the screen is on for pack-132
+      at line 104
+    [Failed]:  the shell view is hidden for pack-132
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-131
+      at line 103
+    [Failed]:  the screen is on for pack-131
+      at line 104
+    [Failed]:  the shell view is hidden for pack-131
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-130
+      at line 103
+    [Failed]:  the screen is on for pack-130
+      at line 104
+    [Failed]:  the shell view is hidden for pack-130
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-129
+      at line 103
+    [Failed]:  the screen is on for pack-129
+      at line 104
+    [Failed]:  the shell view is hidden for pack-129
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-128
+      at line 103
+    [Failed]:  the screen is on for pack-128
+      at line 104
+    [Failed]:  the shell view is hidden for pack-128
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-127
+      at line 103
+    [Failed]:  the screen is on for pack-127
+      at line 104
+    [Failed]:  the shell view is hidden for pack-127
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-126
+      at line 103
+    [Failed]:  the screen is on for pack-126
+      at line 104
+    [Failed]:  the shell view is hidden for pack-126
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-125
+      at line 103
+    [Failed]:  the screen is on for pack-125
+      at line 104
+    [Failed]:  the shell view is hidden for pack-125
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-124
+      at line 103
+    [Failed]:  the screen is on for pack-124
+      at line 104
+    [Failed]:  the shell view is hidden for pack-124
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-123
+      at line 103
+    [Failed]:  the screen is on for pack-123
+      at line 104
+    [Failed]:  the shell view is hidden for pack-123
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-122
+      at line 103
+    [Failed]:  the screen is on for pack-122
+      at line 104
+    [Failed]:  the shell view is hidden for pack-122
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-121
+      at line 103
+    [Failed]:  the screen is on for pack-121
+      at line 104
+    [Failed]:  the shell view is hidden for pack-121
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-120
+      at line 103
+    [Failed]:  the screen is on for pack-120
+      at line 104
+    [Failed]:  the shell view is hidden for pack-120
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-119
+      at line 103
+    [Failed]:  the screen is on for pack-119
+      at line 104
+    [Failed]:  the shell view is hidden for pack-119
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-118
+      at line 103
+    [Failed]:  the screen is on for pack-118
+      at line 104
+    [Failed]:  the shell view is hidden for pack-118
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-117
+      at line 103
+    [Failed]:  the screen is on for pack-117
+      at line 104
+    [Failed]:  the shell view is hidden for pack-117
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-116
+      at line 103
+    [Failed]:  the screen is on for pack-116
+      at line 104
+    [Failed]:  the shell view is hidden for pack-116
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-115
+      at line 103
+    [Failed]:  the screen is on for pack-115
+      at line 104
+    [Failed]:  the shell view is hidden for pack-115
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-114
+      at line 103
+    [Failed]:  the screen is on for pack-114
+      at line 104
+    [Failed]:  the shell view is hidden for pack-114
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-113
+      at line 103
+    [Failed]:  the screen is on for pack-113
+      at line 104
+    [Failed]:  the shell view is hidden for pack-113
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-112
+      at line 103
+    [Failed]:  the screen is on for pack-112
+      at line 104
+    [Failed]:  the shell view is hidden for pack-112
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-111
+      at line 103
+    [Failed]:  the screen is on for pack-111
+      at line 104
+    [Failed]:  the shell view is hidden for pack-111
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-110
+      at line 103
+    [Failed]:  the screen is on for pack-110
+      at line 104
+    [Failed]:  the shell view is hidden for pack-110
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-109
+      at line 103
+    [Failed]:  the screen is on for pack-109
+      at line 104
+    [Failed]:  the shell view is hidden for pack-109
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-108
+      at line 103
+    [Failed]:  the screen is on for pack-108
+      at line 104
+    [Failed]:  the shell view is hidden for pack-108
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-107
+      at line 103
+    [Failed]:  the screen is on for pack-107
+      at line 104
+    [Failed]:  the shell view is hidden for pack-107
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-106
+      at line 103
+    [Failed]:  the screen is on for pack-106
+      at line 104
+    [Failed]:  the shell view is hidden for pack-106
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-105
+      at line 103
+    [Failed]:  the screen is on for pack-105
+      at line 104
+    [Failed]:  the shell view is hidden for pack-105
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-104
+      at line 103
+    [Failed]:  the screen is on for pack-104
+      at line 104
+    [Failed]:  the shell view is hidden for pack-104
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-103
+      at line 103
+    [Failed]:  the screen is on for pack-103
+      at line 104
+    [Failed]:  the shell view is hidden for pack-103
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-102
+      at line 103
+    [Failed]:  the screen is on for pack-102
+      at line 104
+    [Failed]:  the shell view is hidden for pack-102
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-101
+      at line 103
+    [Failed]:  the screen is on for pack-101
+      at line 104
+    [Failed]:  the shell view is hidden for pack-101
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-100
+      at line 103
+    [Failed]:  the screen is on for pack-100
+      at line 104
+    [Failed]:  the shell view is hidden for pack-100
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-099
+      at line 103
+    [Failed]:  the screen is on for pack-099
+      at line 104
+    [Failed]:  the shell view is hidden for pack-099
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-098
+      at line 103
+    [Failed]:  the screen is on for pack-098
+      at line 104
+    [Failed]:  the shell view is hidden for pack-098
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-097
+      at line 103
+    [Failed]:  the screen is on for pack-097
+      at line 104
+    [Failed]:  the shell view is hidden for pack-097
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-096
+      at line 103
+    [Failed]:  the screen is on for pack-096
+      at line 104
+    [Failed]:  the shell view is hidden for pack-096
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-095
+      at line 103
+    [Failed]:  the screen is on for pack-095
+      at line 104
+    [Failed]:  the shell view is hidden for pack-095
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-094
+      at line 103
+    [Failed]:  the screen is on for pack-094
+      at line 104
+    [Failed]:  the shell view is hidden for pack-094
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-093
+      at line 103
+    [Failed]:  the screen is on for pack-093
+      at line 104
+    [Failed]:  the shell view is hidden for pack-093
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-092
+      at line 103
+    [Failed]:  the screen is on for pack-092
+      at line 104
+    [Failed]:  the shell view is hidden for pack-092
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-091
+      at line 103
+    [Failed]:  the screen is on for pack-091
+      at line 104
+    [Failed]:  the shell view is hidden for pack-091
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-090
+      at line 103
+    [Failed]:  the screen is on for pack-090
+      at line 104
+    [Failed]:  the shell view is hidden for pack-090
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-089
+      at line 103
+    [Failed]:  the screen is on for pack-089
+      at line 104
+    [Failed]:  the shell view is hidden for pack-089
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-088
+      at line 103
+    [Failed]:  the screen is on for pack-088
+      at line 104
+    [Failed]:  the shell view is hidden for pack-088
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-087
+      at line 103
+    [Failed]:  the screen is on for pack-087
+      at line 104
+    [Failed]:  the shell view is hidden for pack-087
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-086
+      at line 103
+    [Failed]:  the screen is on for pack-086
+      at line 104
+    [Failed]:  the shell view is hidden for pack-086
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-085
+      at line 103
+    [Failed]:  the screen is on for pack-085
+      at line 104
+    [Failed]:  the shell view is hidden for pack-085
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-084
+      at line 103
+    [Failed]:  the screen is on for pack-084
+      at line 104
+    [Failed]:  the shell view is hidden for pack-084
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-083
+      at line 103
+    [Failed]:  the screen is on for pack-083
+      at line 104
+    [Failed]:  the shell view is hidden for pack-083
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-082
+      at line 103
+    [Failed]:  the screen is on for pack-082
+      at line 104
+    [Failed]:  the shell view is hidden for pack-082
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-081
+      at line 103
+    [Failed]:  the screen is on for pack-081
+      at line 104
+    [Failed]:  the shell view is hidden for pack-081
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-080
+      at line 103
+    [Failed]:  the screen is on for pack-080
+      at line 104
+    [Failed]:  the shell view is hidden for pack-080
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-079
+      at line 103
+    [Failed]:  the screen is on for pack-079
+      at line 104
+    [Failed]:  the shell view is hidden for pack-079
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-078
+      at line 103
+    [Failed]:  the screen is on for pack-078
+      at line 104
+    [Failed]:  the shell view is hidden for pack-078
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-077
+      at line 103
+    [Failed]:  the screen is on for pack-077
+      at line 104
+    [Failed]:  the shell view is hidden for pack-077
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-076
+      at line 103
+    [Failed]:  the screen is on for pack-076
+      at line 104
+    [Failed]:  the shell view is hidden for pack-076
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-075
+      at line 103
+    [Failed]:  the screen is on for pack-075
+      at line 104
+    [Failed]:  the shell view is hidden for pack-075
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-074
+      at line 103
+    [Failed]:  the screen is on for pack-074
+      at line 104
+    [Failed]:  the shell view is hidden for pack-074
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-073
+      at line 103
+    [Failed]:  the screen is on for pack-073
+      at line 104
+    [Failed]:  the shell view is hidden for pack-073
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-072
+      at line 103
+    [Failed]:  the screen is on for pack-072
+      at line 104
+    [Failed]:  the shell view is hidden for pack-072
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-071
+      at line 103
+    [Failed]:  the screen is on for pack-071
+      at line 104
+    [Failed]:  the shell view is hidden for pack-071
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-070
+      at line 103
+    [Failed]:  the screen is on for pack-070
+      at line 104
+    [Failed]:  the shell view is hidden for pack-070
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-069
+      at line 103
+    [Failed]:  the screen is on for pack-069
+      at line 104
+    [Failed]:  the shell view is hidden for pack-069
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-068
+      at line 103
+    [Failed]:  the screen is on for pack-068
+      at line 104
+    [Failed]:  the shell view is hidden for pack-068
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-067
+      at line 103
+    [Failed]:  the screen is on for pack-067
+      at line 104
+    [Failed]:  the shell view is hidden for pack-067
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-066
+      at line 103
+    [Failed]:  the screen is on for pack-066
+      at line 104
+    [Failed]:  the shell view is hidden for pack-066
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-065
+      at line 103
+    [Failed]:  the screen is on for pack-065
+      at line 104
+    [Failed]:  the shell view is hidden for pack-065
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-064
+      at line 103
+    [Failed]:  the screen is on for pack-064
+      at line 104
+    [Failed]:  the shell view is hidden for pack-064
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-063
+      at line 103
+    [Failed]:  the screen is on for pack-063
+      at line 104
+    [Failed]:  the shell view is hidden for pack-063
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-062
+      at line 103
+    [Failed]:  the screen is on for pack-062
+      at line 104
+    [Failed]:  the shell view is hidden for pack-062
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-061
+      at line 103
+    [Failed]:  the screen is on for pack-061
+      at line 104
+    [Failed]:  the shell view is hidden for pack-061
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-060
+      at line 103
+    [Failed]:  the screen is on for pack-060
+      at line 104
+    [Failed]:  the shell view is hidden for pack-060
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-059
+      at line 103
+    [Failed]:  the screen is on for pack-059
+      at line 104
+    [Failed]:  the shell view is hidden for pack-059
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-058
+      at line 103
+    [Failed]:  the screen is on for pack-058
+      at line 104
+    [Failed]:  the shell view is hidden for pack-058
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-057
+      at line 103
+    [Failed]:  the screen is on for pack-057
+      at line 104
+    [Failed]:  the shell view is hidden for pack-057
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-056
+      at line 103
+    [Failed]:  the screen is on for pack-056
+      at line 104
+    [Failed]:  the shell view is hidden for pack-056
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-055
+      at line 103
+    [Failed]:  the screen is on for pack-055
+      at line 104
+    [Failed]:  the shell view is hidden for pack-055
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-054
+      at line 103
+    [Failed]:  the screen is on for pack-054
+      at line 104
+    [Failed]:  the shell view is hidden for pack-054
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-053
+      at line 103
+    [Failed]:  the screen is on for pack-053
+      at line 104
+    [Failed]:  the shell view is hidden for pack-053
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-052
+      at line 103
+    [Failed]:  the screen is on for pack-052
+      at line 104
+    [Failed]:  the shell view is hidden for pack-052
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-051
+      at line 103
+    [Failed]:  the screen is on for pack-051
+      at line 104
+    [Failed]:  the shell view is hidden for pack-051
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-050
+      at line 103
+    [Failed]:  the screen is on for pack-050
+      at line 104
+    [Failed]:  the shell view is hidden for pack-050
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-049
+      at line 103
+    [Failed]:  the screen is on for pack-049
+      at line 104
+    [Failed]:  the shell view is hidden for pack-049
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-048
+      at line 103
+    [Failed]:  the screen is on for pack-048
+      at line 104
+    [Failed]:  the shell view is hidden for pack-048
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-047
+      at line 103
+    [Failed]:  the screen is on for pack-047
+      at line 104
+    [Failed]:  the shell view is hidden for pack-047
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-046
+      at line 103
+    [Failed]:  the screen is on for pack-046
+      at line 104
+    [Failed]:  the shell view is hidden for pack-046
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-045
+      at line 103
+    [Failed]:  the screen is on for pack-045
+      at line 104
+    [Failed]:  the shell view is hidden for pack-045
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-044
+      at line 103
+    [Failed]:  the screen is on for pack-044
+      at line 104
+    [Failed]:  the shell view is hidden for pack-044
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-043
+      at line 103
+    [Failed]:  the screen is on for pack-043
+      at line 104
+    [Failed]:  the shell view is hidden for pack-043
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-042
+      at line 103
+    [Failed]:  the screen is on for pack-042
+      at line 104
+    [Failed]:  the shell view is hidden for pack-042
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-041
+      at line 103
+    [Failed]:  the screen is on for pack-041
+      at line 104
+    [Failed]:  the shell view is hidden for pack-041
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-040
+      at line 103
+    [Failed]:  the screen is on for pack-040
+      at line 104
+    [Failed]:  the shell view is hidden for pack-040
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-039
+      at line 103
+    [Failed]:  the screen is on for pack-039
+      at line 104
+    [Failed]:  the shell view is hidden for pack-039
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-038
+      at line 103
+    [Failed]:  the screen is on for pack-038
+      at line 104
+    [Failed]:  the shell view is hidden for pack-038
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-037
+      at line 103
+    [Failed]:  the screen is on for pack-037
+      at line 104
+    [Failed]:  the shell view is hidden for pack-037
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-036
+      at line 103
+    [Failed]:  the screen is on for pack-036
+      at line 104
+    [Failed]:  the shell view is hidden for pack-036
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-035
+      at line 103
+    [Failed]:  the screen is on for pack-035
+      at line 104
+    [Failed]:  the shell view is hidden for pack-035
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-034
+      at line 103
+    [Failed]:  the screen is on for pack-034
+      at line 104
+    [Failed]:  the shell view is hidden for pack-034
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-033
+      at line 103
+    [Failed]:  the screen is on for pack-033
+      at line 104
+    [Failed]:  the shell view is hidden for pack-033
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-032
+      at line 103
+    [Failed]:  the screen is on for pack-032
+      at line 104
+    [Failed]:  the shell view is hidden for pack-032
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-031
+      at line 103
+    [Failed]:  the screen is on for pack-031
+      at line 104
+    [Failed]:  the shell view is hidden for pack-031
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-030
+      at line 103
+    [Failed]:  the screen is on for pack-030
+      at line 104
+    [Failed]:  the shell view is hidden for pack-030
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-029
+      at line 103
+    [Failed]:  the screen is on for pack-029
+      at line 104
+    [Failed]:  the shell view is hidden for pack-029
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-028
+      at line 103
+    [Failed]:  the screen is on for pack-028
+      at line 104
+    [Failed]:  the shell view is hidden for pack-028
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-027
+      at line 103
+    [Failed]:  the screen is on for pack-027
+      at line 104
+    [Failed]:  the shell view is hidden for pack-027
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-026
+      at line 103
+    [Failed]:  the screen is on for pack-026
+      at line 104
+    [Failed]:  the shell view is hidden for pack-026
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-025
+      at line 103
+    [Failed]:  the screen is on for pack-025
+      at line 104
+    [Failed]:  the shell view is hidden for pack-025
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-024
+      at line 103
+    [Failed]:  the screen is on for pack-024
+      at line 104
+    [Failed]:  the shell view is hidden for pack-024
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-023
+      at line 103
+    [Failed]:  the screen is on for pack-023
+      at line 104
+    [Failed]:  the shell view is hidden for pack-023
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-022
+      at line 103
+    [Failed]:  the screen is on for pack-022
+      at line 104
+    [Failed]:  the shell view is hidden for pack-022
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-021
+      at line 103
+    [Failed]:  the screen is on for pack-021
+      at line 104
+    [Failed]:  the shell view is hidden for pack-021
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-020
+      at line 103
+    [Failed]:  the screen is on for pack-020
+      at line 104
+    [Failed]:  the shell view is hidden for pack-020
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-019
+      at line 103
+    [Failed]:  the screen is on for pack-019
+      at line 104
+    [Failed]:  the shell view is hidden for pack-019
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-018
+      at line 103
+    [Failed]:  the screen is on for pack-018
+      at line 104
+    [Failed]:  the shell view is hidden for pack-018
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-017
+      at line 103
+    [Failed]:  the screen is on for pack-017
+      at line 104
+    [Failed]:  the shell view is hidden for pack-017
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-016
+      at line 103
+    [Failed]:  the screen is on for pack-016
+      at line 104
+    [Failed]:  the shell view is hidden for pack-016
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-015
+      at line 103
+    [Failed]:  the screen is on for pack-015
+      at line 104
+    [Failed]:  the shell view is hidden for pack-015
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-014
+      at line 103
+    [Failed]:  the screen is on for pack-014
+      at line 104
+    [Failed]:  the shell view is hidden for pack-014
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-013
+      at line 103
+    [Failed]:  the screen is on for pack-013
+      at line 104
+    [Failed]:  the shell view is hidden for pack-013
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-012
+      at line 103
+    [Failed]:  the screen is on for pack-012
+      at line 104
+    [Failed]:  the shell view is hidden for pack-012
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-011
+      at line 103
+    [Failed]:  the screen is on for pack-011
+      at line 104
+    [Failed]:  the shell view is hidden for pack-011
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-010
+      at line 103
+    [Failed]:  the screen is on for pack-010
+      at line 104
+    [Failed]:  the shell view is hidden for pack-010
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-009
+      at line 103
+    [Failed]:  the screen is on for pack-009
+      at line 104
+    [Failed]:  the shell view is hidden for pack-009
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-008
+      at line 103
+    [Failed]:  the screen is on for pack-008
+      at line 104
+    [Failed]:  the shell view is hidden for pack-008
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-007
+      at line 103
+    [Failed]:  the screen is on for pack-007
+      at line 104
+    [Failed]:  the shell view is hidden for pack-007
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-006
+      at line 103
+    [Failed]:  the screen is on for pack-006
+      at line 104
+    [Failed]:  the shell view is hidden for pack-006
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-005
+      at line 103
+    [Failed]:  the screen is on for pack-005
+      at line 104
+    [Failed]:  the shell view is hidden for pack-005
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-004
+      at line 103
+    [Failed]:  the screen is on for pack-004
+      at line 104
+    [Failed]:  the shell view is hidden for pack-004
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-003
+      at line 103
+    [Failed]:  the screen is on for pack-003
+      at line 104
+    [Failed]:  the shell view is hidden for pack-003
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-002
+      at line 103
+    [Failed]:  the screen is on for pack-002
+      at line 104
+    [Failed]:  the shell view is hidden for pack-002
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-001
+      at line 103
+    [Failed]:  the screen is on for pack-001
+      at line 104
+    [Failed]:  the shell view is hidden for pack-001
+      at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-000
+      at line 103
+    [Failed]:  the screen is on for pack-000
+      at line 104
+    [Failed]:  the shell view is hidden for pack-000
+      at line 105
+    <57300 orphan nodes; GUT node dump suppressed>
+* test_unknown_id_on_the_shell_view_changes_nothing
+* test_unknown_id_with_puzzle_open_changes_nothing
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  the current screen stays
+      at line 136
+* test_open_leg_calls_pack_o3_and_o4
+* test_s13_ready_edge_ends_the_beat
+* test_leave_returns_to_the_shell_and_a_new_open_still_works
+    <470 orphan nodes; GUT node dump suppressed>
+* test_shell_has_no_gallery_result_or_persistence_surface
+6/9 passed.
+==============================================
+= Run Summary
+==============================================
+res://test/probe_accept_112.gd
+- test_open_button_runs_the_open_leg
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows
+          at line 84
+    [Failed]:  the puzzle screen is on
+          at line 85
+    [Failed]:  the shell view is hidden
+          at line 86
+- test_every_shipped_id_opens_in_free_order
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-199
+          at line 103
+    [Failed]:  the screen is on for pack-199
+          at line 104
+    [Failed]:  the shell view is hidden for pack-199
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-198
+          at line 103
+    [Failed]:  the screen is on for pack-198
+          at line 104
+    [Failed]:  the shell view is hidden for pack-198
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-197
+          at line 103
+    [Failed]:  the screen is on for pack-197
+          at line 104
+    [Failed]:  the shell view is hidden for pack-197
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-196
+          at line 103
+    [Failed]:  the screen is on for pack-196
+          at line 104
+    [Failed]:  the shell view is hidden for pack-196
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-195
+          at line 103
+    [Failed]:  the screen is on for pack-195
+          at line 104
+    [Failed]:  the shell view is hidden for pack-195
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-194
+          at line 103
+    [Failed]:  the screen is on for pack-194
+          at line 104
+    [Failed]:  the shell view is hidden for pack-194
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-193
+          at line 103
+    [Failed]:  the screen is on for pack-193
+          at line 104
+    [Failed]:  the shell view is hidden for pack-193
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-192
+          at line 103
+    [Failed]:  the screen is on for pack-192
+          at line 104
+    [Failed]:  the shell view is hidden for pack-192
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-191
+          at line 103
+    [Failed]:  the screen is on for pack-191
+          at line 104
+    [Failed]:  the shell view is hidden for pack-191
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-190
+          at line 103
+    [Failed]:  the screen is on for pack-190
+          at line 104
+    [Failed]:  the shell view is hidden for pack-190
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-189
+          at line 103
+    [Failed]:  the screen is on for pack-189
+          at line 104
+    [Failed]:  the shell view is hidden for pack-189
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-188
+          at line 103
+    [Failed]:  the screen is on for pack-188
+          at line 104
+    [Failed]:  the shell view is hidden for pack-188
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-187
+          at line 103
+    [Failed]:  the screen is on for pack-187
+          at line 104
+    [Failed]:  the shell view is hidden for pack-187
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-186
+          at line 103
+    [Failed]:  the screen is on for pack-186
+          at line 104
+    [Failed]:  the shell view is hidden for pack-186
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-185
+          at line 103
+    [Failed]:  the screen is on for pack-185
+          at line 104
+    [Failed]:  the shell view is hidden for pack-185
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-184
+          at line 103
+    [Failed]:  the screen is on for pack-184
+          at line 104
+    [Failed]:  the shell view is hidden for pack-184
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-183
+          at line 103
+    [Failed]:  the screen is on for pack-183
+          at line 104
+    [Failed]:  the shell view is hidden for pack-183
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-182
+          at line 103
+    [Failed]:  the screen is on for pack-182
+          at line 104
+    [Failed]:  the shell view is hidden for pack-182
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-181
+          at line 103
+    [Failed]:  the screen is on for pack-181
+          at line 104
+    [Failed]:  the shell view is hidden for pack-181
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-180
+          at line 103
+    [Failed]:  the screen is on for pack-180
+          at line 104
+    [Failed]:  the shell view is hidden for pack-180
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-179
+          at line 103
+    [Failed]:  the screen is on for pack-179
+          at line 104
+    [Failed]:  the shell view is hidden for pack-179
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-178
+          at line 103
+    [Failed]:  the screen is on for pack-178
+          at line 104
+    [Failed]:  the shell view is hidden for pack-178
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-177
+          at line 103
+    [Failed]:  the screen is on for pack-177
+          at line 104
+    [Failed]:  the shell view is hidden for pack-177
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-176
+          at line 103
+    [Failed]:  the screen is on for pack-176
+          at line 104
+    [Failed]:  the shell view is hidden for pack-176
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-175
+          at line 103
+    [Failed]:  the screen is on for pack-175
+          at line 104
+    [Failed]:  the shell view is hidden for pack-175
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-174
+          at line 103
+    [Failed]:  the screen is on for pack-174
+          at line 104
+    [Failed]:  the shell view is hidden for pack-174
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-173
+          at line 103
+    [Failed]:  the screen is on for pack-173
+          at line 104
+    [Failed]:  the shell view is hidden for pack-173
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-172
+          at line 103
+    [Failed]:  the screen is on for pack-172
+          at line 104
+    [Failed]:  the shell view is hidden for pack-172
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-171
+          at line 103
+    [Failed]:  the screen is on for pack-171
+          at line 104
+    [Failed]:  the shell view is hidden for pack-171
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-170
+          at line 103
+    [Failed]:  the screen is on for pack-170
+          at line 104
+    [Failed]:  the shell view is hidden for pack-170
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-169
+          at line 103
+    [Failed]:  the screen is on for pack-169
+          at line 104
+    [Failed]:  the shell view is hidden for pack-169
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-168
+          at line 103
+    [Failed]:  the screen is on for pack-168
+          at line 104
+    [Failed]:  the shell view is hidden for pack-168
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-167
+          at line 103
+    [Failed]:  the screen is on for pack-167
+          at line 104
+    [Failed]:  the shell view is hidden for pack-167
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-166
+          at line 103
+    [Failed]:  the screen is on for pack-166
+          at line 104
+    [Failed]:  the shell view is hidden for pack-166
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-165
+          at line 103
+    [Failed]:  the screen is on for pack-165
+          at line 104
+    [Failed]:  the shell view is hidden for pack-165
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-164
+          at line 103
+    [Failed]:  the screen is on for pack-164
+          at line 104
+    [Failed]:  the shell view is hidden for pack-164
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-163
+          at line 103
+    [Failed]:  the screen is on for pack-163
+          at line 104
+    [Failed]:  the shell view is hidden for pack-163
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-162
+          at line 103
+    [Failed]:  the screen is on for pack-162
+          at line 104
+    [Failed]:  the shell view is hidden for pack-162
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-161
+          at line 103
+    [Failed]:  the screen is on for pack-161
+          at line 104
+    [Failed]:  the shell view is hidden for pack-161
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-160
+          at line 103
+    [Failed]:  the screen is on for pack-160
+          at line 104
+    [Failed]:  the shell view is hidden for pack-160
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-159
+          at line 103
+    [Failed]:  the screen is on for pack-159
+          at line 104
+    [Failed]:  the shell view is hidden for pack-159
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-158
+          at line 103
+    [Failed]:  the screen is on for pack-158
+          at line 104
+    [Failed]:  the shell view is hidden for pack-158
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-157
+          at line 103
+    [Failed]:  the screen is on for pack-157
+          at line 104
+    [Failed]:  the shell view is hidden for pack-157
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-156
+          at line 103
+    [Failed]:  the screen is on for pack-156
+          at line 104
+    [Failed]:  the shell view is hidden for pack-156
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-155
+          at line 103
+    [Failed]:  the screen is on for pack-155
+          at line 104
+    [Failed]:  the shell view is hidden for pack-155
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-154
+          at line 103
+    [Failed]:  the screen is on for pack-154
+          at line 104
+    [Failed]:  the shell view is hidden for pack-154
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-153
+          at line 103
+    [Failed]:  the screen is on for pack-153
+          at line 104
+    [Failed]:  the shell view is hidden for pack-153
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-152
+          at line 103
+    [Failed]:  the screen is on for pack-152
+          at line 104
+    [Failed]:  the shell view is hidden for pack-152
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-151
+          at line 103
+    [Failed]:  the screen is on for pack-151
+          at line 104
+    [Failed]:  the shell view is hidden for pack-151
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-150
+          at line 103
+    [Failed]:  the screen is on for pack-150
+          at line 104
+    [Failed]:  the shell view is hidden for pack-150
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-149
+          at line 103
+    [Failed]:  the screen is on for pack-149
+          at line 104
+    [Failed]:  the shell view is hidden for pack-149
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-148
+          at line 103
+    [Failed]:  the screen is on for pack-148
+          at line 104
+    [Failed]:  the shell view is hidden for pack-148
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-147
+          at line 103
+    [Failed]:  the screen is on for pack-147
+          at line 104
+    [Failed]:  the shell view is hidden for pack-147
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-146
+          at line 103
+    [Failed]:  the screen is on for pack-146
+          at line 104
+    [Failed]:  the shell view is hidden for pack-146
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-145
+          at line 103
+    [Failed]:  the screen is on for pack-145
+          at line 104
+    [Failed]:  the shell view is hidden for pack-145
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-144
+          at line 103
+    [Failed]:  the screen is on for pack-144
+          at line 104
+    [Failed]:  the shell view is hidden for pack-144
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-143
+          at line 103
+    [Failed]:  the screen is on for pack-143
+          at line 104
+    [Failed]:  the shell view is hidden for pack-143
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-142
+          at line 103
+    [Failed]:  the screen is on for pack-142
+          at line 104
+    [Failed]:  the shell view is hidden for pack-142
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-141
+          at line 103
+    [Failed]:  the screen is on for pack-141
+          at line 104
+    [Failed]:  the shell view is hidden for pack-141
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-140
+          at line 103
+    [Failed]:  the screen is on for pack-140
+          at line 104
+    [Failed]:  the shell view is hidden for pack-140
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-139
+          at line 103
+    [Failed]:  the screen is on for pack-139
+          at line 104
+    [Failed]:  the shell view is hidden for pack-139
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-138
+          at line 103
+    [Failed]:  the screen is on for pack-138
+          at line 104
+    [Failed]:  the shell view is hidden for pack-138
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-137
+          at line 103
+    [Failed]:  the screen is on for pack-137
+          at line 104
+    [Failed]:  the shell view is hidden for pack-137
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-136
+          at line 103
+    [Failed]:  the screen is on for pack-136
+          at line 104
+    [Failed]:  the shell view is hidden for pack-136
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-135
+          at line 103
+    [Failed]:  the screen is on for pack-135
+          at line 104
+    [Failed]:  the shell view is hidden for pack-135
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-134
+          at line 103
+    [Failed]:  the screen is on for pack-134
+          at line 104
+    [Failed]:  the shell view is hidden for pack-134
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-133
+          at line 103
+    [Failed]:  the screen is on for pack-133
+          at line 104
+    [Failed]:  the shell view is hidden for pack-133
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-132
+          at line 103
+    [Failed]:  the screen is on for pack-132
+          at line 104
+    [Failed]:  the shell view is hidden for pack-132
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-131
+          at line 103
+    [Failed]:  the screen is on for pack-131
+          at line 104
+    [Failed]:  the shell view is hidden for pack-131
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-130
+          at line 103
+    [Failed]:  the screen is on for pack-130
+          at line 104
+    [Failed]:  the shell view is hidden for pack-130
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-129
+          at line 103
+    [Failed]:  the screen is on for pack-129
+          at line 104
+    [Failed]:  the shell view is hidden for pack-129
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-128
+          at line 103
+    [Failed]:  the screen is on for pack-128
+          at line 104
+    [Failed]:  the shell view is hidden for pack-128
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-127
+          at line 103
+    [Failed]:  the screen is on for pack-127
+          at line 104
+    [Failed]:  the shell view is hidden for pack-127
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-126
+          at line 103
+    [Failed]:  the screen is on for pack-126
+          at line 104
+    [Failed]:  the shell view is hidden for pack-126
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-125
+          at line 103
+    [Failed]:  the screen is on for pack-125
+          at line 104
+    [Failed]:  the shell view is hidden for pack-125
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-124
+          at line 103
+    [Failed]:  the screen is on for pack-124
+          at line 104
+    [Failed]:  the shell view is hidden for pack-124
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-123
+          at line 103
+    [Failed]:  the screen is on for pack-123
+          at line 104
+    [Failed]:  the shell view is hidden for pack-123
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-122
+          at line 103
+    [Failed]:  the screen is on for pack-122
+          at line 104
+    [Failed]:  the shell view is hidden for pack-122
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-121
+          at line 103
+    [Failed]:  the screen is on for pack-121
+          at line 104
+    [Failed]:  the shell view is hidden for pack-121
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-120
+          at line 103
+    [Failed]:  the screen is on for pack-120
+          at line 104
+    [Failed]:  the shell view is hidden for pack-120
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-119
+          at line 103
+    [Failed]:  the screen is on for pack-119
+          at line 104
+    [Failed]:  the shell view is hidden for pack-119
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-118
+          at line 103
+    [Failed]:  the screen is on for pack-118
+          at line 104
+    [Failed]:  the shell view is hidden for pack-118
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-117
+          at line 103
+    [Failed]:  the screen is on for pack-117
+          at line 104
+    [Failed]:  the shell view is hidden for pack-117
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-116
+          at line 103
+    [Failed]:  the screen is on for pack-116
+          at line 104
+    [Failed]:  the shell view is hidden for pack-116
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-115
+          at line 103
+    [Failed]:  the screen is on for pack-115
+          at line 104
+    [Failed]:  the shell view is hidden for pack-115
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-114
+          at line 103
+    [Failed]:  the screen is on for pack-114
+          at line 104
+    [Failed]:  the shell view is hidden for pack-114
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-113
+          at line 103
+    [Failed]:  the screen is on for pack-113
+          at line 104
+    [Failed]:  the shell view is hidden for pack-113
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-112
+          at line 103
+    [Failed]:  the screen is on for pack-112
+          at line 104
+    [Failed]:  the shell view is hidden for pack-112
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-111
+          at line 103
+    [Failed]:  the screen is on for pack-111
+          at line 104
+    [Failed]:  the shell view is hidden for pack-111
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-110
+          at line 103
+    [Failed]:  the screen is on for pack-110
+          at line 104
+    [Failed]:  the shell view is hidden for pack-110
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-109
+          at line 103
+    [Failed]:  the screen is on for pack-109
+          at line 104
+    [Failed]:  the shell view is hidden for pack-109
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-108
+          at line 103
+    [Failed]:  the screen is on for pack-108
+          at line 104
+    [Failed]:  the shell view is hidden for pack-108
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-107
+          at line 103
+    [Failed]:  the screen is on for pack-107
+          at line 104
+    [Failed]:  the shell view is hidden for pack-107
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-106
+          at line 103
+    [Failed]:  the screen is on for pack-106
+          at line 104
+    [Failed]:  the shell view is hidden for pack-106
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-105
+          at line 103
+    [Failed]:  the screen is on for pack-105
+          at line 104
+    [Failed]:  the shell view is hidden for pack-105
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-104
+          at line 103
+    [Failed]:  the screen is on for pack-104
+          at line 104
+    [Failed]:  the shell view is hidden for pack-104
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-103
+          at line 103
+    [Failed]:  the screen is on for pack-103
+          at line 104
+    [Failed]:  the shell view is hidden for pack-103
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-102
+          at line 103
+    [Failed]:  the screen is on for pack-102
+          at line 104
+    [Failed]:  the shell view is hidden for pack-102
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-101
+          at line 103
+    [Failed]:  the screen is on for pack-101
+          at line 104
+    [Failed]:  the shell view is hidden for pack-101
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-100
+          at line 103
+    [Failed]:  the screen is on for pack-100
+          at line 104
+    [Failed]:  the shell view is hidden for pack-100
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-099
+          at line 103
+    [Failed]:  the screen is on for pack-099
+          at line 104
+    [Failed]:  the shell view is hidden for pack-099
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-098
+          at line 103
+    [Failed]:  the screen is on for pack-098
+          at line 104
+    [Failed]:  the shell view is hidden for pack-098
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-097
+          at line 103
+    [Failed]:  the screen is on for pack-097
+          at line 104
+    [Failed]:  the shell view is hidden for pack-097
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-096
+          at line 103
+    [Failed]:  the screen is on for pack-096
+          at line 104
+    [Failed]:  the shell view is hidden for pack-096
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-095
+          at line 103
+    [Failed]:  the screen is on for pack-095
+          at line 104
+    [Failed]:  the shell view is hidden for pack-095
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-094
+          at line 103
+    [Failed]:  the screen is on for pack-094
+          at line 104
+    [Failed]:  the shell view is hidden for pack-094
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-093
+          at line 103
+    [Failed]:  the screen is on for pack-093
+          at line 104
+    [Failed]:  the shell view is hidden for pack-093
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-092
+          at line 103
+    [Failed]:  the screen is on for pack-092
+          at line 104
+    [Failed]:  the shell view is hidden for pack-092
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-091
+          at line 103
+    [Failed]:  the screen is on for pack-091
+          at line 104
+    [Failed]:  the shell view is hidden for pack-091
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-090
+          at line 103
+    [Failed]:  the screen is on for pack-090
+          at line 104
+    [Failed]:  the shell view is hidden for pack-090
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-089
+          at line 103
+    [Failed]:  the screen is on for pack-089
+          at line 104
+    [Failed]:  the shell view is hidden for pack-089
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-088
+          at line 103
+    [Failed]:  the screen is on for pack-088
+          at line 104
+    [Failed]:  the shell view is hidden for pack-088
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-087
+          at line 103
+    [Failed]:  the screen is on for pack-087
+          at line 104
+    [Failed]:  the shell view is hidden for pack-087
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-086
+          at line 103
+    [Failed]:  the screen is on for pack-086
+          at line 104
+    [Failed]:  the shell view is hidden for pack-086
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-085
+          at line 103
+    [Failed]:  the screen is on for pack-085
+          at line 104
+    [Failed]:  the shell view is hidden for pack-085
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-084
+          at line 103
+    [Failed]:  the screen is on for pack-084
+          at line 104
+    [Failed]:  the shell view is hidden for pack-084
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-083
+          at line 103
+    [Failed]:  the screen is on for pack-083
+          at line 104
+    [Failed]:  the shell view is hidden for pack-083
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-082
+          at line 103
+    [Failed]:  the screen is on for pack-082
+          at line 104
+    [Failed]:  the shell view is hidden for pack-082
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-081
+          at line 103
+    [Failed]:  the screen is on for pack-081
+          at line 104
+    [Failed]:  the shell view is hidden for pack-081
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-080
+          at line 103
+    [Failed]:  the screen is on for pack-080
+          at line 104
+    [Failed]:  the shell view is hidden for pack-080
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-079
+          at line 103
+    [Failed]:  the screen is on for pack-079
+          at line 104
+    [Failed]:  the shell view is hidden for pack-079
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-078
+          at line 103
+    [Failed]:  the screen is on for pack-078
+          at line 104
+    [Failed]:  the shell view is hidden for pack-078
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-077
+          at line 103
+    [Failed]:  the screen is on for pack-077
+          at line 104
+    [Failed]:  the shell view is hidden for pack-077
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-076
+          at line 103
+    [Failed]:  the screen is on for pack-076
+          at line 104
+    [Failed]:  the shell view is hidden for pack-076
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-075
+          at line 103
+    [Failed]:  the screen is on for pack-075
+          at line 104
+    [Failed]:  the shell view is hidden for pack-075
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-074
+          at line 103
+    [Failed]:  the screen is on for pack-074
+          at line 104
+    [Failed]:  the shell view is hidden for pack-074
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-073
+          at line 103
+    [Failed]:  the screen is on for pack-073
+          at line 104
+    [Failed]:  the shell view is hidden for pack-073
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-072
+          at line 103
+    [Failed]:  the screen is on for pack-072
+          at line 104
+    [Failed]:  the shell view is hidden for pack-072
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-071
+          at line 103
+    [Failed]:  the screen is on for pack-071
+          at line 104
+    [Failed]:  the shell view is hidden for pack-071
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-070
+          at line 103
+    [Failed]:  the screen is on for pack-070
+          at line 104
+    [Failed]:  the shell view is hidden for pack-070
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-069
+          at line 103
+    [Failed]:  the screen is on for pack-069
+          at line 104
+    [Failed]:  the shell view is hidden for pack-069
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-068
+          at line 103
+    [Failed]:  the screen is on for pack-068
+          at line 104
+    [Failed]:  the shell view is hidden for pack-068
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-067
+          at line 103
+    [Failed]:  the screen is on for pack-067
+          at line 104
+    [Failed]:  the shell view is hidden for pack-067
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-066
+          at line 103
+    [Failed]:  the screen is on for pack-066
+          at line 104
+    [Failed]:  the shell view is hidden for pack-066
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-065
+          at line 103
+    [Failed]:  the screen is on for pack-065
+          at line 104
+    [Failed]:  the shell view is hidden for pack-065
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-064
+          at line 103
+    [Failed]:  the screen is on for pack-064
+          at line 104
+    [Failed]:  the shell view is hidden for pack-064
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-063
+          at line 103
+    [Failed]:  the screen is on for pack-063
+          at line 104
+    [Failed]:  the shell view is hidden for pack-063
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-062
+          at line 103
+    [Failed]:  the screen is on for pack-062
+          at line 104
+    [Failed]:  the shell view is hidden for pack-062
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-061
+          at line 103
+    [Failed]:  the screen is on for pack-061
+          at line 104
+    [Failed]:  the shell view is hidden for pack-061
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-060
+          at line 103
+    [Failed]:  the screen is on for pack-060
+          at line 104
+    [Failed]:  the shell view is hidden for pack-060
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-059
+          at line 103
+    [Failed]:  the screen is on for pack-059
+          at line 104
+    [Failed]:  the shell view is hidden for pack-059
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-058
+          at line 103
+    [Failed]:  the screen is on for pack-058
+          at line 104
+    [Failed]:  the shell view is hidden for pack-058
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-057
+          at line 103
+    [Failed]:  the screen is on for pack-057
+          at line 104
+    [Failed]:  the shell view is hidden for pack-057
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-056
+          at line 103
+    [Failed]:  the screen is on for pack-056
+          at line 104
+    [Failed]:  the shell view is hidden for pack-056
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-055
+          at line 103
+    [Failed]:  the screen is on for pack-055
+          at line 104
+    [Failed]:  the shell view is hidden for pack-055
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-054
+          at line 103
+    [Failed]:  the screen is on for pack-054
+          at line 104
+    [Failed]:  the shell view is hidden for pack-054
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-053
+          at line 103
+    [Failed]:  the screen is on for pack-053
+          at line 104
+    [Failed]:  the shell view is hidden for pack-053
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-052
+          at line 103
+    [Failed]:  the screen is on for pack-052
+          at line 104
+    [Failed]:  the shell view is hidden for pack-052
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-051
+          at line 103
+    [Failed]:  the screen is on for pack-051
+          at line 104
+    [Failed]:  the shell view is hidden for pack-051
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-050
+          at line 103
+    [Failed]:  the screen is on for pack-050
+          at line 104
+    [Failed]:  the shell view is hidden for pack-050
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-049
+          at line 103
+    [Failed]:  the screen is on for pack-049
+          at line 104
+    [Failed]:  the shell view is hidden for pack-049
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-048
+          at line 103
+    [Failed]:  the screen is on for pack-048
+          at line 104
+    [Failed]:  the shell view is hidden for pack-048
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-047
+          at line 103
+    [Failed]:  the screen is on for pack-047
+          at line 104
+    [Failed]:  the shell view is hidden for pack-047
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-046
+          at line 103
+    [Failed]:  the screen is on for pack-046
+          at line 104
+    [Failed]:  the shell view is hidden for pack-046
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-045
+          at line 103
+    [Failed]:  the screen is on for pack-045
+          at line 104
+    [Failed]:  the shell view is hidden for pack-045
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-044
+          at line 103
+    [Failed]:  the screen is on for pack-044
+          at line 104
+    [Failed]:  the shell view is hidden for pack-044
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-043
+          at line 103
+    [Failed]:  the screen is on for pack-043
+          at line 104
+    [Failed]:  the shell view is hidden for pack-043
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-042
+          at line 103
+    [Failed]:  the screen is on for pack-042
+          at line 104
+    [Failed]:  the shell view is hidden for pack-042
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-041
+          at line 103
+    [Failed]:  the screen is on for pack-041
+          at line 104
+    [Failed]:  the shell view is hidden for pack-041
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-040
+          at line 103
+    [Failed]:  the screen is on for pack-040
+          at line 104
+    [Failed]:  the shell view is hidden for pack-040
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-039
+          at line 103
+    [Failed]:  the screen is on for pack-039
+          at line 104
+    [Failed]:  the shell view is hidden for pack-039
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-038
+          at line 103
+    [Failed]:  the screen is on for pack-038
+          at line 104
+    [Failed]:  the shell view is hidden for pack-038
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-037
+          at line 103
+    [Failed]:  the screen is on for pack-037
+          at line 104
+    [Failed]:  the shell view is hidden for pack-037
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-036
+          at line 103
+    [Failed]:  the screen is on for pack-036
+          at line 104
+    [Failed]:  the shell view is hidden for pack-036
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-035
+          at line 103
+    [Failed]:  the screen is on for pack-035
+          at line 104
+    [Failed]:  the shell view is hidden for pack-035
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-034
+          at line 103
+    [Failed]:  the screen is on for pack-034
+          at line 104
+    [Failed]:  the shell view is hidden for pack-034
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-033
+          at line 103
+    [Failed]:  the screen is on for pack-033
+          at line 104
+    [Failed]:  the shell view is hidden for pack-033
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-032
+          at line 103
+    [Failed]:  the screen is on for pack-032
+          at line 104
+    [Failed]:  the shell view is hidden for pack-032
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-031
+          at line 103
+    [Failed]:  the screen is on for pack-031
+          at line 104
+    [Failed]:  the shell view is hidden for pack-031
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-030
+          at line 103
+    [Failed]:  the screen is on for pack-030
+          at line 104
+    [Failed]:  the shell view is hidden for pack-030
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-029
+          at line 103
+    [Failed]:  the screen is on for pack-029
+          at line 104
+    [Failed]:  the shell view is hidden for pack-029
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-028
+          at line 103
+    [Failed]:  the screen is on for pack-028
+          at line 104
+    [Failed]:  the shell view is hidden for pack-028
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-027
+          at line 103
+    [Failed]:  the screen is on for pack-027
+          at line 104
+    [Failed]:  the shell view is hidden for pack-027
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-026
+          at line 103
+    [Failed]:  the screen is on for pack-026
+          at line 104
+    [Failed]:  the shell view is hidden for pack-026
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-025
+          at line 103
+    [Failed]:  the screen is on for pack-025
+          at line 104
+    [Failed]:  the shell view is hidden for pack-025
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-024
+          at line 103
+    [Failed]:  the screen is on for pack-024
+          at line 104
+    [Failed]:  the shell view is hidden for pack-024
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-023
+          at line 103
+    [Failed]:  the screen is on for pack-023
+          at line 104
+    [Failed]:  the shell view is hidden for pack-023
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-022
+          at line 103
+    [Failed]:  the screen is on for pack-022
+          at line 104
+    [Failed]:  the shell view is hidden for pack-022
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-021
+          at line 103
+    [Failed]:  the screen is on for pack-021
+          at line 104
+    [Failed]:  the shell view is hidden for pack-021
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-020
+          at line 103
+    [Failed]:  the screen is on for pack-020
+          at line 104
+    [Failed]:  the shell view is hidden for pack-020
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-019
+          at line 103
+    [Failed]:  the screen is on for pack-019
+          at line 104
+    [Failed]:  the shell view is hidden for pack-019
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-018
+          at line 103
+    [Failed]:  the screen is on for pack-018
+          at line 104
+    [Failed]:  the shell view is hidden for pack-018
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-017
+          at line 103
+    [Failed]:  the screen is on for pack-017
+          at line 104
+    [Failed]:  the shell view is hidden for pack-017
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-016
+          at line 103
+    [Failed]:  the screen is on for pack-016
+          at line 104
+    [Failed]:  the shell view is hidden for pack-016
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-015
+          at line 103
+    [Failed]:  the screen is on for pack-015
+          at line 104
+    [Failed]:  the shell view is hidden for pack-015
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-014
+          at line 103
+    [Failed]:  the screen is on for pack-014
+          at line 104
+    [Failed]:  the shell view is hidden for pack-014
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-013
+          at line 103
+    [Failed]:  the screen is on for pack-013
+          at line 104
+    [Failed]:  the shell view is hidden for pack-013
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-012
+          at line 103
+    [Failed]:  the screen is on for pack-012
+          at line 104
+    [Failed]:  the shell view is hidden for pack-012
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-011
+          at line 103
+    [Failed]:  the screen is on for pack-011
+          at line 104
+    [Failed]:  the shell view is hidden for pack-011
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-010
+          at line 103
+    [Failed]:  the screen is on for pack-010
+          at line 104
+    [Failed]:  the shell view is hidden for pack-010
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-009
+          at line 103
+    [Failed]:  the screen is on for pack-009
+          at line 104
+    [Failed]:  the shell view is hidden for pack-009
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-008
+          at line 103
+    [Failed]:  the screen is on for pack-008
+          at line 104
+    [Failed]:  the shell view is hidden for pack-008
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-007
+          at line 103
+    [Failed]:  the screen is on for pack-007
+          at line 104
+    [Failed]:  the shell view is hidden for pack-007
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-006
+          at line 103
+    [Failed]:  the screen is on for pack-006
+          at line 104
+    [Failed]:  the shell view is hidden for pack-006
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-005
+          at line 103
+    [Failed]:  the screen is on for pack-005
+          at line 104
+    [Failed]:  the shell view is hidden for pack-005
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-004
+          at line 103
+    [Failed]:  the screen is on for pack-004
+          at line 104
+    [Failed]:  the shell view is hidden for pack-004
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-003
+          at line 103
+    [Failed]:  the screen is on for pack-003
+          at line 104
+    [Failed]:  the shell view is hidden for pack-003
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-002
+          at line 103
+    [Failed]:  the screen is on for pack-002
+          at line 104
+    [Failed]:  the shell view is hidden for pack-002
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-001
+          at line 103
+    [Failed]:  the screen is on for pack-001
+          at line 104
+    [Failed]:  the shell view is hidden for pack-001
+          at line 105
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  S6: the puzzle screen shows for pack-000
+          at line 103
+    [Failed]:  the screen is on for pack-000
+          at line 104
+    [Failed]:  the shell view is hidden for pack-000
+          at line 105
+- test_unknown_id_with_puzzle_open_changes_nothing
+    [Failed]:  ["home"] expected to equal ["puzzle"]:  the current screen stays
+          at line 136
+Totals
+------
+Scripts               1
+Tests                 9
+Passing Tests         6
+Failing Tests         3
+Asserts           1673/2277
+Time              14.748s
+---- 3 failing tests ----
