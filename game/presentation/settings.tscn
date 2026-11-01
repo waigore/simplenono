@@ -47,6 +47,7 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="Title" type="Label" parent="Margin/Layout"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
 theme_override_font_sizes/font_size = 22
@@ -78,12 +79,14 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
 [node name="HapticsLabel" type="Label" parent="Margin/Layout/Options/OptionsBox/HapticsRow/HapticsContent/HapticsText"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
 theme_override_font_sizes/font_size = 15
 text = "Haptics"
 
 [node name="HapticsHint" type="Label" parent="Margin/Layout/Options/OptionsBox/HapticsRow/HapticsContent/HapticsText"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
 theme_override_font_sizes/font_size = 11
@@ -119,12 +122,14 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
 [node name="MuteLabel" type="Label" parent="Margin/Layout/Options/OptionsBox/MuteRow/MuteContent/MuteText"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
 theme_override_font_sizes/font_size = 15
 text = "Mute music"
 
 [node name="MuteHint" type="Label" parent="Margin/Layout/Options/OptionsBox/MuteRow/MuteContent/MuteText"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
 theme_override_font_sizes/font_size = 11

@@ -12,6 +12,12 @@ extends Control
 ##
 ## A build that ships no stored pictures yet shows paper through both stages and the
 ## morph still completes; the picture assets are an asset-pass concern (#98).
+##
+## This screen owns no clock of its own. [b]CMP-shell[/b] drives [method advance] once
+## per processed frame because it alone knows whether the morph has real time to spend
+## (the get-set-ready beat and the paused attempt freeze it, [code]SEQ pause[/code]).
+## A second [method Node._process] here would tick the same reveal twice per frame and
+## halve each stage ([code]CFG.MORPH_STAGE_MS[/code]), so there is exactly one driver.
 ## [code]PAL.S1[/code]: paper, ink, and the muted rule/dim swatches only.
 
 ## [code]UI-result.C1[/code] ([code]IN.back[/code]): the player asked to go back.
@@ -23,7 +29,6 @@ const COPY_BACK := "Back to gallery"
 const MOBILE_WIDTH := 720.0
 
 var _reveal: ResultReveal
-var _clock_running := false
 
 @onready var _background: ColorRect = %Background
 @onready var _reveal_host: Control = %RevealHost
@@ -57,15 +62,13 @@ func present(
 	stage_ms: int = ResultReveal.DEFAULT_STAGE_MS,
 ) -> void:
 	_reveal.start(fills, pixel_picture, picture, stage_ms)
-	_clock_running = true
 	_refresh_chrome()
 
 
 ## Advances the reveal by [param delta_ms] ([code]CFG.MORPH_STAGE_MS[/code] per stage).
-## No-op once the morph finished, so a late tick cannot undo [code]S1[/code].
+## [b]CMP-shell[/b] calls this once per processed frame; the reveal itself is the only
+## "morphing" state, so a late frame after [code]S1[/code] is a no-op there.
 func advance(delta_ms: int) -> String:
-	if not _clock_running:
-		return _reveal.stage()
 	var stage := _reveal.tick(delta_ms)
 	_refresh_chrome()
 	return stage
@@ -75,7 +78,6 @@ func advance(delta_ms: int) -> String:
 ## player pauses; a test or harness calls it instead of waiting.
 func finish_morph() -> void:
 	_reveal.finish_morph()
-	_clock_running = false
 	_refresh_chrome()
 
 
@@ -118,16 +120,11 @@ func reveal() -> ResultReveal:
 	return _reveal
 
 
-func _process(delta: float) -> void:
-	advance(int(delta * 1000.0))
-
-
 func _on_stage_changed(_stage: String) -> void:
 	_refresh_chrome()
 
 
 func _on_morph_finished() -> void:
-	_clock_running = false
 	_refresh_chrome()
 
 
