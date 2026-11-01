@@ -8,6 +8,11 @@ extends RefCounted
 ## legs that need them wait for a view the shell never shows and fail honestly; the
 ## home and puzzle legs run now. `UI-gallery` and `UI-result` replace the stand-in
 ## views when those epics land.
+##
+## `result-gallery` carries `driver_time`: the shell's own `leave` sets the home view
+## synchronously, so that leg times the driver rather than a product acknowledgement.
+## It is measured to keep the flow exercised, and the I7 row says so, until #94/#95
+## own the real transition.
 
 const ID := "navigate"
 
@@ -44,6 +49,7 @@ static func spec() -> Dictionary:
 				"mark": "transition:result-gallery",
 				"action": {"kind": "leave"},
 				"until": {"probe": "view", "value": "home"},
+				"driver_time": "the shell's leave sets its own view; #94/#95 own the transition",
 			},
 			{"id": "quit", "kind": "quit"},
 		],
