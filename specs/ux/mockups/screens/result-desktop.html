@@ -38,12 +38,6 @@
     .states > section { display: none; }
     .states:not(:has(:target)) > section[data-state="default"] { display: block; }
     .states:has(:target) > section:target { display: block; }
-    h1 {
-      font-size: 1.75rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin: 0 0 1rem;
-    }
     .reveal {
       border: 1px solid var(--line);
       padding: 1.25rem;
@@ -57,56 +51,41 @@
       height: 220px;
     }
     .morph .fills,
+    .morph .pixel,
     .morph .picture {
       position: absolute;
       inset: 0;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      gap: 0;
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(10, 1fr);
     }
     .morph .fills span {
       border: 1px solid var(--line);
       background: var(--bg);
     }
     .morph .fills span.on { background: var(--fg); }
-    .morph .picture {
-      background:
-        linear-gradient(135deg, #2a3a48 0%, #1B2833 40%, #4a6578 100%);
-      opacity: 0;
-    }
-    .morph .picture::after {
-      content: "Solution";
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #F4F7F8;
-      opacity: 0.85;
-    }
-    /* Default: morph done */
-    section[data-state="default"] .morph .fills { opacity: 0; transition: opacity 0.3s linear; }
-    section[data-state="default"] .morph .picture { opacity: 1; transition: opacity 0.3s linear; }
-    /* Morphing: fills visible, picture rising */
-    section[data-state="morphing"] .morph .fills { opacity: 1; }
-    section[data-state="morphing"] .morph .picture {
-      opacity: 0.55;
-      animation: reveal 0.3s linear forwards;
-    }
-    @keyframes reveal {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    section[data-state="morphing"] .morph .fills {
-      animation: fade-fills 0.3s linear forwards;
-    }
-    @keyframes fade-fills {
-      from { opacity: 1; }
-      to { opacity: 0; }
+    .morph .pixel, .morph .picture { display: block; }
+    .morph .pixel svg, .morph .picture svg { display: block; width: 100%; height: 100%; }
+    /* PER.R5 / MOT.E1: fills fade in place into the stored pixel picture, linear */
+    section[data-state="pixel"] .fills { animation: fade-out 300ms linear forwards; }
+    section[data-state="pixel"] .pixel { animation: fade-in 300ms linear forwards; }
+    /* MOT.E2: the stored pixel picture fades in place into the stored generated picture */
+    section[data-state="picture"] .fills { opacity: 0; }
+    section[data-state="picture"] .pixel { opacity: 1; animation: fade-out 300ms linear forwards; }
+    section[data-state="picture"] .picture { opacity: 0; animation: fade-in 300ms linear forwards; }
+    /* S1 Default: morph complete */
+    section[data-state="default"] .fills,
+    section[data-state="default"] .pixel { opacity: 0; }
+    section[data-state="default"] .picture { opacity: 1; }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      section[data-state="pixel"] .fills,
+      section[data-state="picture"] .pixel,
+      section[data-state="picture"] .fills { opacity: 0; animation: none; }
+      section[data-state="pixel"] .pixel { opacity: 1; }
+      section[data-state="picture"] .picture,
+      section[data-state="default"] .picture { opacity: 1; animation: none; }
     }
     .chrome { display: flex; justify-content: flex-start; }
     button.back {
@@ -133,50 +112,155 @@
   </style>
 </head>
 <body>
+  <svg width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="gp-bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#F4F7F8"/>
+        <stop offset="1" stop-color="#C5D0D6"/>
+      </linearGradient>
+      <linearGradient id="gp-heart" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#4A6578"/>
+        <stop offset="1" stop-color="#1B2833"/>
+      </linearGradient>
+    </defs>
+  </svg>
   <div class="doc">
     <p class="caption"><strong>UI-result</strong> · desktop · Open Design web-prototype · aesthetics remap</p>
     <nav aria-label="States">
       <a href="#state-default">Default (morph done)</a>
-      <a href="#state-morphing">Morphing</a>
+      <a href="#state-pixel">Pixel fade</a>
+      <a href="#state-picture">Picture fade</a>
     </nav>
     <article data-screen="UI-result">
       <div class="states">
-        <section id="state-default" data-state="default">
-          <h1>Solved</h1>
+        <section id="state-pixel" data-state="pixel">
           <div class="reveal" data-region="R1" aria-label="Reveal">
-            <div class="morph" aria-label="Fill to solution morph complete">
+            <div class="morph" aria-label="Solved fills fading into the stored pixel picture (MOT.T2)">
               <div class="fills" aria-hidden="true">
-                <span class="on"></span><span class="on"></span><span></span><span></span><span></span>
-                <span class="on"></span><span></span><span class="on"></span><span></span><span></span>
-                <span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
-                <span></span><span class="on"></span><span></span><span></span><span></span>
-                <span></span><span class="on"></span><span class="on"></span><span></span><span></span>
+                <span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span>
+                <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+                <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+                <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+                <span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span>
+                <span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
+                <span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
               </div>
-              <div class="picture"></div>
-            </div>
-          </div>
-          <div class="chrome" data-region="R2" aria-label="Chrome">
-            <button type="button" class="back" data-control="C1">Back to gallery</button>
-          </div>
-        </section>
-        <section id="state-morphing" data-state="morphing">
-          <h1>Solved</h1>
-          <div class="reveal" data-region="R1" aria-label="Reveal">
-            <div class="morph" aria-label="Fill to solution morph playing">
-              <div class="fills" aria-hidden="true">
-                <span class="on"></span><span class="on"></span><span></span><span></span><span></span>
-                <span class="on"></span><span></span><span class="on"></span><span></span><span></span>
-                <span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
-                <span></span><span class="on"></span><span></span><span></span><span></span>
-                <span></span><span class="on"></span><span class="on"></span><span></span><span></span>
+              <div class="pixel" aria-hidden="true">
+                <svg viewBox="0 0 10 10" role="img" aria-label="Stored pixel picture of the solved fills">
+                  <g fill="#1B2833">
+                    <rect x="1" y="0" width="2" height="1"/><rect x="7" y="0" width="2" height="1"/>
+                    <rect x="0" y="1" width="4" height="1"/><rect x="6" y="1" width="4" height="1"/>
+                    <rect x="0" y="2" width="10" height="2"/>
+                    <rect x="1" y="4" width="8" height="1"/>
+                    <rect x="2" y="5" width="6" height="1"/>
+                    <rect x="3" y="6" width="4" height="2"/>
+                    <rect x="4" y="8" width="2" height="1"/>
+                  </g>
+                </svg>
               </div>
-              <div class="picture"></div>
+              <div class="picture" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-label="Stored generated picture">
+                  <rect width="100" height="100" fill="url(#gp-bg)"/>
+                  <path d="M50 88 C 18 66 8 46 8 34 C 8 22 17 14 28 14 C 38 14 46 20 50 28 C 54 20 62 14 72 14 C 83 14 92 22 92 34 C 92 46 82 66 50 88 Z" fill="url(#gp-heart)"/>
+                  <path d="M50 88 C 30 76 18 62 14 50" fill="none" stroke="#5C6B78" stroke-width="2" opacity="0.5"/>
+                  <path d="M50 88 C 70 76 82 62 86 50" fill="none" stroke="#5C6B78" stroke-width="2" opacity="0.5"/>
+                </svg>
+              </div>
             </div>
           </div>
           <div class="chrome" data-region="R2" aria-label="Chrome">
             <button type="button" class="back" data-control="C1" disabled>Back to gallery</button>
           </div>
-          <p class="note">Two stored pictures: 300 ms fills→pixel ([MOT.T2]), then 300 ms pixel→generated ([MOT.T3]); clues not in morph</p>
+          <p class="note">S2 Pixel · MOT.T2 · 300 ms fills → stored pixel picture</p>
+        </section>
+        <section id="state-picture" data-state="picture">
+          <div class="reveal" data-region="R1" aria-label="Reveal">
+            <div class="morph" aria-label="Stored pixel picture fading into the stored generated picture (MOT.T3)">
+              <div class="fills" aria-hidden="true">
+                <span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span>
+                <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+                <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+                <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+                <span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span>
+                <span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
+                <span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="pixel" aria-hidden="true">
+                <svg viewBox="0 0 10 10" role="img" aria-label="Stored pixel picture of the solved fills">
+                  <g fill="#1B2833">
+                    <rect x="1" y="0" width="2" height="1"/><rect x="7" y="0" width="2" height="1"/>
+                    <rect x="0" y="1" width="4" height="1"/><rect x="6" y="1" width="4" height="1"/>
+                    <rect x="0" y="2" width="10" height="2"/>
+                    <rect x="1" y="4" width="8" height="1"/>
+                    <rect x="2" y="5" width="6" height="1"/>
+                    <rect x="3" y="6" width="4" height="2"/>
+                    <rect x="4" y="8" width="2" height="1"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="picture" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-label="Stored generated picture">
+                  <rect width="100" height="100" fill="url(#gp-bg)"/>
+                  <path d="M50 88 C 18 66 8 46 8 34 C 8 22 17 14 28 14 C 38 14 46 20 50 28 C 54 20 62 14 72 14 C 83 14 92 22 92 34 C 92 46 82 66 50 88 Z" fill="url(#gp-heart)"/>
+                  <path d="M50 88 C 30 76 18 62 14 50" fill="none" stroke="#5C6B78" stroke-width="2" opacity="0.5"/>
+                  <path d="M50 88 C 70 76 82 62 86 50" fill="none" stroke="#5C6B78" stroke-width="2" opacity="0.5"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="chrome" data-region="R2" aria-label="Chrome">
+            <button type="button" class="back" data-control="C1" disabled>Back to gallery</button>
+          </div>
+          <p class="note">S3 Picture · MOT.T3 · 300 ms pixel picture → stored generated picture; clues not in morph</p>
+        </section>
+        <section id="state-default" data-state="default">
+          <div class="reveal" data-region="R1" aria-label="Reveal">
+            <div class="morph" aria-label="Morph complete: stored generated picture">
+              <div class="fills" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="pixel" aria-hidden="true">
+                <svg viewBox="0 0 10 10" role="img" aria-label="Stored pixel picture of the solved fills">
+                  <g fill="#1B2833">
+                    <rect x="1" y="0" width="2" height="1"/><rect x="7" y="0" width="2" height="1"/>
+                    <rect x="0" y="1" width="4" height="1"/><rect x="6" y="1" width="4" height="1"/>
+                    <rect x="0" y="2" width="10" height="2"/>
+                    <rect x="1" y="4" width="8" height="1"/>
+                    <rect x="2" y="5" width="6" height="1"/>
+                    <rect x="3" y="6" width="4" height="2"/>
+                    <rect x="4" y="8" width="2" height="1"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="picture" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-label="Stored generated picture">
+                  <rect width="100" height="100" fill="url(#gp-bg)"/>
+                  <path d="M50 88 C 18 66 8 46 8 34 C 8 22 17 14 28 14 C 38 14 46 20 50 28 C 54 20 62 14 72 14 C 83 14 92 22 92 34 C 92 46 82 66 50 88 Z" fill="url(#gp-heart)"/>
+                  <path d="M50 88 C 30 76 18 62 14 50" fill="none" stroke="#5C6B78" stroke-width="2" opacity="0.5"/>
+                  <path d="M50 88 C 70 76 82 62 86 50" fill="none" stroke="#5C6B78" stroke-width="2" opacity="0.5"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="chrome" data-region="R2" aria-label="Chrome">
+            <button type="button" class="back" data-control="C1">Back to gallery</button>
+          </div>
+          <p class="note">S1 Default · C1 opens after both fades</p>
         </section>
       </div>
     </article>

@@ -61,6 +61,9 @@
       font-variant-numeric: tabular-nums;
       font-size: 14px;
     }
+    .chrome .elapsed .frozen::after {
+      content: " ·";
+    }
     button.leave, button.settings, button.tool {
       min-height: 36px;
       min-width: 36px;
@@ -91,8 +94,8 @@
     }
     .board {
       display: grid;
-      grid-template-columns: 36px repeat(5, 28px);
-      grid-template-rows: 52px repeat(5, 28px);
+      grid-template-columns: 44px repeat(10, 28px);
+      grid-template-rows: 56px repeat(10, 28px);
       width: max-content;
       margin: 0 auto;
       gap: 0;
@@ -174,6 +177,7 @@
     <nav aria-label="States">
       <a href="#state-default">Default (Ready)</a>
       <a href="#state-get-set-ready">Get-set-ready</a>
+      <a href="#state-paused">Paused</a>
     </nav>
     <article data-screen="UI-puzzle">
       <div class="states">
@@ -186,43 +190,128 @@
             <span class="elapsed" aria-label="Elapsed">1:24</span>
           </header>
           <div class="board-wrap" data-region="R2" aria-label="Board">
-            <div class="board" role="grid" aria-label="5×5 sample board">
+            <div class="board" role="grid" aria-label="10×10 sample board">
               <div class="corner"></div>
-              <div class="clue col"><span class="run">2</span></div>
-              <div class="clue col dim"><span class="run">1</span><span class="run">1</span></div>
-              <div class="clue col"><span class="run">3</span></div>
-              <div class="clue col error"><span class="run">1</span></div>
-              <div class="clue col"><span class="run">2</span></div>
-              <div class="clue row"><span class="run">2</span></div>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r1c1 fill"></button>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r1c2 fill"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r1c3 clear"></button>
-              <button type="button" class="cell cross" data-control="C2" aria-label="r1c4 cross"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r1c5 clear"></button>
-              <div class="clue row dim"><span class="run">1</span><span class="run">1</span></div>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r2c1 fill"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r2c2 clear"></button>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r2c3 fill"></button>
-              <button type="button" class="cell cross" data-control="C2" aria-label="r2c4 cross"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r2c5 clear"></button>
-              <div class="clue row"><span class="run">3</span></div>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r3c1 fill"></button>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r3c2 fill"></button>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r3c3 fill"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r3c4 clear"></button>
-              <button type="button" class="cell cross" data-control="C2" aria-label="r3c5 cross"></button>
-              <div class="clue row error"><span class="run">1</span></div>
-              <button type="button" class="cell" data-control="C2" aria-label="r4c1 clear"></button>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r4c2 fill"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r4c3 clear"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r4c4 clear"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r4c5 clear"></button>
-              <div class="clue row"><span class="run">2</span></div>
-              <button type="button" class="cell cross" data-control="C2" aria-label="r5c1 cross"></button>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r5c2 fill"></button>
-              <button type="button" class="cell fill" data-control="C2" aria-label="r5c3 fill"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r5c4 clear"></button>
-              <button type="button" class="cell" data-control="C2" aria-label="r5c5 clear"></button>
+                <div class="clue col error" aria-label="column 1 clue"><span class="run">3</span></div>
+                <div class="clue col dim" aria-label="column 2 clue"><span class="run">5</span></div>
+                <div class="clue col dim" aria-label="column 3 clue"><span class="run">6</span></div>
+                <div class="clue col dim" aria-label="column 4 clue"><span class="run">7</span></div>
+                <div class="clue col dim" aria-label="column 5 clue"><span class="run">7</span></div>
+                <div class="clue col dim" aria-label="column 6 clue"><span class="run">7</span></div>
+                <div class="clue col" aria-label="column 7 clue"><span class="run">7</span></div>
+                <div class="clue col" aria-label="column 8 clue"><span class="run">6</span></div>
+                <div class="clue col dim" aria-label="column 9 clue"><span class="run">5</span></div>
+                <div class="clue col dim" aria-label="column 10 clue"><span class="run">3</span></div>
+                <div class="clue row dim" aria-label="row 1 clue"><span class="run">2</span><span class="run">2</span></div>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r1c1"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r1c2"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r1c3"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r1c4"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r1c5"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r1c6"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r1c7"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r1c8"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r1c9"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r1c10"></button>
+                <div class="clue row dim" aria-label="row 2 clue"><span class="run">4</span><span class="run">4</span></div>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r2c1"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r2c2"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r2c3"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r2c4"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r2c5"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r2c6"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r2c7"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r2c8"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r2c9"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r2c10"></button>
+                <div class="clue row dim" aria-label="row 3 clue"><span class="run">10</span></div>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c1"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c2"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c3"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c4"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c5"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c6"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c7"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c8"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c9"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r3c10"></button>
+                <div class="clue row dim" aria-label="row 4 clue"><span class="run">10</span></div>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c1"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c2"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c3"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c4"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c5"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c6"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c7"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c8"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c9"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r4c10"></button>
+                <div class="clue row dim" aria-label="row 5 clue"><span class="run">8</span></div>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r5c1"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r5c2"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r5c3"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r5c4"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r5c5"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r5c6"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r5c7"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r5c8"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r5c9"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r5c10"></button>
+                <div class="clue row" aria-label="row 6 clue"><span class="run">6</span></div>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r6c1"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r6c2"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r6c3"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r6c4"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r6c5"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r6c6"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r6c7"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r6c8"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r6c9"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r6c10"></button>
+                <div class="clue row" aria-label="row 7 clue"><span class="run">4</span></div>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r7c1"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r7c2"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r7c3"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r7c4"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r7c5"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r7c6"></button>
+                <button type="button" class="cell" data-control="C2" aria-label="r7c7"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r7c8"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r7c9"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r7c10"></button>
+                <div class="clue row error" aria-label="row 8 clue"><span class="run">4</span></div>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r8c1"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r8c2"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r8c3"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r8c4"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r8c5"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r8c6"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r8c7"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r8c8"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r8c9"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r8c10"></button>
+                <div class="clue row dim" aria-label="row 9 clue"><span class="run">2</span></div>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r9c1"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r9c2"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r9c3"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r9c4"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r9c5"></button>
+                <button type="button" class="cell fill" data-control="C2" aria-label="r9c6"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r9c7"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r9c8"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r9c9"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r9c10"></button>
+                <div class="clue row dim" aria-label="row 10 clue"><span class="run" aria-hidden="true">·</span></div>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c1"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c2"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c3"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c4"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c5"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c6"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c7"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c8"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c9"></button>
+                <button type="button" class="cell cross" data-control="C2" aria-label="r10c10"></button>
             </div>
           </div>
           <div class="tools" data-region="R3" aria-label="Tools">
@@ -230,7 +319,7 @@
             <button type="button" class="tool" data-control="C4">Cross</button>
             <button type="button" class="tool" data-control="C5">Clear</button>
           </div>
-          <p class="hint">Selected tool + drag-paint · right-click complement · P / Settings pauses</p>
+          <p class="hint">10×10 sample · Selected tool + drag-paint · right-click complement · P / Settings pauses</p>
         </section>
         <section id="state-get-set-ready" data-state="get-set-ready">
           <header class="chrome" data-region="R1" aria-label="Chrome">
@@ -241,43 +330,128 @@
             <span class="elapsed" aria-label="Elapsed">0:00</span>
           </header>
           <div class="board-wrap" data-region="R2" aria-label="Board">
-            <div class="board" role="grid" aria-label="5×5 sample board">
+            <div class="board" role="grid" aria-label="10×10 sample board">
               <div class="corner"></div>
-              <div class="clue col"><span class="run">2</span></div>
-              <div class="clue col"><span class="run">1</span><span class="run">1</span></div>
-              <div class="clue col"><span class="run">3</span></div>
-              <div class="clue col"><span class="run">1</span></div>
-              <div class="clue col"><span class="run">2</span></div>
-              <div class="clue row"><span class="run">2</span></div>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c1"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c2"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c3"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c4"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r1c5"></button>
-              <div class="clue row"><span class="run">1</span><span class="run">1</span></div>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c1"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c2"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c3"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c4"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r2c5"></button>
-              <div class="clue row"><span class="run">3</span></div>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c1"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c2"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c3"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c4"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r3c5"></button>
-              <div class="clue row"><span class="run">1</span></div>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c1"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c2"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c3"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c4"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r4c5"></button>
-              <div class="clue row"><span class="run">2</span></div>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c1"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c2"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c3"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c4"></button>
-              <button type="button" class="cell" data-control="C2" disabled aria-label="r5c5"></button>
+                <div class="clue col" aria-label="column 1 clue"><span class="run">3</span></div>
+                <div class="clue col" aria-label="column 2 clue"><span class="run">5</span></div>
+                <div class="clue col" aria-label="column 3 clue"><span class="run">6</span></div>
+                <div class="clue col" aria-label="column 4 clue"><span class="run">7</span></div>
+                <div class="clue col" aria-label="column 5 clue"><span class="run">7</span></div>
+                <div class="clue col" aria-label="column 6 clue"><span class="run">7</span></div>
+                <div class="clue col" aria-label="column 7 clue"><span class="run">7</span></div>
+                <div class="clue col" aria-label="column 8 clue"><span class="run">6</span></div>
+                <div class="clue col" aria-label="column 9 clue"><span class="run">5</span></div>
+                <div class="clue col" aria-label="column 10 clue"><span class="run">3</span></div>
+                <div class="clue row" aria-label="row 1 clue"><span class="run">2</span><span class="run">2</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c10"></button>
+                <div class="clue row" aria-label="row 2 clue"><span class="run">4</span><span class="run">4</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c10"></button>
+                <div class="clue row" aria-label="row 3 clue"><span class="run">10</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r3c10"></button>
+                <div class="clue row" aria-label="row 4 clue"><span class="run">10</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r4c10"></button>
+                <div class="clue row" aria-label="row 5 clue"><span class="run">8</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r5c10"></button>
+                <div class="clue row" aria-label="row 6 clue"><span class="run">6</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c10"></button>
+                <div class="clue row" aria-label="row 7 clue"><span class="run">4</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c10"></button>
+                <div class="clue row" aria-label="row 8 clue"><span class="run">4</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r8c10"></button>
+                <div class="clue row" aria-label="row 9 clue"><span class="run">2</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r9c10"></button>
+                <div class="clue row" aria-label="row 10 clue"><span class="run" aria-hidden="true">·</span></div>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c1"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c2"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c9"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r10c10"></button>
             </div>
             <div class="ready-beat" aria-live="polite"><span>Ready</span></div>
           </div>
@@ -286,6 +460,147 @@
             <button type="button" class="tool" data-control="C4" disabled>Cross</button>
             <button type="button" class="tool" data-control="C5" disabled>Clear</button>
           </div>
+          <p class="hint">Marks blocked for CFG.GET_SET_READY_MS · empty-clue lines auto-cross at ready</p>
+        </section>
+        <section id="state-paused" data-state="paused">
+          <header class="chrome" data-region="R1" aria-label="Chrome">
+            <div class="start">
+              <button type="button" class="leave" data-control="C1">Leave</button>
+              <button type="button" class="settings" data-control="C6">Settings</button>
+            </div>
+            <span class="elapsed" aria-label="Elapsed">1:24</span>
+          </header>
+          <div class="board-wrap" data-region="R2" aria-label="Board">
+            <div class="board" role="grid" aria-label="10×10 sample board, paused">
+              <div class="corner"></div>
+                <div class="clue col error" aria-label="column 1 clue"><span class="run">3</span></div>
+                <div class="clue col dim" aria-label="column 2 clue"><span class="run">5</span></div>
+                <div class="clue col dim" aria-label="column 3 clue"><span class="run">6</span></div>
+                <div class="clue col dim" aria-label="column 4 clue"><span class="run">7</span></div>
+                <div class="clue col dim" aria-label="column 5 clue"><span class="run">7</span></div>
+                <div class="clue col dim" aria-label="column 6 clue"><span class="run">7</span></div>
+                <div class="clue col" aria-label="column 7 clue"><span class="run">7</span></div>
+                <div class="clue col" aria-label="column 8 clue"><span class="run">6</span></div>
+                <div class="clue col dim" aria-label="column 9 clue"><span class="run">5</span></div>
+                <div class="clue col dim" aria-label="column 10 clue"><span class="run">3</span></div>
+                <div class="clue row dim" aria-label="row 1 clue"><span class="run">2</span><span class="run">2</span></div>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r1c1"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r1c2"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r1c3"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r1c7"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r1c8"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r1c9"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r1c10"></button>
+                <div class="clue row dim" aria-label="row 2 clue"><span class="run">4</span><span class="run">4</span></div>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r2c1"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r2c2"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r2c3"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r2c4"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c5"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r2c6"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r2c7"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r2c8"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r2c9"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r2c10"></button>
+                <div class="clue row dim" aria-label="row 3 clue"><span class="run">10</span></div>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c1"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c2"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c3"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c4"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c5"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c6"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c7"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c8"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c9"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r3c10"></button>
+                <div class="clue row dim" aria-label="row 4 clue"><span class="run">10</span></div>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c1"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c2"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c3"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c4"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c5"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c6"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c7"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c8"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c9"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r4c10"></button>
+                <div class="clue row dim" aria-label="row 5 clue"><span class="run">8</span></div>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r5c1"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r5c2"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r5c3"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r5c4"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r5c5"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r5c6"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r5c7"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r5c8"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r5c9"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r5c10"></button>
+                <div class="clue row" aria-label="row 6 clue"><span class="run">6</span></div>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r6c1"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r6c2"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r6c3"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r6c4"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r6c5"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r6c6"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r6c7"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c8"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r6c9"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r6c10"></button>
+                <div class="clue row" aria-label="row 7 clue"><span class="run">4</span></div>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r7c1"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r7c2"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r7c3"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r7c4"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r7c5"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r7c6"></button>
+                <button type="button" class="cell" data-control="C2" disabled aria-label="r7c7"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r7c8"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r7c9"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r7c10"></button>
+                <div class="clue row error" aria-label="row 8 clue"><span class="run">4</span></div>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r8c1"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r8c2"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r8c3"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r8c4"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r8c5"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r8c6"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r8c7"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r8c8"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r8c9"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r8c10"></button>
+                <div class="clue row dim" aria-label="row 9 clue"><span class="run">2</span></div>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r9c1"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r9c2"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r9c3"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r9c4"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r9c5"></button>
+                <button type="button" class="cell fill" data-control="C2" disabled aria-label="r9c6"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r9c7"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r9c8"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r9c9"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r9c10"></button>
+                <div class="clue row dim" aria-label="row 10 clue"><span class="run" aria-hidden="true">·</span></div>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c1"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c2"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c3"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c4"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c5"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c6"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c7"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c8"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c9"></button>
+                <button type="button" class="cell cross" data-control="C2" disabled aria-label="r10c10"></button>
+            </div>
+          </div>
+          <div class="tools" data-region="R3" aria-label="Tools">
+            <button type="button" class="tool active" data-control="C3">Fill</button>
+            <button type="button" class="tool" data-control="C4">Cross</button>
+            <button type="button" class="tool" data-control="C5">Clear</button>
+          </div>
+          <p class="hint">GS.paused · marks blocked · elapsed frozen · Settings Back (T8) resumes</p>
         </section>
       </div>
     </article>
