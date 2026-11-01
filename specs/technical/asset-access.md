@@ -10,7 +10,7 @@ Authoring rules: [`.agents/specs/rules/technical/asset-access.md`](../../.agents
 
 | ID | Aspect | Realizes | Rule |
 |----|--------|----------|------|
-| R1 | Asset manifest | `ACC.A2` | Generated JSON at `assets/manifest.json`. Maps each approved asset ID to one or more `res://` paths under `game/assets/`. Regenerated when a catalog entry is added, changed, or deprecated, and in CI when those paths change |
+| R1 | Asset manifest | `ACC.A2` | Generated JSON at `assets/manifest.json`. Maps each approved asset ID to one or more `res://` paths under `game/assets/`. Regenerated when a catalog entry is added, changed, or deprecated, and in CI when those paths change. TBD — which tool generates and regenerates the manifest? ([ADR-0003](../adr/decisions/0003-catalog-asset-roots.md) leaves generation tools out of scope) |
 | R2 | Resolver | `ACC.A1` | [`CMP-shell`](components/shell.md) is the only runtime reader of the manifest |
 | R3 | Unresolved asset ID | `ACC.A3` | Dev: loud fail / assert on resolve. Release: build fails if the manifest lists a missing, draft, or deprecated ID used by shipped code |
 
