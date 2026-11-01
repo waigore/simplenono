@@ -9,7 +9,7 @@ Authoring rules: [`.agents/specs/rules/playtest/traceability.md`](../../.agents/
 | Solve loop / endings / progression | design | [`design/ready-and-marks.md`](design/ready-and-marks.md), [`design/solve-and-pb.md`](design/solve-and-pb.md), [`design/crosses-and-fills.md`](design/crosses-and-fills.md), [`design/pack-finished.md`](design/pack-finished.md) |
 | Cell / clue / game-state / puzzle | design | [`design/ready-and-marks.md`](design/ready-and-marks.md), [`design/crosses-and-fills.md`](design/crosses-and-fills.md) |
 | Play / leave-resume / reset / settings journeys | ux | [`ux/play-puzzle.md`](ux/play-puzzle.md), [`ux/leave-resume.md`](ux/leave-resume.md), [`ux/gallery-reset.md`](ux/gallery-reset.md), [`ux/settings.md`](ux/settings.md) |
-| Gallery, puzzle, result, settings screens | ux | Same UX protocols as journeys above |
+| Gallery, puzzle, result, settings screens | ux | Same UX protocols as journeys above (plus [`ux/mark-input.md`](ux/mark-input.md)) |
 | Calm pack play; snappy solve | vision / definition | Hub + all protocols |
 | Debug UI & telemetry | definition / technical | [`tools.md`](tools.md), hub architecture |
 
