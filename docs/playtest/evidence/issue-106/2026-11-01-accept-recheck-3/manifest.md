@@ -22,6 +22,7 @@
 - `logs/gut-mutation-marks-allowed.log` — falsification: mark gate removed
 - `logs/gut-mutation-cross-as-fill.log` — falsification: crosses counted as fills
 - `notes.md` — judgement text
+- `falsification.md` — the two mutations, commands, and results
 - `screenshots/` — **waiting on a graphical run** (`ready-and-marks.png`, `crosses-and-fills.png`)
 
 ## Screenshot status
@@ -29,4 +30,4 @@
 Both protocols say "Default evidence rules" and require ≥1 image of the judged state from a
 graphical run of this same build. No first-party code at `0115f68` draws a board or exposes
 `DBG.2`/`DBG.3`; the only scene is the `CMP-shell` text stub (`game/presentation/shell.tscn`).
-Paths are marked waiting, per [`evidence.md`](../../../../specs/playtest/evidence.md).
+Paths are marked waiting, per [`evidence.md`](../../../../../specs/playtest/evidence.md).
