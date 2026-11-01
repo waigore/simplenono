@@ -15,8 +15,9 @@ or a hold. Context and the remaining holds: [`accept-dispatch-deadlock.md`](acce
 | `859d834` | 139/139 | `#132` | **accepted** graphically — S1–S4/P1–P3, US1.7, the #156 reopen path ([record](issue-132/2026-11-02-accept-graphical/manifest.md)) |
 | `c0b053d` | — | `#107` | **accepted** graphically — `E-clue` P1–P3 re-judged on `aff969b`, 4 screenshots ([record](issue-107/2026-11-02-accept-graphical/manifest.md)) |
 | `1015ee9` | 139/139 | `#108` | **accepted** graphically — `PTD-ready-and-marks` S1–S3/P2 and the `GS` clauses, 5 screenshots ([record](issue-108/2026-11-02-accept-graphical/manifest.md)) |
+| `dcd9a24` | 142/142 | `#109` | **accepted** graphically — `PTD-solve-and-pb` S1–S3/P1–P3, `PS1.4`/G1/B3, 8 screenshots ([record](issue-109/2026-11-02-accept-graphical/manifest.md)) |
 
 Earlier, out of this list's order: `#106` was accepted graphically on `269d854`
 ([record](issue-106/2026-11-02-accept-graphical/manifest.md)).
 
-`#109`, `#111`, and `#112` remain; see the holds note.
+`#111` and `#112` remain; see the holds note.
