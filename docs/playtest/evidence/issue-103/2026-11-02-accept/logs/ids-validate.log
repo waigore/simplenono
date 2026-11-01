@@ -1,0 +1,5 @@
+issued: 8  version7+variant ok: 8/8  malformed: []
+unique: True
+is_asset_id accepts all printed: True
+is_asset_id rejects UUIDv4 3f2504e0-4f89-41d3-9a0c-0305e82c3301: True
+is_asset_id rejects uppercase: True

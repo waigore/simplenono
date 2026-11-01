@@ -1,0 +1,7 @@
+.................................CHEAPERINFERENCE_API_KEY is not set in this shell. Set it in the agent/Cursor env (or source the profile); do not put it in the repo.
+...............................................
+----------------------------------------------------------------------
+Ran 80 tests in 7.499s
+
+OK
+exit=0
