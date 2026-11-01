@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | ID | Responsibility |
 |----|----------------|
 | R1 | Own the open puzzle: mark grid, elapsed, paused, and marks-allowed |
-| R2 | On open, load the definition and progress, block marks through get-set-ready, then apply empty-line auto-cross |
+| R2 | On open, load the definition and progress, block marks through get-set-ready, then apply empty-line auto-cross. The clue lines the shell shows come from that definition without further derivation ([`SCH-puzzle-def`](../schemata/puzzle-def.md) F3/F4), and are rebuilt whenever the attempt re-opens |
 | R3 | Tick elapsed only while marks are allowed and the puzzle is not paused |
 | R4 | After an accepted mark, ask the rules whether the fill set is solved |
 | R5 | Commit when marks or attempt status change, and on pause. On solve or leave, update the pack, then clear the open attempt |
