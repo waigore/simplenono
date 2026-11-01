@@ -10,4 +10,4 @@ None — fixed board; no player camera control. Orbit, look, zoom, and recenter 
 
 ## Settings
 
-None — no camera settings. Comfort options stay deferred with accessibility ([`perception.md`](perception.md)).
+None — no camera settings. Comfort options stay N/A with accessibility ([`perception.md`](perception.md)).

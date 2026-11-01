@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/assets/access.md`](../../.agents/specs/rules/assets/access.md).
 
-- **Serves**: Cool clinical look and snappy solve ([`vision.md`](../vision.md)); gallery / puzzle / result ([`ux.md`](../ux/ux.md)); hitch-bound during paint ([`quality.md`](../definition/quality.md)). Load-time budgets: TBD — what are the `time-to-playable` / `transition-latency` targets in quality?
+- **Serves**: Cool clinical look and snappy solve ([`vision.md`](../vision.md)); gallery / puzzle / result ([`ux.md`](../ux/ux.md)); hitch-bound during paint; `time-to-playable` and `transition-latency` ([`quality.md`](../definition/quality.md))
 - **Technical counterpart**: [`specs/technical/asset-access.md`](../technical/asset-access.md)
 
 ## Addressing

@@ -17,15 +17,7 @@ Authoring rules: [`.agents/specs/rules/technical/verification.md`](../../.agents
 
 ## Invariants to assert
 
-| ID | Invariant | Level | When checked |
-|----|-----------|-------|--------------|
-| I1 | Frame time stays within the `quality.md` frame-time target during grid paint and navigation (`frame-time`) | integration | Every protocol run, from S4 samples |
-| I2 | No hitch exceeds the `quality.md` hitch-bound target during grid paint (`hitch-bound`) | integration | Every protocol run |
-| I3 | A mark or advance while blocked or paused changes nothing ([`CTR-attempt.G1`](contracts/attempt.md)) | integration | After S1 drive in each marking protocol |
-| I4 | Personal best never increases while set, and a committed record survives quit ([`CTR-pack.G1`](contracts/pack.md), [`persistence.md`](persistence.md) M1; `save-survives`, `failed-write`) | integration | Each solve, reset, and quit round-trip |
-| I5 | [`SCH-progress`](schemata/progress.md) I1–I6 hold after every committed step | smoke | Per run step |
-
-An axis holds only where `quality.md` sets Applies (`rubrics.md`: an N/A axis is not scored); add an invariant when one becomes Applies.
+[`verification/invariants.md`](verification/invariants.md) (I1–I11), including each Applies deterministic quality axis.
 
 ## Harness expectations
 

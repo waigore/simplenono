@@ -35,7 +35,7 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 
 ## Accessibility
 
-- **Channels**: N/A — deferred until accessibility Applies in quality.
+- **Channels**: N/A — accessibility N/A in [`quality.md`](../definition/quality.md).
 - **Timing and assists**: N/A — same reason.
 - **Scale**: N/A — same reason.
 
