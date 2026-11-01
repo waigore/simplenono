@@ -42,7 +42,9 @@ Protocols for `E-clue`:
 
 | Artifact | Path | State |
 |----------|------|-------|
-| Notes (judgement, what changed) | [`notes.md`](notes.md) | present |
+| Notes (what changed, judgement, blocker) | [`notes.md`](notes.md) | present |
+| Criteria and fixture integrity | [`criteria.md`](criteria.md) | present |
+| Falsification | [`falsification.md`](falsification.md) | present |
 | Log — full suite at `37ef101` | [`logs/gut-recheck.log`](logs/gut-recheck.log) | present (6 scripts, 96/96, exit 0) |
 | Log — falsification mutation, then reverted | [`logs/gut-falsification-columns.log`](logs/gut-falsification-columns.log) | present (11 failing, exit 1) |
 | Log — fixture integrity check | [`logs/fixture-check.log`](logs/fixture-check.log) | present |
