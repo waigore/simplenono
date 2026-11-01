@@ -61,3 +61,7 @@ Runs after `Unit tests` succeeds (`needs`). Default Threshold **80** (% line cov
 |--|--|
 | Threshold | 80 |
 | None — no first-class GDScript CI coverage tool that fails under Threshold yet | — |
+
+## Integration harness
+
+See [`coding-conventions/integration-harness.md`](coding-conventions/integration-harness.md).

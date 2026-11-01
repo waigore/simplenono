@@ -16,6 +16,7 @@ GitHub configuration for this repository: labels, issue forms, and workflows.
 | [`workflows/spec-lint.yml`](workflows/spec-lint.yml) | Required check: structural spec rules ([`docs/spec-lint.md`](../docs/spec-lint.md)) |
 | [`workflows/code-lint.yml`](workflows/code-lint.yml) | Required check: project-owned lint/format steps per [`docs/coding-conventions.md`](../docs/coding-conventions.md); passes with a notice when there are none |
 | [`workflows/unit-tests.yml`](workflows/unit-tests.yml) | Required checks: `Unit tests` then `Coverage` per [`docs/coding-conventions.md`](../docs/coding-conventions.md); each passes with a notice when not configured |
+| [`workflows/integration.yml`](workflows/integration.yml) | `Integration harness` runs the CI-only `self-test` of [`game/test/integration/`](../game/test/integration/README.md); no game protocol until the debug seams land |
 | [`scripts/sync-labels.sh`](scripts/sync-labels.sh) | Local / CI label sync script |
 | [`scripts/asset_catalog.py`](scripts/asset_catalog.py) | CI integrity check of asset catalog entry files per `specs/assets/catalog.md`; roots from ADR-0003 (`assets/catalog/`, `game/assets/`) |
 | [`scripts/new_asset_id.py`](scripts/new_asset_id.py) | Generate asset IDs (UUID version 7) per `specs/assets/catalog.md`: the only way to mint one — never type or copy a UUID; `is_asset_id` validates one |

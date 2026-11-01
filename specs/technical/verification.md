@@ -25,9 +25,9 @@ Authoring rules: [`.agents/specs/rules/technical/verification.md`](../../.agents
 
 | ID | Expectation |
 |----|-------------|
-| H1 | Seams precede playtesting: the first build running a playtest protocol already contains S1–S4. A build without them is not a valid playtest target, and no gate run at `status:pending-acceptance` starts on one |
-| H2 | Debug builds only: S1–S3 and S5 sit behind one debug build flag; a release export has none |
-| H3 | Telemetry sink: the S4 log is a plain Godot log file, headless and graphical ([ADR-0001](../adr/decisions/0001-godot-gdscript.md)); the harness supplies the session / build id, and the run folder holds the file ([`evidence.md`](../playtest/evidence.md)) |
+| H1 | Seams precede playtesting: the first build running a playtest protocol already contains S1–S4. A build without them is not a valid playtest target, and no gate run at `status:pending-acceptance` starts on one. A playtest protocol runs through `godot --headless --path game -s test/integration/run_protocol.gd -- --debug-seams --protocol=<id> --run-dir=<dir>` |
+| H2 | Debug builds only: S1–S3 and S5 sit behind one debug build flag; a release export has none. The harness adds no second flag: a game protocol with the flag off exits nonzero and writes no run folder; only the CI `self-test` runs without it |
+| H3 | Telemetry sink: the S4 log is a plain Godot log file, headless and graphical ([ADR-0001](../adr/decisions/0001-godot-gdscript.md)); the harness supplies the session / build id, and the run folder holds the file ([`evidence.md`](../playtest/evidence.md)). Layout is `<run-dir>/integration/results.md`, `samples/` (frame and hitch NDJSON), `logs/` (S4 log and S5 dumps), and `results/` (raw protocol JSON); the harness never writes `manifest.md` |
 | H4 | No seed needed: identical setups play identically ([`game-state.md`](../design/game-state.md) Q1). `SIT.1`–`SIT.2` stay unbuilt until a protocol cites one; `SIT.3` is realized by S5 because [`PTD-crosses-and-fills`](../playtest/design/crosses-and-fills.md) cites it |
 
 ## Diagram
