@@ -22,6 +22,7 @@ or a hold. Context and the remaining holds: [`accept-dispatch-deadlock.md`](acce
 | `52db79a` | 185/185 | `#191` | **accepted** graphically — `PTD-ready-and-marks` S1–S3 re-run, `SND.X1`–`X3`/`M1`/`M2` and `HAP.H1` judged from player state, 6 screenshots ([record](issue-191/2026-11-02-accept-graphical/manifest.md)); found no protocol cites `SND.*`/`HAP.H1` |
 | `b1c1285` | 198/198 | `#111` | `IN` US1.6–US1.8 now judged **graphically** — 5 screenshots ([record](issue-111/2026-11-02-accept-graphical/manifest.md)); only the missing `PTU-mark-input` protocol remains (#203) |
 | `5e5fe85` | 198/198 | `#112` | open leg now judged **graphically** — gallery start, `S2`/`S1` open, 200/200 ids, 5 screenshots ([record](issue-112/2026-11-02-accept-graphical/manifest.md)); only the deterministic record remains (#204) |
+| `a2cdbed` | 198/198 | `#111` | repeat hold — `game/` is identical to `b1c1285`, so the graphical record stands; #203 (`PTU-mark-input`) is still `pending-implementation` with no PR |
 
 Earlier, out of this list's order: `#106` was accepted graphically on `269d854`
 ([record](issue-106/2026-11-02-accept-graphical/manifest.md)).
