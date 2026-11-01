@@ -13,6 +13,7 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | [ADR-0003](../adr/decisions/0003-catalog-asset-roots.md) | adr | [`asset-access.md`](asset-access.md), [`components/shell.md`](components/shell.md) |
 | Puzzle, cell, clue, solve loop, game state, end conditions | design | [`components/attempt.md`](components/attempt.md), [`components/rules.md`](components/rules.md), [`components/pack.md`](components/pack.md), [`schemata/`](schemata/), [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
 | Gallery, puzzle, result, settings; leave-resume; pause T7–T8; gallery-reset | ux | [`components/shell.md`](components/shell.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
+| Playtest Must rows: Debug UI, telemetry events ([`playtest.md`](../playtest/playtest.md)) | playtest | TBD — which technical element serves the Debug UI and telemetry Must rows: create `verification.md`, or revise [`playtest.md`](../playtest/playtest.md)? |
 | Persisted progress | definition | [`persistence.md`](persistence.md) |
 
 ## Topic coverage
