@@ -9,6 +9,11 @@ extends Control
 ## stage runs [code]CFG.MORPH_STAGE_MS[/code]; both are linear with no overshoot
 ## ([code]MOT.A2[/code]). Fills only: clues are not part of the morph.
 ##
+## A stored picture may be absent ([b]CMP-shell[/b] R6 returns null). The chain then
+## holds the best shipped layer — the pixel picture, else the solved fills — through the
+## stage whose target is missing, so no frame is empty and every stage still runs
+## [code]CFG.MORPH_STAGE_MS[/code] ([code]UI-result[/code] R1/S1).
+##
 ## The clock is [method tick], so a test or the harness drives it without waiting on a
 ## real timer. [signal stage_changed] and [signal morph_finished] are the seam the screen
 ## uses to open R2's Back control; this control owns no routing.
@@ -42,6 +47,8 @@ var _picture: ResultMorphSlot
 var _stage: String = STAGE_PIXEL
 var _progress: float = 0.0
 var _stage_ms: int = DEFAULT_STAGE_MS
+var _first_target: ResultMorphSlot
+var _final_target: ResultMorphSlot
 
 
 func _ready() -> void:
@@ -52,7 +59,7 @@ func _ready() -> void:
 
 ## Starts the morph from [param fills] (the grid the solve carried,
 ## [code]CTR-attempt[/code] S12). The pictures are requested by asset id and may be
-## null when this build does not ship them yet.
+## null when this build does not ship them yet; the chain ends on the best one it has.
 func start(
 	fills: MarkGrid,
 	pixel_picture: Texture2D,
@@ -62,6 +69,7 @@ func start(
 	_fills.show_fills(fills)
 	_pixel.show_picture(pixel_picture)
 	_picture.show_picture(picture)
+	_choose_targets(pixel_picture != null, picture != null)
 	_stage_ms = maxi(stage_ms, 1)
 	_stage = STAGE_PIXEL
 	_progress = 0.0
@@ -130,7 +138,6 @@ func _finish_stage() -> void:
 		_stage = STAGE_PICTURE
 	else:
 		_stage = STAGE_DEFAULT
-		pixel_slot().set_opacity(0.0)
 		stage_changed.emit(_stage)
 		morph_finished.emit()
 		return
@@ -138,21 +145,38 @@ func _finish_stage() -> void:
 
 
 ## Writes [param progress] into the three layers for the current stage. Each stage ends
-## on the layer the next stage starts from, so no frame jumps.
+## on the layer the next stage starts from, so no frame jumps and none is empty.
 func _apply_frames(progress: float) -> void:
 	_progress = progress
 	match _stage:
 		STAGE_PIXEL:
-			_fills.set_opacity(1.0 - progress)
-			_pixel.set_opacity(progress)
+			_fade(_fills, _first_target, progress)
 		STAGE_PICTURE:
-			_fills.set_opacity(0.0)
-			_pixel.set_opacity(1.0 - progress)
-			_picture.set_opacity(progress)
+			_fade(_first_target, _final_target, progress)
 		_:
-			_fills.set_opacity(0.0)
-			_pixel.set_opacity(0.0)
-			_picture.set_opacity(1.0)
+			_fade(_final_target, _final_target, 1.0)
+
+
+## Picks the layer stage 1 ends on and the layer [code]S1[/code] ends on. The generated
+## picture wins when it exists, then the pixel picture, then the solved fills.
+func _choose_targets(has_pixel: bool, has_picture: bool) -> void:
+	if has_picture:
+		_first_target = _pixel if has_pixel else _picture
+		_final_target = _picture
+	else:
+		_first_target = _pixel if has_pixel else _fills
+		_final_target = _first_target
+
+
+## Fades [param from] out while [param to] fades in; a single target holds at full.
+func _fade(from: ResultMorphSlot, to: ResultMorphSlot, progress: float) -> void:
+	for slot: ResultMorphSlot in [_fills, _pixel, _picture]:
+		slot.set_opacity(0.0)
+	if from == to:
+		from.set_opacity(1.0)
+		return
+	from.set_opacity(1.0 - progress)
+	to.set_opacity(progress)
 
 
 func _add_slot(slot_name: String) -> ResultMorphSlot:

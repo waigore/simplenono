@@ -6,7 +6,7 @@ extends Control
 ## The layer keeps no animation state; [ResultReveal] sets [method set_opacity] from
 ## its own clock. It only paints what it was given: [code]PAL.C2[/code] fills, or the
 ## texture [b]CMP-shell[/b] R6 resolved. A slot that never receives a picture paints
-## nothing, so a build without the picture assets stays paper rather than failing.
+## nothing, so [ResultReveal] keeps such a slot out of the layer chain.
 
 var _fills: MarkGrid
 var _picture: Texture2D
@@ -45,6 +45,12 @@ func opacity() -> float:
 ## The fills this layer paints ([code]SCH-mark-grid[/code]); 0 when it paints a picture.
 func fill_count() -> int:
 	return _fills.filled_positions().size() if _fills != null else 0
+
+
+## True when the layer has something to paint: a picture, or a fills grid with fills.
+## [ResultReveal] uses this to end the morph on a drawable layer.
+func has_content() -> bool:
+	return _picture != null or fill_count() > 0
 
 
 func _draw() -> void:
