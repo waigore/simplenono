@@ -36,3 +36,13 @@ jobs:
       - name: Lint
         run: gdlint game
 
+      # Repo-script checks (docs/coding-conventions.md: Unit tests are main code
+      # only, not .github/scripts). The manifest step runs on every PR rather
+      # than behind a path filter: it is offline and cheap, and ADR-0006 asks
+      # for it whenever a catalog entry or cataloged file changes.
+      - name: Test asset manifest generator
+        run: python3 .github/scripts/tests/test_asset_manifest.py
+
+      - name: Check asset manifest
+        run: python3 .github/scripts/asset_manifest.py --check
+
