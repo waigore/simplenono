@@ -21,4 +21,4 @@ Clear/erase and desktop platforms have no haptic cue. H1 never carries game info
 
 ## Experience intent
 
-A slight tactile click when placing a fill or cross. Quiet and clinical; visuals and soft SFX remain the primary channels.
+A slight tactile click when placing a fill or cross. Quiet and clinical; visuals and soft mark ticks remain the primary channels.

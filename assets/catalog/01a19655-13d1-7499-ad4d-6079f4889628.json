@@ -1,0 +1,75 @@
+{
+  "id": "01a19655-13d1-7499-ad4d-6079f4889628",
+  "handle": "sfx/fill-tick",
+  "kind_spec": "AK-sfx",
+  "coverage": [
+    "V1"
+  ],
+  "serves": [
+    "SND.X1",
+    "ACC.G1"
+  ],
+  "state": "approved",
+  "version": 2,
+  "files": [
+    "sfx/fill-tick.wav"
+  ],
+  "source_type": "ai-generation",
+  "tool_role": {
+    "role": "TL.3",
+    "adr": "adr-free"
+  },
+  "recipe": "AK-sfx.R1",
+  "generation": {
+    "prompt": "very soft gentle clinical fill tick about 80 milliseconds. quiet soft synthesized pad-like tick for placing a fill mark; clinical UI; gentle and understated; not musical. Avoid: long tails; loud hits; sharp clicks; cartoon boings; voice; cross or clear cues.",
+    "negative_prompt": "long tails; loud hits; sharp clicks; cartoon boings; voice; cross or clear cues",
+    "tool": "ElevenLabs",
+    "operation": "text-to-sound-effects convert",
+    "settings": {
+      "model": "eleven_text_to_sound_v2",
+      "duration_seconds": 0.5,
+      "prompt_influence": 0.85,
+      "output_format": "mp3_44100_128",
+      "post_trim_ms": 80,
+      "fade_in_ms": 8,
+      "fade_out_ms": 25,
+      "loudness_target_lufs": -32
+    },
+    "seed": "n/a \u2014 tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": []
+    },
+    "steps": [
+      "elevenlabs text-to-sound-effects convert (bootstrap, 0.5 s)",
+      "ffmpeg atrim ~80 ms around onset; mono",
+      "afade in 8 ms / out 25 ms",
+      "pad-measure LUFS; volume to \u221232 LUFS"
+    ]
+  },
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-01",
+      "reason": "First bootstrap mark-tick (shared fill/cross/clear); superseded for fill-only softer take",
+      "generation": {
+        "prompt": "soft clinical UI tick about 80 milliseconds...",
+        "tool": "ElevenLabs",
+        "operation": "text-to-sound-effects convert"
+      }
+    }
+  ],
+  "license": {
+    "grant": "Generated under ElevenLabs Terms of Service; project may use per plan commercial rights",
+    "tool": "ElevenLabs",
+    "terms": "https://elevenlabs.io/terms"
+  },
+  "guidance": "PO listen OK 2026-11-01. Bootstrap while AK-sfx SS1 is none.",
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-01",
+    "reviewer": "agent+PO",
+    "report": "PO listen-approved each asset in turn (chat). Measured: fill/cross/clear 80ms \u2248\u221232 LUFS; bed 28s loop \u2248\u221223.6 LUFS; sting 1s \u2248\u221218.3 LUFS. Bootstrap series none. Catalog fields + kind S/B/K measured rows OK."
+  }
+}

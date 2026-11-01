@@ -50,7 +50,7 @@ Then haptics shows Off
 Given mute off
 When the Player activates C2
 Then mute shows On
-And mark SFX remain unmuted per settings spec
+And mark ticks remain unmuted per settings spec
 ```
 
 ### US1.4: Back to gallery

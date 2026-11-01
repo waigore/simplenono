@@ -4,7 +4,7 @@ Authoring rules: [`.agents/specs/rules/assets/assets.md`](../../.agents/specs/ru
 
 ## Purpose
 
-Catalogued **generated and pixel puzzle pictures** (thumbnail and morph), **fonts**, **mark SFX**, and **music** (bed and solve sting) for the clinical 2D local pack. Board marks and chrome panels are code-drawn from aesthetics—not catalogued art. No 3D, tiles, icons, or voice.
+Catalogued **generated and pixel puzzle pictures** (thumbnail and morph), **fonts**, **mark SFX** (fill/cross/clear), and **music** (bed and solve sting) for the clinical 2D local pack. Board marks and chrome panels are code-drawn from aesthetics—not catalogued art. No 3D, tiles, icons, or voice.
 
 ## Asset kinds
 

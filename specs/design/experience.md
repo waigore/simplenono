@@ -30,7 +30,7 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 ## Sensory intent
 
 - **Mood and style**: Cool, clinical, high-contrast, quiet focus — not warm, cute, or playful.
-- **Sound intent**: Light calm BGM during play; soft/quiet mark SFX under it. On solve, a calm-yet-triumphant sting over the continuing bed. Concrete audio → aesthetics / view.
+- **Sound intent**: Light calm BGM during play; soft distinct ticks for fill, cross, and clear under it. On solve, a calm-yet-triumphant sting over the continuing bed. Concrete audio → aesthetics / view.
 - **Clarity rules**: Fill, cross, and clear always distinct; clues readable; line error is contradiction, not fail; solution hidden on the board while solving. After solve, on the result screen, fills fade into the stored pixel picture, then into the stored generated picture (fills only); then return to gallery. Gallery thumbnail remains the lasting picture after ever-completed.
 
 ## Accessibility

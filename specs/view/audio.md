@@ -14,7 +14,7 @@ N/A — no positional sound. No distance falloff, pan-by-angle, muffling, or Dop
 
 ## Positional cues
 
-N/A — no positional sound. Mark SFX and BGM are not world-placed sources.
+N/A — no positional sound. Mark ticks and BGM are not world-placed sources.
 
 ## Experience intent
 

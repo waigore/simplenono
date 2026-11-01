@@ -8,7 +8,7 @@ Authoring rules: [`.agents/specs/rules/assets/tools.md`](../../.agents/specs/rul
 |----|------|-------------|--------------|-----------------------|-------------|
 | TL.1 | Full-colour image generate (non-series) | AI generation | [`puzzle-pictures`](kinds/puzzle-pictures.md) | Square canvas; default model `flux-2-max`; no Recraft style id | ADR-free — Cheaper Inference per [`docs/asset-tools.md`](../../docs/asset-tools.md) |
 | TL.2 | Offline image→nonogram derive | Procedural / local tooling | [`puzzle-pictures`](kinds/puzzle-pictures.md) | Keep the square generate; pixelate a copy 1:1; luma fill band; uniqueness + line-logic judge; regenerate-on-fail | Local authoring/CI scripts (not in-game) |
-| TL.3 | Mark-tick SFX generate | AI generation | [`sfx`](kinds/sfx.md) | Short synthesized interface tick; duration and loudness per kind | ADR-free — ElevenLabs CLI per [`docs/asset-tools.md`](../../docs/asset-tools.md) |
+| TL.3 | Mark-tick SFX generate | AI generation | [`sfx`](kinds/sfx.md) | Soft synthesized fill/cross/clear ticks; duration and loudness per kind | ADR-free — ElevenLabs CLI per [`docs/asset-tools.md`](../../docs/asset-tools.md) |
 | TL.4 | Bed and sting music generate | AI generation | [`music`](kinds/music.md) | Looping bed; 1 s sting; tempo and loudness per kind; finetune when series `active` | ADR-free — ElevenLabs CLI per [`docs/asset-tools.md`](../../docs/asset-tools.md) |
 
 ## Access
