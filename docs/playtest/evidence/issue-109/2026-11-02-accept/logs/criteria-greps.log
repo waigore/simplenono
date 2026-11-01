@@ -1,0 +1,19 @@
+# criterion 7 — no progress writer outside O5/O6; UI and progress-file wiring unchanged
+# build: main@fa6fe3e (probe file removed before this run)
+
+$ git diff 22654c9 fa6fe3e --stat -- game/presentation game/main.tscn
+(empty above = unchanged)
+
+$ grep -rn 'user://' 'ConfigFile' game --include='*.gd'   # minus addons/ and /test/
+game/records/progress_rules.gd:15:## memory until a later task adds `user://progress.cfg`.
+
+$ grep -rn -e draw_ -e 'DBG.' -e 'TEL.' game --include='*.gd' --include='*.tscn'   # minus addons/
+(empty above = nothing draws; no DBG/TEL surface)
+
+$ ls game/presentation/
+shell.gd
+shell.gd.uid
+shell.tscn
+
+$ git status --short   (working tree after the run)
+?? docs/playtest/evidence/issue-109/
