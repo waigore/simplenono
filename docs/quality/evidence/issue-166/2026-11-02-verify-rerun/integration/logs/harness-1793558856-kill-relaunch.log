@@ -1,0 +1,8 @@
+HARNESS relaunch: mark phase pid 46197
+HARNESS relaunch: killed pid 46197
+HARNESS relaunch: verify phase pid 46202
+HARNESS step=spawn-mark kind=launch ok=true pid 46197
+HARNESS step=mark-hold kind=wait ok=true /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/verify-166/docs/quality/evidence/issue-166/2026-11-02-verify-rerun/integration/logs/relaunch-mark.json
+HARNESS step=kill kind=kill ok=true pid 46197
+HARNESS step=spawn-verify kind=launch ok=true pid 46202
+HARNESS step=verify-exit kind=exit ok=false exit code 1
