@@ -25,6 +25,10 @@ signal settings_requested
 ## A tool was selected ([code]C3[/code]-[code]C5[/code]); #111 sends its marks.
 signal tool_selected(tool: CellMark.Mark)
 
+## An accepted mark reached the screen ([b]CTR-attempt[/b] O2), for the S4 telemetry
+## seam. The screen raises it; it writes nothing.
+signal mark_applied
+
 ## Get-set-ready: the load beat runs and marks are blocked ([code]S2[/code]).
 const STATE_GET_SET_READY := "S2"
 
@@ -155,6 +159,7 @@ func show_mark_result(result: MarkResult) -> void:
 		return
 	_line_status = result.line_status
 	_board.set_marks(result.marks, result.line_status)
+	mark_applied.emit()
 
 
 ## Re-reads the attempt and updates every region. Pure read: nothing is written.
