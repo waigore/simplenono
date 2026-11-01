@@ -8,10 +8,14 @@ extends GutTest
 ## is dev-only test data, never a runtime read. The scans prove the single-source rules —
 ## the five cue-mapped IDs live only in [code]audio_cues.gd[/code], and no literal asset
 ## path under [code]res://[/code] is baked into game logic.
+##
+## The one approved [code]fonts[/code] entry is discovered by handle, resolved by asset id,
+## and its digits proved tabular in-engine ([code]AK-fonts[/code] V1, S3/K2).
 
 const AUDIO_CUES_SCRIPT := "presentation/audio_cues.gd"
 const UNKNOWN_ID := "01a19666-0000-7000-8000-000000000000"
 const ABSENT_MANIFEST := "../assets/absent-manifest.json"
+const FONT_HANDLE_PREFIX := "fonts/"
 
 
 func _cues() -> Array[StringName]:
@@ -39,6 +43,31 @@ func _catalog_entry(asset_id: String) -> Variant:
 	if not FileAccess.file_exists(path):
 		return null
 	return JSON.parse_string(FileAccess.get_file_as_string(path))
+
+
+## Approved catalog entries whose handle begins with [param prefix], for checks that ask
+## for a kind without naming one asset id in game code (dev-only catalog read).
+func _approved_handle_entries(prefix: String) -> Array[Dictionary]:
+	var entries: Array[Dictionary] = []
+	var directory := _repo_path("../assets/catalog")
+	var dir := DirAccess.open(directory)
+	if dir == null:
+		return entries
+	dir.list_dir_begin()
+	var entry_name := dir.get_next()
+	while not entry_name.is_empty():
+		if not dir.current_is_dir() and entry_name.ends_with(".json"):
+			var entry: Variant = JSON.parse_string(
+				FileAccess.get_file_as_string(directory.path_join(entry_name))
+			)
+			if typeof(entry) == TYPE_DICTIONARY:
+				var fields := entry as Dictionary
+				var handle := str(fields.get("handle", ""))
+				if fields.get("state") == "approved" and handle.begins_with(prefix):
+					entries.append(fields)
+		entry_name = dir.get_next()
+	dir.list_dir_end()
+	return entries
 
 
 ## Every [code].gd[/code] file under [code]game/[/code] except the vendored addons.
@@ -93,6 +122,28 @@ func test_every_cue_id_is_approved_and_serves_its_cue():
 		assert_eq(fields.get("state"), "approved", "%s is approved" % cue)
 		var serves: Variant = fields.get("serves", [])
 		assert_true((serves as Array).has(String(cue)), "%s lists its cue in serves" % cue)
+
+
+# AK-fonts V1 / ACC.G1-G3 / CMP-shell R3: the one UI font resolves by id and is tabular
+func test_the_single_ui_font_resolves_by_asset_id_with_tabular_figures():
+	var entries := _approved_handle_entries(FONT_HANDLE_PREFIX)
+
+	assert_eq(entries.size(), 1, "exactly one approved fonts entry")
+	if entries.size() != 1:
+		return
+	var resolver := AssetResolver.new()
+	var font := resolver.resolve(str(entries[0].get("id", ""))) as Font
+
+	assert_not_null(font, "the font resolves to an engine font")
+	if font == null:
+		return
+	assert_true(font.has_char("0".unicode_at(0)), "the font draws clue digits")
+	assert_almost_eq(
+		font.get_string_size("1111").x,
+		font.get_string_size("0000").x,
+		0.01,
+		"clue digits are tabular",
+	)
 
 
 # ACC.A3: an unknown, draft, or deprecated ID is unresolved and loud, never a fallback
