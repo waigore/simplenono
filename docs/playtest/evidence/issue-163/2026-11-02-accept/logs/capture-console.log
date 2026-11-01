@@ -1,0 +1,80 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+SEV level=info event=session-start time=1793564934.146 session=issue-163-capture build=4.7.2-stable (official) story=L-solve.PS1.1 message=
+capture: PASS the shell hosts the seams
+capture: PASS DBG.4: the overlay toggles on
+capture: PASS DBG.4: the overlay is visible
+capture: PASS DBG.4: overlay shows the story id
+capture: shot 00-flag-on-home-overlay -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept163-evidence/screenshots/00-flag-on-home-overlay.png (error 0)
+TEL event=open time=1793564934.223 session=issue-163-capture build=4.7.2-stable (official) story=L-solve.PS1.1 outcome=pass
+capture: PASS DBG.3: the chosen id opens
+capture: PASS DBG.3: the chosen id is open
+capture: PASS SEQ-open: the beat runs
+TEL event=ready time=1793564934.223 session=issue-163-capture build=4.7.2-stable (official) story=L-solve.PS1.1 outcome=pass
+TEL event=commit time=1793564934.224 session=issue-163-capture build=4.7.2-stable (official) story=L-solve.PS1.1 outcome=pass
+capture: PASS the beat ends
+capture: PASS DBG.2: three schemata
+capture: wrote /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept163-evidence/logs/inspect-before.json
+TEL event=pause time=1793564934.225 session=issue-163-capture build=4.7.2-stable (official) story=L-solve.PS1.1 outcome=pass
+capture: PASS DBG.1: the session halts
+capture: PASS O4: paused
+capture: PASS O4: the screen shows S3
+capture: PASS O3: elapsed frozen while halted
+capture: shot 01-paused-session -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept163-evidence/screenshots/01-paused-session.png (error 0)
+capture: PASS DBG.2: inspect reports paused
+capture: wrote /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept163-evidence/logs/inspect-paused.json
+TEL event=resume time=1793564934.244 session=issue-163-capture build=4.7.2-stable (official) story=L-solve.PS1.1 outcome=pass
+capture: PASS DBG.1: the session continues
+capture: PASS O5: resumed
+capture: PASS O5: the screen shows S1
+capture: shot 02-resumed-session -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept163-evidence/screenshots/02-resumed-session.png (error 0)
+TEL event=open time=1793564934.260 session=issue-163-capture build=4.7.2-stable (official) story=L-solve.PS1.1 outcome=pass
+capture: PASS DBG.3: a second id opens in place
+capture: PASS DBG.3: the second id is open
+capture: PASS DBG.3: the attempt was replaced
+capture: shot 03-opened-in-place -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept163-evidence/screenshots/03-opened-in-place.png (error 0)
+capture: PASS G3: the unknown id refuses
+capture: PASS G3: the open attempt is unchanged
+capture: PASS G3: the open id is unchanged
+capture: PASS G3: inspect is unchanged
+capture: shot 04-unknown-id-unchanged -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept163-evidence/screenshots/04-unknown-id-unchanged.png (error 0)
+capture: PASS SIT.3: the state dump was written
+capture: PASS SIT.3: the dump names the open id
+capture: PASS TEL.1: open emits an event
+capture: PASS TEL.1: ready emits an event
+capture: PASS TEL.1: pause emits an event
+capture: PASS TEL.1: resume emits an event
+capture: PASS TEL.1/TEL.2 present
+capture: PASS TEL.3 session id
+capture: PASS TEL.3 build id
+capture: PASS TEL.4 story id
+capture: PASS TEL.5 outcome
+capture: PASS TEL.1/TEL.2 present
+capture: PASS TEL.3 session id
+capture: PASS TEL.3 build id
+capture: PASS TEL.4 story id
+capture: PASS TEL.5 outcome
+capture: PASS TEL.1/TEL.2 present
+capture: PASS TEL.3 session id
+capture: PASS TEL.3 build id
+capture: PASS TEL.4 story id
+capture: PASS TEL.5 outcome
+capture: PASS TEL.1/TEL.2 present
+capture: PASS TEL.3 session id
+capture: PASS TEL.3 build id
+capture: PASS TEL.4 story id
+capture: PASS TEL.5 outcome
+capture: PASS TEL.1/TEL.2 present
+capture: PASS TEL.3 session id
+capture: PASS TEL.3 build id
+capture: PASS TEL.4 story id
+capture: PASS TEL.5 outcome
+capture: PASS TEL.1/TEL.2 present
+capture: PASS TEL.3 session id
+capture: PASS TEL.3 build id
+capture: PASS TEL.4 story id
+capture: PASS TEL.5 outcome
+capture: wrote /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept163-evidence/logs/telemetry-events.ndjson
+capture: RESULT pass (5 shots, 6 events)
+SEV level=info event=session-end time=1793564934.292 session=issue-163-capture build=4.7.2-stable (official) story=L-solve.PS1.1 message=
