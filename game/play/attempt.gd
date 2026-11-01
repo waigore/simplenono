@@ -56,6 +56,9 @@ var _puzzle_id: String = ""
 var _definition: PuzzleDefinition
 var _rules: Rules
 var _progress: ProgressRules
+## The grid the last solve carried ([code]SEQ-mark[/code] S12); null before a solve.
+var _solved_grid: MarkGrid
+
 var _beat_running: bool = false
 
 
@@ -173,6 +176,7 @@ func _solve(line_status: LineStatusCheck) -> MarkResult:
 	var stopped_elapsed := _state.elapsed()
 	# S12 references the grid the state is about to replace, so hold it before S11.
 	var result := MarkResult.new(solved_grid, line_status)
+	_solved_grid = solved_grid
 	# S9 keeps the elapsed value at the solve; S10 records it before S11 zeroes it.
 	_progress.record_solve(_puzzle_id, stopped_elapsed)
 	# S11.
@@ -180,6 +184,13 @@ func _solve(line_status: LineStatusCheck) -> MarkResult:
 	# S13.
 	solved.emit(_puzzle_id, stopped_elapsed)
 	return result
+
+
+## The grid the last solve carried ([code]SEQ-mark[/code] S12), or null before a solve.
+## The solve clears the attempt before E1 (S11 before S13), so this is the only way a
+## listener learns the fills that won ([code]CTR-attempt[/code] E1 → [code]NAV.T4[/code]).
+func solved_grid() -> MarkGrid:
+	return _solved_grid
 
 
 ## O3 (R3): adds [param amount] to elapsed only after the beat and while marks are allowed
