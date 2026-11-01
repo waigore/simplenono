@@ -1,0 +1,40 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [/Users/waigore/Library/Application Support/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+[4m
+
+res://test/test_result_screen.gd
+[0m* test_us1_1_opens_on_the_fills_with_no_controls
+* test_stage_one_runs_cfg_morph_stage_ms_linearly
+* test_us1_4_pixel_fades_into_the_generated_picture
+* test_us1_2_default_shows_the_picture_and_opens_back
+* test_us1_3_back_is_blocked_while_morphing
+* test_back_in_default_raises_the_intent
+* test_the_morph_has_no_clue_chrome
+* test_us1_5_missing_generated_picture_ends_on_the_pixel_picture
+* test_us1_5_missing_pictures_end_on_the_solved_fills
+* test_us1_5_remaining_stages_keep_cfg_morph_stage_ms
+* test_us1_5_no_frame_between_stages_is_empty
+[1m11/11 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m
+Totals
+------
+Scripts               1
+Tests                11
+Passing Tests        11
+Asserts             576
+Time              1.566s
+
+
+[32m---- All tests passed! ----
+[0m
