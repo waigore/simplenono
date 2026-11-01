@@ -10,10 +10,11 @@ extends GutTest
 ## itself is the real [Rules] over the teapot fixture; [code]is-solved[/code] is a pure
 ## check ([b]CTR-rules[/b] G3), so B1/B2 skipping it shows as no O6, no E1, and no write.
 ##
-## Out of scope here, with owners: the open/ready beat is #132, the first-mark transition
-## and the derived values are #108, pause/resume/leave and the progress file are #96, the
-## puzzle screen is #110, and mark input is #111. No screen, input, theme, or persistence
-## code is involved, so the [code]MC.puzzle[/code] draft-mockup gate does not apply.
+## Out of scope here, with owners: PS1.1/PS1.9 and the open/ready beat are #132; PS1.3,
+## the first-mark transition, and the derived rules are #108; PS1.2/PS1.7/PS1.8,
+## pause/resume/leave, and the progress file are #96; the puzzle screen is #110; and
+## mark input is #111. No screen, input, theme, or persistence code is involved, so the
+## [code]MC.puzzle[/code] draft-mockup gate does not apply.
 
 const TEAPOT_ID := "teapot"
 const TEAPOT_PATH := "res://test/fixtures/teapot.json"
