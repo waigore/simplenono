@@ -36,8 +36,8 @@ Catalogued **generated and pixel puzzle pictures** (thumbnail and morph), **font
 
 ## Catalog
 
-- **Catalog root**: TBD — which Integration ADR sets the catalog root (outside engine import)?
-- **Asset root**: TBD — which Integration ADR sets the asset root?
+- **Catalog root**: `assets/catalog/` ([ADR-0003](../adr/decisions/0003-catalog-asset-roots.md))
+- **Asset root**: `game/assets/` ([ADR-0003](../adr/decisions/0003-catalog-asset-roots.md))
 
 Asset IDs, format, and integrity: [`catalog.md`](catalog.md). Fields: [`catalog/fields.md`](catalog/fields.md).
 

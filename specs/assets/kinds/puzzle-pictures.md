@@ -80,4 +80,4 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 ## Naming
 
 - **Handle name**: `puzzle-pictures/<puzzle-id>-generated` and `puzzle-pictures/<puzzle-id>-pixel`
-- **Path**: under asset root from handle — TBD — which Integration ADR sets the asset root?
+- **Path**: under `game/assets/` from handle ([ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md))
