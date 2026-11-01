@@ -34,11 +34,11 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
 
 Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md), [`ids.md`](ids.md), [`stories.md`](stories.md), [`story-coverage.md`](story-coverage.md), [`game-state.md`](game-state.md) ([`game-state/fields.md`](game-state/fields.md)), [`configuration.md`](configuration.md), [`demo.md`](demo.md), [`difficulty.md`](difficulty.md), [`progression.md`](progression.md), [`end-conditions.md`](end-conditions.md), [`world.md`](world.md), [`experience.md`](experience.md).
 
-- **Characters**: <!-- fill in -->
+- **Characters**: None
 - **Entities**: [`puzzle.md`](entities/puzzle.md), [`cell.md`](entities/cell.md), [`clue.md`](entities/clue.md)
 - **Loops**: [`solve.md`](loops/solve.md)
-- **Features**: <!-- fill in -->
-- **Flows**: <!-- fill in -->
-- **Stages**: <!-- fill in -->
-- **Scenarios**: <!-- fill in -->
+- **Features**: None — mechanics live in [`loops/`](loops/) and [`entities/`](entities/)
+- **Flows**: None — session arc in [`experience.md`](experience.md); screens and journeys under UX
+- **Stages**: None
+- **Scenarios**: None
 - **Sub-games**: None

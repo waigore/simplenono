@@ -4,36 +4,30 @@ Authoring rules: [`.agents/specs/rules/design/world.md`](../../.agents/specs/rul
 
 ## Setting
 
-- **Place and time**: <!-- fill in -->
-- **Tone**: <!-- fill in -->
-- **Defining traits**: <!-- fill in -->
+- **Place and time**: None — no diegetic place or time; play is an abstract clinical puzzle space
+- **Tone**: Cool and clinical, matching the vision
+- **Defining traits**: Quiet deduction; a picture appears only when fills match the solution
 
 ## World rules
 
 | Rule | Gameplay effect | Feature |
 |------|-----------------|---------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
-
-## Factions and groups
-
-| Faction | Goals | Relationship to the player | Members |
-|---------|-------|----------------------------|---------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| — | None beyond entity and loop rules already formalized | — |
 
 ## Story
 
-- **Premise**: <!-- fill in -->
-- **Structure**: <!-- fill in -->
-- **Player agency**: <!-- fill in -->
+- **Premise**: None
+- **Structure**: none
+- **Player agency**: Which puzzle to open and which marks to place; pack content and win rules are fixed
 
 | Beat | Where | What happens | Player choice |
 |------|-------|--------------|---------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| — | — | None | — |
 
 ## Narrative delivery
 
-<!-- fill in -->
+None — solution pictures are pack content, not story beats.
 
 ## Experience intent
 
-<!-- fill in -->
+Quiet focused “I solved it” when the picture appears — supports the vision player fantasy without a narrative campaign.

@@ -2,37 +2,29 @@
 
 Authoring rules: [`.agents/specs/rules/design/difficulty.md`](../../.agents/specs/rules/design/difficulty.md).
 
-- **Approach**: <!-- fill in -->
-- **Why**: <!-- fill in -->
-
-## Difficulty levels
-
-| Level | Intended player | Experience goal |
-|-------|-----------------|-----------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+- **Approach**: fixed — challenge is puzzle content (board size and clue density in the pack), not selectable levels
+- **Why**: Calm casual play with no fail state and free-order selection; pressure systems would fight the vision
 
 ## Parameter adjustments
 
-| Parameter | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
-|-----------|------------------|------------------|------------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+N/A — difficulty is fixed; no level columns.
 
 ## Rule adjustments
 
-- **R1**: <!-- fill in -->
+- **R1**: None
 
 ## Dynamic adjustment
 
-- **Y1**: <!-- fill in -->
+- **Y1**: None
 
 ## Challenge curve
 
-<!-- fill in -->
+Soft pack shape: 10×10 puzzles are lighter, 15×15 are the bulk, 20×20 are heavier. Free-order selection lets the player pick intensity; there is no forced rise.
 
 ## Changing difficulty
 
-- **C1**: <!-- fill in -->
+- **C1**: Never — no difficulty setting; personal bests and ever-completed are unaffected by any difficulty choice (there is none)
 
 ## Fairness
 
-<!-- fill in -->
+Clues alone decide fills. Wrong marks stay until the player corrects them. Line error is recoverable contradiction, not a fail. Failures must never feel random.
