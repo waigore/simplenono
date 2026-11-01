@@ -1,8 +1,9 @@
 class_name Pack
 extends RefCounted
 ## [b]CMP-pack[/b] R1-R5: load, validate, and reject pack entries into definitions;
-## serve the gallery list (O1), the completion rate (O2), definitions (O3), and the
-## in-memory progress record (O4); and write progress through [ProgressRules] (O5-O7).
+## serve the gallery list (O1), the completion rate and pack finished (O2), definitions
+## (O3), and the in-memory progress record (O4); and write progress through
+## [ProgressRules] (O5-O7).
 ##
 ## Reads the pack file ([method load_pack], [b]CTR-pack[/b] O8), keeps one
 ## [PuzzleDefinition] per accepted entry, and serves them by id ([method definition],
@@ -99,6 +100,14 @@ func list_entries() -> Array[GalleryEntry]:
 ## O2 ([code]GS.completion-rate[/code]): ever-completed count ÷ 200 ([code]PS1.2[/code]).
 func completion_rate() -> float:
 	return _progress.completion_rate()
+
+
+## [code]GS.pack-finished[/code] ([code]END.W2[/code], [code]PRG.Z1[/code]): true once
+## every one of the 200 puzzles is ever-completed, that is, completion rate 1.
+## [code]END.P1[/code]: this is evaluated after W1, so the last first-solve still applies
+## its own W1 outcomes; replay after finish stays allowed ([code]PRG.Z2[/code]).
+func pack_finished() -> bool:
+	return _progress.pack_finished()
 
 
 ## Adds one already-validated definition ([SCH-puzzle-def]) to the held set, the way a

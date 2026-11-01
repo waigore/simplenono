@@ -173,6 +173,100 @@ func test_a_failed_write_leaves_the_previous_file() -> void:
 	assert_false(stored.ever_completed, "G3: the previous cleared record is intact")
 
 
+# END.W2 / PRG.Z1 / PS1.6: the last first-solve finishes the pack, and still applies its
+# own W1 (PS1.5: W1 outcomes still apply for that puzzle)
+func test_the_last_first_solve_finishes_the_pack_and_still_wins_that_puzzle() -> void:
+	var seeded := ConfigFile.new()
+	for index in 199:
+		var section := "pack-%03d" % index
+		seeded.set_value(section, ProgressFile.EVER_COMPLETED_KEY, true)
+		seeded.set_value(section, ProgressFile.PERSONAL_BEST_KEY, 60)
+	assert_eq(seeded.save(TEST_PATH), OK, "the 199-puzzle fixture is written")
+
+	var pack := _pack()
+	assert_false(pack.pack_finished(), "END.W2: 199 of 200 is not finished")
+	var attempt := Attempt.new(pack)
+	assert_true(attempt.open("pack-199"), "the last puzzle opens")
+	assert_true(attempt.end_get_set_ready(), "the ready beat ends")
+	var emissions: Array = []
+	attempt.solved.connect(
+		func(puzzle_id: String, elapsed: int) -> void: emissions.append([puzzle_id, elapsed])
+	)
+	var last: Vector2i = pack.definition("pack-199").solution_fills.back()
+	for position in pack.definition("pack-199").solution_fills:
+		if position != last:
+			attempt.mark(position.x, position.y, CellMark.Mark.FILL)
+
+	attempt.mark(last.x, last.y, CellMark.Mark.FILL)
+
+	assert_eq(emissions.size(), 1, "END.W2: W1 fired once for the last puzzle")
+	assert_true(pack.pack_finished(), "PS1.6: the pack is finished")
+	assert_eq(pack.completion_rate(), 1.0, "END.W2: completion-rate is 1")
+	var entry := _entry(pack, "pack-199")
+	assert_true(entry.ever_completed, "PS1.5: the last puzzle is ever-completed")
+	assert_false(entry.in_progress, "PS1.5: its attempt is not started")
+	assert_true(entry.has_personal_best(), "PS1.5: its personal best is kept")
+	assert_eq(
+		attempt.state().attempt_status(),
+		AttemptState.Status.NOT_STARTED,
+		"PS1.5: marks and elapsed cleared for that puzzle",
+	)
+
+
+# PRG.Z2 / PS1.7: after the pack is finished, a replay still runs in progress while the
+# puzzle stays ever-completed
+func test_a_replay_after_finish_stays_in_progress_and_ever_completed() -> void:
+	var seeded := ConfigFile.new()
+	for index in 200:
+		var section := "pack-%03d" % index
+		seeded.set_value(section, ProgressFile.EVER_COMPLETED_KEY, true)
+		seeded.set_value(section, ProgressFile.PERSONAL_BEST_KEY, 60)
+	assert_eq(seeded.save(TEST_PATH), OK, "the finished-pack fixture is written")
+
+	var pack := _pack()
+	assert_true(pack.pack_finished(), "PRG.Z1: every puzzle is ever-completed")
+	var attempt := Attempt.new(pack)
+	assert_true(attempt.open("pack-000"), "a finished pack still opens a puzzle")
+	assert_true(attempt.end_get_set_ready(), "the ready beat ends")
+	var fill := _first_clear_solution_fill(pack, "pack-000")
+
+	attempt.mark(fill.x, fill.y, CellMark.Mark.FILL)
+
+	var entry := _entry(pack, "pack-000")
+	assert_true(entry.in_progress, "PS1.7 / Z2: the replay is in progress")
+	assert_true(entry.ever_completed, "PS1.7 / Z2: ever-completed stays true")
+	assert_true(pack.pack_finished(), "Z2: the pack stays finished")
+
+
+# END.P1 / PRG.Z1: an O2 gallery reset after finish opens the pack again
+func test_a_gallery_reset_after_finish_reopens_the_pack() -> void:
+	var seeded := ConfigFile.new()
+	for index in 200:
+		var section := "pack-%03d" % index
+		seeded.set_value(section, ProgressFile.EVER_COMPLETED_KEY, true)
+		seeded.set_value(section, ProgressFile.PERSONAL_BEST_KEY, 60)
+	assert_eq(seeded.save(TEST_PATH), OK, "the finished-pack fixture is written")
+
+	var pack := _pack()
+	assert_true(pack.reset("pack-117"), "O2 resets one puzzle")
+
+	assert_false(pack.pack_finished(), "Z1: one reset puzzle means no longer finished")
+	assert_eq(pack.completion_rate(), 0.995, "O2: 199 of 200 is 0.995")
+
+
+## The first solution fill that is still clear after the ready beat's auto-cross; opens
+## its own attempt so the case under test keeps its state.
+func _first_clear_solution_fill(pack: Pack, puzzle_id: String) -> Vector2i:
+	var probe := Attempt.new(pack)
+	probe.open(puzzle_id)
+	probe.end_get_set_ready()
+	for position in pack.definition(puzzle_id).solution_fills:
+		if probe.state().marks().mark_at(position.x, position.y) == CellMark.Mark.CLEAR:
+			return position
+	assert_true(false, "the puzzle has a clear solution fill after ready")
+	return Vector2i.ZERO
+
+
 # M2: marks are stored row-major and only while the attempt is in progress
 func test_progress_file_round_trips_marks_row_major() -> void:
 	var grid := MarkGrid.new(10, true)

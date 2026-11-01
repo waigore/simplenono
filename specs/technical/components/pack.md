@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | ID | Responsibility |
 |----|----------------|
 | R1 | Hold the 200 puzzle definitions and one progress record each |
-| R2 | Serve the gallery list, completion rate, definitions, and progress |
+| R2 | Serve the gallery list, completion rate, whether the pack is finished (that rate at 1), definitions, and progress |
 | R3 | Apply commit, record-solve, and reset |
 | R4 | Load and replace `user://progress.cfg`. A failed write leaves the previous file |
 | R5 | Load, validate, and reject entries from `res://data/pack.json` into definitions ([`CTR-pack`](../contracts/pack.md) O8); no progress file is written |

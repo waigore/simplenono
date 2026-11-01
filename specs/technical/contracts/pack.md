@@ -14,17 +14,17 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 | ID | Name | Input | Output / effect | When |
 |----|------|-------|-----------------|------|
 | O1 | list | None | Id, size, ever-completed, attempt status, personal best, and whether the thumbnail is visible, for each puzzle | Gallery |
-| O2 | completion-rate | None | Ever-completed count ÷ 200 | Gallery |
+| O2 | completion-rate | None | Ever-completed count ÷ 200; the pack is finished at 1 | Gallery |
 | O3 | definition | Puzzle id | Size, clues, solution fills, generated picture id, and pixel picture id | Open |
 | O4 | progress | Puzzle id | The progress record | Open |
-| O5 | commit | Puzzle id, marks, elapsed, and attempt status | Replaces that record and the progress file | When marks or attempt status change, on pause, and on leave |
+| O5 | commit | Puzzle id, marks, elapsed, and attempt status | Replaces that record and the progress file | Marks or attempt status change, pause, leave |
 | O6 | record-solve | Puzzle id and elapsed | Sets ever-completed, clears the attempt, and replaces personal best only when the time is shorter | Solve |
 | O7 | reset | Puzzle id | Clears marks, elapsed, personal best, and ever-completed. Attempt becomes not started | Gallery reset |
-| O8 | load-pack | Pack path | Every entry in the pack is read and validated into [`SCH-puzzle-def`](../schemata/puzzle-def.md) records. Returns the entry count and the rejected entries | Pack start, once per launch |
+| O8 | load-pack | Pack path | Every entry is read and validated into [`SCH-puzzle-def`](../schemata/puzzle-def.md) records. Returns the entry count and the rejected entries | Pack start, once per launch |
 
 ## Pack layout
 
-The pack is one JSON file at `res://data/pack.json`: a UTF-8 JSON array of entries keyed by the [`SCH-puzzle-def`](../schemata/puzzle-def.md) field names, shipped in the export ([ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md)).
+The pack is one JSON file at `res://data/pack.json`: a UTF-8 JSON array of entries keyed by [`SCH-puzzle-def`](../schemata/puzzle-def.md) field names, shipped in the export ([ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md)).
 
 ## Events
 
@@ -38,7 +38,7 @@ None — callers receive the return value.
 | G2 | An unknown id changes nothing |
 | G3 | O5, O6, and O7 replace `user://progress.cfg`. A failed write leaves the previous file |
 | G4 | O8 loads once at pack start. A rejected entry never reaches a caller of O1 or O3 |
-| G5 | A valid entry is accepted when it passes [`SCH-puzzle-def`](../schemata/puzzle-def.md) I1–I5 and no earlier accepted entry shares its F1, F6, or F7. File entry order decides which of two conflicting entries wins |
+| G5 | A valid entry is accepted when it passes [`SCH-puzzle-def`](../schemata/puzzle-def.md) I1–I5 and no earlier accepted entry shares its F1, F6, or F7. Entry order decides which of two conflicting entries wins |
 
 ## Errors
 
