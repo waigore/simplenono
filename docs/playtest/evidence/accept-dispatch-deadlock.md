@@ -6,7 +6,8 @@ Run records: [`#105`](issue-105/2026-11-01-accept-dispatch-hold/manifest.md),
 [`#107`](issue-107/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#109`](issue-109/2026-11-02-accept/manifest.md),
 [`#111`](issue-111/2026-11-02-accept/manifest.md),
-[`#112`](issue-112/2026-11-02-accept/manifest.md).
+[`#112`](issue-112/2026-11-02-accept/manifest.md),
+[`#108`](issue-108/2026-11-02-accept/manifest.md).
 
 Two issues left the filter on 2026-11-02:
 
@@ -14,8 +15,7 @@ Two issues left the filter on 2026-11-02:
   `status:pending-implementation` with a defect
   ([record](issue-132/2026-11-02-accept-fail/manifest.md)).
 - `#156`: `#169` (`3f402fe`) supplied the S1–S5 seams, and its graphical re-run accepted it
-  ([record](issue-156/2026-11-02-accept-graphical/manifest.md)). This is the first acceptance with
-  real screenshots.
+  ([record](issue-156/2026-11-02-accept-graphical/manifest.md)).
 
 ## The loop
 
@@ -41,13 +41,15 @@ a seam-level result — S1–S3 need `DBG.3` and `DBG.2`.
   in reverse pack order with B1 and E3 judged
   ([record](issue-112/2026-11-02-accept/manifest.md)). Found a second blocker: two Applies
   deterministic axes can move (`response-delay`, `transition-latency`) and
-  `docs/quality/evidence/` holds no `issue-112` record. `#108` is the last unjudged candidate.
+  `docs/quality/evidence/` holds no `issue-112` record.
 - **`59872bd` (123/123):** picked `#156`, the only unjudged defect. Every criterion passed at the
   seam, including the reopen path the #132 run found; only the screenshots gate remained
   ([record](issue-156/2026-11-02-accept/manifest.md)).
 - **`3f402fe` (139/139):** picked `#156` again now that `#169` supplies S1–S5. The graphical re-run
   passed `PTD-ready-and-marks` S1–S4 and US1.7 and accepted it with 8 screenshots
   ([record](issue-156/2026-11-02-accept-graphical/manifest.md)).
+- **`67e36f5` (125/125):** picked `#108`; `PS1.1`–`PS1.7` passed at the seam and screenshots
+  remain ([record](issue-108/2026-11-02-accept/manifest.md)).
 
 ## Unblocking — what is left
 
