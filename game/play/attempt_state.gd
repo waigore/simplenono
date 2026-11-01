@@ -98,6 +98,13 @@ func advance(amount: int) -> void:
 	_elapsed += amount
 
 
+## Puts the persisted elapsed back when an in-progress attempt is opened
+## (specs/technical/sequences/open.md S4, [code]PS1.2[/code]). The value is non-negative
+## ([SCH-attempt] F3); the pack already dropped it for a not-started record (I3).
+func restore_elapsed(persisted: int) -> void:
+	_elapsed = max(persisted, 0)
+
+
 ## Pauses or resumes ([b]CTR-attempt[/b] O4/O5). Pausing freezes elapsed and blocks
 ## marks; resuming continues from the same elapsed value.
 func pause() -> void:
@@ -134,3 +141,10 @@ func _refresh_status() -> void:
 
 func _to_string() -> String:
 	return "attempt %s elapsed=%s paused=%s" % [_attempt_status, _elapsed, _paused]
+
+
+## [b]CTR-pack[/b] O5 ([code]commit[/code]) over this state, so the attempt commits its
+## own marks, elapsed, and attempt status (specs/technical/sequences/open.md S11) without
+## reaching into the pack's record itself. [param progress] is [method Pack.progress].
+func commit(progress: ProgressRules, puzzle_id: String) -> ProgressRecord:
+	return progress.commit(puzzle_id, _marks, _elapsed, in_progress())

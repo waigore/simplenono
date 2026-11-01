@@ -1,17 +1,22 @@
 class_name Pack
 extends RefCounted
-## [b]CMP-pack[/b] R5: load, validate, and reject pack entries into definitions.
+## [b]CMP-pack[/b] R1-R2 and R5: load, validate, and reject pack entries into definitions;
+## serve definitions (O3) and the in-memory progress record (O4); and write progress
+## through [ProgressRules] (O5-O7).
 ##
 ## Reads the pack file ([method load_pack], [b]CTR-pack[/b] O8), keeps one
-## [PuzzleDefinition] per accepted entry (R1 definitions half), and serves them by id
-## ([method definition], O3). No progress file is written here: R2 O1/O2/O4 and R3/R4
-## are not built (Wave 2). This layer (L3) imports nothing from L1 or L2.
+## [PuzzleDefinition] per accepted entry, and serves them by id ([method definition],
+## O3). [method progress] is the one place the progress record lives, so nothing outside
+## this component reaches it (R2). The progress file is not written yet
+## ([b]CTR-pack[/b] G3, R4): records stay in memory until #96. This layer (L3) imports
+## nothing from L1 or L2.
 
 ## The shipped pack ([b]CTR-pack[/b] pack layout).
 const PACK_PATH := "res://data/pack.json"
 
 var _definitions: Dictionary = {}
 var _load_result: PackLoadResult
+var _progress := ProgressRules.new()
 
 
 ## O8: read [param pack_path], validate every entry, and replace the held definitions.
@@ -53,6 +58,22 @@ func definition(id: String) -> PuzzleDefinition:
 	if _definitions.has(id):
 		return _definitions[id]
 	return null
+
+
+## Adds one already-validated definition ([SCH-puzzle-def]) to the held set, the way a
+## test pack or a future in-memory source does. The pack file path is [method load_pack].
+func add_definition(definition: PuzzleDefinition) -> void:
+	assert(definition != null, "A definition is required")
+	_definitions[definition.id] = definition
+	if _load_result == null:
+		_load_result = PackLoadResult.new(_definitions.size())
+
+
+## O4: the progress rules holding every puzzle's record; [method ProgressRules.record]
+## is the per-request read. [b]CMP-attempt[/b] opens a puzzle through it and commits the
+## auto-cross through [method ProgressRules.commit] (O5).
+func progress() -> ProgressRules:
+	return _progress
 
 
 ## The O8 result of the last [method load_pack], or null before the first load.
