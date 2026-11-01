@@ -85,6 +85,7 @@ func filled_positions() -> Array[Vector2i]:
 				fills.append(Vector2i(row, column))
 	return fills
 
+
 ## True when at least one cell is a fill or a cross ([code]GS.attempt-status[/code] in
 ## progress needs one, [SCH-progress] I2). A clear mark is the only mark that does not count.
 func has_any_mark() -> bool:

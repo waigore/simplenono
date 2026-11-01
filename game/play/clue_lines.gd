@@ -19,7 +19,9 @@ static func from_definition(definition: Dictionary) -> ClueLinesResult:
 	var size := _size_of(definition)
 	var result := ClueLinesResult.new(size)
 	if size <= 0:
-		result.error = "%s is missing or not a positive integer: %s" % [FIELD_SIZE, definition.get(FIELD_SIZE)]
+		result.error = (
+			"%s is missing or not a positive integer: %s" % [FIELD_SIZE, definition.get(FIELD_SIZE)]
+		)
 		return result
 
 	for line_set in [FIELD_ROW_CLUES, FIELD_COL_CLUES]:
@@ -33,7 +35,9 @@ static func from_definition(definition: Dictionary) -> ClueLinesResult:
 	for index in size:
 		result.lines.append(ClueLine.new(ClueLine.Orientation.ROW, index, _runs(row_clues[index])))
 	for index in size:
-		result.lines.append(ClueLine.new(ClueLine.Orientation.COLUMN, index, _runs(col_clues[index])))
+		result.lines.append(
+			ClueLine.new(ClueLine.Orientation.COLUMN, index, _runs(col_clues[index]))
+		)
 	return result
 
 

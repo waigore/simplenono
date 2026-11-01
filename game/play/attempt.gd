@@ -24,6 +24,18 @@ extends RefCounted
 ## calls and owns the open puzzle's rules, never the fields. Pause, resume, and leave
 ## (O4-O6), and the progress file are not built here (#96).
 
+## [b]CTR-attempt[/b] E3: (puzzle id, the post-auto-cross grid, the line status from
+## [b]CTR-rules[/b] O2), emitted each time the beat ends with the puzzle open. Connect
+## with [code]attempt.ready.connect(callable)[/code].
+signal ready(puzzle_id: String, grid: MarkGrid, line_status: LineStatusCheck)
+
+## [b]CTR-attempt[/b] E1: (puzzle id, elapsed). Emitted by the solve branch of
+## [method mark] (specs/technical/sequences/mark.md S13).
+signal solved(puzzle_id: String, elapsed: int)
+
+## [b]CTR-attempt[/b] E2: (puzzle id). Leave emits it (#96).
+signal left(puzzle_id: String)
+
 ## [b]CTR-attempt[/b] E3 bind name, kept so a shell can look the signal up by contract id.
 const READY_SIGNAL := "ready"
 
@@ -45,18 +57,6 @@ var _definition: PuzzleDefinition
 var _rules: Rules
 var _progress: ProgressRules
 var _beat_running: bool = false
-
-## [b]CTR-attempt[/b] E3: (puzzle id, the post-auto-cross grid, the line status from
-## [b]CTR-rules[/b] O2), emitted each time the beat ends with the puzzle open. Connect
-## with [code]attempt.ready.connect(callable)[/code].
-signal ready(puzzle_id: String, grid: MarkGrid, line_status: LineStatusCheck)
-
-## [b]CTR-attempt[/b] E1: (puzzle id, elapsed). Emitted by the solve branch of
-## [method mark] (specs/technical/sequences/mark.md S13).
-signal solved(puzzle_id: String, elapsed: int)
-
-## [b]CTR-attempt[/b] E2: (puzzle id). Leave emits it (#96).
-signal left(puzzle_id: String)
 
 
 ## [param pack] serves definitions and progress ([b]CTR-pack[/b] O3, O4, O5);

@@ -9,12 +9,40 @@ const FIXTURE_PATH := "res://test/fixtures/teapot.json"
 
 ## F3 of the teapot fixture, copied from its row_clues ([SCH-puzzle-def] F3).
 const EXPECTED_ROW_CLUES := [
-	[], [], [], [], [5], [5], [1, 9], [10], [10], [9], [7], [3], [], [], [],
+	[],
+	[],
+	[],
+	[],
+	[5],
+	[5],
+	[1, 9],
+	[10],
+	[10],
+	[9],
+	[7],
+	[3],
+	[],
+	[],
+	[],
 ]
 
 ## F4 of the teapot fixture, copied from its col_clues ([SCH-puzzle-def] F4).
 const EXPECTED_COL_CLUES := [
-	[], [], [3], [3], [5], [7], [8], [8], [8], [7], [5], [4], [1], [], [],
+	[],
+	[],
+	[3],
+	[3],
+	[5],
+	[7],
+	[8],
+	[8],
+	[8],
+	[7],
+	[5],
+	[4],
+	[1],
+	[],
+	[],
 ]
 
 var _fixture: Dictionary

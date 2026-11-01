@@ -139,6 +139,7 @@ func _refresh_status() -> void:
 		_attempt_status = Status.NOT_STARTED
 		_elapsed = 0
 
+
 func _to_string() -> String:
 	return "attempt %s elapsed=%s paused=%s" % [_attempt_status, _elapsed, _paused]
 

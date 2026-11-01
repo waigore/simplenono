@@ -1,0 +1,11 @@
+# gdlint configuration for the main game tree.
+#
+# Vendored addons and proofs of concept are outside the conventions
+# (docs/coding-conventions.md; docs/pocs.md), and GUT test scripts declare one
+# public method per scenario, so the default 20-method cap does not fit them.
+excluded_directories: !!set
+  addons: null
+  pocs: null
+
+disable:
+- max-public-methods
