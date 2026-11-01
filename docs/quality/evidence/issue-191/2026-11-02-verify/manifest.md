@@ -10,20 +10,20 @@
 
 | Axis | Evaluator | Observation | Bar | Result | Blocked reason | Evidence path |
 |------|-----------|-------------|-----|--------|----------------|---------------|
-| `frame-time` | deterministic | I1: `paint` opened the puzzle, filled every row and crossed every column one mark per frame — now with the mark tick and haptic path live — p95 frame time 6.94 ms over 203 frames. | ≤ 16.7 ms frame time during grid paint and navigation | pass | — | `integration/samples/paint-samples.ndjson` |
-| `hitch-bound` | deterministic | I2: longest frame during the same `paint` run 7.60 ms over 203 frames; no frame exceeded the bar. | No hitch longer than 100 ms during grid paint | pass | — | `integration/samples/paint-hitches.ndjson` |
-| `response-delay` | deterministic | I8: `ui-ack` drove open, settings intent, and back — open now constructs the resolver (manifest read happens at app start, not here) and starts the bed — longest acknowledgement 8.1 ms. | Non-paint UI acknowledges ≤ 500 ms | pass | — | `integration/logs/harness-1793565025-ui-ack.log` |
-| `crash-free` | deterministic | I9: open, solve, reset, and back all ran across `paint`, `navigate`, `ui-ack`, and `solve-reset`, including the solve sting and bed stop; no failed flow and no crashed run. The `navigate` and `kill-relaunch` exits are their own axes (I7, I10). | No crash across open, solve, reset, and back | pass | — | `integration/results.md` |
+| `frame-time` | deterministic | I1: `paint` filled every row and crossed every column one mark per frame, now with the tick/haptic path live; p95 6.94 ms over 203 frames. | ≤ 16.7 ms during grid paint and navigation | pass | — | `integration/samples/paint-samples.ndjson` |
+| `hitch-bound` | deterministic | I2: longest frame in the same run 7.60 ms over 203 frames; none exceeded the bar. | No hitch longer than 100 ms | pass | — | `integration/samples/paint-hitches.ndjson` |
+| `response-delay` | deterministic | I8: `ui-ack` open (now starting the bed), settings intent, and back; longest acknowledgement 8.1 ms. | Non-paint UI acknowledges ≤ 500 ms | pass | — | `integration/logs/harness-1793565025-ui-ack.log` |
+| `crash-free` | deterministic | I9: open, solve, reset, and back across `paint`, `navigate`, `ui-ack`, and `solve-reset`, including the sting and bed stop; no failed flow or crashed run. `navigate`/`kill-relaunch` exits are I7/I10. | No crash across the four flows | pass | — | `integration/results.md` |
 
 ## Not selected
 
-- `time-to-playable` (I6) — the bar is cold launch to the interactive *gallery*; the gallery is #94. The delivered startup work (manifest read plus three tick preloads) is visible in the `app-start` context row at 198.6 ms for the shell home stand-in, but that stand-in is not this deliverable's product outcome.
-- `transition-latency` (I7) — gallery↔puzzle, puzzle→result, and result→gallery are #94/#95. The harness fails I7 on the missing result screen, which this deliverable does not build or change.
-- `resume-after-failure` (I10) — progress persistence is #96; the harness fails I10 on missing mark/elapsed restore, unchanged by this deliverable.
-- `save-survives`, `failed-write` — the deliverable adds no `user://` write; the two session flags are memory-only.
-- `runtime-signals` (I11) — this deliverable adds no telemetry source or removal; the S1–S5 seams and S4 telemetry are #163's.
+- `time-to-playable` (I6) — the bar is launch to the interactive *gallery* (#94). The `app-start` context row shows 198.6 ms for the shell home stand-in, which is not this deliverable's outcome.
+- `transition-latency` (I7) — gallery↔puzzle and result transitions are #94/#95; the harness fails I7 on the missing result screen, unchanged here.
+- `resume-after-failure` (I10) — persistence is #96; I10 fails on missing restore, unchanged here.
+- `save-survives`, `failed-write` — no `user://` write; flags are memory-only.
+- `runtime-signals` (I11) — no telemetry source added or removed (#163 owns it).
 - N/A accessibility and localization axes are not scored.
 
 ## Bar and limits
 
-All four selected axes are integration-level and observed from the harness's headless samples on this machine; the frame and hitch numbers are sample observations, not device-tier certification. `paint` covers grid paint and navigation one mark per frame; `ui-ack` measures open/settings-intent/back acknowledgement, not the settings screen (#95) or pause (#96) themselves. Audible and haptic output is not observed here: the deliverable's unit tests assert it through injected sinks.
+Selected axes are integration-level headless samples on this machine, not device-tier certification. `paint` runs one mark per frame; `ui-ack` times open/settings-intent/back, not the settings screen (#95) or pause (#96). Audible and haptic output is asserted only by the deliverable's unit tests through injected sinks.
