@@ -9,7 +9,7 @@ description: |-
   Examples:
     - user: "Review #12" → holistic review, comment, gate status
     - user: "Fail review on #8; also impacts #9" → fail #8 and cascade #9 on the user's order
-    - user: "Fail review on #8" → fail #8; cascade a blocked-by neighbor only with an implementation or verification deadlock
+    - user: "Fail review on #8" → fail #8 only (no agent cascade)
     - user: "Needs clarification on #3" → questions comment → pending-clarification
 ---
 
@@ -30,7 +30,7 @@ Review holistically against the whole issue and parent/sibling relationships, in
   - Goal is an observable outcome, not a task list. Scope has explicit in and out. Out-of-scope names sibling epics or other waves when known.
   - In-scope qualified IDs (from Notes or Scope) are owned by child tasks when children exist (coverage and ownership, not path-level acceptance-criteria polish).
   - Not a horizontal catch-all. Foundation stays substrate-only.
-  - Main-code epic: no global PoC or promotion gate. If a logged PoC must prove a claim this epic depends on, blocked-by that PoC issue, or call out the missing edge. Product demo mode is ordinary main-tree work when `demo.md` Offering is offered.
+  - Main-code epic: no global PoC or promotion gate. Do not require or create blocked-by on a PoC ([`hierarchy.md`](../../../docs/issues/hierarchy.md)). Product demo mode is ordinary main-tree work when `demo.md` Offering is offered.
 - **Technical elements:** When the title or body names a specific layer, module, component, contract, schema, or sequence, it cites a qualified ID or a `specs/technical/` path that already exists. A cited element ID (such as `CMP-input.R2`) exists in that spec. A file that still contains `<!-- fill in -->` counts. Keys: [`ids.md`](../../specs/rules/technical/ids.md) (`LAY`, `MOD`, `CMP-<name>`, `CTR-<name>`, `SCH-<name>`, `SEQ-<name>`). An issue that never names one of these is unaffected.
   - No such ID or file → **Fail**. Refinement: cite the real ID or path, or make the deliverable authoring that element and drop any implementation of it.
   - Spec-authoring exception: the issue may name an element that does not exist yet when the deliverable is creating it (a new file under `components/`, `contracts/`, `schemata/`, or `sequences/`, or a new ID in `layers.md` or `modules.md`). It must not treat that name as an existing ID, and it must not ask to implement it.
@@ -39,7 +39,7 @@ Review holistically against the whole issue and parent/sibling relationships, in
 ## Outcome
 
 - **Pass** — post a clear pass review comment (it must be the latest comment when transitioning). Gate: `pending-review` → `pending-implementation`. Include mockup catalog updates when this skill approved rows.
-- **Fail** — post problems and refinement direction. Gate this issue: `pending-review` → `pending-refinement`. Cascade another issue only under [Cascade (fail review)](../../../docs/issues/workflow-cascade.md). A user order cascades from any status. An agent cascade needs a native blocked-by edge plus a written reason that the other issue’s implementation or verification cannot be done or judged while this fail stands. Leave an issue whose current step is review, refinement, or clarification unchanged. For each authorized issue, comment (point at this fail; for an agent cascade, include the edge and the deadlock) and apply the fail-review cascade via `enforce-task-workflow-status`, with that issue’s current status as `from`. For each blocked-by neighbor not cascaded, and for any issue the user asked about that was not ordered onto the cascade, comment why the status stays and leave it unchanged.
+- **Fail** — post problems and refinement direction. Gate this issue: `pending-review` → `pending-refinement`. Cascade another issue only under [Cascade (fail review)](../../../docs/issues/workflow-cascade.md) (user order only; no agent cascade). For each authorized issue, comment (point at this fail and the user order) and apply the fail-review cascade via `enforce-task-workflow-status`, with that issue’s current status as `from`. For any issue the user asked about that was not ordered onto the cascade, comment why the status stays and leave it unchanged.
 - **Clarify** — summarize questions that cannot be inferred from project scope, including material spec ambiguity. Gate: `pending-review` → `pending-clarification`.
 
 ## Rules

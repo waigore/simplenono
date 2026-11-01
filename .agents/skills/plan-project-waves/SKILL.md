@@ -28,9 +28,9 @@ Apply [`docs/issues/waves.md`](../../../docs/issues/waves.md), including soft si
 
 1. **Setup / gate** — [`docs/skills.md`](../../../docs/skills.md) `ensure-project-setup` hook. Inventory formalized specs only ([`docs/issues/waves.md`](../../../docs/issues/waves.md)). If nothing is formalized, stop. Engine ADR Accepted for main-tree work in the wave, not for leftover placeholders. Blocking TBDs in formalized sections you would include → stop.
 2. **Inventory** — Formalized IDs and rough dependencies only (not task lists). Skip sections that are still `<!-- fill in -->`. Note open PoC requests.
-3. **Propose** — Full wave map (milestones + epic stubs for every wave) unless the user asked for a **specific wave**. Expand **leaf tasks only** for the wave being expanded (first run: wave 1). Size per the waves contract. Include PoC tasks and local blocked-by only when needed. `--no-create` / draft-only: print and stop.
-4. **Confirm** with the user, then **file** — milestones for all planned waves; epics for all waves; leaves only for the expanded wave. Wire milestones, sub-issues, blocked-by.
-5. **Report** — URLs and dependency summary.
+3. **Propose** — Full wave map (milestones + epic stubs for every wave) unless the user asked for a **specific wave**. Expand **leaf tasks only** for the wave being expanded (first run: wave 1). Size per the waves contract. Include PoC tasks when needed. Do not use blocked-by ([`hierarchy.md`](../../../docs/issues/hierarchy.md)). `--no-create` / draft-only: print and stop.
+4. **Confirm** with the user, then **file** — milestones for all planned waves; epics for all waves; leaves only for the expanded wave. Wire milestones and sub-issues only.
+5. **Report** — URLs and parent/milestone summary.
 
 **Expand later wave:** inventory delta; file leaves under that wave’s epics (create missing epics if needed). Do not re-break earlier waves unless asked.
 

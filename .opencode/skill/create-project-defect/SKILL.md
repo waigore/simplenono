@@ -2,13 +2,14 @@
 name: create-project-defect
 description: |-
   Create a GitHub Defect issue (type:defect) from docs/issues/; wire related
-  links and native blocked-by when provided.
+  links when provided. Blocked-by is banned (hierarchy.md).
   Use when the user reports wrong game or interface behavior vs expected play.
-  Do not use for specs, docs, maps, or planning gaps (tasks or clarification).
+  Do not use for specs, docs, story maps, AC hygiene, or planning gaps (those
+  are tasks or clarification — see docs/issues/requirements.md).
 
   Examples:
   - user: "File a defect: jump input ignored on web" → collect per docs/issues/, create
-  - user: "Defect related to #15, blocked by #9" → related section + blocked-by
+  - user: "Defect related to #15" → related section only
   - user: "Draft defect body only" → --no-create
 ---
 

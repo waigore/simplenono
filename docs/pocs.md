@@ -14,7 +14,7 @@ Product **demo mode** is different: [`demo.md`](demo.md).
 
 1. **Request**: the user asks to explore a named uncertainty. Do not open a PoC because a spec is still empty.
 2. **Log**: write purpose, scope, and desired outcome in [`requirements/poc-requests.md`](requirements/poc-requests.md).
-3. **File**: when agent-orc or a wave will own the PoC, create a task (or epic) whose body carries those fields. Dependents may use native **blocked-by** that issue only. An interactive session may build from a confirmed README without a task.
+3. **File**: when agent-orc or a wave will own the PoC, create a task (or epic) whose body carries those fields. Do not wire blocked-by ([`issues/hierarchy.md`](issues/hierarchy.md)). An interactive session may build from a confirmed README without a task.
 4. **Scope / build**: [`scope-poc`](../.agents/skills/scope-poc/SKILL.md), then [`create-poc`](../.agents/skills/create-poc/SKILL.md).
 
 Already-specced main-tree work does not need a new PoC. Product behavior that is not in a formalized spec is specified with `capture-requirements`.

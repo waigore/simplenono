@@ -3,9 +3,10 @@ name: redefine-project-issue
 description: |-
   Replace a task/defect in status:pending-redefinition with a new task that
   states the unresolved problem succinctly, labeled pending-clarification;
-  remap parent/blocked-by, comment supersession, close the old issue as
-  not_planned. Called by project-planner-agent after the comment-cap lock.
-  Keep this skill thin; linking follows create-project-task.
+  remap parent, comment supersession, close the old issue as not_planned.
+  Blocked-by is banned — do not remirror edges. Called by
+  project-planner-agent after the comment-cap lock. Keep this skill thin;
+  linking follows create-project-task.
 
   Examples:
     - planner finds #42 pending-redefinition → new task, close #42
@@ -21,15 +22,14 @@ Replace one open `type:task` or `type:defect` in `status:pending-redefinition` w
 ## Steps
 
 1. **Confirm** the target is open, `type:task` or `type:defect`, and `status:pending-redefinition`. Abort otherwise.
-2. **Read** title, body, labels, parent (sub-issue), native `blocked_by` and `blocking`, and priority. Distill the **unresolved problem** into a short Description — no thread replay.
+2. **Read** title, body, labels, parent (sub-issue), and priority. Distill the **unresolved problem** into a short Description — no thread replay. Do not remirror native blocked-by ([`hierarchy.md`](../../../docs/issues/hierarchy.md)).
 3. **Create** a Task via the linking reference:
    - Labels: `type:task`, `status:pending-clarification` (not `pending-review`), same `priority:*` as the old issue (default `priority:normal` if unlabeled).
-   - Body: required Task sections only; Deliverables / AC may say clarification needed. Note `Supersedes #OLD`.
+   - Body: required Task sections only; Deliverables / AC may say clarification needed. Note `Supersedes #OLD`. No `## Dependencies` / blocked-by lines.
    - Attach the same parent when the old issue had one (depth check still applies).
-   - Copy native `blocked_by` from old → new; for each issue old was **blocking**, add `blocked_by` new (before closing old). Mirror `## Dependencies` / `## Parent` on the new body.
 4. **Comment** on the old issue: `Superseded by #NEW` (write access may still comment while locked).
 5. **Close** the old issue: `gh issue close OLD --reason not_planned`. Do not unlock.
-6. **Report** old URL (closed), new URL (`pending-clarification`), parent, and dependency remaps.
+6. **Report** old URL (closed), new URL (`pending-clarification`), and parent.
 
 ## Rules
 

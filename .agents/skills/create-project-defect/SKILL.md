@@ -2,14 +2,14 @@
 name: create-project-defect
 description: |-
   Create a GitHub Defect issue (type:defect) from docs/issues/; wire related
-  links and native blocked-by when provided.
+  links when provided. Blocked-by is banned (hierarchy.md).
   Use when the user reports wrong game or interface behavior vs expected play.
   Do not use for specs, docs, story maps, AC hygiene, or planning gaps (those
   are tasks or clarification — see docs/issues/requirements.md).
 
   Examples:
   - user: "File a defect: jump input ignored on web" → collect per docs/issues/, create
-  - user: "Defect related to #15, blocked by #9" → related section + blocked-by
+  - user: "Defect related to #15" → related section only
   - user: "Draft defect body only" → --no-create
 ---
 
@@ -22,9 +22,9 @@ Veneer for a repository **Defect** (`type:defect`). In-game or interface bugs on
 ## Deltas
 
 - **Before create:** if the report is a spec, design, doc, or planning problem, abort. Use clarification on an owning open issue, or `create-project-task` when the gap is material and uncovered.
-- Collect optional reproduction, context, `related`, `parent`, `blocked_by`, and `blocking`.
+- Collect optional reproduction, context, `related`, and `parent`. Do not collect or wire `blocked_by` / `blocking`.
 - If `parent` is set, attach it as a sub-issue and enforce depth from `hierarchy.md`.
-- Related-only issues stay in `## Related tasks or defects`. Blocked-by is only for a true blocker.
+- Related-only issues stay in `## Related tasks or defects`.
 - Never file a defect for specs, docs, maps, or non-material hygiene ([`requirements.md`](../../../docs/issues/requirements.md) — When to file what).
 
 ## Related

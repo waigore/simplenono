@@ -17,13 +17,13 @@ Native facades (Cursor / OpenCode / Grok) and authoring rules (veneers, **Invoke
 | [`manage-agent-orc`](manage-agent-orc/SKILL.md) | Set up, configure, run, and monitor the agent-orc skill-agent daemon (facade over `agent-orc/docs/`) |
 | [`create-project-label`](create-project-label/SKILL.md) | Add a label to config + docs and sync to GitHub |
 | [`create-project-epic`](create-project-epic/SKILL.md) | Create an Epic issue (`type:epic`) on GitHub |
-| [`create-project-task`](create-project-task/SKILL.md) | Create a Task issue (`type:task`) with parent/blocked-by wiring |
+| [`create-project-task`](create-project-task/SKILL.md) | Create a Task issue (`type:task`) with parent (sub-issue) wiring |
 | [`plan-project-waves`](plan-project-waves/SKILL.md) | Cut coherent waves from formalized specs; vertical epics + leaves for the expanded wave; confirm before filing |
 | [`audit-project-wave`](audit-project-wave/SKILL.md) | Audit a filed wave (epics + tasks) for coherence, focus, completeness; confirm before mutating |
 | [`project-planner-agent`](project-planner-agent/SKILL.md) | Align plan with specs; shrink/distill (close non-gameplay defects); create only when necessary |
-| [`unblock-project-issues`](unblock-project-issues/SKILL.md) | Remove blocked-by when the default branch satisfies the blocker or the edge is obsolete (acceptance is not a gate) |
+| [`unblock-project-issues`](unblock-project-issues/SKILL.md) | Critically examine leftover blocked-by edges and delete those not justified under the hierarchy ban |
 | [`redefine-project-issue`](redefine-project-issue/SKILL.md) | Replace comment-capped `pending-redefinition` task/defect with a new `pending-clarification` task (planner) |
-| [`create-project-defect`](create-project-defect/SKILL.md) | Create a Defect issue (`type:defect`) with related/blocked-by wiring |
+| [`create-project-defect`](create-project-defect/SKILL.md) | Create a Defect issue (`type:defect`) with related links (no blocked-by) |
 | [`enforce-task-workflow-status`](enforce-task-workflow-status/SKILL.md) | Gate or audit `status:*` labels; hygiene for duplicate `priority:*` |
 | [`review-project-issue`](review-project-issue/SKILL.md) | Review pass / fail / clarify → next status |
 | [`refine-project-issue`](refine-project-issue/SKILL.md) | Refine issue body → pending-review |

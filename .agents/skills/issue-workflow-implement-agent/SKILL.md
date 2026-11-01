@@ -21,6 +21,6 @@ Resolve one issue per [`docs/issues/workflow-dispatch.md`](../../../docs/issues/
 ## Work
 
 - Branch, change code, specs, or assets as the issue scopes, and open a PR when that is appropriate.
-- A PoC follows [`create-poc`](../create-poc/SKILL.md), including its pull-request ask. Respect native **blocked-by** edges, including a PoC task that must prove a claim.
+- A PoC follows [`create-poc`](../create-poc/SKILL.md), including its pull-request ask. Do not create or rely on blocked-by ([`hierarchy.md`](../../../docs/issues/hierarchy.md)).
 - If the issue asks for product behavior with no formalized spec, stop and report that `capture-requirements` must specify it. Start a PoC only when the issue asks to explore. Do not require a PoC when that spec is already formalized.
 - Before main-tree UI, confirm the formalized screen mockup(s) are `approved` in [`specs/ux/mockups/catalog.md`](../../../specs/ux/mockups/catalog.md) ([`docs/ux-mockups.md`](../../../docs/ux-mockups.md)). If not, stop and report.

@@ -1,40 +1,36 @@
 ---
 name: unblock-project-issues
 description: |-
-  Clear a native blocked-by link when the default branch already satisfies the
-  blocker's done-conditions, or when the edge is obsolete / never warranted.
-  Acceptance and closed state do not gate clearance. Use when unblocking
-  issues, checking whether a block still holds, or at the start of a
-  project-planner-agent pass. Does not add dependencies or close issues.
+  Critically examine leftover native blocked-by edges and delete those not
+  justified under the hierarchy ban (preferred sequence, soft order, and
+  relatedness are never justified). Does not add dependencies or close issues.
+  Use when unblocking issues or at the start of a project-planner-agent pass.
 
   Examples:
-    - user: "Unblock issues whose blockers are done" → judge every open edge against the default branch
-    - user: "Can #40 proceed?" → judge #40's blockers only
+    - user: "Unblock issues whose blockers are done" → examine every open edge
+    - user: "Can #40 proceed?" → examine #40's blockers only
     - called by project-planner-agent at the start of a pass
 ---
 
 # Unblock project issues
 
-Delete native **blocked-by** edges that are already satisfied on the default branch, or that no longer warrant blocking. The resolution rule is [`docs/issues/hierarchy.md`](../../../docs/issues/hierarchy.md). Read it and apply it. Do not invent a different bar, add blocked-by links, or close issues. Do not require `status:accepted` or a closed blocker — those are separate from “work is on the default branch.”
+Clear leftover native **blocked-by** edges. Creating or remirroring edges is banned ([`docs/issues/hierarchy.md`](../../../docs/issues/hierarchy.md)). Read that ban and apply it. Do not add blocked-by links or close issues.
 
 ## Scope
 
 - Default: every open `type:epic`, `type:task`, and `type:defect` issue.
 - If the user names issue numbers, judge only those issues' blocked-by links.
-- Delete each edge that passes the rule without asking for confirmation.
+- Delete each edge that fails critical examination without asking for confirmation.
 - When ordering work across many issues, prefer higher **priority** first (`priority:critical` → `priority:high` → `priority:normal` / unlabeled), then judgement within a tier — same rule as [workflow-dispatch.md](../../../docs/issues/workflow-dispatch.md). Do not change `priority:*` labels.
 
 ## Steps
 
-1. Resolve `OWNER/REPO` and the default branch:
+1. Resolve `OWNER/REPO`:
 
    ```bash
-   gh repo view --json nameWithOwner,defaultBranchRef \
-     --jq '{repo:.nameWithOwner, branch:.defaultBranchRef.name}'
-   git fetch origin <default-branch>
+   gh repo view --json nameWithOwner --jq .nameWithOwner
    ```
 
-   Judge `origin/<default-branch>` only. Ignore the working tree, any other local branch, and open pull requests.
 2. List the target issues (`gh issue list --state open --limit 200` once per type label; raise the limit if a page comes back full). Order the work by priority tier then judgement (see Scope). For each issue, list native blockers with `gh api --paginate`. Each object includes numeric REST `id` and issue `number`:
 
    ```bash
@@ -42,41 +38,32 @@ Delete native **blocked-by** edges that are already satisfied on the default bra
    ```
 
    Skip an issue whose list is empty.
-3. For each blocker, read title and body (`gh issue view BLOCKER --json title,body,state,labels` — state and labels are for the report only, not a gate). Read the blocked issue's title and body the same way. Inspect the default branch for the done-conditions hierarchy names: cited paths, specs, demos, and playtest evidence. Use `git grep` and `git ls-tree` against `origin/<default-branch>`.
-4. Apply the hierarchy rule to that edge alone:
+3. For each blocker, read both issues' titles and bodies (`gh issue view … --json title,body,state,labels`). Critically examine whether the edge is justified under the ban:
 
-   1. **Satisfied in repo** — every done-condition for the blocker is met on the default branch → delete.
-   2. Else **edge not warranted** — from both bodies and default-branch evidence, the blocked issue no longer depends on that blocker (or never did) → delete.
-   3. Else keep (missing work and dependency still real, or a condition cannot be checked).
+   - **Not justified** (delete): preferred sequence, soft order, mere relatedness, mistaken link, scopes diverged, equivalent work already owned elsewhere, or any use of blocked-by after the ban.
+   - **Also delete** when the default branch already meets the blocker's done-conditions (task deliverables/AC, epic goal, defect expected behavior) — optional check via `git fetch` + `git grep` / `git ls-tree` on `origin/<default-branch>` only.
 
-   Other blockers on the same issue stay until they pass the same rule.
-5. On a deletion, `ISSUE_ID` is the blocker's REST `id` from step 2:
+   Under the ban, keep an edge only if the user explicitly ordered that specific edge retained in this run.
+4. On a deletion, `ISSUE_ID` is the blocker's REST `id` from step 2:
 
    ```bash
    gh api --method DELETE \
      "repos/OWNER/REPO/issues/NUMBER/dependencies/blocked_by/ISSUE_ID"
    ```
 
-6. After that deletion, re-read native `blocked_by` for the blocked issue and native `blocking` for the blocker:
-
-   ```bash
-   gh api --paginate "repos/OWNER/REPO/issues/NUMBER/dependencies/blocked_by"
-   gh api --paginate "repos/OWNER/REPO/issues/BLOCKER/dependencies/blocking"
-   ```
-
-   Write those remaining numbers into that issue's `Blocked by` line and the blocker's `Blocking` line (`none` when the list is empty). Change no other body section. If a `## Dependencies` section is missing, add the one from [`docs/issues/body-shapes.md`](../../../docs/issues/body-shapes.md) and fill only those two lines.
-7. Do not change `status:*` labels or edit the repository.
+5. After deletions on an issue, if the body still has `## Dependencies` or `Blocked by` / `Blocking` lines, remove that section or those lines only. Change no other body section.
+6. Do not change `status:*` labels or edit the repository.
 
 ## Report
 
 For every edge: blocked issue, blocker, removed or kept, and the reason.
 
-- **Removed (satisfied):** name the done-conditions and the default-branch paths that decided it.
-- **Removed (obsolete):** state why the dependency no longer holds (or never did).
-- **Kept:** name missing done-conditions and/or why the dependency still reads as real; if unchecked, say what could not be verified.
+- **Removed (ban / obsolete):** state why the edge is not justified under the ban.
+- **Removed (satisfied):** name the done-conditions and default-branch paths when that check was used.
+- **Kept:** only when the user explicitly ordered retention; quote that order.
 
 ## Related
 
 - Called at the start of [`project-planner-agent`](../project-planner-agent/SKILL.md)
-- Add links: [`github-issue-linking.md`](../create-project-task/references/github-issue-linking.md)
+- Linking: [`github-issue-linking.md`](../create-project-task/references/github-issue-linking.md)
 - Status labels: [`docs/issues/workflow.md`](../../../docs/issues/workflow.md)

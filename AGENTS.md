@@ -32,7 +32,7 @@ Synced by `.github/workflows/sync-labels.yml` (push to `main` when label config 
 
 ## Issues
 
-Epic / Task / Defect forms live in `.github/ISSUE_TEMPLATE/`. Agents create issues with the matching `create-project-*` skill (sub-issues + native blocked-by). Contract: [`docs/issues/`](docs/issues/). Status workflow: [`docs/issues/workflow.md`](docs/issues/workflow.md).
+Epic / Task / Defect forms live in `.github/ISSUE_TEMPLATE/`. Agents create issues with the matching `create-project-*` skill (sub-issues; blocked-by banned — [`docs/issues/hierarchy.md`](docs/issues/hierarchy.md)). Contract: [`docs/issues/`](docs/issues/). Status workflow: [`docs/issues/workflow.md`](docs/issues/workflow.md).
 
 ## Skills
 

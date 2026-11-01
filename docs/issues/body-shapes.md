@@ -9,7 +9,6 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 | `## Goal / outcome` | yes | What "done" looks like |
 | `## Scope` | yes | In scope and explicitly out of scope |
 | `## Notes` | no | Design notes, constraints, relevant specs |
-| `## Dependencies` | no | See [hierarchy.md](hierarchy.md) |
 
 ```markdown
 ## Goal / outcome
@@ -24,10 +23,6 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 
 ## Notes
 <notes or None>
-
-## Dependencies
-- Blocked by: <#n, … or none>
-- Blocking: <#n, … or none>
 ```
 
 ## Task (`type:task`)
@@ -38,7 +33,6 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 | `## Deliverables` | yes | Files/areas to change — as specific as possible |
 | `## Acceptance criteria` | yes | Clear, testable done conditions; follow [requirements.md](requirements.md) (no “`none` must link a defect” story-row ACs) |
 | `## Parent` | no | `#N` of parent epic or task, or `None` |
-| `## Dependencies` | no | See [hierarchy.md](hierarchy.md) |
 
 ```markdown
 ## Description
@@ -52,10 +46,6 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 
 ## Parent
 <#n or None>
-
-## Dependencies
-- Blocked by: <#n, … or none>
-- Blocking: <#n, … or none>
 ```
 
 ## Defect (`type:defect`)
@@ -68,7 +58,6 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 | `## Actual behavior` | yes | What happens instead |
 | `## Additional context` | no | Platform, build, screenshots, logs, config |
 | `## Related tasks or defects` | no | Related issue numbers/links |
-| `## Dependencies` | no | See [hierarchy.md](hierarchy.md) |
 
 ```markdown
 ## Description
@@ -91,8 +80,4 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 
 ## Related tasks or defects
 <#n, … or None>
-
-## Dependencies
-- Blocked by: <#n, … or none>
-- Blocking: <#n, … or none>
 ```
