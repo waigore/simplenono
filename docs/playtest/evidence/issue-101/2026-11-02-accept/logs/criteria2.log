@@ -1,0 +1,106 @@
+== shell.tscn ==
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://presentation/shell.gd" id="1_shell"]
+
+[node name="Shell" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_shell")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="Center/Panel"]
+layout_mode = 2
+text = "simplenono"
+horizontal_alignment = 1
+
+[node name="PuzzleIdCaption" type="Label" parent="Center/Panel"]
+layout_mode = 2
+text = "Puzzle"
+horizontal_alignment = 1
+
+[node name="PuzzleIdLabel" type="Label" parent="Center/Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+== manifest resolve ==
+no manifest reference
+
+== navigation calls ==
+game/test/test_shell_stub.gd:28:	var scene := load(SHELL_SCENE) as PackedScene
+game/test/test_shell_stub.gd:29:	var shell: Shell = scene.instantiate() as Shell
+game/addons/gut/gut_plugin.gd:31:	_check_for_update = CheckForUpdateControl.instantiate()
+game/addons/gut/gut_plugin.gd:34:	_update_required = UpdateRequiredDialog.instantiate()
+game/addons/gut/gut_plugin.gd:60:	_bottom_panel = BottomPanelScene.instantiate()
+game/addons/gut/utils.gd:371:# Gets the value of the node_property 'script' from a PackedScene's root node.
+game/addons/gut/utils.gd:372:# This does not assume the location of the root node in the PackedScene's node
+game/addons/gut/strutils.gd:79:		if(thing is PackedScene):
+game/addons/gut/cli/gut_cli.gd:232:	var runner = GutRunner.instantiate()
+game/addons/gut/gui/GutControl.gd:45:	_gut_runner = GutRunnerScene.instantiate()
+game/addons/gut/gui/ShellOutOptions.gd:247:	var re = GutUtils.RunExternallyScene.instantiate()
+game/addons/gut/gui/GutBottomPanel.gd:199:	_shell_out_panel = GutUtils.RunExternallyScene.instantiate()
+game/addons/gut/gui/GutBottomPanel.gd:510:	var about = AboutWindow.instantiate()
+game/addons/gut/gui/run_from_editor.gd:20:	var runner : Node = load("res://addons/gut/gui/GutRunner.tscn").instantiate()
+game/addons/gut/stub_params.gd:64:	if(stub_target is PackedScene):
+game/addons/gut/test.gd:292:	if type.is_class("PackedScene"):
+game/addons/gut/test.gd:293:		obj = type.instantiate()
+game/addons/gut/test.gd:358:	if(thing is PackedScene):
+game/addons/gut/test.gd:1317:##        export(PackedScene) var some_scene
+game/addons/gut/test.gd:2719:	if(thing is PackedScene):
+game/addons/gut/doubler.gd:271:	var doubled_scene = PackedScene.new()
+
+== scene count ==
+       1
+
+== test_shell_stub.gd ==
+extends GutTest
+## Shell stub screen — [b]CMP-shell[/b] stub, [b]components/shell.md[/b].
+##
+## Asserts only what the stub promises: the main scene is the shell stub, and the
+## stub holds and displays a hardcoded puzzle id. Nothing here expects attempt or
+## pack access, navigation, or a puzzle target scene (#112, #110).
+
+const SHELL_SCENE := "res://presentation/shell.tscn"
+const PROJECT_FILE := "res://project.godot"
+
+
+func test_main_scene_is_the_shell_stub():
+	var project := ConfigFile.new()
+	assert_eq(project.load(PROJECT_FILE), OK, "project.godot loads")
+	assert_eq(
+		project.get_value("application", "run/main_scene"),
+		SHELL_SCENE,
+		"the shell stub is the run entry",
+	)
+	assert_false(
+		ResourceLoader.exists("res://main.tscn"),
+		"the previous bare run entry is gone",
+	)
+
+
+func test_shell_stub_displays_the_hardcoded_puzzle_id():
+	assert_true(ResourceLoader.exists(SHELL_SCENE), "shell stub scene exists")
+	var scene := load(SHELL_SCENE) as PackedScene
+	var shell: Shell = scene.instantiate() as Shell
+	assert_not_null(shell, "shell stub roots on Shell")
+	add_child_autofree(shell)
+	assert_eq(shell.STUB_PUZZLE_ID, "pack-000", "stub holds a hardcoded puzzle id")
+	var label := shell.get_node("%PuzzleIdLabel") as Label
+	assert_not_null(label, "stub shows the puzzle id")
+	assert_eq(label.text, shell.STUB_PUZZLE_ID, "shown id is the constant")

@@ -1,0 +1,74 @@
+== AC1 run entry ==
+10:run/main_scene="res://presentation/shell.tscn"
+main.tscn ABSENT
+
+== AC2 shell.gd ==
+class_name Shell
+extends Control
+## [b]CMP-shell[/b] stub: the app's first screen.
+##
+## Holds one stub data point, [constant STUB_PUZZLE_ID], and displays it. Nothing
+## else is built yet: no attempt operation ([b]CTR-attempt[/b] C1), no pack call
+## ([b]CTR-pack[/b] C2), no grid or clue drawing (R3), no navigation. The puzzle
+## target scene and the shell → puzzle open leg are owned by #112; the real puzzle
+## screen UI is #110. See specs/technical/components/shell.md.
+
+## Stub puzzle id, chosen from the shipped pack ([b]CTR-pack[/b] pack layout).
+## Shape is not fixed yet ([SCH-puzzle-def] F1); replace once #105 lands.
+const STUB_PUZZLE_ID := "pack-000"
+
+@onready var _puzzle_id_label: Label = %PuzzleIdLabel
+
+
+func _ready() -> void:
+	_puzzle_id_label.text = STUB_PUZZLE_ID
+
+== AC2 negative greps (CTR/attempt/pack/manifest/navigation/grid/clue/marks) ==
+game/presentation/shell.gd:6:## else is built yet: no attempt operation ([b]CTR-attempt[/b] C1), no pack call
+game/presentation/shell.gd:7:## ([b]CTR-pack[/b] C2), no grid or clue drawing (R3), no navigation. The puzzle
+game/presentation/shell.gd:11:## Stub puzzle id, chosen from the shipped pack ([b]CTR-pack[/b] pack layout).
+
+== AC3 all scenes in game (excluding addons) ==
+game/presentation/shell.tscn
+
+== AC3 presentation dir ==
+shell.gd
+shell.gd.uid
+shell.tscn
+
+== AC3 route helper / other screens ==
+game/play/attempt_state.gd
+game/play/cell_mark.gd
+game/play/clue_line.gd
+game/play/clue_lines_result.gd
+game/play/clue_lines.gd
+game/play/line_status_check.gd
+game/play/line_status.gd
+game/play/mark_cell.gd
+game/play/mark_grid.gd
+game/play/rules.gd
+game/presentation/shell.gd
+game/records/pack_entry_validator.gd
+game/records/pack_load_result.gd
+game/records/pack.gd
+game/records/progress_record.gd
+game/records/progress_rules.gd
+game/records/puzzle_definition.gd
+game/test/test_cell_mark.gd
+game/test/test_clue_lines.gd
+game/test/test_game_state.gd
+game/test/test_pack_load.gd
+game/test/test_sanity.gd
+game/test/test_shell_stub.gd
+
+== AC3 manifest resolve ==
+zsh:1: no matches found: --include=*.gd
+no manifest resolve
+
+== AC4 out-of-scope dispatch ==
+game/presentation/shell.gd:7:## ([b]CTR-pack[/b] C2), no grid or clue drawing (R3), no navigation. The puzzle
+game/presentation/shell.gd:8:## target scene and the shell → puzzle open leg are owned by #112; the real puzzle
+game/presentation/shell.gd:11:## Stub puzzle id, chosen from the shipped pack ([b]CTR-pack[/b] pack layout).
+game/presentation/shell.gd:12:## Shape is not fixed yet ([SCH-puzzle-def] F1); replace once #105 lands.
+game/presentation/shell.gd:15:@onready var _puzzle_id_label: Label = %PuzzleIdLabel
+game/presentation/shell.gd:19:	_puzzle_id_label.text = STUB_PUZZLE_ID
