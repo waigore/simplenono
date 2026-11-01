@@ -36,7 +36,7 @@ Infer from the ask: `setup` | `configure` | `run` | `monitor` | `test` | `stop`.
 3. **run** — From repo context per usage.md: daemon, `-n N`, `--yes`, or `--agents …`. Prefer `--repo-root` / `--config-dir` when cwd is not the repo root. Warn that agents open PRs / edit issues.
 4. **monitor** — Tail `.orc/logs/orchestrator.log` and `.orc/logs/<agent>/run-*.log` (`run-<parallel-id>-<timestamp>.log`). Note worktrees under `.orc/worktrees/` during runs (removed after). Report gate misses, claim misses, and real runs from orchestrator log lines.
 5. **test** — `cd agent-orc && uv run pytest -m "not e2e"`. Run `pytest -m e2e` only if the user explicitly wants live GitHub + real CLIs.
-6. **stop** — SIGINT / Ctrl-C per usage.md (confirm if agents running). Or kill the `agent-orc` process group and purge leftover `.orc/worktrees/` if the user asks for a hard stop.
+6. **stop** — SIGINT / Ctrl-C per usage.md (confirm if agents running; deletes tracked OpenCode sessions, kills process groups, purges worktrees). Or kill the `agent-orc` process group and purge leftover `.orc/worktrees/` if the user asks for a hard stop.
 
 ## Rules
 

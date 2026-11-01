@@ -44,11 +44,12 @@ def test_build_crew_and_run_skill_once(
     config = load_config(cfg_dir)
     agent = config.agents["project-planner-agent"]
     logs = tmp_path / "logs"
-    crew, tool = build_crew(
+    crew, tool, session_id = build_crew(
         agent, config, workdir=temp_git_repo, log_path=logs / "x.log"
     )
     assert crew is not None
     assert tool.command[0] == "python3"
+    assert session_id is None
     code = run_skill_once(agent, config, workdir=temp_git_repo, logs_dir=logs)
     assert code == 0
     runs = list((logs / "project-planner-agent").glob("run-*.log"))

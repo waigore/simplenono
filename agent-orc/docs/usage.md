@@ -28,7 +28,7 @@ Per slot (in parallel, staggered by 5s): gate → optional issue claim → pull 
 
 ## Shutdown
 
-Ctrl-C with running agents: warn and confirm (TTY). Confirm or second Ctrl-C / non-TTY: kill agent process groups and purge worktrees. Exit code **130**.
+Ctrl-C with running agents: warn and confirm (TTY). Confirm or second Ctrl-C / non-TTY: delete tracked OpenCode sessions (`opencode session delete <id>`), kill agent process groups, and purge worktrees. Exit code **130**. OpenCode runs are started with a bound `--session` id so a restarted OpenCode server cannot respawn a killed agent.
 
 Startup/config errors: exit **2**. Otherwise **0**, or **1** if a skill loop raised.
 
