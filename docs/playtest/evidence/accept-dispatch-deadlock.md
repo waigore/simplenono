@@ -10,7 +10,7 @@ Why these sit on `status:pending-acceptance`. Full re-check log:
 | All are `status:pending-acceptance`, `priority:normal`, `type:task`, no wave milestone. | Every accept dispatch picks one. |
 | [`evidence.md`](../../../specs/playtest/evidence.md) requires an image of each pass state from a **graphical run of the same build**, unless the protocol says none. | Each leaf needs one graphical re-run before it can be accepted. |
 | `#112` (`f05441c`) routes the shell to `puzzle.tscn`; `#169` (`3f402fe`) adds `DBG.*` / `TEL.*` S1–S5, the [`verification.md`](../../../specs/technical/verification.md) H1 precondition. | A graphical run is possible; `#156`, `#105`, `#132`, `#107`, `#106`, `#108`, and `#109` used it. |
-| C6's settings routing (#96) and the gallery/result screens (#94/#95) are absent. | Protocols needing them are judged at the seam. |
+| C6's settings routing (#96) and `UI-result` (#95) are absent; the gallery and settings screens landed (#199, #202). | Protocols needing the missing screens are deferred. |
 | [`workflow.md`](../../issues/workflow.md). | `pending-acceptance` exits only by Accept, Fail (+defect), or Clarify. |
 
 ## Why each still sits here
@@ -19,9 +19,11 @@ Why these sit on `status:pending-acceptance`. Full re-check log:
   ([record](issue-111/2026-11-02-accept-graphical/manifest.md)), but `IN` is still cited only by
   `PTU-settings`, which never places a mark, so the images have no protocol row to sit under.
   The build gate (H1) closed with #169; only the protocol gap is left (#203).
-- **`#112`** — all 200 ids open at the seam
-  ([record](issue-112/2026-11-02-accept/manifest.md)); two Applies deterministic axes
-  (`response-delay`, `transition-latency`) can move and no `issue-112` record exists for the commit.
+- **`#112`** — the open leg is judged graphically on `5e5fe85` (gallery start, `S2`/`S1`
+  open, 200/200 ids, five screenshots:
+  [record](issue-112/2026-11-02-accept-graphical/manifest.md)), so the screenshot gate is closed.
+  `response-delay` and `transition-latency` can still move and no `issue-112` record exists for the
+  commit; that deterministic gap is the only holder (#204).
 
 ## Unblocking — what is left
 

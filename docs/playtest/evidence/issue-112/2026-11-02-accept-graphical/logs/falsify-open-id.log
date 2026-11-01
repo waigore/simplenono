@@ -1,0 +1,303 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+SEV level=info event=session-start time=1793568582.021 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle message=
+capture: PASS the app boots on UI-gallery
+capture: PASS UI-gallery is the shown screen
+capture: PASS the puzzle screen is off
+capture: PASS nothing is open yet
+capture: PASS no puzzle id is held
+capture: PASS the gallery lists the whole shipped pack
+capture: shot 00-gallery-start -> /tmp/falsify112/00-gallery-start.png (error 0, size (900, 1200), hash 3915209981)
+capture: PASS DBG.3 refuses an unknown id
+capture: PASS the gallery stays after an unknown id
+capture: PASS no attempt is opened by an unknown id
+capture: shot 01-unknown-id-gallery-stays -> /tmp/falsify112/01-unknown-id-gallery-stays.png (error 0, size (900, 1200), hash 3915209981)
+TEL event=reset time=1793568582.545 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS S1: pack-000 starts not started
+TEL event=open time=1793568582.553 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS DBG.3 opens pack-000
+capture: PASS S6: the puzzle screen shows
+capture: PASS the puzzle screen is on
+capture: PASS the gallery is hidden (no gallery step in the open leg)
+capture: PASS O1 started an attempt
+capture: FAIL the attempt holds the requested id
+capture: PASS the screen shows that attempt
+capture: PASS S5-S6: the Ready beat runs
+capture: PASS S4: marks are blocked during the beat
+capture: PASS S5: a fresh open starts at elapsed 0
+capture: PASS S5: the grid matches the definition's empty start
+capture: shot 02-open-s2-get-set-ready -> /tmp/falsify112/02-open-s2-get-set-ready.png (error 0, size (900, 1200), hash 4129023164)
+TEL event=ready time=1793568582.642 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=commit time=1793568582.642 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS the beat ends into Ready
+capture: PASS marks are allowed in Ready
+capture: PASS elapsed stays 0 on a fresh open
+capture: shot 03-open-s1-ready -> /tmp/falsify112/03-open-s1-ready.png (error 0, size (900, 1200), hash 2082141502)
+capture: PASS pack-199 is a shipped id
+TEL event=reset time=1793568582.690 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS pack-199 starts not started
+TEL event=open time=1793568582.695 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS DBG.3 opens pack-199 in free order
+capture: PASS the attempt holds pack-199
+capture: PASS the screen shows pack-199's attempt
+capture: PASS pack-199 starts in get-set-ready
+capture: PASS pack-100 is a shipped id
+TEL event=reset time=1793568582.695 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS pack-100 starts not started
+TEL event=open time=1793568582.700 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS DBG.3 opens pack-100 in free order
+capture: FAIL the attempt holds pack-100
+capture: PASS the screen shows pack-100's attempt
+capture: PASS pack-100 starts in get-set-ready
+capture: PASS opening pack-100 started a fresh attempt
+capture: PASS pack-001 is a shipped id
+TEL event=reset time=1793568582.700 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS pack-001 starts not started
+TEL event=open time=1793568582.705 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS DBG.3 opens pack-001 in free order
+capture: FAIL the attempt holds pack-001
+capture: PASS the screen shows pack-001's attempt
+capture: PASS pack-001 starts in get-set-ready
+capture: PASS opening pack-001 started a fresh attempt
+capture: PASS pack-137 is a shipped id
+TEL event=reset time=1793568582.705 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS pack-137 starts not started
+TEL event=open time=1793568582.710 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS DBG.3 opens pack-137 in free order
+capture: FAIL the attempt holds pack-137
+capture: PASS the screen shows pack-137's attempt
+capture: PASS pack-137 starts in get-set-ready
+capture: PASS opening pack-137 started a fresh attempt
+capture: PASS pack-000 is a shipped id
+TEL event=reset time=1793568582.710 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS pack-000 starts not started
+TEL event=open time=1793568582.715 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS DBG.3 opens pack-000 in free order
+capture: FAIL the attempt holds pack-000
+capture: PASS the screen shows pack-000's attempt
+capture: PASS pack-000 starts in get-set-ready
+capture: PASS opening pack-000 started a fresh attempt
+capture: PASS the shipped pack holds 200 accepted ids
+TEL event=open time=1793568582.719 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.724 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.728 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.732 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.737 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.741 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.745 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.749 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.754 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.758 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.762 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.766 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.771 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.775 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.779 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.783 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.788 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.792 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.796 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.800 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.804 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.809 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.813 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.817 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.822 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.826 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.830 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.834 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.839 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.843 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.847 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.851 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.855 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.860 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.864 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.868 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.872 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.876 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.881 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.885 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.889 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.893 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.898 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.902 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.906 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.910 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.915 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.919 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.923 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.927 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.931 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.936 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.940 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.944 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.948 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.952 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.957 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.961 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.965 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.969 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.973 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.978 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.982 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.986 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.990 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.994 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568582.999 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.003 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.007 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.012 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.016 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.020 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.024 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.028 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.033 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.037 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.041 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.045 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.050 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.054 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.058 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.062 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.066 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.071 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.075 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.079 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.084 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.088 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.092 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.096 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.101 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.105 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.109 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.113 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.117 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.122 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.126 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.130 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.134 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.139 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.143 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.147 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.151 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.156 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.160 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.164 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.168 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.172 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.177 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.181 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.185 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.189 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.194 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.198 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.202 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.206 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.211 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.215 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.219 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.223 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.228 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.232 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.236 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.241 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.245 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.249 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.253 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.257 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.262 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.266 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.270 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.274 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.279 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.283 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.287 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.291 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.295 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.300 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.304 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.308 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.312 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.316 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.321 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.325 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.329 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.334 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.338 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.342 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.346 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.351 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.355 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.359 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.364 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.368 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.372 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.376 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.380 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.385 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.389 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.393 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.397 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.402 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.406 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.410 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.414 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.418 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.423 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.427 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.431 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.437 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.442 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.446 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.451 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.456 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.461 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.466 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.470 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.475 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.479 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.483 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.488 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.492 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.496 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.501 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.505 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.509 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.513 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.518 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.522 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.527 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.531 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.535 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.540 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.544 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.548 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.553 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.557 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.561 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.565 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+TEL event=open time=1793568583.570 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: every-id open 200/200, 199 wrong
+capture: PASS every accepted id in the shipped pack opens
+capture: FAIL every open holds the requested id and shows its attempt
+TEL event=open time=1793568583.574 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle outcome=pass
+capture: PASS pack-000 reopens for the final shot
+capture: shot 04-free-order-open -> /tmp/falsify112/04-free-order-open.png (error 0, size (900, 1200), hash 4129023164)
+capture: PASS DBG.3 refuses an unknown id with a puzzle open
+capture: PASS the puzzle screen stays after an unknown id
+capture: PASS the open attempt is unchanged
+capture: PASS the open id is unchanged
+capture: PASS no mark is written by an unknown id
+capture: PASS elapsed is unchanged by an unknown id
+capture: PASS the Ready beat state is unchanged by an unknown id
+capture: state dump -> /tmp/falsify112/logs/state-pack-199.json
+capture: FAIL the attempt holds the requested id
+capture: FAIL the attempt holds pack-100
+capture: FAIL the attempt holds pack-001
+capture: FAIL the attempt holds pack-137
+capture: FAIL the attempt holds pack-000
+capture: FAIL every open holds the requested id and shows its attempt
+capture: RESULT fail (6 failures)
+SEV level=info event=session-end time=1793568583.746 session=issue-112-falsify build=4.7.2-stable (official) story=J-play-puzzle message=
