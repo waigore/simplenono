@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TEL event=open time=1793561162.190 session=session-1793561162 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793561162.694 session=session-1793561162 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793561162.695 session=session-1793561162 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=leave time=1793561162.704 session=session-1793561162 build=4.7.2-stable (official) story=- outcome=pass
+HARNESS protocol=ui-ack outcome=pass run=integration/logs/harness-1793561162-ui-ack.log
