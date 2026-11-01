@@ -79,10 +79,12 @@ func apply_mark(row: int, column: int, mark: CellMark.Mark) -> bool:
 
 
 ## Crosses still-clear cells on empty-clue lines after ready (specs/technical/sequences/open.md S9).
-## A cross sets in progress, so an empty-clue line alone starts the attempt. Returns 0
-## when marks are blocked or paused ([SCH-attempt] I2).
+## A cross sets in progress, so an empty-clue line alone starts the attempt. Gated by the
+## stage flag only, not [code]GS.paused[/code]: the beat's own write runs at S8-S9 even when
+## the puzzle is paused, while pause still blocks the player's marks ([method apply_mark]).
+## Returns 0 while the stage is blocked (get-set-ready, [SCH-attempt] I2).
 func auto_cross(positions: Array[Vector2i]) -> int:
-	if not marks_allowed():
+	if not _marks.marks_allowed():
 		return 0
 	var crossed := _marks.auto_cross(positions)
 	if crossed > 0:
