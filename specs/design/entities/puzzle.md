@@ -14,11 +14,11 @@ One pack entry the player opens from the [gallery](../glossary.md): fixed size, 
 
 | ID | Property | Meaning | Parameter |
 |----|----------|---------|-----------|
-| P1 | Size | 10×10 or 15×15 grid | Pack data |
-| P2 | Solution fill set | Hidden correct fills | Pack data |
+| P1 | Size | 10×10, 15×15, or 20×20 grid | Pack data |
+| P2 | Solution fill set | Hidden correct fills (from the solution picture) | Pack data |
 | P3 | Row and column [clues](clue.md) | Run lengths per line (empty list = all-empty) | Pack data |
 | P4 | Identity | Stable id in the 200-pack | Pack data |
-| P5 | Thumbnail | Solution picture for gallery display | Pack data; visible only when [ever completed](../glossary.md) |
+| P5 | Thumbnail | Full-colour solution picture for gallery (and result morph) | Pack data; visible only when [ever completed](../glossary.md) |
 
 ## Lifecycle and states
 
@@ -41,7 +41,7 @@ Attempt state and ever-completed are orthogonal ([`game-state.md`](../game-state
 
 ## Placement and availability
 
-Fixed local pack: 60×10×10 and 140×15×15. Every puzzle is always listed and selectable. No random placement.
+Fixed local pack: 10×10×10, 15×15×170, and 20×20×20 (200 total). Every puzzle is always listed and selectable. No random placement.
 
 ## Experience intent
 
