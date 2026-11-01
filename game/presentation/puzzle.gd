@@ -7,8 +7,9 @@ extends Control
 ## [code]GS.solve-elapsed[/code], [code]GS.paused[/code], and
 ## [code]GS.marks-allowed[/code] through [code]CTR-attempt[/code] reads, and it
 ## raises player intents instead of showing other screens. It owns no attempt
-## state, no rule, and no mark path: cells are inert [PuzzleCell] controls for
-## #111, and routing belongs to #112 (shell → puzzle) and #95/#96 (leave, pause).
+## state, no rule, and no mark path: cells are inert [PuzzleCell] controls that
+## [MarkInput] drives ([code]CMP-shell[/code] R2), and routing belongs to #112
+## (shell → puzzle) and #95/#96 (leave, pause).
 ##
 ## States: S2 while the attempt's get-set-ready beat runs, S3 while paused, and
 ## S1 otherwise. Elapsed ticks only through [code]CTR-attempt[/code] O3, so the
@@ -95,6 +96,15 @@ func selected_tool() -> CellMark.Mark:
 	return _selected_tool
 
 
+## Selects C3-C5 from a binding (keyboard F/X/C, B7-B9 and mirrors). Returns false
+## while the tools are unavailable (get-set-ready, S2). #111 owns the input layer.
+func select_tool(tool: CellMark.Mark) -> bool:
+	if not CellMark.is_mark(tool) or _fill_button.disabled:
+		return false
+	_select_tool(tool)
+	return true
+
+
 ## [code]GS.marks-allowed[/code] as the attempt reports it.
 func marks_allowed() -> bool:
 	if _attempt == null or _attempt.state() == null:
@@ -105,6 +115,11 @@ func marks_allowed() -> bool:
 ## The rendered elapsed string, [code]copy.elapsed[/code] ([code]m:ss[/code]).
 func elapsed_text() -> String:
 	return _elapsed_label.text
+
+
+## The attempt this screen is a view over, or null before [method present].
+func attempt() -> Attempt:
+	return _attempt
 
 
 ## The cell at [param row] and [param column], for the input layer (#111).

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://presentation/puzzle.gd" id="1_puzzle"]
 [ext_resource type="Script" path="res://presentation/puzzle_board.gd" id="2_board"]
+[ext_resource type="Script" path="res://presentation/mark_input.gd" id="3_mark_input"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ready"]
 content_margin_left = 18.0
@@ -151,3 +152,6 @@ text = "Clear"
 [node name="ReadyTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="MarkInput" type="Node" parent="."]
+script = ExtResource("3_mark_input")
