@@ -5,8 +5,8 @@ Agent entrypoint for this repo. Keep this file short; put detail in `docs/`, `sp
 ## Project
 
 - **Purpose**: Simple nonogram (picross) puzzle game — local pack, free-order play, calm clinical grid
-- **Language / engine**: Godot (version / GDScript vs C# TBD in Engine ADR) — see `specs/definition/definition.md`
-- **Frameworks / tools**: GitHub Actions CI (Spec lint, PR hygiene, Code lint, Unit tests, Coverage); game tooling TBD after Engine ADR
+- **Language / engine**: Godot with GDScript; release unpinned ([ADR-0001](specs/adr/decisions/0001-godot-gdscript.md))
+- **Frameworks / tools**: GitHub Actions CI (Spec lint, PR hygiene, Code lint, Unit tests, Coverage); further game tooling waits on later architecture decisions
 
 ## Quick start commands
 
