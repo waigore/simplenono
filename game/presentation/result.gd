@@ -10,8 +10,10 @@ extends Control
 ## the morph runs, and C1 raises [signal back_requested] instead of routing, so the shell
 ## owns [code]NAV.T5[/code].
 ##
-## A build that ships no stored pictures yet shows paper through both stages and the
-## morph still completes; the picture assets are an asset-pass concern (#98).
+## A build that ships no stored pictures ends the morph on the solved fills instead:
+## [ResultReveal] holds the best shipped layer through the missing stage, so the win
+## reveal always lands on an image and never on empty paper ([code]UI-result[/code] R1/S1).
+## The picture assets themselves are an asset-pass concern (#98).
 ##
 ## This screen owns no clock of its own. [b]CMP-shell[/b] drives [method advance] once
 ## per processed frame because it alone knows whether the morph has real time to spend
@@ -54,7 +56,7 @@ func _ready() -> void:
 
 ## Starts the win reveal for the grid [param fills] the solve carried. [param pixel_picture]
 ## and [param picture] are the stored pictures [b]CMP-shell[/b] R6 resolved, or null while
-## this build ships neither.
+## this build ships neither; the reveal then ends on the best layer it has.
 func present(
 	fills: MarkGrid,
 	pixel_picture: Texture2D,
