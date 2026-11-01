@@ -43,9 +43,17 @@ See latest `out/report.json` after re-run. Pipeline: Flux full-colour 1024² →
 
 | Claim or behavior | Choice | Note |
 |-------------------|--------|------|
-| <!-- fill in --> | <!-- fill in: keep, drop, or adapt --> | <!-- fill in --> |
+| Pack mix 10×10×10 + 15×15×170 + 20×20×20 | keep | Wins over design 60/140 and 10/15-only |
+| Full-colour image-first; pixelate 1:1; catalogued `puzzle-pictures` | keep | Morph target is pixel colour |
+| Fills from luma threshold ~25–45%; clues from runs | keep | No hole-close / dilate as acceptance bar |
+| Art mix single vs multi-subject/holed | adapt | **30%** single / **70%** multi-subject and/or holed |
+| Unique + line-logic only; fail → discard + new prompt | keep | No size fallback on hard-bar fail |
+| Generation tool | adapt | Cheaper Inference `flux-2-max` only; **no Recraft** (project exception) |
+| Offline authoring/CI tooling, not runtime generation | keep | Pack data + catalogued pictures in-game |
 
-Act: incomplete
+Conflict winners: pack mix/sizes; no-Recraft project exception for puzzle pictures.
+
+Act: incomplete — keep-list awaiting `capture-requirements` spec PR merge
 
 ## Run
 

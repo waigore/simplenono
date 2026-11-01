@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 
 ### In scope
 
-- Local puzzle pack of nonograms (10×10 and 15×15)
+- Local puzzle pack of nonograms (10×10, 15×15, and 20×20)
 - Free-order puzzle selection; per-puzzle ever-completed and attempt status (not started / in progress), in-progress marks, personal-best solve time, and gallery thumbnail when ever-completed, persisted
 - Desktop and mobile play with mouse/keyboard or touch
 
