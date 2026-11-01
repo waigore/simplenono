@@ -76,7 +76,7 @@ One invocation writes only below `<run-dir>/integration/`:
 | `results/<protocol>.json` | Raw protocol result: steps, rows, flows, session and build id |
 | `samples/<protocol>-samples.ndjson` | Per-frame `frame`, `offset_ms`, and `delta_ms` |
 | `samples/<protocol>-hitches.ndjson` | Frames longer than the `hitch-bound` bar |
-| `logs/<session>-<protocol>.log` | S4 telemetry events and harness steps |
+| `logs/<session>-<protocol>.log` | S4 telemetry events, severity-tagged `SEV` lines (engine errors and warnings, `session-start` / `session-end`), and harness steps |
 
 The harness never writes `manifest.md`. A quality run puts the harness output beside
 the evaluator's manifest under

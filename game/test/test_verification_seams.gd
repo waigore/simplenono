@@ -14,6 +14,7 @@ const SHELL_SCENE := "res://presentation/shell.tscn"
 var _shell: Shell
 var _seams: DebugSeams
 var _screen: PuzzleScreen
+var _spare_severity: SeverityLog
 
 
 func before_each():
@@ -22,6 +23,9 @@ func before_each():
 
 func after_each():
 	ProjectSettings.set_setting(DebugSeams.FLAG_SETTING, false)
+	if _spare_severity != null:
+		_spare_severity.uninstall()
+		_spare_severity = null
 
 
 func _boot(with_seams: bool) -> void:
@@ -72,6 +76,7 @@ func test_flag_off_hides_every_seam_and_keeps_the_boot():
 	assert_eq(_shell.view(), Shell.HOME_VIEW, "the app still starts on the shell view")
 	assert_eq(_shell.pack().load_result().accepted_count, 200, "the shipped pack still loads")
 	assert_null(_seams.telemetry(), "no telemetry sink")
+	assert_null(_seams.severity_log(), "no severity sink")
 	assert_null(_seams.get_node_or_null("StoryIdOverlay"), "no overlay node is created")
 	assert_false(_seams.toggle_overlay(), "the overlay toggle is unreachable")
 	assert_false(_seams.overlay_visible())
@@ -317,6 +322,70 @@ func test_s4_reset_emits_one_event():
 	var record := _shell.pack().progress().record("pack-000")
 	assert_false(record.in_progress, "O7 cleared the attempt")
 	assert_null(record.marks, "O7 cleared the grid")
+
+
+# S4 / H3 / I11: engine errors and warnings become one severity-tagged plain-log line
+func test_s4_engine_errors_and_warnings_are_severity_tagged():
+	_boot(true)
+	var severity := _seams.severity_log()
+	assert_not_null(severity, "the severity sink exists")
+	assert_true(severity.installed(), "H3: the sink writes into the plain log")
+	assert_eq(severity.session_id(), _seams.telemetry().session_id(), "TEL.3: one session id")
+	assert_eq(severity.build_id(), _seams.telemetry().build_id(), "TEL.3: one build id")
+	var info := severity.lines_at(SeverityLog.LEVEL_INFO)
+	assert_eq(info.size(), 1, "the run opens with one marker")
+	assert_eq(info[0]["event"], SeverityLog.EVENT_START, "I11: session-start")
+
+	# GUT fails a test on a deliberate push_error, so the engine callback is driven
+	# directly here; the documented CLI run shows the same line from a real push_error.
+	var backtraces: Array[ScriptBacktrace] = []
+	var errors := severity.lines_at(SeverityLog.LEVEL_ERROR).size()
+	var warnings := severity.lines_at(SeverityLog.LEVEL_WARNING).size()
+	severity._log_error(
+		"_ready", "res://presentation/shell.gd", 7, "boom", "", false, 0, backtraces
+	)
+	severity._log_error(
+		"_ready", "res://presentation/shell.gd", 8, "soon", "", false, 1, backtraces
+	)
+	assert_eq(severity.lines_at(SeverityLog.LEVEL_ERROR).size(), errors + 1, "I11: an error line")
+	assert_eq(severity.lines_at(SeverityLog.LEVEL_WARNING).size(), warnings + 1, "a warning line")
+	var line: Dictionary = severity.lines_at(SeverityLog.LEVEL_ERROR)[errors]
+	assert_eq(line["event"], SeverityLog.EVENT_ENGINE, "one engine event")
+	assert_true(String(line["message"]).contains("boom"), "the engine message is kept")
+	assert_true(String(line["message"]).contains("shell.gd:7"), "file and line are kept")
+	assert_true(
+		SeverityLog.to_log_line(line).begins_with("SEV level=error"), "the plain-log line is tagged"
+	)
+
+
+# S4 / I11: the severity lines carry the running story and a plain print adds none
+func test_s4_severity_lines_carry_the_story_and_ignore_plain_output():
+	_boot(true)
+	var severity := _seams.severity_log()
+	_seams.set_story_ids(["US1.7"])
+	var before := severity.lines().size()
+	print("seam-probe-plain-message")
+	assert_eq(severity.lines().size(), before, "H3: a print is not duplicated as a severity line")
+
+	severity.note(SeverityLog.LEVEL_ERROR, SeverityLog.EVENT_ENGINE, "probe")
+	var line: Dictionary = severity.lines()[severity.lines().size() - 1]
+	assert_eq(line["story_id"], "US1.7", "TEL.4: the active story id")
+
+
+# S4 / I11: a clean run closes its marker; a log without it ended abnormally
+func test_s4_session_end_marker_closes_the_run():
+	var severity := SeverityLog.new("session-a", "build-a")
+	_spare_severity = severity
+	assert_false(severity.installed(), "the sink is not installed until asked")
+	severity.install()
+	assert_true(severity.installed(), "installed on the engine")
+	severity.start()
+	severity.end()
+	assert_eq(severity.lines().size(), 2, "one start and one end")
+	assert_eq(severity.lines()[1]["event"], SeverityLog.EVENT_END, "I11: session-end")
+	severity.uninstall()
+	assert_false(severity.installed(), "uninstalled")
+	assert_eq(severity.lines().size(), 2, "uninstalling writes nothing")
 
 
 # S5 / SIT.3: the state dump writes SCH-attempt, SCH-mark-grid, and SCH-progress

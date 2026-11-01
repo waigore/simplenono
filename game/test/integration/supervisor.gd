@@ -35,6 +35,7 @@ var _started_us: int = 0
 var _target: Node = null
 var _shell: Shell = null
 var _seams: DebugSeams = null
+var _severity: SeverityLog = null
 var _attempt: Attempt = null
 var _sampler := IntegrationSampler.new()
 var _marks: Dictionary = {}
@@ -506,6 +507,9 @@ func _probe(name: String, step: Dictionary) -> Variant:
 
 func _finish() -> void:
 	var log_lines := _telemetry_lines()
+	# The severity sink is a RefCounted, so holding it keeps the lines the target's
+	# exit writes (`session-end`) readable after the target is freed.
+	_severity = _seams.severity_log() if _seams != null else null
 	_sampler.stop()
 	_sampler.write_ndjson(_folder.integration_dir(), String(_spec.get("id", "")))
 	if _target != null and is_instance_valid(_target):
@@ -539,6 +543,9 @@ func _finish_result(result: Dictionary) -> void:
 	var log_lines: Array[String] = []
 	for line in result.get("log_lines", []):
 		log_lines.append(String(line))
+	if _severity != null:
+		for line in _severity.lines():
+			log_lines.append(SeverityLog.to_log_line(line))
 	result.erase("log_lines")
 	for step in result.get("steps", []):
 		var line := (

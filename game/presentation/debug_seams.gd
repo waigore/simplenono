@@ -19,6 +19,9 @@ extends Node
 ##   protocol, F3 toggles it.
 ## - [b]S4[/b] telemetry: every recorded action is one [Telemetry] event
 ##   ([code]TEL.1[/code]-[code]TEL.5[/code]) and one Godot log line ([code]H3[/code]).
+##   The same log carries one severity-tagged line per engine error or warning and a
+##   [code]session-start[/code] / [code]session-end[/code] pair ([SeverityLog]), so
+##   [code]I11[/code]'s error and crash signals sit beside the events.
 ## - [b]S5 / SIT.3[/b] state dump: [method dump_state] writes the inspect payload under a
 ##   run folder's [code]logs/[/code]; [code]dump_state.gd[/code] is the headless entry.
 ##
@@ -51,6 +54,7 @@ const PAUSE_KEY := KEY_F9
 
 var _shell: Shell
 var _telemetry: Telemetry
+var _severity: SeverityLog
 var _overlay: Label
 var _story_ids: Array[String] = []
 var _tracked: Attempt
@@ -74,12 +78,28 @@ func _ready() -> void:
 	_telemetry = Telemetry.new(_argument(SESSION_ARG, _default_session_id()), _build_id())
 	_story_ids = _command_line_story_ids()
 	_telemetry.set_story_id(active_story_id())
+	_severity = SeverityLog.new(_telemetry.session_id(), _telemetry.build_id())
+	_severity.set_story_id(active_story_id())
+	_severity.install()
+	_severity.start()
 	_build_overlay()
+
+
+func _exit_tree() -> void:
+	if _severity == null:
+		return
+	_severity.end()
+	_severity.uninstall()
 
 
 ## The S4 sink, or null while the seams are off.
 func telemetry() -> Telemetry:
 	return _telemetry
+
+
+## [code]I11[/code]'s severity sink ([code]H3[/code]), or null while the seams are off.
+func severity_log() -> SeverityLog:
+	return _severity
 
 
 ## [b]S3 / DBG.4[/b]: the story ids the running protocol is under test for.
@@ -98,6 +118,8 @@ func set_story_ids(story_ids: Array[String]) -> void:
 	_story_ids = story_ids
 	if _telemetry != null:
 		_telemetry.set_story_id(active_story_id())
+	if _severity != null:
+		_severity.set_story_id(active_story_id())
 	_refresh_overlay()
 
 
