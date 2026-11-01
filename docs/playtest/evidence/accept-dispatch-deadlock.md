@@ -1,15 +1,16 @@
-# Acceptance dispatch holds (#106, #107, #108, #109, #111, #112)
+# Acceptance dispatch holds (#107, #108, #109, #111, #112)
 
-Why these issues sit on `status:pending-acceptance`, and what unblocks them.
+Why these sit on `status:pending-acceptance`.
 Run records:
-[`#106`](issue-106/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#107`](issue-107/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#109`](issue-109/2026-11-02-accept/manifest.md),
 [`#111`](issue-111/2026-11-02-accept/manifest.md),
 [`#112`](issue-112/2026-11-02-accept/manifest.md),
 [`#108`](issue-108/2026-11-02-accept/manifest.md).
 
-Three issues left the filter on 2026-11-02:
+Four left the filter on 2026-11-02:
+
+- `#106`: accepted graphically ([record](issue-106/2026-11-02-accept-graphical/manifest.md)).
 
 - `#105`: with `#169`'s seams and `#110`'s board in place, its `E-puzzle` PS1.1 claim had a screen
   state for the first time; the graphical re-run accepted it with 8 screenshots
