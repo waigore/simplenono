@@ -1,0 +1,75 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+[4m
+
+res://test/test_accept_132_probe.gd
+[0m* test_rules_o3_returns_only_still_clear_cells_of_empty_lines
+* test_ps1_1_screen_ready_beat
+* test_ps1_9_configured_beat_length
+* test_e3_payload_after_marks_allowed
+* test_b1_unknown_id_changes_nothing
+* test_b3_pause_during_beat
+* test_open_in_progress_record_keeps_marks_blocked_until_beat_end
+[31m    [Failed]:  [0mS4/F5: marks blocked on open
+      at line 242
+[31m    [Failed]:  [0mI2: a mark during the beat changes nothing
+      at line 243
+[31m    [Failed]:  [0m[21] expected to equal [18]:  G1: elapsed does not tick during the beat
+      at line 248
+[31m    [Failed]:  [0mS2: the screen blocks marks
+      at line 251
+[31m    [Failed]:  [0m[0] expected to equal [2]:  US1.7: the board rejects input during the beat
+      at line 252
+[31m    [Failed]:  [0m["0:25"] expected to equal ["0:18"]:  copy.elapsed does not tick during the beat
+      at line 258
+* test_shipped_pack_resume_keeps_marks_blocked
+[31m    [Failed]:  [0mS4/F5: marks blocked on reopen
+      at line 274
+[31m    [Failed]:  [0m[3] expected to equal [0]:  G1: no tick during the reopen beat
+      at line 276
+* test_g1_blocked_marks_write_nothing
+[1m7/9 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m[4m
+res://test/test_accept_132_probe.gd
+[0m- test_open_in_progress_record_keeps_marks_blocked_until_beat_end
+[31m    [Failed]:  [0mS4/F5: marks blocked on open
+          at line 242
+[31m    [Failed]:  [0mI2: a mark during the beat changes nothing
+          at line 243
+[31m    [Failed]:  [0m[21] expected to equal [18]:  G1: elapsed does not tick during the beat
+          at line 248
+[31m    [Failed]:  [0mS2: the screen blocks marks
+          at line 251
+[31m    [Failed]:  [0m[0] expected to equal [2]:  US1.7: the board rejects input during the beat
+          at line 252
+[31m    [Failed]:  [0m["0:25"] expected to equal ["0:18"]:  copy.elapsed does not tick during the beat
+          at line 258
+- test_shipped_pack_resume_keeps_marks_blocked
+[31m    [Failed]:  [0mS4/F5: marks blocked on reopen
+          at line 274
+[31m    [Failed]:  [0m[3] expected to equal [0]:  G1: no tick during the reopen beat
+          at line 276
+
+Totals
+------
+Scripts               1
+Tests                 9
+Passing Tests         7
+Failing Tests         2
+Asserts           543/551
+Time              0.491s
+
+
+[31m---- 2 failing tests ----
+[0m
