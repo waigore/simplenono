@@ -41,7 +41,7 @@ None — no content gates. Every puzzle is selectable immediately.
 
 ## Attempt timing
 
-A short [get-set-ready](glossary.md) beat prepares the player before marks are allowed. The solve timer starts when that puzzle attempt loads (board ready after get-set-ready), or resumes persisted elapsed when reopening an in-progress attempt. The timer stops when the player's fills match the solution fill set.
+A short [get-set-ready](glossary.md) beat ([`CFG.GET_SET_READY_MS`](configuration.md), default 500 ms) prepares the player before marks are allowed. The solve timer starts when that puzzle attempt loads (board ready after get-set-ready), or resumes persisted elapsed when reopening an in-progress attempt. The timer stops when the player's fills match the solution fill set.
 
 ## Experience intent
 

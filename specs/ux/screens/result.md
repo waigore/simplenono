@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | Shown in | Design element | Visible when |
 |----------|----------------|--------------|
 | R1 | Fills morphing into the stored pixel picture, then that picture into the stored generated picture (fills only; clues not in the morph) | Always on this screen ([`PER.R5`](../../view/perception.md)) |
-| R2 | Gallery return control | After both stages ([`MOT.T2`](../../aesthetics/motion.md) then [`MOT.T3`](../../aesthetics/motion.md), 300 ms each) |
+| R2 | Gallery return control | After both stages ([`MOT.T2`](../../aesthetics/motion.md) then [`MOT.T3`](../../aesthetics/motion.md), [`CFG.MORPH_STAGE_MS`](../../design/configuration.md) each) |
 
 ## Regions
 
@@ -32,8 +32,8 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 
 | ID | State | Entered when | Actor sees | Actor can |
 |----|-------|--------------|------------|-----------|
-| S2 | Pixel | Screen opens after [`END.W1`](../../design/end-conditions.md) | R1 stage 1, 300 ms ([`MOT.T2`](../../aesthetics/motion.md)) | None (wait) |
-| S3 | Picture | S2 ends | R1 stage 2, 300 ms ([`MOT.T3`](../../aesthetics/motion.md)) | None (wait) |
+| S2 | Pixel | Screen opens after [`END.W1`](../../design/end-conditions.md) | R1 stage 1, [`CFG.MORPH_STAGE_MS`](../../design/configuration.md) ([`MOT.T2`](../../aesthetics/motion.md)) | None (wait) |
+| S3 | Picture | S2 ends | R1 stage 2, [`CFG.MORPH_STAGE_MS`](../../design/configuration.md) ([`MOT.T3`](../../aesthetics/motion.md)) | None (wait) |
 | S1 | Default | S3 ends | Generated picture; R2 | C1 |
 
 ## Copy

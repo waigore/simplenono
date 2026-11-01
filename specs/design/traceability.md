@@ -19,8 +19,8 @@ Authoring rules: [`.agents/specs/rules/design/traceability.md`](../../.agents/sp
 | Flows and transitions | [`flows/`](flows/) | <!-- fill in --> |
 | Stages and scenes | [`stages/`](stages/) | <!-- fill in --> |
 | Game state | [`game-state.md`](game-state.md), [`game-state/fields.md`](game-state/fields.md) | Applies |
-| Configuration | [`configuration.md`](configuration.md) | <!-- fill in --> |
-| Demo mode | [`demo.md`](demo.md) | <!-- fill in: Applies, N/A — not offered, or leave until Offering decided --> |
+| Configuration | [`configuration.md`](configuration.md) | Applies (Standard mode; tunables `CFG.GET_SET_READY_MS`, `CFG.MORPH_STAGE_MS`) |
+| Demo mode | [`demo.md`](demo.md) | N/A — not offered |
 | Difficulty settings | [`difficulty.md`](difficulty.md) | <!-- fill in --> |
 | Scenarios | [`scenarios/`](scenarios/) | <!-- fill in --> |
 | Progress management | [`progression.md`](progression.md) | Applies |
