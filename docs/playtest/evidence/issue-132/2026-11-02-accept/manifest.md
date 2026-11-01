@@ -2,7 +2,7 @@
 
 - **Issue:** #132 Solve loop: get-set-ready, auto-cross (`CMP-rules` R3), ready edge and elapsed ticking
 - **Build / session id:** `main@a0c2e39` (Godot 4.7.2.stable)
-- **Coverage mode:** `full` ([`playtest.md`](../../../../specs/playtest/playtest.md) Coverage)
+- **Coverage mode:** `full` ([`playtest.md`](../../../../../specs/playtest/playtest.md) Coverage)
 - **Runner:** `issue-workflow-accept-agent` (parallel id 1), unattended dispatch
 - **Level:** Design (`PTD-ready-and-marks`)
 
@@ -24,7 +24,7 @@ synthetic all-empty-clue definition guarantees empty lines; `evidence.md` allows
 fixture has none.
 
 **Screenshots:** none. `PTD-ready-and-marks` uses the default evidence rules and does not say
-none, so [`evidence.md`](../../../../specs/playtest/evidence.md) requires an image of each judged
+none, so [`evidence.md`](../../../../../specs/playtest/evidence.md) requires an image of each judged
 pass state from a **graphical** re-run of this same build. No such image exists, and this build
 cannot produce one: `game/presentation/shell.tscn` draws two labels and no grid, and no `DBG.*` /
 `TEL.*` seam is built. Per `evidence.md` the omission is **not** a protocol fail and does not file

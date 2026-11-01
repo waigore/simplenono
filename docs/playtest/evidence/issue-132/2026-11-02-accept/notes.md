@@ -49,7 +49,7 @@ one image per judged pass state. That cannot happen yet:
 
 This is the fifth issue in the same state (#105, #106, #107, #109, #132); the cause and the
 human-owned options are in
-[`../../../accept-dispatch-deadlock.md`](../../../accept-dispatch-deadlock.md).
+[`accept-dispatch-deadlock.md`](../../accept-dispatch-deadlock.md).
 
 ## Non-blocking observations
 
