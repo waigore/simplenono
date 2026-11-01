@@ -1,0 +1,5 @@
+Mutated assets/catalog/01a19655-13d1-7499-ad4d-6079f4889628.json
+original id: 01a19655-13d1-7499-ad4d-6079f4889628
+ERROR: assets/catalog/01a19655-13d1-7499-ad4d-6079f4889628.json [I2] 'id' is not a lowercase UUID version 7
+Asset catalog: 1 error(s).
+exit=1
