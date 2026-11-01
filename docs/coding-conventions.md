@@ -1,6 +1,6 @@
 # Coding conventions
 
-Project-owned conventions for code in this repo: language idioms, naming, formatting, file layout, errors, logging, and tests. Once the Engine ADR is Accepted, replace every `<!-- fill in -->`. Template sync keeps this file's project content.
+Conventions for code in this repo: idioms, naming, formatting, layout, errors, logging, tests. Tool choices come from [ADR-0007](../specs/adr/decisions/0007-gdscript-lint-format.md); change tables and CI together. Template sync keeps project content.
 
 Optional. SOLID only: one Rules row `None — SOLID only (<reason>)` and Tooling `None — <reason>`. Placeholders mean still open.
 
@@ -27,7 +27,10 @@ Each rule has a permanent ID `CC-<n>` (never reused) and a level:
 
 | ID | Level | Rule |
 |----|-------|------|
-| <!-- fill in: CC-1 --> | <!-- fill in: must or should --> | <!-- fill in: e.g. functions and variables use snake_case; types use PascalCase --> |
+| CC-1 | must | GDScript passes `gdlint`: snake_case functions and variables, PascalCase classes, SCREAMING_SNAKE_CASE constants, signals before constants and variables, no `else`/`elif` after `return`, no trailing whitespace, lines ≤ 100 characters. |
+| CC-2 | must | GDScript is formatted by `gdformat` with its defaults (tabs, 100-column wrap). Do not hand-format around it. |
+
+Both cover `game/`; `game/addons/` and `pocs/` are excluded via `.gdlintrc` / `.gdformatrc`.
 
 Group rows by topic as the table grows. Past 500 words, split into linked files under `docs/coding-conventions/`.
 
@@ -37,7 +40,10 @@ Every lint or format command listed here runs as a step in [`code-lint.yml`](../
 
 | Tool | Command | Enforces |
 |------|---------|----------|
-| <!-- fill in: e.g. formatter --> | <!-- fill in: e.g. `fmt --check .` --> | <!-- fill in: CC IDs --> |
+| gdformat 4.5.0 (gdtoolkit) | `gdformat --check game` | CC-2 |
+| gdlint 4.5.0 (gdtoolkit) | `gdlint game` | CC-1 |
+
+Run from the repository root so the config exclusions apply. CI installs the pinned `gdtoolkit==4.5.0`; bump that pin here and in [`code-lint.yml`](../.github/workflows/code-lint.yml) together.
 
 ## Unit tests
 

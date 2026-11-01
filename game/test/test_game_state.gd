@@ -159,9 +159,19 @@ func test_an_exact_run_match_is_satisfied():
 
 func test_an_exact_column_run_match_is_satisfied():
 	# PS1.4: column 2 is one run of 3 at rows 6…8
-	var status := Rules.new(_definition).line_status(_grid_with([
-		Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2),
-	]))
+	var status := (
+		Rules
+		. new(_definition)
+		. line_status(
+			_grid_with(
+				[
+					Vector2i(6, 2),
+					Vector2i(7, 2),
+					Vector2i(8, 2),
+				]
+			)
+		)
+	)
 	assert_true(status.column(2).satisfied, "PS1.4: GS.clue-satisfied for column 2 is true")
 
 
@@ -310,7 +320,11 @@ func test_identical_mark_sequences_play_identically():
 	assert_eq(first["solved"], second["solved"], "Q1: is-solved matches")
 	assert_eq(first["status"], second["status"], "Q1: attempt-status outcome matches")
 	assert_eq(first["after_clear"], second["after_clear"], "Q1: end outcome matches")
-	assert_eq(first["status"], AttemptState.Status.IN_PROGRESS, "the sequence left the attempt in progress")
+	assert_eq(
+		first["status"],
+		AttemptState.Status.IN_PROGRESS,
+		"the sequence left the attempt in progress"
+	)
 	assert_true(first["solved"], "the sequence solves the teapot")
 
 
@@ -380,7 +394,9 @@ func test_the_knowable_values_are_available_after_a_solve():
 	assert_eq(progress.completion_rate(1), 1.0)
 	var attempt := AttemptState.new(_definition.size)
 	assert_false(attempt.paused(), "H2: paused is knowable")
-	assert_true(Rules.new(_definition).line_status(attempt.marks()).ok(), "H2: line status is knowable")
+	assert_true(
+		Rules.new(_definition).line_status(attempt.marks()).ok(), "H2: line status is knowable"
+	)
 
 
 # PS1.2: Completion rate
@@ -444,8 +460,14 @@ func test_ever_completed_and_in_progress_coexist_on_replay():
 	var attempt := AttemptState.new(_definition.size)
 	attempt.allow_marks()
 	attempt.apply_mark(7, 7, CellMark.Mark.FILL)
-	var record := progress.commit(
-		"teapot", attempt.marks(), attempt.elapsed(), attempt.in_progress(),
+	var record := (
+		progress
+		. commit(
+			"teapot",
+			attempt.marks(),
+			attempt.elapsed(),
+			attempt.in_progress(),
+		)
 	)
 	assert_true(record.ever_completed, "V6: the replay keeps ever-completed")
 	assert_true(record.in_progress, "V6: and is in progress")
@@ -460,7 +482,9 @@ func test_commit_keeps_the_marks_it_was_given():
 	attempt.apply_mark(7, 7, CellMark.Mark.FILL)
 	attempt.apply_mark(0, 0, CellMark.Mark.CROSS)
 	attempt.advance(4)
-	var record := progress.commit("teapot", attempt.marks(), attempt.elapsed(), attempt.in_progress())
+	var record := progress.commit(
+		"teapot", attempt.marks(), attempt.elapsed(), attempt.in_progress()
+	)
 	assert_true(record.marks.has_any_mark(), "I2: in progress stores at least one mark")
 	assert_eq(record.marks.mark_at(7, 7), CellMark.Mark.FILL)
 	assert_eq(record.marks.mark_at(0, 0), CellMark.Mark.CROSS)
@@ -500,11 +524,17 @@ func test_only_the_progress_rules_change_a_record():
 	attempt.allow_marks()
 	attempt.apply_mark(7, 7, CellMark.Mark.FILL)
 	attempt.clear_attempt()
-	assert_eq(_record_snapshot(record), before, "nothing outside progress_rules.gd writes the record")
+	assert_eq(
+		_record_snapshot(record), before, "nothing outside progress_rules.gd writes the record"
+	)
 
 
 func _record_snapshot(record: ProgressRecord) -> Array:
 	return [
-		record.puzzle_id, record.ever_completed, record.in_progress,
-		record.marks, record.elapsed, record.personal_best,
+		record.puzzle_id,
+		record.ever_completed,
+		record.in_progress,
+		record.marks,
+		record.elapsed,
+		record.personal_best,
 	]

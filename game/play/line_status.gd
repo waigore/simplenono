@@ -13,14 +13,17 @@ var orientation: ClueLine.Orientation
 ## 0 … size-1 (F2).
 var index: int
 
-## The fills contradict this line's clues (F3, [code]GS.row-error[/code] / [code]GS.col-error[/code]).
+## The fills contradict this line's clues
+## (F3, [code]GS.row-error[/code] / [code]GS.col-error[/code]).
 var error: bool = false
 
 ## The fills are exactly this line's runs (F4, [code]GS.clue-satisfied[/code]).
 var satisfied: bool = false
 
 
-func _init(line_orientation: ClueLine.Orientation, line_index: int, in_error: bool, is_satisfied: bool) -> void:
+func _init(
+	line_orientation: ClueLine.Orientation, line_index: int, in_error: bool, is_satisfied: bool
+) -> void:
 	assert(line_index >= 0, "Line status index must not be negative: %s" % line_index)
 	orientation = line_orientation
 	index = line_index

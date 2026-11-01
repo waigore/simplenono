@@ -1,9 +1,9 @@
 extends GutTest
-## Pack data and loader — [b]CMP-pack[/b] R5, [b]CTR-pack[/b] O8 and O3, [SCH-puzzle-def] F1-F7 and I1-I5.
+## Pack data and loader — [b]CMP-pack[/b] R5, [b]CTR-pack[/b] O8 and O3,
+## [SCH-puzzle-def] F1-F7 and I1-I5.
 ##
 ## Seam S6 (specs/technical/verification.md) and invariant I12. Fixtures live beside this
 ## test so the shipped pack stays the real one.
-
 
 const FIXTURES := "res://test/fixtures/pack"
 
@@ -15,7 +15,9 @@ func _load(path: String) -> Pack:
 
 
 ## A valid 10×10 entry with a single filled center cell. Tests copy and break one field.
-func _valid_entry(id: String = "fixture-a", picture: String = "picture-a", pixel: String = "pixel-a") -> Dictionary:
+func _valid_entry(
+	id: String = "fixture-a", picture: String = "picture-a", pixel: String = "pixel-a"
+) -> Dictionary:
 	var row_clues := []
 	var col_clues := []
 	for line in 10:
@@ -59,12 +61,24 @@ func test_loaded_definitions_satisfy_the_schema():
 		assert_true(definition.size in [10, 15, 20], "F2 is 10, 15, or 20")
 		assert_eq(definition.row_clues.size(), definition.size, "I1: F3 has one list per row")
 		assert_eq(definition.col_clues.size(), definition.size, "I1: F4 has one list per column")
-		assert_eq(_runs(definition.solution_fills, definition.size, true), definition.row_clues, "I3: rows")
-		assert_eq(_runs(definition.solution_fills, definition.size, false), definition.col_clues, "I3: columns")
+		assert_eq(
+			_runs(definition.solution_fills, definition.size, true),
+			definition.row_clues,
+			"I3: rows"
+		)
+		assert_eq(
+			_runs(definition.solution_fills, definition.size, false),
+			definition.col_clues,
+			"I3: columns"
+		)
 		for position in definition.solution_fills:
 			assert_true(
-				position.x >= 0 and position.x < definition.size
-				and position.y >= 0 and position.y < definition.size,
+				(
+					position.x >= 0
+					and position.x < definition.size
+					and position.y >= 0
+					and position.y < definition.size
+				),
 				"I2: every fill is inside the grid",
 			)
 		assert_false(definition.picture_id == definition.pixel_picture_id, "I5: F6 differs from F7")
