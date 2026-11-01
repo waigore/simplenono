@@ -10,8 +10,8 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | Offline local pack; Godot engine | definition | [`asset-access.md`](asset-access.md) (ADR TBDs) |
 | [ADR-0001](../adr/decisions/0001-godot-gdscript.md) | adr | [`technical.md`](technical.md), [`layers.md`](layers.md), [`modules.md`](modules.md), [`components/`](components/) |
 | [ADR-0002](../adr/decisions/0002-user-data-dir.md) | adr | [`persistence.md`](persistence.md), [`components/pack.md`](components/pack.md), [`schemata/progress.md`](schemata/progress.md), [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md) |
-| Puzzle, cell, clue, solve loop, game state, end conditions | design | [`components/attempt.md`](components/attempt.md), [`components/rules.md`](components/rules.md), [`components/pack.md`](components/pack.md), [`schemata/`](schemata/), [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md) |
-| Gallery, puzzle, result, settings; leave-resume | ux | [`components/shell.md`](components/shell.md), [`sequences/leave.md`](sequences/leave.md) |
+| Puzzle, cell, clue, solve loop, game state, end conditions | design | [`components/attempt.md`](components/attempt.md), [`components/rules.md`](components/rules.md), [`components/pack.md`](components/pack.md), [`schemata/`](schemata/), [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md) |
+| Gallery, puzzle, result, settings; leave-resume; pause T7–T8 | ux | [`components/shell.md`](components/shell.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md) |
 | Persisted progress | definition | [`persistence.md`](persistence.md) |
 
 ## Topic coverage
@@ -23,7 +23,7 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | Components | [`components/`](components/) | Applies |
 | Contracts | [`contracts/`](contracts/) | Applies |
 | Schemata and lifecycles | [`schemata/`](schemata/) | Applies |
-| Sequences | [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md) | Applies |
+| Sequences | [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md) | Applies |
 | Failure model | `failures.md` | N/A — a rejected call changes nothing, and there is no separate failure model |
 | Concurrency and update loop | `concurrency.md` | N/A — the shell advances the attempt on one main thread |
 | Persistence and save mapping | [`persistence.md`](persistence.md) | Applies |
