@@ -1,0 +1,85 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+TEL event=reset time=1793559408.620 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=open time=1793559408.621 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: open state=S2 marks_allowed=false elapsed=0:00
+capture: PASS S1: fresh open is get-set-ready
+capture: PASS S1: marks are blocked during get-set-ready
+capture: PASS S1: a mark does not stick
+capture: PASS S1: elapsed stays 0:00 during the beat
+capture: shot 00-fresh-ready-blocked -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc132shots/00-fresh-ready-blocked.png (error 0)
+TEL event=ready time=1793559408.695 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.695 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S2: the beat ends
+TEL event=mark time=1793559408.697 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.697 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S2: fill applies
+TEL event=mark time=1793559408.698 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.698 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S2: clear applies
+TEL event=mark time=1793559408.699 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.699 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S2: cross applies
+capture: PASS S2: DBG.2 returns a payload
+capture: S2 inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "cross", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "cross", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 0, "personal_best": <null> } }
+capture: shot 01-ready-fill-clear-cross -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc132shots/01-ready-fill-clear-cross.png (error 0)
+TEL event=mark time=1793559408.722 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.722 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S3: start clear
+TEL event=mark time=1793559408.722 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.723 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S3: wrong fill applies
+capture: PASS S3: the screen stays playable
+capture: PASS S3: the wrong fill is not cleared by a fail state
+capture: PASS S3: the wrong fill does not solve
+capture: S3 wrong fill at (0,0) stays playable
+capture: shot 02-wrong-fill-playable -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc132shots/02-wrong-fill-playable.png (error 0)
+TEL event=leave time=1793559408.737 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=reset time=1793559408.738 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=open time=1793559408.739 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: open state=S2 marks_allowed=false elapsed=0:00
+TEL event=ready time=1793559408.789 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.789 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=mark time=1793559408.806 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.806 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS reopen: the first mark commits
+capture: PASS reopen: 0:18 is recorded
+TEL event=leave time=1793559408.822 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.822 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=open time=1793559408.841 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: open state=S2 marks_allowed=false elapsed=0:18
+capture: PASS reopen: the beat starts again
+capture: PASS reopen: marks stay blocked
+capture: PASS reopen: elapsed is supplied
+capture: PASS reopen: the stored mark is drawn
+capture: PASS reopen: C2 is blocked
+capture: reopen inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 18, "paused": false, "marks_allowed": false, "attempt_status": "in_progress", "get_set_ready": true }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["fill", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["fill", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 18, "personal_best": <null> } }
+capture: shot 03-reopened-ready-blocked -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc132shots/03-reopened-ready-blocked.png (error 0)
+capture: PASS reopen: a mark changes nothing
+capture: PASS reopen: elapsed stays frozen
+capture: after blocked mark inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 18, "paused": false, "marks_allowed": false, "attempt_status": "in_progress", "get_set_ready": true }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["fill", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["fill", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 18, "personal_best": <null> } }
+capture: shot 04-reopened-blocked-mark-attempt -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc132shots/04-reopened-blocked-mark-attempt.png (error 0)
+TEL event=ready time=1793559408.939 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=mark time=1793559408.941 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.941 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS reopen: marks apply after the beat
+capture: PASS reopen: Ready after the beat
+capture: PASS reopen: marks are allowed
+capture: PASS reopen: elapsed ticks after the beat
+capture: shot 05-after-beat-marks-allowed -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc132shots/05-after-beat-marks-allowed.png (error 0)
+TEL event=pause time=1793559408.984 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559408.984 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S4: the session pauses
+capture: PASS S4: the screen is paused
+capture: PASS S4: a paused mark changes nothing
+capture: PASS S4: elapsed is frozen while paused
+capture: shot 06-paused-mark-blocked -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc132shots/06-paused-mark-blocked.png (error 0)
+TEL event=resume time=1793559409.010 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S4: the session resumes
+capture: PASS S4: Ready after resume
+TEL event=mark time=1793559409.011 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+TEL event=commit time=1793559409.011 session=issue-132-capture build=4.7.2-stable (official) story=US1.7 outcome=pass
+capture: PASS S4: marks apply after resume
+capture: shot 07-resumed-mark-applied -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc132shots/07-resumed-mark-applied.png (error 0)
+capture: RESULT pass

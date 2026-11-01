@@ -15,9 +15,11 @@ Four left the filter on 2026-11-02:
 - `#105`: with `#169`'s seams and `#110`'s board in place, its `E-puzzle` PS1.1 claim had a screen
   state for the first time; the graphical re-run accepted it with 8 screenshots
   ([record](issue-105/2026-11-02-accept-graphical/manifest.md)).
-- `#132`: its run found a real fail on the reopen path and returned it to
+- `#132`: its first run found a real fail on the reopen path and returned it to
   `status:pending-implementation` with a defect
-  ([record](issue-132/2026-11-02-accept-fail/manifest.md)).
+  ([record](issue-132/2026-11-02-accept-fail/manifest.md)). After the #160 repair and a verify Pass,
+  its graphical re-run accepted it with 8 screenshots
+  ([record](issue-132/2026-11-02-accept-graphical/manifest.md)).
 - `#156`: `#169` (`3f402fe`) supplied the S1–S5 seams, and its graphical re-run accepted it
   ([record](issue-156/2026-11-02-accept-graphical/manifest.md)).
 
@@ -51,6 +53,10 @@ a seam-level result — S1–S3 need `DBG.3` and `DBG.2`.
 - **`effca0a` (139/139):** picked `#105`, the oldest hold and the pack every later task reads, and
   accepted it graphically — one puzzle per size, every clue bar matched, a 10×10 solved from its own
   fills ([record](issue-105/2026-11-02-accept-graphical/manifest.md)).
+- **`859d834` (139/139):** picked `#132`, whose ready edge is the spine of `puzzle.tscn`. Accepted it
+  graphically — `PTD-ready-and-marks` S1–S4/P1–P3, US1.7, and the #156 reopen path, 8 screenshots
+  ([record](issue-132/2026-11-02-accept-graphical/manifest.md)). `#108` is the last candidate with no
+  graphical run.
 
 ## Unblocking — what is left
 
