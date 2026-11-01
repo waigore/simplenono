@@ -1,0 +1,23 @@
+# Log excerpt — PTD-crosses-and-fills (issue #106, 2026-11-01-accept)
+
+Build `main@eea5f9d`. Source command, full transcript: `gut-accept.log` in this folder.
+
+```
+godot --headless --path game -s addons/gut/gut_cmdln.gd -gdir=res://test -gexit
+```
+
+Judged window — the tests that drive S1/S3 (`SIT.3` state dump) of `PTD-crosses-and-fills`:
+
+```
+* test_cross_is_not_a_fill
+    grid := MarkGrid.new(10, true)
+    apply_mark(1,1,FILL); apply_mark(1,2,CROSS); apply_mark(1,3,CROSS)
+    filled_positions() == [(1,1)]                  # crosses absent from fills
+    CellMark.counts_as_fill(CROSS) == false
+    CellMark.counts_as_fill(FILL)  == true
+15/15 passed.
+```
+
+The test passes: crosses are never reported as fills at this layer, so `GS.is-solved` (not delivered, #108) cannot receive a cross as a fill from the grid.
+
+No `DBG.*` / `TEL.*` events exist on this build — see `notes.md`.
