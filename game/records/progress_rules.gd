@@ -71,6 +71,15 @@ func completion_rate(pack_size: int = PACK_SIZE) -> float:
 	return float(completed) / float(pack_size)
 
 
+## [code]GS.pack-finished[/code] ([code]END.W2[/code], [code]PRG.Z1[/code]): true once
+## every puzzle of the pack is ever-completed, the same fact as a completion rate of 1
+## ([code]END.W2[/code]'s own check). A pack with no puzzles is not finished.
+## [code]END.P1[/code]: the caller evaluates this after W1, so the solve that completes
+## the pack still applies its own W1 outcomes.
+func pack_finished(pack_size: int = PACK_SIZE) -> bool:
+	return pack_size > 0 and completion_rate(pack_size) >= 1.0
+
+
 ## O5: replaces the record's marks, elapsed, and attempt status for [param puzzle_id].
 ## The marks are copied, so later changes to [param marks] do not reach the record.
 ## A record committed with an empty grid and no status is not started (I2/I3), so the
