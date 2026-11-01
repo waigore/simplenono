@@ -19,26 +19,7 @@ intent, and Back (I8). The previous `blocked` rows were blocked for want of the 
 | `crash-free` | deterministic | I9 open, solve, reset, and back all ran across the six protocols; no failed flow or crashed run. The `navigate` and `kill-relaunch` exits are their own axes. | No crash across open, solve, reset, and back | pass | — | `integration/results.md` |
 | `response-delay` | deterministic | I8 longest acknowledgement among open, settings intent, and Back 8.6 ms | ≤ 500 ms | pass | — | `integration/logs/harness-1793560005-ui-ack.log` |
 
-## Not selected
-
-- `runtime-signals` (I11) — the screen emits no signal; `DebugSeams` records S4. This is #163's producer row, where
-  its own run selects the axis and records the severity-log quarter as outstanding.
-- `transition-latency` (I7) — fails on `puzzle-result` (2291.6 ms) because `UI-result` is #95; the screen's own
-  `home-puzzle` leg is `ok` in `integration/results/navigate.json`.
-- `time-to-playable` (I6) — launch to the gallery stand-in (#94); the screen is not on that path.
-- `resume-after-failure` (I10) — restore is #96.
-- `save-survives` / `failed-write` (I4) — the screen writes no committed progress; leave/commit is #96.
-- N/A accessibility and localization axes are not scored.
-
-## Cross-reference
-
-- `review-asset`: N/A, no cataloged assets changed.
-- `review-code` on PR #152 + #164: **Pass**, no must-fix; one `suggestion` (`_line_status` cached across a bare
-  `refresh()`).
-- Independent checks on `859d834`: GUT `11 scripts / 139 tests / 139 passing / 29204 asserts` exit 0;
-  `gdformat --check game` 57 files unchanged; `gdlint game` Success; both PRs' five checks SUCCESS.
-- `MC.puzzle` is still `approved`; regions R1–R3, states S1–S3, and `copy.*` match the mockup and UX spec.
-
 ## Verdict
 
-`Pass` — every selected axis meets its bar. Selection notes and limits: [`rationale.md`](rationale.md).
+`Pass` — every selected axis meets its bar. Unscored axes: [`axes.md`](axes.md). Cross-reference checks:
+[`checks.md`](checks.md). Selection notes and limits: [`rationale.md`](rationale.md).
