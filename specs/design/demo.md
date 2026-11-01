@@ -4,18 +4,16 @@ Authoring rules: [`.agents/specs/rules/design/demo.md`](../../.agents/specs/rule
 
 A limited form of the full game (same rules and systems), bounded by configuration. Not a proof of concept.
 
-- **Offering**: TBD — does this game offer a demo mode?
+- **Offering**: not offered — personal/simple local pack; no store demo build
 
 ## Limitations
 
-| ID | Cap | CFG reference | Effect |
-|----|-----|---------------|--------|
-| L1 | TBD — what is limited vs the full game? | TBD — which CFG mode, option, or tunable holds this cap? | TBD — what does the player experience under this cap? |
+N/A — not offered
 
 ## Entry and exit
 
-- **N1**: TBD — how does the player enter demo vs full, and what ends demo or unlocks full?
+N/A — not offered
 
 ## Parity
 
-Demo uses the same rules and systems as the full game except the Limitations above. Exceptions beyond those rows: TBD — are there any exceptions that are not already Limitation rows?
+N/A — not offered
