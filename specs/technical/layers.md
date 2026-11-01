@@ -3,7 +3,7 @@
 Authoring rules: [`.agents/specs/rules/technical/layers.md`](../../.agents/specs/rules/technical/layers.md).
 
 - **Serves**: Calm tactile grid, Snappy solve, and the local pack ([`vision.md`](../vision.md), [`definition.md`](../definition/definition.md)).
-- **Informed by**: [ADR-0001](../adr/decisions/0001-godot-gdscript.md), [`design.md`](../design/design.md), [`ux.md`](../ux/ux.md)
+- **Informed by**: [ADR-0001](../adr/decisions/0001-godot-gdscript.md), [ADR-0004](../adr/decisions/0004-shell-attempt-rules-pack.md), [`design.md`](../design/design.md), [`ux.md`](../ux/ux.md)
 
 ## Layers
 

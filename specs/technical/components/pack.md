@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 - **Module**: [M3](../modules.md) records
 - **Serves**: The 200-puzzle local pack and durable progress ([`entities/puzzle.md`](../../design/entities/puzzle.md), [`progression.md`](../../design/progression.md))
 - **Informed by**: [`end-conditions.md`](../../design/end-conditions.md), [`game-state.md`](../../design/game-state.md), [`persistence.md`](../persistence.md)
-- **ADRs**: [ADR-0001](../../adr/decisions/0001-godot-gdscript.md), [ADR-0002](../../adr/decisions/0002-user-data-dir.md)
+- **ADRs**: [ADR-0001](../../adr/decisions/0001-godot-gdscript.md), [ADR-0002](../../adr/decisions/0002-user-data-dir.md), [ADR-0004](../../adr/decisions/0004-shell-attempt-rules-pack.md)
 
 ## Responsibilities
 

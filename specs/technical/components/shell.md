@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 - **Module**: [M1](../modules.md) presentation
 - **Serves**: Gallery, puzzle, result, and settings ([`ux.md`](../../ux/ux.md))
 - **Informed by**: [`screens/gallery.md`](../../ux/screens/gallery.md), [`screens/puzzle.md`](../../ux/screens/puzzle.md), [`screens/result.md`](../../ux/screens/result.md), [`screens/settings.md`](../../ux/screens/settings.md), [`haptics.md`](../../view/haptics.md), [`audio.md`](../../view/audio.md)
-- **ADRs**: [ADR-0001](../../adr/decisions/0001-godot-gdscript.md), [ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md)
+- **ADRs**: [ADR-0001](../../adr/decisions/0001-godot-gdscript.md), [ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md), [ADR-0004](../../adr/decisions/0004-shell-attempt-rules-pack.md)
 
 ## Responsibilities
 

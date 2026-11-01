@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 - **Module**: [M2](../modules.md) play
 - **Serves**: Whole-puzzle solve check, line error, and clue satisfaction ([`game-state.md`](../../design/game-state.md))
 - **Informed by**: [`entities/cell.md`](../../design/entities/cell.md), [`entities/clue.md`](../../design/entities/clue.md), [`loops/solve.md`](../../design/loops/solve.md)
-- **ADRs**: [ADR-0001](../../adr/decisions/0001-godot-gdscript.md)
+- **ADRs**: [ADR-0001](../../adr/decisions/0001-godot-gdscript.md), [ADR-0004](../../adr/decisions/0004-shell-attempt-rules-pack.md)
 
 ## Responsibilities
 
