@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SEV level=info event=session-start time=1793574132.230 session=session-1793574132 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793574132.327 session=session-1793574132 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793574132.822 session=session-1793574132 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574132.822 session=session-1793574132 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793574132.840 session=session-1793574132 build=4.7.2-stable (official) story=- message=
+HARNESS protocol=ui-ack outcome=pass run=integration/logs/harness-1793574132-ui-ack.log
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

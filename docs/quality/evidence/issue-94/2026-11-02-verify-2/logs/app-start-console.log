@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SEV level=info event=session-start time=1793574114.051 session=session-1793574114 build=4.7.2-stable (official) story=- message=
+SEV level=info event=session-end time=1793574114.144 session=session-1793574114 build=4.7.2-stable (official) story=- message=
+HARNESS protocol=app-start outcome=pass run=integration/logs/harness-1793574114-app-start.log

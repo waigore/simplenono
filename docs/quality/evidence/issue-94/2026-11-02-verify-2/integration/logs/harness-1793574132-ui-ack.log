@@ -1,0 +1,12 @@
+TEL event=open time=1793574132.327 session=session-1793574132 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793574132.822 session=session-1793574132 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793574132.822 session=session-1793574132 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-start time=1793574132.230 session=session-1793574132 build=4.7.2-stable (official) story=- message=
+SEV level=info event=session-end time=1793574132.840 session=session-1793574132 build=4.7.2-stable (official) story=- message=
+HARNESS step=launch kind=launch ok=true 
+HARNESS step=home kind=wait_probe ok=true 
+HARNESS step=open kind=measure ok=true 
+HARNESS step=beat kind=wait_beat ok=true 
+HARNESS step=settings kind=measure ok=true 
+HARNESS step=back kind=measure ok=true 
+HARNESS step=quit kind=quit ok=true 
