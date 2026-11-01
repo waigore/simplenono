@@ -1,0 +1,55 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+SEV level=info event=session-start time=1793567825.949 session=issue-111-capture build=4.7.2-stable (official) story=IN message=
+TEL event=reset time=1793567826.053 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=open time=1793567826.056 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+capture: PASS the shell opens pack-000
+capture: open state=S2 marks_allowed=false
+capture: PASS the opened puzzle starts in get-set-ready
+capture: PASS marks are blocked during get-set-ready
+capture: PASS a tap during get-set-ready leaves cell-marks unchanged
+capture: shot 00-s2-mark-blocked -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-111/docs/playtest/evidence/issue-111/2026-11-02-accept-graphical/screenshots/00-s2-mark-blocked.png (error 0)
+TEL event=ready time=1793567826.129 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=commit time=1793567826.129 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+capture: PASS the beat ends into Ready
+capture: PASS marks are allowed in Ready
+capture: PASS C3 Fill is available in Ready
+capture: PASS the shipped pack offers a clear cell with a non-empty clue
+capture: PASS the shipped pack offers a second row with a 3-cell clear run
+capture: PASS C3 selects Fill
+capture: PASS the target cell is clear before the tap
+TEL event=mark time=1793567826.131 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=commit time=1793567826.132 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+capture: PASS US1.6: a tap with Fill marks the cell filled
+capture: PASS US1.6: the drawn cell shows fill
+capture: shot 01-us16-tap-fill -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-111/docs/playtest/evidence/issue-111/2026-11-02-accept-graphical/screenshots/01-us16-tap-fill.png (error 0)
+TEL event=mark time=1793567826.156 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=commit time=1793567826.156 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+capture: PASS US1.6b: a second tap clears the filled cell
+capture: PASS US1.6b: the drawn cell shows cleared
+capture: shot 02-us16b-tap-toggles-off -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-111/docs/playtest/evidence/issue-111/2026-11-02-accept-graphical/screenshots/02-us16b-tap-toggles-off.png (error 0)
+capture: PASS C3 still selects Fill
+capture: PASS the complement target is clear
+TEL event=mark time=1793567826.171 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=commit time=1793567826.171 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+capture: PASS US1.7: the complement of Fill on a clear cell is Cross
+capture: PASS US1.7: the drawn cell shows a cross
+capture: shot 03-us17-complement-cross -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-111/docs/playtest/evidence/issue-111/2026-11-02-accept-graphical/screenshots/03-us17-complement-cross.png (error 0)
+capture: PASS C4 selects Cross
+TEL event=mark time=1793567826.186 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=mark time=1793567826.186 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=commit time=1793567826.187 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=mark time=1793567826.187 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+TEL event=commit time=1793567826.187 session=issue-111-capture build=4.7.2-stable (official) story=IN outcome=pass
+capture: PASS US1.8: the drag wrote marks
+capture: PASS US1.8: cell 0 under the drag carries a cross
+capture: PASS US1.8: cell 0 is drawn as a cross
+capture: PASS US1.8: cell 1 under the drag carries a cross
+capture: PASS US1.8: cell 1 is drawn as a cross
+capture: PASS US1.8: cell 2 under the drag carries a cross
+capture: PASS US1.8: cell 2 is drawn as a cross
+capture: shot 04-us18-drag-run -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-111/docs/playtest/evidence/issue-111/2026-11-02-accept-graphical/screenshots/04-us18-drag-run.png (error 0)
+capture: state dump -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-111/docs/playtest/evidence/issue-111/2026-11-02-accept-graphical/logs/logs/state-pack-000.json
+capture: RESULT pass (5 shots)
+SEV level=info event=session-end time=1793567826.202 session=issue-111-capture build=4.7.2-stable (official) story=IN message=
