@@ -11,8 +11,10 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | [ADR-0001](../adr/decisions/0001-godot-gdscript.md) | adr | [`technical.md`](technical.md), [`layers.md`](layers.md), [`modules.md`](modules.md), [`components/`](components/) |
 | [ADR-0002](../adr/decisions/0002-user-data-dir.md) | adr | [`persistence.md`](persistence.md), [`components/pack.md`](components/pack.md), [`schemata/progress.md`](schemata/progress.md), [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md) |
 | [ADR-0003](../adr/decisions/0003-catalog-asset-roots.md) | adr | [`asset-access.md`](asset-access.md), [`components/shell.md`](components/shell.md) |
+| [ADR-0005](../adr/decisions/0005-gut-unit-tests.md) | adr | Test-only tooling — GUT addon under `game/addons/gut/`, tests under `game/`; no runtime technical unit serves it |
 | [ADR-0006](../adr/decisions/0006-asset-manifest-generator.md) | adr | [`asset-access.md`](asset-access.md) |
 | Puzzle, cell, clue, solve loop, game state, end conditions | design | [`components/attempt.md`](components/attempt.md), [`components/rules.md`](components/rules.md), [`components/pack.md`](components/pack.md), [`schemata/`](schemata/), [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
+| Haptics on/off and audio playback | view | [`components/shell.md`](components/shell.md) |
 | Gallery, puzzle, result, settings; leave-resume; pause T7–T8; gallery-reset | ux | [`components/shell.md`](components/shell.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
 | Playtest Must rows plus cited Situational dump: [`DBG.1`](../playtest/tools.md)–`DBG.4`, `TEL.1`–`TEL.5`, `SIT.3` | playtest | [`verification.md`](verification.md) S1–S5 |
 | Persisted progress | definition | [`persistence.md`](persistence.md) |
@@ -30,7 +32,7 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | Failure model | `failures.md` | N/A — a rejected call changes nothing, and there is no separate failure model |
 | Concurrency and update loop | `concurrency.md` | N/A — the shell advances the attempt on one main thread |
 | Persistence and save mapping | [`persistence.md`](persistence.md) | Applies |
-| Config and data-driven tables | `configuration.md` | N/A — design configuration is unfilled; preferences are session fields on the shell |
+| Config and data-driven tables | `configuration.md` | N/A — spec depth is small; the two design tunables ([`CFG.GET_SET_READY_MS`](../design/configuration.md), [`CFG.MORPH_STAGE_MS`](../design/configuration.md)) are read directly by the attempt and the shell as engine-side values; there are no runtime-tunable tables to bind |
 | Verification and seams | [`verification.md`](verification.md) | Applies — [`playtest.md`](../playtest/playtest.md) Must rows and the cited Situational `SIT.3` ([`tools.md`](../playtest/tools.md) `DBG`/`TEL`/`SIT`) |
 | Asset access and loading | [`asset-access.md`](asset-access.md) | Applies — paired with [`../assets/access.md`](../assets/access.md); [ADR-0003](../adr/decisions/0003-catalog-asset-roots.md) |
 | Diagrams | [`diagrams/`](diagrams/) | Applies — diagrams sit in the layer, module, component, contract, schema, and sequence files |

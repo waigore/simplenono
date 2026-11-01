@@ -24,7 +24,7 @@ Authoring rules: [`.agents/specs/rules/technical/asset-access.md`](../../.agents
 
 | ID | Output | Generator | Inputs | Location | Committed |
 |----|--------|-----------|--------|----------|-----------|
-| O1 | None — Godot `.import` sidecars stay in the asset root ([`ACC.P1`](../assets/access.md)) | Godot import | `ACC.G1`–`G3` | `game/assets/` | Rebuilt by the editor / export; sidecars may be committed with source files |
+| O1 | None — no generated build outputs. Godot `.import` sidecars stay with their source files in the asset root, as [`ACC.P1`](../assets/access.md) allows | Godot import | `ACC.G1`–`G3` | `game/assets/` | Rebuilt by the editor / export; sidecars may be committed with source files |
 
 ## Load groups
 

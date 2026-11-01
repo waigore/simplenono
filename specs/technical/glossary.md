@@ -6,6 +6,7 @@ Authoring rules: [`.agents/specs/rules/technical/glossary.md`](../../.agents/spe
 
 | Term | Definition | Detailed in |
 |------|------------|-------------|
+| Commit | Replacing one puzzle's durable progress record and `user://progress.cfg` when its progress fields change. | [`contracts/pack.md`](contracts/pack.md), [`persistence.md`](persistence.md) |
 | Component | A named unit of runtime responsibility with defined peers and communication. | [`components/`](components/) |
 | Contract | A behavioral interface between components: operations, events, and guarantees. | [`contracts/`](contracts/) |
 | Diagram | A figure that shows structure, ownership, lifecycle, or sequence stated in a technical spec. | [`diagrams/`](diagrams/) |
