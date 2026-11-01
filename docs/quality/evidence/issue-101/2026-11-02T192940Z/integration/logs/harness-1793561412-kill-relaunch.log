@@ -1,0 +1,8 @@
+HARNESS relaunch: mark phase pid 57893
+HARNESS relaunch: killed pid 57893
+HARNESS relaunch: verify phase pid 57894
+HARNESS step=spawn-mark kind=launch ok=true pid 57893
+HARNESS step=mark-hold kind=wait ok=true /Users/waigore/Documents/GitHub/simplenono_all/1/docs/quality/evidence/issue-101/2026-11-02T192940Z/integration/logs/relaunch-mark.json
+HARNESS step=kill kind=kill ok=true pid 57893
+HARNESS step=spawn-verify kind=launch ok=true pid 57894
+HARNESS step=verify-exit kind=exit ok=false exit code 1
