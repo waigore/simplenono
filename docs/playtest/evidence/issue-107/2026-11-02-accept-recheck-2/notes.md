@@ -37,7 +37,7 @@ game at the layer this task delivers.
 ## Flags for the planner
 
 - This is the fifth hold on #107 and the sixth accept dispatch across the three leaves.
-  The deadlock note stands: [`accept-dispatch-deadlock.md`](../accept-dispatch-deadlock.md).
+  The deadlock note stands: [`accept-dispatch-deadlock.md`](../../accept-dispatch-deadlock.md).
 - GUT still exits 0 when a test script fails to parse (logged as ignored). Unchanged and
   still unowned; #127 covers lint, not this.
 - `#109` was mid-implementation in the primary checkout during this run (branch
