@@ -14,4 +14,3 @@ Authoring rules: [`.agents/specs/rules/technical/glossary.md`](../../.agents/spe
 | Resolver | The one component that reads the asset manifest and turns an asset ID into a loaded engine resource. | [`asset-access.md`](asset-access.md) |
 | Schema | The shape and lifecycle of a data object or entity in code. | [`schemata/`](schemata/) |
 | Sequence | An ordered interaction across components and contracts. | [`sequences/`](sequences/) |
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |

@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents/specs/rules/technical/sequences.md).
 
-- **Trigger**: One cell on an open puzzle. The shell resolves the gesture and calls mark. Tap toggles Fill or Cross off when it is already set. Drag paints each cell once, in order, and stops on solve.
+- **Trigger**: One cell on an open puzzle. The shell resolves the gesture and calls mark. Tap toggles Fill or Cross off when already set. Drag paints each cell once, in order, stops on solve.
 - **Participants**: [`CMP-shell`](../components/shell.md), [`CMP-attempt`](../components/attempt.md), [`CMP-rules`](../components/rules.md), [`CMP-pack`](../components/pack.md)
 - **Contracts used**: [`CTR-attempt`](../contracts/attempt.md), [`CTR-rules`](../contracts/rules.md), [`CTR-pack`](../contracts/pack.md)
 - **Serves**: Marking and the solve check ([`L-solve.K2`](../../design/loops/solve.md)–[`L-solve.K4`](../../design/loops/solve.md), [`END.W1`](../../design/end-conditions.md))
@@ -15,7 +15,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 |----|------|----|-----|------------------|
 | S1 | CMP-shell | CMP-shell | internal | Resolve one cell and one mark |
 | S2 | CMP-shell | CMP-attempt | CTR-attempt.O2 | Mark that cell |
-| S3 | CMP-attempt | CMP-attempt | internal | Write it. A first fill or cross sets in progress and keeps ever-completed. None left sets not started and elapsed 0 |
+| S3 | CMP-attempt | CMP-attempt | internal | Write it. First fill or cross sets in progress, keeping ever-completed. None left sets not started, elapsed 0 |
 | S4 | CMP-attempt | CMP-rules | CTR-rules.O2 | Line status |
 | S5 | CMP-attempt | CMP-rules | CTR-rules.O1 | Fill-set match. Crosses are ignored |
 | S6 | CMP-attempt | CMP-pack | CTR-pack.O5 | Commit changed marks or status |
@@ -34,7 +34,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 | ID | Condition | Next steps | Outcome |
 |----|-----------|------------|---------|
 | B1 | Marks blocked or paused at S2 | None | No change |
-| B2 | Cell already has that mark at S3 | None | No tick, haptic, save, or solve check |
+| B2 | Cell already has that mark at S3 | None | No tick, haptic, save, or solve check. `O2` still returns grid and line status |
 | B3 | Fill set matches at S5 | S9 | Skip S6–S8. The result screen opens and the morph runs there |
 
 ## Postconditions
