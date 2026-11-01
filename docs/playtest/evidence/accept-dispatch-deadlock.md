@@ -1,15 +1,19 @@
-# Acceptance dispatch holds (#106, #107, #108, #109, #111, #112)
+# Acceptance dispatch holds (#107, #108, #109, #111, #112)
 
 Why these issues sit on `status:pending-acceptance`, and what unblocks them.
 Run records:
-[`#106`](issue-106/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#107`](issue-107/2026-11-01-accept-dispatch-deadlock/manifest.md),
 [`#109`](issue-109/2026-11-02-accept/manifest.md),
 [`#111`](issue-111/2026-11-02-accept/manifest.md),
 [`#112`](issue-112/2026-11-02-accept/manifest.md),
 [`#108`](issue-108/2026-11-02-accept/manifest.md).
 
-Three issues left the filter on 2026-11-02:
+Four issues left the filter on 2026-11-02:
+
+- `#106`: with the board, mark input, shell routing, and S1–S5 seams in place, its graphical re-run
+  accepted it — fill/clear/cross, blocked marks, empty-line auto-cross, and a solve through a crossed
+  board with 10 screenshots
+  ([record](issue-106/2026-11-02-accept-graphical/manifest.md)).
 
 - `#105`: with `#169`'s seams and `#110`'s board in place, its `E-puzzle` PS1.1 claim had a screen
   state for the first time; the graphical re-run accepted it with 8 screenshots
@@ -50,6 +54,10 @@ a seam-level result — S1–S3 need `DBG.3` and `DBG.2`.
 - **`effca0a` (139/139):** picked `#105`, the oldest hold and the pack every later task reads, and
   accepted it graphically — one puzzle per size, every clue bar matched, a 10×10 solved from its own
   fills ([record](issue-105/2026-11-02-accept-graphical/manifest.md)).
+- **`269d854` (139/139):** picked `#106`, the cell-mark leaf and the second-oldest hold, and accepted
+  it graphically — `PTD-ready-and-marks` S1–S4/S1.5 auto-cross and `PTD-crosses-and-fills` S1–S3 on a
+  board with all 58 non-solution cells crossed
+  ([record](issue-106/2026-11-02-accept-graphical/manifest.md)).
 
 ## Unblocking — what is left
 
