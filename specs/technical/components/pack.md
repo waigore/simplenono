@@ -16,6 +16,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | R2 | Serve the gallery list, completion rate, definitions, and progress |
 | R3 | Apply commit, record-solve, and reset |
 | R4 | Load and replace `user://progress.cfg`. A failed write leaves the previous file |
+| R5 | Load, validate, and reject entries from `res://data/pack.json` into definitions ([`CTR-pack`](../contracts/pack.md) O8); no progress file is written |
 
 ## Communication
 
@@ -28,7 +29,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 
 | Schema or state | Access |
 |-----------------|--------|
-| [`SCH-puzzle-def`](../schemata/puzzle-def.md) | writes at load from the export |
+| [`SCH-puzzle-def`](../schemata/puzzle-def.md) | writes at load from the export ([`CTR-pack`](../contracts/pack.md) O8) |
 | [`SCH-progress`](../schemata/progress.md) | writes |
 
 ## Diagram
