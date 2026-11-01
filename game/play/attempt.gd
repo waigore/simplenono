@@ -10,8 +10,10 @@ extends RefCounted
 ## auto-crosses empty clue lines through [b]CTR-rules[/b] O3 (S8-S9), asks for line status
 ## (S10), commits through [b]CTR-pack[/b] O5 when the marks or attempt status changed
 ## (S11), allows marks when not paused (S12), and emits [b]CTR-attempt[/b] E3
-## [code]ready[/code] (S13). [method advance] is O3 (R3) and ticks elapsed only after the
-## beat and while not paused.
+## [code]ready[/code] (S13). [method mark] is O2 (R4): it writes one accepted mark,
+## checks [b]CTR-rules[/b] O1 for a solve, and runs the solve branch (S9-S13) or commits
+## the change (S6). [method advance] is O3 (R3) and ticks elapsed only after the beat and
+## while not paused.
 ##
 ## The beat is a time input, not a timer node: the scene owns the node and calls
 ## [method end_get_set_ready] after [code]CFG.GET_SET_READY_MS[/code]
@@ -19,8 +21,8 @@ extends RefCounted
 ## hands and testable without a clock, and no screen or input code lives here.
 ##
 ## The state itself stays in [AttemptState] ([SCH-attempt]): this component orders the
-## calls and owns the open puzzle's rules, never the fields. Solve (R4), pause,
-## resume, and leave (O4-O6), and the progress file are not built here (#109, #96).
+## calls and owns the open puzzle's rules, never the fields. Pause, resume, and leave
+## (O4-O6), and the progress file are not built here (#96).
 
 ## [b]CTR-attempt[/b] E3 bind name, kept so a shell can look the signal up by contract id.
 const READY_SIGNAL := "ready"
@@ -49,7 +51,8 @@ var _beat_running: bool = false
 ## with [code]attempt.ready.connect(callable)[/code].
 signal ready(puzzle_id: String, grid: MarkGrid, line_status: LineStatusCheck)
 
-## [b]CTR-attempt[/b] E1: (puzzle id, elapsed). The solve edge emits it (#109).
+## [b]CTR-attempt[/b] E1: (puzzle id, elapsed). Emitted by the solve branch of
+## [method mark] (specs/technical/sequences/mark.md S13).
 signal solved(puzzle_id: String, elapsed: int)
 
 ## [b]CTR-attempt[/b] E2: (puzzle id). Leave emits it (#96).
@@ -127,6 +130,54 @@ func end_get_set_ready() -> bool:
 ## the beat (S4, S7, [SCH-attempt] F5).
 func get_set_ready() -> bool:
 	return _beat_running
+
+
+## O2 and R4 (specs/technical/sequences/mark.md S2-S7, B3): writes [param mark_value] at
+## [param row], [param column] when marks are allowed and the puzzle is not paused, then
+## returns the grid and its line status together ([b]CTR-attempt[/b] G2).
+##
+## A mark that changes nothing returns the unchanged grid and its line status and stops
+## there: B1 (marks blocked or paused, [b]CTR-attempt[/b] G1) and B2 (the cell already
+## has that mark) skip the commit and the solve check. A changed mark is checked with
+## [b]CTR-rules[/b] O1. When the fills solve the puzzle, the solve branch records it and
+## clears the attempt while this return still carries the pre-clear grid (S12); otherwise
+## the change commits through [b]CTR-pack[/b] O5 (S6).
+##
+## Returns null while no puzzle is open, so a mark cannot revive a closed attempt.
+func mark(row: int, column: int, mark_value: CellMark.Mark) -> MarkResult:
+	if _state == null:
+		return null
+	var grid := _state.marks()
+	if not _state.apply_mark(row, column, mark_value):
+		# B1/B2: no write, no commit, no solve check. S4 still answers the caller.
+		return MarkResult.new(grid, _rules.line_status(grid))
+	# S4 before S5: the line status describes the grid the mark produced.
+	var line_status := _rules.line_status(grid)
+	# S5: crosses take no part in the fill check ([b]CTR-rules[/b] G2).
+	if _rules.is_solved(grid):
+		return _solve(line_status)
+	# S6.
+	_state.commit(_progress, _puzzle_id)
+	return MarkResult.new(grid, line_status)
+
+
+## S9-S13: stops elapsed at the value the solve carries, records the solve through
+## [b]CTR-pack[/b] O6 (S10), clears the attempt (S11), and emits E1 (S13). The return is
+## the pre-clear grid and line status (S12), which the shell draws while the result
+## screen opens (S14). S6-S8 are skipped: the solve replaces the commit with O6
+## (specs/technical/sequences/mark.md B3).
+func _solve(line_status: LineStatusCheck) -> MarkResult:
+	var solved_grid := _state.marks()
+	var stopped_elapsed := _state.elapsed()
+	# S12 references the grid the state is about to replace, so hold it before S11.
+	var result := MarkResult.new(solved_grid, line_status)
+	# S9 keeps the elapsed value at the solve; S10 records it before S11 zeroes it.
+	_progress.record_solve(_puzzle_id, stopped_elapsed)
+	# S11.
+	_state.clear_attempt()
+	# S13.
+	solved.emit(_puzzle_id, stopped_elapsed)
+	return result
 
 
 ## O3 (R3): adds [param amount] to elapsed only after the beat and while marks are allowed
