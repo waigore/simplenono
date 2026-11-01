@@ -21,7 +21,7 @@ N/A — flat 2D board; no spatial depth to convey. Clue dim and mark states are 
 
 ## Sense of scale
 
-The open puzzle is one face; attention is cell-sized. 10×10 and 15×15 feel like denser grids of the same kind of board, not a larger world.
+The open puzzle is one face; attention is cell-sized. 10×10, 15×15, and 20×20 feel like denser grids of the same kind of board, not a larger world.
 
 ## Comfort options
 
