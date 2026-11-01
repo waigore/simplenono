@@ -2,9 +2,9 @@ name: Integration harness
 
 # Project-owned. Runs the CI-only `self-test` protocol of game/test/integration/
 # (specs/technical/verification.md H1-H4, #166).
-# The six game protocols need the debug seams delivered by #163; they are not
-# required here until #163 merges. Keep this job and the Integration harness
-# table in docs/coding-conventions.md in sync.
+# #163's seams have merged, so the six game protocols run; they stay out of CI
+# while their product rows are red (#94-#96). Keep this job and the Integration
+# harness table in docs/coding-conventions.md in sync.
 
 on:
   pull_request:

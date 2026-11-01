@@ -1,12 +1,15 @@
 extends RefCounted
 ## `app-start` drive list: launch the debug build and hold until the first screen
-## accepts input (`specs/technical/verification.md` I6, I9).
+## accepts input (`specs/technical/verification.md` I6).
 ##
 ## The run is measured from engine start (`mark_start` with `from_start`), so the
 ## figure is a cold launch to the first interactive screen. `UI-gallery` is #94;
 ## until it lands the shell's interactive home is the entry the launch leg reaches,
-## and the observation says so. The protocol claims I9 for the crash-free aggregate
-## even though it only runs the open flow itself.
+## and the observation says so.
+##
+## The protocol claims I6 only. I9 (`crash-free`) is a run-level aggregate over the
+## open, solve, reset, and back flows; reaching the home view records none of them,
+## so a row here would repeat the folder aggregate without having run anything.
 
 const ID := "app-start"
 
@@ -17,7 +20,7 @@ static func spec() -> Dictionary:
 		"title": "Cold launch to the first interactive screen",
 		"seams": true,
 		"ci_only": false,
-		"invariants": ["I6", "I9"],
+		"invariants": ["I6"],
 		"steps":
 		[
 			{

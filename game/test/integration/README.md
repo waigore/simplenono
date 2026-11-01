@@ -23,9 +23,11 @@ Game protocols need the debug build and the S1–S5 seam flag delivered by #163
 | `1` | Protocol failed; the run folder still holds the evidence |
 | `2` | Usage error, unknown protocol, or a game protocol with the seam flag off; no run folder is written |
 
-All protocols are invoked by the `Integration harness` CI job through the
+All protocols are invoked by the `Integration harness` CI job, which runs the
 CI-only `self-test`; see [`docs/coding-conventions.md`](../../../docs/coding-conventions.md).
-Game protocols are not CI-required until #163 merges.
+The seams from #163 have merged, so the six game protocols run today, but they are
+not CI-required: their product rows are red until the gallery, result, settings, and
+persistence work lands (#94–#96).
 
 ## Protocols
 
@@ -35,7 +37,7 @@ a missing protocol leaves its axes unobserved.
 
 | Protocol | Drives | Invariants | Axis (bar) |
 |----------|--------|------------|------------|
-| `app-start` | Launch to the first interactive screen, hold, quit | I6, I9 | `time-to-playable` (≤ 3 s), `crash-free` |
+| `app-start` | Launch to the first interactive screen, hold, quit | I6 | `time-to-playable` (≤ 3 s) |
 | `paint` | Open, fill every row then cross every column, one mark per frame, pause/resume, quit | I1, I2, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `crash-free` |
 | `navigate` | Gallery→puzzle, puzzle→result, result→gallery, back | I7, I9 | `transition-latency` (≤ 500 ms), `crash-free` |
 | `ui-ack` | Open, settings intent, back | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
@@ -52,14 +54,17 @@ The game protocols drive what exists today and fail honestly where a screen or f
 is still missing. These are product gaps, not harness errors:
 
 - `navigate` fails I7 until the result screen and its transitions land (#95). The
-  gallery stand-in is the shell's home view until #94.
+  gallery stand-in is the shell's home view until #94. Its `result-gallery` leg is
+  `driver_time`: the shell's own `leave` sets the home view synchronously, so the leg
+  times the driver until #94/#95 own the transition, and the I7 row says so.
 - `ui-ack` times C6's `IN.pause` intent at the next processed frame: the settings
   screen (#95) and the pause it raises (#96) do not exist yet, so the settings leg
   measures the product's intent rather than a settings surface.
 - `kill-relaunch` fails I10 until progress persistence restores marks and elapsed
   (#96).
 - `app-start` measures launch to the shell's interactive home, labelled as the
-  gallery stand-in in the observation until #94.
+  gallery stand-in in the observation until #94. It claims I6 only: I9 needs one of
+  the open/solve/reset/back flows recorded, and reaching home records none.
 
 ## Run folder
 
