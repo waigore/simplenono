@@ -19,18 +19,21 @@ Why these sit on `status:pending-acceptance`. Full re-check log:
   ([record](issue-111/2026-11-02-accept-graphical/manifest.md)), but `IN` is still cited only by
   `PTU-settings`, which never places a mark, so the images have no protocol row to sit under.
   The build gate (H1) closed with #169; only the protocol gap is left (#203).
-- **`#112`** — the open leg is judged graphically on `5e5fe85` (gallery start, `S2`/`S1`
-  open, 200/200 ids, five screenshots:
-  [record](issue-112/2026-11-02-accept-graphical/manifest.md)), so the screenshot gate is closed.
-  `response-delay` and `transition-latency` can still move and no `issue-112` record exists for the
-  commit; that deterministic gap is the only holder (#204).
+- **`#112`** — accepted at `09c022e`. The open leg was judged graphically on `5e5fe85` (gallery
+  start, `S2`/`S1` open, 200/200 ids, five screenshots:
+  [record](issue-112/2026-11-02-accept-graphical/manifest.md)), and the deterministic record the
+  earlier run waited on was written for the user-requested run:
+  [quality record](issue-112/2026-11-02-accept-graphical/quality/manifest.md) (I7 288.3 ms,
+  I8 7.0 ms, I9 pass, from `navigate` + `solve-reset` + `ui-ack`). #204 is still worth landing so
+  an unattended dispatch never needs that route.
 
 ## Unblocking — what is left
 
 Each is a spec or workflow change an accept agent must not make:
 
 1. **Fix where the deterministic record comes from.** Only verify may run `deterministic` mode, so
-   a verify that defers an axis to acceptance leaves acceptance no legal way to produce it (#112).
+   a verify that defers an axis to acceptance leaves unattended acceptance no legal way to produce
+   it. #112 left this list through a user-requested run; #204 still closes the loop.
 2. **Give `IN` a protocol that places a mark**, or fix its `Cites` (#111).
 
 `#96` will still route C6 to pause and add the S3 pause chrome. Everything else was closed by the

@@ -10,10 +10,9 @@
 ## Scope
 
 `J-play-puzzle` S1 (open leg) is #112's ([`story-rows.md`](../../../../../specs/playtest/story-rows.md)).
-The deliverable shipped in PR [#155](https://github.com/waigore/simplenono/pull/155) (`f05441c`).
-Since then `shell.gd` gained seams (#169), audio (#196), gallery (#199), and settings (#202);
-`open_puzzle` still guards unknown ids, runs `CTR-attempt` O1, presents, and swaps. This run judges
-that current code.
+The deliverable shipped in PR [#155](https://github.com/waigore/simplenono/pull/155) (`f05441c`);
+`shell.gd` has since gained seams, audio, gallery, and settings (#169, #196, #199, #202) while
+`open_puzzle` still guards unknown ids, runs O1, presents, and swaps. This run judges that code.
 
 ## Results
 
@@ -25,9 +24,9 @@ that current code.
 | `SEQ-open` S1–S6 through O1 | **pass** | fresh attempt, S2 beat, blocked marks, `0:00`, S6 swap |
 | `SEQ-open` B1 / `CTR-attempt` G3 — unknown id | **pass** | gallery and open-puzzle cases: screen, attempt, id, marks, elapsed unchanged |
 | `PTU-play-puzzle` S1–S2 | **pass (open leg)** | gallery start, `DBG.3` open, Ready beat |
-| `PTU-play-puzzle` S3–S4 / P1–P2 | **not runnable** | solve leaves for `UI-result` (epic #95) |
-| `J-play-puzzle` S2/S3 | **not runnable** | solve → result → back is #95; grid interaction is #110/#111 |
-| `response-delay` / `transition-latency` | **waiting** | no `deterministic` record for this issue |
+| `PTU-play-puzzle` S3–S4 / P1–P2 | **not runnable** | solve leaves for `UI-result` (#95) |
+| `J-play-puzzle` S2/S3 | **not runnable** | solve → result is #95; grid is #110/#111 |
+| `response-delay` / `transition-latency` / `crash-free` | **pass** | deterministic record written beside this run: [`quality/manifest.md`](quality/manifest.md) — I8 7.0 ms, I7 288.3 ms, I9 all four flows |
 
 ## Screenshots
 
@@ -44,23 +43,19 @@ that current code.
 | Artifact | Path |
 |----------|------|
 | Notes, criteria | [`notes.md`](notes.md), [`criteria.md`](criteria.md) |
-| Probe (removed after the run) | [`probe/probe_capture_112.gd`](probe/probe_capture_112.gd) |
-| Capture — 69 checks, 0 failures, 5 shots | [`logs/capture-console.log`](logs/capture-console.log) |
-| Suite — 17 scripts, 198/198, 29 510 asserts, exit 0 | [`logs/gut-suite.log`](logs/gut-suite.log) |
-| Falsification — `open_puzzle` ignores the id, exit 1 | [`logs/falsify-open-id.log`](logs/falsify-open-id.log) |
-| `SIT.3` state dump | [`logs/state-pack-000.json`](logs/state-pack-000.json) |
+| Probe | [`probe/probe_capture_112.gd`](probe/probe_capture_112.gd) |
+| Capture, suite, falsification, `SIT.3` dump | [`logs/`](logs/capture-console.log) |
 
 ## Quality evaluator
 
-Deterministic: **waiting**. `response-delay` and `transition-latency` can move here, and
-[`docs/quality/evidence/`](../../../../quality/evidence/README.md) holds no `issue-112` record for
-the commit. Acceptance may not run `deterministic` mode; #204 owns the gap. `llm-judge`: N/A — no
-domain axes are declared.
+Deterministic: **pass**, written [beside this folder](quality/manifest.md) — `response-delay` (I8)
+7.0 ms, `transition-latency` (I7) 288.3 ms, and `crash-free` (I9) across open/solve/reset/back,
+from `navigate`, `solve-reset`, and `ui-ack` in one `integration/` folder, for the user-requested
+run at `09c022e`. `llm-judge`: N/A — no domain axes are declared.
 
 ## Reproduce
 
-Copy the probe to `game/probe_capture_112.gd`, then run it graphically (not `--headless`), with
-`RUN` set to this folder:
+Copy the probe to `game/probe_capture_112.gd` and run it graphically with `RUN` set to this folder:
 
 ```
 godot --path game -s res://probe_capture_112.gd -- --debug-seams \
