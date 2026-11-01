@@ -53,6 +53,10 @@ Each command runs as a step in the `Unit tests` job of [`unit-tests.yml`](../.gi
 |------|---------|-------|
 | GUT (Godot Unit Test) | `godot --headless --path game -s addons/gut/gut_cmdln.gd -gdir=res://test -gexit` | `game/test/` (main code under `game/`; not `pocs/` or `.github/scripts/`) |
 
+## Headless smoke run
+
+See [`coding-conventions/smoke-run.md`](coding-conventions/smoke-run.md).
+
 ## Coverage
 
 Runs after `Unit tests` succeeds (`needs`). Default Threshold **80** (% line coverage, main code); change to override. Sync with the `Coverage` job. Placeholders or `None — <reason>`: notice pass.
