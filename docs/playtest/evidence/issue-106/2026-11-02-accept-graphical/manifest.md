@@ -65,4 +65,4 @@ result screen yet (#95).
 
 - **`deterministic`:** N/A. No Applies baseline axis can move from a headless value object; each
   needs a running screen, harness, telemetry, or persistence.
-- **`llm-judge`:** N/A. [`rubrics.md`](../../../../quality/rubrics.md) declares no domain axes.
+- **`llm-judge`:** N/A. [`rubrics.md`](../../../../../specs/definition/quality/rubrics.md) declares no domain axes.
