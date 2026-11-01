@@ -1,0 +1,65 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+SEV level=info event=session-start time=1793564211.512 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle message=
+TEL event=reset time=1793564211.565 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+capture: PASS the shipped pack serves pack-000
+TEL event=open time=1793564211.567 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+capture: PASS the shell opens pack-000
+capture: open state=S2 marks_allowed=false elapsed=0:12
+capture: PASS US1.7: a reopened puzzle starts in get-set-ready
+capture: PASS US1.7: the get-set-ready beat is visible
+capture: PASS US1.7: copy.ready is the beat label ('Ready')
+capture: PASS US1.7: marks are blocked during the beat
+capture: PASS US1.7: C1 Leave stays available
+capture: PASS US1.7: C6 Settings stays available
+capture: PASS US1.7/MC.puzzle: C3-C5 disabled in S2
+capture: PASS US1.1: S2 already shows the restored GS.solve-elapsed 0:12
+capture: PASS US1.1: the restored elapsed is 12, not ticked
+capture: PASS US1.5b: a tap during get-set-ready leaves cell-marks unchanged
+capture: shot 00-s2-get-set-ready -> /Users/waigore/Documents/GitHub/simplenono_all/1/.orc/worktrees/issue-workflow-accept-agent-1-20261101T201302684841Z/docs/playtest/evidence/issue-110/2026-11-02-accept-graphical/screenshots/00-s2-get-set-ready.png (error 0)
+TEL event=ready time=1793564211.638 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+TEL event=commit time=1793564211.638 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+capture: PASS US1.1: the beat ends into Ready
+capture: PASS US1.1: Ready shows elapsed 0:12
+capture: PASS US1.1: reaching Ready adds no elapsed
+capture: PASS US1.1: R1 Leave and Settings are available
+capture: PASS US1.1: C3-C5 are available in Ready
+capture: PASS R1 chrome holds Leave, Settings, and elapsed
+capture: PASS R1 copy.elapsed is a label
+capture: PASS R2 board region is present
+capture: PASS R3 tools region is present
+capture: PASS US1.2: the solution image is never drawn (PER.R4)
+capture: PASS US1.2: restored cell-marks are visible on the board
+capture: S1 inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 12, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "fill", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "fill", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 12, "personal_best": <null> } }
+capture: shot 01-s1-ready-restored-elapsed -> /Users/waigore/Documents/GitHub/simplenono_all/1/.orc/worktrees/issue-workflow-accept-agent-1-20261101T201302684841Z/docs/playtest/evidence/issue-110/2026-11-02-accept-graphical/screenshots/01-s1-ready-restored-elapsed.png (error 0)
+capture: PASS US1.3: activating C3 selects Fill
+TEL event=mark time=1793564211.664 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+TEL event=commit time=1793564211.664 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+capture: PASS US1.5: a tap with Fill shows fill in the clear cell
+capture: shot 02-fill-applied -> /Users/waigore/Documents/GitHub/simplenono_all/1/.orc/worktrees/issue-workflow-accept-agent-1-20261101T201302684841Z/docs/playtest/evidence/issue-110/2026-11-02-accept-graphical/screenshots/02-fill-applied.png (error 0)
+capture: PASS US1.3: activating C4 selects Cross
+TEL event=mark time=1793564211.679 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+TEL event=commit time=1793564211.679 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+capture: PASS US1.3: the Cross tool writes a cross
+capture: shot 03-cross-selected -> /Users/waigore/Documents/GitHub/simplenono_all/1/.orc/worktrees/issue-workflow-accept-agent-1-20261101T201302684841Z/docs/playtest/evidence/issue-110/2026-11-02-accept-graphical/screenshots/03-cross-selected.png (error 0)
+capture: PASS US1.3: activating C5 selects Clear
+TEL event=mark time=1793564211.693 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+TEL event=commit time=1793564211.694 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+capture: PASS US1.3: the Clear tool clears the cell
+capture: shot 04-clear-selected -> /Users/waigore/Documents/GitHub/simplenono_all/1/.orc/worktrees/issue-workflow-accept-agent-1-20261101T201302684841Z/docs/playtest/evidence/issue-110/2026-11-02-accept-graphical/screenshots/04-clear-selected.png (error 0)
+capture: PASS US1.6: activating C6 raises the pause intent (IN.pause)
+capture: PASS US1.6: a paused attempt shows S3
+capture: PASS US1.6: the paused board is unchanged
+capture: PASS US1.6: paused elapsed is frozen at 0:12
+capture: PASS US1.5b: paused marks are blocked
+capture: PASS US1.6: five seconds while paused add nothing
+capture: PASS US1.5b: a tap while paused leaves cell-marks unchanged
+capture: S3 state=S3 elapsed=0:12
+capture: shot 05-s3-paused -> /Users/waigore/Documents/GitHub/simplenono_all/1/.orc/worktrees/issue-workflow-accept-agent-1-20261101T201302684841Z/docs/playtest/evidence/issue-110/2026-11-02-accept-graphical/screenshots/05-s3-paused.png (error 0)
+TEL event=leave time=1793564211.731 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle outcome=pass
+capture: PASS US1.4: activating C1 raises the leave intent (IN.back)
+capture: PASS US1.4: the shell leaves the puzzle (gallery is #94)
+capture: shot 06-after-leave -> /Users/waigore/Documents/GitHub/simplenono_all/1/.orc/worktrees/issue-workflow-accept-agent-1-20261101T201302684841Z/docs/playtest/evidence/issue-110/2026-11-02-accept-graphical/screenshots/06-after-leave.png (error 0)
+capture: RESULT pass (7 shots)
+SEV level=info event=session-end time=1793564211.754 session=issue-110-capture build=4.7.2-stable (official) story=UI-puzzle message=
