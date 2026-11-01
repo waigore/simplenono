@@ -1,0 +1,9 @@
+fixture size: 15 PoC size: 15
+size matches PoC: True
+row_clues identical to PoC: True
+col_clues identical to PoC: True
+row lines: 15 col lines: 15
+row 0: [] | row 6: [1, 9] | row 7: [10]
+empty row lines: 7 | empty col lines: 4
+row clues recomputed from F5 match: True
+col clues recomputed from F5 match: True
