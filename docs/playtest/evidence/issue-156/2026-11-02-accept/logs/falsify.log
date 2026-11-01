@@ -1,0 +1,94 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://test/probe_accept_156.gd
+* test_a_fresh_open_blocks_marks_and_freezes_elapsed_until_the_beat_ends
+* test_reopened_in_progress_attempt_keeps_marks_blocked_and_elapsed_frozen
+    [Failed]:  F5: marks stay blocked
+      at line 79
+    [Failed]:  I2: the state rejects a mark
+      at line 86
+    [Failed]:  [1] expected to equal [0]:  I2: no mark is written
+      at line 91
+    [Failed]:  [3] expected to equal [0]:  O3: elapsed is frozen during the beat
+      at line 97
+    [Failed]:  S12: a mark applies
+      at line 102
+    [Failed]:  [6] expected to equal [3]:  O3: elapsed ticks after the beat
+      at line 106
+* test_screen_on_a_reopened_in_progress_attempt_is_s2_blocked_and_frozen
+    [Failed]:  US1.7: marks are blocked
+      at line 116
+    [Failed]:  [0] expected to equal [2]:  C2 is blocked
+      at line 122
+    [Failed]:  ["0:22"] expected to equal ["0:18"]:  O3: copy.elapsed is frozen during the beat
+      at line 129
+    [Failed]:  [22] expected to equal [18]:  O3: the attempt is frozen during the beat
+      at line 130
+    [Failed]:  ["0:26"] expected to equal ["0:22"]:  O3: elapsed ticks after the beat
+      at line 141
+* test_stored_and_restored_grids_carry_no_marks_allowed_flag
+    [Failed]:  F4: a stored grid is not markable
+      at line 147
+    [Failed]:  F4: a stored grid rejects writes
+      at line 148
+    [Failed]:  F4: a restored copy is not markable either
+      at line 152
+1/4 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+res://test/probe_accept_156.gd
+- test_reopened_in_progress_attempt_keeps_marks_blocked_and_elapsed_frozen
+    [Failed]:  F5: marks stay blocked
+          at line 79
+    [Failed]:  I2: the state rejects a mark
+          at line 86
+    [Failed]:  [1] expected to equal [0]:  I2: no mark is written
+          at line 91
+    [Failed]:  [3] expected to equal [0]:  O3: elapsed is frozen during the beat
+          at line 97
+    [Failed]:  S12: a mark applies
+          at line 102
+    [Failed]:  [6] expected to equal [3]:  O3: elapsed ticks after the beat
+          at line 106
+- test_screen_on_a_reopened_in_progress_attempt_is_s2_blocked_and_frozen
+    [Failed]:  US1.7: marks are blocked
+          at line 116
+    [Failed]:  [0] expected to equal [2]:  C2 is blocked
+          at line 122
+    [Failed]:  ["0:22"] expected to equal ["0:18"]:  O3: copy.elapsed is frozen during the beat
+          at line 129
+    [Failed]:  [22] expected to equal [18]:  O3: the attempt is frozen during the beat
+          at line 130
+    [Failed]:  ["0:26"] expected to equal ["0:22"]:  O3: elapsed ticks after the beat
+          at line 141
+- test_stored_and_restored_grids_carry_no_marks_allowed_flag
+    [Failed]:  F4: a stored grid is not markable
+          at line 147
+    [Failed]:  F4: a stored grid rejects writes
+          at line 148
+    [Failed]:  F4: a restored copy is not markable either
+          at line 152
+
+Totals
+------
+Scripts               1
+Tests                 4
+Passing Tests         1
+Failing Tests         3
+Asserts           33/47
+Time              0.523s
+
+
+---- 3 failing tests ----
