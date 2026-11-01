@@ -1,0 +1,37 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+[4m
+
+res://test/probe_accept_132.gd
+[0m* test_rules_o3_covers_every_empty_clue_line_once
+* test_rules_o3_leaves_fills_and_crosses_and_writes_nothing
+* test_rules_o3_ignores_lines_that_have_runs
+* test_open_blocks_marks_then_ready_crosses_and_emits
+* test_unknown_id_changes_nothing
+* test_unknown_id_during_a_running_beat_leaves_it_alone
+* test_pause_during_the_beat_still_completes_and_blocks_player_marks
+* test_paused_attempt_rejects_an_ordinary_mark_then_resumes
+[1m8/8 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m
+Totals
+------
+Scripts               1
+Tests                 8
+Passing Tests         8
+Asserts              41
+Time              0.474s
+
+
+[32m---- All tests passed! ----
+[0m
