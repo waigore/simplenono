@@ -1,0 +1,54 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+PASS  UI-gallery S1: app start lands on UI-gallery
+PASS  UI-gallery R2: one tile per accepted definition (200)
+PASS  UI-gallery S1: two columns at mobile width 390 (2)
+SHOT  /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-94/2026-11-02-accept-graphical/screenshots/00-g1-gallery-seeded.png
+PASS  UI-gallery R1: completion reads 'Completed 48 / 200', got 'Completed 48 / 200'
+PASS  UI-gallery R1: rate is 48/200, got 0.240000
+PASS  UI-gallery R2: pack-001 has a tile
+PASS  UI-gallery R2: pack-001 reads Done, got 'Done'
+PASS  UI-gallery R2: pack-001 shows a personal best when set, got 'Best 4:13'
+PASS  UI-gallery US1.6: Reset is allowed for the ever-completed pack-001
+PASS  UI-gallery R2: pack-002 has a tile
+PASS  UI-gallery R2: pack-002 reads In progress, got 'In progress'
+PASS  UI-gallery R2: pack-002 shows no best (none set), got ''
+PASS  UI-gallery US1.6: Reset is allowed for the in-progress pack-002
+PASS  UI-gallery R2: pack-003 has a tile
+PASS  UI-gallery R2: pack-003 reads Not started, got 'Not started'
+PASS  UI-gallery R2: pack-003 shows no best
+PASS  UI-gallery US1.6b: Reset is not offered for the not-started pack-003
+PASS  UI-gallery US1.3: pack-003 draws the generic placeholder (not ever-completed)
+probe94: pack-001 shows_picture=false (pictures ship in #98)
+PASS  UI-gallery R3/C3: the settings control is drawn
+PASS  UI-gallery R3: the settings route exists
+PASS  SEQ reset B1: C2 on the not-started pack-003 does not fire
+PASS  SEQ reset B1: no reset intent reaches the shell (0)
+PASS  SEQ reset B1: the puzzle's record is unchanged
+PASS  SEQ reset S1 setup: pack-000 carries a best the reset will clear
+PASS  SEQ reset S1: C2 on the ever-completed pack-000 fires
+PASS  SEQ reset S1: the reset intent reaches CMP-shell (1)
+PASS  SEQ reset S6: the gallery stays in Default (no confirm surface yet, #96)
+PASS  SEQ reset S1 hand-off: nothing is cleared without EX.confirm Confirm (#96)
+SHOT  /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-94/2026-11-02-accept-graphical/screenshots/01-g2-gallery-c2-fired-no-confirm.png
+probe94: EX.confirm surface present=false (owner #96)
+PASS  CTR-pack O7: the pack clears pack-000
+PASS  SEQ reset S5/N2: after O7 the pack-000 tile reads Not started, got 'Not started'
+PASS  SEQ reset S5: the personal best is cleared on the tile
+PASS  SEQ reset S5: C2 is not offered on the reset (not started) tile
+PASS  SEQ reset S5: the completion count drops, got 'Completed 47 / 200'
+SHOT  /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-94/2026-11-02-accept-graphical/screenshots/02-g3-gallery-after-o7-refresh.png
+PASS  SEQ reset S5: pack-002 tile present before the leave
+PASS  UI-gallery R2: pack-002 reads In progress after the reopen, got 'In progress'
+PASS  UI-gallery C1: a tile opens its puzzle (NAV.T1 is #95's)
+PASS  UI-gallery S1: leaving returns to the gallery
+PASS  SEQ reset S5: the leave re-read shows pack-002 as Not started, got 'Not started'
+PASS  SEQ reset S5: completion stays 47 after the leave, reads 'Completed 47 / 200'
+SHOT  /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-94/2026-11-02-accept-graphical/screenshots/03-g4-gallery-after-leave-reread.png
+probe94: desktop width columns=4 picture_aspect=1.000
+PASS  UI-gallery S1: four columns at desktop width (4)
+PASS  UI-gallery R2: the picture region is square (1.000)
+SHOT  /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-94/2026-11-02-accept-graphical/screenshots/04-g5-gallery-desktop.png
+probe94: 41 checks, 0 failed
+probe94: shots 5
