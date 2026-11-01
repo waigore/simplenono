@@ -23,13 +23,13 @@ Catalogued **puzzle solution pictures** (gallery thumbnail and result morph), **
 | Sound effects | Applies | [`sound.md`](../aesthetics/sound.md) X1 | `sfx` (planned) |
 | Music | Applies | [`sound.md`](../aesthetics/sound.md) M1/M2 | `music` (planned) |
 | Voice | N/A — no speech | [`sound.md`](../aesthetics/sound.md) | — |
-| Puzzle pictures | Applies | Puzzle thumbnail / solution ([`entities/puzzle.md`](../design/entities/puzzle.md); gallery / result UX; [`perception.md`](../view/perception.md) R5) | `puzzle-pictures` (planned) |
+| Puzzle pictures | Applies | Puzzle thumbnail / solution ([`entities/puzzle.md`](../design/entities/puzzle.md); gallery / result UX; [`perception.md`](../view/perception.md) R5) | [`puzzle-pictures`](kinds/puzzle-pictures.md) |
 
 ## Sources
 
 | Source type | Applicability | Grounds |
 |-------------|---------------|---------|
-| AI generation | Applies | Pictures and audio under style series |
+| AI generation | Applies | Puzzle pictures via Cheaper Inference (no Recraft series); audio under style series when those kinds exist |
 | Procedural generation | N/A — no cataloged procedural kind | Hub kinds |
 | Third-party | Applies | Licensed geometric sans for T1/T2 |
 | Human-made | Applies | Person-supplied / `register-asset` |
@@ -62,4 +62,4 @@ Asset IDs, format, and integrity: [`catalog.md`](catalog.md). Fields: [`catalog/
 Global specs: [`glossary.md`](glossary.md), [`ids.md`](ids.md), [`traceability.md`](traceability.md), [`tools.md`](tools.md), [`procedures.md`](procedures.md), [`catalog.md`](catalog.md), [`access.md`](access.md).
 
 - **Procedures**: [`procedures/generate.md`](procedures/generate.md), [`procedures/update.md`](procedures/update.md), [`procedures/touch-up.md`](procedures/touch-up.md), [`procedures/establish-style.md`](procedures/establish-style.md).
-- **Kinds**: None yet — planned `puzzle-pictures`, `fonts`, `sfx`, `music`.
+- **Kinds**: [`puzzle-pictures`](kinds/puzzle-pictures.md); planned `fonts`, `sfx`, `music`.
