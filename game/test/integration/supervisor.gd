@@ -23,6 +23,10 @@ const ACK_BAR_MS := 500.0
 ## Upper bound for a probe or beat wait, so a broken build fails instead of hanging.
 const DEFAULT_TIMEOUT_MS := 10000
 
+## How long an acknowledgement may take before it counts as not acknowledged. Above
+## the 500 ms latency bars, so a slow but real acknowledgement is measured, not cut off.
+const ACK_TIMEOUT_MS := 2000
+
 var _spec: Dictionary = {}
 var _folder: IntegrationRunFolder
 var _session_id: String = ""
@@ -43,6 +47,7 @@ var _failure: String = ""
 var _detail: String = ""
 var _stopped: bool = false
 var _finished: bool = false
+var _settings_requested: bool = false
 
 
 ## Sets what this run drives. Call before adding the node to the tree.
@@ -116,6 +121,8 @@ func _execute(step: Dictionary) -> bool:
 		result = _mark_start(step)
 	elif kind == "mark_stop":
 		result = _mark_stop(step)
+	elif kind == "measure":
+		result = await _measure(step)
 	elif kind == "wait_probe":
 		result = await _wait_probe(step)
 	elif kind == "wait_beat":
@@ -141,7 +148,7 @@ func _execute(step: Dictionary) -> bool:
 	elif kind == "leave":
 		result = _leave()
 	elif kind == "settings":
-		result = _press_puzzle_button("%SettingsButton")
+		result = _settings()
 	elif kind == "back":
 		result = _back()
 	elif kind == "reset":
@@ -177,6 +184,7 @@ func _launch(scene_path: String) -> bool:
 		_shell = _target as Shell
 		_seams = _shell.get_node("%Seams") as DebugSeams
 		_attempt = null
+		_shell.puzzle_screen().settings_requested.connect(_on_settings_requested)
 	return _passed()
 
 
@@ -197,6 +205,60 @@ func _mark_stop(step: Dictionary) -> bool:
 	_durations[name] = elapsed_ms
 	_marks.erase(name)
 	return _passed()
+
+
+## One measured action: runs [code]action[/code], crosses at least one processed frame,
+## then waits for the product to reach the [code]until[/code] condition before stopping
+## the clock. The step that awaits the acknowledgement owns the measurement, so a
+## latency row never times the driver's own synchronous call.
+func _measure(step: Dictionary) -> bool:
+	var name := String(step.get("mark", ""))
+	if name.is_empty():
+		return _failed_with("a measure step needs a mark name")
+	var action: Dictionary = step.get("action", {})
+	if action.is_empty():
+		return _failed_with("a measure step needs an action")
+	var start := 0 if bool(step.get("from_start", false)) else Time.get_ticks_usec()
+	var action_ok: bool = await _execute(action)
+	var action_detail := _detail
+	await _frames(1)
+	var acknowledged := await _await_condition(step)
+	_durations[name] = float(Time.get_ticks_usec() - start) / 1000.0
+	if not action_ok:
+		_detail = action_detail
+		return false
+	if not acknowledged:
+		return _failed_with(
+			(
+				"%s was not acknowledged within %d ms"
+				% [name, int(step.get("timeout_ms", ACK_TIMEOUT_MS))]
+			)
+		)
+	return _passed()
+
+
+## Waits until the step's [code]until[/code] condition holds, or the timeout expires.
+## A measure step with no condition only has to cross a frame.
+func _await_condition(step: Dictionary) -> bool:
+	if not step.has("until"):
+		return true
+	var condition: Dictionary = step["until"]
+	var deadline := Time.get_ticks_msec() + int(step.get("timeout_ms", ACK_TIMEOUT_MS))
+	while Time.get_ticks_msec() < deadline:
+		if _probe_met(condition):
+			return true
+		await get_tree().process_frame
+	return false
+
+
+func _probe_met(condition: Dictionary) -> bool:
+	var probe := String(condition.get("probe", ""))
+	var actual: Variant = _probe(probe, condition)
+	if condition.has("value"):
+		return _matches(actual, condition["value"])
+	if condition.has("min"):
+		return _numeric(actual) and float(actual) >= float(condition["min"])
+	return false
 
 
 func _wait_probe(step: Dictionary) -> bool:
@@ -223,6 +285,7 @@ func _wait_beat(timeout_ms: int) -> bool:
 func _open(puzzle_id: String) -> bool:
 	if _seams == null:
 		return _failed_with("no debug seams to open through")
+	_settings_requested = false
 	var opened := _seams.open_puzzle(puzzle_id)
 	_attempt = _shell.attempt()
 	_record_flow("open", opened)
@@ -259,17 +322,27 @@ func _paint() -> bool:
 	if _attempt == null or _attempt.definition() == null:
 		return _failed_with("no puzzle open to paint")
 	var size := _attempt.definition().size
-	for row in size:
-		for column in size:
+	var rows_ok: bool = await _paint_pass(size, true)
+	if not rows_ok:
+		return false
+	return await _paint_pass(size, false)
+
+
+## One paint pass at a fixed cadence: exactly one mark per processed frame. The row
+## pass fills every cell in row order; the column pass crosses every cell in column
+## order. Crosses never solve a puzzle (CTR-rules G2), so the attempt stays open.
+func _paint_pass(size: int, rows_first: bool) -> bool:
+	for outer in size:
+		for inner in size:
 			if _attempt.state() == null:
 				return _failed_with("the attempt closed during paint")
-			var result := _attempt.mark(row, column, CellMark.Mark.CROSS)
-			if result == null:
-				return _failed_with("a paint mark returned null")
-			if _shell != null and _shell.puzzle_screen() != null:
-				_shell.puzzle_screen().show_mark_result(result)
+			var row := outer if rows_first else inner
+			var column := inner if rows_first else outer
+			var mark_name := "fill" if rows_first else "cross"
+			if not _apply_mark(row, column, mark_name):
+				return false
 			await get_tree().process_frame
-	return _passed()
+	return true
 
 
 func _solve() -> bool:
@@ -341,6 +414,17 @@ func _press_puzzle_button(path: String) -> bool:
 	return _passed()
 
 
+## C6's acknowledgement. The settings screen is #95 and the pause it raises is #96's,
+## so the product response this protocol times is the screen's own IN.pause intent.
+func _settings() -> bool:
+	_settings_requested = false
+	return _press_puzzle_button("%SettingsButton")
+
+
+func _on_settings_requested() -> void:
+	_settings_requested = true
+
+
 func _dump() -> bool:
 	if _seams == null:
 		return _failed_with("no debug seams to dump through")
@@ -401,6 +485,12 @@ func _probe(name: String, step: Dictionary) -> Variant:
 		value = _target != null and _target.has_method("frames") and _target.frames() > 0
 	elif name == "fixture_frames":
 		value = (_target.frames() if _target != null and _target.has_method("frames") else -1)
+	elif name == "fixture_draws":
+		value = (_target.draws() if _target != null and _target.has_method("draws") else -1)
+	elif name == "settings_ack":
+		value = _settings_requested
+	elif name == "duration_ms":
+		value = float(_durations.get(String(step.get("mark", "")), -1.0))
 	elif name == "sampled_frames":
 		value = _sampler.sample_count()
 	return value
