@@ -19,13 +19,13 @@ One row per playtestable design story and UX journey/story under coverage mode `
 | `PRG` | none | Wave 2/3 — delivered through #94 and closed via #97; leaves not yet filed. |
 | `J-play-puzzle` | #112 | — |
 | `J-leave-resume` | none | Wave 2 — leaves filed when that wave is expanded (epic #96). |
-| `J-gallery-reset` | none | Wave 2 — leaves filed when that wave is expanded (epic #94). |
+| `J-gallery-reset` | #94 | Gallery-side legs delivered; `US1.1`'s confirm path closes jointly with #96's `EX` leaves. |
 | `J-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `ACT-player` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `NAV` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `IN` | #111 | Mark input in Wave 1; platform bindings continue via epic #96 in Wave 2. |
 | `EX` | none | Wave 2 — leaves filed when that wave is expanded (epic #96). |
-| `UI-gallery` | none | Wave 2 — leaves filed when that wave is expanded (epic #94). |
+| `UI-gallery` | #94 | — |
 | `UI-puzzle` | #110 | — |
 | `UI-result` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `UI-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |

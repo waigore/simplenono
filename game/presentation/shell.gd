@@ -27,8 +27,9 @@ extends Control
 ## ([code]NAV.T5[/code]). The result's stage clock pauses with the attempt, so a halted
 ## session freezes the morph and a test can decide each stage exactly.
 ##
-## [code]EX.confirm[/code] stays with #96, so the gallery's reset intent only reaches its
-## signal for now.
+## [code]EX.confirm[/code] stays with #96, so the gallery's C2 reset intent ends here: the
+## shell answers with [code]SEQ reset[/code] S6 on the gallery and re-reads [b]CTR-pack[/b]
+## O1/O2 (S5), leaving the O7 call to #96's confirm flow.
 
 ## Shown when nothing is open ([code]NAV.T1[/code]'s gallery).
 const GALLERY_VIEW := "gallery"
@@ -84,6 +85,7 @@ func _ready() -> void:
 	_gallery.set_picture_provider(_picture_for)
 	_gallery.puzzle_requested.connect(open_puzzle)
 	_gallery.settings_requested.connect(open_settings)
+	_gallery.reset_requested.connect(_on_gallery_reset_requested)
 	_gallery.present(_pack)
 	_puzzle.leave_requested.connect(leave_puzzle)
 	_puzzle.settings_requested.connect(open_settings)
@@ -214,6 +216,14 @@ func puzzle_id() -> String:
 ## The pack the shell opens puzzles from ([b]CTR-pack[/b] O8 result holder).
 func pack() -> Pack:
 	return _pack
+
+
+## [code]SEQ reset[/code] S1: [code]UI-gallery.C2[/code]'s reset intent reaches the shell
+## for [param _puzzle_id]. S2-S4 (Confirm → [b]CTR-pack[/b] O7) stay in #96's confirm
+## flow, so no record is written here; the gallery returns to Default (S6) and re-reads
+## O1/O2 (S5), which is also where #96's confirm path lands after its O7 call.
+func _on_gallery_reset_requested(_puzzle_id: String) -> void:
+	_gallery.refresh()
 
 
 ## [b]SCH-preferences[/b] F1/F2: the session flags this shell owns. #95's settings

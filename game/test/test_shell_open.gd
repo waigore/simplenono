@@ -10,16 +10,40 @@ extends GutTest
 
 const SHELL_SCENE := "res://presentation/shell.tscn"
 const PROJECT_FILE := "res://project.godot"
+const SHIPPED_PACK := "res://data/pack.json"
+const TEST_PATH := "user://progress-shell-gallery-test.cfg"
+const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 var _shell: Shell
 
 
 func before_each():
+	_remove(TEMP_PATH)
+	_remove(TEMP_PATH + ProgressFile.TEMP_SUFFIX)
 	var scene := load(SHELL_SCENE) as PackedScene
 	assert_not_null(scene, "shell scene loads")
 	_shell = scene.instantiate() as Shell
 	add_child_autofree(_shell)
 	_shell.get_node("%Puzzle").set_process(false)
+
+
+func after_each():
+	_remove(TEMP_PATH)
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+
+
+## Re-presents the gallery over a pack reading the seeded [param config] from the test
+## document, so the read side never touches `user://progress.cfg`.
+func _present_seeded(config: ConfigFile) -> Pack:
+	assert_eq(config.save(TEST_PATH), OK, "the seeded progress document is written")
+	var pack := Pack.new(TEST_PATH)
+	pack.load_pack(SHIPPED_PACK)
+	_shell.gallery_screen().present(pack)
+	return pack
 
 
 func _control(node_name: String) -> Control:
@@ -114,3 +138,69 @@ func test_leave_returns_to_the_gallery():
 	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery shows again")
 	assert_null(_shell.attempt(), "the attempt is cleared")
 	assert_false(_control("Puzzle").visible, "E2: the puzzle screen is off")
+
+
+# SEQ reset S1 / S6 / B1: the gallery's C2 trigger reaches the shell and changes nothing
+func test_a_reset_request_opens_no_confirm_and_keeps_the_gallery() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-001", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-001", ProgressFile.MARKS_KEY, _marks(10))
+	var pack := _present_seeded(seeded)
+	var gallery := _shell.gallery_screen()
+	assert_eq(gallery.tile("pack-001").status_text(), "In progress", "the seeded record is read")
+
+	assert_true(gallery.activate_reset("pack-001"), "C2 is allowed")
+
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "S1/S6: the gallery stays in Default")
+	assert_true(_control("Gallery").visible, "the gallery is still the shown screen")
+	assert_eq(_shell.puzzle_id(), "", "no puzzle is opened")
+	assert_eq(gallery.tile("pack-001").status_text(), "In progress", "no record is written")
+	assert_eq(pack.load_result().accepted_count, 200, "the pack still serves the whole pack")
+
+
+# SEQ reset B1: Reset on a new puzzle never reaches the shell, so nothing refreshes
+func test_a_refused_reset_changes_nothing() -> void:
+	var pack := _present_seeded(ConfigFile.new())
+	var gallery := _shell.gallery_screen()
+	assert_false(gallery.activate_reset("pack-001"), "B1: C2 is not available")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery stays in Default")
+	assert_eq(gallery.completion_text(), "Completed 0 / 200", "the read is unchanged")
+	assert_false(gallery.tile("pack-001").reset_visible(), "C2 stays unavailable")
+	assert_eq(pack.load_result().accepted_count, 200, "the pack is unchanged")
+
+
+# SEQ reset S5 / N2: the shell re-reads O1 and O2 when the gallery raises its reset intent
+func test_the_shell_re_reads_o1_and_o2_when_the_gallery_raises_reset() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	var pack := _present_seeded(seeded)
+	var gallery := _shell.gallery_screen()
+	gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return null)
+	gallery.refresh()
+	var before := gallery.tile("pack-000")
+	assert_eq(before.status_text(), "Done", "before the reset")
+	assert_eq(before.best_text(), "Best 1:00", "the personal best shows")
+	assert_eq(gallery.completion_text(), "Completed 1 / 200", "before the reset")
+
+	# Stands in for #96's confirm flow: S3-S4 complete before S5 re-reads.
+	assert_true(pack.reset("pack-000"), "O7 clears the record")
+	gallery.reset_requested.emit("pack-000")
+
+	var target := gallery.tile("pack-000")
+	assert_eq(gallery.completion_text(), "Completed 0 / 200", "S5: O2 is read again")
+	assert_eq(target.status_text(), "Not started", "S5: the tile reads back as new")
+	assert_eq(target.best_text(), "", "the personal best is cleared")
+	assert_false(target.reset_visible(), "C2 is no longer available")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "S6: the gallery is in Default")
+
+
+## A stored mark grid with one fill, so a restored attempt counts as in progress.
+func _marks(size: int) -> Array:
+	var rows: Array = []
+	for row in size:
+		var cells: Array = []
+		for column in size:
+			cells.append("fill" if row == 0 and column == 0 else "clear")
+		rows.append(cells)
+	return rows
