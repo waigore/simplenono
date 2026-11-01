@@ -1,0 +1,78 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+TEL event=reset time=1793560490.708 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=open time=1793560490.710 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: open state=S2 marks_allowed=false elapsed=0:00
+capture: PASS S1: fresh open is get-set-ready (SCH-attempt F5)
+capture: PASS S1: marks are blocked during get-set-ready
+capture: PASS S1: a mark does not stick (V2/V3)
+capture: PASS S1: the stored grid is unchanged, so in-progress cannot flip
+capture: PASS S1: elapsed stays 0:00 during the beat (V1)
+capture: S1 inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": false, "attempt_status": "not_started", "get_set_ready": true }, "mark_grid": { "size": 10, "cells": [["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": false, "marks": <null>, "elapsed": 0, "personal_best": <null> } }
+capture: shot 00-fresh-ready-blocked -> /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp.3UElT9kQTa/00-fresh-ready-blocked.png (error 0)
+TEL event=ready time=1793560490.784 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=commit time=1793560490.784 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: PASS S2: the beat ends
+capture: PASS S2: the empty-clue row auto-crossed still-clear cells (V2)
+capture: PASS S2: the auto-cross reached the record (O5 commit)
+TEL event=mark time=1793560490.786 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=commit time=1793560490.786 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: PASS S2: fill applies
+capture: PASS S2: the first fill sets in progress (PS1.6, V2)
+TEL event=mark time=1793560490.787 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=commit time=1793560490.787 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: PASS S2: clear applies
+TEL event=mark time=1793560490.788 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=commit time=1793560490.788 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: PASS S2: cross applies
+capture: PASS S2: DBG.2 returns a payload
+capture: S2 inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "in_progress", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "cross", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": true, "marks": { "size": 10, "cells": [["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "cross", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross", "cross"]] }, "elapsed": 0, "personal_best": <null> } }
+capture: PASS S2: the record stores no derived 'solved' (SCH-attempt I1)
+capture: PASS S2: the record stores no derived 'is-solved' (SCH-attempt I1)
+capture: PASS S2: the record stores no derived 'line-status' (SCH-attempt I1)
+capture: PASS S2: the record stores no derived 'row-error' (SCH-attempt I1)
+capture: PASS S2: the record stores no derived 'col-error' (SCH-attempt I1)
+capture: PASS S2: the record stores no derived 'satisfied' (SCH-attempt I1)
+capture: shot 01-ready-fill-clear-cross -> /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp.3UElT9kQTa/01-ready-fill-clear-cross.png (error 0)
+TEL event=mark time=1793560490.809 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: PASS S3: start clear
+TEL event=mark time=1793560490.809 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=commit time=1793560490.809 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: PASS S3: wrong fill applies
+capture: PASS S3: the screen stays playable
+capture: PASS S3: the wrong fill is not cleared by a fail state (PS1.4)
+capture: PASS S3: the wrong fill does not solve
+capture: PASS S3: crosses still hold
+capture: S3 wrong fill at (3,0) stays playable
+capture: shot 02-wrong-fill-playable -> /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp.3UElT9kQTa/02-wrong-fill-playable.png (error 0)
+capture: PASS PS1.1: the unsolved board is not solved
+capture: PASS CTR-rules O2: one SCH-line-status per row and column
+capture: PASS PS1.1/CTR-rules G3: Rules writes neither the grid nor the record (I1)
+capture: completion-rate=0.000000 thumbnail-visible=false
+capture: PASS PS1.5: the thumbnail flag is hidden before ever-completed
+capture: PASS PS1.2: the completion rate is 0.0 with nothing completed
+TEL event=leave time=1793560490.824 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=open time=1793560490.826 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: open state=S2 marks_allowed=false elapsed=0:00
+TEL event=ready time=1793560490.875 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=mark time=1793560490.893 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=commit time=1793560490.893 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=mark time=1793560490.893 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+TEL event=commit time=1793560490.894 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: PASS PS1.7/Q1: the replay signature was read (probe sanity)
+capture: PASS PS1.7/Q1: two replays of one sequence are identical
+capture: PASS PS1.7: the replay actually placed marks
+capture: PASS V5: every cell holds CELL_MARK's members only
+capture: PASS S2/DBG.2: inspect leaves the grid unchanged (pure read)
+capture: PASS DBG.2: the inspect payload is present
+capture: shot 03-invariants-ready -> /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp.3UElT9kQTa/03-invariants-ready.png (error 0)
+TEL event=reset time=1793560490.917 session=issue-108-capture build=4.7.2-stable (official) story=GS outcome=pass
+capture: PASS V3: CTR-pack O7 resets through the seam
+capture: PASS V3: O7 is a pack record operation, so the live attempt is untouched
+capture: PASS V3: reset returns the attempt to not started
+capture: PASS V3: reset zeroes elapsed
+capture: PASS V3: reset clears the marks
+capture: reset inspect={ "puzzle_id": "pack-000", "attempt": { "puzzle_id": "pack-000", "elapsed": 0, "paused": false, "marks_allowed": true, "attempt_status": "not_started", "get_set_ready": false }, "mark_grid": { "size": 10, "cells": [["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"], ["clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear", "clear"]] }, "progress": { "puzzle_id": "pack-000", "ever_completed": false, "in_progress": false, "marks": <null>, "elapsed": 0, "personal_best": <null> } }
+capture: shot 04-after-reset -> /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp.3UElT9kQTa/04-after-reset.png (error 0)
+capture: RESULT pass (5 shots)
