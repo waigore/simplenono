@@ -1,0 +1,38 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/Users/waigore/Library/Application Support/Godot/app_userdata/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://test/probe_accept_109_solve.gd
+* test_probe_s1_first_solve_sets_pb_and_clears_the_attempt
+    probe S1: record after solve { "ever_completed": true, "in_progress": false, "personal_best": 50, "elapsed": 0, "has_marks": false }
+    probe S1: attempt attempt 0 elapsed=0 paused=false
+* test_probe_s2_longer_replay_keeps_the_personal_best
+    probe S2: record after longer solve { "ever_completed": true, "in_progress": false, "personal_best": 50, "elapsed": 0, "has_marks": false }
+* test_probe_s3_shorter_replay_replaces_the_personal_best
+    probe S3: record after shorter solve { "ever_completed": true, "in_progress": false, "personal_best": 15, "elapsed": 0, "has_marks": false }
+* test_probe_ps1_4_wrong_fill_continues_and_commits
+* test_probe_g1_paused_fill_does_not_solve
+5/5 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               1
+Tests                 5
+Passing Tests         5
+Asserts              71
+Time              0.473s
+
+
+---- All tests passed! ----
+
