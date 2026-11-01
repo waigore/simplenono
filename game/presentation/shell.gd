@@ -6,28 +6,25 @@ extends Control
 ## [`J-play-puzzle`](specs/ux/stories/journeys/play-puzzle.md) S1).
 ##
 ## The shell loads the shipped pack ([b]CTR-pack[/b] O8), holds one [Attempt], and
-## swaps between the puzzle screen and its own placeholder view. Opening is by
-## puzzle id and in free order: every id in the load result opens, and an unknown id
-## or a pack that would not load changes nothing ([code]SEQ-open[/code] B1,
-## [b]CTR-attempt[/b] G3). The shell sends only O1 — it never writes a mark, a
-## record, or a derived value.
+## swaps between the gallery and the puzzle screen ([code]NAV.T1[/code], [code]NAV.T3[/code]).
+## Opening is by puzzle id and in free order: every id in the load result opens, and an
+## unknown id or a pack that would not load changes nothing ([code]SEQ-open[/code] B1,
+## [b]CTR-attempt[/b] G3). The shell sends only O1 — it never writes a mark, a record,
+## or a derived value.
 ##
-## R4/R5/R6 (this issue, #191): the asset resolver reads the manifest once here at app
-## start; [AudioFeedback] preloads the mark ticks, starts the bed while a puzzle is
-## open, and plays the solve sting; [Haptics] clicks on an accepted fill or cross. Marks
-## reach them through [MarkInput]'s S8 signal, and both read this shell's
-## [SessionFlags] ([b]SCH-preferences[/b] F1/F2) rather than keeping their own copy.
+## R4/R5/R6: the asset resolver reads the manifest once here at app start; [AudioFeedback]
+## preloads the mark ticks, starts the bed while a puzzle is open, and plays the solve
+## sting; [Haptics] clicks on an accepted fill or cross. Marks reach them through
+## [MarkInput]'s S8 signal, and both read this shell's [SessionFlags]
+## ([b]SCH-preferences[/b] F1/F2) rather than keeping their own copy.
 ##
-## The placeholder view is not [code]UI-gallery[/code]: gallery browsing is #94, and
-## the result, settings, and leave routing stay with #95 and #96, so C1 only ends
-## the attempt ([b]CTR-attempt[/b] O6) and returns here.
+## [GalleryScreen] is the no-puzzle screen ([code]SEQ-open[/code] B1 keeps it shown and
+## [code]NAV.N1[/code] starts on it). Its C1 opens a puzzle here; the settings screen,
+## the result screen, and [code]EX.confirm[/code] stay with #95 and #96, so the gallery's
+## settings and reset intents only reach their signals for now.
 
-## The puzzle the placeholder opens when the player activates it. Chosen from the
-## shipped pack; gallery selection replaces it in #94.
-const STUB_PUZZLE_ID := "pack-000"
-
-## Shown when nothing is open.
-const HOME_VIEW := "home"
+## Shown when nothing is open ([code]NAV.T1[/code]'s gallery).
+const GALLERY_VIEW := "gallery"
 
 ## Shown for the open puzzle.
 const PUZZLE_VIEW := "puzzle"
@@ -35,7 +32,7 @@ const PUZZLE_VIEW := "puzzle"
 ## The live [Attempt], or null when no puzzle is open.
 var _attempt: Attempt
 var _pack := Pack.new()
-var _view := HOME_VIEW
+var _view := GALLERY_VIEW
 
 ## [b]SCH-preferences[/b] F1/F2: the one session-flag source; #95's settings screen
 ## updates it.
@@ -50,10 +47,8 @@ var _audio: AudioFeedback
 ## [b]HAP.H1[/b]: the accepted-mark click.
 var _haptics: Haptics
 
-@onready var _home: Control = %Home
+@onready var _gallery: GalleryScreen = %Gallery
 @onready var _puzzle: PuzzleScreen = %Puzzle
-@onready var _puzzle_id_label: Label = %PuzzleIdLabel
-@onready var _open_button: Button = %OpenButton
 @onready var _seams: DebugSeams = %Seams
 
 
@@ -64,12 +59,13 @@ func _ready() -> void:
 	_audio.preload_ticks()
 	_haptics = Haptics.new(_flags)
 	_pack.load_pack(Pack.PACK_PATH)
-	_puzzle_id_label.text = STUB_PUZZLE_ID
-	_open_button.pressed.connect(open_puzzle.bind(STUB_PUZZLE_ID))
+	_gallery.set_picture_provider(_picture_for)
+	_gallery.puzzle_requested.connect(open_puzzle)
+	_gallery.present(_pack)
 	_puzzle.leave_requested.connect(leave_puzzle)
 	_puzzle.mark_applied.connect(_seams.note_mark)
 	_puzzle.mark_input().mark_accepted.connect(_on_mark_accepted)
-	_show_home()
+	_show_gallery()
 
 
 ## [code]SEQ-open[/code] S1–S6: opens [param puzzle_id] through [b]CTR-attempt[/b] O1 in
@@ -91,8 +87,8 @@ func open_puzzle(puzzle_id: String) -> bool:
 	return true
 
 
-## [b]CTR-attempt[/b] O6 via the screen's C1 intent, then back to the placeholder.
-## [code]SEQ-leave[/code] S5's gallery is #94.
+## [b]CTR-attempt[/b] O6 via the screen's C1 intent, then back to the gallery
+## ([code]NAV.T3[/code]). The gallery re-reads O1/O2 so it shows the committed record.
 func leave_puzzle() -> void:
 	if _attempt != null:
 		_seams.note_leave(_attempt.puzzle_id())
@@ -100,7 +96,7 @@ func leave_puzzle() -> void:
 	_attempt = null
 	_puzzle.present(null)
 	_audio.on_puzzle_leave()
-	_show_home()
+	_show_gallery()
 
 
 ## The live attempt, or null when nothing is open.
@@ -113,7 +109,12 @@ func puzzle_screen() -> PuzzleScreen:
 	return _puzzle
 
 
-## [constant HOME_VIEW] or [constant PUZZLE_VIEW].
+## The gallery this shell shows when no puzzle is open ([b]CMP-shell[/b] R1).
+func gallery_screen() -> GalleryScreen:
+	return _gallery
+
+
+## [constant GALLERY_VIEW] or [constant PUZZLE_VIEW].
 func view() -> String:
 	return _view
 
@@ -139,6 +140,14 @@ func audio_feedback() -> AudioFeedback:
 	return _audio
 
 
+## [b]CMP-shell[/b] R6: the stored picture for [param asset_id], or null when this
+## build does not ship it yet (#98). The one manifest reader stays here.
+func _picture_for(asset_id: String) -> Texture2D:
+	if not _resolver.has(asset_id):
+		return null
+	return _resolver.resolve(asset_id) as Texture2D
+
+
 ## [b]SEQ-mark[/b] S8: one accepted, non-solving mark. The tick and the click read
 ## [b]SCH-preferences[/b] F1 themselves.
 func _on_mark_accepted(kind: CellMark.Mark) -> void:
@@ -158,13 +167,14 @@ func _unbind_attempt() -> void:
 		_attempt.solved.disconnect(_on_attempt_solved)
 
 
-func _show_home() -> void:
-	_view = HOME_VIEW
-	_home.visible = true
+func _show_gallery() -> void:
+	_view = GALLERY_VIEW
+	_gallery.visible = true
+	_gallery.refresh()
 	_puzzle.visible = false
 
 
 func _show_puzzle() -> void:
 	_view = PUZZLE_VIEW
-	_home.visible = false
+	_gallery.visible = false
 	_puzzle.visible = true

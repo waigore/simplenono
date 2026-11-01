@@ -466,8 +466,8 @@ func _probe(name: String, step: Dictionary) -> Variant:
 	if name == "home_ready":
 		value = (
 			_shell != null
-			and _shell.view() == Shell.HOME_VIEW
-			and _shell.get_node("%OpenButton").is_visible_in_tree()
+			and _shell.view() == Shell.GALLERY_VIEW
+			and _shell.get_node("%Gallery").is_visible_in_tree()
 		)
 	elif name == "puzzle_ready":
 		value = _shell != null and _shell.view() == Shell.PUZZLE_VIEW
