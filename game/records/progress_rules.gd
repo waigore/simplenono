@@ -3,16 +3,17 @@ extends RefCounted
 ## [b]CMP-pack[/b] R2-R3 progress rules: the derived progress values and the only
 ## writes to a [ProgressRecord] ([b]CTR-pack[/b] O1, O2, O5, O6, O7).
 ##
-## Every record change goes through [method commit], [method record_solve], and
-## [method reset]; nothing else assigns a record's fields. That is what keeps
+## Every record change goes through [method commit], [method record_solve],
+## [method reset], and [method restore]; nothing else assigns a record's fields. That
+## is what keeps
 ## [SCH-progress] I1-I6 ([code]V1[/code]-[code]V6[/code]) true:
 ## - I1/[code]V1[/code]: a solve sets ever-completed and a personal best together;
 ## - I3/[code]V3[/code]: not started clears marks and elapsed;
 ## - I4/[code]V4[/code]: a personal best is replaced only by a shorter time;
 ## - I6/[code]V6[/code]: a new attempt leaves ever-completed alone.
 ##
-## The progress file ([b]CTR-pack[/b] G3, R4) is not built here. Records live in
-## memory until a later task adds `user://progress.cfg`.
+## [ProgressFile] is the only place those records leave memory ([b]CMP-pack[/b] R4,
+## [b]CTR-pack[/b] G3). It rebuilds them through [method restore] at pack start.
 
 ## [b]CTR-pack[/b] O2 divides by the shipped pack size ([code]PS1.2[/code]: 50 of 200
 ## is 0.25). Fixture packs pass their own size to [method completion_rate].
@@ -26,6 +27,14 @@ func record(puzzle_id: String) -> ProgressRecord:
 	if not _records.has(puzzle_id):
 		_records[puzzle_id] = ProgressRecord.new(puzzle_id)
 	return _records[puzzle_id]
+
+
+## The record for [param puzzle_id] without creating one: an untouched puzzle reads as
+## a not-started record, so a read (O1, O2, the S2 inspect seam) invents nothing.
+func read(puzzle_id: String) -> ProgressRecord:
+	if _records.has(puzzle_id):
+		return _records[puzzle_id]
+	return ProgressRecord.new(puzzle_id)
 
 
 ## How many records the pack holds.
@@ -45,7 +54,7 @@ func holds(puzzle_id: String) -> bool:
 ## reports only whether it may be shown (H1). The shipped 200-puzzle proof of that
 ## picture is deferred to #94 / #97 / #98.
 func thumbnail_visible(puzzle_id: String) -> bool:
-	return record(puzzle_id).ever_completed
+	return read(puzzle_id).ever_completed
 
 
 ## O2 ([code]GS.completion-rate[/code]): ever-completed count ÷ [param pack_size],
@@ -93,6 +102,28 @@ func record_solve(puzzle_id: String, elapsed: int) -> ProgressRecord:
 	var time: int = max(elapsed, 0)
 	if not target.has_personal_best() or time < target.personal_best:
 		target.personal_best = time
+	return target
+
+
+## [b]CMP-pack[/b] R4: rebuilds one record from [ProgressFile] ([SCH-progress] L1).
+## The stored fields are normalized so the schema invariants hold even for an edited
+## file: ever-completed without a personal best is not ever-completed (I1); marks are
+## kept only while the attempt is in progress (I2, I3); and a record that is not in
+## progress has no marks and elapsed 0.
+func restore(
+	puzzle_id: String,
+	ever_completed: bool,
+	in_progress: bool,
+	marks: MarkGrid,
+	elapsed: int,
+	personal_best: int
+) -> ProgressRecord:
+	var target := record(puzzle_id)
+	target.ever_completed = ever_completed and personal_best >= 0
+	target.personal_best = personal_best if target.ever_completed else -1
+	target.in_progress = in_progress and marks != null and marks.has_any_mark()
+	target.marks = _copy_of(marks) if target.in_progress else null
+	target.elapsed = max(elapsed, 0) if target.in_progress else 0
 	return target
 
 

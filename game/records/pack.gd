@@ -1,15 +1,15 @@
 class_name Pack
 extends RefCounted
-## [b]CMP-pack[/b] R1-R2 and R5: load, validate, and reject pack entries into definitions;
-## serve definitions (O3) and the in-memory progress record (O4); and write progress
-## through [ProgressRules] (O5-O7).
+## [b]CMP-pack[/b] R1-R5: load, validate, and reject pack entries into definitions;
+## serve the gallery list (O1), the completion rate (O2), definitions (O3), and the
+## in-memory progress record (O4); and write progress through [ProgressRules] (O5-O7).
 ##
 ## Reads the pack file ([method load_pack], [b]CTR-pack[/b] O8), keeps one
 ## [PuzzleDefinition] per accepted entry, and serves them by id ([method definition],
 ## O3). [method progress] is the one place the progress record lives, so nothing outside
-## this component reaches it (R2). The progress file is not written yet
-## ([b]CTR-pack[/b] G3, R4): records stay in memory until #96. This layer (L3) imports
-## nothing from L1 or L2.
+## this component reaches it (R2). [ProgressFile] reads `user://progress.cfg` at pack
+## start and replaces it after a reset (R4, G3); the other writes are #96's.
+## This layer (L3) imports nothing from L1 or L2.
 
 ## The shipped pack ([b]CTR-pack[/b] pack layout).
 const PACK_PATH := "res://data/pack.json"
@@ -17,6 +17,13 @@ const PACK_PATH := "res://data/pack.json"
 var _definitions: Dictionary = {}
 var _load_result: PackLoadResult
 var _progress := ProgressRules.new()
+var _progress_file: ProgressFile
+
+
+## [param progress_path] is the progress document to read and replace
+## ([constant ProgressFile.PATH] for the game; a test path keeps tests off user data).
+func _init(progress_path: String = ProgressFile.PATH) -> void:
+	_progress_file = ProgressFile.new(progress_path)
 
 
 ## O8: read [param pack_path], validate every entry, and replace the held definitions.
@@ -24,6 +31,7 @@ var _progress := ProgressRules.new()
 ## logs the path. A rejected entry is logged and skipped while the rest still loads.
 func load_pack(pack_path: String = PACK_PATH) -> PackLoadResult:
 	_definitions.clear()
+	_progress = ProgressRules.new()
 	_load_result = PackLoadResult.new()
 	var text := FileAccess.get_file_as_string(pack_path)
 	var open_error := FileAccess.get_open_error()
@@ -50,6 +58,7 @@ func load_pack(pack_path: String = PACK_PATH) -> PackLoadResult:
 			push_warning("Pack entry %s rejected: %s" % [index, rejected_entry.get("reason", "")])
 	_load_result.accepted_count = _definitions.size()
 	_load_result.rejected = rejected
+	_load_progress()
 	return _load_result
 
 
@@ -58,6 +67,38 @@ func definition(id: String) -> PuzzleDefinition:
 	if _definitions.has(id):
 		return _definitions[id]
 	return null
+
+
+## O1: one [GalleryEntry] per accepted definition, in pack order. Reads the progress
+## facts without writing; a puzzle with no record yet reports not started ([SCH-progress]
+## L1).
+func list_entries() -> Array[GalleryEntry]:
+	var entries: Array[GalleryEntry] = []
+	for each in _definitions.keys():
+		var definition: PuzzleDefinition = _definitions[each]
+		var record := _progress.read(definition.id)
+		(
+			entries
+			. append(
+				(
+					GalleryEntry
+					. new(
+						definition.id,
+						definition.size,
+						record.ever_completed,
+						record.in_progress,
+						record.personal_best,
+						_progress.thumbnail_visible(definition.id),
+					)
+				)
+			)
+		)
+	return entries
+
+
+## O2 ([code]GS.completion-rate[/code]): ever-completed count ÷ 200 ([code]PS1.2[/code]).
+func completion_rate() -> float:
+	return _progress.completion_rate()
 
 
 ## Adds one already-validated definition ([SCH-puzzle-def]) to the held set, the way a
@@ -76,14 +117,28 @@ func progress() -> ProgressRules:
 	return _progress
 
 
+## O7: clears [param puzzle_id]'s marks, elapsed, personal best, and ever-completed,
+## then replaces `user://progress.cfg` (G3). The attempt becomes not started. Returns
+## false and changes nothing for an unknown id (G2).
+func reset(puzzle_id: String) -> bool:
+	if not _definitions.has(puzzle_id):
+		return false
+	_progress.reset(puzzle_id)
+	_progress_file.save(_progress, definition_ids())
+	return true
+
+
 ## The O8 result of the last [method load_pack], or null before the first load.
 func load_result() -> PackLoadResult:
 	return _load_result
 
 
 ## The accepted definitions, by id.
-func definition_ids() -> Array:
-	return _definitions.keys()
+func definition_ids() -> Array[String]:
+	var ids: Array[String] = []
+	for each in _definitions.keys():
+		ids.append(each)
+	return ids
 
 
 ## The rejected entries of the last load, as dictionaries with the raw entry and a reason.
@@ -91,6 +146,13 @@ func rejected_entries() -> Array[Dictionary]:
 	if _load_result == null:
 		return []
 	return _load_result.rejected
+
+
+## Reads `user://progress.cfg` once per pack start ([persistence.md] M1). Records stay
+## lazy ([SCH-progress] L1): an untouched puzzle is created on its first write, so a
+## read invents nothing.
+func _load_progress() -> void:
+	_progress_file.load_into(_progress, definition_ids())
 
 
 ## Adds the definition for [param entry] when it passes validation and adds the entry
