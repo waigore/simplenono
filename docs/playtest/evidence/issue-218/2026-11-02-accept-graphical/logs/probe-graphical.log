@@ -1,0 +1,44 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+probe218: build view=gallery
+probe218: PASS PTU-play-puzzle S1: start on UI-gallery
+probe218: PASS PTU-play-puzzle S1: gallery offers a tile for pack-000
+probe218: PASS PTU-play-puzzle P2 setup: pack-000 reads not started before the run
+probe218: shot p0-gallery-before-play -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/wt218/docs/playtest/evidence/issue-218/2026-11-02-accept-graphical/screenshots/p0-gallery-before-play.png (error 0)
+probe218: PASS PTU-play-puzzle S1: tile C1 opens UI-puzzle
+probe218: PASS PTU-play-puzzle S2: the beat blocks marks first
+probe218: shot p1-puzzle-get-set-ready -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/wt218/docs/playtest/evidence/issue-218/2026-11-02-accept-graphical/screenshots/p1-puzzle-get-set-ready.png (error 0)
+probe218: PASS PTU-play-puzzle S2: marks are allowed after ready
+probe218: shot p2-puzzle-marks-allowed -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/wt218/docs/playtest/evidence/issue-218/2026-11-02-accept-graphical/screenshots/p2-puzzle-marks-allowed.png (error 0)
+probe218: PASS PTU-play-puzzle S3: the pack serves pack-000
+probe218: PASS PTU-play-puzzle US1.4b: a partial grid stays on UI-puzzle
+probe218: PASS PTU-play-puzzle US1.4b: 41 fills staged and drawn before the last
+probe218: shot p3-puzzle-one-fill-left -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/wt218/docs/playtest/evidence/issue-218/2026-11-02-accept-graphical/screenshots/p3-puzzle-one-fill-left.png (error 0)
+probe218: PASS PTU-play-puzzle S3 / END.W1: the last fill solves the puzzle
+probe218: PASS PTU-play-puzzle S3: the solve opens UI-result
+probe218: PASS UI-result US1.1: the morph is running on open
+probe218: PASS UI-result US1.1 / US1.3: no controls during the morph
+probe218: PASS UI-result US1.1: the morph opens on S2
+probe218: shot p4-result-morph-start -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/wt218/docs/playtest/evidence/issue-218/2026-11-02-accept-graphical/screenshots/p4-result-morph-start.png (error 0)
+probe218: morph reached S1 in 560.4 ms over 69 real frames (2 x stage = 600 ms)
+probe218: chain sample: 1ms stage=S2 drawable=1 fills=1.000 pixel=0.000 picture=0.000 | 32ms stage=S3 drawable=1 fills=1.000 pixel=0.000 picture=0.000 | 69ms stage=S1 drawable=1 fills=1.000 pixel=0.000 picture=0.000
+probe218: empty frames across the chain: 0
+probe218: PASS UI-result US1.2: the morph spends both stages (560 ms, 2 x 300)
+probe218: PASS UI-result US1.2: the morph finishes at S1 Default
+probe218: PASS UI-result US1.2: nothing is morphing after both stages
+probe218: PASS UI-result US1.5 / S1: a drawable layer is visible at Default (1)
+probe218: PASS UI-result US1.5: the solved fills are the best shipped layer in this build (fill_count=42)
+probe218: PASS UI-result US1.5: that layer is at full opacity at Default
+probe218: PASS UI-result US1.5: the absent picture layers are not what S1 shows
+probe218: PASS UI-result US1.5: no frame between S2 and S1 is empty
+probe218: PASS UI-result US1.2 R2: C1 reads Back to gallery
+probe218: PASS UI-result US1.2: C1 Back is available at Default
+probe218: shot p5-result-default -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/wt218/docs/playtest/evidence/issue-218/2026-11-02-accept-graphical/screenshots/p5-result-default.png (error 0)
+probe218: PASS PTU-play-puzzle S4: the result shows its C1 control
+probe218: PASS PTU-play-puzzle S4: C1 returns to UI-gallery
+probe218: PASS PTU-play-puzzle P1 / US1.2b: result→gallery completes without a stuck screen
+probe218: shot p6-gallery-after-result-back -> /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/wt218/docs/playtest/evidence/issue-218/2026-11-02-accept-graphical/screenshots/p6-gallery-after-result-back.png (error 0)
+probe218: PASS PTU-play-puzzle P2: pack-000 reads Done after the solve
+probe218: PASS PTU-play-puzzle P2: gallery completion moved past zero
+probe218: RESULT pass (29 checks, 7 shots)
