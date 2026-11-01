@@ -1,0 +1,2 @@
+Smoke run: godot --headless --path /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-191-fresh/game (banner timeout 20s)
+Clean startup: process alive after the banner with no script or engine errors
