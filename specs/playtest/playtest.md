@@ -15,7 +15,7 @@ AI-agent playtesting proves the running build against game design and UX. It is 
 
 ## Coverage
 
-- **Mode**: <!-- fill in: full | critical-only -->
+- **Mode**: `full`
 - **Critical IDs**: see [`coverage.md`](coverage.md)
 
 ## Gate
