@@ -19,6 +19,13 @@ extends Node
 ## [code]project.godot[/code]; touch tap/drag B31-B32/B34-B35 use the touch events
 ## directly (Godot has no touch action). The full per-platform binding pass is #96.
 
+## [b]SEQ-mark[/b] S8: an accepted mark changed the grid and did not solve. The shell
+## plays that kind's tick and haptic; the solve branch skips S6-S8 ([code]B3[/code]) and
+## S14's sting replaces them ([b]CTR-attempt[/b] E1). B1 (blocked or paused) never calls
+## [b]CTR-attempt[/b] O2 here, and B2 (the cell already has that mark) changes nothing, so
+## neither raises this.
+signal mark_accepted(kind: CellMark.Mark)
+
 ## Movement past this many pixels with the pointer held starts a drag-paint instead
 ## of a tap. Matches Godot's own drag threshold for a comfortable touch target.
 const DRAG_THRESHOLD := 6.0
@@ -29,6 +36,7 @@ var _press_position := Vector2.ZERO
 var _stroke := false
 var _painting := false
 var _painted: Dictionary = {}
+var _solved_during_mark := false
 
 
 func _ready() -> void:
@@ -181,11 +189,26 @@ func _mark(row: int, column: int, mark_value: CellMark.Mark) -> void:
 	var attempt := _screen.attempt()
 	if attempt == null:
 		return
+	var cell := Vector2i(row, column)
+	var before := _current_mark(cell)
+	_solved_during_mark = false
+	attempt.solved.connect(_note_solved_during_mark, CONNECT_ONE_SHOT)
 	var result := attempt.mark(row, column, mark_value)
+	var solved := _solved_during_mark
+	if not solved:
+		attempt.solved.disconnect(_note_solved_during_mark)
 	if result != null:
 		_screen.show_mark_result(result)
+	if result != null and not solved and _current_mark(cell) != before:
+		mark_accepted.emit(mark_value)
 	if attempt.state() != null and not attempt.state().marks().has_any_mark():
 		_reset_stroke()
+
+
+## One-shot listener around [method Attempt.mark]: E1 fires inside that call, so the
+## solve branch is known before the tick decision ([b]SEQ-mark[/b] B3).
+func _note_solved_during_mark(_puzzle_id: String, _elapsed: int) -> void:
+	_solved_during_mark = true
 
 
 ## Reads the cell's current mark for the toggle and complement rules (B2).

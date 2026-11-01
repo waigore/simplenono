@@ -136,6 +136,12 @@ func attempt() -> Attempt:
 	return _attempt
 
 
+## The mark input layer ([b]CMP-shell[/b] R2). The shell uses it to hear [b]SEQ-mark[/b]
+## S8's accepted marks; the screen itself keeps no feedback.
+func mark_input() -> MarkInput:
+	return get_node("MarkInput") as MarkInput
+
+
 ## The cell at [param row] and [param column], for the input layer (#111).
 func cell_at(row: int, column: int) -> PuzzleCell:
 	return _board.cell_at(row, column)
