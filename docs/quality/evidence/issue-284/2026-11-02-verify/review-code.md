@@ -9,7 +9,7 @@
 ### Notes
 
 - `CC-1` (`gdlint game`) and `CC-2` (`gdformat --check game`) are the only `must` rules in
-  [`docs/coding-conventions.md`](../../../../coding-conventions.md); both pass locally and as the PR's
+  [`docs/coding-conventions.md`](../../../../../docs/coding-conventions.md); both pass locally and as the PR's
   `Code lint` check. No new production symbol, signal, or state was introduced, so SRP/ISP/DIP do not move;
   the change extends an existing GUT suite.
 - `CONT` — the new tests follow the file's existing shape (`before_each` shell instantiation, `_control`
