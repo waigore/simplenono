@@ -24,6 +24,13 @@ func _control(node_name: String) -> Control:
 	return _shell.get_node("%" + node_name) as Control
 
 
+## [code]UI-gallery.C3[/code]: the journey's real control, not the screen signal.
+func _open_settings_from_gallery() -> void:
+	var button := _shell.gallery_screen().get_node("%SettingsButton") as Button
+	assert_not_null(button, "UI-gallery shows its C3")
+	button.pressed.emit()
+
+
 # NAV.T2 / US1.2 / J-settings S1: C3 on the gallery opens settings
 func test_gallery_settings_opens_settings() -> void:
 	_shell.gallery_screen().settings_requested.emit()
@@ -89,6 +96,95 @@ func test_settings_toggles_reach_the_shell_flags() -> void:
 	assert_true(_shell.session_flags().mute_bgm(), "F2 changed through C2")
 	assert_eq(screen.haptics_text(), "Off", "C1 reflects the shell's flags")
 	assert_eq(screen.mute_text(), "On", "C2 reflects the shell's flags")
+
+
+# J-settings US1.1 S1-S2: the real UI-gallery.C3 opens settings, and C1 changes only
+# haptics while the screen stays on UI-settings
+func test_haptics_branch_stays_on_settings_and_changes_one_flag() -> void:
+	_open_settings_from_gallery()
+	assert_eq(_shell.view(), Shell.SETTINGS_VIEW, "S1: UI-gallery.C3 opens UI-settings")
+	var flags := _shell.session_flags()
+	var haptics_before := flags.haptics_enabled()
+	var mute_before := flags.mute_bgm()
+
+	_shell.settings_screen().haptics_button().pressed.emit()
+
+	assert_eq(_shell.view(), Shell.SETTINGS_VIEW, "S2: C1 keeps UI-settings shown")
+	assert_eq(flags.haptics_enabled(), not haptics_before, "S2: C1 flips haptics")
+	assert_eq(flags.mute_bgm(), mute_before, "S2: C1 leaves mute untouched")
+	assert_eq(
+		_shell.settings_screen().haptics_text(),
+		SettingsScreen.COPY_OFF,
+		"R1: C1 shows Off",
+	)
+
+
+# J-settings US1.2 B1: the mute branch changes only mute and keeps the screen
+func test_mute_branch_stays_on_settings_and_changes_one_flag() -> void:
+	_open_settings_from_gallery()
+	var flags := _shell.session_flags()
+	var haptics_before := flags.haptics_enabled()
+	var mute_before := flags.mute_bgm()
+
+	_shell.settings_screen().mute_button().pressed.emit()
+
+	assert_eq(_shell.view(), Shell.SETTINGS_VIEW, "B1: C2 keeps UI-settings shown")
+	assert_eq(flags.mute_bgm(), not mute_before, "B1: C2 flips mute")
+	assert_eq(flags.haptics_enabled(), haptics_before, "B1: C2 leaves haptics untouched")
+	assert_eq(
+		_shell.settings_screen().mute_text(),
+		SettingsScreen.COPY_ON,
+		"R1: C2 shows On",
+	)
+
+
+# J-settings US1.1 S3: UI-settings.C3 returns to the gallery it left, unchanged
+func test_back_returns_to_an_unchanged_gallery() -> void:
+	var gallery := _shell.gallery_screen()
+	var tiles_before := gallery.tile_count()
+	var completion_before := gallery.completion_text()
+	_open_settings_from_gallery()
+
+	_shell.settings_screen().back_button().pressed.emit()
+
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "S3: UI-settings.C3 returns to UI-gallery")
+	assert_true(gallery.visible, "the gallery is shown again")
+	assert_eq(gallery.tile_count(), tiles_before, "the gallery draws the same tiles")
+	assert_eq(gallery.completion_text(), completion_before, "R1 reads the same completion")
+	assert_null(_shell.attempt(), "the journey opens no attempt")
+
+
+# J-settings US1.1: the toggled haptics value is what settings reads back on re-open
+# (PTU-settings P2, one session)
+func test_toggled_haptics_reads_back_on_reopen() -> void:
+	_open_settings_from_gallery()
+	var screen := _shell.settings_screen()
+	screen.haptics_button().pressed.emit()
+	screen.back_button().pressed.emit()
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "S3: Back returns to the gallery")
+
+	_open_settings_from_gallery()
+
+	assert_eq(_shell.view(), Shell.SETTINGS_VIEW, "settings reopens from the gallery")
+	assert_false(_shell.session_flags().haptics_enabled(), "F1 still holds the toggled value")
+	assert_eq(screen.haptics_text(), SettingsScreen.COPY_OFF, "P2: C1 reads Off again")
+	assert_eq(screen.mute_text(), SettingsScreen.COPY_OFF, "the mute branch stayed untouched")
+
+
+# J-settings US1.2 B1: the toggled mute value is what settings reads back on re-open
+func test_toggled_mute_reads_back_on_reopen() -> void:
+	_open_settings_from_gallery()
+	var screen := _shell.settings_screen()
+	screen.mute_button().pressed.emit()
+	screen.back_button().pressed.emit()
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "B1: Back returns to the gallery")
+
+	_open_settings_from_gallery()
+
+	assert_eq(_shell.view(), Shell.SETTINGS_VIEW, "settings reopens from the gallery")
+	assert_true(_shell.session_flags().mute_bgm(), "F2 still holds the toggled value")
+	assert_eq(screen.mute_text(), SettingsScreen.COPY_ON, "P2: C2 reads On again")
+	assert_eq(screen.haptics_text(), SettingsScreen.COPY_ON, "the haptics branch stayed untouched")
 
 
 # SEQ pause B2: pausing during get-set-ready keeps the beat, and Back resumes it
