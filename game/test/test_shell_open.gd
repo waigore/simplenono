@@ -18,8 +18,8 @@ var _shell: Shell
 
 
 func before_each():
+	_remove(TEST_PATH)
 	_remove(TEMP_PATH)
-	_remove(TEMP_PATH + ProgressFile.TEMP_SUFFIX)
 	var scene := load(SHELL_SCENE) as PackedScene
 	assert_not_null(scene, "shell scene loads")
 	_shell = scene.instantiate() as Shell
@@ -29,6 +29,7 @@ func before_each():
 
 
 func after_each():
+	_remove(TEST_PATH)
 	_remove(TEMP_PATH)
 
 
@@ -37,11 +38,12 @@ func _remove(path: String) -> void:
 		DirAccess.remove_absolute(path)
 
 
-## Re-presents the gallery over a pack reading the seeded [param config] from the test
-## document, so the read side never touches `user://progress.cfg`.
+## Re-presents the gallery over the shell's own pack after seeding the test document,
+## so the read side never touches `user://progress.cfg` and the shell's reset path
+## writes the same pack the gallery reads.
 func _present_seeded(config: ConfigFile) -> Pack:
 	assert_eq(config.save(TEST_PATH), OK, "the seeded progress document is written")
-	var pack := Pack.new(TEST_PATH)
+	var pack := _shell.pack()
 	pack.load_pack(SHIPPED_PACK)
 	_shell.gallery_screen().present(pack)
 	return pack
@@ -176,8 +178,8 @@ func _first_clear_cell(attempt: Attempt) -> Vector2i:
 	return Vector2i(-1, -1)
 
 
-# SEQ reset S1 / S6 / B1: the gallery's C2 trigger reaches the shell and changes nothing
-func test_a_reset_request_opens_no_confirm_and_keeps_the_gallery() -> void:
+# SEQ reset S1: the gallery's C2 trigger opens EX.confirm and keeps the gallery
+func test_a_reset_request_opens_the_confirm_box() -> void:
 	var seeded := ConfigFile.new()
 	seeded.set_value("pack-001", ProgressFile.IN_PROGRESS_KEY, true)
 	seeded.set_value("pack-001", ProgressFile.MARKS_KEY, _marks(10))
@@ -187,48 +189,94 @@ func test_a_reset_request_opens_no_confirm_and_keeps_the_gallery() -> void:
 
 	assert_true(gallery.activate_reset("pack-001"), "C2 is allowed")
 
-	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "S1/S6: the gallery stays in Default")
-	assert_true(_control("Gallery").visible, "the gallery is still the shown screen")
-	assert_eq(_shell.puzzle_id(), "", "no puzzle is opened")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery stays the shown screen")
+	assert_true(_control("Gallery").visible, "the gallery is still visible behind the box")
+	assert_true(gallery.reset_confirm().is_showing(), "S1: EX.confirm appears")
+	assert_eq(gallery.reset_confirm().puzzle_id(), "pack-001", "the box names that puzzle")
 	assert_eq(gallery.tile("pack-001").status_text(), "In progress", "no record is written")
 	assert_eq(pack.load_result().accepted_count, 200, "the pack still serves the whole pack")
 
 
-# SEQ reset B1: Reset on a new puzzle never reaches the shell, so nothing refreshes
+# SEQ reset B1: Reset on a new puzzle never reaches the shell, so no confirm appears
 func test_a_refused_reset_changes_nothing() -> void:
 	var pack := _present_seeded(ConfigFile.new())
 	var gallery := _shell.gallery_screen()
 	assert_false(gallery.activate_reset("pack-001"), "B1: C2 is not available")
+	assert_false(gallery.reset_confirm().is_showing(), "no confirm is opened")
 	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery stays in Default")
 	assert_eq(gallery.completion_text(), "Completed 0 / 200", "the read is unchanged")
 	assert_false(gallery.tile("pack-001").reset_visible(), "C2 stays unavailable")
 	assert_eq(pack.load_result().accepted_count, 200, "the pack is unchanged")
 
 
-# SEQ reset S5 / N2: the shell re-reads O1 and O2 when the gallery raises its reset intent
-func test_the_shell_re_reads_o1_and_o2_when_the_gallery_raises_reset() -> void:
+# SEQ reset S2-S6 / N2: Confirm clears through O7 and the gallery re-reads O1 and O2
+func test_confirming_the_box_clears_the_record_and_re_reads_o1_and_o2() -> void:
 	var seeded := ConfigFile.new()
 	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
 	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
-	var pack := _present_seeded(seeded)
+	_present_seeded(seeded)
 	var gallery := _shell.gallery_screen()
 	gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return null)
 	gallery.refresh()
-	var before := gallery.tile("pack-000")
-	assert_eq(before.status_text(), "Done", "before the reset")
-	assert_eq(before.best_text(), "Best 1:00", "the personal best shows")
+	assert_eq(gallery.tile("pack-000").status_text(), "Done", "before the reset")
+	assert_eq(gallery.tile("pack-000").best_text(), "Best 1:00", "the personal best shows")
 	assert_eq(gallery.completion_text(), "Completed 1 / 200", "before the reset")
 
-	# Stands in for #96's confirm flow: S3-S4 complete before S5 re-reads.
-	assert_true(pack.reset("pack-000"), "O7 clears the record")
-	gallery.reset_requested.emit("pack-000")
+	assert_true(gallery.activate_reset("pack-000"), "C2 is allowed")
+	assert_true(gallery.reset_confirm().is_showing(), "S1: the box is showing")
+	gallery.reset_confirm().confirm()
 
 	var target := gallery.tile("pack-000")
+	assert_false(gallery.reset_confirm().is_showing(), "S6: the box is dismissed")
 	assert_eq(gallery.completion_text(), "Completed 0 / 200", "S5: O2 is read again")
 	assert_eq(target.status_text(), "Not started", "S5: the tile reads back as new")
 	assert_eq(target.best_text(), "", "the personal best is cleared")
 	assert_false(target.reset_visible(), "C2 is no longer available")
 	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "S6: the gallery is in Default")
+	var written := ConfigFile.new()
+	assert_eq(written.load(TEST_PATH), OK, "the reset replaced the test document")
+	assert_false(
+		written.get_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, false),
+		"S4: the stored record is cleared",
+	)
+
+
+# SEQ reset B3 / CTR-pack G2: an unknown id reaching S3 changes nothing and writes nothing
+func test_an_unknown_id_at_s3_changes_nothing() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	_present_seeded(seeded)
+	var gallery := _shell.gallery_screen()
+	var box := gallery.reset_confirm()
+	box.show_for("no-such-puzzle")
+	var before := FileAccess.get_file_as_bytes(TEST_PATH)
+
+	box.confirm()
+
+	assert_eq(FileAccess.get_file_as_bytes(TEST_PATH), before, "B3: nothing is written")
+	assert_eq(gallery.tile("pack-000").status_text(), "Done", "the record is unchanged")
+	assert_eq(gallery.completion_text(), "Completed 1 / 200", "the rate is unchanged")
+
+
+# SEQ reset B2: Cancel dismisses the box with no write and the gallery back in Default
+func test_cancelling_the_box_writes_nothing() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	_present_seeded(seeded)
+	var gallery := _shell.gallery_screen()
+	assert_true(gallery.activate_reset("pack-000"), "C2 is allowed")
+	var before := FileAccess.get_file_as_bytes(TEST_PATH)
+
+	gallery.reset_confirm().cancel()
+
+	assert_false(gallery.reset_confirm_showing(), "B2: the box is dismissed")
+	assert_eq(FileAccess.get_file_as_bytes(TEST_PATH), before, "B2: no O7 write")
+	assert_eq(gallery.tile("pack-000").status_text(), "Done", "the tile is unchanged")
+	assert_eq(gallery.tile("pack-000").best_text(), "Best 1:00", "the personal best is kept")
+	assert_eq(gallery.completion_text(), "Completed 1 / 200", "the rate is unchanged")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery is in Default")
 
 
 ## A stored mark grid with one fill, so a restored attempt counts as in progress.

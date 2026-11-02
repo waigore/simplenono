@@ -27,9 +27,10 @@ extends Control
 ## ([code]NAV.T5[/code]). The result's stage clock pauses with the attempt, so a halted
 ## session freezes the morph and a test can decide each stage exactly.
 ##
-## [code]EX.confirm[/code] stays with #96, so the gallery's C2 reset intent ends here: the
-## shell answers with [code]SEQ reset[/code] S6 on the gallery and re-reads [b]CTR-pack[/b]
-## O1/O2 (S5), leaving the O7 call to #96's confirm flow.
+## [code]EX.confirm[/code] is the gallery's reset confirm: the gallery's C2 reset intent
+## opens the box here ([code]SEQ reset[/code] S1), Confirm runs [b]CTR-pack[/b] O7 (S2-S4)
+## and re-reads O1/O2 (S5), and Cancel dismisses with no write (B2). Both return the
+## gallery to Default (S6).
 
 ## Shown when nothing is open ([code]NAV.T1[/code]'s gallery).
 const GALLERY_VIEW := "gallery"
@@ -104,6 +105,8 @@ func _ready() -> void:
 	_gallery.puzzle_requested.connect(open_puzzle)
 	_gallery.settings_requested.connect(open_settings)
 	_gallery.reset_requested.connect(_on_gallery_reset_requested)
+	_gallery.reset_confirmed.connect(_on_reset_confirmed)
+	_gallery.reset_cancelled.connect(_on_reset_cancelled)
 	_gallery.present(_pack)
 	_puzzle.leave_requested.connect(leave_puzzle)
 	_puzzle.settings_requested.connect(open_settings)
@@ -236,11 +239,26 @@ func pack() -> Pack:
 
 
 ## [code]SEQ reset[/code] S1: [code]UI-gallery.C2[/code]'s reset intent reaches the shell
-## for [param _puzzle_id]. S2-S4 (Confirm → [b]CTR-pack[/b] O7) stay in #96's confirm
-## flow, so no record is written here; the gallery returns to Default (S6) and re-reads
-## O1/O2 (S5), which is also where #96's confirm path lands after its O7 call.
-func _on_gallery_reset_requested(_puzzle_id: String) -> void:
+## for [param puzzle_id]. The gallery shows [code]EX.confirm[/code] and blocks itself; the
+## shell answers Confirm or Cancel through [method _on_reset_confirmed] and
+## [method _on_reset_cancelled].
+func _on_gallery_reset_requested(puzzle_id: String) -> void:
+	_gallery.present_reset_confirm(puzzle_id)
+
+
+## [code]SEQ reset[/code] S2-S6: Confirm runs [b]CTR-pack[/b] O7 for [param puzzle_id]
+## (S3-S4), re-reads O1/O2 (S5), and dismisses the box back to gallery Default (S6). An
+## unknown id changes nothing and writes nothing (B3).
+func _on_reset_confirmed(puzzle_id: String) -> void:
+	if not _pack.reset(puzzle_id):
+		return
 	_gallery.refresh()
+	_gallery.dismiss_reset_confirm()
+
+
+## [code]SEQ reset[/code] B2: Cancel dismisses the box with no write.
+func _on_reset_cancelled(_puzzle_id: String) -> void:
+	_gallery.dismiss_reset_confirm()
 
 
 ## [b]SCH-preferences[/b] F1/F2: the session flags this shell owns. #95's settings
