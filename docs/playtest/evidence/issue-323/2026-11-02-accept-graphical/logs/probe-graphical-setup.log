@@ -1,0 +1,54 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+libasound.so.2: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+libasound.so.2: cannot open shared object file: No such file or directory
+WARNING: All audio drivers failed, falling back to the dummy driver.
+     at: initialize (servers/audio/audio_server.cpp:258)
+
+probe323: PASS prep: the seeded progress document is written
+SEV level=info event=session-start time=1793625439.319 session=issue-323-accept-323-graphical build=1520675 story=- message=
+probe323: PASS prep: the shell carries the KeyboardInput node
+probe323: PASS start: UI-gallery is shown
+probe323: PASS start: pack-000 tile renders
+probe323: PASS start: pack-000 is not started
+probe323: shot 00-gallery-start -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-323/2026-11-02-accept-graphical/screenshots/00-gallery-start.png (error 0)
+TEL event=open time=1793625440.838 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+probe323: PASS S1: UI-gallery.C1 opens pack-000
+probe323: PASS S1: pack-000 is the open puzzle
+TEL event=ready time=1793625441.237 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+TEL event=commit time=1793625441.239 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+probe323: PASS S1: the board is Ready
+TEL event=mark time=1793625441.498 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+TEL event=commit time=1793625441.499 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+probe323: PASS S1: one clear cell is filled
+probe323: PASS S1: elapsed advances before leave (DBG.2)
+probe323: observe S1 elapsed=3 mark=(1, 1)
+probe323: shot 01-puzzle-before-leave -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-323/2026-11-02-accept-graphical/screenshots/01-puzzle-before-leave.png (error 0)
+TEL event=leave time=1793625444.707 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+TEL event=commit time=1793625444.709 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+probe323: PASS S2 / UI-puzzle.C1: Leave returns to the gallery
+probe323: PASS S2: the attempt closed
+probe323: PASS S2: the tile reads in progress and offers Reset
+probe323: shot 02-gallery-in-progress -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-323/2026-11-02-accept-graphical/screenshots/02-gallery-in-progress.png (error 0)
+TEL event=open time=1793625445.384 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+TEL event=ready time=1793625445.797 session=issue-323-accept-323-graphical build=1520675 story=- outcome=pass
+probe323: PASS S3: UI-gallery.C1 reopens the same tile
+probe323: PASS P1: the same cell mark is restored
+probe323: observe S3 elapsed left=3 resumed=3
+probe323: PASS P2: elapsed resumes, not reset to 0
+probe323: shot 03-puzzle-resumed-ready -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-323/2026-11-02-accept-graphical/screenshots/03-puzzle-resumed-ready.png (error 0)
+probe323: PASS S4 / UI-puzzle.C6: Settings opens
+probe323: PASS S4: the attempt is paused
+probe323: PASS S4: CMP-shell is paused
+probe323: PASS S4: settings remembers it returns to the puzzle
+probe323: observe S4 paused elapsed=3
+probe323: PASS S4: the pause committed the attempt as in progress
+probe323: PASS S4: the pause committed the frozen elapsed
+probe323: shot 04-settings-paused-before-quit -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-323/2026-11-02-accept-graphical/screenshots/04-settings-paused-before-quit.png (error 0)
+probe323: PASS prep: the phase-1 state file opens
+probe323: PASS prep: the phase-1 state file is written
+probe323: phase setup ends with the app quitting while UI-settings shows
+probe323: RESULT pass (24 checks, 5 shots)
+SEV level=info event=session-end time=1793625446.612 session=issue-323-accept-323-graphical build=1520675 story=- message=
