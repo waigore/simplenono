@@ -5,7 +5,7 @@
 - **Deliverable commit:** `ee57b38` (`main` after PR #372 — the squash that lands the slice), observed
   on `main@c41c104`, where nothing under this slice's pictures or its four pack rows changed
 - **Observed:** 2026-11-03 by `issue-workflow-accept-agent` (parallel id 1), Godot 4.7.2 headless on macOS arm64
-- **Observation source:** [`integration/results.md`](../../../playtest/evidence/issue-252/2026-11-03-accept-graphical/quality-app-start/integration/results.md) — one `app-start` run of
+- **Observation source:** [`integration/results.md`](../../../../playtest/evidence/issue-252/2026-11-03-accept-graphical/quality-app-start/integration/results.md) — one `app-start` run of
   `godot --headless --path game -s test/integration/run_protocol.gd -- --debug-seams --protocol=app-start --run-dir=<folder>`
 
 Only `time-to-playable` is selected. The deliverable adds eight static picture files and rewrites four pack rows' fills and clues;
