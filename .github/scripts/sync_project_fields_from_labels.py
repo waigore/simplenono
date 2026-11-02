@@ -38,8 +38,12 @@ STATUS_OPTIONS = {
     "pending-verification",
     "pending-acceptance",
     "accepted",
+    "pending-redefinition",
+    "pending-analysis",
+    "pending-resolution",
+    "resolved",
 }
-TYPE_OPTIONS = {"epic", "task", "defect"}
+TYPE_OPTIONS = {"epic", "task", "defect", "feedback"}
 
 
 def _token() -> str:
