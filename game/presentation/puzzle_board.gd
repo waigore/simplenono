@@ -19,9 +19,6 @@ const EMPTY_CLUE_GLYPH := "·"
 ## Padding between the board frame and the clue bars / grid.
 const FRAME_PADDING := 8.0
 
-## Clue type is half the adjacent cell side ([code]T1[/code], specs/aesthetics/ui-style.md).
-const CLUE_FONT_RATIO := 0.5
-
 ## Bounds keep the board usable on a phone and from growing past a comfortable cell.
 const MIN_CELL_SIZE := 8.0
 const MAX_CELL_SIZE := 40.0
@@ -92,6 +89,16 @@ func row_clue_label(row: int) -> Label:
 func column_clue_labels(column: int) -> Array:
 	assert(column >= 0 and column < _column_labels.size(), "Column outside the grid: %s" % column)
 	return _column_labels[column]
+
+
+## The current cell side, so a test can hold [code]T1[/code] to half of it.
+func cell_size() -> float:
+	return _cell_size
+
+
+## The clue size [code]T1[/code] currently applies ([method UiTheme.t1_size]).
+func clue_font_size() -> int:
+	return UiTheme.t1_size(_cell_size)
 
 
 func _notification(what: int) -> void:
@@ -206,7 +213,7 @@ func _relayout() -> void:
 
 
 func _position_children() -> void:
-	var font_size := maxi(7, int(_cell_size * CLUE_FONT_RATIO))
+	var font_size := UiTheme.t1_size(_cell_size)
 	for column in _definition.size:
 		var box := _column_boxes[column]
 		box.position = _origin + Vector2(_row_clue_width + column * _cell_size, 0.0)

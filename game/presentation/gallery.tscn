@@ -60,15 +60,15 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 2
 
 [node name="Greeting" type="Label" parent="Margin/Layout/Header/Titles"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
-theme_override_font_sizes/font_size = 11
 text = "Local pack"
 
 [node name="Title" type="Label" parent="Margin/Layout/Header/Titles"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
-theme_override_font_sizes/font_size = 22
 text = "Gallery"
 
 [node name="SettingsButton" type="Button" parent="Margin/Layout/Header"]
@@ -88,7 +88,6 @@ theme_override_constants/separation = 8
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
-theme_override_font_sizes/font_size = 13
 text = "Completed 0 / 200"
 
 [node name="CompletionBar" type="ProgressBar" parent="Margin/Layout/ProgressBlock/ProgressInner"]

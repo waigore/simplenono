@@ -47,6 +47,11 @@ const RESULT_VIEW := "result"
 ## (specs/design/configuration.md); [ResultReveal]'s default when unset.
 const MORPH_STAGE_SETTING := "design/morph_stage_ms"
 
+## [code]fonts/outfit[/code]'s catalogued asset ID (specs/assets/kinds/fonts.md): the one
+## UI family for [code]UIS.T1[/code]/[code]T2[/code]. This constant is its only home; an
+## empty value reads as "no catalogued family yet" and keeps the engine default face.
+const UI_FONT_ASSET_ID := "01a1996d-fc83-79ad-81e5-b3e431590f90"
+
 ## The live [Attempt], or null when no puzzle is open.
 var _attempt: Attempt
 var _pack := Pack.new()
@@ -61,6 +66,9 @@ var _flags := SessionFlags.new()
 
 ## [b]CMP-shell[/b] R6: reads the committed manifest once, at app start.
 var _resolver: AssetResolver
+
+## [code]UIS.T1[/code]/[code]T2[/code]: the one code-built UI theme and its family.
+var _ui_theme: UiTheme
 
 ## [b]CMP-shell[/b] R4: ticks, bed, and solve sting.
 var _audio: AudioFeedback
@@ -77,6 +85,11 @@ var _haptics: Haptics
 
 func _ready() -> void:
 	_resolver = AssetResolver.new()
+	_ui_theme = UiTheme.new(_resolver, UI_FONT_ASSET_ID)
+	_gallery.set_ui_theme(_ui_theme)
+	_puzzle.set_ui_theme(_ui_theme)
+	_result.set_ui_theme(_ui_theme)
+	_settings.set_ui_theme(_ui_theme)
 	_audio = AudioFeedback.new(_resolver, _flags)
 	add_child(_audio)
 	_audio.preload_ticks()
@@ -235,6 +248,11 @@ func session_flags() -> SessionFlags:
 ## [b]CMP-shell[/b] R4: the audio feedback this shell drives.
 func audio_feedback() -> AudioFeedback:
 	return _audio
+
+
+## [code]UIS.T1[/code]/[code]T2[/code]: the code-built theme the four screens adopted.
+func ui_theme() -> UiTheme:
+	return _ui_theme
 
 
 ## [b]CMP-shell[/b] R6: the stored picture for [param asset_id], or null when this
