@@ -10,7 +10,7 @@ The run plays `PTU-play-puzzle` on `pack-001` seeded one correct fill from solve
 (the `DBG.3` fixture), through the real `Shell` scene, the shipped gallery/puzzle/result
 screens, real pointer events, and a temporary `user://progress-accept-349.cfg`. The real
 `user://progress.cfg` was never touched, and the temporary document was removed at the
-end. The probe is in [`probe/probe_accept_349.gd`](../probe/probe_accept_349.gd); it was
+end. The probe is in [`probe/probe_accept_349.gd`](probe/probe_accept_349.gd); it was
 copied into `game/` for the run and removed after.
 
 ## Scope
@@ -38,7 +38,7 @@ R1 / S1; `PER.R5`). No design story is reachable from this change.
 
 After the morph settles on `UI-result` S1 Default, the generated picture is the opaque
 drawn layer. The probe read the live geometry
-([`logs/probe-graphical.log`](../logs/probe-graphical.log)):
+([`logs/probe-graphical.log`](logs/probe-graphical.log)):
 
 | Observation | Value |
 |-------------|-------|
@@ -51,15 +51,15 @@ drawn layer. The probe read the live geometry
 A supplementary 200 × 100 source fitted to 360 × 180 inside the same square, so a
 non-square source keeps its own ratio instead of stretching.
 
-The captured frame agrees ([`screenshots/02-result-s1-default.png`](../screenshots/02-result-s1-default.png)).
-A pixel pass over that PNG ([`logs/screenshot-pixel-analysis.log`](../logs/screenshot-pixel-analysis.log))
+The captured frame agrees ([`screenshots/02-result-s1-default.png`](screenshots/02-result-s1-default.png)).
+A pixel pass over that PNG ([`logs/screenshot-pixel-analysis.log`](logs/screenshot-pixel-analysis.log))
 found the picture's drawn region at `x 270–629, y 32–391` — exactly 360 × 360, aspect
 1.0000 — instead of the old wide band. The subject's dark silhouette measured 310 × 175
 (drawn aspect 1.7714) against the same silhouette in the 1024 × 1024 source at
 881 × 499 (1.7655), a 0.3% difference, so no vertical squash remains.
 
 The gallery thumbnail after return also draws the picture square
-([`screenshots/03-gallery-after-result-back.png`](../screenshots/03-gallery-after-result-back.png)).
+([`screenshots/03-gallery-after-result-back.png`](screenshots/03-gallery-after-result-back.png)).
 
 ## Quality evaluator
 
