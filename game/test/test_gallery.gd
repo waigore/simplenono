@@ -337,45 +337,6 @@ func test_c2_reset_is_drawn_and_enabled_only_when_the_o1_facts_allow() -> void:
 	assert_true(reopened.shows_picture(), "the reopened puzzle keeps its thumbnail")
 
 
-# R3 / US1.4: the settings control is drawn and enabled on Default
-func test_r3_settings_is_drawn_and_enabled() -> void:
-	_present(ConfigFile.new())
-	var button := _gallery.get_node("%SettingsButton") as Button
-	assert_true(button.visible, "R3: the settings control is drawn")
-	assert_false(button.disabled, "R3: the settings control is enabled")
-	assert_eq(button.focus_mode, Control.FOCUS_ALL, "C3 is reachable by keyboard")
-	assert_eq(button.text, GalleryScreen.COPY_SETTINGS, "copy.settings")
-
-
-# US1.6 / US1.6b / C2: Reset is drawn and enabled exactly when O1 allows it, including an
-# ever-completed puzzle reopened as new (PRG P1/P3: ever-completed and the best stay).
-func test_c2_reset_is_drawn_and_enabled_only_when_the_o1_facts_allow() -> void:
-	var seeded := ConfigFile.new()
-	# pack-000 not started; pack-001 in progress; pack-002 done + best.
-	seeded.set_value("pack-001", ProgressFile.IN_PROGRESS_KEY, true)
-	seeded.set_value("pack-001", ProgressFile.MARKS_KEY, _marks(10))
-	seeded.set_value("pack-002", ProgressFile.EVER_COMPLETED_KEY, true)
-	seeded.set_value("pack-002", ProgressFile.PERSONAL_BEST_KEY, 252)
-	# pack-003 was solved, then reopened: no attempt running, the record still stands.
-	seeded.set_value("pack-003", ProgressFile.EVER_COMPLETED_KEY, true)
-	seeded.set_value("pack-003", ProgressFile.IN_PROGRESS_KEY, false)
-	seeded.set_value("pack-003", ProgressFile.PERSONAL_BEST_KEY, 480)
-	_gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return _texture())
-	_present(seeded)
-	var refused := _gallery.tile("pack-000")
-	assert_false(refused.reset_allowed(), "C2 is not allowed for a new puzzle")
-	assert_false(refused.reset_visible(), "Reset is not drawn for a new puzzle")
-	for puzzle_id: String in ["pack-001", "pack-002", "pack-003"]:
-		var allowed := _gallery.tile(puzzle_id)
-		assert_true(allowed.reset_allowed(), "C2 is allowed for %s" % puzzle_id)
-		assert_true(allowed.reset_visible(), "Reset is drawn for %s" % puzzle_id)
-		assert_false(allowed.reset_button().disabled, "Reset is enabled for %s" % puzzle_id)
-	var reopened := _gallery.tile("pack-003")
-	assert_eq(reopened.status_text(), "Done", "the reopened puzzle still reads Done")
-	assert_eq(reopened.best_text(), "Best 8:00", "the reopened puzzle keeps its best")
-	assert_true(reopened.shows_picture(), "the reopened puzzle keeps its thumbnail")
-
-
 # US1.4 / C3: the settings control raises its intent
 func test_c3_raises_the_settings_request() -> void:
 	_present(ConfigFile.new())
