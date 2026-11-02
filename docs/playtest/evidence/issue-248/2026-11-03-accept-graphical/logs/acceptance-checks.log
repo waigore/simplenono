@@ -1,0 +1,15 @@
+$ python3 .github/scripts/asset_manifest.py --check
+Asset manifest: 0 error(s).
+exit 0
+
+$ python3 .github/scripts/asset_catalog.py
+Asset catalog: 0 error(s).
+exit 0
+
+$ python3 .github/scripts/generate_pack.py --check
+/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-248/game/data/pack.json is current
+exit 0
+
+$ python3 -m unittest discover -s .github/scripts/tests
+tests run: 138  failures: 0  errors: 0
+OK

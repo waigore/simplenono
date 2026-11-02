@@ -1,0 +1,9 @@
+=== pack rows ===
+pack-070 size= 15 picture-id= 01a17720-ca00-7030-a55e-61e01e22c9e2 pixel-picture-id= 01a17720-ca00-713d-8e13-32098535d615 distinct= True
+pack-071 size= 15 picture-id= 01a17720-ca00-705a-b73d-2ef9380dbff1 pixel-picture-id= 01a17720-ca00-7266-ba0c-1b079d955f1f distinct= True
+pack-072 size= 15 picture-id= 01a17720-ca00-7026-8cd0-6a1d2285bf1f pixel-picture-id= 01a17720-ca00-7226-97e2-540ed1dad477 distinct= True
+pack-073 size= 15 picture-id= 01a17720-ca00-7079-8ac7-1e031ae57d0a pixel-picture-id= 01a17720-ca00-73a0-a524-e207de032a73 distinct= True
+=== generate_pack --check ===
+/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc-250/game/data/pack.json is current
+=== asset_manifest --check ===
+Asset manifest: 0 error(s).
