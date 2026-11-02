@@ -24,6 +24,7 @@ Issue labels for categorization and agent orchestration. Source of truth: `.gith
 | `type:epic` | Broad orchestration epic |
 | `type:task` | Concrete unit of agent work |
 | `type:defect` | In-game or interface bug (not specs/docs/planning) |
+| `type:feedback` | User feedback; lifecycle in [`docs/issues/feedback.md`](docs/issues/feedback.md) |
 | `status:*` | Workflow state (see [`docs/issues/workflow.md`](docs/issues/workflow.md)) |
 | `priority:*` | Handling order: critical → high → normal (default; see [`docs/labels.md`](docs/labels.md)) |
 | `no-automerge` | PR label: opt out of automatic squash-merge (user-requested only) |

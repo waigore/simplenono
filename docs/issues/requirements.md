@@ -6,8 +6,8 @@ Applies to every issue, whether filed from the GitHub form or by a skill. Index:
 - Required sections need real content. Optional sections that do not apply use `None` / `none` — do not leave them blank or drop the heading when the skill/form includes them.
 - Be specific enough that an agent or human can act without guessing (paths, behaviors, environments).
 - Titles are concise and descriptive; no mandatory title prefix.
-- Every issue carries exactly one of `type:epic`, `type:task`, or `type:defect` (unless the user explicitly adds more labels).
-- Every typed issue should carry exactly one of `priority:critical`, `priority:high`, or `priority:normal`. Create defaults to `priority:normal`. Unlabeled is treated as normal. Only humans set or change priority.
+- Every issue carries exactly one of `type:epic`, `type:task`, `type:defect`, or `type:feedback` ([feedback.md](feedback.md)).
+- Every typed issue should carry exactly one of `priority:critical`, `priority:high`, or `priority:normal`. Create defaults to `priority:normal`. Unlabeled is treated as normal. Only humans set or change priority, except [feedback.md](feedback.md).
 
 ## Epic
 
@@ -33,6 +33,7 @@ Applies to every issue, whether filed from the GitHub form or by a skill. Index:
 
 ## When to file what
 
+- **Feedback** — [feedback.md](feedback.md).
 - **Defect** — in-game / interface fail only (see above).
 - **Task** — design or spec (or related doc) work that **materially** affects implementation or functional outcome, and **no open issue** already owns it. Spec/design problems are never defects.
 - **Clarification** — PO must decide; put the issue in `pending-clarification` on the **owning** open epic/task. Do not file a defect for ambiguity.

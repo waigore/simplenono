@@ -1,6 +1,6 @@
 # Issue workflow status
 
-Applies equally to Epic, Task, and Defect. Source of truth for status labels and transitions. Skills must follow this — do not invent parallel statuses.
+Epic, Task, and Defect statuses live here. Feedback: [feedback.md](feedback.md). Do not invent parallel statuses.
 
 ## Labels
 
@@ -21,7 +21,7 @@ Catalog: [`docs/labels.md`](../labels.md).
 
 ## Priority
 
-Exactly one `priority:*` label (`critical` / `high` / `normal`). Create applies `priority:normal`. Unlabeled is treated as normal. Selection order when discovering work: [workflow-dispatch.md](workflow-dispatch.md). Humans only set or change priority; agents may only drop lower duplicates (hygiene).
+Exactly one `priority:*` label (`critical` / `high` / `normal`). Create applies `priority:normal`. Unlabeled is treated as normal. Selection order when discovering work: [workflow-dispatch.md](workflow-dispatch.md). Humans set or change priority; agents may only drop lower duplicates (hygiene). Feedback priority: [feedback.md](feedback.md).
 
 ## Transitions and evidence
 
