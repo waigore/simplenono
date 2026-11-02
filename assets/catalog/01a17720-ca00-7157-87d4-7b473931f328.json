@@ -1,0 +1,56 @@
+{
+  "kind_spec": "AK-puzzle-pictures",
+  "coverage": [
+    "V1"
+  ],
+  "state": "approved",
+  "version": 1,
+  "source_type": "ai-generation",
+  "recipe": "AK-puzzle-pictures.R1",
+  "id": "01a17720-ca00-7157-87d4-7b473931f328",
+  "handle": "puzzle-pictures/pack-005-generated",
+  "serves": [
+    "E-puzzle.P5",
+    "PER.R5",
+    "ACC.G3"
+  ],
+  "files": [
+    "puzzle-pictures/pack-005-generated.png"
+  ],
+  "tool_role": {
+    "role": "TL.1",
+    "adr": "adr-free"
+  },
+  "generation": {
+    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: one bold continuous ring five tiles thick around a two-tile square hole, tiles four times wider than the paper thickness, each tile about 10 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text. Calm clinical still-life; clear silhouette; readable at 10x10. Avoid: playful chrome; gore; horror.",
+    "negative_prompt": "playful chrome; gore; horror",
+    "tool": "Cheaper Inference",
+    "operation": "images.generations",
+    "settings": {
+      "model": "flux-2-max",
+      "size": "1024x1024",
+      "subject_class": "multi-subject and/or holed"
+    },
+    "seed": "n/a — tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": []
+    },
+    "steps": [
+      "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
+      "saved data[0] as a PNG without resampling"
+    ]
+  },
+  "guidance": "Re-run .github/scripts/puzzle_derive.py derive from this square to reproduce the pixel file.",
+  "license": {
+    "grant": "Generated under Cheaper Inference terms of service; the project may use and modify the output",
+    "tool": "Cheaper Inference"
+  },
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-02",
+    "reviewer": "agent",
+    "report": "AK-puzzle-pictures R1/V1, pack-005 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request dfd2fcbb-16ab-4268-8914-577855a65d72, saved as PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [201, 210, 212]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 31/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: dark slate blue-grey shape on pale cool grey, flat even lighting, high contrast, calm clinical composition with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+  }
+}
