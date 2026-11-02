@@ -67,6 +67,15 @@ class PixelFixture(unittest.TestCase):
         path.write_text(json.dumps(entry), encoding="utf-8")
         return path
 
+    def seeded_entries(self) -> list[dict]:
+        """Every row from the seeded silhouette, with no catalog entries."""
+        entries, index = [], 0
+        for size, count in generate_pack.SIZES:
+            for _ in range(count):
+                entries.append(generate_pack.entry(index, size, random.Random(f"pack-{index:03d}")))
+                index += 1
+        return entries
+
 
 class ShippedPackTest(unittest.TestCase):
     def setUp(self) -> None:
@@ -114,7 +123,7 @@ class NoApprovedPixelTest(PixelFixture):
         self.assertIsNone(generate_pack.pixel_fills(self.root, generate_pack.picture_ids(0)[1], 10))
 
     def test_pack_is_unchanged_without_approved_entries(self) -> None:
-        self.assertEqual(generate_pack.build(self.root), generate_pack.build(generate_pack.REPO_ROOT))
+        self.assertEqual(generate_pack.build(self.root), self.seeded_entries())
 
 
 class IneligibleEntryTest(PixelFixture):
@@ -172,7 +181,7 @@ class DerivedRowTest(PixelFixture):
 
     def test_build_rewrites_only_the_catalogued_row(self) -> None:
         entries = generate_pack.build(self.root)
-        seeded = generate_pack.build(generate_pack.REPO_ROOT)
+        seeded = self.seeded_entries()
         self.assertEqual(entries[0]["solution-fills"], [[0, 0], [0, 1], [0, 2], [5, 5]])
         self.assertEqual(entries[0]["row-clues"], [[3], [], [], [], [], [1], [], [], [], []])
         self.assertEqual(entries[1:], seeded[1:])
