@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Sync GitHub Project single-select fields from issue status:*/type:* labels.
 
-Adds the issue to the project when missing, then sets Workflow status / Issue type
-from the issue's current labels (labels → fields only). Clears a field when no
-matching label is present.
+Adds the issue to the project when missing, then sets Workflow status / Issue type /
+Priority from the issue's current labels (labels → fields only). Clears a field when
+no matching label is present.
 
 Env:
   GH_TOKEN or GITHUB_TOKEN — PAT with project (+ repo) scope
@@ -26,9 +26,11 @@ PROJECT_NUMBER = int(os.environ.get("PROJECT_NUMBER", "3"))
 
 STATUS_FIELD_NAME = "Workflow status"
 TYPE_FIELD_NAME = "Issue type"
+PRIORITY_FIELD_NAME = "Priority"
 
 STATUS_PREFIX = "status:"
 TYPE_PREFIX = "type:"
+PRIORITY_PREFIX = "priority:"
 
 STATUS_OPTIONS = {
     "pending-review",
@@ -44,6 +46,7 @@ STATUS_OPTIONS = {
     "resolved",
 }
 TYPE_OPTIONS = {"epic", "task", "defect", "feedback"}
+PRIORITY_OPTIONS = {"critical", "high", "normal"}
 
 
 def _token() -> str:
@@ -134,8 +137,8 @@ def resolve_issue() -> tuple[str, int, list[str]]:
     return issue["id"], issue["number"], labels
 
 
-def load_project() -> tuple[str, dict[str, Any], dict[str, Any]]:
-    """Return (project_id, status_field, type_field) with option name→id maps."""
+def load_project() -> tuple[str, dict[str, Any], dict[str, Any], dict[str, Any]]:
+    """Return (project_id, status, type, priority) fields with option name→id maps."""
     data = gql(
         """
         query($login: String!, $number: Int!) {
@@ -172,10 +175,12 @@ def load_project() -> tuple[str, dict[str, Any], dict[str, Any]]:
     }
     status = by_name.get(STATUS_FIELD_NAME)
     typ = by_name.get(TYPE_FIELD_NAME)
-    if not status or not typ:
+    priority = by_name.get(PRIORITY_FIELD_NAME)
+    if not status or not typ or not priority:
         print(
             f"error: project missing fields "
-            f"{STATUS_FIELD_NAME!r} and/or {TYPE_FIELD_NAME!r}",
+            f"{STATUS_FIELD_NAME!r}, {TYPE_FIELD_NAME!r}, "
+            f"and/or {PRIORITY_FIELD_NAME!r}",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -185,7 +190,8 @@ def load_project() -> tuple[str, dict[str, Any], dict[str, Any]]:
 
     status["option_ids"] = option_map(status)
     typ["option_ids"] = option_map(typ)
-    return project["id"], status, typ
+    priority["option_ids"] = option_map(priority)
+    return project["id"], status, typ, priority
 
 
 def ensure_item(project_id: str, issue_id: str) -> str:
@@ -312,18 +318,22 @@ def sync_field(
 
 def main() -> None:
     issue_id, number, labels = resolve_issue()
-    project_id, status_field, type_field = load_project()
+    project_id, status_field, type_field, priority_field = load_project()
     item_id = ensure_item(project_id, issue_id)
 
     status_value = pick_value(labels, STATUS_PREFIX, STATUS_OPTIONS)
     type_value = pick_value(labels, TYPE_PREFIX, TYPE_OPTIONS)
+    priority_value = pick_value(labels, PRIORITY_PREFIX, PRIORITY_OPTIONS)
 
     status_result = sync_field(project_id, item_id, status_field, status_value)
     type_result = sync_field(project_id, item_id, type_field, type_value)
+    priority_result = sync_field(
+        project_id, item_id, priority_field, priority_value
+    )
 
     print(
         f"issue #{number}: Workflow status={status_result}, "
-        f"Issue type={type_result}"
+        f"Issue type={type_result}, Priority={priority_result}"
     )
 
 

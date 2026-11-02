@@ -1,6 +1,7 @@
-# Keep GitHub Project "Workflow status" / "Issue type" in sync with issue labels.
-# Labels → project fields only. Requires repo secret PROJECT_SYNC_TOKEN
-# (classic PAT with `project` + `repo`, or fine-grained with Projects write).
+# Keep GitHub Project "Workflow status" / "Issue type" / "Priority" in sync with
+# issue labels. Labels → project fields only. Requires repo secret
+# PROJECT_SYNC_TOKEN (classic PAT with `project` + `repo`, or fine-grained with
+# Projects write).
 name: Sync project fields from labels
 
 on:
@@ -25,7 +26,8 @@ jobs:
         (github.event.action == 'labeled' || github.event.action == 'unlabeled') &&
         (
           startsWith(github.event.label.name, 'status:') ||
-          startsWith(github.event.label.name, 'type:')
+          startsWith(github.event.label.name, 'type:') ||
+          startsWith(github.event.label.name, 'priority:')
         )
       )
     runs-on: ubuntu-latest
