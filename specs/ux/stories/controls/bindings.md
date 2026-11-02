@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 - **Spec key**: `IN`
 - **Glossary terms**: [Binding](../../glossary.md)
 - **Parent stories**: [`../controls.md`](../controls.md)
-- **Coverage note**: Windows B1–B10 proven; macOS B11–B20 and Linux B21–B30 match Windows. iOS B31–B33 proven; Android B34–B36 match iOS.
+- **Coverage note**: Windows B1–B10 and iOS B31–B33 proven; macOS, Linux, and Android B34–B36 mirror them; B37 is proven by US1.11.
 
 ## Coverage
 
@@ -15,6 +15,7 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 | B1, B4–B10 | Windows pointer/keyboard | US1.1, US1.2, US1.2b, US1.5–US1.7 |
 | B2, B3 | Windows complement + drag | US1.3, US1.4 |
 | B31–B33 | iOS tap, drag, pause | US1.8–US1.10 |
+| B37 | Android phone/system Back | US1.11 |
 | B11–B30, B34–B36 | Mirror desktop/mobile | Coverage note |
 
 ## US1: Platform bindings
@@ -131,4 +132,29 @@ Then only IN.drag-paint fires
 Given iOS, UI-puzzle open
 When Puzzle Settings (C6) is activated
 Then only IN.pause fires
+```
+
+### US1.11: Android Back
+
+- **Proves**: B37
+
+```gherkin
+Given UI-puzzle Ready
+When Back fires
+Then IN.back fires and C1 leaves to UI-gallery
+Given UI-settings paused
+When Back fires
+Then C3 resumes the puzzle
+Given UI-result, C1 available
+When Back fires
+Then C1 returns to UI-gallery
+Given UI-result without C1
+When Back fires
+Then nothing is raised and the screen stays
+Given UI-gallery
+When Back fires
+Then no screen changes and the platform's Back runs
+Given EX.confirm showing
+When Back fires
+Then nothing is raised, the box stays, and no mark is placed
 ```

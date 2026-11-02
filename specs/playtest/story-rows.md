@@ -18,7 +18,7 @@ One row per playtestable design story and UX journey/story under coverage mode `
 | `END` | none | Wave 3 — leaves filed when that wave is expanded (epic #97). |
 | `PRG` | none | Wave 2/3 — delivered through #94 and closed via #97; leaves not yet filed. |
 | `J-play-puzzle` | #112 | — |
-| `J-leave-resume` | none | Wave 2 — leaves filed when that wave is expanded (epic #96). |
+| `J-leave-resume` | #323 | `US1.1` delivered by #310; `US1.2` pause-then-quit delivered by #323. |
 | `J-gallery-reset` | #94 | Gallery refresh and Reset allowedness are #94. The delivered confirm box and the `US1.2` cancel are #311; the box clauses on `US1.1` show/confirm are #96. |
 | `J-settings` | #284 | — |
 | `ACT-player` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |

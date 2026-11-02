@@ -296,8 +296,10 @@ func cancel_from_input() -> bool:
 	return true
 
 
-## [code]IN.back[/code] when no [code]EX.confirm[/code] is showing (B5/B15/B25): the
-## current screen's own back control — settings C3, puzzle C1 Leave, or result C1.
+## [code]IN.back[/code] when no [code]EX.confirm[/code] is showing (B5/B15/B25, B37):
+## the current screen's own back control — settings C3, puzzle C1 Leave, or result C1.
+## Only the gallery has no [code]IN.back[/code] control, so it is the one view that
+## reports false; the result screen consumes Back even while C1 is unavailable.
 func back_from_input() -> bool:
 	match _view:
 		SETTINGS_VIEW:
@@ -309,7 +311,8 @@ func back_from_input() -> bool:
 			leave_puzzle()
 			return true
 		RESULT_VIEW:
-			return _result.activate_back()
+			_result.activate_back()
+			return true
 	return false
 
 
@@ -481,8 +484,13 @@ func _process(delta: float) -> void:
 	_result.advance(int(roundf(delta * 1000.0)))
 
 
+## Every gallery return ([code]NAV.T1[/code], T3, T5, T6). Clearing the paused-path
+## return here keeps the guard ([method close_settings]) as the only exit that resumes
+## an attempt paused into settings: a gallery path never resumes it and
+## [method settings_returns_to_puzzle] is false afterwards.
 func _show_gallery() -> void:
 	_view = GALLERY_VIEW
+	_settings_return = GALLERY_VIEW
 	_gallery.visible = true
 	_gallery.refresh()
 	_puzzle.visible = false
