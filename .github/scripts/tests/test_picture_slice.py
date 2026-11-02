@@ -5,9 +5,12 @@ pure helpers that decide the board size and the prompt a slice sends.
 """
 from __future__ import annotations
 
+import subprocess
 import sys
+import types
 import unittest
 from pathlib import Path
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -65,6 +68,59 @@ class BoardConfigTest(unittest.TestCase):
         self.assertIn("readable at 15x15", composed)
         self.assertIn(picture_slice.NEGATIVE, composed)
         self.assertTrue(composed.startswith("a shape. "))
+
+
+class TransientErrorTest(unittest.TestCase):
+    def test_rate_limit_and_gateway_errors_are_transient(self) -> None:
+        for code in picture_slice.TRANSIENT_HTTP_CODES:
+            self.assertTrue(picture_slice.is_transient(f"Cheaper Inference {code}: nope"))
+
+    def test_a_missing_key_or_bad_request_aborts(self) -> None:
+        self.assertFalse(picture_slice.is_transient("Cheaper Inference HTTP 401: bad key"))
+        self.assertFalse(picture_slice.is_transient("HTTP 422: no such model"))
+
+    def test_generate_retries_a_transient_error_then_succeeds(self) -> None:
+        calls = []
+        results = [subprocess.CompletedProcess([], 1, "", "Cheaper Inference HTTP 503: busy"),
+                   subprocess.CompletedProcess([], 0, '{"out": "square.jpg"}\n', "")]
+
+        def fake_run(*_args, **_kwargs):
+            calls.append(1)
+            return results[len(calls) - 1]
+
+        class FakeImage:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_exc):
+                return False
+
+            def convert(self, _mode):
+                return types.SimpleNamespace(save=lambda *_a, **_k: None)
+
+        fake_pil = types.ModuleType("PIL")
+        fake_pil.Image = types.SimpleNamespace(open=lambda _path: FakeImage())
+        with mock.patch.object(picture_slice.subprocess, "run", fake_run), \
+                mock.patch.dict(sys.modules, {"PIL": fake_pil}), \
+                mock.patch.object(picture_slice.time, "sleep") as sleep, \
+                mock.patch.object(Path, "unlink"), \
+                mock.patch.object(picture_slice, "generate", wraps=picture_slice.generate) as real:
+            out, meta = real("a prompt", Path("."), "pack-130", 1, "key", retries=2, wait=5.0)
+        self.assertEqual(meta, {"out": "square.jpg"})
+        self.assertEqual(out, Path("pack-130-attempt1.png"))
+        self.assertEqual(len(calls), 2)
+        sleep.assert_called_once_with(5.0)
+
+    def test_generate_gives_up_after_the_last_retry(self) -> None:
+        def fake_run(*_args, **_kwargs):
+            return subprocess.CompletedProcess([], 1, "", "Cheaper Inference HTTP 503: busy")
+
+        with mock.patch.object(picture_slice.subprocess, "run", fake_run), \
+                mock.patch.object(picture_slice.time, "sleep") as sleep:
+            with self.assertRaises(SystemExit):
+                picture_slice.generate("a prompt", Path("."), "pack-130", 1, "key",
+                                       retries=2, wait=5.0)
+        self.assertEqual(sleep.call_count, 2)
 
 
 if __name__ == "__main__":
