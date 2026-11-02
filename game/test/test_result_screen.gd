@@ -9,6 +9,8 @@ extends GutTest
 
 const SCREEN_SCENE := preload("res://presentation/result.tscn")
 const PUZZLE_ID := "pack-000"
+const TEST_PATH := "user://progress-result-screen-test.cfg"
+const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 var _screen: ResultScreen
 var _definition: PuzzleDefinition
@@ -23,6 +25,16 @@ func before_each() -> void:
 	_screen.set_process(false)
 
 
+func after_each() -> void:
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+
+
 ## The shipped puzzle's definition, read the way the shell reads it.
 func _shipped_definition() -> PuzzleDefinition:
 	var pack := Pack.new()
@@ -35,7 +47,9 @@ func _shipped_definition() -> PuzzleDefinition:
 ## One attempt solved through the real rule; returns the grid the solve carried
 ## ([code]CTR-attempt[/code] S12).
 func _solve_the_shipped_puzzle() -> MarkGrid:
-	var pack := Pack.new()
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+	var pack := Pack.new(TEST_PATH)
 	pack.load_pack(Pack.PACK_PATH)
 	var attempt := Attempt.new(pack)
 	assert_true(attempt.open(PUZZLE_ID), "the shipped puzzle opens")

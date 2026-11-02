@@ -21,8 +21,9 @@ extends RefCounted
 ## hands and testable without a clock, and no screen or input code lives here.
 ##
 ## The state itself stays in [AttemptState] ([SCH-attempt]): this component orders the
-## calls and owns the open puzzle's rules, never the fields. Pause, resume, and leave
-## (O4-O6), and the progress file are not built here (#96).
+## calls and owns the open puzzle's rules, never the fields. Pause and resume are O4/O5;
+## [method leave] is O6 (specs/technical/sequences/leave.md S1-S5, B1-B3). Every commit
+## goes through [b]CTR-pack[/b] O5, which replaces `user://progress.cfg` (G3).
 
 ## [b]CTR-attempt[/b] E3: (puzzle id, the post-auto-cross grid, the line status from
 ## [b]CTR-rules[/b] O2), emitted each time the beat ends with the puzzle open. Connect
@@ -33,7 +34,8 @@ signal ready(puzzle_id: String, grid: MarkGrid, line_status: LineStatusCheck)
 ## [method mark] (specs/technical/sequences/mark.md S13).
 signal solved(puzzle_id: String, elapsed: int)
 
-## [b]CTR-attempt[/b] E2: (puzzle id). Leave emits it (#96).
+## [b]CTR-attempt[/b] E2: (puzzle id). Emitted by [method leave] after the attempt is
+## cleared (specs/technical/sequences/leave.md S4).
 signal left(puzzle_id: String)
 
 ## [b]CTR-attempt[/b] E3 bind name, kept so a shell can look the signal up by contract id.
@@ -125,7 +127,7 @@ func end_get_set_ready() -> bool:
 	var line_status := _rules.line_status(_state.marks())
 	# S11: commit only on a change.
 	if _state.marks().snapshot() != marks_before or _state.in_progress() != was_in_progress:
-		_state.commit(_progress, _puzzle_id)
+		_commit()
 	# S13.
 	ready.emit(_puzzle_id, _state.marks(), line_status)
 	return true
@@ -162,7 +164,7 @@ func mark(row: int, column: int, mark_value: CellMark.Mark) -> MarkResult:
 	if _rules.is_solved(grid):
 		return _solve(line_status)
 	# S6.
-	_state.commit(_progress, _puzzle_id)
+	_commit()
 	return MarkResult.new(grid, line_status)
 
 
@@ -209,7 +211,7 @@ func pause() -> void:
 		return
 	_state.pause()
 	if _state.marks().has_any_mark():
-		_state.commit(_progress, _puzzle_id)
+		_commit()
 
 
 ## O5 (specs/technical/sequences/pause.md S5-S6): clears paused, so marks follow
@@ -219,6 +221,37 @@ func resume() -> void:
 	if _state == null:
 		return
 	_state.resume()
+
+
+## O6 (specs/technical/sequences/leave.md S1-S5, B1-B3): commits the open attempt's
+## marks, elapsed, and attempt status through [b]CTR-pack[/b] O5 when there is something
+## to persist (S2), clears pause and the open attempt (S3), and emits E2 with the puzzle
+## id (S4). A leave during get-set-ready commits the restored marks and elapsed as held
+## and does not run the beat's auto-cross (B1). A not-started attempt with nothing to
+## persist skips the commit (B3). With no open attempt it changes nothing and returns
+## false (B2).
+func leave() -> bool:
+	if _state == null:
+		return false
+	var leaving_id := _puzzle_id
+	if _state.marks().has_any_mark():
+		_commit()
+	_state.resume()
+	_state = null
+	_beat_running = false
+	_solved_grid = null
+	_puzzle_id = ""
+	_definition = null
+	_rules = null
+	_progress = null
+	left.emit(leaving_id)
+	return true
+
+
+## [b]CTR-pack[/b] O5: commits this attempt's marks, elapsed, and attempt status through
+## the pack, which replaces `user://progress.cfg` (G3).
+func _commit() -> void:
+	_pack.commit(_puzzle_id, _state.marks(), _state.elapsed(), _state.in_progress())
 
 
 ## [SCH-attempt] F1: the open puzzle's id, or empty while none is open.

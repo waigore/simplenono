@@ -23,6 +23,7 @@ func before_each():
 	var scene := load(SHELL_SCENE) as PackedScene
 	assert_not_null(scene, "shell scene loads")
 	_shell = scene.instantiate() as Shell
+	_shell.progress_path = TEST_PATH
 	add_child_autofree(_shell)
 	_shell.get_node("%Puzzle").set_process(false)
 
@@ -138,6 +139,41 @@ func test_leave_returns_to_the_gallery():
 	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery shows again")
 	assert_null(_shell.attempt(), "the attempt is cleared")
 	assert_false(_control("Puzzle").visible, "E2: the puzzle screen is off")
+
+
+# SEQ-leave B2: a leave with no open attempt keeps the current screen
+func test_leave_with_no_open_attempt_keeps_the_gallery():
+	_shell.leave_puzzle()
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "B2: the gallery stays")
+	assert_null(_shell.attempt(), "B2: no attempt is opened")
+
+
+# SEQ-leave S2/S5: the leave commits, and the gallery re-reads the restored facts
+func test_leave_commits_and_the_gallery_shows_the_restored_facts():
+	assert_true(_shell.open_puzzle("pack-000"), "a puzzle is open")
+	var attempt := _shell.attempt()
+	_shell.get_node("%Puzzle").finish_ready_beat()
+	var cell := _first_clear_cell(attempt)
+	assert_true(attempt.state().apply_mark(cell.x, cell.y, CellMark.Mark.FILL), "a mark applies")
+
+	_shell.leave_puzzle()
+
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "S5: the gallery shows")
+	assert_eq(
+		_shell.gallery_screen().tile("pack-000").status_text(),
+		"In progress",
+		"S5: O1 reads the committed attempt",
+	)
+
+
+## The first cell the ready beat left clear, so a mark changes the grid.
+func _first_clear_cell(attempt: Attempt) -> Vector2i:
+	var grid := attempt.state().marks()
+	for row in grid.size:
+		for column in grid.size:
+			if grid.mark_at(row, column) == CellMark.Mark.CLEAR:
+				return Vector2i(row, column)
+	return Vector2i(-1, -1)
 
 
 # SEQ reset S1 / S6 / B1: the gallery's C2 trigger reaches the shell and changes nothing
