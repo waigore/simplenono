@@ -1,0 +1,14 @@
+diag: CFG.MORPH_STAGE_MS = 300 (two stages = 600 ms)
+diag: view after solve = result
+diag: 16 real frames after the solve ticks; summed delta = 436.6 ms
+diag: per-frame delta min=0.4 max=33.2 mean=27.3 ms
+diag: reached stage=S1
+diag: S1 layers -> fills.visible=true pixel.visible=true picture.visible=true
+diag: S1 has_content -> fills=true pixel=false picture=false
+diag: solution fills = 42
+diag: stage=S1
+diag: fills  vis=true opacity=1.00 content=true fills=42 size=(836.0, 360.0)
+diag: pixel  vis=true opacity=0.00 content=false size=(836.0, 360.0)
+diag: picture vis=true opacity=0.00 content=false size=(836.0, 360.0)
+diag: reveal size=(836.0, 360.0) global_rect=[P: (32.0, 32.0), S: (836.0, 360.0)]
+diag: can_go_back=true
