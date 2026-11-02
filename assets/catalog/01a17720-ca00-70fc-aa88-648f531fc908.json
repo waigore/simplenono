@@ -1,0 +1,56 @@
+{
+  "kind_spec": "AK-puzzle-pictures",
+  "coverage": [
+    "V1"
+  ],
+  "state": "approved",
+  "version": 1,
+  "source_type": "ai-generation",
+  "recipe": "AK-puzzle-pictures.R1",
+  "id": "01a17720-ca00-70fc-aa88-648f531fc908",
+  "handle": "puzzle-pictures/pack-038-generated",
+  "serves": [
+    "E-puzzle.P5",
+    "PER.R5",
+    "ACC.G3"
+  ],
+  "files": [
+    "puzzle-pictures/pack-038-generated.png"
+  ],
+  "tool_role": {
+    "role": "TL.1",
+    "adr": "adr-free"
+  },
+  "generation": {
+    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: two solid masses on a pale background, a tall narrow block on the left about fourteen cells tall and six cells wide and a wide flat slab on the right about eight cells tall and seven cells wide, a clear four-cell gap between them, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+    "negative_prompt": "playful chrome; gore; horror",
+    "tool": "Cheaper Inference",
+    "operation": "images.generations",
+    "settings": {
+      "model": "flux-2-max",
+      "size": "1024x1024",
+      "subject_class": "multi-subject and/or holed"
+    },
+    "seed": "n/a \u2014 tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": []
+    },
+    "steps": [
+      "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
+      "saved data[0] as a PNG without resampling"
+    ]
+  },
+  "guidance": "Re-run .github/scripts/puzzle_derive.py derive from this square to reproduce the pixel file.",
+  "license": {
+    "grant": "Generated under Cheaper Inference terms of service; the project may use and modify the output",
+    "tool": "Cheaper Inference"
+  },
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-02",
+    "reviewer": "agent",
+    "report": "AK-puzzle-pictures R1/V1, pack-038 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request eaa5ad17-fc28-40d7-aebc-ba1e5234a110, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 74.3 against pale background luma mean 191.7 (contrast 117.4); the stored 15x15 pixel silhouette is two separate block masses of geometric form, a wide block on each side of a clear vertical gap, calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+  }
+}
