@@ -1,0 +1,7 @@
+$ godot --headless --path game -s test/integration/run_protocol.gd -- --debug-seams --protocol=app-start
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SEV level=info event=session-start time=1793647724.821 session=session-1793647724 build=4.7.2-stable (official) story=- message=
+SEV level=info event=session-end time=1793647724.954 session=session-1793647724 build=4.7.2-stable (official) story=- message=
+HARNESS protocol=app-start outcome=pass run=integration/logs/harness-1793647724-app-start.log
+exit=0
