@@ -150,8 +150,6 @@ func _execute(step: Dictionary) -> bool:
 		result = _pause()
 	elif kind == "resume":
 		result = _resume()
-	elif kind == "leave":
-		result = _leave()
 	elif kind == "settings":
 		result = _settings()
 	elif kind == "back":
@@ -387,17 +385,6 @@ func _pause() -> bool:
 func _resume() -> bool:
 	if _seams == null or not _seams.resume_session():
 		return _failed_with("resume_session() returned false")
-	return _passed()
-
-
-func _leave() -> bool:
-	if _shell == null:
-		return _failed_with("no shell to leave through")
-	_shell.leave_puzzle()
-	if _shell.attempt() != null:
-		return _failed_with("leave did not clear the open attempt")
-	_attempt = null
-	_record_flow("back", true)
 	return _passed()
 
 
