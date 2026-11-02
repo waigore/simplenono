@@ -19,13 +19,13 @@ One row per playtestable design story and UX journey/story under coverage mode `
 | `PRG` | none | Wave 2/3 — delivered through #94 and closed via #97; leaves not yet filed. |
 | `J-play-puzzle` | #112 | — |
 | `J-leave-resume` | none | Wave 2 — leaves filed when that wave is expanded (epic #96). |
-| `J-gallery-reset` | #94 | Gallery-side legs delivered; `US1.1`'s confirm path closes jointly with #96's `EX` leaves. |
+| `J-gallery-reset` | #94 | Gallery refresh and Reset allowedness are #94. The confirm box, `US1.1` show/confirm, and `US1.2` cancel are #96. |
 | `J-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `ACT-player` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `NAV` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `IN` | #111 | Mark input in Wave 1; platform bindings continue via epic #96 in Wave 2. |
 | `EX` | none | Wave 2 — leaves filed when that wave is expanded (epic #96). |
-| `UI-gallery` | #94 | — |
+| `UI-gallery` | #94 | `US1.6` "Then `EX.confirm` appears" is proved by #96. #94 proves Reset allowedness and the reset request. |
 | `UI-puzzle` | #110 | — |
 | `UI-result` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `UI-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
