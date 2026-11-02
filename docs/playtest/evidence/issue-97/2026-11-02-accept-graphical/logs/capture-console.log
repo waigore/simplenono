@@ -1,0 +1,1235 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+libasound.so.2: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+libasound.so.2: cannot open shared object file: No such file or directory
+WARNING: All audio drivers failed, falling back to the dummy driver.
+     at: initialize (servers/audio/audio_server.cpp:258)
+
+SEV level=info event=session-start time=1793592662.982 session=issue-97-capture build=main@b9c5668 story=END message=
+capture: PASS probe: the shipped pack serves pack-000
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.187 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.188 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.189 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.190 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.191 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.192 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.193 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.194 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.195 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=reset time=1793592664.196 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS S1: 199 of 200 reads completion rate 0.995 (0.995)
+capture: PASS S1: the pack is not finished at 199 of 200
+ERROR: Unable to open file: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.201 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.202 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.202 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [7] _run (res://probe_capture_97.gd:78)
+       [8] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.202 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-001-generated.png-76c097cefa71f8ea0cdaf118617a5711.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.202 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-001-generated.png-76c097cefa71f8ea0cdaf118617a5711.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.203 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-001-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.203 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-7282-8d49-faa77f364925 did not load a resource: res://assets/puzzle-pictures/pack-001-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [7] _run (res://probe_capture_97.gd:78)
+       [8] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.203 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-7282-8d49-faa77f364925 did not load a resource: res://assets/puzzle-pictures/pack-001-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-002-generated.png-56bcbb34b6045a6cf6a36661541af0c9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.203 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-002-generated.png-56bcbb34b6045a6cf6a36661541af0c9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.203 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-002-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.204 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-70db-b65c-415f3b82e2a9 did not load a resource: res://assets/puzzle-pictures/pack-002-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [7] _run (res://probe_capture_97.gd:78)
+       [8] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.204 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-70db-b65c-415f3b82e2a9 did not load a resource: res://assets/puzzle-pictures/pack-002-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-003-generated.png-71c3a299cb25e11c2070293aefa7871d.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.204 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-003-generated.png-71c3a299cb25e11c2070293aefa7871d.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.204 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-003-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [6] _run (res://probe_capture_97.gd:78)
+       [7] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.204 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-734a-b32b-1640c9b82876 did not load a resource: res://assets/puzzle-pictures/pack-003-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _pack_finished_protocol (res://probe_capture_97.gd:97)
+       [7] _run (res://probe_capture_97.gd:78)
+       [8] _settle (res://probe_capture_97.gd:285)
+SEV level=error event=engine time=1793592664.205 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-734a-b32b-1640c9b82876 did not load a resource: res://assets/puzzle-pictures/pack-003-generated.png (core/variant/variant_utility.cpp:1023)
+capture: PASS S1: the gallery shows 199 completed (199)
+capture: S1 gallery=Completed 199 / 200 rate=0.995 finished=false
+capture: S1 dump /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/logs/state-s1-pack-199.json
+capture: shot 00-pack-at-199-of-200 -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/screenshots/00-pack-at-199-of-200.png (error 0)
+TEL event=open time=1793592664.611 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=ready time=1793592664.770 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=commit time=1793592664.776 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS open: marks are allowed once the beat ends
+capture: PASS probe: pack-199 opens
+capture: PASS S1: the remaining puzzle is not ever-completed
+capture: PASS S1: the remaining puzzle is one fill short
+capture: PASS S1: the seeded near-solve is still in progress at 0.995
+capture: S1 near-solve dump /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/logs/state-s1-last-puzzle-near-solve.json
+capture: shot 01-last-puzzle-near-solve -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/screenshots/01-last-puzzle-near-solve.png (error 0)
+TEL event=solved time=1793592665.291 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=mark time=1793592665.300 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS S2: CTR-attempt E1 solved was emitted once
+capture: PASS S2: E1 carries the last puzzle id and stopped elapsed ([["pack-199", 137]])
+capture: S3 inspect(pack-199)={ "puzzle_id": "pack-199", "ever_completed": true, "in_progress": false, "marks": <null>, "elapsed": 0, "personal_best": 137 }
+capture: PASS P1: the last puzzle is ever-completed
+capture: PASS P1: the record's attempt is not in progress
+capture: PASS P1: the record's elapsed is cleared (0)
+capture: PASS P1: the PB is that run's time (137)
+capture: PASS P2: GS.completion-rate is 1 (1.0)
+capture: PASS P2: CMP-pack serves pack finished
+capture: P2 rate=1.0 finished=true
+capture: PASS S3: the solve opens the result screen
+capture: S3 pack dump /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/logs/state-s3-pack-finished.json
+capture: shot 02-pack-finished-after-last-solve -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/screenshots/02-pack-finished-after-last-solve.png (error 0)
+ERROR: Unable to open file: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.584 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.584 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.584 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _show_gallery (res://presentation/shell.gd:322)
+       [7] close_result (res://presentation/shell.gd:152)
+       [8] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.584 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-001-generated.png-76c097cefa71f8ea0cdaf118617a5711.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.585 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-001-generated.png-76c097cefa71f8ea0cdaf118617a5711.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.585 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-001-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.585 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-7282-8d49-faa77f364925 did not load a resource: res://assets/puzzle-pictures/pack-001-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _show_gallery (res://presentation/shell.gd:322)
+       [7] close_result (res://presentation/shell.gd:152)
+       [8] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.586 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-7282-8d49-faa77f364925 did not load a resource: res://assets/puzzle-pictures/pack-001-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-002-generated.png-56bcbb34b6045a6cf6a36661541af0c9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.586 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-002-generated.png-56bcbb34b6045a6cf6a36661541af0c9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.586 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-002-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.587 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-70db-b65c-415f3b82e2a9 did not load a resource: res://assets/puzzle-pictures/pack-002-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _show_gallery (res://presentation/shell.gd:322)
+       [7] close_result (res://presentation/shell.gd:152)
+       [8] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.587 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-70db-b65c-415f3b82e2a9 did not load a resource: res://assets/puzzle-pictures/pack-002-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-003-generated.png-71c3a299cb25e11c2070293aefa7871d.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.587 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-003-generated.png-71c3a299cb25e11c2070293aefa7871d.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.588 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-003-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _show_gallery (res://presentation/shell.gd:322)
+       [6] close_result (res://presentation/shell.gd:152)
+       [7] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [8] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.588 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-734a-b32b-1640c9b82876 did not load a resource: res://assets/puzzle-pictures/pack-003-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _show_gallery (res://presentation/shell.gd:322)
+       [7] close_result (res://presentation/shell.gd:152)
+       [8] _pack_finished_protocol (res://probe_capture_97.gd:136)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.588 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-734a-b32b-1640c9b82876 did not load a resource: res://assets/puzzle-pictures/pack-003-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.628 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.628 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.628 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [7] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.629 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-001-generated.png-76c097cefa71f8ea0cdaf118617a5711.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.629 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-001-generated.png-76c097cefa71f8ea0cdaf118617a5711.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.629 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-001-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.630 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-7282-8d49-faa77f364925 did not load a resource: res://assets/puzzle-pictures/pack-001-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [7] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.630 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-7282-8d49-faa77f364925 did not load a resource: res://assets/puzzle-pictures/pack-001-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-002-generated.png-56bcbb34b6045a6cf6a36661541af0c9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.630 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-002-generated.png-56bcbb34b6045a6cf6a36661541af0c9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.631 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-002-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.631 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-70db-b65c-415f3b82e2a9 did not load a resource: res://assets/puzzle-pictures/pack-002-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [7] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.631 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-70db-b65c-415f3b82e2a9 did not load a resource: res://assets/puzzle-pictures/pack-002-generated.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-003-generated.png-71c3a299cb25e11c2070293aefa7871d.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.631 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-003-generated.png-71c3a299cb25e11c2070293aefa7871d.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.632 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-003-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _picture_for_entry (res://presentation/gallery.gd:226)
+       [3] _rebuild (res://presentation/gallery.gd:200)
+       [4] refresh (res://presentation/gallery.gd:79)
+       [5] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [6] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.632 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-734a-b32b-1640c9b82876 did not load a resource: res://assets/puzzle-pictures/pack-003-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _picture_for_entry (res://presentation/gallery.gd:226)
+       [4] _rebuild (res://presentation/gallery.gd:200)
+       [5] refresh (res://presentation/gallery.gd:79)
+       [6] _pack_finished_protocol (res://probe_capture_97.gd:137)
+       [7] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592665.632 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-734a-b32b-1640c9b82876 did not load a resource: res://assets/puzzle-pictures/pack-003-generated.png (core/variant/variant_utility.cpp:1023)
+capture: PASS S3: the gallery shows 200 completed (200)
+capture: PASS S3: the gallery completion rate is 1 (1.0)
+capture: S3 gallery=Completed 200 / 200 rate=1.0
+capture: shot 03-gallery-completed-200-of-200 -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/screenshots/03-gallery-completed-200-of-200.png (error 0)
+TEL event=open time=1793592666.070 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=ready time=1793592666.135 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=commit time=1793592666.136 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS open: marks are allowed once the beat ends
+capture: PASS S: the replay opens at elapsed 00
+capture: PASS S: reopening keeps the stored PB (60)
+capture: 04-first-solve-pb-set near-solve inspect=pb=60
+capture: 04-first-solve-pb-set near-solve dump /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/logs/state-04-first-solve-pb-set.json
+capture: shot 04-first-solve-pb-set -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/screenshots/04-first-solve-pb-set.png (error 0)
+ERROR: Unable to open file: res://.godot/imported/pack-000-pixel.png-62937adfffa32c89397d8809ca5bbeda.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.412 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-pixel.png-62937adfffa32c89397d8809ca5bbeda.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.412 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-pixel.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.413 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-7255-80b3-eb4ab429fc0b did not load a resource: res://assets/puzzle-pictures/pack-000-pixel.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _on_attempt_solved (res://presentation/shell.gd:285)
+       [4] _solve (res://play/attempt.gd:185)
+       [5] mark (res://play/attempt.gd:163)
+       [6] _mark (res://presentation/mark_input.gd:196)
+       [7] release_stroke (res://presentation/mark_input.gd:80)
+       [8] _tap (res://probe_capture_97.gd:271)
+       [9] _open_solving (res://probe_capture_97.gd:170)
+       [10] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.413 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-7255-80b3-eb4ab429fc0b did not load a resource: res://assets/puzzle-pictures/pack-000-pixel.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.414 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.414 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.414 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _on_attempt_solved (res://presentation/shell.gd:286)
+       [4] _solve (res://play/attempt.gd:185)
+       [5] mark (res://play/attempt.gd:163)
+       [6] _mark (res://presentation/mark_input.gd:196)
+       [7] release_stroke (res://presentation/mark_input.gd:80)
+       [8] _tap (res://probe_capture_97.gd:271)
+       [9] _open_solving (res://probe_capture_97.gd:170)
+       [10] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.414 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png (core/variant/variant_utility.cpp:1023)
+TEL event=solved time=1793592666.415 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=mark time=1793592666.418 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS 04-first-solve-pb-set: CTR-attempt E1 solved was emitted once
+capture: PASS 04-first-solve-pb-set: ever-completed is true
+capture: PASS 04-first-solve-pb-set: marks are cleared after the solve
+capture: PASS 04-first-solve-pb-set: the attempt is not started
+capture: PASS 04-first-solve-pb-set: the PB becomes the shorter time (59)
+capture: PASS 04-first-solve-pb-set: the pack stays finished through the replay
+capture: PASS 04-first-solve-pb-set: completion rate stays 1 (1.0)
+capture: 04-first-solve-pb-set solved inspect=pb=59
+TEL event=open time=1793592666.456 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=ready time=1793592666.554 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=commit time=1793592666.556 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS open: marks are allowed once the beat ends
+capture: PASS S: the replay opens at elapsed 10:00
+capture: PASS S: reopening keeps the stored PB (59)
+capture: 05-longer-replay-keeps-pb near-solve inspect=pb=59
+capture: 05-longer-replay-keeps-pb near-solve dump /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/logs/state-05-longer-replay-keeps-pb.json
+capture: shot 05-longer-replay-keeps-pb -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/screenshots/05-longer-replay-keeps-pb.png (error 0)
+ERROR: Unable to open file: res://.godot/imported/pack-000-pixel.png-62937adfffa32c89397d8809ca5bbeda.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.857 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-pixel.png-62937adfffa32c89397d8809ca5bbeda.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.858 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-pixel.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.858 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-7255-80b3-eb4ab429fc0b did not load a resource: res://assets/puzzle-pictures/pack-000-pixel.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _on_attempt_solved (res://presentation/shell.gd:285)
+       [4] _solve (res://play/attempt.gd:185)
+       [5] mark (res://play/attempt.gd:163)
+       [6] _mark (res://presentation/mark_input.gd:196)
+       [7] release_stroke (res://presentation/mark_input.gd:80)
+       [8] _tap (res://probe_capture_97.gd:271)
+       [9] _open_solving (res://probe_capture_97.gd:170)
+       [10] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.858 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-7255-80b3-eb4ab429fc0b did not load a resource: res://assets/puzzle-pictures/pack-000-pixel.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.859 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.859 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.859 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _on_attempt_solved (res://presentation/shell.gd:286)
+       [4] _solve (res://play/attempt.gd:185)
+       [5] mark (res://play/attempt.gd:163)
+       [6] _mark (res://presentation/mark_input.gd:196)
+       [7] release_stroke (res://presentation/mark_input.gd:80)
+       [8] _tap (res://probe_capture_97.gd:271)
+       [9] _open_solving (res://probe_capture_97.gd:170)
+       [10] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592666.859 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png (core/variant/variant_utility.cpp:1023)
+TEL event=solved time=1793592666.860 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=mark time=1793592666.863 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS 05-longer-replay-keeps-pb: CTR-attempt E1 solved was emitted once
+capture: PASS 05-longer-replay-keeps-pb: ever-completed is true
+capture: PASS 05-longer-replay-keeps-pb: marks are cleared after the solve
+capture: PASS 05-longer-replay-keeps-pb: the attempt is not started
+capture: PASS 05-longer-replay-keeps-pb: the longer replay keeps the prior PB (59)
+capture: PASS 05-longer-replay-keeps-pb: the pack stays finished through the replay
+capture: PASS 05-longer-replay-keeps-pb: completion rate stays 1 (1.0)
+capture: 05-longer-replay-keeps-pb solved inspect=pb=59
+TEL event=open time=1793592666.892 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=ready time=1793592666.964 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=commit time=1793592666.966 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS open: marks are allowed once the beat ends
+capture: PASS S: the replay opens at elapsed 00:08
+capture: PASS S: reopening keeps the stored PB (59)
+capture: 06-shorter-replay-improves-pb near-solve inspect=pb=59
+capture: 06-shorter-replay-improves-pb near-solve dump /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/logs/state-06-shorter-replay-improves-pb.json
+capture: shot 06-shorter-replay-improves-pb -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-97/2026-11-02-accept-graphical/screenshots/06-shorter-replay-improves-pb.png (error 0)
+ERROR: Unable to open file: res://.godot/imported/pack-000-pixel.png-62937adfffa32c89397d8809ca5bbeda.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592667.268 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-pixel.png-62937adfffa32c89397d8809ca5bbeda.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592667.268 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-pixel.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:285)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592667.268 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-7255-80b3-eb4ab429fc0b did not load a resource: res://assets/puzzle-pictures/pack-000-pixel.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _on_attempt_solved (res://presentation/shell.gd:285)
+       [4] _solve (res://play/attempt.gd:185)
+       [5] mark (res://play/attempt.gd:163)
+       [6] _mark (res://presentation/mark_input.gd:196)
+       [7] release_stroke (res://presentation/mark_input.gd:80)
+       [8] _tap (res://probe_capture_97.gd:271)
+       [9] _open_solving (res://probe_capture_97.gd:170)
+       [10] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592667.269 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-7255-80b3-eb4ab429fc0b did not load a resource: res://assets/puzzle-pictures/pack-000-pixel.png (core/variant/variant_utility.cpp:1023)
+ERROR: Unable to open file: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592667.269 session=issue-97-capture build=main@b9c5668 story=END message=Condition "f.is_null()" is true. Returning: ERR_CANT_OPEN (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pack-000-generated.png-aa8d19c7abd953243b707ac7cf128318.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592667.269 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/puzzle-pictures/pack-000-generated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] resolve (res://presentation/asset_resolver.gd:68)
+       [1] _picture_for (res://presentation/shell.gd:263)
+       [2] _on_attempt_solved (res://presentation/shell.gd:286)
+       [3] _solve (res://play/attempt.gd:185)
+       [4] mark (res://play/attempt.gd:163)
+       [5] _mark (res://presentation/mark_input.gd:196)
+       [6] release_stroke (res://presentation/mark_input.gd:80)
+       [7] _tap (res://probe_capture_97.gd:271)
+       [8] _open_solving (res://probe_capture_97.gd:170)
+       [9] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592667.270 session=issue-97-capture build=main@b9c5668 story=END message=Condition "found" is true. Returning: Ref<Resource>() (core/io/resource_loader.cpp:317)
+ERROR: AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:70)
+       [2] _picture_for (res://presentation/shell.gd:263)
+       [3] _on_attempt_solved (res://presentation/shell.gd:286)
+       [4] _solve (res://play/attempt.gd:185)
+       [5] mark (res://play/attempt.gd:163)
+       [6] _mark (res://presentation/mark_input.gd:196)
+       [7] release_stroke (res://presentation/mark_input.gd:80)
+       [8] _tap (res://probe_capture_97.gd:271)
+       [9] _open_solving (res://probe_capture_97.gd:170)
+       [10] _shot (res://probe_capture_97.gd:295)
+SEV level=error event=engine time=1793592667.270 session=issue-97-capture build=main@b9c5668 story=END message=AssetResolver: manifest path for 01a17720-ca00-71f5-8156-87c953625822 did not load a resource: res://assets/puzzle-pictures/pack-000-generated.png (core/variant/variant_utility.cpp:1023)
+TEL event=solved time=1793592667.271 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+TEL event=mark time=1793592667.274 session=issue-97-capture build=main@b9c5668 story=END outcome=pass
+capture: PASS 06-shorter-replay-improves-pb: CTR-attempt E1 solved was emitted once
+capture: PASS 06-shorter-replay-improves-pb: ever-completed is true
+capture: PASS 06-shorter-replay-improves-pb: marks are cleared after the solve
+capture: PASS 06-shorter-replay-improves-pb: the attempt is not started
+capture: PASS 06-shorter-replay-improves-pb: the PB becomes the shorter time (8)
+capture: PASS 06-shorter-replay-improves-pb: the pack stays finished through the replay
+capture: PASS 06-shorter-replay-improves-pb: completion rate stays 1 (1.0)
+capture: 06-shorter-replay-improves-pb solved inspect=pb=8
+capture: RESULT pass (7 shots)
+SEV level=info event=session-end time=1793592667.339 session=issue-97-capture build=main@b9c5668 story=END message=

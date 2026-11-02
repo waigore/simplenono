@@ -1,0 +1,10 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+falsify: 199/200 rate=0.995 finished=false
+falsify: PASS unmutated: 199 of 200 is not finished (P1/P2 only hold at the last solve)
+falsify: PASS unmutated: 199 of 200 is below completion rate 1
+falsify: PASS mutation-catch: a 'close enough' rule (>= 0.995) would pass at 199/200, so the 199 shot discriminates
+falsify: PASS unmutated: 200 of 200 is finished
+falsify: PASS unmutated: 200 of 200 reads exactly rate 1 (1.0)
+falsify: PASS unmutated: an empty pack is never finished
+falsify: RESULT pass
