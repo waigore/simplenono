@@ -1,0 +1,134 @@
+{
+ "pack-050": {
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "000111111111000",
+   "000111111111000",
+   "000111111111000",
+   "000111111100000",
+   "000111111000000",
+   "000111111111000",
+   "000111111111000",
+   "000111111111000",
+   "000111111111000",
+   "000111111111000",
+   "000111111111000",
+   "000000000000000",
+   "000000000000000"
+  ],
+  "filled": 94,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_row_clues": true,
+  "matches_pack_col_clues": true,
+  "band": true,
+  "generated_size": [
+   1024,
+   1024
+  ],
+  "generated_warm_ratio": 0.0,
+  "border_background": true
+ },
+ "pack-051": {
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "001111000000000",
+   "001111001111100",
+   "001111001111100",
+   "001111001111100",
+   "001111001111100",
+   "001111001111100",
+   "001111001111100",
+   "001111001111100",
+   "001111111111100",
+   "001111111111100",
+   "001111000000000",
+   "000000000000000",
+   "000000000000000"
+  ],
+  "filled": 93,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_row_clues": true,
+  "matches_pack_col_clues": true,
+  "band": true,
+  "generated_size": [
+   1024,
+   1024
+  ],
+  "generated_warm_ratio": 0.0,
+  "border_background": true
+ },
+ "pack-052": {
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "001111111111100",
+   "001111111111100",
+   "001111111111100",
+   "001111111111100",
+   "000000000000000",
+   "000000000000000",
+   "000001111100000",
+   "000001111100000",
+   "000001111100000",
+   "000001111100000",
+   "000001111100000",
+   "000000000000000",
+   "000000000000000"
+  ],
+  "filled": 69,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_row_clues": true,
+  "matches_pack_col_clues": true,
+  "band": true,
+  "generated_size": [
+   1024,
+   1024
+  ],
+  "generated_warm_ratio": 0.0,
+  "border_background": true
+ },
+ "pack-053": {
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "000000110000000",
+   "000000111100000",
+   "000000111100000",
+   "000001111100000",
+   "000011111110000",
+   "000011111110000",
+   "000011111110000",
+   "000111111111000",
+   "000111111111000",
+   "000111111111000",
+   "000111111111000",
+   "000000000000000",
+   "000000000000000"
+  ],
+  "filled": 72,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_row_clues": true,
+  "matches_pack_col_clues": true,
+  "band": true,
+  "generated_size": [
+   1024,
+   1024
+  ],
+  "generated_warm_ratio": 1.5e-05,
+  "border_background": true
+ }
+}
