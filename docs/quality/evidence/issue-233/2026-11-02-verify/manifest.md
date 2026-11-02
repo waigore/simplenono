@@ -34,5 +34,5 @@ than a reuse.
 
 ## llm-judge
 
-Not applicable: every axis in [`specs/definition/quality/rubrics.md`](../../../../specs/definition/quality/rubrics.md) is
+Not applicable: every axis in [`specs/definition/quality/rubrics.md`](../../../../../specs/definition/quality/rubrics.md) is
 `deterministic`, and the domain axes list is empty. No judge record exists to read, so no `llm-judge` row applies.
