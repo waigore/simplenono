@@ -229,6 +229,43 @@ func test_the_card_follows_the_approved_widths() -> void:
 	)
 
 
+# #380 / US1.6: the first open, with no prior resize, keeps the card, title and action
+# row inside the viewport at both breakpoints (J-gallery-reset US1.1).
+func test_the_first_open_fits_the_card_and_its_copy_in_the_viewport() -> void:
+	_present(_completed_seed())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	var box := _gallery.reset_confirm()
+	box.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	for viewport_size: Vector2 in [
+		Vector2(1152.0, 648.0), Vector2(900.0, 1200.0), Vector2(390.0, 844.0)
+	]:
+		_gallery.size = viewport_size
+		box.size = viewport_size
+		await get_tree().process_frame
+		assert_true(
+			_gallery.present_reset_confirm("pack-000"),
+			"#380: the box opens at %s" % viewport_size,
+		)
+		await get_tree().process_frame
+		var frame := Rect2(Vector2.ZERO, box.size)
+		var frame_global := box.get_global_rect()
+		var card := box.card_rect()
+		assert_true(frame.encloses(card), "the card is inside the viewport at %s" % viewport_size)
+		assert_true(
+			card.size.y < viewport_size.y * 0.5,
+			"the card is sized to its copy, not to a 1 px-wide title, at %s" % viewport_size,
+		)
+		assert_true(
+			frame_global.encloses(box.title_rect()),
+			"the title is inside the viewport at %s" % viewport_size,
+		)
+		assert_true(
+			frame_global.encloses(box.actions_rect()),
+			"the Cancel/Confirm row is inside the viewport at %s" % viewport_size,
+		)
+		box.dismiss()
+
+
 # The overlay is its own theme-free component: no baked font or colour path
 func test_the_overlay_uses_the_catalogued_family_only() -> void:
 	var source := FileAccess.get_file_as_string(OVERLAY_SCRIPT)
