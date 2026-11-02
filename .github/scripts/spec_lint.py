@@ -11,7 +11,9 @@ Checks (see docs/spec-lint.md):
   links          relative Markdown links resolve
   orphans        every spec file is linked from another spec file
   glossary       glossary terms are unique and alphabetical
-  word-limit     Markdown in docs/ and specs/ stays within WORD_LIMIT words
+  word-limit     Markdown in docs/ and specs/ stays within WORD_LIMIT words.
+                 Issue-run evidence under docs/quality/evidence/issue-* and
+                 docs/playtest/evidence/issue-* is exempt.
 
 Usage: spec_lint.py [--root DIR] [--strict]
 Exit 1 on any error; warnings exit 1 only with --strict.
@@ -431,11 +433,25 @@ def check_glossary(repo: Repo) -> list[Finding]:
     return findings
 
 
+def word_limit_exempt(rel: str) -> bool:
+    """Issue-run evidence. The evidence README files stay capped."""
+    parts = PurePosixPath(rel).parts
+    return (
+        len(parts) >= 4
+        and parts[0] == "docs"
+        and parts[1] in ("quality", "playtest")
+        and parts[2] == "evidence"
+        and parts[3].startswith("issue-")
+    )
+
+
 def check_word_limit(repo: Repo) -> list[Finding]:
     """Words are counted like `wc -w` on the raw file; a file at exactly the limit passes."""
     findings = []
     for top in WORD_LIMIT_ROOTS:
         for rel in repo.files(top, (".md",)):
+            if word_limit_exempt(rel):
+                continue
             words = len(repo.doc(rel).text.split())
             if words > WORD_LIMIT:
                 findings.append(Finding(rel, 1, "word-limit", f"{words} words (limit {WORD_LIMIT}); split into focused files and link between them"))

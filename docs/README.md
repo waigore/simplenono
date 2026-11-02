@@ -4,7 +4,7 @@ Project and process documentation (labels, issues, skills, repo setup). Product/
 
 ## Concise docs
 
-Every file under `docs/` must stay under **500 words**. If content would exceed that, split into multiple focused files and link between them. CI enforces this for Markdown (`word-limit` in [Spec lint](spec-lint.md)); run `python3 .github/scripts/spec_lint.py` locally.
+Every file under `docs/` must stay under **500 words**, except Markdown under `quality/evidence/issue-*` and `playtest/evidence/issue-*`. If other content would exceed that, split into multiple focused files and link between them. CI enforces this for Markdown (`word-limit` in [Spec lint](spec-lint.md)); run `python3 .github/scripts/spec_lint.py` locally.
 
 ## Index
 

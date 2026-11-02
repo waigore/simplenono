@@ -21,7 +21,9 @@ Load parent, sub-issues, and siblings when available (`gh issue view`; linking d
 
 ## Review
 
-Review holistically against the whole issue and parent/sibling relationships, including after prior refinements:
+Scope: [Review scope](../../../docs/issues/workflow.md#review-scope). On a delta pass, follow that scope; a pass still applies the mockup approval below.
+
+On a holistic pass, review the whole issue:
 
 - Body internally consistent; no major gaps, ambiguities, or underspecification.
 - Deliverables and acceptance criteria align with the parent goal and scope, or with the project vision if root-level.
