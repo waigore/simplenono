@@ -18,3 +18,5 @@ Skills reject creates that would exceed the depth limit.
 **Do not create or remirror** GitHub native **blocked-by** / **blocking** edges, and do not put `Blocked by` / `Blocking` lines (or a `## Dependencies` blocker list) on issue bodies. Related work belongs in `## Related tasks or defects` (defects) or Notes — never as a dependency graph or preferred sequence.
 
 Leftover native edges: [`unblock-project-issues`](../../.agents/skills/unblock-project-issues/SKILL.md) critically examines each and deletes it when not justified under this ban (preferred sequence, soft order, relatedness, and any new use of blocked-by are never justified). Acceptance does not gate clearance.
+
+Feedback issues are not parents. Spawned work is listed on the feedback issue ([feedback.md](feedback.md)).

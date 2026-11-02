@@ -1,6 +1,6 @@
 # Canonical issue body shapes
 
-Skills and forms emit these bodies. Fill every required section; use `None` / `none` where shown when empty. Requirements: [requirements.md](requirements.md). Index: [README.md](README.md).
+Skills and forms emit these bodies. Fill every required section; use `None` / `none` where shown when empty. Requirements: [requirements.md](requirements.md). Feedback rules: [feedback.md](feedback.md). Index: [README.md](README.md).
 
 ## Epic (`type:epic`)
 
@@ -80,4 +80,27 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 
 ## Related tasks or defects
 <#n, … or None>
+```
+
+## Feedback (`type:feedback`)
+
+| Section | Required | Content |
+|---------|----------|---------|
+| `## Points` | yes | One bullet per distinct piece of feedback |
+| `## Analysis` | yes | `None` until analysis; then one bullet per point |
+| `## Related issues` | yes | `#N` list of open or newly filed work, or `None` |
+| `## Notes` | no | Raw feedback and source context |
+
+```markdown
+## Points
+-
+
+## Analysis
+None
+
+## Related issues
+None
+
+## Notes
+<notes or None>
 ```

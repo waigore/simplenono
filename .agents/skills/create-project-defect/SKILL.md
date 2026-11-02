@@ -25,6 +25,7 @@ Veneer for a repository **Defect** (`type:defect`). In-game or interface bugs on
 - Collect optional reproduction, context, `related`, and `parent`. Do not collect or wire `blocked_by` / `blocking`.
 - If `parent` is set, attach it as a sub-issue and enforce depth from `hierarchy.md`.
 - Related-only issues stay in `## Related tasks or defects`.
+- When `handle-feedback-agent` is the caller, set priority and any `Supersedes #N` line per [`feedback.md`](../../../docs/issues/feedback.md).
 - Never file a defect for specs, docs, maps, or non-material hygiene ([`requirements.md`](../../../docs/issues/requirements.md) — When to file what).
 
 ## Related

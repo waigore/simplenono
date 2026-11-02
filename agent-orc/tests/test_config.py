@@ -131,7 +131,13 @@ def test_shipped_config_loads() -> None:
     assert babysit.provider == "cursor"
     assert babysit.gate is not None
     assert babysit.gate.command[-1].endswith("babysit-pr-agent/scripts/gate.sh")
-    assert len(enabled_agents(cfg)) == 7
+    assert len(enabled_agents(cfg)) == 8
+    feedback = cfg.agents["handle-feedback-agent"]
+    assert feedback.provider == "cursor"
+    assert feedback.gate is not None
+    assert "list-feedback-issues.sh" in " ".join(feedback.gate.command)
+    assert feedback.issues is not None
+    assert "list-feedback-issues.sh" in " ".join(feedback.issues.command)
     assert planner.parallel_run == 1
     assert planner.issues is None
     assert "{parallel_id}" in planner.prompt and "{issue}" in planner.prompt

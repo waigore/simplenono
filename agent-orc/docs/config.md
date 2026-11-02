@@ -80,6 +80,8 @@ gate:
 
 `project-planner-agent` has no gate (always eligible).
 
+`handle-feedback-agent` gates with [`.orc/scripts/list-feedback-issues.sh`](../../.orc/scripts/list-feedback-issues.sh) (exit 0 when that list is not `[]`). The same script is its issue list: `pending-analysis` first, then priority. Provider: `cursor`. Contract: [`docs/issues/feedback.md`](../../docs/issues/feedback.md).
+
 `babysit-pr-agent` gates with [`.agents/skills/babysit-pr-agent/scripts/gate.sh`](../../.agents/skills/babysit-pr-agent/scripts/gate.sh) (exit 0 when a same-repo open PR is conflicted, behind, or failing checks, or when more than three have queued/in-progress checks). Provider: `cursor`.
 
 ## Child projects
