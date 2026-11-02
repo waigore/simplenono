@@ -1,0 +1,53 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+libasound.so.2: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+libasound.so.2: cannot open shared object file: No such file or directory
+WARNING: All audio drivers failed, falling back to the dummy driver.
+     at: initialize (servers/audio/audio_server.cpp:258)
+
+probe224: build view=gallery
+probe224: PASS UIS.T1/T2: Shell.UI_FONT_ASSET_ID is the catalogued family
+probe224: PASS UIS.T1/T2: the shell resolved one catalogued family
+probe224: PASS fonts.S3: the family carries the tnum feature
+probe224: PASS PTU-settings S1: gallery shows its C3 (Settings)
+probe224: PASS PTU-settings S1: C3 opens UI-settings
+probe224: PASS UIS.T1/T2: every settings chrome control uses the one family
+probe224: PASS UIS.T2: settings chrome is T2 = 35 at the 1400 frame
+probe224: shot p0-settings-default -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p0-settings-default.png (error 0)
+probe224: PASS UI-settings US1.1: defaults are Haptics On, Mute music Off
+probe224: shot p1-settings-before-toggle -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p1-settings-before-toggle.png (error 0)
+probe224: PASS UI-settings US1.2 C1: the haptics flag flips
+probe224: PASS UI-settings US1.3 C2: the mute flag flips
+probe224: shot p2-settings-after-toggle -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p2-settings-after-toggle.png (error 0)
+probe224: PASS PTU-settings S3: C3 returns to UI-gallery
+probe224: PASS PTU-settings P2: haptics still Off after reopen
+probe224: PASS PTU-settings P2: mute still On after reopen
+probe224: shot p3-settings-reopened-stuck -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p3-settings-reopened-stuck.png (error 0)
+probe224: PASS UIS.T1/T2: the gallery chrome uses the one family
+probe224: PASS UIS.T2: gallery chrome carries T2 = 35 at the 1400 frame
+probe224: PASS PTU-play-puzzle P2 setup: pack-000 reads not started before the run
+probe224: shot p4-gallery-before-play -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p4-gallery-before-play.png (error 0)
+probe224: PASS PTU-play-puzzle S1: tile C1 opens UI-puzzle
+probe224: PASS PTU-play-puzzle S2: the beat blocks marks first
+probe224: shot p5-puzzle-get-set-ready -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p5-puzzle-get-set-ready.png (error 0)
+probe224: PASS PTU-play-puzzle S2: marks are allowed after ready
+probe224: shot p6-puzzle-marks-allowed -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p6-puzzle-marks-allowed.png (error 0)
+probe224: PASS UIS.T1: row and column clue labels use the one family
+probe224: PASS UIS.T1: clue labels are half the cell side (20 px)
+probe224: PASS UIS.T1: the size follows the laid-out cell side
+probe224: shot p7-puzzle-one-fill-left -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p7-puzzle-one-fill-left.png (error 0)
+probe224: PASS PTU-play-puzzle S3: the last fill solves the puzzle
+probe224: PASS PTU-play-puzzle S3: the solve opens UI-result
+probe224: PASS UI-result US1.2: the morph finishes at S1 Default
+probe224: PASS UIS.T1/T2: every result chrome control uses the one family
+probe224: shot p8-result-default -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p8-result-default.png (error 0)
+probe224: PASS PTU-play-puzzle S4: C1 returns to UI-gallery
+probe224: PASS PTU-play-puzzle P2: pack-000 reads Done after the solve
+probe224: shot p9-gallery-after-result-back -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p9-gallery-after-result-back.png (error 0)
+probe224: PASS UIS.T2: gallery chrome is 18 px at a 720 frame
+probe224: shot p10-gallery-405x720 -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p10-gallery-405x720.png (error 0)
+probe224: PASS UIS.T2: gallery chrome is 27 px at a 1080 frame
+probe224: shot p10-gallery-1920x1080 -> /home/waigore/simplenono/1/docs/playtest/evidence/issue-224/2026-11-02-accept-graphical/screenshots/p10-gallery-1920x1080.png (error 0)
+probe224: RESULT pass (30 checks, 12 shots)
