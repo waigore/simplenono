@@ -1,0 +1,28 @@
+### pack-058
+$ puzzle_derive.py derive --square game/assets/puzzle-pictures/pack-058-generated.png --pixel /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/247-derive/pack-058-pixel.png --size 15
+{"square":"game/assets/puzzle-pictures/pack-058-generated.png","square_size":[1024,1024],"pixel":"/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/247-derive/pack-058-pixel.png","size":15,"steps":[{"operation":"flatten vignette","method":"outer frame set to the median colour of the outer ring","band_percent":5.0,"band_pixels":51,"ring_percent":1.0,"ring_pixels":10,"background_rgb":[202,205,210]},{"operation":"BOX downsample","resample":"box","to":"15x15","alpha":"composited over white"}],"filled":89,"in_band":true,"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"verdict":"pass"}
+cmp: byte-identical to committed pack-058-pixel.png
+$ puzzle_derive.py judge --pixel game/assets/puzzle-pictures/pack-058-pixel.png --size 15
+{"row_clues":[[],[],[],[4,5],[5,5],[5,5],[5,5],[5,5],[5,5],[5,5],[5,5],[5,5],[],[],[]],"col_clues":[[],[],[9],[9],[9],[9],[8],[],[9],[9],[9],[9],[9],[],[]],"filled":89,"in_band":true,"band":[56,101],"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"pixel":"game/assets/puzzle-pictures/pack-058-pixel.png","size":15,"verdict":"pass"}
+
+### pack-059
+$ puzzle_derive.py derive --square game/assets/puzzle-pictures/pack-059-generated.png --pixel /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/247-derive/pack-059-pixel.png --size 15
+{"square":"game/assets/puzzle-pictures/pack-059-generated.png","square_size":[1024,1024],"pixel":"/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/247-derive/pack-059-pixel.png","size":15,"steps":[{"operation":"flatten vignette","method":"outer frame set to the median colour of the outer ring","band_percent":5.0,"band_pixels":51,"ring_percent":1.0,"ring_pixels":10,"background_rgb":[204,208,212]},{"operation":"BOX downsample","resample":"box","to":"15x15","alpha":"composited over white"}],"filled":70,"in_band":true,"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"verdict":"pass"}
+cmp: byte-identical to committed pack-059-pixel.png
+$ puzzle_derive.py judge --pixel game/assets/puzzle-pictures/pack-059-pixel.png --size 15
+{"row_clues":[[],[],[],[5],[5],[5],[5,7],[5,7],[5,7],[5,1],[5],[5],[3],[],[]],"col_clues":[[],[9],[10],[10],[10],[9],[],[3],[3],[3],[3],[3],[4],[3],[]],"filled":70,"in_band":true,"band":[56,101],"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"pixel":"game/assets/puzzle-pictures/pack-059-pixel.png","size":15,"verdict":"pass"}
+
+### pack-060
+$ puzzle_derive.py derive --square game/assets/puzzle-pictures/pack-060-generated.png --pixel /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/247-derive/pack-060-pixel.png --size 15
+{"square":"game/assets/puzzle-pictures/pack-060-generated.png","square_size":[1024,1024],"pixel":"/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/247-derive/pack-060-pixel.png","size":15,"steps":[{"operation":"flatten vignette","method":"outer frame set to the median colour of the outer ring","band_percent":5.0,"band_pixels":51,"ring_percent":1.0,"ring_pixels":10,"background_rgb":[185,192,199]},{"operation":"BOX downsample","resample":"box","to":"15x15","alpha":"composited over white"}],"filled":57,"in_band":true,"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"verdict":"pass"}
+cmp: byte-identical to committed pack-060-pixel.png
+$ puzzle_derive.py judge --pixel game/assets/puzzle-pictures/pack-060-pixel.png --size 15
+{"row_clues":[[],[],[],[8],[9],[3,2],[2,2],[2,2],[2,2],[3,2],[9],[9],[],[],[]],"col_clues":[[],[],[],[9],[9],[3,3],[2,2],[2,2],[2,2],[2,2],[9],[8],[],[],[]],"filled":57,"in_band":true,"band":[56,101],"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"pixel":"game/assets/puzzle-pictures/pack-060-pixel.png","size":15,"verdict":"pass"}
+
+### pack-061
+$ puzzle_derive.py derive --square game/assets/puzzle-pictures/pack-061-generated.png --pixel /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/247-derive/pack-061-pixel.png --size 15
+{"square":"game/assets/puzzle-pictures/pack-061-generated.png","square_size":[1024,1024],"pixel":"/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/247-derive/pack-061-pixel.png","size":15,"steps":[{"operation":"flatten vignette","method":"outer frame set to the median colour of the outer ring","band_percent":5.0,"band_pixels":51,"ring_percent":1.0,"ring_pixels":10,"background_rgb":[190,196,201]},{"operation":"BOX downsample","resample":"box","to":"15x15","alpha":"composited over white"}],"filled":73,"in_band":true,"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"verdict":"pass"}
+cmp: byte-identical to committed pack-061-pixel.png
+$ puzzle_derive.py judge --pixel game/assets/puzzle-pictures/pack-061-pixel.png --size 15
+{"row_clues":[[],[],[],[2,5],[3,5],[3,5],[3,5],[3,5],[3,5],[4,5],[4,5],[3,5],[],[],[]],"col_clues":[[],[],[2],[9],[9],[8],[],[],[9],[9],[9],[9],[9],[],[]],"filled":73,"in_band":true,"band":[56,101],"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"pixel":"game/assets/puzzle-pictures/pack-061-pixel.png","size":15,"verdict":"pass"}
+

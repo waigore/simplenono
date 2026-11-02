@@ -1,0 +1,24 @@
+=== puzzle_derive.py derive + judge (repo tool) ===
+--- pack-070 ---
+{"square":"game/assets/puzzle-pictures/pack-070-generated.png","square_size":[1024,1024],"pixel":"/tmp/pack-070-derived.png","size":15,"steps":[{"operation":"flatten vignette","method":"outer frame set to the median colour of the outer ring","band_percent":5.0,"band_pixels":51,"ring_percent":1.0,"ring_pixels":10,"background_rgb":[215,219,223]},{"operation":"BOX downsample","resample":"box","to":"15x15","alpha":"composited over white"}],"filled":85,"in_band":true,"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"verdict":"pass"}
+pack-070: derived pixel byte-identical to committed pixel
+{"row_clues":[[],[],[1],[1],[4],[7],[7],[7],[9],[10],[13],[13],[13],[],[]],"col_clues":[[],[3],[3],[5],[8],[8],[9],[11],[9],[9],[8],[5],[4],[3],[]],"filled":85,"in_band":true,"band":[56,101],"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"pixel":"game/assets/puzzle-pictures/pack-070-pixel.png","size":15,"verdict":"pass"}
+--- pack-071 ---
+{"square":"game/assets/puzzle-pictures/pack-071-generated.png","square_size":[1024,1024],"pixel":"/tmp/pack-071-derived.png","size":15,"steps":[{"operation":"flatten vignette","method":"outer frame set to the median colour of the outer ring","band_percent":5.0,"band_pixels":51,"ring_percent":1.0,"ring_pixels":10,"background_rgb":[199,203,206]},{"operation":"BOX downsample","resample":"box","to":"15x15","alpha":"composited over white"}],"filled":92,"in_band":true,"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"verdict":"pass"}
+pack-071: derived pixel byte-identical to committed pixel
+{"row_clues":[[],[],[5,5],[5,1,1,1],[5,5],[5,1,1,1],[5,5],[],[5,5],[1,1,1,5],[5,5],[1,1,1,5],[5,5],[],[]],"col_clues":[[],[],[5,5],[5,1,1,1],[5,5],[5,1,1,1],[5,5],[],[5,5],[1,1,1,5],[5,5],[1,1,1,5],[5,5],[],[]],"filled":92,"in_band":true,"band":[56,101],"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"pixel":"game/assets/puzzle-pictures/pack-071-pixel.png","size":15,"verdict":"pass"}
+--- pack-072 ---
+{"square":"game/assets/puzzle-pictures/pack-072-generated.png","square_size":[1024,1024],"pixel":"/tmp/pack-072-derived.png","size":15,"steps":[{"operation":"flatten vignette","method":"outer frame set to the median colour of the outer ring","band_percent":5.0,"band_pixels":51,"ring_percent":1.0,"ring_pixels":10,"background_rgb":[207,214,219]},{"operation":"BOX downsample","resample":"box","to":"15x15","alpha":"composited over white"}],"filled":68,"in_band":true,"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"verdict":"pass"}
+pack-072: derived pixel byte-identical to committed pixel
+{"row_clues":[[],[],[11],[11],[11],[],[5],[5],[5],[5],[5],[5],[5],[],[]],"col_clues":[[],[],[3],[3],[3],[3],[3],[3],[3,7],[3,7],[3,7],[3,7],[3,7],[],[]],"filled":68,"in_band":true,"band":[56,101],"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"pixel":"game/assets/puzzle-pictures/pack-072-pixel.png","size":15,"verdict":"pass"}
+--- pack-073 ---
+{"square":"game/assets/puzzle-pictures/pack-073-generated.png","square_size":[1024,1024],"pixel":"/tmp/pack-073-derived.png","size":15,"steps":[{"operation":"flatten vignette","method":"outer frame set to the median colour of the outer ring","band_percent":5.0,"band_pixels":51,"ring_percent":1.0,"ring_pixels":10,"background_rgb":[200,208,212]},{"operation":"BOX downsample","resample":"box","to":"15x15","alpha":"composited over white"}],"filled":62,"in_band":true,"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"verdict":"pass"}
+pack-073: derived pixel byte-identical to committed pixel
+{"row_clues":[[],[],[],[],[4],[4],[7],[7],[9],[9],[11],[11],[],[],[]],"col_clues":[[],[],[8],[8],[8],[8],[6],[6],[6],[4],[4],[2],[2],[],[]],"filled":62,"in_band":true,"band":[56,101],"unique":true,"solutions":1,"logic_solved":true,"matches_pixel":true,"pixel":"game/assets/puzzle-pictures/pack-073-pixel.png","size":15,"verdict":"pass"}
+
+=== independent expectations (tools/expectations.py) ===
+pack-070 85 1 True True True True masses=85 holes=0
+pack-071 92 1 True True True True masses=25+25+21+21 holes=8
+pack-072 68 1 True True True True masses=35+33 holes=0
+pack-073 62 1 True True True True masses=62 holes=0
+expect.json written to /private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/acc-250/docs/playtest/evidence/issue-250/2026-11-03-accept-graphical/expect.json
