@@ -108,6 +108,33 @@ class JudgeTest(unittest.TestCase):
         self.assertTrue(result["unique"])
         self.assertTrue(result["logic_solved"])
 
+    def test_band_is_size_relative(self) -> None:
+        self.assertEqual(puzzle_derive.fill_band(10), (25, 45))
+        self.assertEqual(puzzle_derive.fill_band(15), (56, 101))
+        self.assertEqual(puzzle_derive.fill_band(20), (100, 180))
+
+    def test_sixty_fills_is_in_band_at_15_but_not_at_10(self) -> None:
+        fill_set = rectangle(0, 4, 0, 15)
+        at_fifteen = puzzle_derive.judge(fill_set, 15)
+        self.assertEqual(at_fifteen["filled"], 60)
+        self.assertEqual(at_fifteen["band"], [56, 101])
+        self.assertTrue(at_fifteen["in_band"])
+        at_ten = puzzle_derive.judge(fill_set, 10)
+        self.assertEqual(at_ten["band"], [25, 45])
+        self.assertFalse(at_ten["in_band"])
+
+    def test_band_edges_are_inclusive(self) -> None:
+        at_low = puzzle_derive.judge(rectangle(0, 4, 0, 14), 15)
+        self.assertEqual(at_low["filled"], 56)
+        self.assertTrue(at_low["in_band"])
+        at_high = puzzle_derive.judge(rectangle(0, 9, 0, 9), 15)
+        self.assertEqual(at_high["filled"], 81)
+        self.assertTrue(at_high["in_band"])
+        just_below = puzzle_derive.judge(rectangle(0, 4, 0, 14) - {(3, 13)}, 15)
+        self.assertEqual(just_below["filled"], 55)
+        self.assertFalse(just_below["in_band"])
+        self.assertEqual(puzzle_derive.judge(rectangle(0, 7, 0, 19), 20)["band"], [100, 180])
+
 
 class DeriveTest(unittest.TestCase):
     def test_derive_is_byte_reproducible_and_in_band(self) -> None:
