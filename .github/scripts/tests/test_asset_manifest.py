@@ -45,7 +45,7 @@ def entry(asset_id: str, files: list[str], state: str = "approved") -> dict[str,
     }
 
 
-class ManifestTest(unittest.TestCase):
+class ManifestFixture(unittest.TestCase):
     def setUp(self) -> None:
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)
@@ -80,6 +80,8 @@ class ManifestTest(unittest.TestCase):
             code = run([str(arg) for arg in args] + ["--root", str(self.root)])
         return code, out.getvalue()
 
+
+class ManifestTest(ManifestFixture):
     def test_writes_only_approved_entries_with_res_paths(self) -> None:
         approved = self.add(entry(str(uuid7()), ["character-sprites/idle.png", "character-sprites/run.png"]))
         draft = self.add(entry(str(uuid7()), ["character-sprites/draft.png"], state="draft"))
@@ -203,6 +205,65 @@ class ManifestTest(unittest.TestCase):
         with self.assertRaises(SystemExit) as raised:
             self.invoke("--write", "--check")
         self.assertEqual(raised.exception.code, 2)
+
+    def test_asset_and_check_are_mutually_exclusive(self) -> None:
+        with self.assertRaises(SystemExit) as raised:
+            self.invoke("--asset", str(uuid7()), "--check")
+        self.assertEqual(raised.exception.code, 2)
+
+
+class TargetedManifestTest(ManifestFixture):
+    """--asset adds or updates only the named ids and leaves every other line alone."""
+
+    def test_targeted_write_changes_only_the_named_ids(self) -> None:
+        kept = self.add(entry(str(uuid7()), ["character-sprites/idle.png"]))
+        first = self.add(entry(str(uuid7()), ["character-sprites/run.png"]))
+        second = self.add(entry(str(uuid7()), ["character-sprites/jump.png"]))
+        self.assertEqual(self.invoke()[0], 0)
+        before_entries = self.manifest()
+        before = (self.root / MANIFEST).read_text(encoding="utf-8")
+
+        self.add(entry(first, ["character-sprites/sprint.png"]))
+        self.assertEqual(self.invoke("--asset", first)[0], 0)
+
+        after = (self.root / MANIFEST).read_text(encoding="utf-8")
+        changed = [line for line, (old, new) in enumerate(zip(before.splitlines(), after.splitlines()))
+                   if old != new]
+        self.assertEqual(len(changed), 1)
+        self.assertEqual(self.manifest()[kept], before_entries[kept])
+        self.assertEqual(self.manifest()[second], before_entries[second])
+        self.assertEqual(self.manifest()[first], ["res://assets/character-sprites/sprint.png"])
+
+    def test_targeted_then_full_check_stays_green(self) -> None:
+        first = self.add(entry(str(uuid7()), ["character-sprites/run.png"]))
+        second = self.add(entry(str(uuid7()), ["character-sprites/jump.png"]))
+        # Two branches: each writes only its own id on the same empty base.
+        self.assertEqual((self.root / MANIFEST).write_text("{}\n", encoding="utf-8"), 3)
+        self.assertEqual(self.invoke("--asset", first)[0], 0)
+        self.assertEqual(self.invoke("--asset", second)[0], 0)
+
+        self.assertEqual(self.invoke("--check"), (0, "Asset manifest: 0 error(s).\n"))
+
+    def test_targeted_write_updates_an_existing_entry_in_place(self) -> None:
+        asset_id = self.add(entry(str(uuid7()), ["character-sprites/run.png"]))
+        self.assertEqual(self.invoke("--asset", asset_id)[0], 0)
+        self.add(entry(asset_id, ["character-sprites/jump.png"]))
+
+        self.assertEqual(self.invoke("--asset", asset_id)[0], 0)
+
+        self.assertEqual(self.manifest(), {asset_id: ["res://assets/character-sprites/jump.png"]})
+
+    def test_unknown_or_unapproved_id_writes_nothing(self) -> None:
+        kept = self.add(entry(str(uuid7()), ["character-sprites/idle.png"]))
+        draft = self.add(entry(str(uuid7()), ["character-sprites/draft.png"], state="draft"))
+        self.assertEqual(self.invoke("--asset", kept)[0], 0)
+        before = (self.root / MANIFEST).read_text(encoding="utf-8")
+
+        code, out = self.invoke("--asset", kept, "--asset", draft)
+
+        self.assertEqual(code, 1)
+        self.assertIn(f"ERROR: {draft}: not an approved, resolvable asset", out)
+        self.assertEqual((self.root / MANIFEST).read_text(encoding="utf-8"), before)
 
 
 if __name__ == "__main__":

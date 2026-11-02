@@ -38,8 +38,16 @@ does not change CTR-pack O8, which still reads only res://data/pack.json):
   - K3/S4 unique line-logic is judged inside the picture-slice tasks. This script adds
     no solver; it only copies a pixel those tasks already accepted.
 
-Usage: python3 .github/scripts/generate_pack.py [--check]
-  --check  exit 1 when game/data/pack.json is not what this script would write
+The shipped file is one compact JSON object per puzzle on one line, so a picture
+slice can rewrite only its own rows (see --puzzle) and two slices that touch
+different rows land in any order. Parsed content and entry order are the same as
+the older one-line serialization; only whitespace differs.
+
+Usage: python3 .github/scripts/generate_pack.py [--check | --puzzle PACK-ID ...] [--root DIR]
+  --check       exit 1 when game/data/pack.json is not what this script would write
+  --puzzle ID   rewrite only the named puzzle rows from their approved pixels
+                (repeatable); write nothing and exit 1 when a row cannot be derived
+  --root DIR    repository root (default: this checkout)
 """
 from __future__ import annotations
 
@@ -56,7 +64,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 SIZES = [(10, 10), (15, 170), (20, 20)]
 EPOCH_MS = 1_793_000_000_000  # fixed so asset ids are reproducible
 GROWTH = {10: 0.42, 15: 0.55, 20: 0.55}
-PACK = REPO_ROOT / "game" / "data" / "pack.json"
+PACK_REL = Path("game") / "data" / "pack.json"
+PACK = REPO_ROOT / PACK_REL
 FIELDS = ("id", "size", "row-clues", "col-clues", "solution-fills", "picture-id", "pixel-picture-id")
 
 # ADR-0003: catalog entries at the repo root; cataloged files under the Godot project.
@@ -293,26 +302,110 @@ def build(root: Path = REPO_ROOT) -> list[dict]:
     return entries
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--check", action="store_true")
-    args = parser.parse_args()
+def render(entries: list[dict]) -> str:
+    """One compact entry per line, in order, with a trailing newline.
+
+    The blank line after each entry keeps two adjacent rows in separate merge
+    hunks: without it, two picture slices that touch neighbouring rows conflict
+    even though each rewrote only its own line.
+    """
+    lines = [json.dumps(puzzle, separators=(",", ":"), ensure_ascii=False) for puzzle in entries]
+    return "[\n" + ",\n\n".join(lines) + "\n]\n"
+
+
+class PackError(Exception):
+    """The committed pack file cannot be used for a targeted write."""
+
+
+def parse(text: str) -> list[dict]:
+    """The entries of a pack file, or PackError when it is not a JSON array of objects."""
     try:
-        text = json.dumps(build(), separators=(",", ":"), ensure_ascii=False) + "\n"
+        entries = json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise PackError(f"not valid JSON ({exc})") from exc
+    if not isinstance(entries, list) or not all(isinstance(item, dict) for item in entries):
+        raise PackError("must be a JSON array of objects")
+    return entries
+
+
+def derive_row(row: dict, root: Path) -> dict:
+    """The same row with fills and clues from its approved pixel, or PackError."""
+    puzzle_id, size = row.get("id"), row.get("size")
+    pixel_id = row.get("pixel-picture-id")
+    if not isinstance(puzzle_id, str) or not isinstance(size, int) or not isinstance(pixel_id, str):
+        raise PackError("row is missing a string 'id'/'pixel-picture-id' or an integer 'size'")
+    fills = pixel_fills(root, pixel_id, size)
+    if fills is None:
+        raise PackError(f"pixel-picture-id {pixel_id} has no approved pixel; nothing to derive")
+    grid = [[(r, c) in fills for c in range(size)] for r in range(size)]
+    columns = [[grid[r][c] for r in range(size)] for c in range(size)]
+    return {
+        **row,
+        "row-clues": [runs(r) for r in grid],
+        "col-clues": [runs(c) for c in columns],
+        "solution-fills": sorted([r, c] for r, c in fills),
+    }
+
+
+def targeted_entries(root: Path, ids: list[str]) -> list[dict]:
+    """Every entry, with only the named rows re-derived; PackError when one cannot be."""
+    path = root / PACK_REL
+    if not path.is_file():
+        raise PackError(f"{path} does not exist; run generate_pack.py first")
+    text = path.read_text(encoding="utf-8")
+    entries = parse(text)
+    if text != render(entries):
+        raise PackError(f"{path} is not in the per-line format; run generate_pack.py once to migrate it")
+    by_id = {puzzle.get("id"): index for index, puzzle in enumerate(entries)}
+    missing = [puzzle_id for puzzle_id in ids if puzzle_id not in by_id]
+    if missing:
+        raise PackError(f"not in {path}: {', '.join(missing)}")
+    for puzzle_id in dict.fromkeys(ids):
+        index = by_id[puzzle_id]
+        try:
+            entries[index] = derive_row(entries[index], root)
+        except PixelError as exc:
+            raise PackError(f"{puzzle_id}: broken approved pixel picture: {exc}") from exc
+    return entries
+
+
+def run(argv: list[str]) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--check", action="store_true", help="fail when the committed pack is stale")
+    mode.add_argument("--puzzle", action="append", default=[], metavar="PACK-ID",
+                      help="rewrite only this puzzle row (repeatable)")
+    parser.add_argument("--root", type=Path, default=REPO_ROOT, help="repository root")
+    args = parser.parse_args(argv)
+    path = args.root / PACK_REL
+    try:
+        if args.puzzle:
+            text = render(targeted_entries(args.root, args.puzzle))
+            path.write_text(text, encoding="utf-8")
+            print(f"wrote {path} ({len(args.puzzle)} of {len(json.loads(text))} entries re-derived)")
+            return 0
+        text = render(build(args.root))
     except PixelError as exc:
         print(f"error: broken approved pixel picture: {exc}", file=sys.stderr)
         return 1
+    except (PackError, OSError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
     if args.check:
-        current = PACK.read_text(encoding="utf-8") if PACK.exists() else ""
+        current = path.read_text(encoding="utf-8") if path.exists() else ""
         if current != text:
-            print(f"{PACK} is stale; run generate_pack.py", file=sys.stderr)
+            print(f"{path} is stale; run generate_pack.py", file=sys.stderr)
             return 1
-        print(f"{PACK} is current")
+        print(f"{path} is current")
         return 0
-    PACK.parent.mkdir(parents=True, exist_ok=True)
-    PACK.write_text(text, encoding="utf-8")
-    print(f"wrote {PACK} ({len(json.loads(text))} entries)")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    print(f"wrote {path} ({len(json.loads(text))} entries)")
     return 0
+
+
+def main() -> int:
+    return run(sys.argv[1:])
 
 
 if __name__ == "__main__":

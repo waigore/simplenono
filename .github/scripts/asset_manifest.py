@@ -11,10 +11,13 @@ The catalog root and asset root come from specs/assets/assets.md through
 asset_catalog.read_hub; nothing here hardcodes them. While either root is
 unset, generation is skipped with a NOTE and the manifest is left alone.
 
-Usage: asset_manifest.py [--write | --check] [--root DIR]
+Usage: asset_manifest.py [--write | --check | --asset ID ...] [--root DIR]
   --write  regenerate assets/manifest.json (default)
   --check  regenerate in memory, never write, and exit 1 when the committed
            manifest differs; exit 0 when identical
+  --asset  add or update only the named approved asset ids (repeatable), so a
+           picture slice can resolve its own ids without rewriting other
+           entries; exits non-zero and writes nothing when an id cannot resolve
 """
 from __future__ import annotations
 
@@ -169,13 +172,56 @@ def _differences(committed: dict[str, Any], generated: dict[str, list[str]]) -> 
     return findings
 
 
+def targeted(root: Path, asset_ids: list[str]) -> int:
+    """Add or update only the named approved ids, keeping every other entry."""
+    generated, errors, notes = build_manifest(root)
+    for note in notes:
+        print(f"NOTE: {note}")
+    for error in errors:
+        print(f"ERROR: {error}")
+    if generated is None:
+        print(f"Asset manifest: cannot resolve the named assets; {MANIFEST} unchanged.")
+        return 1
+    missing = [asset_id for asset_id in dict.fromkeys(asset_ids) if asset_id not in generated]
+    if missing:
+        for asset_id in missing:
+            print(f"ERROR: {asset_id}: not an approved, resolvable asset")
+        print(f"Asset manifest: {len(missing)} error(s); {MANIFEST} unchanged.")
+        return 1
+
+    path = root / MANIFEST
+    current: dict[str, Any] = {}
+    if path.is_file():
+        try:
+            loaded = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+            print(f"ERROR: {MANIFEST}: not valid UTF-8 JSON: {exc}")
+            print(f"Asset manifest: 1 error(s); {MANIFEST} unchanged.")
+            return 1
+        if not isinstance(loaded, dict):
+            print(f"ERROR: {MANIFEST}: must hold one JSON object")
+            print(f"Asset manifest: 1 error(s); {MANIFEST} unchanged.")
+            return 1
+        current = loaded
+
+    for asset_id in dict.fromkeys(asset_ids):
+        current[asset_id] = generated[asset_id]
+    path.write_text(render(current), encoding="utf-8")
+    print(f"Asset manifest: wrote {MANIFEST} ({len(set(asset_ids))} asset(s) targeted).")
+    return 0
+
+
 def run(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--write", action="store_true", help="regenerate the manifest (default)")
     mode.add_argument("--check", action="store_true", help="fail when the committed manifest has drifted")
+    mode.add_argument("--asset", action="append", default=[], metavar="ASSET-ID",
+                      help="add or update only this approved asset id (repeatable)")
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2], help="repository root")
     args = parser.parse_args(argv)
+    if args.asset:
+        return targeted(args.root, args.asset)
     return check(args.root) if args.check else write(args.root)
 
 
