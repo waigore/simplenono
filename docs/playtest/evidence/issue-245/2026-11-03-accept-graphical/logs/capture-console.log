@@ -1,0 +1,529 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward+ - Using Device #0: Apple - Apple M5 (Apple9)
+
+SEV level=info event=session-start time=1793638937.174 session=issue-245-accept build=main@88f10ef story=US1.6 message=
+capture: pack accepted=200 rejected=0
+capture: PASS pack: no entry is rejected
+capture: PASS pack: all 200 puzzles load
+TEL event=reset time=1793638937.317 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.317 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.317 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.317 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.318 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=reset time=1793638937.319 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS gallery: every record was cleared before the run
+capture: shot 01-gallery-fresh -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/01-gallery-fresh.png (error 0)
+TEL event=open time=1793638937.365 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS DBG.3: pack-050 opens from the gallery
+capture: P1 gallery -> puzzle for pack-050
+capture: PASS R/P1: marks are blocked during get-set-ready
+capture: PASS R/P1: a mark during get-set-ready does not stick
+capture: shot 02-puzzle-050-open-ready -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/02-puzzle-050-open-ready.png (error 0)
+TEL event=ready time=1793638937.411 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.412 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS P1: marks are allowed after the get-set-ready beat
+TEL event=open time=1793638937.418 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=ready time=1793638937.425 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.425 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS pack-050: marks are allowed
+capture: PASS P1: pack-050 is one fill from solve (93 of 94 placed)
+capture: shot 03-puzzle-050-one-fill-from-solve -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/03-puzzle-050-one-fill-from-solve.png (error 0)
+TEL event=solved time=1793638937.484 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638937.484 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS P1: CTR-attempt E1 fired once for the solving fill
+capture: PASS P1: the solve reaches the result screen
+capture: shot 04-result-050-pictures -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/04-result-050-pictures.png (error 0)
+capture: PASS R3: the result screen resolves the generated square
+capture: PASS R3: the result screen resolves the pixel picture
+capture: PASS PTD-solve-and-pb P1: pack-050 ever-completed is set
+capture: PASS PTD-solve-and-pb P1: pack-050 attempt is not started
+capture: PASS PTD-solve-and-pb P1: pack-050 personal best is set
+capture: PASS PTD-solve-and-pb P1: pack-050 stored marks are cleared
+capture: PASS P2: the gallery shows 1 completed (1)
+capture: shot 05-gallery-050-done -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/05-gallery-050-done.png (error 0)
+TEL event=open time=1793638937.641 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=ready time=1793638937.645 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.646 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS P1: marks are allowed before the mark run starts
+capture: PASS mark: pack-051 has room for the mark cells
+TEL event=mark time=1793638937.691 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.691 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: P1 cell=(2, 6) drawn=1 dbg2=1
+capture: PASS P1: tap with Fill selected fills the clear cell
+capture: PASS P5: DBG.2 agrees with the drawn fill
+capture: shot 06a-puzzle-051-fill -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/06a-puzzle-051-fill.png (error 0)
+TEL event=mark time=1793638937.744 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.744 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS P2: a second tap clears it
+capture: PASS P5: DBG.2 agrees with the cleared cell
+capture: shot 06b-puzzle-051-cleared -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/06b-puzzle-051-cleared.png (error 0)
+capture: PASS P3: a clear cell is available for the complement
+TEL event=mark time=1793638937.797 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.797 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: P3 target=(2, 6) tool=1 drawn=2 dbg2=2
+capture: PASS P3: complement on a clear cell crosses it
+capture: PASS P5: DBG.2 agrees with the complement
+capture: shot 06c-puzzle-051-complement -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/06c-puzzle-051-complement.png (error 0)
+TEL event=mark time=1793638937.879 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.880 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638937.882 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.882 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638937.887 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.888 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS P4: drag-paint crosses every cell in the run exactly once
+capture: shot 06d-puzzle-051-drag -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/06d-puzzle-051-drag.png (error 0)
+TEL event=leave time=1793638937.966 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638937.966 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS mark: unsolved marks do not complete a puzzle
+capture: shot 07-gallery-051-in-progress -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/07-gallery-051-in-progress.png (error 0)
+capture: PASS F2/S1: Reset is offered for an ever-completed puzzle
+capture: PASS S1: UI-gallery.C2 Reset activates
+capture: PASS S1: EX.confirm shows for the reset intent
+capture: shot 08-gallery-050-reset-confirm -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/08-gallery-050-reset-confirm.png (error 0)
+capture: PASS S2/IN.cancel: Cancel reaches the showing box
+capture: PASS P1: Cancel leaves ever-completed and the personal best unchanged
+capture: PASS S2: Cancel dismisses EX.confirm
+capture: shot 09-gallery-050-reset-cancelled -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/09-gallery-050-reset-cancelled.png (error 0)
+capture: PASS S3: C2 Reset activates again
+capture: PASS S3: EX.confirm shows again
+capture: PASS S3/IN.confirm: Confirm reaches the showing box
+capture: PASS S3: Confirm dismisses EX.confirm
+capture: PASS S6: the gallery returns to Default
+capture: PASS P2: Confirm clears ever-completed
+capture: PASS P2: Confirm leaves the attempt not started
+capture: PASS P2: Confirm clears the personal best
+capture: PASS P2: Confirm clears the stored marks
+capture: shot 10-gallery-050-after-confirm -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/10-gallery-050-after-confirm.png (error 0)
+capture: PASS P2: pack-052 solution-fills equal the pixel's Y<128 cells
+TEL event=open time=1793638938.197 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=ready time=1793638938.201 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.202 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS pack-052: marks are allowed
+TEL event=mark time=1793638938.240 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.241 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.257 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.258 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.273 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.273 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.290 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.290 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.307 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.307 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.324 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.324 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.340 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.340 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.357 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.358 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.374 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.374 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.390 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.390 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.407 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.408 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.424 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.424 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.440 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.441 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.458 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.459 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.475 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.475 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.491 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.492 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.508 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.509 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.524 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.524 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.541 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.541 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.558 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.558 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.575 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.575 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.592 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.592 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.608 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.608 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.624 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.625 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.641 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.642 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.657 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.658 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.674 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.674 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.690 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.691 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.708 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.708 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.724 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.724 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS P1: every non-solution cell is crossed (0 left clear)
+capture: P1 pack-052 crossed board, 68 fills of 69 placed
+capture: shot 11-puzzle-052-crossed-near-solve -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/11-puzzle-052-crossed-near-solve.png (error 0)
+TEL event=solved time=1793638938.777 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.777 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS pack-052: the last fill solves it once
+capture: PASS pack-052: the board reaches the result screen
+capture: shot 12-result-052-solved -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/12-result-052-solved.png (error 0)
+capture: PASS PTD-solve-and-pb P1: pack-052 ever-completed is set
+capture: PASS PTD-solve-and-pb P1: pack-052 attempt is not started
+capture: PASS PTD-solve-and-pb P1: pack-052 personal best is set
+capture: PASS PTD-solve-and-pb P1: pack-052 stored marks are cleared
+capture: PASS P2: pack-053 solution-fills equal the pixel's Y<128 cells
+TEL event=open time=1793638938.889 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=ready time=1793638938.896 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.897 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS pack-053: marks are allowed
+TEL event=mark time=1793638938.928 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.929 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.931 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.931 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.933 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.933 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.935 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.935 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.937 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.938 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.939 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.940 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.942 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.942 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.944 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.944 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.946 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.946 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.948 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.948 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.950 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.950 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.952 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.952 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.954 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.954 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.956 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.956 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.958 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.959 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.960 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.961 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.962 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.963 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.964 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.965 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.966 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.967 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.969 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.969 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.971 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.971 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.973 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.973 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.975 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.975 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.977 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.977 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.979 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.979 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.981 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.982 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.983 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.984 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.985 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.986 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.988 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.988 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.990 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.990 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.992 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.992 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.994 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.994 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.996 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.996 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638938.998 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638938.999 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.000 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.001 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.003 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.003 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.005 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.005 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.007 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.007 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.009 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.009 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.011 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.011 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.013 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.013 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.015 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.015 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.017 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.018 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.019 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.020 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.021 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.022 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.024 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.024 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.026 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.026 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.028 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.028 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.030 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.030 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.032 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.032 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.034 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.034 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.036 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.037 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.038 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.039 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.041 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.041 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.043 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.043 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.045 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.045 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.047 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.047 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.049 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.049 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.051 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.051 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.053 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.053 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.055 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.055 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.057 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.058 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.060 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.060 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.062 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.062 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.064 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.064 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.066 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.066 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.068 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.068 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.070 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.071 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.072 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.073 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.075 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.075 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.077 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=commit time=1793638939.077 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=solved time=1793638939.092 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+TEL event=mark time=1793638939.092 session=issue-245-accept build=main@88f10ef story=US1.6 outcome=pass
+capture: PASS pack-053: the last fill solves it once
+capture: PASS pack-053: the board reaches the result screen
+capture: shot 13-result-053-solved -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/13-result-053-solved.png (error 0)
+capture: PASS PTD-solve-and-pb P1: pack-053 ever-completed is set
+capture: PASS PTD-solve-and-pb P1: pack-053 attempt is not started
+capture: PASS PTD-solve-and-pb P1: pack-053 personal best is set
+capture: PASS PTD-solve-and-pb P1: pack-053 stored marks are cleared
+capture: PASS gallery: 2 completed after 050 was reset (2)
+capture: shot 14-gallery-final -> /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/screenshots/14-gallery-final.png (error 0)
+capture: state dump /Users/waigore/Documents/GitHub/simplenono_all/1/docs/playtest/evidence/issue-245/2026-11-03-accept-graphical/logs/state-pack-053.json
+capture: 62 checks judged
+capture: RESULT pass (17 shots, 0 checks failed)
+SEV level=info event=session-end time=1793638939.268 session=issue-245-accept build=main@88f10ef story=US1.6 message=
