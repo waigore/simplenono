@@ -43,8 +43,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-from PIL import Image
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 GENERATOR = REPO_ROOT / ".github" / "scripts" / "cheaperinference_image.py"
 DERIVER = REPO_ROOT / ".github" / "scripts" / "puzzle_derive.py"
@@ -266,6 +264,10 @@ def generate(prompt: str, out_dir: Path, key: str, attempt: int, key_env: str) -
     meta = json.loads(proc.stdout.strip().splitlines()[-1])
     square = Path(meta["out"])
     png = out_dir / f"{key}-attempt{attempt}.png"
+    # Pillow is only needed for this conversion, so import it here: the pure helpers
+    # stay importable (and testable) without it, as the stdlib-only linter CI expects.
+    from PIL import Image
+
     with Image.open(square) as image:
         image.convert("RGB").save(png, format="PNG")
     if square != png:
