@@ -1,7 +1,9 @@
 extends GutTest
 ## [b]CMP-shell[/b] R2 / [b]SEQ-mark[/b] S1-S2 mark input — specs/ux/controls.md
 ## Mark tools and stories US1.6, US1.6b, US1.7, US1.8 under the desktop pointer
-## bindings (B1-B3) and the touch bindings (B31-B32).
+## bindings (B1-B3), the iOS touch bindings (B31-B32), and their Android mirrors
+## (B34-B35): specs/ux/stories/controls/bindings.md coverage note, "Android B34-B36
+## match iOS". Android tap and drag ride this same touch path with no per-OS branch.
 ##
 ## Drives the real [MarkInput] and [PuzzleScreen] against a [FakeAttempt] that
 ## records every [b]CTR-attempt[/b] O2 call, so each scenario asserts the
@@ -271,6 +273,48 @@ func test_touch_tap_and_drag_follow_the_same_mark_rules():
 		"a touch drag paints the run with no tap",
 	)
 	assert_eq(_mark_of(ROW, FIRST + 1), CellMark.Mark.CROSS, "origin painted by the drag")
+
+
+# B34 (Android mirror of US1.8 / B31): a touch tap raises only the tap's own O2 call —
+# the gesture never paints, the complement path never runs, and the tool is unchanged.
+func test_b34_android_touch_tap_raises_only_the_tap_mark():
+	var tool_before := _screen.selected_tool()
+
+	_touch(_center(ROW, FIRST))
+	_touch_release(_center(ROW, FIRST))
+
+	assert_eq(_calls(), ["7,2,fill"], "B34: one tap mark and nothing else")
+	assert_eq(_mark_of(ROW, FIRST), CellMark.Mark.FILL, "the fill is drawn")
+	assert_eq(
+		_screen.selected_tool(),
+		tool_before,
+		"B34: the tap changes no tool, so no other IN row fired",
+	)
+
+
+# B35 (Android mirror of US1.9 / B32): a touch drag across cells paints the selected
+# tool once per cell, origin first — no per-cell toggle, no complement, no tap.
+func test_b35_android_touch_drag_paints_only_the_run():
+	_screen.select_tool(CellMark.Mark.CROSS)
+	_attempt.state().apply_mark(ROW, FIRST, CellMark.Mark.CROSS)
+	_screen.refresh()
+
+	_touch(_center(ROW, FIRST))
+	_touch_drag(_center(ROW, FIRST + 1))
+	_touch_drag(_center(ROW, FIRST + 2))
+	_touch_drag(_center(ROW, FIRST + 3))
+	_touch_release(_center(ROW, FIRST + 3))
+
+	assert_eq(
+		_calls(),
+		["7,2,cross", "7,3,cross", "7,4,cross", "7,5,cross"],
+		"B35: IN.drag-paint only, one O2 per cell, origin first",
+	)
+	assert_eq(
+		_mark_of(ROW, FIRST), CellMark.Mark.CROSS, "the filled origin is painted, not toggled"
+	)
+	assert_eq(_mark_of(ROW, FIRST + 1), CellMark.Mark.CROSS, "the run is painted")
+	assert_eq(_mark_of(ROW, FIRST + 3), CellMark.Mark.CROSS, "the last cell is painted")
 
 
 # C3-C5 / B7-B9: F, X, C select a tool and the next tap applies it
