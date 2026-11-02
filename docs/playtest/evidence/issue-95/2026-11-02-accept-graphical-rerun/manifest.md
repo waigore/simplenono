@@ -62,7 +62,7 @@ with the commands below.
 
 | Mode | Path | Result |
 |------|------|--------|
-| `deterministic` (cited, not re-run here) | [`issue-224/2026-11-02-verify`](../../../../quality/evidence/issue-224/2026-11-02-verify/manifest.md), deliverable commit `e1de7a4` | all six selected axes **pass**, no `fail` / `blocked` |
+| `deterministic` (cited, not re-run here) | `docs/quality/evidence/issue-224/2026-11-02-verify/manifest.md`, deliverable commit `e1de7a4` | all six selected axes **pass**, no `fail` / `blocked` |
 | `llm-judge` | — | **N/A** — [`rubrics.md`](../../../../../specs/definition/quality/rubrics.md) defines no `llm-judge` axis |
 
 The epic's own last record (`issue-95/2026-11-02-verify-reveal-fallback`, `dafd469`) no longer covers the
