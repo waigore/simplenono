@@ -53,6 +53,12 @@ func _marks(size: int) -> Array:
 	return rows
 
 
+## Compares palette swatches by value: the theme's float colors are rounded versions of
+## the hex swatch, so exact equality is not the claim.
+func _assert_color(actual: Color, expected: Color, text: String) -> void:
+	assert_true(actual.is_equal_approx(expected), "%s (%s vs %s)" % [text, actual, expected])
+
+
 func _texture() -> Texture2D:
 	var image := Image.create(2, 2, false, Image.FORMAT_RGBA8)
 	image.fill(Color.WHITE)
@@ -142,6 +148,56 @@ func test_r2_replay_shows_done_and_in_progress() -> void:
 	assert_eq(target.best_text(), "Best 9:01", "the kept personal best")
 
 
+# The approved mockups' four tile states and R1 frame: palette and ground come from the
+# same swatches the mockup CSS variables name (PAL.S1). Frames are judged structurally
+# here; the graphical acceptance captures are the visual check.
+func test_the_frame_matches_the_approved_mockup_palette() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-001", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-001", ProgressFile.MARKS_KEY, _marks(10))
+	seeded.set_value("pack-002", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-002", ProgressFile.PERSONAL_BEST_KEY, 252)
+	seeded.set_value("pack-003", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-003", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-003", ProgressFile.MARKS_KEY, _marks(15))
+	seeded.set_value("pack-003", ProgressFile.PERSONAL_BEST_KEY, 541)
+	_gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return _texture())
+	_present(seeded)
+
+	var background := _gallery.get_node("%Background") as ColorRect
+	_assert_color(background.color, PresentationPalette.PAPER, "the screen ground is --bg")
+	var progress := _gallery.get_node("Margin/Layout/ProgressBlock") as PanelContainer
+	var block := progress.get_theme_stylebox("panel") as StyleBoxFlat
+	_assert_color(block.bg_color, PresentationPalette.PAPER, "R1 ground")
+	_assert_color(block.border_color, PresentationPalette.RULE, "R1 border")
+	var bar := _gallery.get_node("%CompletionBar") as ProgressBar
+	var fill := bar.get_theme_stylebox("fill") as StyleBoxFlat
+	_assert_color(fill.bg_color, PresentationPalette.INK, "R1 bar fill is --fg")
+	var track := bar.get_theme_stylebox("background") as StyleBoxFlat
+	_assert_color(track.bg_color, PresentationPalette.PAPER, "R1 bar track")
+	var label := _gallery.get_node("%CompletionLabel") as Label
+	_assert_color(label.get_theme_color("font_color"), PresentationPalette.INK, "R1 copy ink")
+
+	var pictures := {
+		"pack-000": false,
+		"pack-001": false,
+		"pack-002": true,
+		"pack-003": true,
+	}
+	for puzzle_id: String in pictures:
+		var target := _gallery.tile(puzzle_id)
+		var tile_panel := target.get_theme_stylebox("panel") as StyleBoxFlat
+		_assert_color(tile_panel.bg_color, PresentationPalette.PAPER, "%s tile ground" % puzzle_id)
+		_assert_color(
+			tile_panel.border_color, PresentationPalette.RULE, "%s tile border" % puzzle_id
+		)
+		assert_eq(
+			target.shows_picture(),
+			pictures[puzzle_id],
+			"%s thumbnail state" % puzzle_id,
+		)
+
+
 # US1.5 / C1: activating a tile raises the puzzle intent for that id
 func test_c1_raises_the_puzzle_request() -> void:
 	_present(ConfigFile.new())
@@ -171,6 +227,45 @@ func test_c2_is_refused_for_a_new_puzzle() -> void:
 	_gallery.reset_requested.connect(func(puzzle_id: String) -> void: seen.append(puzzle_id))
 	assert_false(_gallery.activate_reset("pack-001"), "B1: C2 is not available")
 	assert_true(seen.is_empty(), "no confirm is opened")
+
+
+# R3 / US1.4: the settings control is drawn and enabled on Default
+func test_r3_settings_is_drawn_and_enabled() -> void:
+	_present(ConfigFile.new())
+	var button := _gallery.get_node("%SettingsButton") as Button
+	assert_true(button.visible, "R3: the settings control is drawn")
+	assert_false(button.disabled, "R3: the settings control is enabled")
+	assert_eq(button.focus_mode, Control.FOCUS_ALL, "C3 is reachable by keyboard")
+	assert_eq(button.text, GalleryScreen.COPY_SETTINGS, "copy.settings")
+
+
+# US1.6 / US1.6b / C2: Reset is drawn and enabled exactly when O1 allows it, including an
+# ever-completed puzzle reopened as new (PRG P1/P3: ever-completed and the best stay).
+func test_c2_reset_is_drawn_and_enabled_only_when_the_o1_facts_allow() -> void:
+	var seeded := ConfigFile.new()
+	# pack-000 not started; pack-001 in progress; pack-002 done + best.
+	seeded.set_value("pack-001", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-001", ProgressFile.MARKS_KEY, _marks(10))
+	seeded.set_value("pack-002", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-002", ProgressFile.PERSONAL_BEST_KEY, 252)
+	# pack-003 was solved, then reopened: no attempt running, the record still stands.
+	seeded.set_value("pack-003", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-003", ProgressFile.IN_PROGRESS_KEY, false)
+	seeded.set_value("pack-003", ProgressFile.PERSONAL_BEST_KEY, 480)
+	_gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return _texture())
+	_present(seeded)
+	var refused := _gallery.tile("pack-000")
+	assert_false(refused.reset_allowed(), "C2 is not allowed for a new puzzle")
+	assert_false(refused.reset_visible(), "Reset is not drawn for a new puzzle")
+	for puzzle_id: String in ["pack-001", "pack-002", "pack-003"]:
+		var allowed := _gallery.tile(puzzle_id)
+		assert_true(allowed.reset_allowed(), "C2 is allowed for %s" % puzzle_id)
+		assert_true(allowed.reset_visible(), "Reset is drawn for %s" % puzzle_id)
+		assert_false(allowed.reset_button().disabled, "Reset is enabled for %s" % puzzle_id)
+	var reopened := _gallery.tile("pack-003")
+	assert_eq(reopened.status_text(), "Done", "the reopened puzzle still reads Done")
+	assert_eq(reopened.best_text(), "Best 8:00", "the reopened puzzle keeps its best")
+	assert_true(reopened.shows_picture(), "the reopened puzzle keeps its thumbnail")
 
 
 # US1.4 / C3: the settings control raises its intent
