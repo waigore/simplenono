@@ -42,6 +42,5 @@ All 30 probe checks passed with no `SCRIPT ERROR`. Full GUT suite on the same bu
 
 ## Quality
 
-No deterministic axis can move (offline type; the frame-time record at
-[`docs/quality/evidence/issue-224/2026-11-02-verify/`](../../../../quality/evidence/issue-224/2026-11-02-verify/manifest.md)
-was taken at the deliverable commit). No `llm-judge` axis is defined for this category.
+No deterministic axis can move (offline type; the frame-time record for
+#224 was taken at the deliverable commit). No `llm-judge` axis is defined for this category.
