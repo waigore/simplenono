@@ -41,6 +41,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -251,17 +252,40 @@ def prompts_for(klass: str, board: str = DEFAULT_BOARD) -> list[str]:
     return out
 
 
-def generate(prompt: str, out_dir: Path, key: str, attempt: int, key_env: str) -> tuple[Path, dict]:
-    """Generate one square from an already-composed prompt (the caller composes)."""
+TRANSIENT_HTTP_CODES = ("HTTP 429", "HTTP 500", "HTTP 502", "HTTP 503", "HTTP 504")
+TRANSIENT_RETRIES = 5
+TRANSIENT_WAIT_SECONDS = 20.0
+
+
+def is_transient(stderr: str) -> bool:
+    """A provider error worth asking again for; anything else aborts the slice."""
+    return any(code in stderr for code in TRANSIENT_HTTP_CODES)
+
+
+def generate(prompt: str, out_dir: Path, key: str, attempt: int, key_env: str,
+             retries: int = TRANSIENT_RETRIES,
+             wait: float = TRANSIENT_WAIT_SECONDS) -> tuple[Path, dict]:
+    """Generate one square from an already-composed prompt (the caller composes).
+
+    A transient provider error (rate limit or gateway) is not a judge failure: the
+    slice asks again for the same prompt, so a 503 does not throw away the run.
+    """
     raw = out_dir / f"{key}-attempt{attempt}.jpg"
     env = dict(os.environ, CHEAPERINFERENCE_API_KEY=key_env)
-    proc = subprocess.run(
-        [sys.executable, str(GENERATOR), "generate", "--prompt", prompt,
-         "--out", str(raw), "--model", MODEL, "--size", SIZE],
-        capture_output=True, text=True, env=env,
-    )
-    if proc.returncode != 0:
-        raise SystemExit(f"generation failed for {key}: {proc.stderr.strip()[:500]}")
+    for remaining in range(retries + 1):
+        proc = subprocess.run(
+            [sys.executable, str(GENERATOR), "generate", "--prompt", prompt,
+             "--out", str(raw), "--model", MODEL, "--size", SIZE],
+            capture_output=True, text=True, env=env,
+        )
+        if proc.returncode == 0:
+            break
+        stderr = proc.stderr.strip()
+        if remaining == retries or not is_transient(stderr):
+            raise SystemExit(f"generation failed for {key}: {stderr[:500]}")
+        print(json.dumps({"puzzle": key, "attempt": attempt, "transient_error": stderr[:200],
+                          "retry_in_seconds": wait}), flush=True)
+        time.sleep(wait)
     meta = json.loads(proc.stdout.strip().splitlines()[-1])
     square = Path(meta["out"])
     png = out_dir / f"{key}-attempt{attempt}.png"
