@@ -2,6 +2,9 @@
   "01a17720-ca00-7000-9a16-ef990f73aeb5": [
     "res://assets/puzzle-pictures/pack-063-generated.png"
   ],
+  "01a17720-ca00-7001-a2f6-da1cd63c044e": [
+    "res://assets/puzzle-pictures/pack-149-pixel.png"
+  ],
   "01a17720-ca00-7003-bfa6-b23f9ab2dd84": [
     "res://assets/puzzle-pictures/pack-128-generated.png"
   ],
@@ -32,6 +35,12 @@
   "01a17720-ca00-7028-9015-38008533598e": [
     "res://assets/puzzle-pictures/pack-066-generated.png"
   ],
+  "01a17720-ca00-702b-82c9-247496582234": [
+    "res://assets/puzzle-pictures/pack-147-generated.png"
+  ],
+  "01a17720-ca00-7030-878f-4748a2df498a": [
+    "res://assets/puzzle-pictures/pack-156-pixel.png"
+  ],
   "01a17720-ca00-7030-8ef0-654f6c77dc4c": [
     "res://assets/puzzle-pictures/pack-025-pixel.png"
   ],
@@ -58,6 +67,15 @@
   ],
   "01a17720-ca00-703b-8c1a-e5923c163357": [
     "res://assets/puzzle-pictures/pack-050-generated.png"
+  ],
+  "01a17720-ca00-703c-a266-1a83c7d79bad": [
+    "res://assets/puzzle-pictures/pack-146-generated.png"
+  ],
+  "01a17720-ca00-703f-a06d-5e53c8a37828": [
+    "res://assets/puzzle-pictures/pack-148-pixel.png"
+  ],
+  "01a17720-ca00-7042-b70b-c087adb44423": [
+    "res://assets/puzzle-pictures/pack-146-pixel.png"
   ],
   "01a17720-ca00-7048-8957-348fffdd09fb": [
     "res://assets/puzzle-pictures/pack-077-pixel.png"
@@ -136,6 +154,9 @@
   ],
   "01a17720-ca00-7097-997b-8c6ab9dd0089": [
     "res://assets/puzzle-pictures/pack-107-pixel.png"
+  ],
+  "01a17720-ca00-7098-8724-67057719333f": [
+    "res://assets/puzzle-pictures/pack-161-pixel.png"
   ],
   "01a17720-ca00-709d-b5a7-515373f189f8": [
     "res://assets/puzzle-pictures/pack-112-generated.png"
@@ -308,6 +329,9 @@
   "01a17720-ca00-7110-9b59-7f725daf907a": [
     "res://assets/puzzle-pictures/pack-108-pixel.png"
   ],
+  "01a17720-ca00-711d-817d-4ec86460683a": [
+    "res://assets/puzzle-pictures/pack-160-pixel.png"
+  ],
   "01a17720-ca00-711d-8c78-6c48f3808179": [
     "res://assets/puzzle-pictures/pack-062-pixel.png"
   ],
@@ -340,6 +364,9 @@
   ],
   "01a17720-ca00-7143-bb51-10d0f447105e": [
     "res://assets/puzzle-pictures/pack-066-pixel.png"
+  ],
+  "01a17720-ca00-7144-b8d8-30d0d6076c72": [
+    "res://assets/puzzle-pictures/pack-155-pixel.png"
   ],
   "01a17720-ca00-7147-9d73-b3362e4169d6": [
     "res://assets/puzzle-pictures/pack-132-generated.png"
@@ -386,6 +413,9 @@
   "01a17720-ca00-7160-a568-ce05e437bc89": [
     "res://assets/puzzle-pictures/pack-016-generated.png"
   ],
+  "01a17720-ca00-7166-97ff-9bc0b5ca87b8": [
+    "res://assets/puzzle-pictures/pack-147-pixel.png"
+  ],
   "01a17720-ca00-7168-8a55-95a105dce3a0": [
     "res://assets/puzzle-pictures/pack-042-pixel.png"
   ],
@@ -421,6 +451,9 @@
   ],
   "01a17720-ca00-71b7-9589-6fb56927b897": [
     "res://assets/puzzle-pictures/pack-025-generated.png"
+  ],
+  "01a17720-ca00-71b9-96de-a367227fff82": [
+    "res://assets/puzzle-pictures/pack-159-pixel.png"
   ],
   "01a17720-ca00-71ba-9a0d-66b40804a3a6": [
     "res://assets/puzzle-pictures/pack-052-pixel.png"
@@ -479,6 +512,9 @@
   "01a17720-ca00-71ec-8760-b30f82feeebb": [
     "res://assets/puzzle-pictures/pack-074-pixel.png"
   ],
+  "01a17720-ca00-71ee-8caf-df88f840bc32": [
+    "res://assets/puzzle-pictures/pack-157-generated.png"
+  ],
   "01a17720-ca00-71f5-8156-87c953625822": [
     "res://assets/puzzle-pictures/pack-000-generated.png"
   ],
@@ -518,6 +554,12 @@
   "01a17720-ca00-721e-9c94-76ba44a0c176": [
     "res://assets/puzzle-pictures/pack-030-pixel.png"
   ],
+  "01a17720-ca00-7221-8c8f-fd69378d455c": [
+    "res://assets/puzzle-pictures/pack-156-generated.png"
+  ],
+  "01a17720-ca00-7223-9ec2-a68de4fbf118": [
+    "res://assets/puzzle-pictures/pack-161-generated.png"
+  ],
   "01a17720-ca00-7226-97e2-540ed1dad477": [
     "res://assets/puzzle-pictures/pack-072-pixel.png"
   ],
@@ -539,6 +581,9 @@
   "01a17720-ca00-7243-b057-842ac9bee87a": [
     "res://assets/puzzle-pictures/pack-015-pixel.png"
   ],
+  "01a17720-ca00-7244-8fb9-8759fcb4a4ec": [
+    "res://assets/puzzle-pictures/pack-158-pixel.png"
+  ],
   "01a17720-ca00-7249-98fa-83ddfe3b7bbf": [
     "res://assets/puzzle-pictures/pack-123-pixel.png"
   ],
@@ -554,17 +599,26 @@
   "01a17720-ca00-7255-80b3-eb4ab429fc0b": [
     "res://assets/puzzle-pictures/pack-000-pixel.png"
   ],
+  "01a17720-ca00-7256-9488-6e09c3c32c0c": [
+    "res://assets/puzzle-pictures/pack-160-generated.png"
+  ],
   "01a17720-ca00-7257-aff8-d3e5ea409d4b": [
     "res://assets/puzzle-pictures/pack-086-generated.png"
   ],
   "01a17720-ca00-7258-ac47-0f31b9966771": [
     "res://assets/puzzle-pictures/pack-128-pixel.png"
   ],
+  "01a17720-ca00-7261-9d8e-39a833eb8447": [
+    "res://assets/puzzle-pictures/pack-159-generated.png"
+  ],
   "01a17720-ca00-7261-be78-d20ded4bbe27": [
     "res://assets/puzzle-pictures/pack-100-pixel.png"
   ],
   "01a17720-ca00-7262-8fd6-c91e5c8fedf0": [
     "res://assets/puzzle-pictures/pack-084-generated.png"
+  ],
+  "01a17720-ca00-7266-96aa-c48e7c602667": [
+    "res://assets/puzzle-pictures/pack-149-generated.png"
   ],
   "01a17720-ca00-7266-ba0c-1b079d955f1f": [
     "res://assets/puzzle-pictures/pack-071-pixel.png"
@@ -577,6 +631,9 @@
   ],
   "01a17720-ca00-726c-b44f-4103ac612264": [
     "res://assets/puzzle-pictures/pack-043-generated.png"
+  ],
+  "01a17720-ca00-7274-a2ad-e0c51b28bcf8": [
+    "res://assets/puzzle-pictures/pack-155-generated.png"
   ],
   "01a17720-ca00-7274-b071-585197d24e28": [
     "res://assets/puzzle-pictures/pack-024-generated.png"
@@ -653,11 +710,17 @@
   "01a17720-ca00-72cf-a6f3-7fec198beb97": [
     "res://assets/puzzle-pictures/pack-044-pixel.png"
   ],
+  "01a17720-ca00-72d5-88fe-88ae762a564d": [
+    "res://assets/puzzle-pictures/pack-158-generated.png"
+  ],
   "01a17720-ca00-72d9-a8c1-7b5f37836cd3": [
     "res://assets/puzzle-pictures/pack-038-pixel.png"
   ],
   "01a17720-ca00-72e0-acf6-f21ed4465eeb": [
     "res://assets/puzzle-pictures/pack-048-pixel.png"
+  ],
+  "01a17720-ca00-72e1-ae8b-145202931296": [
+    "res://assets/puzzle-pictures/pack-154-pixel.png"
   ],
   "01a17720-ca00-72e8-aa99-5d670143bc6c": [
     "res://assets/puzzle-pictures/pack-033-pixel.png"
@@ -667,6 +730,9 @@
   ],
   "01a17720-ca00-72e9-a4f0-46a81bd3cf19": [
     "res://assets/puzzle-pictures/pack-059-generated.png"
+  ],
+  "01a17720-ca00-72ed-b6ad-28ff029f3921": [
+    "res://assets/puzzle-pictures/pack-154-generated.png"
   ],
   "01a17720-ca00-72f5-99ca-007f0c6d8364": [
     "res://assets/puzzle-pictures/pack-112-pixel.png"
@@ -715,6 +781,9 @@
   ],
   "01a17720-ca00-7321-93fe-949236567ed4": [
     "res://assets/puzzle-pictures/pack-052-generated.png"
+  ],
+  "01a17720-ca00-7323-b80c-0678a2714d3e": [
+    "res://assets/puzzle-pictures/pack-148-generated.png"
   ],
   "01a17720-ca00-7325-abaa-650b73b1067f": [
     "res://assets/puzzle-pictures/pack-119-generated.png"
@@ -856,6 +925,9 @@
   ],
   "01a17720-ca00-73da-acaf-1c63eddeaed9": [
     "res://assets/puzzle-pictures/pack-089-pixel.png"
+  ],
+  "01a17720-ca00-73db-97e1-f683c3e9b74d": [
+    "res://assets/puzzle-pictures/pack-157-pixel.png"
   ],
   "01a17720-ca00-73e0-b4d3-037e304e3846": [
     "res://assets/puzzle-pictures/pack-104-generated.png"
