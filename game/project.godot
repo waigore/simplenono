@@ -50,3 +50,8 @@ in_tool_clear={
 [debug]
 
 seams_enabled=false
+
+[rendering]
+
+; Android export rejects a project that does not import ETC2/ASTC (ADR-0001).
+textures/vram_compression/import_etc2_astc=true

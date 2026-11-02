@@ -16,6 +16,8 @@ file and reports the checks a picture-slice task needs:
     and that solution is this pixel's fill set (S4).
 
 Nothing here is tuned per image: the band, downsample, and threshold are fixed.
+The fill band is 25-45% of size^2, rounded to the nearest cell (10x10: 25-45,
+15x15: 56-101, 20x20: 100-180).
 
 Usage:
   python3 .github/scripts/puzzle_derive.py derive --square IN --pixel OUT --size N
@@ -34,8 +36,8 @@ from pathlib import Path
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PNG_CHANNELS = {2: 3, 6: 4}  # colour type -> channels; RGB or RGBA only
 FILL_LUMA = 128.0
-FILL_MIN = 25  # 10x10 task bar: 25-45 filled cells
-FILL_MAX = 45
+FILL_MIN_PERCENT = 25.0  # S2/K2 band: 25-45% of size^2 filled cells
+FILL_MAX_PERCENT = 45.0
 EDGE_RING = 0.01  # median background sample: the outer 1% ring
 EDGE_BAND = 0.05  # flattened frame: the outer 5% band
 
@@ -375,9 +377,24 @@ def count_solutions(row_clues: list[list[int]], col_clues: list[list[int]], size
     return search(grid)
 
 
+def fill_band(size: int) -> tuple[int, int]:
+    """Inclusive fill-count band for one board: 25-45% of size^2.
+
+    Rounding is to the nearest cell, halves up: 10x10 gives 25-45, 15x15 gives
+    56-101 (25% of 225 is 56.25, S2/K2), 20x20 gives 100-180.
+    """
+    if size <= 0:
+        raise PictureError(f"board size must be positive, not {size}")
+    area = size * size
+    low = round(area * FILL_MIN_PERCENT / 100.0 + 1e-9)
+    high = round(area * FILL_MAX_PERCENT / 100.0 + 1e-9)
+    return low, high
+
+
 def judge(fill_set: set[tuple[int, int]], size: int) -> dict:
     """Report uniqueness, line-logic reach, and the fill band for one puzzle."""
     row_clues, col_clues = clues(fill_set, size)
+    band_min, band_max = fill_band(size)
     grid = propagate(row_clues, col_clues, size)
     logic_solved = grid is not None and all(cell is not None for line in grid for cell in line)
     logic_fills = None
@@ -390,8 +407,8 @@ def judge(fill_set: set[tuple[int, int]], size: int) -> dict:
         "row_clues": row_clues,
         "col_clues": col_clues,
         "filled": filled,
-        "in_band": FILL_MIN <= filled <= FILL_MAX,
-        "band": [FILL_MIN, FILL_MAX],
+        "in_band": band_min <= filled <= band_max,
+        "band": [band_min, band_max],
         "unique": unique_count == 1,
         "solutions": unique_count,
         "logic_solved": logic_solved,
