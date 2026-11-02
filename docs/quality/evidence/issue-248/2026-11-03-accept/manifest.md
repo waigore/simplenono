@@ -4,7 +4,7 @@
 - **Mode:** `deterministic` (reused observation; acceptance does not judge a rubric)
 - **Deliverable commit:** `1ea9dd2` (`main` after PR #370 — the squash that lands the slice)
 - **Observed:** 2026-11-03 by `issue-workflow-accept-agent` (parallel id 1), Godot 4.7.2 headless on macOS arm64 (Apple M5)
-- **Observation source:** [`integration/results.md`](../../../playtest/evidence/issue-248/2026-11-03-accept-graphical/quality-app-start/results.md) — one `app-start` run of
+- **Observation source:** [`quality-app-start/results.md`](../../../../playtest/evidence/issue-248/2026-11-03-accept-graphical/quality-app-start/results.md) — one `app-start` run of
   `godot --headless --path game -s test/integration/run_protocol.gd -- --debug-seams --protocol=app-start --run-dir=<folder>`
 
 Verification cited a `time-to-playable` record under `docs/quality/evidence/issue-248/2026-11-03-verify/` (evidence PR #389). That
