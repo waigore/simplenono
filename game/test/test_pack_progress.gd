@@ -55,6 +55,54 @@ func test_o1_lists_every_puzzle_as_not_started() -> void:
 	assert_eq(pack.completion_rate(), 0.0, "O2: no solve yet")
 
 
+# M1 / SCH-progress L1: a first launch has no progress file, so every puzzle is new
+func test_a_missing_progress_file_reads_every_puzzle_as_new() -> void:
+	_remove(TEST_PATH)
+	var pack := _pack()
+	assert_false(FileAccess.file_exists(TEST_PATH), "a read writes no progress file")
+	var entry := _entry(pack, "pack-000")
+	assert_false(entry.ever_completed, "SCH-progress L1: not ever-completed")
+	assert_false(entry.in_progress, "SCH-progress L1: not started")
+	assert_false(entry.has_personal_best(), "SCH-progress L1: no personal best")
+	assert_false(entry.thumbnail_visible, "PS1.5: hidden until ever-completed")
+	assert_eq(pack.completion_rate(), 0.0, "O2: no solve yet")
+
+
+# M1 / SCH-progress L1: a corrupt file reads as all new and is left byte-identical
+func test_a_corrupt_progress_file_reads_every_puzzle_as_new() -> void:
+	var file := FileAccess.open(TEST_PATH, FileAccess.WRITE)
+	assert_not_null(file, "the corrupt fixture is written")
+	file.store_string("[pack-000]\never-completed = ")
+	file.close()
+	var stored := FileAccess.get_file_as_string(TEST_PATH)
+	assert_ne(ConfigFile.new().load(TEST_PATH), OK, "the fixture is not a readable config file")
+
+	var pack := _pack()
+	assert_eq(pack.progress().count(), 0, "SCH-progress L1: no record is restored")
+	var entry := _entry(pack, "pack-000")
+	assert_false(entry.ever_completed, "SCH-progress L1: not ever-completed")
+	assert_false(entry.in_progress, "SCH-progress L1: not started")
+	assert_false(entry.has_personal_best(), "SCH-progress L1: no personal best")
+	assert_false(entry.thumbnail_visible, "PS1.5: hidden until ever-completed")
+	assert_eq(pack.completion_rate(), 0.0, "O2: no solve yet")
+	assert_eq(FileAccess.get_file_as_string(TEST_PATH), stored, "the file is not rewritten")
+	assert_engine_error_count(2, "the fixture check and the load both report the parse error")
+
+
+# M1 / SCH-progress L1: a path held by a directory makes the load fail, reads as all new
+func test_an_unreadable_progress_file_reads_every_puzzle_as_new() -> void:
+	assert_eq(DirAccess.make_dir_absolute(TEST_PATH), OK, "the unreadable fixture is made")
+	var pack := _pack()
+	assert_eq(pack.progress().count(), 0, "SCH-progress L1: no record is restored")
+	var entry := _entry(pack, "pack-000")
+	assert_false(entry.ever_completed, "SCH-progress L1: not ever-completed")
+	assert_false(entry.in_progress, "SCH-progress L1: not started")
+	assert_false(entry.has_personal_best(), "SCH-progress L1: no personal best")
+	assert_false(entry.thumbnail_visible, "PS1.5: hidden until ever-completed")
+	assert_eq(pack.completion_rate(), 0.0, "O2: no solve yet")
+	assert_true(DirAccess.dir_exists_absolute(TEST_PATH), "the path is left as it was")
+
+
 # US1.1 / PS1.2: 50 ever-completed of 200 reads as completion rate 0.25
 func test_o2_completion_rate_is_fifty_of_two_hundred() -> void:
 	var seeded := ConfigFile.new()
@@ -112,7 +160,7 @@ func test_o1_reads_an_in_progress_attempt_with_its_marks() -> void:
 	assert_eq(record.marks.mark_at(0, 0), CellMark.Mark.FILL, "M2: the stored fill reads back")
 
 
-# G4: a section for a puzzle this pack no longer ships is ignored
+# G2: a section for a puzzle this pack no longer ships is ignored
 func test_a_section_for_an_unknown_puzzle_is_ignored() -> void:
 	var seeded := ConfigFile.new()
 	seeded.set_value("not-in-the-pack", ProgressFile.EVER_COMPLETED_KEY, true)
