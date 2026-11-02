@@ -2,7 +2,7 @@
 
 - **Issue:** #240 Puzzle pictures pack-030–pack-033 (15×15) (`type:task`)
 - **Mode:** `deterministic`
-- **Deliverable commit:** `f4ecbcb` (`main` after PR #355 — the squash that lands the slice; `game/` at `f4ecbcb` is the tree measured)
+- **Deliverable commit:** `f4ecbcb` (`main` after PR #355 — the squash that lands the slice; measured in a detached worktree checked out at `f4ecbcb`)
 - **Evaluated:** 2026-11-02 by `issue-workflow-verify-agent` (parallel id 1), Godot 4.7.2 headless on macOS arm64
 - **Observation source:** [`integration/results.md`](integration/results.md), from one run of
   `godot --headless --path game -s test/integration/run_protocol.gd -- --debug-seams --protocol=app-start --run-dir=<this folder>`
@@ -18,7 +18,7 @@ No existing record covered `game/` at `f4ecbcb`: every earlier record's `game/` 
 
 | Axis | Evaluator | Observation | Bar | Result | Blocked reason | Evidence path |
 |------|-----------|-------------|-----|--------|----------------|---------------|
-| `time-to-playable` | deterministic | I6: cold launch to the interactive shell home (gallery) 294.5 ms. | Cold launch to interactive gallery ≤ 3 s | pass | — | `integration/logs/harness-1793632493-app-start.log` |
+| `time-to-playable` | deterministic | I6: cold launch to the interactive shell home (gallery) 276.1 ms. | Cold launch to interactive gallery ≤ 3 s | pass | — | `integration/logs/harness-1793633074-app-start.log` |
 
 ## Not selected
 
