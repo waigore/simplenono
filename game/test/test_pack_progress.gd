@@ -196,6 +196,65 @@ func test_o7_clears_the_record_and_replaces_the_file() -> void:
 	)
 
 
+# O7 / END.O2: reset clears marks, elapsed, personal best, and ever-completed, and the
+# attempt reads not started
+func test_o7_clears_marks_elapsed_and_ever_completed() -> void:
+	var size: int = _pack().definition("pack-000").size
+	var marks: Array = []
+	for row in size:
+		var cells: Array = []
+		for column in size:
+			cells.append("fill" if row == 0 and column == 0 else "clear")
+		marks.append(cells)
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.ELAPSED_KEY, 17)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 42)
+	seeded.set_value("pack-000", ProgressFile.MARKS_KEY, marks)
+	assert_eq(seeded.save(TEST_PATH), OK, "the seeded progress document is written")
+
+	var pack := _pack()
+	assert_true(pack.reset("pack-000"), "O7 accepts a shipped id")
+	var record := pack.progress().record("pack-000")
+	assert_false(record.ever_completed, "O7 clears ever-completed")
+	assert_false(record.in_progress, "O7 clears the attempt status")
+	assert_eq(record.elapsed, 0, "O7 clears elapsed")
+	assert_false(record.has_personal_best(), "O7 clears the personal best")
+	assert_null(record.marks, "O7 clears the marks")
+
+	var attempt := Attempt.new(pack)
+	assert_true(attempt.open("pack-000"), "the reset puzzle opens")
+	assert_eq(
+		attempt.state().attempt_status(),
+		AttemptState.Status.NOT_STARTED,
+		"O7: the attempt reads not started",
+	)
+
+
+# O7 / G3: the replaced file shows only the reset puzzle changed, and O2 drops by one
+func test_o7_replaces_the_file_with_only_that_puzzle_changed() -> void:
+	var seeded := ConfigFile.new()
+	for index in 2:
+		var section := "pack-%03d" % index
+		seeded.set_value(section, ProgressFile.EVER_COMPLETED_KEY, true)
+		seeded.set_value(section, ProgressFile.PERSONAL_BEST_KEY, 60)
+	assert_eq(seeded.save(TEST_PATH), OK, "the seeded progress document is written")
+
+	var pack := _pack()
+	assert_eq(pack.completion_rate(), 0.01, "O2: two of 200 is 0.01")
+	assert_true(pack.reset("pack-000"), "O7 accepts a shipped id")
+
+	var reread := _pack()
+	assert_eq(reread.completion_rate(), 0.005, "O2: one of 200 is 0.005")
+	var reset_entry := _entry(reread, "pack-000")
+	assert_false(reset_entry.ever_completed, "O1: the reset puzzle is new")
+	assert_false(reset_entry.has_personal_best(), "O1: its personal best is gone")
+	var kept := _entry(reread, "pack-001")
+	assert_true(kept.ever_completed, "O1: the other puzzle is unchanged")
+	assert_eq(kept.personal_best, 60, "O1: its personal best is unchanged")
+
+
 # G2: an unknown id changes nothing and writes no file
 func test_o7_unknown_id_changes_nothing() -> void:
 	var pack := _pack()
@@ -205,12 +264,43 @@ func test_o7_unknown_id_changes_nothing() -> void:
 	assert_false(FileAccess.file_exists(TEST_PATH), "G2: nothing was written")
 
 
+# G2: an unknown id leaves an existing progress file byte-identical
+func test_o7_unknown_id_leaves_an_existing_file_untouched() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 42)
+	assert_eq(seeded.save(TEST_PATH), OK, "the seeded progress document is written")
+	var stored := FileAccess.get_file_as_string(TEST_PATH)
+
+	var pack := _pack()
+	assert_false(pack.reset("no-such-puzzle"), "O7 refuses an unknown id")
+	assert_true(_entry(pack, "pack-000").ever_completed, "the held record is unchanged")
+	assert_eq(FileAccess.get_file_as_string(TEST_PATH), stored, "G2: the file is not rewritten")
+
+
+# END.O2 / PRG.P1: only a gallery reset clears ever-completed; reopening after a
+# relaunch keeps it
+func test_a_reopened_solved_puzzle_keeps_ever_completed() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 42)
+	assert_eq(seeded.save(TEST_PATH), OK, "the solved progress document is written")
+
+	var pack := _pack()
+	var attempt := Attempt.new(pack)
+	assert_true(attempt.open("pack-000"), "the solved puzzle reopens")
+	var entry := _entry(pack, "pack-000")
+	assert_true(entry.ever_completed, "O1: reopening keeps ever-completed")
+	assert_eq(entry.personal_best, 42, "O1: the personal best is kept")
+
+
 # G3: when the temp write fails, the previous progress file stays as it was
 func test_a_failed_write_leaves_the_previous_file() -> void:
 	var pack := _pack()
 	pack.progress().record_solve("pack-000", 42)
 	assert_true(pack.reset("pack-000"), "the first write succeeds")
 	assert_true(FileAccess.file_exists(TEST_PATH), "the progress file exists")
+	var stored_bytes := FileAccess.get_file_as_string(TEST_PATH)
 
 	DirAccess.make_dir_absolute(TEMP_PATH)
 	pack.progress().record_solve("pack-000", 10)
@@ -219,6 +309,11 @@ func test_a_failed_write_leaves_the_previous_file() -> void:
 
 	var stored := _entry(_pack(), "pack-000")
 	assert_false(stored.ever_completed, "G3: the previous cleared record is intact")
+	assert_eq(
+		FileAccess.get_file_as_string(TEST_PATH),
+		stored_bytes,
+		"G3: the previous file is byte-identical",
+	)
 
 
 # END.W2 / PRG.Z1 / PS1.6: the last first-solve finishes the pack, and still applies its
