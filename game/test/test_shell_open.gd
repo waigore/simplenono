@@ -259,6 +259,82 @@ func test_an_unknown_id_at_s3_changes_nothing() -> void:
 	assert_eq(gallery.completion_text(), "Completed 1 / 200", "the rate is unchanged")
 
 
+# CMP-shell guard: IN.confirm / IN.cancel with no box showing return false and change nothing
+func test_the_shell_input_guards_do_nothing_when_no_box_shows() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.ELAPSED_KEY, 30)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	seeded.set_value("pack-000", ProgressFile.MARKS_KEY, _marks(15))
+	var pack := _present_seeded(seeded)
+	var gallery := _shell.gallery_screen()
+	var before := FileAccess.get_file_as_bytes(TEST_PATH)
+	var rate_before := pack.completion_rate()
+	var record_before := pack.progress().read("pack-000")
+	var marks_before := record_before.marks_copy().snapshot()
+
+	assert_false(_shell.confirm_showing(), "no box is showing")
+	assert_false(_shell.confirm_from_input(), "CMP-shell: IN.confirm is refused with no box")
+	assert_false(_shell.cancel_from_input(), "CMP-shell: IN.cancel is refused with no box")
+
+	assert_false(gallery.reset_confirm_showing(), "no box is raised by either intent")
+	assert_eq(FileAccess.get_file_as_bytes(TEST_PATH), before, "neither intent writes progress")
+	assert_eq(pack.completion_rate(), rate_before, "GS.completion-rate is unchanged")
+	var record := pack.progress().read("pack-000")
+	assert_true(record.ever_completed, "O1: ever-completed is unchanged")
+	assert_eq(record.personal_best, 60, "O1: the personal best is unchanged")
+	assert_true(record.in_progress, "O1: the attempt stays in progress")
+	assert_eq(record.elapsed, 30, "O1: the elapsed value is unchanged")
+	assert_eq(record.marks_copy().snapshot(), marks_before, "O1: the marks are unchanged")
+	assert_eq(gallery.completion_text(), "Completed 1 / 200", "the gallery read is unchanged")
+
+
+# SEQ reset S1-S6 / EX US1.1-US1.2 / UI-gallery US1.6 / J-gallery-reset US1.1:
+# the box's Confirm through the shell's input seam runs the whole story outcome
+func test_confirm_from_input_runs_the_full_reset_outcome() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.ELAPSED_KEY, 30)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	seeded.set_value("pack-000", ProgressFile.MARKS_KEY, _marks(15))
+	var pack := _present_seeded(seeded)
+	var gallery := _shell.gallery_screen()
+	gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return null)
+	gallery.refresh()
+	var target := gallery.tile("pack-000")
+	assert_eq(target.status_text(), "Done · In progress", "the seeded record is read")
+	assert_eq(gallery.completion_text(), "Completed 1 / 200", "before the reset")
+
+	assert_true(gallery.activate_reset("pack-000"), "UI-gallery C2: the reset request is allowed")
+	assert_true(gallery.reset_confirm().is_showing(), "S1: EX.confirm appears")
+
+	assert_true(_shell.confirm_from_input(), "S2: IN.confirm reaches the showing box")
+
+	assert_false(gallery.reset_confirm_showing(), "S6: the box is dismissed")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "S6: the gallery is in Default")
+	assert_eq(gallery.completion_text(), "Completed 0 / 200", "S5: O2 is read again")
+	assert_eq(target.status_text(), "Not started", "S5: the tile reads back as new")
+	assert_eq(target.best_text(), "", "the personal best is cleared")
+	assert_false(target.reset_visible(), "C2 is no longer available")
+	var record := pack.progress().read("pack-000")
+	assert_false(record.ever_completed, "O7: ever-completed is cleared")
+	assert_false(record.in_progress, "O7: the attempt is not started")
+	assert_null(record.marks_copy(), "O7: the marks are cleared")
+	assert_eq(record.elapsed, 0, "O7: the elapsed value is cleared")
+	assert_eq(record.personal_best, -1, "O7: the personal best is cleared")
+	var written := ConfigFile.new()
+	assert_eq(written.load(TEST_PATH), OK, "the reset replaced the test document")
+	assert_false(
+		written.get_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, false),
+		"S4: the stored record is cleared",
+	)
+	assert_false(
+		written.has_section_key("pack-000", ProgressFile.MARKS_KEY), "the stored marks are gone"
+	)
+
+
 # SEQ reset B2: Cancel dismisses the box with no write and the gallery back in Default
 func test_cancelling_the_box_writes_nothing() -> void:
 	var seeded := ConfigFile.new()
