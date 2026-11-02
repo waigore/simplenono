@@ -115,6 +115,7 @@ func _ready() -> void:
 	_settings.back_requested.connect(close_settings)
 	_settings.present(_flags)
 	_result.back_requested.connect(close_result)
+	_result.reveal().morph_finished.connect(_on_result_morph_finished)
 	_show_gallery()
 
 
@@ -221,6 +222,133 @@ func result_screen() -> ResultScreen:
 ## [constant SETTINGS_VIEW].
 func view() -> String:
 	return _view
+
+
+## The current screen's controls in its [code]Controls[/code] table order
+## ([code]controls.md[/code] F1). The screen owns the list; the shell only serves it to
+## the keyboard path.
+func focus_controls() -> Array[Control]:
+	match _view:
+		GALLERY_VIEW:
+			return _gallery.focus_controls()
+		PUZZLE_VIEW:
+			return _puzzle.focus_controls()
+		SETTINGS_VIEW:
+			return _settings.focus_controls()
+		RESULT_VIEW:
+			return _result.focus_controls()
+	var none: Array[Control] = []
+	return none
+
+
+## Moves keyboard focus [param step] places through the current screen's ordered
+## controls ([code]IN.point[/code], B6/B16/B26). Focus clamps at either end rather than
+## wrapping, and an unfocused screen starts at its first available control.
+func move_focus(step: int) -> bool:
+	var controls := _focusable(focus_controls())
+	if controls.is_empty() or step == 0:
+		return false
+	var current := get_viewport().gui_get_focus_owner()
+	var index := controls.find(current)
+	var next := 0 if index < 0 else clampi(index + step, 0, controls.size() - 1)
+	controls[next].grab_focus()
+	return true
+
+
+## [code]IN.activate[/code] on the focused control (B4/B14/B24 when no
+## [code]EX.confirm[/code] is showing). An unfocused screen starts at its first
+## available control, so Enter and Space always reach something on a keyboard-only run.
+func activate_focused() -> bool:
+	var controls := _focusable(focus_controls())
+	if controls.is_empty():
+		return false
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused == null or not controls.has(focused):
+		focused = controls[0]
+		focused.grab_focus()
+	var button := focused as BaseButton
+	if button == null or button.disabled:
+		return false
+	button.pressed.emit()
+	return true
+
+
+## True while [code]EX.confirm[/code] blocks the gallery (B4/B5).
+func confirm_showing() -> bool:
+	return _gallery.reset_confirm_showing()
+
+
+## [code]IN.confirm[/code] for the showing [code]EX.confirm[/code]
+## ([code]SEQ reset[/code] S2). Does nothing when no box is showing.
+func confirm_from_input() -> bool:
+	if not confirm_showing():
+		return false
+	_gallery.reset_confirm().confirm()
+	return true
+
+
+## [code]IN.cancel[/code] for the showing [code]EX.confirm[/code]
+## ([code]SEQ reset[/code] B2). Does nothing when no box is showing.
+func cancel_from_input() -> bool:
+	if not confirm_showing():
+		return false
+	_gallery.reset_confirm().cancel()
+	return true
+
+
+## [code]IN.back[/code] when no [code]EX.confirm[/code] is showing (B5/B15/B25): the
+## current screen's own back control — settings C3, puzzle C1 Leave, or result C1.
+func back_from_input() -> bool:
+	match _view:
+		SETTINGS_VIEW:
+			close_settings()
+			return true
+		PUZZLE_VIEW:
+			if _attempt == null:
+				return false
+			leave_puzzle()
+			return true
+		RESULT_VIEW:
+			return _result.activate_back()
+	return false
+
+
+## [code]IN.pause[/code] from an open puzzle (B10/B20/B30): the same route
+## [code]UI-puzzle.C6[/code] uses ([code]SEQ pause[/code] S1-S4), and nothing else.
+func pause_from_input() -> bool:
+	if _view != PUZZLE_VIEW or _attempt == null:
+		return false
+	return open_settings()
+
+
+## Keeps only controls a keyboard can focus right now: drawn, enabled, and focusable.
+func _focusable(controls: Array[Control]) -> Array[Control]:
+	var available: Array[Control] = []
+	for control in controls:
+		if control == null or not is_instance_valid(control):
+			continue
+		if not control.is_visible_in_tree():
+			continue
+		if control.focus_mode == Control.FOCUS_NONE:
+			continue
+		var button := control as BaseButton
+		if button != null and button.disabled:
+			continue
+		available.append(control)
+	return available
+
+
+## Puts focus on the first control of the screen just shown, so Enter/Space and the
+## arrows have a starting point without a pointer.
+func _focus_first() -> void:
+	var controls := _focusable(focus_controls())
+	if not controls.is_empty():
+		controls[0].grab_focus()
+
+
+func _on_result_morph_finished() -> void:
+	if _view == RESULT_VIEW:
+		_focus_first()
 
 
 ## True when settings would return to the paused puzzle rather than the gallery.
@@ -360,6 +488,7 @@ func _show_gallery() -> void:
 	_puzzle.visible = false
 	_result.visible = false
 	_settings.visible = false
+	_focus_first()
 
 
 func _show_puzzle() -> void:
@@ -368,6 +497,7 @@ func _show_puzzle() -> void:
 	_result.visible = false
 	_settings.visible = false
 	_puzzle.visible = true
+	_focus_first()
 
 
 func _show_result() -> void:
@@ -376,6 +506,7 @@ func _show_result() -> void:
 	_puzzle.visible = false
 	_settings.visible = false
 	_result.visible = true
+	_focus_first()
 
 
 func _show_settings() -> void:
@@ -385,3 +516,4 @@ func _show_settings() -> void:
 	_result.visible = false
 	_settings.present(_flags)
 	_settings.visible = true
+	_focus_first()

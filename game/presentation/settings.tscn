@@ -93,6 +93,7 @@ text = "Default on"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 44)
 layout_mode = 2
+focus_mode = 2
 size_flags_vertical = 4
 text = "On"
 
@@ -134,6 +135,7 @@ text = "BGM only · SFX on"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 44)
 layout_mode = 2
+focus_mode = 2
 size_flags_vertical = 4
 text = "Off"
 
@@ -145,4 +147,5 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
+focus_mode = 2
 text = "Back"

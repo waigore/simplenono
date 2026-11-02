@@ -218,6 +218,21 @@ func dismiss_reset_confirm() -> void:
 	_confirm.dismiss()
 
 
+## The screen's controls in [code]Controls[/code] table order ([code]controls.md[/code]
+## F1): C1 each tile, then C3 Settings, with each tile's C2 Reset right after it because
+## it belongs to that tile. [code]EX.confirm[/code]'s two actions are left out: while the
+## box shows, [code]IN.confirm[/code] and [code]IN.cancel[/code] reach it directly.
+func focus_controls() -> Array[Control]:
+	var controls: Array[Control] = []
+	for entry in _entries:
+		var target := tile(entry.id)
+		if target == null:
+			continue
+		controls.append_array(target.focus_controls())
+	controls.append(_settings_button)
+	return controls
+
+
 ## The [code]EX.confirm[/code] overlay, so the shell and tests can reach its intents.
 func reset_confirm() -> ConfirmOverlay:
 	return _confirm
