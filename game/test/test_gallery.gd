@@ -222,11 +222,80 @@ func test_c2_raises_reset_when_allowed() -> void:
 
 # US1.6b / B1: Reset on a new puzzle changes nothing
 func test_c2_is_refused_for_a_new_puzzle() -> void:
-	_present(ConfigFile.new())
+	var pack := _present(ConfigFile.new())
 	var seen: Array[String] = []
 	_gallery.reset_requested.connect(func(puzzle_id: String) -> void: seen.append(puzzle_id))
 	assert_false(_gallery.activate_reset("pack-001"), "B1: C2 is not available")
 	assert_true(seen.is_empty(), "no confirm is opened")
+	assert_false(_gallery.reset_confirm_showing(), "B1: no EX.confirm surface appears")
+	assert_eq(_gallery.entries().size(), pack.list_entries().size(), "the read is unchanged")
+	var written := ConfigFile.new()
+	assert_eq(written.load(TEST_PATH), OK, "the seeded document is readable")
+	assert_true(
+		written.get_sections().is_empty(),
+		"B1: no fact is written to user://progress.cfg",
+	)
+
+
+# US1.6 / J-gallery-reset S1: an allowed Reset raises the request exactly once for that
+# puzzle, and the gallery itself draws no EX.confirm (that surface is #96's, shown by the
+# shell in test_shell_open.gd).
+func test_c2_request_fires_once_and_draws_no_confirm() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	_present(seeded)
+	assert_false(_gallery.reset_confirm_showing(), "no EX.confirm before the request")
+	var seen: Array[String] = []
+	_gallery.reset_requested.connect(func(puzzle_id: String) -> void: seen.append(puzzle_id))
+
+	assert_true(_gallery.activate_reset("pack-000"), "C2 is allowed")
+
+	assert_eq(seen, ["pack-000"], "J-gallery-reset S1: one request for that puzzle id")
+	assert_false(_gallery.reset_confirm_showing(), "no confirm surface appears")
+	assert_eq(_gallery.tile("pack-000").status_text(), "Done", "no record is written")
+	assert_eq(_gallery.completion_text(), "Completed 1 / 200", "the read is unchanged")
+
+
+# SEQ reset S5 / END.O2 / J-gallery-reset N2: after O7 runs for that puzzle, the gallery
+# re-reads O1 and O2 and renders it as new — not started, no best, the placeholder — and
+# the completion copy drops by the cleared puzzle.
+func test_refresh_after_o7_renders_the_cleared_puzzle_as_new() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	seeded.set_value("pack-007", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-007", ProgressFile.PERSONAL_BEST_KEY, 90)
+	var requested: Array[String] = []
+	_gallery.set_picture_provider(
+		func(asset_id: String) -> Texture2D:
+			requested.append(asset_id)
+			return _texture()
+	)
+	var pack := _present(seeded)
+	var target := _gallery.tile("pack-000")
+	assert_eq(target.status_text(), "Done", "before the reset")
+	assert_eq(target.best_text(), "Best 1:00", "before the reset")
+	assert_true(target.shows_picture(), "before the reset")
+	assert_eq(_gallery.completion_rate(), 0.01, "O2 reads two completed of 200")
+	requested.clear()
+
+	assert_true(pack.reset("pack-000"), "O7 clears the record")
+
+	_gallery.refresh()
+
+	assert_eq(
+		_gallery.completion_text(), "Completed 1 / 200", "S5: the completion copy drops by one"
+	)
+	assert_eq(_gallery.completion_count(), 1, "S5: O1's count is read again")
+	assert_eq(_gallery.completion_rate(), 0.005, "END.O2: O2 is read again")
+	assert_eq(target.status_text(), "Not started", "S5: the tile reads as new")
+	assert_eq(target.best_text(), "", "S5: no personal best")
+	assert_false(target.shows_picture(), "S5: the generic placeholder is drawn")
+	assert_false(target.reset_visible(), "C2 is not available for the new puzzle")
+	assert_eq(_gallery.tile("pack-007").status_text(), "Done", "the other puzzle's record is kept")
+	var picture_id: String = pack.definition("pack-000").picture_id
+	assert_false(picture_id in requested, "the cleared tile requests no stored picture")
 
 
 # R3 / US1.4: the settings control is drawn and enabled on Default
