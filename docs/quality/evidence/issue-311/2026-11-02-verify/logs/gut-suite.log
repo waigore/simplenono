@@ -1,0 +1,2918 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [/home/waigore/.local/share/simplenono] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+[4m
+
+res://test/test_asset_resolver.gd
+[0m* test_every_cue_id_resolves_with_the_shipped_manifest
+* test_every_cue_id_is_approved_and_serves_its_cue
+* test_the_single_ui_font_resolves_by_asset_id_with_tabular_figures
+* test_unknown_asset_id_fails_loudly
+ERROR: AssetResolver: unresolved asset id 01a19666-0000-7000-8000-000000000000 (unknown, draft, or deprecated)
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:58)
+       [2] test_unknown_asset_id_fails_loudly (res://test/test_asset_resolver.gd:153)
+       [3] _run_test (res://addons/gut/gut.gd:622)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+       [5] test_scripts (res://addons/gut/gut.gd:1047)
+       [6] run_tests (res://addons/gut/gui/GutRunner.gd:198)
+       [7] _run_tests (res://addons/gut/cli/gut_cli.gd:239)
+       [8] main (res://addons/gut/cli/gut_cli.gd:297)
+       [9] _init (res://addons/gut/gut_cmdln.gd:39)
+[34m[ExpectedError][0mExpected push_error error containing 'unresolved asset id'.  
+* test_has_reports_listed_and_unknown_ids_without_failing
+* test_missing_manifest_fails_loudly
+ERROR: AssetResolver: asset manifest is not readable: /home/waigore/simplenono/1/game/../assets/absent-manifest.json
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] _read_manifest (res://presentation/asset_resolver.gd:81)
+       [2] _init (res://presentation/asset_resolver.gd:37)
+       [3] test_missing_manifest_fails_loudly (res://test/test_asset_resolver.gd:167)
+       [4] _run_test (res://addons/gut/gut.gd:622)
+       [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+       [6] test_scripts (res://addons/gut/gut.gd:1047)
+       [7] run_tests (res://addons/gut/gui/GutRunner.gd:198)
+       [8] _run_tests (res://addons/gut/cli/gut_cli.gd:239)
+       [9] main (res://addons/gut/cli/gut_cli.gd:297)
+       [10] _init (res://addons/gut/gut_cmdln.gd:39)
+[34m[ExpectedError][0mExpected push_error error containing 'not readable'.  
+ERROR: AssetResolver: asset manifest is not loaded: /home/waigore/simplenono/1/game/../assets/absent-manifest.json
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://presentation/asset_resolver.gd:92)
+       [1] resolve (res://presentation/asset_resolver.gd:55)
+       [2] test_missing_manifest_fails_loudly (res://test/test_asset_resolver.gd:170)
+       [3] _run_test (res://addons/gut/gut.gd:622)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+       [5] test_scripts (res://addons/gut/gut.gd:1047)
+       [6] run_tests (res://addons/gut/gui/GutRunner.gd:198)
+       [7] _run_tests (res://addons/gut/cli/gut_cli.gd:239)
+       [8] main (res://addons/gut/cli/gut_cli.gd:297)
+       [9] _init (res://addons/gut/gut_cmdln.gd:39)
+[34m[ExpectedError][0mExpected push_error error containing 'not loaded'.  
+* test_asset_ids_appear_only_in_the_cue_map
+* test_no_asset_path_literal_is_baked_into_game_logic
+[1m8/8 passed.
+[0m[4m
+
+res://test/test_audio_feedback.gd
+[0m* test_three_tick_streams_preload_at_app_start
+* test_each_accepted_mark_plays_its_own_tick
+* test_bed_starts_on_open_and_stops_on_leave
+* test_solve_plays_the_sting_once_over_the_continuing_bed
+* test_mute_bgm_mutes_the_bed_only
+* test_haptic_click_fires_for_fill_and_cross_on_mobile
+* test_haptic_click_ignores_clear
+* test_haptic_click_ignores_desktop_platforms
+* test_haptic_click_is_suppressed_when_haptics_are_off
+* test_accepted_tap_notifies_the_shell
+* test_blocked_or_paused_marks_play_nothing
+* test_unchanged_mark_plays_nothing
+* test_shell_owns_the_flags_and_wires_the_bed
+[1m13/13 passed.
+[0m[4m
+
+res://test/test_cell_mark.gd
+[0m* test_grid_holds_one_cell_per_position
+* test_opened_grid_starts_all_clear
+* test_fill_while_allowed
+* test_clear_while_allowed
+* test_cross_while_allowed
+* test_applying_the_same_mark_changes_nothing
+* test_cross_is_not_a_fill
+* test_marks_are_blocked_until_allowed
+* test_allow_marks_opens_marking
+* test_mark_outside_the_grid_changes_nothing
+* test_unknown_mark_is_rejected
+* test_auto_cross_crosses_still_clear_cells
+* test_auto_cross_leaves_crossed_cells_unchanged
+* test_auto_cross_never_overwrites_a_fill
+* test_auto_cross_changes_nothing_while_blocked
+[1m15/15 passed.
+[0m[4m
+
+res://test/test_clue_lines.gd
+[0m* test_teapot_maps_to_fifteen_rows_and_fifteen_columns
+* test_every_line_carries_its_orientation_and_index
+* test_row_lines_match_the_fixture_row_clues_in_order
+* test_column_lines_match_the_fixture_col_clues_in_order
+* test_named_teapot_lines_hold_their_literals
+* test_row_three_is_not_column_three
+* test_a_mutated_row_clue_reaches_only_its_own_row
+* test_run_order_is_kept_and_nothing_is_merged
+* test_solution_fills_are_never_read
+* test_a_mutated_clue_list_wins_over_disagreeing_solution_fills
+* test_an_empty_clue_line_is_kept_as_zero_runs
+* test_a_non_empty_line_is_not_reported_empty
+* test_too_few_row_clues_is_a_mapping_error
+* test_too_many_column_clues_is_a_mapping_error
+* test_a_missing_clue_list_is_a_mapping_error
+* test_a_missing_size_is_a_mapping_error
+* test_lines_do_not_alias_the_definition_lists
+[1m17/17 passed.
+[0m[4m
+
+res://test/test_confirm_overlay.gd
+[0m* test_s1_shows_the_confirm_copy_and_blocks_the_gallery
+* test_s1_blocks_every_gallery_control_behind_it
+* test_s1_refuses_a_puzzle_that_cannot_reset
+* test_confirm_fires_once_and_dismisses
+* test_cancel_fires_once_and_writes_nothing
+* test_a_dismissed_box_raises_nothing
+* test_the_buttons_raise_the_intents
+* test_an_unknown_id_clears_nothing
+* test_the_card_follows_the_approved_widths
+* test_the_overlay_uses_the_catalogued_family_only
+[1m10/10 passed.
+[0m[4m
+
+res://test/test_gallery.gd
+[0m* test_r1_shows_completion_from_o2
+* test_r2_completed_tile_shows_done_best_and_picture
+* test_r2_not_started_tile_shows_the_placeholder
+* test_r2_in_progress_tile_reads_in_progress
+* test_r2_replay_shows_done_and_in_progress
+* test_c1_raises_the_puzzle_request
+* test_c2_raises_reset_when_allowed
+* test_c2_is_refused_for_a_new_puzzle
+* test_c3_raises_the_settings_request
+* test_refresh_after_reset_reads_the_puzzle_as_new
+* test_tiles_cover_the_whole_shipped_pack
+* test_columns_follow_the_screen_width
+* test_tile_picture_is_square_at_both_widths
+* test_every_column_fits_an_edge_width
+[1m14/14 passed.
+[0m[4m
+
+res://test/test_game_state.gd
+[0m* test_a_solve_ignores_crosses
+* test_a_solve_needs_exactly_the_solution
+* test_line_error_tracks_the_fills
+* test_line_satisfied_tracks_the_runs
+* test_line_status_covers_every_row_and_column
+* test_in_progress_needs_a_mark
+* test_an_empty_clue_auto_cross_sets_in_progress
+* test_clearing_the_last_mark_returns_to_not_started
+* test_a_solve_returns_the_attempt_to_not_started
+* test_the_same_inputs_give_the_same_outcome
+* test_a_solve_sets_ever_completed_with_a_personal_best
+* test_completion_rate_is_ever_completed_over_pack_size
+* test_the_pack_is_finished_only_at_completion_rate_one
+* test_the_thumbnail_flag_is_true_only_when_ever_completed
+* test_not_started_holds_clear_marks_and_zero_elapsed
+* test_ever_completed_and_in_progress_coexist_on_replay
+* test_only_the_progress_rules_change_a_record
+* test_rules_write_neither_the_grid_nor_the_solution
+[1m18/18 passed.
+[0m[4m
+
+res://test/test_leave.gd
+[0m* test_leave_with_changed_marks_writes_the_record_and_closes_the_attempt
+* test_leave_during_get_set_ready_commits_restored_marks_without_auto_cross
+* test_leave_with_nothing_to_persist_writes_nothing
+* test_leave_with_no_open_attempt_changes_nothing
+* test_leave_emits_e2_once_and_a_second_leave_changes_nothing
+* test_leave_then_reopen_restores_the_marks_and_elapsed
+[1m6/6 passed.
+[0m[4m
+
+res://test/test_mark_input.gd
+[0m* test_desktop_click_applies_fill_and_toggles_it_off
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_desktop_secondary_click_applies_complement_and_toggles
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+         [3] _run_test (res://addons/gut/gut.gd:650)
+         [4] before_each (res://test/test_mark_input.gd:53)
+* test_tap_toggle_applies_to_cross_too
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_complement_maps_cross_to_fill_and_clear_to_cross
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+         [3] _run_test (res://addons/gut/gut.gd:650)
+         [4] before_each (res://test/test_mark_input.gd:53)
+* test_desktop_drag_paints_cross_without_per_cell_toggle
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_touch_tap_and_drag_follow_the_same_mark_rules
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_keyboard_f_x_c_select_tools_and_next_tap_applies
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_blocked_marks_send_no_o2_call
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+[33m    270 Orphans[0m
+[33m        * [@Control@70860:<Control#4182207629889>(puzzle_cell.gd)]
+        * [@Control@70686:<Control#4176369158726>(puzzle_cell.gd)]
+        * [@Control@70859:<Control#4182174075463>(puzzle_cell.gd)]
+        * [@Control@70862:<Control#4182274738765>(puzzle_cell.gd)]
+        * [@Control@70861:<Control#4182241184337>(puzzle_cell.gd)]
+        * [@Control@70689:<Control#4176469822035>(puzzle_cell.gd)]
+        * [@Control@70687:<Control#4176402713174>(puzzle_cell.gd)]
+        * [@Control@70688:<Control#4176436267607>(puzzle_cell.gd)]
+        * [@Control@70690:<Control#4176503376475>(puzzle_cell.gd)]
+        * [@Control@70683:<Control#4176268495501>(puzzle_cell.gd)]
+        * [@Control@70684:<Control#4176302049937>(puzzle_cell.gd)]
+        * [@Control@70868:<Control#4182476065445>(puzzle_cell.gd)]
+        * [@Control@70847:<Control#4181771422493>(puzzle_cell.gd)]
+        * [@Control@70743:<Control#4178281761578>(puzzle_cell.gd)]
+        * [@Control@70754:<Control#4178650860331>(puzzle_cell.gd)]
+        * [@Control@70739:<Control#4178147543852>(puzzle_cell.gd)]
+        * [@Control@70740:<Control#4178181098287>(puzzle_cell.gd)]
+        * [@Control@70742:<Control#4178248207153>(puzzle_cell.gd)]
+        * [@Control@70703:<Control#4176939584315>(puzzle_cell.gd)]
+        * [@Control@70736:<Control#4178046880613>(puzzle_cell.gd)]
+        * [@Control@70866:<Control#4182408956776>(puzzle_cell.gd)]
+        * [@Control@70734:<Control#4177979771761>(puzzle_cell.gd)]
+        * [@Control@70735:<Control#4178013326194>(puzzle_cell.gd)]
+        * [@Control@70733:<Control#4177946217334>(puzzle_cell.gd)]
+        * [@Control@70731:<Control#4177879108471>(puzzle_cell.gd)]
+        * [@Control@70732:<Control#4177912662908>(puzzle_cell.gd)]
+        * [@Control@70702:<Control#4176906029953>(puzzle_cell.gd)]
+        * [@Control@70844:<Control#4181670759321>(puzzle_cell.gd)]
+        * [@Control@70664:<Control#4175630961615>(puzzle_cell.gd)]
+        * [@Control@70662:<Control#4175563852759>(puzzle_cell.gd)]
+        * [@Control@70663:<Control#4175597407192>(puzzle_cell.gd)]
+        * [@Control@70665:<Control#4175664516060>(puzzle_cell.gd)]
+        * [@Control@70655:<Control#4175328971744>(puzzle_cell.gd)]
+        * [@Control@70660:<Control#4175496743907>(puzzle_cell.gd)]
+        * [@Control@70661:<Control#4175530298340>(puzzle_cell.gd)]
+        * [@Control@70659:<Control#4175463189480>(puzzle_cell.gd)]
+        * [@Control@70657:<Control#4175396080617>(puzzle_cell.gd)]
+        * [@Control@70654:<Control#4175295417324>(puzzle_cell.gd)]
+        * [@Control@70656:<Control#4175362526189>(puzzle_cell.gd)]
+        * [@Control@70658:<Control#4175429635054>(puzzle_cell.gd)]
+        * [@Control@70653:<Control#4175261862896>(puzzle_cell.gd)]
+        * [@Control@70652:<Control#4175228308467>(puzzle_cell.gd)]
+        * [@Control@70647:<Control#4175060536308>(puzzle_cell.gd)]
+        * [@Control@70645:<Control#4174993427445>(puzzle_cell.gd)]
+        * [@Control@70651:<Control#4175194754040>(puzzle_cell.gd)]
+        * [@Control@70649:<Control#4175127645177>(puzzle_cell.gd)]
+        * [@Control@70648:<Control#4175094090748>(puzzle_cell.gd)]
+        * [@Label@70643:<Label#4174926318589>]
+        * [@Control@70644:<Control#4174959873022>(puzzle_cell.gd)]
+        * [@Control@70650:<Control#4175161199616>(puzzle_cell.gd)]
+        * [@Control@70646:<Control#4175026981890>(puzzle_cell.gd)]
+        * [@Label@70636:<Label#4174691437574>]
+        * [@Label@70641:<Label#4174859209737>]
+        * [@Label@70642:<Label#4174892764170>]
+        * [@Label@70640:<Label#4174825655310>]
+        * [@Label@70638:<Label#4174758546447>]
+        * [@Label@70635:<Label#4174657883154>]
+        * [@Label@70637:<Label#4174724992019>]
+        * [@Label@70639:<Label#4174792100884>]
+        * [@Label@70634:<Label#4174624328726>]
+        * [@Label@70633:<Label#4174590774297>]
+        * [@Label@70632:<Label#4174557219870>]
+        * [@Label@70630:<Label#4174490111007>]
+        * [@Label@70629:<Label#4174456556578>]
+        * [@VBoxContainer@70625:<VBoxContainer#4174322338852>] + 1
+        * [@Label@70631:<Label#4174523665446>]
+        * [@VBoxContainer@70627:<VBoxContainer#4174389447720>] + 1
+        * [@VBoxContainer@70617:<VBoxContainer#4174053903404>] + 1
+        * [@VBoxContainer@70623:<VBoxContainer#4174255230000>] + 1
+        * [@VBoxContainer@70621:<VBoxContainer#4174188121140>] + 1
+        * [@VBoxContainer@70619:<VBoxContainer#4174121012277>] + 1
+        * [@VBoxContainer@70615:<VBoxContainer#4173986794556>] + 1
+        * [@VBoxContainer@70609:<VBoxContainer#4173785467968>] + 1
+        * [@VBoxContainer@70607:<VBoxContainer#4173718359105>] + 1
+        * [@VBoxContainer@70613:<VBoxContainer#4173919685700>] + 1
+        * [@VBoxContainer@70611:<VBoxContainer#4173852576837>] + 1
+        * [@VBoxContainer@70605:<VBoxContainer#4173651250249>] + 1
+        * [@VBoxContainer@70603:<VBoxContainer#4173584141397>] + 1
+        * [@VBoxContainer@70599:<VBoxContainer#4173449923676>] + 1
+        * [@VBoxContainer@70601:<VBoxContainer#4173517032544>] + 1
+        * [@Control@70863:<Control#4182308293845>(puzzle_cell.gd)]
+        * [@Control@70704:<Control#4176973139292>(puzzle_cell.gd)]
+        * [@Control@70849:<Control#4181838531958>(puzzle_cell.gd)]
+        * [@Control@70853:<Control#4181972749688>(puzzle_cell.gd)]
+        * [@Control@70854:<Control#4182006304124>(puzzle_cell.gd)]
+        * [@Control@70699:<Control#4176805367169>(puzzle_cell.gd)]
+        * [@Control@70678:<Control#4176100724101>(puzzle_cell.gd)]
+        * [@Control@70680:<Control#4176167832969>(puzzle_cell.gd)]
+        * [@Control@70667:<Control#4175731625354>(puzzle_cell.gd)]
+        * [@Control@70705:<Control#4177006693776>(puzzle_cell.gd)]
+        * [@Control@70681:<Control#4176201387411>(puzzle_cell.gd)]
+        * [@Control@70697:<Control#4176738258474>(puzzle_cell.gd)]
+        * [@Control@70675:<Control#4176000060973>(puzzle_cell.gd)]
+        * [@Control@70741:<Control#4178214653527>(puzzle_cell.gd)]
+        * [@Control@70856:<Control#4182073413248>(puzzle_cell.gd)]
+        * [@Control@70694:<Control#4176637595266>(puzzle_cell.gd)]
+        * [@Control@70692:<Control#4176570486403>(puzzle_cell.gd)]
+        * [@Control@70857:<Control#4182106967685>(puzzle_cell.gd)]
+        * [@Control@70693:<Control#4176604040839>(puzzle_cell.gd)]
+        * [@Control@70845:<Control#4181704314588>(puzzle_cell.gd)]
+        * [@Control@70707:<Control#4177073802994>(puzzle_cell.gd)]
+        * [@Control@70701:<Control#4176872476403>(puzzle_cell.gd)]
+        * [@Control@70698:<Control#4176771813109>(puzzle_cell.gd)]
+        * [@Control@70708:<Control#4177107357430>(puzzle_cell.gd)]
+        * [@Control@70695:<Control#4176671149819>(puzzle_cell.gd)]
+        * [@Control@70700:<Control#4176838921986>(puzzle_cell.gd)]
+        * [@Control@70750:<Control#4178516643590>(puzzle_cell.gd)]
+        * [@Control@70846:<Control#4181737869073>(puzzle_cell.gd)]
+        * [@Control@70852:<Control#4181939195738>(puzzle_cell.gd)]
+        * [@Control@70738:<Control#4178113990547>(puzzle_cell.gd)]
+        * [@Control@70855:<Control#4182039859094>(puzzle_cell.gd)]
+        * [@Control@70737:<Control#4178080436119>(puzzle_cell.gd)]
+        * [@Control@70685:<Control#4176335605664>(puzzle_cell.gd)]
+        * [@Control@70706:<Control#4177040248737>(puzzle_cell.gd)]
+        * [@Control@70666:<Control#4175698071460>(puzzle_cell.gd)]
+        * [@Control@70850:<Control#4181872086959>(puzzle_cell.gd)]
+        * [@Control@70851:<Control#4181905641392>(puzzle_cell.gd)]
+        * [@Control@70751:<Control#4178550198196>(puzzle_cell.gd)]
+        * [@Control@70752:<Control#4178583752635>(puzzle_cell.gd)]
+        * [@Control@70753:<Control#4178617307074>(puzzle_cell.gd)]
+        * [@Control@70671:<Control#4175865843668>(puzzle_cell.gd)]
+        * [@Control@70670:<Control#4175832289237>(puzzle_cell.gd)]
+        * [@Control@70668:<Control#4175765180375>(puzzle_cell.gd)]
+        * [@Control@70669:<Control#4175798734808>(puzzle_cell.gd)]
+        * [@Control@70672:<Control#4175899398108>(puzzle_cell.gd)]
+        * [@Control@70746:<Control#4178382426092>(puzzle_cell.gd)]
+        * [@Control@70747:<Control#4178415980525>(puzzle_cell.gd)]
+        * [@Control@70745:<Control#4178348871662>(puzzle_cell.gd)]
+        * [@Control@70744:<Control#4178315317231>(puzzle_cell.gd)]
+        * [@Control@70749:<Control#4178483089397>(puzzle_cell.gd)]
+        * [@Control@70748:<Control#4178449534968>(puzzle_cell.gd)]
+        * [@Control@70677:<Control#4176067170518>(puzzle_cell.gd)]
+        * [@Control@70676:<Control#4176033616089>(puzzle_cell.gd)]
+        * [@Control@70759:<Control#4178818633955>(puzzle_cell.gd)]
+        * [@Control@70758:<Control#4178785079524>(puzzle_cell.gd)]
+        * [@Control@70709:<Control#4177140912359>(puzzle_cell.gd)]
+        * [@Control@70763:<Control#4178952851691>(puzzle_cell.gd)]
+        * [@Control@70767:<Control#4179087069421>(puzzle_cell.gd)]
+        * [@Control@70761:<Control#4178885742831>(puzzle_cell.gd)]
+        * [@Control@70760:<Control#4178852188400>(puzzle_cell.gd)]
+        * [@Control@70765:<Control#4179019960561>(puzzle_cell.gd)]
+        * [@Control@70766:<Control#4179053514996>(puzzle_cell.gd)]
+        * [@Control@70768:<Control#4179120623861>(puzzle_cell.gd)]
+        * [@Control@70762:<Control#4178919297272>(puzzle_cell.gd)]
+        * [@Control@70764:<Control#4178986406137>(puzzle_cell.gd)]
+        * [@Control@70769:<Control#4179154178298>(puzzle_cell.gd)]
+        * [@Control@70770:<Control#4179187732733>(puzzle_cell.gd)]
+        * [@Control@70775:<Control#4179355504895>(puzzle_cell.gd)]
+        * [@Control@70773:<Control#4179288396032>(puzzle_cell.gd)]
+        * [@Control@70771:<Control#4179221287169>(puzzle_cell.gd)]
+        * [@Control@70774:<Control#4179321950468>(puzzle_cell.gd)]
+        * [@Control@70776:<Control#4179389059333>(puzzle_cell.gd)]
+        * [@Control@70778:<Control#4179456168201>(puzzle_cell.gd)]
+        * [@Control@70777:<Control#4179422613770>(puzzle_cell.gd)]
+        * [@Control@70772:<Control#4179254841613>(puzzle_cell.gd)]
+        * [@Control@70782:<Control#4179590385937>(puzzle_cell.gd)]
+        * [@Control@70786:<Control#4179724603667>(puzzle_cell.gd)]
+        * [@Control@70780:<Control#4179523277077>(puzzle_cell.gd)]
+        * [@Control@70779:<Control#4179489722646>(puzzle_cell.gd)]
+        * [@Control@70784:<Control#4179657494807>(puzzle_cell.gd)]
+        * [@Control@70785:<Control#4179691049242>(puzzle_cell.gd)]
+        * [@Control@70787:<Control#4179758158107>(puzzle_cell.gd)]
+        * [@Control@70781:<Control#4179556831518>(puzzle_cell.gd)]
+        * [@Control@70783:<Control#4179623940383>(puzzle_cell.gd)]
+        * [@Control@70788:<Control#4179791712544>(puzzle_cell.gd)]
+        * [@Control@70789:<Control#4179825266979>(puzzle_cell.gd)]
+        * [@Control@70794:<Control#4179993039141>(puzzle_cell.gd)]
+        * [@Control@70792:<Control#4179925930278>(puzzle_cell.gd)]
+        * [@Control@70790:<Control#4179858821415>(puzzle_cell.gd)]
+        * [@Control@70793:<Control#4179959484714>(puzzle_cell.gd)]
+        * [@Control@70795:<Control#4180026593579>(puzzle_cell.gd)]
+        * [@Control@70797:<Control#4180093702447>(puzzle_cell.gd)]
+        * [@Control@70796:<Control#4180060148016>(puzzle_cell.gd)]
+        * [@Control@70791:<Control#4179892375859>(puzzle_cell.gd)]
+        * [@Control@70801:<Control#4180227920183>(puzzle_cell.gd)]
+        * [@Control@70805:<Control#4180362137913>(puzzle_cell.gd)]
+        * [@Control@70799:<Control#4180160811323>(puzzle_cell.gd)]
+        * [@Control@70798:<Control#4180127256892>(puzzle_cell.gd)]
+        * [@Control@70803:<Control#4180295029053>(puzzle_cell.gd)]
+        * [@Control@70804:<Control#4180328583488>(puzzle_cell.gd)]
+        * [@Control@70806:<Control#4180395692353>(puzzle_cell.gd)]
+        * [@Control@70800:<Control#4180194365764>(puzzle_cell.gd)]
+        * [@Control@70802:<Control#4180261474629>(puzzle_cell.gd)]
+        * [@Control@70807:<Control#4180429246790>(puzzle_cell.gd)]
+        * [@Control@70808:<Control#4180462801225>(puzzle_cell.gd)]
+        * [@Control@70813:<Control#4180630573387>(puzzle_cell.gd)]
+        * [@Control@70811:<Control#4180563464524>(puzzle_cell.gd)]
+        * [@Control@70809:<Control#4180496355661>(puzzle_cell.gd)]
+        * [@Control@70812:<Control#4180597018960>(puzzle_cell.gd)]
+        * [@Control@70814:<Control#4180664127825>(puzzle_cell.gd)]
+        * [@Control@70816:<Control#4180731236693>(puzzle_cell.gd)]
+        * [@Control@70815:<Control#4180697682262>(puzzle_cell.gd)]
+        * [@Control@70810:<Control#4180529910105>(puzzle_cell.gd)]
+        * [@Control@70820:<Control#4180865454429>(puzzle_cell.gd)]
+        * [@Control@70824:<Control#4180999672159>(puzzle_cell.gd)]
+        * [@Control@70818:<Control#4180798345569>(puzzle_cell.gd)]
+        * [@Control@70817:<Control#4180764791138>(puzzle_cell.gd)]
+        * [@Control@70822:<Control#4180932563299>(puzzle_cell.gd)]
+        * [@Control@70823:<Control#4180966117734>(puzzle_cell.gd)]
+        * [@Control@70825:<Control#4181033226599>(puzzle_cell.gd)]
+        * [@Control@70819:<Control#4180831900010>(puzzle_cell.gd)]
+        * [@Control@70821:<Control#4180899008875>(puzzle_cell.gd)]
+        * [@Control@70826:<Control#4181066781036>(puzzle_cell.gd)]
+        * [@Control@70827:<Control#4181100335471>(puzzle_cell.gd)]
+        * [@Control@70832:<Control#4181268107633>(puzzle_cell.gd)]
+        * [@Control@70830:<Control#4181200998770>(puzzle_cell.gd)]
+        * [@Control@70828:<Control#4181133889907>(puzzle_cell.gd)]
+        * [@Control@70831:<Control#4181234553206>(puzzle_cell.gd)]
+        * [@Control@70833:<Control#4181301662071>(puzzle_cell.gd)]
+        * [@Control@70835:<Control#4181368770939>(puzzle_cell.gd)]
+        * [@Control@70834:<Control#4181335216508>(puzzle_cell.gd)]
+        * [@Control@70829:<Control#4181167444351>(puzzle_cell.gd)]
+        * [@Control@70839:<Control#4181502988675>(puzzle_cell.gd)]
+        * [@Control@70843:<Control#4181637206405>(puzzle_cell.gd)]
+        * [@Control@70837:<Control#4181435879815>(puzzle_cell.gd)]
+        * [@Control@70836:<Control#4181402325384>(puzzle_cell.gd)]
+        * [@Control@70841:<Control#4181570097545>(puzzle_cell.gd)]
+        * [@Control@70842:<Control#4181603651980>(puzzle_cell.gd)]
+        * [@Control@70730:<Control#4177845555597>(puzzle_cell.gd)]
+        * [@Control@70838:<Control#4181469434256>(puzzle_cell.gd)]
+        * [@Control@70840:<Control#4181536543121>(puzzle_cell.gd)]
+        * [@Control@70717:<Control#4177409347987>(puzzle_cell.gd)]
+        * [@Control@70715:<Control#4177342239126>(puzzle_cell.gd)]
+        * [@Control@70716:<Control#4177375793563>(puzzle_cell.gd)]
+        * [@Control@70724:<Control#4177644229023>(puzzle_cell.gd)]
+        * [@Control@70720:<Control#4177510011296>(puzzle_cell.gd)]
+        * [@Control@70718:<Control#4177442902435>(puzzle_cell.gd)]
+        * [@Control@70719:<Control#4177476456868>(puzzle_cell.gd)]
+        * [@Control@70727:<Control#4177744892326>(puzzle_cell.gd)]
+        * [@Control@70722:<Control#4177577120167>(puzzle_cell.gd)]
+        * [@Control@70721:<Control#4177543565736>(puzzle_cell.gd)]
+        * [@Control@70725:<Control#4177677783466>(puzzle_cell.gd)]
+        * [@Control@70729:<Control#4177812001196>(puzzle_cell.gd)]
+        * [@Control@70714:<Control#4177308684719>(puzzle_cell.gd)]
+        * [@Control@70723:<Control#4177610674608>(puzzle_cell.gd)]
+        * [@Control@70728:<Control#4177778446769>(puzzle_cell.gd)]
+        * [@Control@70726:<Control#4177711337909>(puzzle_cell.gd)]
+        * [@Control@70679:<Control#4176134279731>(puzzle_cell.gd)]
+        * [@Control@70691:<Control#4176536932965>(puzzle_cell.gd)]
+        * [@Control@70858:<Control#4182140523117>(puzzle_cell.gd)]
+        * [@Control@70867:<Control#4182442513024>(puzzle_cell.gd)]
+        * [@Control@70696:<Control#4176704705154>(puzzle_cell.gd)]
+        * [@Control@70865:<Control#4182375404168>(puzzle_cell.gd)]
+        * [@Control@70682:<Control#4176234943123>(puzzle_cell.gd)]
+        * [@Control@70673:<Control#4175932953238>(puzzle_cell.gd)]
+        * [@Control@70674:<Control#4175966507671>(puzzle_cell.gd)]
+        * [@Control@70757:<Control#4178751525541>(puzzle_cell.gd)]
+        * [@Control@70710:<Control#4177174467241>(puzzle_cell.gd)]
+        * [@Control@70864:<Control#4182341849770>(puzzle_cell.gd)]
+        * [@Control@70756:<Control#4178717971115>(puzzle_cell.gd)]
+        * [@Control@70712:<Control#4177241576110>(puzzle_cell.gd)]
+        * [@Control@70711:<Control#4177208021684>(puzzle_cell.gd)]
+        * [@Control@70755:<Control#4178684416693>(puzzle_cell.gd)]
+        * [@Control@70713:<Control#4177275130556>(puzzle_cell.gd)]
+        * [@Control@70848:<Control#4181804985120>(puzzle_cell.gd)][0m
+* test_paused_board_sends_no_o2_call
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1519)
+     GDScript backtrace (most recent call first):
+         [0] before_each (res://test/test_mark_input.gd:47)
+         [1] _run_test (res://addons/gut/gut.gd:612)
+         [2] _test_the_scripts (res://addons/gut/gut.gd:835)
+[1m9/9 passed.
+[0m[4m
+
+res://test/test_open_ready.gd
+[0m* test_ready_auto_crosses_empty_clue_lines_and_is_in_progress
+* test_marks_are_blocked_and_no_ready_is_emitted_before_the_beat_ends
+* test_marks_stay_blocked_until_the_beat_ends_at_each_ready_length
+* test_elapsed_ticks_only_after_the_beat
+* test_empty_clue_rows_and_columns_contribute_their_still_clear_cells
+* test_a_line_with_runs_contributes_nothing
+* test_filled_and_crossed_cells_are_not_still_clear
+* test_auto_cross_writes_nothing_and_is_deterministic
+* test_a_definition_with_bad_clues_returns_no_auto_cross_cells
+* test_auto_cross_commits_when_the_marks_changed
+* test_auto_cross_does_not_commit_when_nothing_changed
+* test_ready_emits_once_with_the_id_grid_and_line_status
+* test_an_unknown_id_changes_nothing
+* test_an_unknown_id_during_a_beat_changes_nothing
+* test_a_pause_during_the_beat_waits_for_the_beat_and_revives_marks_on_resume
+* test_advance_adds_elapsed_while_ready_and_nothing_while_blocked
+* test_the_edge_writes_exactly_the_rules_auto_cross
+* test_open_restores_an_in_progress_record
+* test_open_in_progress_record_keeps_marks_blocked_until_beat_end
+* test_a_committed_record_grid_blocks_its_own_marks
+[1m20/20 passed.
+[0m[4m
+
+res://test/test_pack_load.gd
+[0m* test_shipped_pack_loads_every_entry
+* test_shipped_pack_has_the_entity_sizes
+* test_loaded_definitions_satisfy_the_schema
+* test_field_mapping_from_pack_data
+* test_definition_returns_the_loaded_record
+* test_unknown_id_changes_nothing
+* test_entry_missing_a_field_is_rejected
+WARNING: Pack entry 1 rejected: missing picture-id
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:194)
+         [3] test_entry_missing_a_field_is_rejected (res://test/test_pack_load.gd:122)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_size_outside_the_entity_sizes_is_rejected
+WARNING: Pack entry 1 rejected: size is not 10, 15, or 20
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:194)
+         [3] test_size_outside_the_entity_sizes_is_rejected (res://test/test_pack_load.gd:126)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_clue_lists_that_are_not_the_runs_are_rejected
+WARNING: Pack entry 1 rejected: row-clues are not the runs of solution-fills
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:194)
+         [3] test_clue_lists_that_are_not_the_runs_are_rejected (res://test/test_pack_load.gd:130)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_fill_outside_the_grid_is_rejected
+WARNING: Pack entry 1 rejected: solution-fills is not a set of positions inside the grid
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:194)
+         [3] test_fill_outside_the_grid_is_rejected (res://test/test_pack_load.gd:134)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_malformed_clue_shape_is_rejected
+WARNING: Pack entry 1 rejected: col-clues is not 10 lists of positive integers
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] _assert_only_rejected (res://test/test_pack_load.gd:194)
+         [3] test_malformed_clue_shape_is_rejected (res://test/test_pack_load.gd:138)
+         [4] _run_test (res://addons/gut/gut.gd:622)
+         [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_repeated_puzzle_id_is_rejected
+WARNING: Pack entry 1 rejected: id fixture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_puzzle_id_is_rejected (res://test/test_pack_load.gd:142)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 2 rejected: picture-id picture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_puzzle_id_is_rejected (res://test/test_pack_load.gd:142)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 3 rejected: pixel-picture-id pixel-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_puzzle_id_is_rejected (res://test/test_pack_load.gd:142)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_repeated_pictures_are_rejected
+WARNING: Pack entry 1 rejected: picture-id picture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_pictures_are_rejected (res://test/test_pack_load.gd:150)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 2 rejected: pixel-picture-id pixel-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_repeated_pictures_are_rejected (res://test/test_pack_load.gd:150)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_equal_picture_ids_are_rejected
+WARNING: Pack entry 1 rejected: picture-id and pixel-picture-id are the same id
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_equal_picture_ids_are_rejected (res://test/test_pack_load.gd:158)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_rejected_entries_carry_their_raw_entry_and_reason
+WARNING: Pack entry 1 rejected: id fixture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_rejected_entries_carry_their_raw_entry_and_reason (res://test/test_pack_load.gd:164)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 2 rejected: picture-id picture-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_rejected_entries_carry_their_raw_entry_and_reason (res://test/test_pack_load.gd:164)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+WARNING: Pack entry 3 rejected: pixel-picture-id pixel-a already accepted
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] load_pack (res://records/pack.gd:59)
+         [1] _load (res://test/test_pack_load.gd:13)
+         [2] test_rejected_entries_carry_their_raw_entry_and_reason (res://test/test_pack_load.gd:164)
+         [3] _run_test (res://addons/gut/gut.gd:622)
+         [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_missing_file_loads_nothing_and_logs_the_path
+ERROR: Pack file missing or unreadable: res://test/fixtures/pack/absent.json
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] load_pack (res://records/pack.gd:40)
+       [1] _load (res://test/test_pack_load.gd:13)
+       [2] _assert_bad_file (res://test/test_pack_load.gd:202)
+       [3] test_missing_file_loads_nothing_and_logs_the_path (res://test/test_pack_load.gd:173)
+       [4] _run_test (res://addons/gut/gut.gd:622)
+       [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_invalid_json_loads_nothing_and_logs_the_path
+ERROR: Pack file is not valid JSON: res://test/fixtures/pack/invalid.json (Expected '}')
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] load_pack (res://records/pack.gd:44)
+       [1] _load (res://test/test_pack_load.gd:13)
+       [2] _assert_bad_file (res://test/test_pack_load.gd:202)
+       [3] test_invalid_json_loads_nothing_and_logs_the_path (res://test/test_pack_load.gd:177)
+       [4] _run_test (res://addons/gut/gut.gd:622)
+       [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_json_that_is_not_an_array_loads_nothing_and_logs_the_path
+ERROR: Pack file is not a JSON array: res://test/fixtures/pack/not-array.json
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] load_pack (res://records/pack.gd:47)
+       [1] _load (res://test/test_pack_load.gd:13)
+       [2] _assert_bad_file (res://test/test_pack_load.gd:202)
+       [3] test_json_that_is_not_an_array_loads_nothing_and_logs_the_path (res://test/test_pack_load.gd:181)
+       [4] _run_test (res://addons/gut/gut.gd:622)
+       [5] _test_the_scripts (res://addons/gut/gut.gd:835)
+* test_bad_file_clears_definitions_from_the_last_load
+ERROR: Pack file is not valid JSON: res://test/fixtures/pack/invalid.json (Expected '}')
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] load_pack (res://records/pack.gd:44)
+       [1] test_bad_file_clears_definitions_from_the_last_load (res://test/test_pack_load.gd:187)
+       [2] _run_test (res://addons/gut/gut.gd:622)
+       [3] _test_the_scripts (res://addons/gut/gut.gd:835)
+[1m19/19 passed.
+[0m[4m
+
+res://test/test_pack_progress.gd
+[0m* test_o1_lists_every_puzzle_as_not_started
+* test_o2_completion_rate_is_fifty_of_two_hundred
+* test_o1_reads_a_completed_puzzle_with_its_personal_best
+* test_o1_reads_an_in_progress_attempt_with_its_marks
+* test_a_section_for_an_unknown_puzzle_is_ignored
+* test_o7_clears_the_record_and_replaces_the_file
+* test_o7_unknown_id_changes_nothing
+* test_a_failed_write_leaves_the_previous_file
+ERROR: Could not write the progress temp file: user://progress-test.cfg.tmp
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] save (res://records/progress_file.gd:48)
+       [1] reset (res://records/pack.gd:148)
+       [2] test_a_failed_write_leaves_the_previous_file (res://test/test_pack_progress.gd:169)
+       [3] _run_test (res://addons/gut/gut.gd:622)
+       [4] _test_the_scripts (res://addons/gut/gut.gd:835)
+[34m[ExpectedError][0mExpected push_error error containing 'Could not write the progress temp file'.  
+* test_the_last_first_solve_finishes_the_pack_and_still_wins_that_puzzle
+* test_a_replay_after_finish_stays_in_progress_and_ever_completed
+* test_a_gallery_reset_after_finish_reopens_the_pack
+* test_progress_file_round_trips_marks_row_major
+[1m12/12 passed.
+[0m[4m
+
+res://test/test_puzzle_screen.gd
+[0m* test_get_set_ready_shows_ready_beat_blocks_marks_and_keeps_chrome
+* test_ready_state_shows_chrome_tools_and_elapsed
+* test_ready_state_shows_a_restored_elapsed_without_ticking
+* test_elapsed_does_not_bank_time_spent_in_the_beat
+* test_get_set_ready_on_a_reopened_in_progress_puzzle_stays_blocked
+* test_paused_state_keeps_board_and_freezes_elapsed
+* test_tool_selection_cycles_fill_cross_clear
+* test_leave_and_settings_raise_intents
+* test_board_draws_marks_and_clues_without_the_solution
+* test_satisfied_and_error_clues_use_the_palette
+* test_cell_press_changes_nothing_on_the_attempt
+* test_board_does_not_read_the_definition_solution
+[1m12/12 passed.
+[0m[4m
+
+res://test/test_result_navigation.gd
+[0m* test_us1_4_solve_opens_the_result_screen
+* test_us1_4b_unsolved_mark_stays_on_the_puzzle
+* test_the_result_reveals_the_fills_the_solve_carried
+* test_us1_5_back_returns_to_the_gallery_with_the_puzzle_done
+* test_us1_5b_back_is_blocked_while_morphing
+* test_one_clock_plays_both_stages_on_real_frames
+* test_a_paused_attempt_freezes_the_morph
+* test_act_player_result_operation_returns_to_the_gallery
+* test_settings_is_not_reachable_from_the_result
+[1m9/9 passed.
+[0m[4m
+
+res://test/test_result_screen.gd
+[0m* test_us1_1_opens_on_the_fills_with_no_controls
+* test_stage_one_runs_cfg_morph_stage_ms_linearly
+* test_us1_4_pixel_fades_into_the_generated_picture
+* test_us1_2_default_shows_the_picture_and_opens_back
+* test_us1_3_back_is_blocked_while_morphing
+* test_back_in_default_raises_the_intent
+* test_the_morph_has_no_clue_chrome
+* test_us1_5_missing_generated_picture_ends_on_the_pixel_picture
+* test_us1_5_missing_pictures_end_on_the_solved_fills
+* test_us1_5_remaining_stages_keep_cfg_morph_stage_ms
+* test_us1_5_no_frame_between_stages_is_empty
+[1m11/11 passed.
+[0m[4m
+
+res://test/test_sanity.gd
+[0m* test_sanity_true
+[1m1/1 passed.
+[0m[4m
+
+res://test/test_settings.gd
+[0m* test_default_shows_haptics_on_and_mute_off
+* test_haptics_toggles_off_and_back
+* test_mute_toggles_on_and_back
+* test_back_raises_the_back_intent
+* test_present_shows_values_changed_elsewhere
+* test_without_flags_the_toggles_change_nothing
+[1m6/6 passed.
+[0m[4m
+
+res://test/test_settings_navigation.gd
+[0m* test_gallery_settings_opens_settings
+* test_back_from_gallery_settings_returns_to_gallery
+* test_puzzle_settings_pauses_the_attempt
+* test_back_resumes_the_paused_puzzle
+* test_settings_toggles_reach_the_shell_flags
+* test_haptics_branch_stays_on_settings_and_changes_one_flag
+* test_mute_branch_stays_on_settings_and_changes_one_flag
+* test_back_returns_to_an_unchanged_gallery
+* test_toggled_haptics_reads_back_on_reopen
+* test_toggled_mute_reads_back_on_reopen
+* test_pause_during_get_set_ready_keeps_the_beat
+* test_open_settings_is_idempotent
+[1m12/12 passed.
+[0m[4m
+
+res://test/test_shell_open.gd
+[0m* test_main_scene_is_the_shell_and_it_shows_the_gallery
+* test_gallery_lists_every_shipped_puzzle
+* test_a_tile_opens_its_puzzle
+* test_open_by_id_shows_the_puzzle_screen
+* test_every_pack_id_opens_in_free_order
+[33m    1004 Orphans[0m
+[33m        * [@VBoxContainer@149980:<VBoxContainer#14783277434488>] + 1
+        * [@VBoxContainer@150460:<VBoxContainer#14803795969660>] + 1
+        * [@Control@150540:<Control#14806480324230>(puzzle_cell.gd)]
+        * [@VBoxContainer@149850:<VBoxContainer#14771013289619>] + 1
+        * [@Control@150653:<Control#14810271975954>(puzzle_cell.gd)]
+        * [@Control@150512:<Control#14805540801108>(puzzle_cell.gd)]
+        * [@Control@150504:<Control#14805272365695>(puzzle_cell.gd)]
+        * [@Control@150510:<Control#14805473692290>(puzzle_cell.gd)]
+        * [@VBoxContainer@150449:<VBoxContainer#14803426871964>] + 2
+        * [@Control@150544:<Control#14806614543008>(puzzle_cell.gd)]
+        * [@VBoxContainer@150456:<VBoxContainer#14803661753050>] + 1
+        * [@Control@150516:<Control#14805675018982>(puzzle_cell.gd)]
+        * [@Control@149882:<Control#14772087032564>(puzzle_cell.gd)]
+        * [@Control@150505:<Control#14805305920251>(puzzle_cell.gd)]
+        * [@Control@150513:<Control#14805574355715>(puzzle_cell.gd)]
+        * [@Label@149866:<Label#14771550161703>]
+        * [@Control@149880:<Control#14772019923780>(puzzle_cell.gd)]
+        * [@Control@149890:<Control#14772355468132>(puzzle_cell.gd)]
+        * [@Control@150511:<Control#14805507246959>(puzzle_cell.gd)]
+        * [@Control@150517:<Control#14805708573571>(puzzle_cell.gd)]
+        * [@Control@150503:<Control#14805238811532>(puzzle_cell.gd)]
+        * [@Control@150519:<Control#14805775682452>(puzzle_cell.gd)]
+        * [@Control@150506:<Control#14805339474840>(puzzle_cell.gd)]
+        * [@VBoxContainer@149848:<VBoxContainer#14770946182046>] + 1
+        * [@Control@149975:<Control#14775207594913>(puzzle_cell.gd)]
+        * [@Control@150526:<Control#14806010563490>(puzzle_cell.gd)]
+        * [@Control@150537:<Control#14806379662246>(puzzle_cell.gd)]
+        * [@Control@149892:<Control#14772422577100>(puzzle_cell.gd)]
+        * [@Label@149868:<Label#14771617270831>]
+        * [@Label@149871:<Label#14771717934139>]
+        * [@Label@150038:<Label#14785223593024>]
+        * [@Label@150032:<Label#14785022266435>]
+        * [@Label@150026:<Label#14784820939845>]
+        * [@Control@150509:<Control#14805440138334>(puzzle_cell.gd)]
+        * [@VBoxContainer@149990:<VBoxContainer#14783612980325>] + 4
+        * [@VBoxContainer@149864:<VBoxContainer#14771483053198>] + 1
+        * [@VBoxContainer@149846:<VBoxContainer#14770879073647>] + 1
+        * [@Control@149897:<Control#14772590349718>(puzzle_cell.gd)]
+        * [@Control@149894:<Control#14772489686423>(puzzle_cell.gd)]
+        * [@VBoxContainer@150466:<VBoxContainer#14803997298093>] + 1
+        * [@Control@150642:<Control#14809902878264>(puzzle_cell.gd)]
+        * [@Control@150636:<Control#14809701551674>(puzzle_cell.gd)]
+        * [@Control@150527:<Control#14806044118590>(puzzle_cell.gd)]
+        * [@Control@150648:<Control#14810104204864>(puzzle_cell.gd)]
+        * [@Control@150647:<Control#14810070650438>(puzzle_cell.gd)]
+        * [@Control@150549:<Control#14806782316130>(puzzle_cell.gd)]
+        * [@Control@150541:<Control#14806513880731>(puzzle_cell.gd)]
+        * [@Control@149904:<Control#14772825231041>(puzzle_cell.gd)]
+        * [@VBoxContainer@149988:<VBoxContainer#14783545872078>] + 1
+        * [@Label@149869:<Label#14771650825964>]
+        * [@Control@150551:<Control#14806849425142>(puzzle_cell.gd)]
+        * [@VBoxContainer@150464:<VBoxContainer#14803930189572>] + 1
+        * [@Label@150494:<Label#14804936822551>]
+        * [@Control@150508:<Control#14805406584606>(puzzle_cell.gd)]
+        * [@Control@150495:<Control#14804970377057>(puzzle_cell.gd)]
+        * [@Label@150030:<Label#14784955158459>]
+        * [@Control@149891:<Control#14772389023712>(puzzle_cell.gd)]
+        * [@Control@150632:<Control#14809567334504>(puzzle_cell.gd)]
+        * [@Control@150633:<Control#14809600888945>(puzzle_cell.gd)]
+        * [@Control@150635:<Control#14809667997812>(puzzle_cell.gd)]
+        * [@Control@150637:<Control#14809735106678>(puzzle_cell.gd)]
+        * [@Control@150640:<Control#14809835769975>(puzzle_cell.gd)]
+        * [@Control@150643:<Control#14809936433273>(puzzle_cell.gd)]
+        * [@Control@150639:<Control#14809802215547>(puzzle_cell.gd)]
+        * [@Control@150638:<Control#14809768661118>(puzzle_cell.gd)]
+        * [@Control@150641:<Control#14809869324415>(puzzle_cell.gd)]
+        * [@Control@150645:<Control#14810003542145>(puzzle_cell.gd)]
+        * [@Control@150644:<Control#14809969987714>(puzzle_cell.gd)]
+        * [@Control@150646:<Control#14810037096579>(puzzle_cell.gd)]
+        * [@Control@150649:<Control#14810137759881>(puzzle_cell.gd)]
+        * [@VBoxContainer@149852:<VBoxContainer#14771080401109>] + 1
+        * [@VBoxContainer@149978:<VBoxContainer#14783210328314>] + 1
+        * [@Control@150502:<Control#14805205258534>(puzzle_cell.gd)]
+        * [@Control@150496:<Control#14805003931946>(puzzle_cell.gd)]
+        * [@Control@150498:<Control#14805071040811>(puzzle_cell.gd)]
+        * [@Label@150036:<Label#14785156485421>]
+        * [@Control@150501:<Control#14805171704110>(puzzle_cell.gd)]
+        * [@Control@149876:<Control#14771885707567>(puzzle_cell.gd)]
+        * [@Control@150497:<Control#14805037486384>(puzzle_cell.gd)]
+        * [@Control@150500:<Control#14805138149682>(puzzle_cell.gd)]
+        * [@Label@150493:<Label#14804903268675>]
+        * [@Control@149887:<Control#14772254806345>(puzzle_cell.gd)]
+        * [@Control@149883:<Control#14772120588648>(puzzle_cell.gd)]
+        * [@VBoxContainer@149862:<VBoxContainer#14771415945596>] + 1
+        * [@Control@150514:<Control#14805607911860>(puzzle_cell.gd)]
+        * [@Control@150507:<Control#14805373030844>(puzzle_cell.gd)]
+        * [@Label@150027:<Label#14784854495733>]
+        * [@Label@149870:<Label#14771684381174>]
+        * [@Control@150524:<Control#14805943456358>(puzzle_cell.gd)]
+        * [@VBoxContainer@149854:<VBoxContainer#14771147510390>] + 1
+        * [@VBoxContainer@149856:<VBoxContainer#14771214619259>] + 1
+        * [@VBoxContainer@150024:<VBoxContainer#14784753832581>] + 1
+        * [@Label@149867:<Label#14771583718022>]
+        * [@VBoxContainer@149860:<VBoxContainer#14771348837004>] + 1
+        * [@Control@149893:<Control#14772456133532>(puzzle_cell.gd)]
+        * [@Control@149895:<Control#14772523242402>(puzzle_cell.gd)]
+        * [@Control@149896:<Control#14772556796838>(puzzle_cell.gd)]
+        * [@Control@149898:<Control#14772623905707>(puzzle_cell.gd)]
+        * [@Control@149899:<Control#14772657460141>(puzzle_cell.gd)]
+        * [@Control@150523:<Control#14805909902315>(puzzle_cell.gd)]
+        * [@Control@149879:<Control#14771986371651>(puzzle_cell.gd)]
+        * [@Control@149881:<Control#14772053480517>(puzzle_cell.gd)]
+        * [@Control@149877:<Control#14771919262829>(puzzle_cell.gd)]
+        * [@Label@150037:<Label#14785190040689>]
+        * [@VBoxContainer@149982:<VBoxContainer#14783344546934>] + 2
+        * [@Label@150035:<Label#14785122931831>]
+        * [@Label@150033:<Label#14785055822969>]
+        * [@VBoxContainer@149976:<VBoxContainer#14783143220351>] + 1
+        * [@Label@150028:<Label#14784888050819>]
+        * [@Label@150029:<Label#14784921605254>]
+        * [@Label@150034:<Label#14785089377415>]
+        * [@Control@149878:<Control#14771952817289>(puzzle_cell.gd)]
+        * [@Control@150521:<Control#14805842793611>(puzzle_cell.gd)]
+        * [@Control@150525:<Control#14805977011341>(puzzle_cell.gd)]
+        * [@Control@150531:<Control#14806178337938>(puzzle_cell.gd)]
+        * [@Control@150518:<Control#14805742130324>(puzzle_cell.gd)]
+        * [@Control@150536:<Control#14806346110102>(puzzle_cell.gd)]
+        * [@Control@150530:<Control#14806144783514>(puzzle_cell.gd)]
+        * [@Control@150534:<Control#14806279001244>(puzzle_cell.gd)]
+        * [@Control@150539:<Control#14806446773407>(puzzle_cell.gd)]
+        * [@Control@150542:<Control#14806547436704>(puzzle_cell.gd)]
+        * [@Control@150546:<Control#14806681654433>(puzzle_cell.gd)]
+        * [@Control@150522:<Control#14805876348067>(puzzle_cell.gd)]
+        * [@Control@150548:<Control#14806748763301>(puzzle_cell.gd)]
+        * [@Control@150533:<Control#14806245446823>(puzzle_cell.gd)]
+        * [@Label@150031:<Label#14784988714152>]
+        * [@Control@150550:<Control#14806815872169>(puzzle_cell.gd)]
+        * [@Control@150532:<Control#14806211892394>(puzzle_cell.gd)]
+        * [@Control@150535:<Control#14806312555693>(puzzle_cell.gd)]
+        * [@Control@150538:<Control#14806413219005>(puzzle_cell.gd)]
+        * [@Control@150543:<Control#14806580991169>(puzzle_cell.gd)]
+        * [@Control@150529:<Control#14806111229123>(puzzle_cell.gd)]
+        * [@Control@149884:<Control#14772154143940>(puzzle_cell.gd)]
+        * [@Control@149886:<Control#14772221252806>(puzzle_cell.gd)]
+        * [@Control@150528:<Control#14806077674704>(puzzle_cell.gd)]
+        * [@Control@149924:<Control#14773496321233>(puzzle_cell.gd)]
+        * [@Control@149953:<Control#14774469399765>(puzzle_cell.gd)]
+        * [@Control@150659:<Control#14810473305325>(puzzle_cell.gd)]
+        * [@Control@149937:<Control#14773932528880>(puzzle_cell.gd)]
+        * [@Control@150657:<Control#14810406196472>(puzzle_cell.gd)]
+        * [@Control@150520:<Control#14805809239307>(puzzle_cell.gd)]
+        * [@Control@149888:<Control#14772288361794>(puzzle_cell.gd)]
+        * [@Control@149889:<Control#14772321916245>(puzzle_cell.gd)]
+        * [@Control@150547:<Control#14806715209046>(puzzle_cell.gd)]
+        * [@Control@150552:<Control#14806882981207>(puzzle_cell.gd)]
+        * [@Control@149885:<Control#14772187698606>(puzzle_cell.gd)]
+        * [@Label@149874:<Label#14771818599861>]
+        * [@Label@149872:<Label#14771751491013>]
+        * [@Control@149917:<Control#14773261440460>(puzzle_cell.gd)]
+        * [@Label@149873:<Label#14771785045454>]
+        * [@Label@149875:<Label#14771852154336>]
+        * [@Control@149920:<Control#14773362103777>(puzzle_cell.gd)]
+        * [@Control@149916:<Control#14773227886050>(puzzle_cell.gd)]
+        * [@Control@149921:<Control#14773395658222>(puzzle_cell.gd)]
+        * [@Control@149933:<Control#14773798311407>(puzzle_cell.gd)]
+        * [@Control@149925:<Control#14773529875956>(puzzle_cell.gd)]
+        * [@Control@149934:<Control#14773831865853>(puzzle_cell.gd)]
+        * [@Control@149935:<Control#14773865420290>(puzzle_cell.gd)]
+        * [@Control@150545:<Control#14806648100433>(puzzle_cell.gd)]
+        * [@VBoxContainer@150001:<VBoxContainer#14783982081658>] + 1
+        * [@Control@150499:<Control#14805104596610>(puzzle_cell.gd)]
+        * [@Label@150487:<Label#14804701943429>]
+        * [@Label@150486:<Label#14804668388999>]
+        * [@Label@150491:<Label#14804836161160>]
+        * [@Label@150489:<Label#14804769052297>]
+        * [@Label@150490:<Label#14804802606731>]
+        * [@Label@150488:<Label#14804735497868>]
+        * [@VBoxContainer@149995:<VBoxContainer#14783780755085>] + 1
+        * [@VBoxContainer@150003:<VBoxContainer#14784049190551>] + 1
+        * [@Label@150485:<Label#14804634834586>]
+        * [@VBoxContainer@149997:<VBoxContainer#14783847863973>] + 1
+        * [@VBoxContainer@150012:<VBoxContainer#14784351180472>] + 1
+        * [@VBoxContainer@150007:<VBoxContainer#14784183408324>] + 4
+        * [@Control@149912:<Control#14773093668561>(puzzle_cell.gd)]
+        * [@Control@149913:<Control#14773127222995>(puzzle_cell.gd)]
+        * [@Control@149918:<Control#14773294995156>(puzzle_cell.gd)]
+        * [@Control@149910:<Control#14773026559701>(puzzle_cell.gd)]
+        * [@Control@149911:<Control#14773060114136>(puzzle_cell.gd)]
+        * [@Control@149926:<Control#14773563430619>(puzzle_cell.gd)]
+        * [@Control@149928:<Control#14773630539487>(puzzle_cell.gd)]
+        * [@Control@149931:<Control#14773731202784>(puzzle_cell.gd)]
+        * [@Control@149915:<Control#14773194331873>(puzzle_cell.gd)]
+        * [@Control@149927:<Control#14773596985058>(puzzle_cell.gd)]
+        * [@Control@149939:<Control#14773999638243>(puzzle_cell.gd)]
+        * [@Control@149922:<Control#14773429212900>(puzzle_cell.gd)]
+        * [@Control@149914:<Control#14773160777446>(puzzle_cell.gd)]
+        * [@Control@149919:<Control#14773328549607>(puzzle_cell.gd)]
+        * [@Control@149940:<Control#14774033192680>(puzzle_cell.gd)]
+        * [@Control@149930:<Control#14773697648363>(puzzle_cell.gd)]
+        * [@Control@149932:<Control#14773764757228>(puzzle_cell.gd)]
+        * [@Control@149943:<Control#14774133855981>(puzzle_cell.gd)]
+        * [@Control@149929:<Control#14773664093937>(puzzle_cell.gd)]
+        * [@Control@149923:<Control#14773462767347>(puzzle_cell.gd)]
+        * [@Control@149948:<Control#14774301628154>(puzzle_cell.gd)]
+        * [@Control@149949:<Control#14774335182588>(puzzle_cell.gd)]
+        * [@Control@149952:<Control#14774435845887>(puzzle_cell.gd)]
+        * [@Control@149950:<Control#14774368737024>(puzzle_cell.gd)]
+        * [@Control@149944:<Control#14774167410434>(puzzle_cell.gd)]
+        * [@Control@149941:<Control#14774066747139>(puzzle_cell.gd)]
+        * [@Control@149955:<Control#14774536509189>(puzzle_cell.gd)]
+        * [@Control@149958:<Control#14774637172486>(puzzle_cell.gd)]
+        * [@Control@149947:<Control#14774268073735>(puzzle_cell.gd)]
+        * [@Control@149960:<Control#14774704281353>(puzzle_cell.gd)]
+        * [@Control@149945:<Control#14774200964875>(puzzle_cell.gd)]
+        * [@Control@149946:<Control#14774234519308>(puzzle_cell.gd)]
+        * [@Control@149961:<Control#14774737835790>(puzzle_cell.gd)]
+        * [@Control@149951:<Control#14774402291471>(puzzle_cell.gd)]
+        * [@Control@149942:<Control#14774100301584>(puzzle_cell.gd)]
+        * [@Control@149957:<Control#14774603618065>(puzzle_cell.gd)]
+        * [@Control@149959:<Control#14774670726930>(puzzle_cell.gd)]
+        * [@Control@149956:<Control#14774570063639>(puzzle_cell.gd)]
+        * [@Control@149964:<Control#14774838499105>(puzzle_cell.gd)]
+        * [@Control@149965:<Control#14774872053540>(puzzle_cell.gd)]
+        * [@Control@149968:<Control#14774972716840>(puzzle_cell.gd)]
+        * [@VBoxContainer@149999:<VBoxContainer#14783914972970>] + 1
+        * [@VBoxContainer@150005:<VBoxContainer#14784116299570>] + 1
+        * [@VBoxContainer@150014:<VBoxContainer#14784418289607>] + 2
+        * [@VBoxContainer@150017:<VBoxContainer#14784518952925>] + 2
+        * [@VBoxContainer@150022:<VBoxContainer#14784686725088>] + 1
+        * [@VBoxContainer@150020:<VBoxContainer#14784619616235>] + 1
+        * [@Control@149974:<Control#14775174043673>(puzzle_cell.gd)]
+        * [@Control@149966:<Control#14774905608335>(puzzle_cell.gd)]
+        * [@Control@149938:<Control#14773966084253>(puzzle_cell.gd)]
+        * [@Control@149969:<Control#14775006271651>(puzzle_cell.gd)]
+        * [@Control@149967:<Control#14774939162788>(puzzle_cell.gd)]
+        * [@Control@149973:<Control#14775140489383>(puzzle_cell.gd)]
+        * [@Control@149963:<Control#14774804945065>(puzzle_cell.gd)]
+        * [@Control@149954:<Control#14774502955181>(puzzle_cell.gd)]
+        * [@Control@149962:<Control#14774771390638>(puzzle_cell.gd)]
+        * [@VBoxContainer@149985:<VBoxContainer#14783445211316>] + 2
+        * [@Control@149972:<Control#14775106934969>(puzzle_cell.gd)]
+        * [@Control@150634:<Control#14809634449970>(puzzle_cell.gd)]
+        * [@Control@150515:<Control#14805641472675>(puzzle_cell.gd)]
+        * [@Control@150661:<Control#14810540420097>(puzzle_cell.gd)]
+        * [@Control@150660:<Control#14810506865667>(puzzle_cell.gd)]
+        * [@Control@150654:<Control#14810305539076>(puzzle_cell.gd)]
+        * [@VBoxContainer@149858:<VBoxContainer#14771281734752>] + 1
+        * [@VBoxContainer@150454:<VBoxContainer#14803594652801>] + 1
+        * [@Control@149936:<Control#14773898980485>(puzzle_cell.gd)]
+        * [@Control@149970:<Control#14775039831200>(puzzle_cell.gd)]
+        * [@Control@149971:<Control#14775073385634>(puzzle_cell.gd)]
+        * [@VBoxContainer@150468:<VBoxContainer#14804064414888>] + 1
+        * [@Control@150668:<Control#14810775301289>(puzzle_cell.gd)]
+        * [@Control@150650:<Control#14810171321537>(puzzle_cell.gd)]
+        * [@Control@150651:<Control#14810204875971>(puzzle_cell.gd)]
+        * [@Control@150652:<Control#14810238430406>(puzzle_cell.gd)]
+        * [@Control@150655:<Control#14810339093704>(puzzle_cell.gd)]
+        * [@Control@150656:<Control#14810372648138>(puzzle_cell.gd)]
+        * [@Control@150664:<Control#14810641083620>(puzzle_cell.gd)]
+        * [@Control@149903:<Control#14772791684472>(puzzle_cell.gd)]
+        * [@Control@149900:<Control#14772691021186>(puzzle_cell.gd)]
+        * [@Control@149901:<Control#14772724575620>(puzzle_cell.gd)]
+        * [@Control@149902:<Control#14772758130054>(puzzle_cell.gd)]
+        * [@Control@149907:<Control#14772925902232>(puzzle_cell.gd)]
+        * [@VBoxContainer@150452:<VBoxContainer#14803527544218>] + 1
+        * [@Control@150667:<Control#14810741747100>(puzzle_cell.gd)]
+        * [@Control@150666:<Control#14810708192670>(puzzle_cell.gd)]
+        * [@Control@150665:<Control#14810674638239>(puzzle_cell.gd)]
+        * [@Control@150663:<Control#14810607529383>(puzzle_cell.gd)]
+        * [@Control@150662:<Control#14810573974953>(puzzle_cell.gd)]
+        * [@Control@149905:<Control#14772858793438>(puzzle_cell.gd)]
+        * [@Control@149906:<Control#14772892347872>(puzzle_cell.gd)]
+        * [@Control@149908:<Control#14772959456737>(puzzle_cell.gd)]
+        * [@Control@149909:<Control#14772993011171>(puzzle_cell.gd)]
+        * [@VBoxContainer@150462:<VBoxContainer#14803863088716>] + 1
+        * [@VBoxContainer@150458:<VBoxContainer#14803728870993>] + 1
+        * [@Control@150658:<Control#14810439757411>(puzzle_cell.gd)]
+        * [@VBoxContainer@150446:<VBoxContainer#14803326218025>] + 2
+        * [@Control@150631:<Control#14809533787951>(puzzle_cell.gd)]
+        * [@Control@150630:<Control#14809500233521>(puzzle_cell.gd)]
+        * [@Control@150629:<Control#14809466679091>(puzzle_cell.gd)]
+        * [@Control@150628:<Control#14809433124661>(puzzle_cell.gd)]
+        * [@Control@150627:<Control#14809399570231>(puzzle_cell.gd)]
+        * [@Control@150626:<Control#14809366015801>(puzzle_cell.gd)]
+        * [@Control@150625:<Control#14809332461371>(puzzle_cell.gd)]
+        * [@Control@150624:<Control#14809298906941>(puzzle_cell.gd)]
+        * [@Control@150623:<Control#14809265352511>(puzzle_cell.gd)]
+        * [@Control@150622:<Control#14809231798081>(puzzle_cell.gd)]
+        * [@Control@150621:<Control#14809198243651>(puzzle_cell.gd)]
+        * [@Control@150620:<Control#14809164689221>(puzzle_cell.gd)]
+        * [@Control@150619:<Control#14809131134791>(puzzle_cell.gd)]
+        * [@Control@150618:<Control#14809097580361>(puzzle_cell.gd)]
+        * [@Control@150617:<Control#14809064025931>(puzzle_cell.gd)]
+        * [@Control@150616:<Control#14809030471501>(puzzle_cell.gd)]
+        * [@Control@150615:<Control#14808996917071>(puzzle_cell.gd)]
+        * [@Control@150614:<Control#14808963362641>(puzzle_cell.gd)]
+        * [@Control@150613:<Control#14808929808211>(puzzle_cell.gd)]
+        * [@Control@150612:<Control#14808896253781>(puzzle_cell.gd)]
+        * [@Control@150611:<Control#14808862699351>(puzzle_cell.gd)]
+        * [@Control@150610:<Control#14808829144921>(puzzle_cell.gd)]
+        * [@Control@150609:<Control#14808795590491>(puzzle_cell.gd)]
+        * [@Control@150608:<Control#14808762036061>(puzzle_cell.gd)]
+        * [@Control@150607:<Control#14808728481631>(puzzle_cell.gd)]
+        * [@Control@150606:<Control#14808694927201>(puzzle_cell.gd)]
+        * [@Control@150605:<Control#14808661372771>(puzzle_cell.gd)]
+        * [@Control@150604:<Control#14808627818341>(puzzle_cell.gd)]
+        * [@Control@150603:<Control#14808594263911>(puzzle_cell.gd)]
+        * [@Control@150602:<Control#14808560709481>(puzzle_cell.gd)]
+        * [@Control@150601:<Control#14808527155051>(puzzle_cell.gd)]
+        * [@Control@150600:<Control#14808493600621>(puzzle_cell.gd)]
+        * [@Control@150599:<Control#14808460046191>(puzzle_cell.gd)]
+        * [@Control@150598:<Control#14808426491761>(puzzle_cell.gd)]
+        * [@Control@150597:<Control#14808392937331>(puzzle_cell.gd)]
+        * [@Control@150596:<Control#14808359382901>(puzzle_cell.gd)]
+        * [@Control@150595:<Control#14808325828471>(puzzle_cell.gd)]
+        * [@Control@150594:<Control#14808292274041>(puzzle_cell.gd)]
+        * [@Control@150593:<Control#14808258719611>(puzzle_cell.gd)]
+        * [@Control@150592:<Control#14808225165181>(puzzle_cell.gd)]
+        * [@Control@150591:<Control#14808191610751>(puzzle_cell.gd)]
+        * [@Control@150590:<Control#14808158056321>(puzzle_cell.gd)]
+        * [@Control@150589:<Control#14808124501891>(puzzle_cell.gd)]
+        * [@Control@150588:<Control#14808090947461>(puzzle_cell.gd)]
+        * [@Control@150587:<Control#14808057393031>(puzzle_cell.gd)]
+        * [@Control@150586:<Control#14808023838601>(puzzle_cell.gd)]
+        * [@Control@150585:<Control#14807990284171>(puzzle_cell.gd)]
+        * [@Control@150584:<Control#14807956729741>(puzzle_cell.gd)]
+        * [@Control@150583:<Control#14807923175311>(puzzle_cell.gd)]
+        * [@Control@150582:<Control#14807889620881>(puzzle_cell.gd)]
+        * [@Control@150581:<Control#14807856066451>(puzzle_cell.gd)]
+        * [@Control@150580:<Control#14807822512021>(puzzle_cell.gd)]
+        * [@Control@150579:<Control#14807788957591>(puzzle_cell.gd)]
+        * [@Control@150578:<Control#14807755403161>(puzzle_cell.gd)]
+        * [@Control@150577:<Control#14807721848731>(puzzle_cell.gd)]
+        * [@Control@150576:<Control#14807688294301>(puzzle_cell.gd)]
+        * [@Control@150575:<Control#14807654739871>(puzzle_cell.gd)]
+        * [@Control@150574:<Control#14807621185441>(puzzle_cell.gd)]
+        * [@Control@150573:<Control#14807587631011>(puzzle_cell.gd)]
+        * [@Control@150572:<Control#14807554076581>(puzzle_cell.gd)]
+        * [@Control@150571:<Control#14807520522151>(puzzle_cell.gd)]
+        * [@Control@150570:<Control#14807486967721>(puzzle_cell.gd)]
+        * [@Control@150569:<Control#14807453413291>(puzzle_cell.gd)]
+        * [@Control@150568:<Control#14807419858861>(puzzle_cell.gd)]
+        * [@Control@150567:<Control#14807386304431>(puzzle_cell.gd)]
+        * [@Control@150566:<Control#14807352750001>(puzzle_cell.gd)]
+        * [@Control@150565:<Control#14807319195571>(puzzle_cell.gd)]
+        * [@Control@150564:<Control#14807285641141>(puzzle_cell.gd)]
+        * [@Control@150563:<Control#14807252086711>(puzzle_cell.gd)]
+        * [@Control@150562:<Control#14807218532281>(puzzle_cell.gd)]
+        * [@Control@150561:<Control#14807184977851>(puzzle_cell.gd)]
+        * [@Control@150560:<Control#14807151423421>(puzzle_cell.gd)]
+        * [@Control@150559:<Control#14807117868991>(puzzle_cell.gd)]
+        * [@Control@150558:<Control#14807084314561>(puzzle_cell.gd)]
+        * [@Control@150557:<Control#14807050760131>(puzzle_cell.gd)]
+        * [@Control@150556:<Control#14807017205701>(puzzle_cell.gd)]
+        * [@Control@150555:<Control#14806983651271>(puzzle_cell.gd)]
+        * [@Control@150554:<Control#14806950096841>(puzzle_cell.gd)]
+        * [@Control@150553:<Control#14806916542411>(puzzle_cell.gd)]
+        * [@Label@150492:<Label#14804869722064>]
+        * [@Label@150484:<Label#14804601286609>]
+        * [@Label@150483:<Label#14804567732179>]
+        * [@Label@150482:<Label#14804534177749>]
+        * [@Label@150481:<Label#14804500623319>]
+        * [@Label@150480:<Label#14804467068889>]
+        * [@VBoxContainer@150477:<VBoxContainer#14804366405599>] + 2
+        * [@VBoxContainer@150474:<VBoxContainer#14804265742309>] + 2
+        * [@VBoxContainer@150472:<VBoxContainer#14804198633449>] + 1
+        * [@VBoxContainer@150470:<VBoxContainer#14804131524589>] + 1
+        * [@Label@150039:<Label#14785257156594>]
+        * [@Label@150040:<Label#14785290711028>]
+        * [@Label@150041:<Label#14785324265462>]
+        * [@Label@150042:<Label#14785357819896>]
+        * [@Label@150043:<Label#14785391374330>]
+        * [@Label@150044:<Label#14785424928764>]
+        * [@Label@150045:<Label#14785458483198>]
+        * [@Control@150046:<Control#14785492037632>(puzzle_cell.gd)]
+        * [@Control@150047:<Control#14785525592066>(puzzle_cell.gd)]
+        * [@Control@150048:<Control#14785559146500>(puzzle_cell.gd)]
+        * [@Control@150049:<Control#14785592700934>(puzzle_cell.gd)]
+        * [@Control@150050:<Control#14785626255368>(puzzle_cell.gd)]
+        * [@Control@150051:<Control#14785659809802>(puzzle_cell.gd)]
+        * [@Control@150052:<Control#14785693364236>(puzzle_cell.gd)]
+        * [@Control@150053:<Control#14785726918670>(puzzle_cell.gd)]
+        * [@Control@150054:<Control#14785760473104>(puzzle_cell.gd)]
+        * [@Control@150055:<Control#14785794027538>(puzzle_cell.gd)]
+        * [@Control@150056:<Control#14785827581972>(puzzle_cell.gd)]
+        * [@Control@150057:<Control#14785861136406>(puzzle_cell.gd)]
+        * [@Control@150058:<Control#14785894690840>(puzzle_cell.gd)]
+        * [@Control@150059:<Control#14785928245274>(puzzle_cell.gd)]
+        * [@Control@150060:<Control#14785961799708>(puzzle_cell.gd)]
+        * [@Control@150061:<Control#14785995354142>(puzzle_cell.gd)]
+        * [@Control@150062:<Control#14786028908576>(puzzle_cell.gd)]
+        * [@Control@150063:<Control#14786062463010>(puzzle_cell.gd)]
+        * [@Control@150064:<Control#14786096017444>(puzzle_cell.gd)]
+        * [@Control@150065:<Control#14786129571878>(puzzle_cell.gd)]
+        * [@Control@150066:<Control#14786163126312>(puzzle_cell.gd)]
+        * [@Control@150067:<Control#14786196680746>(puzzle_cell.gd)]
+        * [@Control@150068:<Control#14786230235180>(puzzle_cell.gd)]
+        * [@Control@150069:<Control#14786263789614>(puzzle_cell.gd)]
+        * [@Control@150070:<Control#14786297344048>(puzzle_cell.gd)]
+        * [@Control@150071:<Control#14786330898482>(puzzle_cell.gd)]
+        * [@Control@150072:<Control#14786364452916>(puzzle_cell.gd)]
+        * [@Control@150073:<Control#14786398007350>(puzzle_cell.gd)]
+        * [@Control@150074:<Control#14786431561784>(puzzle_cell.gd)]
+        * [@Control@150075:<Control#14786465116218>(puzzle_cell.gd)]
+        * [@Control@150076:<Control#14786498670652>(puzzle_cell.gd)]
+        * [@Control@150077:<Control#14786532225086>(puzzle_cell.gd)]
+        * [@Control@150078:<Control#14786565779520>(puzzle_cell.gd)]
+        * [@Control@150079:<Control#14786599333954>(puzzle_cell.gd)]
+        * [@Control@150080:<Control#14786632888388>(puzzle_cell.gd)]
+        * [@Control@150081:<Control#14786666442822>(puzzle_cell.gd)]
+        * [@Control@150082:<Control#14786699997256>(puzzle_cell.gd)]
+        * [@Control@150083:<Control#14786733551690>(puzzle_cell.gd)]
+        * [@Control@150084:<Control#14786767106124>(puzzle_cell.gd)]
+        * [@Control@150085:<Control#14786800660558>(puzzle_cell.gd)]
+        * [@Control@150086:<Control#14786834214992>(puzzle_cell.gd)]
+        * [@Control@150087:<Control#14786867769426>(puzzle_cell.gd)]
+        * [@Control@150088:<Control#14786901323860>(puzzle_cell.gd)]
+        * [@Control@150089:<Control#14786934878294>(puzzle_cell.gd)]
+        * [@Control@150090:<Control#14786968432728>(puzzle_cell.gd)]
+        * [@Control@150091:<Control#14787001987162>(puzzle_cell.gd)]
+        * [@Control@150092:<Control#14787035541596>(puzzle_cell.gd)]
+        * [@Control@150093:<Control#14787069096030>(puzzle_cell.gd)]
+        * [@Control@150094:<Control#14787102650464>(puzzle_cell.gd)]
+        * [@Control@150095:<Control#14787136204898>(puzzle_cell.gd)]
+        * [@Control@150096:<Control#14787169759332>(puzzle_cell.gd)]
+        * [@Control@150097:<Control#14787203313766>(puzzle_cell.gd)]
+        * [@Control@150098:<Control#14787236868200>(puzzle_cell.gd)]
+        * [@Control@150099:<Control#14787270422634>(puzzle_cell.gd)]
+        * [@Control@150100:<Control#14787303977068>(puzzle_cell.gd)]
+        * [@Control@150101:<Control#14787337531502>(puzzle_cell.gd)]
+        * [@Control@150102:<Control#14787371085936>(puzzle_cell.gd)]
+        * [@Control@150103:<Control#14787404640370>(puzzle_cell.gd)]
+        * [@Control@150104:<Control#14787438194804>(puzzle_cell.gd)]
+        * [@Control@150105:<Control#14787471749238>(puzzle_cell.gd)]
+        * [@Control@150106:<Control#14787505303672>(puzzle_cell.gd)]
+        * [@Control@150107:<Control#14787538858106>(puzzle_cell.gd)]
+        * [@Control@150108:<Control#14787572412540>(puzzle_cell.gd)]
+        * [@Control@150109:<Control#14787605966974>(puzzle_cell.gd)]
+        * [@Control@150110:<Control#14787639521408>(puzzle_cell.gd)]
+        * [@Control@150111:<Control#14787673075842>(puzzle_cell.gd)]
+        * [@Control@150112:<Control#14787706630276>(puzzle_cell.gd)]
+        * [@Control@150113:<Control#14787740184710>(puzzle_cell.gd)]
+        * [@Control@150114:<Control#14787773739144>(puzzle_cell.gd)]
+        * [@Control@150115:<Control#14787807293578>(puzzle_cell.gd)]
+        * [@Control@150116:<Control#14787840848012>(puzzle_cell.gd)]
+        * [@Control@150117:<Control#14787874402446>(puzzle_cell.gd)]
+        * [@Control@150118:<Control#14787907956880>(puzzle_cell.gd)]
+        * [@Control@150119:<Control#14787941511314>(puzzle_cell.gd)]
+        * [@Control@150120:<Control#14787975065748>(puzzle_cell.gd)]
+        * [@Control@150121:<Control#14788008620182>(puzzle_cell.gd)]
+        * [@Control@150122:<Control#14788042174616>(puzzle_cell.gd)]
+        * [@Control@150123:<Control#14788075729050>(puzzle_cell.gd)]
+        * [@Control@150124:<Control#14788109283484>(puzzle_cell.gd)]
+        * [@Control@150125:<Control#14788142837918>(puzzle_cell.gd)]
+        * [@Control@150126:<Control#14788176392352>(puzzle_cell.gd)]
+        * [@Control@150127:<Control#14788209946786>(puzzle_cell.gd)]
+        * [@Control@150128:<Control#14788243501220>(puzzle_cell.gd)]
+        * [@Control@150129:<Control#14788277055654>(puzzle_cell.gd)]
+        * [@Control@150130:<Control#14788310610088>(puzzle_cell.gd)]
+        * [@Control@150131:<Control#14788344164522>(puzzle_cell.gd)]
+        * [@Control@150132:<Control#14788377718956>(puzzle_cell.gd)]
+        * [@Control@150133:<Control#14788411273390>(puzzle_cell.gd)]
+        * [@Control@150134:<Control#14788444827824>(puzzle_cell.gd)]
+        * [@Control@150135:<Control#14788478382258>(puzzle_cell.gd)]
+        * [@Control@150136:<Control#14788511936692>(puzzle_cell.gd)]
+        * [@Control@150137:<Control#14788545491126>(puzzle_cell.gd)]
+        * [@Control@150138:<Control#14788579045560>(puzzle_cell.gd)]
+        * [@Control@150139:<Control#14788612599994>(puzzle_cell.gd)]
+        * [@Control@150140:<Control#14788646154428>(puzzle_cell.gd)]
+        * [@Control@150141:<Control#14788679708862>(puzzle_cell.gd)]
+        * [@Control@150142:<Control#14788713263296>(puzzle_cell.gd)]
+        * [@Control@150143:<Control#14788746817730>(puzzle_cell.gd)]
+        * [@Control@150144:<Control#14788780372164>(puzzle_cell.gd)]
+        * [@Control@150145:<Control#14788813926598>(puzzle_cell.gd)]
+        * [@Control@150146:<Control#14788847481032>(puzzle_cell.gd)]
+        * [@Control@150147:<Control#14788881035466>(puzzle_cell.gd)]
+        * [@Control@150148:<Control#14788914589900>(puzzle_cell.gd)]
+        * [@Control@150149:<Control#14788948144334>(puzzle_cell.gd)]
+        * [@Control@150150:<Control#14788981698768>(puzzle_cell.gd)]
+        * [@Control@150151:<Control#14789015253202>(puzzle_cell.gd)]
+        * [@Control@150152:<Control#14789048807636>(puzzle_cell.gd)]
+        * [@Control@150153:<Control#14789082362070>(puzzle_cell.gd)]
+        * [@Control@150154:<Control#14789115916504>(puzzle_cell.gd)]
+        * [@Control@150155:<Control#14789149470938>(puzzle_cell.gd)]
+        * [@Control@150156:<Control#14789183025372>(puzzle_cell.gd)]
+        * [@Control@150157:<Control#14789216579806>(puzzle_cell.gd)]
+        * [@Control@150158:<Control#14789250134240>(puzzle_cell.gd)]
+        * [@Control@150159:<Control#14789283688674>(puzzle_cell.gd)]
+        * [@Control@150160:<Control#14789317243108>(puzzle_cell.gd)]
+        * [@Control@150161:<Control#14789350797542>(puzzle_cell.gd)]
+        * [@Control@150162:<Control#14789384351976>(puzzle_cell.gd)]
+        * [@Control@150163:<Control#14789417906410>(puzzle_cell.gd)]
+        * [@Control@150164:<Control#14789451460844>(puzzle_cell.gd)]
+        * [@Control@150165:<Control#14789485015278>(puzzle_cell.gd)]
+        * [@Control@150166:<Control#14789518569712>(puzzle_cell.gd)]
+        * [@Control@150167:<Control#14789552124146>(puzzle_cell.gd)]
+        * [@Control@150168:<Control#14789585678580>(puzzle_cell.gd)]
+        * [@Control@150169:<Control#14789619233014>(puzzle_cell.gd)]
+        * [@Control@150170:<Control#14789652787448>(puzzle_cell.gd)]
+        * [@Control@150171:<Control#14789686341882>(puzzle_cell.gd)]
+        * [@Control@150172:<Control#14789719896316>(puzzle_cell.gd)]
+        * [@Control@150173:<Control#14789753450750>(puzzle_cell.gd)]
+        * [@Control@150174:<Control#14789787005184>(puzzle_cell.gd)]
+        * [@Control@150175:<Control#14789820559618>(puzzle_cell.gd)]
+        * [@Control@150176:<Control#14789854114052>(puzzle_cell.gd)]
+        * [@Control@150177:<Control#14789887668486>(puzzle_cell.gd)]
+        * [@Control@150178:<Control#14789921222920>(puzzle_cell.gd)]
+        * [@Control@150179:<Control#14789954777354>(puzzle_cell.gd)]
+        * [@Control@150180:<Control#14789988331788>(puzzle_cell.gd)]
+        * [@Control@150181:<Control#14790021886222>(puzzle_cell.gd)]
+        * [@Control@150182:<Control#14790055440656>(puzzle_cell.gd)]
+        * [@Control@150183:<Control#14790088995090>(puzzle_cell.gd)]
+        * [@Control@150184:<Control#14790122549524>(puzzle_cell.gd)]
+        * [@Control@150185:<Control#14790156103958>(puzzle_cell.gd)]
+        * [@Control@150186:<Control#14790189658392>(puzzle_cell.gd)]
+        * [@Control@150187:<Control#14790223212826>(puzzle_cell.gd)]
+        * [@Control@150188:<Control#14790256767260>(puzzle_cell.gd)]
+        * [@Control@150189:<Control#14790290321694>(puzzle_cell.gd)]
+        * [@Control@150190:<Control#14790323876128>(puzzle_cell.gd)]
+        * [@Control@150191:<Control#14790357430562>(puzzle_cell.gd)]
+        * [@Control@150192:<Control#14790390984996>(puzzle_cell.gd)]
+        * [@Control@150193:<Control#14790424539430>(puzzle_cell.gd)]
+        * [@Control@150194:<Control#14790458093864>(puzzle_cell.gd)]
+        * [@Control@150195:<Control#14790491648298>(puzzle_cell.gd)]
+        * [@Control@150196:<Control#14790525202732>(puzzle_cell.gd)]
+        * [@Control@150197:<Control#14790558757166>(puzzle_cell.gd)]
+        * [@Control@150198:<Control#14790592311600>(puzzle_cell.gd)]
+        * [@Control@150199:<Control#14790625866034>(puzzle_cell.gd)]
+        * [@Control@150200:<Control#14790659420468>(puzzle_cell.gd)]
+        * [@Control@150201:<Control#14790692974902>(puzzle_cell.gd)]
+        * [@Control@150202:<Control#14790726529336>(puzzle_cell.gd)]
+        * [@Control@150203:<Control#14790760083770>(puzzle_cell.gd)]
+        * [@Control@150204:<Control#14790793638204>(puzzle_cell.gd)]
+        * [@Control@150205:<Control#14790827192638>(puzzle_cell.gd)]
+        * [@Control@150206:<Control#14790860747072>(puzzle_cell.gd)]
+        * [@Control@150207:<Control#14790894301506>(puzzle_cell.gd)]
+        * [@Control@150208:<Control#14790927855940>(puzzle_cell.gd)]
+        * [@Control@150209:<Control#14790961410374>(puzzle_cell.gd)]
+        * [@Control@150210:<Control#14790994964808>(puzzle_cell.gd)]
+        * [@Control@150211:<Control#14791028519242>(puzzle_cell.gd)]
+        * [@Control@150212:<Control#14791062073676>(puzzle_cell.gd)]
+        * [@Control@150213:<Control#14791095628110>(puzzle_cell.gd)]
+        * [@Control@150214:<Control#14791129182544>(puzzle_cell.gd)]
+        * [@Control@150215:<Control#14791162736978>(puzzle_cell.gd)]
+        * [@Control@150216:<Control#14791196291412>(puzzle_cell.gd)]
+        * [@Control@150217:<Control#14791229845846>(puzzle_cell.gd)]
+        * [@Control@150218:<Control#14791263400280>(puzzle_cell.gd)]
+        * [@Control@150219:<Control#14791296954714>(puzzle_cell.gd)]
+        * [@Control@150220:<Control#14791330509148>(puzzle_cell.gd)]
+        * [@Control@150221:<Control#14791364063582>(puzzle_cell.gd)]
+        * [@Control@150222:<Control#14791397618016>(puzzle_cell.gd)]
+        * [@Control@150223:<Control#14791431172450>(puzzle_cell.gd)]
+        * [@Control@150224:<Control#14791464726884>(puzzle_cell.gd)]
+        * [@Control@150225:<Control#14791498281318>(puzzle_cell.gd)]
+        * [@Control@150226:<Control#14791531835752>(puzzle_cell.gd)]
+        * [@Control@150227:<Control#14791565390186>(puzzle_cell.gd)]
+        * [@Control@150228:<Control#14791598944620>(puzzle_cell.gd)]
+        * [@Control@150229:<Control#14791632499054>(puzzle_cell.gd)]
+        * [@Control@150230:<Control#14791666053488>(puzzle_cell.gd)]
+        * [@Control@150231:<Control#14791699607922>(puzzle_cell.gd)]
+        * [@Control@150232:<Control#14791733162356>(puzzle_cell.gd)]
+        * [@Control@150233:<Control#14791766716790>(puzzle_cell.gd)]
+        * [@Control@150234:<Control#14791800271224>(puzzle_cell.gd)]
+        * [@Control@150235:<Control#14791833825658>(puzzle_cell.gd)]
+        * [@Control@150236:<Control#14791867380092>(puzzle_cell.gd)]
+        * [@Control@150237:<Control#14791900934526>(puzzle_cell.gd)]
+        * [@Control@150238:<Control#14791934488960>(puzzle_cell.gd)]
+        * [@Control@150239:<Control#14791968043394>(puzzle_cell.gd)]
+        * [@Control@150240:<Control#14792001597828>(puzzle_cell.gd)]
+        * [@Control@150241:<Control#14792035152262>(puzzle_cell.gd)]
+        * [@Control@150242:<Control#14792068706696>(puzzle_cell.gd)]
+        * [@Control@150243:<Control#14792102261130>(puzzle_cell.gd)]
+        * [@Control@150244:<Control#14792135815564>(puzzle_cell.gd)]
+        * [@Control@150245:<Control#14792169369998>(puzzle_cell.gd)]
+        * [@Control@150246:<Control#14792202924432>(puzzle_cell.gd)]
+        * [@Control@150247:<Control#14792236478866>(puzzle_cell.gd)]
+        * [@Control@150248:<Control#14792270033300>(puzzle_cell.gd)]
+        * [@Control@150249:<Control#14792303587734>(puzzle_cell.gd)]
+        * [@Control@150250:<Control#14792337142168>(puzzle_cell.gd)]
+        * [@Control@150251:<Control#14792370696602>(puzzle_cell.gd)]
+        * [@Control@150252:<Control#14792404251036>(puzzle_cell.gd)]
+        * [@Control@150253:<Control#14792437805470>(puzzle_cell.gd)]
+        * [@Control@150254:<Control#14792471359904>(puzzle_cell.gd)]
+        * [@Control@150255:<Control#14792504914338>(puzzle_cell.gd)]
+        * [@Control@150256:<Control#14792538468772>(puzzle_cell.gd)]
+        * [@Control@150257:<Control#14792572023206>(puzzle_cell.gd)]
+        * [@Control@150258:<Control#14792605577640>(puzzle_cell.gd)]
+        * [@Control@150259:<Control#14792639132074>(puzzle_cell.gd)]
+        * [@Control@150260:<Control#14792672686508>(puzzle_cell.gd)]
+        * [@Control@150261:<Control#14792706240942>(puzzle_cell.gd)]
+        * [@Control@150262:<Control#14792739795376>(puzzle_cell.gd)]
+        * [@Control@150263:<Control#14792773349810>(puzzle_cell.gd)]
+        * [@Control@150264:<Control#14792806904244>(puzzle_cell.gd)]
+        * [@Control@150265:<Control#14792840458678>(puzzle_cell.gd)]
+        * [@Control@150266:<Control#14792874013112>(puzzle_cell.gd)]
+        * [@Control@150267:<Control#14792907567546>(puzzle_cell.gd)]
+        * [@Control@150268:<Control#14792941121980>(puzzle_cell.gd)]
+        * [@Control@150269:<Control#14792974676414>(puzzle_cell.gd)]
+        * [@Control@150270:<Control#14793008230848>(puzzle_cell.gd)]
+        * [@Control@150271:<Control#14793041785282>(puzzle_cell.gd)]
+        * [@Control@150272:<Control#14793075339716>(puzzle_cell.gd)]
+        * [@Control@150273:<Control#14793108894150>(puzzle_cell.gd)]
+        * [@Control@150274:<Control#14793142448584>(puzzle_cell.gd)]
+        * [@Control@150275:<Control#14793176003018>(puzzle_cell.gd)]
+        * [@Control@150276:<Control#14793209557452>(puzzle_cell.gd)]
+        * [@Control@150277:<Control#14793243111886>(puzzle_cell.gd)]
+        * [@Control@150278:<Control#14793276666320>(puzzle_cell.gd)]
+        * [@Control@150279:<Control#14793310220754>(puzzle_cell.gd)]
+        * [@Control@150280:<Control#14793343775188>(puzzle_cell.gd)]
+        * [@Control@150281:<Control#14793377329622>(puzzle_cell.gd)]
+        * [@Control@150282:<Control#14793410884056>(puzzle_cell.gd)]
+        * [@Control@150283:<Control#14793444438490>(puzzle_cell.gd)]
+        * [@Control@150284:<Control#14793477992924>(puzzle_cell.gd)]
+        * [@Control@150285:<Control#14793511547358>(puzzle_cell.gd)]
+        * [@Control@150286:<Control#14793545101792>(puzzle_cell.gd)]
+        * [@Control@150287:<Control#14793578656226>(puzzle_cell.gd)]
+        * [@Control@150288:<Control#14793612210660>(puzzle_cell.gd)]
+        * [@Control@150289:<Control#14793645765094>(puzzle_cell.gd)]
+        * [@Control@150290:<Control#14793679319528>(puzzle_cell.gd)]
+        * [@Control@150291:<Control#14793712873962>(puzzle_cell.gd)]
+        * [@Control@150292:<Control#14793746428396>(puzzle_cell.gd)]
+        * [@Control@150293:<Control#14793779982830>(puzzle_cell.gd)]
+        * [@Control@150294:<Control#14793813537264>(puzzle_cell.gd)]
+        * [@Control@150295:<Control#14793847091698>(puzzle_cell.gd)]
+        * [@Control@150296:<Control#14793880646132>(puzzle_cell.gd)]
+        * [@Control@150297:<Control#14793914200566>(puzzle_cell.gd)]
+        * [@Control@150298:<Control#14793947755000>(puzzle_cell.gd)]
+        * [@Control@150299:<Control#14793981309434>(puzzle_cell.gd)]
+        * [@Control@150300:<Control#14794014863868>(puzzle_cell.gd)]
+        * [@Control@150301:<Control#14794048418302>(puzzle_cell.gd)]
+        * [@Control@150302:<Control#14794081972736>(puzzle_cell.gd)]
+        * [@Control@150303:<Control#14794115527170>(puzzle_cell.gd)]
+        * [@Control@150304:<Control#14794149081604>(puzzle_cell.gd)]
+        * [@Control@150305:<Control#14794182636038>(puzzle_cell.gd)]
+        * [@Control@150306:<Control#14794216190472>(puzzle_cell.gd)]
+        * [@Control@150307:<Control#14794249744906>(puzzle_cell.gd)]
+        * [@Control@150308:<Control#14794283299340>(puzzle_cell.gd)]
+        * [@Control@150309:<Control#14794316853774>(puzzle_cell.gd)]
+        * [@Control@150310:<Control#14794350408208>(puzzle_cell.gd)]
+        * [@Control@150311:<Control#14794383962642>(puzzle_cell.gd)]
+        * [@Control@150312:<Control#14794417517076>(puzzle_cell.gd)]
+        * [@Control@150313:<Control#14794451071510>(puzzle_cell.gd)]
+        * [@Control@150314:<Control#14794484625944>(puzzle_cell.gd)]
+        * [@Control@150315:<Control#14794518180378>(puzzle_cell.gd)]
+        * [@Control@150316:<Control#14794551734812>(puzzle_cell.gd)]
+        * [@Control@150317:<Control#14794585289246>(puzzle_cell.gd)]
+        * [@Control@150318:<Control#14794618843680>(puzzle_cell.gd)]
+        * [@Control@150319:<Control#14794652398114>(puzzle_cell.gd)]
+        * [@Control@150320:<Control#14794685952548>(puzzle_cell.gd)]
+        * [@Control@150321:<Control#14794719506982>(puzzle_cell.gd)]
+        * [@Control@150322:<Control#14794753061416>(puzzle_cell.gd)]
+        * [@Control@150323:<Control#14794786615850>(puzzle_cell.gd)]
+        * [@Control@150324:<Control#14794820170284>(puzzle_cell.gd)]
+        * [@Control@150325:<Control#14794853724718>(puzzle_cell.gd)]
+        * [@Control@150326:<Control#14794887279152>(puzzle_cell.gd)]
+        * [@Control@150327:<Control#14794920833586>(puzzle_cell.gd)]
+        * [@Control@150328:<Control#14794954388020>(puzzle_cell.gd)]
+        * [@Control@150329:<Control#14794987942454>(puzzle_cell.gd)]
+        * [@Control@150330:<Control#14795021496888>(puzzle_cell.gd)]
+        * [@Control@150331:<Control#14795055051322>(puzzle_cell.gd)]
+        * [@Control@150332:<Control#14795088605756>(puzzle_cell.gd)]
+        * [@Control@150333:<Control#14795122160190>(puzzle_cell.gd)]
+        * [@Control@150334:<Control#14795155714624>(puzzle_cell.gd)]
+        * [@Control@150335:<Control#14795189269058>(puzzle_cell.gd)]
+        * [@Control@150336:<Control#14795222823492>(puzzle_cell.gd)]
+        * [@Control@150337:<Control#14795256377926>(puzzle_cell.gd)]
+        * [@Control@150338:<Control#14795289932360>(puzzle_cell.gd)]
+        * [@Control@150339:<Control#14795323486794>(puzzle_cell.gd)]
+        * [@Control@150340:<Control#14795357041228>(puzzle_cell.gd)]
+        * [@Control@150341:<Control#14795390595662>(puzzle_cell.gd)]
+        * [@Control@150342:<Control#14795424150096>(puzzle_cell.gd)]
+        * [@Control@150343:<Control#14795457704530>(puzzle_cell.gd)]
+        * [@Control@150344:<Control#14795491258964>(puzzle_cell.gd)]
+        * [@Control@150345:<Control#14795524813398>(puzzle_cell.gd)]
+        * [@Control@150346:<Control#14795558367832>(puzzle_cell.gd)]
+        * [@Control@150347:<Control#14795591922266>(puzzle_cell.gd)]
+        * [@Control@150348:<Control#14795625476700>(puzzle_cell.gd)]
+        * [@Control@150349:<Control#14795659031134>(puzzle_cell.gd)]
+        * [@Control@150350:<Control#14795692585568>(puzzle_cell.gd)]
+        * [@Control@150351:<Control#14795726140002>(puzzle_cell.gd)]
+        * [@Control@150352:<Control#14795759694436>(puzzle_cell.gd)]
+        * [@Control@150353:<Control#14795793248870>(puzzle_cell.gd)]
+        * [@Control@150354:<Control#14795826803304>(puzzle_cell.gd)]
+        * [@Control@150355:<Control#14795860357738>(puzzle_cell.gd)]
+        * [@Control@150356:<Control#14795893912172>(puzzle_cell.gd)]
+        * [@Control@150357:<Control#14795927466606>(puzzle_cell.gd)]
+        * [@Control@150358:<Control#14795961021040>(puzzle_cell.gd)]
+        * [@Control@150359:<Control#14795994575474>(puzzle_cell.gd)]
+        * [@Control@150360:<Control#14796028129908>(puzzle_cell.gd)]
+        * [@Control@150361:<Control#14796061684342>(puzzle_cell.gd)]
+        * [@Control@150362:<Control#14796095238776>(puzzle_cell.gd)]
+        * [@Control@150363:<Control#14796128793210>(puzzle_cell.gd)]
+        * [@Control@150364:<Control#14796162347644>(puzzle_cell.gd)]
+        * [@Control@150365:<Control#14796195902078>(puzzle_cell.gd)]
+        * [@Control@150366:<Control#14796229456512>(puzzle_cell.gd)]
+        * [@Control@150367:<Control#14796263010946>(puzzle_cell.gd)]
+        * [@Control@150368:<Control#14796296565380>(puzzle_cell.gd)]
+        * [@Control@150369:<Control#14796330119814>(puzzle_cell.gd)]
+        * [@Control@150370:<Control#14796363674248>(puzzle_cell.gd)]
+        * [@Control@150371:<Control#14796397228682>(puzzle_cell.gd)]
+        * [@Control@150372:<Control#14796430783116>(puzzle_cell.gd)]
+        * [@Control@150373:<Control#14796464337550>(puzzle_cell.gd)]
+        * [@Control@150374:<Control#14796497891984>(puzzle_cell.gd)]
+        * [@Control@150375:<Control#14796531446418>(puzzle_cell.gd)]
+        * [@Control@150376:<Control#14796565000852>(puzzle_cell.gd)]
+        * [@Control@150377:<Control#14796598555286>(puzzle_cell.gd)]
+        * [@Control@150378:<Control#14796632109720>(puzzle_cell.gd)]
+        * [@Control@150379:<Control#14796665664154>(puzzle_cell.gd)]
+        * [@Control@150380:<Control#14796699218588>(puzzle_cell.gd)]
+        * [@Control@150381:<Control#14796732773022>(puzzle_cell.gd)]
+        * [@Control@150382:<Control#14796766327456>(puzzle_cell.gd)]
+        * [@Control@150383:<Control#14796799881890>(puzzle_cell.gd)]
+        * [@Control@150384:<Control#14796833436324>(puzzle_cell.gd)]
+        * [@Control@150385:<Control#14796866990758>(puzzle_cell.gd)]
+        * [@Control@150386:<Control#14796900545192>(puzzle_cell.gd)]
+        * [@Control@150387:<Control#14796934099626>(puzzle_cell.gd)]
+        * [@Control@150388:<Control#14796967654060>(puzzle_cell.gd)]
+        * [@Control@150389:<Control#14797001208494>(puzzle_cell.gd)]
+        * [@Control@150390:<Control#14797034762928>(puzzle_cell.gd)]
+        * [@Control@150391:<Control#14797068317362>(puzzle_cell.gd)]
+        * [@Control@150392:<Control#14797101871796>(puzzle_cell.gd)]
+        * [@Control@150393:<Control#14797135426230>(puzzle_cell.gd)]
+        * [@Control@150394:<Control#14797168980664>(puzzle_cell.gd)]
+        * [@Control@150395:<Control#14797202535098>(puzzle_cell.gd)]
+        * [@Control@150396:<Control#14797236089532>(puzzle_cell.gd)]
+        * [@Control@150397:<Control#14797269643966>(puzzle_cell.gd)]
+        * [@Control@150398:<Control#14797303198400>(puzzle_cell.gd)]
+        * [@Control@150399:<Control#14797336752834>(puzzle_cell.gd)]
+        * [@Control@150400:<Control#14797370307268>(puzzle_cell.gd)]
+        * [@Control@150401:<Control#14797403861702>(puzzle_cell.gd)]
+        * [@Control@150402:<Control#14797437416136>(puzzle_cell.gd)]
+        * [@Control@150403:<Control#14797470970570>(puzzle_cell.gd)]
+        * [@Control@150404:<Control#14797504525004>(puzzle_cell.gd)]
+        * [@Control@150405:<Control#14797538079438>(puzzle_cell.gd)]
+        * [@Control@150406:<Control#14797571633872>(puzzle_cell.gd)]
+        * [@Control@150407:<Control#14797605188306>(puzzle_cell.gd)]
+        * [@Control@150408:<Control#14797638742740>(puzzle_cell.gd)]
+        * [@Control@150409:<Control#14797672297174>(puzzle_cell.gd)]
+        * [@Control@150410:<Control#14797705851608>(puzzle_cell.gd)]
+        * [@Control@150411:<Control#14797739406042>(puzzle_cell.gd)]
+        * [@Control@150412:<Control#14797772960476>(puzzle_cell.gd)]
+        * [@Control@150413:<Control#14797806514910>(puzzle_cell.gd)]
+        * [@Control@150414:<Control#14797840069344>(puzzle_cell.gd)]
+        * [@Control@150415:<Control#14797873623778>(puzzle_cell.gd)]
+        * [@Control@150416:<Control#14797907178212>(puzzle_cell.gd)]
+        * [@Control@150417:<Control#14797940732646>(puzzle_cell.gd)]
+        * [@Control@150418:<Control#14797974287080>(puzzle_cell.gd)]
+        * [@Control@150419:<Control#14798007841514>(puzzle_cell.gd)]
+        * [@Control@150420:<Control#14798041395948>(puzzle_cell.gd)]
+        * [@Control@150421:<Control#14798074950382>(puzzle_cell.gd)]
+        * [@Control@150422:<Control#14798108504816>(puzzle_cell.gd)]
+        * [@Control@150423:<Control#14798142059250>(puzzle_cell.gd)]
+        * [@Control@150424:<Control#14798175613684>(puzzle_cell.gd)]
+        * [@Control@150425:<Control#14798209168118>(puzzle_cell.gd)]
+        * [@Control@150426:<Control#14798242722552>(puzzle_cell.gd)]
+        * [@Control@150427:<Control#14798276276986>(puzzle_cell.gd)]
+        * [@Control@150428:<Control#14798309831420>(puzzle_cell.gd)]
+        * [@Control@150429:<Control#14798343385854>(puzzle_cell.gd)]
+        * [@Control@150430:<Control#14798376940288>(puzzle_cell.gd)]
+        * [@Control@150431:<Control#14798410494722>(puzzle_cell.gd)]
+        * [@Control@150432:<Control#14798444049156>(puzzle_cell.gd)]
+        * [@Control@150433:<Control#14798477603590>(puzzle_cell.gd)]
+        * [@Control@150434:<Control#14798511158024>(puzzle_cell.gd)]
+        * [@Control@150435:<Control#14798544712458>(puzzle_cell.gd)]
+        * [@Control@150436:<Control#14798578266892>(puzzle_cell.gd)]
+        * [@Control@150437:<Control#14798611821326>(puzzle_cell.gd)]
+        * [@Control@150438:<Control#14798645375760>(puzzle_cell.gd)]
+        * [@Control@150439:<Control#14798678930194>(puzzle_cell.gd)]
+        * [@Control@150440:<Control#14798712484628>(puzzle_cell.gd)]
+        * [@Control@150441:<Control#14798746039062>(puzzle_cell.gd)]
+        * [@Control@150442:<Control#14798779593496>(puzzle_cell.gd)]
+        * [@Control@150443:<Control#14798813147930>(puzzle_cell.gd)]
+        * [@Control@150444:<Control#14798846702364>(puzzle_cell.gd)]
+        * [@Control@150445:<Control#14798880256798>(puzzle_cell.gd)]
+        * [@VBoxContainer@150720:<VBoxContainer#14814667617056>] + 1
+        * [@VBoxContainer@150736:<VBoxContainer#14815204487971>] + 1
+        * [@VBoxContainer@150734:<VBoxContainer#14815137379111>] + 1
+        * [@VBoxContainer@150732:<VBoxContainer#14815070270251>] + 1
+        * [@VBoxContainer@150730:<VBoxContainer#14815003161391>] + 1
+        * [@VBoxContainer@150728:<VBoxContainer#14814936052531>] + 1
+        * [@VBoxContainer@150726:<VBoxContainer#14814868943671>] + 1
+        * [@VBoxContainer@150724:<VBoxContainer#14814801834811>] + 1
+        * [@VBoxContainer@150722:<VBoxContainer#14814734725951>] + 1
+        * [@Control@150849:<Control#14818996138821>(puzzle_cell.gd)]
+        * [@Control@150848:<Control#14818962584391>(puzzle_cell.gd)]
+        * [@Control@150847:<Control#14818929029961>(puzzle_cell.gd)]
+        * [@Control@150846:<Control#14818895475531>(puzzle_cell.gd)]
+        * [@Control@150845:<Control#14818861921101>(puzzle_cell.gd)]
+        * [@Control@150844:<Control#14818828366671>(puzzle_cell.gd)]
+        * [@Control@150843:<Control#14818794812241>(puzzle_cell.gd)]
+        * [@Control@150842:<Control#14818761257811>(puzzle_cell.gd)]
+        * [@Control@150841:<Control#14818727703381>(puzzle_cell.gd)]
+        * [@Control@150840:<Control#14818694148951>(puzzle_cell.gd)]
+        * [@Control@150839:<Control#14818660594521>(puzzle_cell.gd)]
+        * [@Control@150838:<Control#14818627040091>(puzzle_cell.gd)]
+        * [@Control@150837:<Control#14818593485661>(puzzle_cell.gd)]
+        * [@Control@150836:<Control#14818559931231>(puzzle_cell.gd)]
+        * [@Control@150835:<Control#14818526376801>(puzzle_cell.gd)]
+        * [@Control@150834:<Control#14818492822371>(puzzle_cell.gd)]
+        * [@Control@150833:<Control#14818459267941>(puzzle_cell.gd)]
+        * [@Control@150832:<Control#14818425713511>(puzzle_cell.gd)]
+        * [@Control@150831:<Control#14818392159081>(puzzle_cell.gd)]
+        * [@Control@150830:<Control#14818358604651>(puzzle_cell.gd)]
+        * [@Control@150829:<Control#14818325050221>(puzzle_cell.gd)]
+        * [@Control@150828:<Control#14818291495791>(puzzle_cell.gd)]
+        * [@Control@150827:<Control#14818257941361>(puzzle_cell.gd)]
+        * [@Control@150826:<Control#14818224386931>(puzzle_cell.gd)]
+        * [@Control@150825:<Control#14818190832501>(puzzle_cell.gd)]
+        * [@Control@150824:<Control#14818157278071>(puzzle_cell.gd)]
+        * [@Control@150823:<Control#14818123723641>(puzzle_cell.gd)]
+        * [@Control@150822:<Control#14818090169211>(puzzle_cell.gd)]
+        * [@Control@150821:<Control#14818056614781>(puzzle_cell.gd)]
+        * [@Control@150820:<Control#14818023060351>(puzzle_cell.gd)]
+        * [@Control@150819:<Control#14817989505921>(puzzle_cell.gd)]
+        * [@Control@150818:<Control#14817955951491>(puzzle_cell.gd)]
+        * [@Control@150817:<Control#14817922397061>(puzzle_cell.gd)]
+        * [@Control@150816:<Control#14817888842631>(puzzle_cell.gd)]
+        * [@Control@150815:<Control#14817855288201>(puzzle_cell.gd)]
+        * [@Control@150814:<Control#14817821733771>(puzzle_cell.gd)]
+        * [@Control@150813:<Control#14817788179341>(puzzle_cell.gd)]
+        * [@Control@150812:<Control#14817754624911>(puzzle_cell.gd)]
+        * [@Control@150811:<Control#14817721070481>(puzzle_cell.gd)]
+        * [@Control@150810:<Control#14817687516051>(puzzle_cell.gd)]
+        * [@Control@150809:<Control#14817653961621>(puzzle_cell.gd)]
+        * [@Control@150808:<Control#14817620407191>(puzzle_cell.gd)]
+        * [@Control@150807:<Control#14817586852761>(puzzle_cell.gd)]
+        * [@Control@150806:<Control#14817553298331>(puzzle_cell.gd)]
+        * [@Control@150805:<Control#14817519743901>(puzzle_cell.gd)]
+        * [@Control@150804:<Control#14817486189471>(puzzle_cell.gd)]
+        * [@Control@150803:<Control#14817452635041>(puzzle_cell.gd)]
+        * [@Control@150802:<Control#14817419080611>(puzzle_cell.gd)]
+        * [@Control@150801:<Control#14817385526181>(puzzle_cell.gd)]
+        * [@Control@150800:<Control#14817351971751>(puzzle_cell.gd)]
+        * [@Control@150799:<Control#14817318417321>(puzzle_cell.gd)]
+        * [@Control@150798:<Control#14817284862891>(puzzle_cell.gd)]
+        * [@Control@150797:<Control#14817251308461>(puzzle_cell.gd)]
+        * [@Control@150796:<Control#14817217754031>(puzzle_cell.gd)]
+        * [@Control@150795:<Control#14817184199601>(puzzle_cell.gd)]
+        * [@Control@150794:<Control#14817150645171>(puzzle_cell.gd)]
+        * [@Control@150793:<Control#14817117090741>(puzzle_cell.gd)]
+        * [@Control@150792:<Control#14817083536311>(puzzle_cell.gd)]
+        * [@Control@150791:<Control#14817049981881>(puzzle_cell.gd)]
+        * [@Control@150790:<Control#14817016427451>(puzzle_cell.gd)]
+        * [@Control@150789:<Control#14816982873021>(puzzle_cell.gd)]
+        * [@Control@150788:<Control#14816949318591>(puzzle_cell.gd)]
+        * [@Control@150787:<Control#14816915764161>(puzzle_cell.gd)]
+        * [@Control@150786:<Control#14816882209731>(puzzle_cell.gd)]
+        * [@Control@150785:<Control#14816848655301>(puzzle_cell.gd)]
+        * [@Control@150784:<Control#14816815100871>(puzzle_cell.gd)]
+        * [@Control@150783:<Control#14816781546441>(puzzle_cell.gd)]
+        * [@Control@150782:<Control#14816747992011>(puzzle_cell.gd)]
+        * [@Control@150781:<Control#14816714437581>(puzzle_cell.gd)]
+        * [@Control@150780:<Control#14816680883151>(puzzle_cell.gd)]
+        * [@Control@150779:<Control#14816647328721>(puzzle_cell.gd)]
+        * [@Control@150778:<Control#14816613774291>(puzzle_cell.gd)]
+        * [@Control@150777:<Control#14816580219861>(puzzle_cell.gd)]
+        * [@Control@150776:<Control#14816546665431>(puzzle_cell.gd)]
+        * [@Control@150775:<Control#14816513111001>(puzzle_cell.gd)]
+        * [@Control@150774:<Control#14816479556571>(puzzle_cell.gd)]
+        * [@Control@150773:<Control#14816446002141>(puzzle_cell.gd)]
+        * [@Control@150772:<Control#14816412447711>(puzzle_cell.gd)]
+        * [@Control@150771:<Control#14816378893281>(puzzle_cell.gd)]
+        * [@Control@150770:<Control#14816345338851>(puzzle_cell.gd)]
+        * [@Control@150769:<Control#14816311784421>(puzzle_cell.gd)]
+        * [@Control@150768:<Control#14816278229991>(puzzle_cell.gd)]
+        * [@Control@150767:<Control#14816244675561>(puzzle_cell.gd)]
+        * [@Control@150766:<Control#14816211121131>(puzzle_cell.gd)]
+        * [@Control@150765:<Control#14816177566701>(puzzle_cell.gd)]
+        * [@Control@150764:<Control#14816144012271>(puzzle_cell.gd)]
+        * [@Control@150763:<Control#14816110457841>(puzzle_cell.gd)]
+        * [@Control@150762:<Control#14816076903411>(puzzle_cell.gd)]
+        * [@Control@150761:<Control#14816043348981>(puzzle_cell.gd)]
+        * [@Control@150760:<Control#14816009794551>(puzzle_cell.gd)]
+        * [@Control@150759:<Control#14815976240121>(puzzle_cell.gd)]
+        * [@Control@150758:<Control#14815942685691>(puzzle_cell.gd)]
+        * [@Control@150757:<Control#14815909131261>(puzzle_cell.gd)]
+        * [@Control@150756:<Control#14815875576831>(puzzle_cell.gd)]
+        * [@Control@150755:<Control#14815842022401>(puzzle_cell.gd)]
+        * [@Control@150754:<Control#14815808467971>(puzzle_cell.gd)]
+        * [@Control@150753:<Control#14815774913541>(puzzle_cell.gd)]
+        * [@Control@150752:<Control#14815741359111>(puzzle_cell.gd)]
+        * [@Control@150751:<Control#14815707804681>(puzzle_cell.gd)]
+        * [@Control@150750:<Control#14815674250251>(puzzle_cell.gd)]
+        * [@Label@150749:<Label#14815640695821>]
+        * [@Label@150748:<Label#14815607141391>]
+        * [@Label@150747:<Label#14815573586961>]
+        * [@Label@150746:<Label#14815540032531>]
+        * [@Label@150745:<Label#14815506478101>]
+        * [@Label@150744:<Label#14815472923671>]
+        * [@Label@150743:<Label#14815439369241>]
+        * [@Label@150742:<Label#14815405814811>]
+        * [@Label@150741:<Label#14815372260381>]
+        * [@Label@150740:<Label#14815338705951>]
+        * [@VBoxContainer@150738:<VBoxContainer#14815271597091>] + 1
+        * [@Control@150669:<Control#14810808857638>(puzzle_cell.gd)]
+        * [@Control@150670:<Control#14810842412072>(puzzle_cell.gd)]
+        * [@Control@150671:<Control#14810875966506>(puzzle_cell.gd)]
+        * [@Control@150672:<Control#14810909520940>(puzzle_cell.gd)]
+        * [@Control@150673:<Control#14810943075374>(puzzle_cell.gd)]
+        * [@Control@150674:<Control#14810976629808>(puzzle_cell.gd)]
+        * [@Control@150675:<Control#14811010184242>(puzzle_cell.gd)]
+        * [@Control@150676:<Control#14811043738676>(puzzle_cell.gd)]
+        * [@Control@150677:<Control#14811077293110>(puzzle_cell.gd)]
+        * [@Control@150678:<Control#14811110847544>(puzzle_cell.gd)]
+        * [@Control@150679:<Control#14811144401978>(puzzle_cell.gd)]
+        * [@Control@150680:<Control#14811177956412>(puzzle_cell.gd)]
+        * [@Control@150681:<Control#14811211510846>(puzzle_cell.gd)]
+        * [@Control@150682:<Control#14811245065280>(puzzle_cell.gd)]
+        * [@Control@150683:<Control#14811278619714>(puzzle_cell.gd)]
+        * [@Control@150684:<Control#14811312174148>(puzzle_cell.gd)]
+        * [@Control@150685:<Control#14811345728582>(puzzle_cell.gd)]
+        * [@Control@150686:<Control#14811379283016>(puzzle_cell.gd)]
+        * [@Control@150687:<Control#14811412837450>(puzzle_cell.gd)]
+        * [@Control@150688:<Control#14811446391884>(puzzle_cell.gd)]
+        * [@Control@150689:<Control#14811479946318>(puzzle_cell.gd)]
+        * [@Control@150690:<Control#14811513500752>(puzzle_cell.gd)]
+        * [@Control@150691:<Control#14811547055186>(puzzle_cell.gd)]
+        * [@Control@150692:<Control#14811580609620>(puzzle_cell.gd)]
+        * [@Control@150693:<Control#14811614164054>(puzzle_cell.gd)]
+        * [@Control@150694:<Control#14811647718488>(puzzle_cell.gd)]
+        * [@Control@150695:<Control#14811681272922>(puzzle_cell.gd)]
+        * [@Control@150696:<Control#14811714827356>(puzzle_cell.gd)]
+        * [@Control@150697:<Control#14811748381790>(puzzle_cell.gd)]
+        * [@Control@150698:<Control#14811781936224>(puzzle_cell.gd)]
+        * [@Control@150699:<Control#14811815490658>(puzzle_cell.gd)]
+        * [@Control@150700:<Control#14811849045092>(puzzle_cell.gd)]
+        * [@Control@150701:<Control#14811882599526>(puzzle_cell.gd)]
+        * [@Control@150702:<Control#14811916153960>(puzzle_cell.gd)]
+        * [@Control@150703:<Control#14811949708394>(puzzle_cell.gd)]
+        * [@Control@150704:<Control#14811983262828>(puzzle_cell.gd)]
+        * [@Control@150705:<Control#14812016817262>(puzzle_cell.gd)]
+        * [@Control@150706:<Control#14812050371696>(puzzle_cell.gd)]
+        * [@Control@150707:<Control#14812083926130>(puzzle_cell.gd)]
+        * [@Control@150708:<Control#14812117480564>(puzzle_cell.gd)]
+        * [@Control@150709:<Control#14812151034998>(puzzle_cell.gd)]
+        * [@Control@150710:<Control#14812184589432>(puzzle_cell.gd)]
+        * [@Control@150711:<Control#14812218143866>(puzzle_cell.gd)]
+        * [@Control@150712:<Control#14812251698300>(puzzle_cell.gd)]
+        * [@Control@150713:<Control#14812285252734>(puzzle_cell.gd)]
+        * [@Control@150714:<Control#14812318807168>(puzzle_cell.gd)]
+        * [@Control@150715:<Control#14812352361602>(puzzle_cell.gd)]
+        * [@Control@150716:<Control#14812385916036>(puzzle_cell.gd)]
+        * [@Control@150717:<Control#14812419470470>(puzzle_cell.gd)]
+        * [@Control@150718:<Control#14812453024904>(puzzle_cell.gd)]
+        * [@Control@150719:<Control#14812486579338>(puzzle_cell.gd)][0m
+* test_unknown_id_changes_nothing
+* test_unknown_id_on_the_gallery_view_changes_nothing
+* test_leave_returns_to_the_gallery
+[33m    470 Orphans[0m
+[33m        * [@Control@159788:<Control#15338485843567>(puzzle_cell.gd)]
+        * [@Control@159980:<Control#15344928294514>(puzzle_cell.gd)]
+        * [@Control@159805:<Control#15339056268927>(puzzle_cell.gd)]
+        * [@Control@159995:<Control#15345431611010>(puzzle_cell.gd)]
+        * [@VBoxContainer@159741:<VBoxContainer#15336908786220>] + 2
+        * [@Control@160070:<Control#15347948194367>(puzzle_cell.gd)]
+        * [@Control@159844:<Control#15340364892736>(puzzle_cell.gd)]
+        * [@Control@159846:<Control#15340432001607>(puzzle_cell.gd)]
+        * [@Control@159848:<Control#15340499110481>(puzzle_cell.gd)]
+        * [@Label@159768:<Label#15337814755933>]
+        * [@Control@159889:<Control#15341874842230>(puzzle_cell.gd)]
+        * [@VBoxContainer@159723:<VBoxContainer#15336304806529>] + 1
+        * [@Control@159963:<Control#15344357870231>(puzzle_cell.gd)]
+        * [@Control@159967:<Control#15344492087967>(puzzle_cell.gd)]
+        * [@Control@159866:<Control#15341103090374>(puzzle_cell.gd)]
+        * [@VBoxContainer@159725:<VBoxContainer#15336371915496>] + 1
+        * [@VBoxContainer@159721:<VBoxContainer#15336237697773>] + 1
+        * [@Control@159816:<Control#15339425368833>(puzzle_cell.gd)]
+        * [@Control@159841:<Control#15340264229672>(puzzle_cell.gd)]
+        * [@Control@159981:<Control#15344961850158>(puzzle_cell.gd)]
+        * [@Control@159863:<Control#15341002427192>(puzzle_cell.gd)]
+        * [@VBoxContainer@159704:<VBoxContainer#15335667272540>] + 1
+        * [@Control@159964:<Control#15344391424888>(puzzle_cell.gd)]
+        * [@Control@159969:<Control#15344559197050>(puzzle_cell.gd)]
+        * [@Control@159847:<Control#15340465556354>(puzzle_cell.gd)]
+        * [@Control@159852:<Control#15340633328520>(puzzle_cell.gd)]
+        * [@Control@159867:<Control#15341136645007>(puzzle_cell.gd)]
+        * [@Control@160064:<Control#15347746868117>(puzzle_cell.gd)]
+        * [@Control@159782:<Control#15338284518304>(puzzle_cell.gd)]
+        * [@VBoxContainer@159709:<VBoxContainer#15335835044963>] + 2
+        * [@Control@159808:<Control#15339156933778>(puzzle_cell.gd)]
+        * [@Label@159760:<Label#15337546321289>]
+        * [@Control@160008:<Control#15345867820508>(puzzle_cell.gd)]
+        * [@Control@160009:<Control#15345901375066>(puzzle_cell.gd)]
+        * [@Control@160011:<Control#15345968483934>(puzzle_cell.gd)]
+        * [@Control@159888:<Control#15341841288813>(puzzle_cell.gd)]
+        * [@Control@159997:<Control#15345498721912>(puzzle_cell.gd)]
+        * [@Control@159968:<Control#15344525643390>(puzzle_cell.gd)]
+        * [@Control@159999:<Control#15345565830784>(puzzle_cell.gd)]
+        * [@VBoxContainer@159712:<VBoxContainer#15335935708812>] + 1
+        * [@Control@159839:<Control#15340197121685>(puzzle_cell.gd)]
+        * [@Control@159787:<Control#15338452291274>(puzzle_cell.gd)]
+        * [@Control@159970:<Control#15344592752354>(puzzle_cell.gd)]
+        * [@Control@159974:<Control#15344726970101>(puzzle_cell.gd)]
+        * [@Control@160025:<Control#15346438246165>(puzzle_cell.gd)]
+        * [@Control@159966:<Control#15344458534678>(puzzle_cell.gd)]
+        * [@Control@159972:<Control#15344659861273>(puzzle_cell.gd)]
+        * [@Control@159971:<Control#15344626306843>(puzzle_cell.gd)]
+        * [@VBoxContainer@159719:<VBoxContainer#15336170589981>] + 1
+        * [@Control@159976:<Control#15344794079008>(puzzle_cell.gd)]
+        * [@Control@159973:<Control#15344693415720>(puzzle_cell.gd)]
+        * [@Control@159979:<Control#15344894742315>(puzzle_cell.gd)]
+        * [@Control@159998:<Control#15345532276525>(puzzle_cell.gd)]
+        * [@Control@160068:<Control#15347881086768>(puzzle_cell.gd)]
+        * [@VBoxContainer@159706:<VBoxContainer#15335734382483>] + 2
+        * [@Control@160002:<Control#15345666494413>(puzzle_cell.gd)]
+        * [@Control@159944:<Control#15343720337399>(puzzle_cell.gd)]
+        * [@Control@160026:<Control#15346471800885>(puzzle_cell.gd)]
+        * [@Control@159801:<Control#15338922053735>(puzzle_cell.gd)]
+        * [@VBoxContainer@159736:<VBoxContainer#15336741015901>] + 1
+        * [@VBoxContainer@159727:<VBoxContainer#15336439026018>] + 1
+        * [@VBoxContainer@159731:<VBoxContainer#15336573243754>] + 4
+        * [@VBoxContainer@159738:<VBoxContainer#15336808124782>] + 2
+        * [@Control@160004:<Control#15345733603714>(puzzle_cell.gd)]
+        * [@Control@159843:<Control#15340331340170>(puzzle_cell.gd)]
+        * [@VBoxContainer@159700:<VBoxContainer#15335533056403>] + 1
+        * [@VBoxContainer@159729:<VBoxContainer#15336506134959>] + 1
+        * [@Control@160065:<Control#15347780424129>(puzzle_cell.gd)]
+        * [@Control@160017:<Control#15346169811412>(puzzle_cell.gd)]
+        * [@Control@159885:<Control#15341740626398>(puzzle_cell.gd)]
+        * [@Control@159864:<Control#15341035983340>(puzzle_cell.gd)]
+        * [@Control@159961:<Control#15344290763368>(puzzle_cell.gd)]
+        * [@Control@159881:<Control#15341606408812>(puzzle_cell.gd)]
+        * [@VBoxContainer@159714:<VBoxContainer#15336002818671>] + 4
+        * [@Control@159850:<Control#15340566221427>(puzzle_cell.gd)]
+        * [@Control@159975:<Control#15344760525428>(puzzle_cell.gd)]
+        * [@Control@159879:<Control#15341539299960>(puzzle_cell.gd)]
+        * [@Control@159858:<Control#15340834656903>(puzzle_cell.gd)]
+        * [@Control@159791:<Control#15338586509963>(puzzle_cell.gd)]
+        * [@Control@159845:<Control#15340398449303>(puzzle_cell.gd)]
+        * [@Control@159953:<Control#15344022328222>(puzzle_cell.gd)]
+        * [@Control@159891:<Control#15341941953439>(puzzle_cell.gd)]
+        * [@Control@159810:<Control#15339224044452>(puzzle_cell.gd)]
+        * [@Control@159813:<Control#15339324707753>(puzzle_cell.gd)]
+        * [@Control@159842:<Control#15340297786284>(puzzle_cell.gd)]
+        * [@Control@159822:<Control#15339626697646>(puzzle_cell.gd)]
+        * [@Control@159815:<Control#15339391816625>(puzzle_cell.gd)]
+        * [@Control@159812:<Control#15339291153332>(puzzle_cell.gd)]
+        * [@Control@159807:<Control#15339123381173>(puzzle_cell.gd)]
+        * [@Control@159809:<Control#15339190490038>(puzzle_cell.gd)]
+        * [@Control@159814:<Control#15339358262202>(puzzle_cell.gd)]
+        * [@Control@159823:<Control#15339660252091>(puzzle_cell.gd)]
+        * [@Control@159824:<Control#15339693806524>(puzzle_cell.gd)]
+        * [@Control@159818:<Control#15339492479939>(puzzle_cell.gd)]
+        * [@Control@159811:<Control#15339257598918>(puzzle_cell.gd)]
+        * [@Control@159829:<Control#15339861578699>(puzzle_cell.gd)]
+        * [@Control@159821:<Control#15339593143244>(puzzle_cell.gd)]
+        * [@Control@159825:<Control#15339727360973>(puzzle_cell.gd)]
+        * [@Control@159828:<Control#15339828024272>(puzzle_cell.gd)]
+        * [@Control@159820:<Control#15339559588819>(puzzle_cell.gd)]
+        * [@Control@159826:<Control#15339760915413>(puzzle_cell.gd)]
+        * [@Control@159819:<Control#15339526034390>(puzzle_cell.gd)]
+        * [@VBoxContainer@159748:<VBoxContainer#15337143669719>] + 1
+        * [@Control@159956:<Control#15344122991576>(puzzle_cell.gd)]
+        * [@Control@159952:<Control#15343988773851>(puzzle_cell.gd)]
+        * [@Label@159751:<Label#15337244333022>]
+        * [@Label@159753:<Label#15337311441891>]
+        * [@Control@159985:<Control#15345096070116>(puzzle_cell.gd)]
+        * [@VBoxContainer@159746:<VBoxContainer#15337076560870>] + 1
+        * [@Label@159750:<Label#15337210778599>]
+        * [@Label@159757:<Label#15337445659634>]
+        * [@Control@160005:<Control#15345767158828>(puzzle_cell.gd)]
+        * [@Control@160000:<Control#15345599386680>(puzzle_cell.gd)]
+        * [@Control@160012:<Control#15346002039878>(puzzle_cell.gd)]
+        * [@Control@159803:<Control#15338989163609>(puzzle_cell.gd)]
+        * [@Label@159759:<Label#15337512768617>]
+        * [@Control@160015:<Control#15346102703308>(puzzle_cell.gd)]
+        * [@Control@160016:<Control#15346136257743>(puzzle_cell.gd)]
+        * [@Control@160018:<Control#15346203366610>(puzzle_cell.gd)]
+        * [@Control@159965:<Control#15344424981755>(puzzle_cell.gd)]
+        * [@Control@159776:<Control#15338083194110>(puzzle_cell.gd)]
+        * [@VBoxContainer@159702:<VBoxContainer#15335600166197>] + 1
+        * [@Control@159862:<Control#15340968875322>(puzzle_cell.gd)]
+        * [@VBoxContainer@159744:<VBoxContainer#15337009452368>] + 1
+        * [@Label@159752:<Label#15337277887828>]
+        * [@Control@159785:<Control#15338385184093>(puzzle_cell.gd)]
+        * [@Label@159755:<Label#15337378551136>]
+        * [@Label@159762:<Label#15337613432164>]
+        * [@Label@159754:<Label#15337344996713>]
+        * [@Control@159780:<Control#15338217411946>(puzzle_cell.gd)]
+        * [@Control@159779:<Control#15338183857515>(puzzle_cell.gd)]
+        * [@Control@159797:<Control#15338787837292>(puzzle_cell.gd)]
+        * [@Control@159789:<Control#15338519401837>(puzzle_cell.gd)]
+        * [@Label@159763:<Label#15337646986607>]
+        * [@Label@159765:<Label#15337714095472>]
+        * [@Control@159794:<Control#15338687174003>(puzzle_cell.gd)]
+        * [@Label@159764:<Label#15337680541044>]
+        * [@Label@159766:<Label#15337747649909>]
+        * [@Control@159786:<Control#15338418738551>(puzzle_cell.gd)]
+        * [@Control@159831:<Control#15339928687994>(puzzle_cell.gd)]
+        * [@Control@159800:<Control#15338888500603>(puzzle_cell.gd)]
+        * [@Control@159796:<Control#15338754282876>(puzzle_cell.gd)]
+        * [@Control@159817:<Control#15339458925950>(puzzle_cell.gd)]
+        * [@Control@159799:<Control#15338854946177>(puzzle_cell.gd)]
+        * [@Control@159798:<Control#15338821391746>(puzzle_cell.gd)]
+        * [@Control@159806:<Control#15339089827206>(puzzle_cell.gd)]
+        * [@Control@159802:<Control#15338955609479>(puzzle_cell.gd)]
+        * [@Control@159834:<Control#15340029351306>(puzzle_cell.gd)]
+        * [@Control@159827:<Control#15339794470283>(puzzle_cell.gd)]
+        * [@Control@159833:<Control#15339995796879>(puzzle_cell.gd)]
+        * [@Control@159838:<Control#15340163569041>(puzzle_cell.gd)]
+        * [@Control@159840:<Control#15340230677906>(puzzle_cell.gd)]
+        * [@Control@159836:<Control#15340096460181>(puzzle_cell.gd)]
+        * [@Control@159835:<Control#15340062905750>(puzzle_cell.gd)]
+        * [@Control@159832:<Control#15339962242458>(puzzle_cell.gd)]
+        * [@Control@159837:<Control#15340130014623>(puzzle_cell.gd)]
+        * [@Control@160003:<Control#15345700050336>(puzzle_cell.gd)]
+        * [@Control@159907:<Control#15342478824873>(puzzle_cell.gd)]
+        * [@Control@159909:<Control#15342545933738>(puzzle_cell.gd)]
+        * [@Control@159937:<Control#15343485457835>(puzzle_cell.gd)]
+        * [@Control@159902:<Control#15342311052726>(puzzle_cell.gd)]
+        * [@Control@159904:<Control#15342378161591>(puzzle_cell.gd)]
+        * [@Control@159914:<Control#15342713705913>(puzzle_cell.gd)]
+        * [@Control@159830:<Control#15339895133626>(puzzle_cell.gd)]
+        * [@Control@160023:<Control#15346371139004>(puzzle_cell.gd)]
+        * [@Control@159921:<Control#15342948586942>(puzzle_cell.gd)]
+        * [@Control@159930:<Control#15343250576833>(puzzle_cell.gd)]
+        * [@Control@159906:<Control#15342445270467>(puzzle_cell.gd)]
+        * [@Control@159936:<Control#15343451903428>(puzzle_cell.gd)]
+        * [@Control@159945:<Control#15343753893318>(puzzle_cell.gd)]
+        * [@Control@159942:<Control#15343653230026>(puzzle_cell.gd)]
+        * [@Control@159941:<Control#15343619675595>(puzzle_cell.gd)]
+        * [@Control@160022:<Control#15346337584593>(puzzle_cell.gd)]
+        * [@Control@159940:<Control#15343586121170>(puzzle_cell.gd)]
+        * [@Control@159939:<Control#15343552566739>(puzzle_cell.gd)]
+        * [@Control@159943:<Control#15343686784472>(puzzle_cell.gd)]
+        * [@Control@159947:<Control#15343821002203>(puzzle_cell.gd)]
+        * [@Control@159877:<Control#15341472191964>(puzzle_cell.gd)]
+        * [@Control@160067:<Control#15347847534047>(puzzle_cell.gd)]
+        * [@Control@160033:<Control#15346706683363>(puzzle_cell.gd)]
+        * [@Control@160027:<Control#15346505356774>(puzzle_cell.gd)]
+        * [@Control@160020:<Control#15346270475753>(puzzle_cell.gd)]
+        * [@Control@160024:<Control#15346404693482>(puzzle_cell.gd)]
+        * [@Control@160037:<Control#15346840901101>(puzzle_cell.gd)]
+        * [@Control@160035:<Control#15346773792243>(puzzle_cell.gd)]
+        * [@Control@159886:<Control#15341774181877>(puzzle_cell.gd)]
+        * [@Control@159883:<Control#15341673518583>(puzzle_cell.gd)]
+        * [@Control@159887:<Control#15341807736315>(puzzle_cell.gd)]
+        * [@Control@159897:<Control#15342143280639>(puzzle_cell.gd)]
+        * [@Control@159959:<Control#15344223655424>(puzzle_cell.gd)]
+        * [@Control@159958:<Control#15344190100995>(puzzle_cell.gd)]
+        * [@Control@159898:<Control#15342176835076>(puzzle_cell.gd)]
+        * [@Control@160036:<Control#15346807346694>(puzzle_cell.gd)]
+        * [@Control@159894:<Control#15342042617352>(puzzle_cell.gd)]
+        * [@Control@159890:<Control#15341908399626>(puzzle_cell.gd)]
+        * [@Control@159895:<Control#15342076171787>(puzzle_cell.gd)]
+        * [@Control@159893:<Control#15342009062924>(puzzle_cell.gd)]
+        * [@Control@159882:<Control#15341639964175>(puzzle_cell.gd)]
+        * [@Control@159899:<Control#15342210389524>(puzzle_cell.gd)]
+        * [@Control@159900:<Control#15342243943959>(puzzle_cell.gd)]
+        * [@Control@159911:<Control#15342613042712>(puzzle_cell.gd)]
+        * [@Control@159896:<Control#15342109726234>(puzzle_cell.gd)]
+        * [@Control@159916:<Control#15342780814875>(puzzle_cell.gd)]
+        * [@Control@159913:<Control#15342680151580>(puzzle_cell.gd)]
+        * [@Control@159912:<Control#15342646597152>(puzzle_cell.gd)]
+        * [@Control@159922:<Control#15342982141474>(puzzle_cell.gd)]
+        * [@Control@159910:<Control#15342579488291>(puzzle_cell.gd)]
+        * [@Control@159924:<Control#15343049250341>(puzzle_cell.gd)]
+        * [@Control@159908:<Control#15342512379431>(puzzle_cell.gd)]
+        * [@Control@159928:<Control#15343183468074>(puzzle_cell.gd)]
+        * [@Control@159918:<Control#15342847923755>(puzzle_cell.gd)]
+        * [@Control@159903:<Control#15342344607276>(puzzle_cell.gd)]
+        * [@Control@159920:<Control#15342915032621>(puzzle_cell.gd)]
+        * [@Control@159917:<Control#15342814369328>(puzzle_cell.gd)]
+        * [@Control@159919:<Control#15342881478194>(puzzle_cell.gd)]
+        * [@Control@159923:<Control#15343015695924>(puzzle_cell.gd)]
+        * [@Control@159915:<Control#15342747260470>(puzzle_cell.gd)]
+        * [@Control@159933:<Control#15343351240248>(puzzle_cell.gd)]
+        * [@Control@159929:<Control#15343217022521>(puzzle_cell.gd)]
+        * [@Control@159925:<Control#15343082804797>(puzzle_cell.gd)]
+        * [@Control@159934:<Control#15343384794686>(puzzle_cell.gd)]
+        * [@Control@159926:<Control#15343116359232>(puzzle_cell.gd)]
+        * [@Control@159938:<Control#15343519012418>(puzzle_cell.gd)]
+        * [@Control@159931:<Control#15343284131396>(puzzle_cell.gd)]
+        * [@Control@159927:<Control#15343149913669>(puzzle_cell.gd)]
+        * [@Control@159932:<Control#15343317685830>(puzzle_cell.gd)]
+        * [@Control@159851:<Control#15340599776840>(puzzle_cell.gd)]
+        * [@Control@159935:<Control#15343418349134>(puzzle_cell.gd)]
+        * [@Control@159856:<Control#15340767549008>(puzzle_cell.gd)]
+        * [@Control@159853:<Control#15340666885716>(puzzle_cell.gd)]
+        * [@Control@159855:<Control#15340733994585>(puzzle_cell.gd)]
+        * [@Control@159849:<Control#15340532667996>(puzzle_cell.gd)]
+        * [@Control@159946:<Control#15343787447903>(puzzle_cell.gd)]
+        * [@Control@159854:<Control#15340700440160>(puzzle_cell.gd)]
+        * [@Control@159869:<Control#15341203756641>(puzzle_cell.gd)]
+        * [@Control@159873:<Control#15341337974370>(puzzle_cell.gd)]
+        * [@Control@159859:<Control#15340868212323>(puzzle_cell.gd)]
+        * [@Control@159875:<Control#15341405083236>(puzzle_cell.gd)]
+        * [@Control@159861:<Control#15340935321190>(puzzle_cell.gd)]
+        * [@Control@159876:<Control#15341438637672>(puzzle_cell.gd)]
+        * [@Control@159871:<Control#15341270865514>(puzzle_cell.gd)]
+        * [@Control@159884:<Control#15341707073131>(puzzle_cell.gd)]
+        * [@Control@159872:<Control#15341304419948>(puzzle_cell.gd)]
+        * [@Control@159870:<Control#15341237311087>(puzzle_cell.gd)]
+        * [@Control@159878:<Control#15341505746546>(puzzle_cell.gd)]
+        * [@Control@159857:<Control#15340801103480>(puzzle_cell.gd)]
+        * [@Control@159880:<Control#15341572855425>(puzzle_cell.gd)]
+        * [@Control@160071:<Control#15347981751960>(puzzle_cell.gd)]
+        * [@Control@160028:<Control#15346538911412>(puzzle_cell.gd)]
+        * [@Control@160031:<Control#15346639574716>(puzzle_cell.gd)]
+        * [@Control@160030:<Control#15346606020286>(puzzle_cell.gd)]
+        * [@Control@160029:<Control#15346572465859>(puzzle_cell.gd)]
+        * [@Control@160032:<Control#15346673129160>(puzzle_cell.gd)]
+        * [@Control@160038:<Control#15346874455754>(puzzle_cell.gd)]
+        * [@Control@160034:<Control#15346740238027>(puzzle_cell.gd)]
+        * [@Control@160040:<Control#15346941564620>(puzzle_cell.gd)]
+        * [@Control@160041:<Control#15346975119055>(puzzle_cell.gd)]
+        * [@Control@160039:<Control#15346908010194>(puzzle_cell.gd)]
+        * [@Control@160042:<Control#15347008673495>(puzzle_cell.gd)]
+        * [@Control@160014:<Control#15346069149472>(puzzle_cell.gd)]
+        * [@Control@160048:<Control#15347210000208>(puzzle_cell.gd)]
+        * [@Control@160043:<Control#15347042228049>(puzzle_cell.gd)]
+        * [@Control@160046:<Control#15347142891348>(puzzle_cell.gd)]
+        * [@Control@160021:<Control#15346304030550>(puzzle_cell.gd)]
+        * [@Control@160047:<Control#15347176445787>(puzzle_cell.gd)]
+        * [@Control@160044:<Control#15347075782493>(puzzle_cell.gd)]
+        * [@Control@160045:<Control#15347109336931>(puzzle_cell.gd)]
+        * [@Control@160049:<Control#15347243554661>(puzzle_cell.gd)]
+        * [@Control@160077:<Control#15348183078889>(puzzle_cell.gd)]
+        * [@Control@160075:<Control#15348115970028>(puzzle_cell.gd)]
+        * [@Control@160073:<Control#15348048861171>(puzzle_cell.gd)]
+        * [@Control@160076:<Control#15348149524469>(puzzle_cell.gd)]
+        * [@Control@160074:<Control#15348082415613>(puzzle_cell.gd)]
+        * [@Control@160052:<Control#15347344218188>(puzzle_cell.gd)]
+        * [@Control@160050:<Control#15347277109325>(puzzle_cell.gd)]
+        * [@Control@160051:<Control#15347310663759>(puzzle_cell.gd)]
+        * [@Control@160054:<Control#15347411327058>(puzzle_cell.gd)]
+        * [@Control@160055:<Control#15347444881494>(puzzle_cell.gd)]
+        * [@Control@160057:<Control#15347511990359>(puzzle_cell.gd)]
+        * [@Control@160053:<Control#15347377772637>(puzzle_cell.gd)]
+        * [@Control@160056:<Control#15347478435936>(puzzle_cell.gd)]
+        * [@Control@160062:<Control#15347679762538>(puzzle_cell.gd)]
+        * [@Control@160061:<Control#15347646208107>(puzzle_cell.gd)]
+        * [@Control@160060:<Control#15347612653676>(puzzle_cell.gd)]
+        * [@Control@160059:<Control#15347579099247>(puzzle_cell.gd)]
+        * [@Control@160058:<Control#15347545544816>(puzzle_cell.gd)]
+        * [@Control@160072:<Control#15348015306866>(puzzle_cell.gd)]
+        * [@Control@160069:<Control#15347914643573>(puzzle_cell.gd)]
+        * [@Control@159901:<Control#15342277503582>(puzzle_cell.gd)]
+        * [@Control@160013:<Control#15346035600156>(puzzle_cell.gd)]
+        * [@Control@159996:<Control#15345465174813>(puzzle_cell.gd)]
+        * [@Control@159865:<Control#15341069544223>(puzzle_cell.gd)]
+        * [@Control@159989:<Control#15345230293794>(puzzle_cell.gd)]
+        * [@Control@159994:<Control#15345398066123>(puzzle_cell.gd)]
+        * [@Control@159774:<Control#15338016091149>(puzzle_cell.gd)]
+        * [@Label@159769:<Label#15337848318991>]
+        * [@Control@159770:<Control#15337881873427>(puzzle_cell.gd)]
+        * [@Label@159767:<Label#15337781210132>]
+        * [@Label@159761:<Label#15337579883546>]
+        * [@Control@160066:<Control#15347813985355>(puzzle_cell.gd)]
+        * [@Control@160063:<Control#15347713322073>(puzzle_cell.gd)]
+        * [@Control@159868:<Control#15341170207863>(puzzle_cell.gd)]
+        * [@Control@160010:<Control#15345934937218>(puzzle_cell.gd)]
+        * [@Control@159892:<Control#15341975514248>(puzzle_cell.gd)]
+        * [@Control@159874:<Control#15341371534479>(puzzle_cell.gd)]
+        * [@Control@160007:<Control#15345834273968>(puzzle_cell.gd)]
+        * [@Control@160006:<Control#15345800719537>(puzzle_cell.gd)]
+        * [@Control@159986:<Control#15345129630963>(puzzle_cell.gd)]
+        * [@Control@159988:<Control#15345196739828>(puzzle_cell.gd)]
+        * [@Control@159992:<Control#15345330957558>(puzzle_cell.gd)]
+        * [@Control@159771:<Control#15337915428200>(puzzle_cell.gd)]
+        * [@Control@159773:<Control#15337982537069>(puzzle_cell.gd)]
+        * [@Control@159775:<Control#15338049645935>(puzzle_cell.gd)]
+        * [@Control@159777:<Control#15338116754800>(puzzle_cell.gd)]
+        * [@Control@159778:<Control#15338150309233>(puzzle_cell.gd)]
+        * [@Control@159783:<Control#15338318081395>(puzzle_cell.gd)]
+        * [@Control@159781:<Control#15338250972532>(puzzle_cell.gd)]
+        * [@Control@159949:<Control#15343888117116>(puzzle_cell.gd)]
+        * [@Control@159950:<Control#15343921671551>(puzzle_cell.gd)]
+        * [@Control@159948:<Control#15343854562688>(puzzle_cell.gd)]
+        * [@Control@159784:<Control#15338351635855>(puzzle_cell.gd)]
+        * [@Control@160001:<Control#15345632947731>(puzzle_cell.gd)]
+        * [@Control@159795:<Control#15338720734745>(puzzle_cell.gd)]
+        * [@Control@159951:<Control#15343955226138>(puzzle_cell.gd)]
+        * [@Control@159772:<Control#15337948982813>(puzzle_cell.gd)]
+        * [@Label@159756:<Label#15337412111902>]
+        * [@Label@159758:<Label#15337479220767>]
+        * [@Control@159957:<Control#15344156552741>(puzzle_cell.gd)]
+        * [@Control@159982:<Control#15344995413544>(puzzle_cell.gd)]
+        * [@Control@159960:<Control#15344257216041>(puzzle_cell.gd)]
+        * [@Control@159962:<Control#15344324324906>(puzzle_cell.gd)]
+        * [@Control@159983:<Control#15345028967980>(puzzle_cell.gd)]
+        * [@Control@159954:<Control#15344055889453>(puzzle_cell.gd)]
+        * [@Control@159955:<Control#15344089443888>(puzzle_cell.gd)]
+        * [@Control@160019:<Control#15346236927574>(puzzle_cell.gd)]
+        * [@Control@159991:<Control#15345297403529>(puzzle_cell.gd)]
+        * [@Control@159977:<Control#15344827641489>(puzzle_cell.gd)]
+        * [@Control@159984:<Control#15345062522545>(puzzle_cell.gd)]
+        * [@Control@159987:<Control#15345163185848>(puzzle_cell.gd)]
+        * [@Control@159792:<Control#15338620071609>(puzzle_cell.gd)]
+        * [@Control@159978:<Control#15344861195963>(puzzle_cell.gd)]
+        * [@Control@159804:<Control#15339022724801>(puzzle_cell.gd)]
+        * [@Control@159790:<Control#15338552962755>(puzzle_cell.gd)]
+        * [@Control@159793:<Control#15338653626056>(puzzle_cell.gd)]
+        * [@Control@159860:<Control#15340901773005>(puzzle_cell.gd)]
+        * [@Control@159905:<Control#15342411722448>(puzzle_cell.gd)]
+        * [@Control@159993:<Control#15345364512470>(puzzle_cell.gd)]
+        * [@Control@159990:<Control#15345263849175>(puzzle_cell.gd)]
+        * [@Control@160078:<Control#15348216640652>(puzzle_cell.gd)]
+        * [@Control@160079:<Control#15348250195086>(puzzle_cell.gd)]
+        * [@Control@160089:<Control#15348585739407>(puzzle_cell.gd)]
+        * [@Control@160088:<Control#15348552184977>(puzzle_cell.gd)]
+        * [@Control@160087:<Control#15348518630547>(puzzle_cell.gd)]
+        * [@Control@160086:<Control#15348485076117>(puzzle_cell.gd)]
+        * [@Control@160085:<Control#15348451521687>(puzzle_cell.gd)]
+        * [@Control@160084:<Control#15348417967257>(puzzle_cell.gd)]
+        * [@Control@160083:<Control#15348384412827>(puzzle_cell.gd)]
+        * [@Control@160082:<Control#15348350858397>(puzzle_cell.gd)]
+        * [@Control@160081:<Control#15348317303967>(puzzle_cell.gd)]
+        * [@Control@160080:<Control#15348283749537>(puzzle_cell.gd)]
+        * [@Control@160090:<Control#15348619293861>(puzzle_cell.gd)]
+        * [@Control@160140:<Control#15350297015462>(puzzle_cell.gd)]
+        * [@Control@160139:<Control#15350263461032>(puzzle_cell.gd)]
+        * [@Control@160138:<Control#15350229906602>(puzzle_cell.gd)]
+        * [@Control@160137:<Control#15350196352172>(puzzle_cell.gd)]
+        * [@Control@160136:<Control#15350162797742>(puzzle_cell.gd)]
+        * [@Control@160135:<Control#15350129243312>(puzzle_cell.gd)]
+        * [@Control@160134:<Control#15350095688882>(puzzle_cell.gd)]
+        * [@Control@160133:<Control#15350062134452>(puzzle_cell.gd)]
+        * [@Control@160132:<Control#15350028580022>(puzzle_cell.gd)]
+        * [@Control@160131:<Control#15349995025592>(puzzle_cell.gd)]
+        * [@Control@160130:<Control#15349961471162>(puzzle_cell.gd)]
+        * [@Control@160129:<Control#15349927916732>(puzzle_cell.gd)]
+        * [@Control@160128:<Control#15349894362302>(puzzle_cell.gd)]
+        * [@Control@160127:<Control#15349860807872>(puzzle_cell.gd)]
+        * [@Control@160126:<Control#15349827253442>(puzzle_cell.gd)]
+        * [@Control@160125:<Control#15349793699012>(puzzle_cell.gd)]
+        * [@Control@160124:<Control#15349760144582>(puzzle_cell.gd)]
+        * [@Control@160123:<Control#15349726590152>(puzzle_cell.gd)]
+        * [@Control@160122:<Control#15349693035722>(puzzle_cell.gd)]
+        * [@Control@160121:<Control#15349659481292>(puzzle_cell.gd)]
+        * [@Control@160120:<Control#15349625926862>(puzzle_cell.gd)]
+        * [@Control@160119:<Control#15349592372432>(puzzle_cell.gd)]
+        * [@Control@160118:<Control#15349558818002>(puzzle_cell.gd)]
+        * [@Control@160117:<Control#15349525263572>(puzzle_cell.gd)]
+        * [@Control@160116:<Control#15349491709142>(puzzle_cell.gd)]
+        * [@Control@160115:<Control#15349458154712>(puzzle_cell.gd)]
+        * [@Control@160114:<Control#15349424600282>(puzzle_cell.gd)]
+        * [@Control@160113:<Control#15349391045852>(puzzle_cell.gd)]
+        * [@Control@160112:<Control#15349357491422>(puzzle_cell.gd)]
+        * [@Control@160111:<Control#15349323936992>(puzzle_cell.gd)]
+        * [@Control@160110:<Control#15349290382562>(puzzle_cell.gd)]
+        * [@Control@160109:<Control#15349256828132>(puzzle_cell.gd)]
+        * [@Control@160108:<Control#15349223273702>(puzzle_cell.gd)]
+        * [@Control@160107:<Control#15349189719272>(puzzle_cell.gd)]
+        * [@Control@160106:<Control#15349156164842>(puzzle_cell.gd)]
+        * [@Control@160105:<Control#15349122610412>(puzzle_cell.gd)]
+        * [@Control@160104:<Control#15349089055982>(puzzle_cell.gd)]
+        * [@Control@160103:<Control#15349055501552>(puzzle_cell.gd)]
+        * [@Control@160102:<Control#15349021947122>(puzzle_cell.gd)]
+        * [@Control@160101:<Control#15348988392692>(puzzle_cell.gd)]
+        * [@Control@160100:<Control#15348954838262>(puzzle_cell.gd)]
+        * [@Control@160099:<Control#15348921283832>(puzzle_cell.gd)]
+        * [@Control@160098:<Control#15348887729402>(puzzle_cell.gd)]
+        * [@Control@160097:<Control#15348854174972>(puzzle_cell.gd)]
+        * [@Control@160096:<Control#15348820620542>(puzzle_cell.gd)]
+        * [@Control@160095:<Control#15348787066112>(puzzle_cell.gd)]
+        * [@Control@160094:<Control#15348753511682>(puzzle_cell.gd)]
+        * [@Control@160093:<Control#15348719957252>(puzzle_cell.gd)]
+        * [@Control@160092:<Control#15348686402822>(puzzle_cell.gd)]
+        * [@Control@160091:<Control#15348652848392>(puzzle_cell.gd)]
+        * [@Control@160141:<Control#15350330570256>(puzzle_cell.gd)]
+        * [@Control@160142:<Control#15350364124690>(puzzle_cell.gd)]
+        * [@Control@160143:<Control#15350397679124>(puzzle_cell.gd)]
+        * [@Control@160144:<Control#15350431233558>(puzzle_cell.gd)]
+        * [@Control@160145:<Control#15350464787992>(puzzle_cell.gd)]
+        * [@Control@160146:<Control#15350498342426>(puzzle_cell.gd)]
+        * [@Control@160147:<Control#15350531896860>(puzzle_cell.gd)]
+        * [@Control@160148:<Control#15350565451294>(puzzle_cell.gd)]
+        * [@Control@160149:<Control#15350599005728>(puzzle_cell.gd)]
+        * [@Control@160150:<Control#15350632560162>(puzzle_cell.gd)]
+        * [@Control@160151:<Control#15350666114596>(puzzle_cell.gd)]
+        * [@Control@160152:<Control#15350699669030>(puzzle_cell.gd)]
+        * [@Control@160153:<Control#15350733223464>(puzzle_cell.gd)]
+        * [@Control@160154:<Control#15350766777898>(puzzle_cell.gd)]
+        * [@Control@160155:<Control#15350800332332>(puzzle_cell.gd)]
+        * [@Control@160156:<Control#15350833886766>(puzzle_cell.gd)]
+        * [@Control@160157:<Control#15350867441200>(puzzle_cell.gd)]
+        * [@Control@160158:<Control#15350900995634>(puzzle_cell.gd)]
+        * [@Control@160159:<Control#15350934550068>(puzzle_cell.gd)]
+        * [@Control@160160:<Control#15350968104502>(puzzle_cell.gd)]
+        * [@Control@160161:<Control#15351001658936>(puzzle_cell.gd)]
+        * [@Control@160162:<Control#15351035213370>(puzzle_cell.gd)]
+        * [@Control@160163:<Control#15351068767804>(puzzle_cell.gd)]
+        * [@Control@160164:<Control#15351102322238>(puzzle_cell.gd)]
+        * [@Control@160165:<Control#15351135876672>(puzzle_cell.gd)]
+        * [@Control@160166:<Control#15351169431106>(puzzle_cell.gd)]
+        * [@Control@160167:<Control#15351202985540>(puzzle_cell.gd)]
+        * [@Control@160168:<Control#15351236539974>(puzzle_cell.gd)]
+        * [@Control@160169:<Control#15351270094408>(puzzle_cell.gd)][0m
+* test_leave_with_no_open_attempt_keeps_the_gallery
+* test_leave_commits_and_the_gallery_shows_the_restored_facts
+[33m    130 Orphans[0m
+[33m        * [@Control@165913:<Control#15688592787069>(puzzle_cell.gd)]
+        * [@Control@165880:<Control#15687485491745>(puzzle_cell.gd)]
+        * [@Control@165841:<Control#15686176868929>(puzzle_cell.gd)]
+        * [@Control@165918:<Control#15688760560259>(puzzle_cell.gd)]
+        * [@Control@165910:<Control#15688492124806>(puzzle_cell.gd)]
+        * [@Control@165923:<Control#15688928332586>(puzzle_cell.gd)]
+        * [@Control@165902:<Control#15688223689576>(puzzle_cell.gd)]
+        * [@Control@165867:<Control#15687049284514>(puzzle_cell.gd)]
+        * [@Control@165927:<Control#15689062550468>(puzzle_cell.gd)]
+        * [@VBoxContainer@165810:<VBoxContainer#15685136682130>] + 1
+        * [@Control@165905:<Control#15688324353597>(puzzle_cell.gd)]
+        * [@Control@165879:<Control#15687451938366>(puzzle_cell.gd)]
+        * [@Control@165906:<Control#15688357908044>(puzzle_cell.gd)]
+        * [@Control@165839:<Control#15686109761165>(puzzle_cell.gd)]
+        * [@Control@165840:<Control#15686143315605>(puzzle_cell.gd)]
+        * [@Control@165921:<Control#15688861224688>(puzzle_cell.gd)]
+        * [@Control@165903:<Control#15688257245272>(puzzle_cell.gd)]
+        * [@Control@165904:<Control#15688290799712>(puzzle_cell.gd)]
+        * [@Control@165901:<Control#15688190136417>(puzzle_cell.gd)]
+        * [@Control@165898:<Control#15688089473125>(puzzle_cell.gd)]
+        * [@Control@165930:<Control#15689163214955>(puzzle_cell.gd)]
+        * [@Control@165895:<Control#15687988809948>(puzzle_cell.gd)]
+        * [@Control@165917:<Control#15688727007491>(puzzle_cell.gd)]
+        * [@Control@165876:<Control#15687351275889>(puzzle_cell.gd)]
+        * [@Control@165912:<Control#15688559235759>(puzzle_cell.gd)]
+        * [@VBoxContainer@165812:<VBoxContainer#15685203792804>] + 1
+        * [@Control@165924:<Control#15688961889200>(puzzle_cell.gd)]
+        * [@VBoxContainer@165818:<VBoxContainer#15685405119409>] + 1
+        * [@VBoxContainer@165816:<VBoxContainer#15685338010554>] + 1
+        * [@Label@165823:<Label#15685572891579>]
+        * [@Label@165831:<Label#15685841327042>]
+        * [@VBoxContainer@165820:<VBoxContainer#15685472228291>] + 1
+        * [@VBoxContainer@165814:<VBoxContainer#15685270901702>] + 1
+        * [@Control@165833:<Control#15685908435914>(puzzle_cell.gd)]
+        * [@Label@165829:<Label#15685774218190>]
+        * [@Label@165824:<Label#15685606446033>]
+        * [@Label@165826:<Label#15685673554898>]
+        * [@Label@165822:<Label#15685539337171>]
+        * [@Control@165875:<Control#15687317722253>(puzzle_cell.gd)]
+        * [@Control@165882:<Control#15687552603287>(puzzle_cell.gd)]
+        * [@Control@165851:<Control#15686512415901>(puzzle_cell.gd)]
+        * [@Control@165926:<Control#15689028998306>(puzzle_cell.gd)]
+        * [@Control@165914:<Control#15688626345125>(puzzle_cell.gd)]
+        * [@Control@165922:<Control#15688894780588>(puzzle_cell.gd)]
+        * [@Control@165928:<Control#15689096107214>(puzzle_cell.gd)]
+        * [@Control@165878:<Control#15687418385616>(puzzle_cell.gd)]
+        * [@Control@165870:<Control#15687149950189>(puzzle_cell.gd)]
+        * [@Control@165911:<Control#15688525681994>(puzzle_cell.gd)]
+        * [@Control@165925:<Control#15688995444050>(puzzle_cell.gd)]
+        * [@Control@165915:<Control#15688659899734>(puzzle_cell.gd)]
+        * [@Label@165828:<Label#15685740664189>]
+        * [@VBoxContainer@165802:<VBoxContainer#15684868248959>] + 1
+        * [@Label@165830:<Label#15685807773061>]
+        * [@VBoxContainer@165808:<VBoxContainer#15685069575558>] + 1
+        * [@Label@165827:<Label#15685707109768>]
+        * [@Label@165825:<Label#15685640000912>]
+        * [@Control@165836:<Control#15686009099673>(puzzle_cell.gd)]
+        * [@Control@165835:<Control#15685975545243>(puzzle_cell.gd)]
+        * [@Control@165838:<Control#15686076208540>(puzzle_cell.gd)]
+        * [@Control@165837:<Control#15686042654114>(puzzle_cell.gd)]
+        * [@Control@165834:<Control#15685941990821>(puzzle_cell.gd)]
+        * [@Control@165832:<Control#15685874881959>(puzzle_cell.gd)]
+        * [@Control@165920:<Control#15688827672131>(puzzle_cell.gd)]
+        * [@Control@165919:<Control#15688794117723>(puzzle_cell.gd)]
+        * [@Control@165892:<Control#15687888148113>(puzzle_cell.gd)]
+        * [@Control@165868:<Control#15687082847233>(puzzle_cell.gd)]
+        * [@Control@165869:<Control#15687116401667>(puzzle_cell.gd)]
+        * [@Control@165929:<Control#15689129667697>(puzzle_cell.gd)]
+        * [@Control@165896:<Control#15688022371477>(puzzle_cell.gd)]
+        * [@Control@165900:<Control#15688156589210>(puzzle_cell.gd)]
+        * [@Control@165863:<Control#15686915075242>(puzzle_cell.gd)]
+        * [@Control@165881:<Control#15687519055043>(puzzle_cell.gd)]
+        * [@Control@165877:<Control#15687384837319>(puzzle_cell.gd)]
+        * [@Control@165873:<Control#15687250619592>(puzzle_cell.gd)]
+        * [@Control@165872:<Control#15687217065162>(puzzle_cell.gd)]
+        * [@Control@165899:<Control#15688123034835>(puzzle_cell.gd)]
+        * [@Control@165860:<Control#15686814412187>(puzzle_cell.gd)]
+        * [@Control@165862:<Control#15686881521053>(puzzle_cell.gd)]
+        * [@Control@165865:<Control#15686982184352>(puzzle_cell.gd)]
+        * [@Control@165916:<Control#15688693460440>(puzzle_cell.gd)]
+        * [@Control@165897:<Control#15688055926306>(puzzle_cell.gd)]
+        * [@Control@165871:<Control#15687183511139>(puzzle_cell.gd)]
+        * [@Control@165874:<Control#15687284174437>(puzzle_cell.gd)]
+        * [@Control@165894:<Control#15687955263116>(puzzle_cell.gd)]
+        * [@Control@165931:<Control#15689196777101>(puzzle_cell.gd)]
+        * [@VBoxContainer@165804:<VBoxContainer#15684935364288>] + 1
+        * [@VBoxContainer@165806:<VBoxContainer#15685002473153>] + 1
+        * [@Control@165864:<Control#15686948630278>(puzzle_cell.gd)]
+        * [@Control@165845:<Control#15686311096125>(puzzle_cell.gd)]
+        * [@Control@165847:<Control#15686378204991>(puzzle_cell.gd)]
+        * [@Control@165848:<Control#15686411759425>(puzzle_cell.gd)]
+        * [@Control@165866:<Control#15687015739266>(puzzle_cell.gd)]
+        * [@Control@165883:<Control#15687586164627>(puzzle_cell.gd)]
+        * [@Control@165885:<Control#15687653273493>(puzzle_cell.gd)]
+        * [@Control@165886:<Control#15687686827927>(puzzle_cell.gd)]
+        * [@Control@165887:<Control#15687720382361>(puzzle_cell.gd)]
+        * [@Control@165888:<Control#15687753936795>(puzzle_cell.gd)]
+        * [@Control@165889:<Control#15687787491229>(puzzle_cell.gd)]
+        * [@Control@165884:<Control#15687619719073>(puzzle_cell.gd)]
+        * [@Control@165907:<Control#15688391471048>(puzzle_cell.gd)]
+        * [@Control@165908:<Control#15688425025482>(puzzle_cell.gd)]
+        * [@Control@165909:<Control#15688458579916>(puzzle_cell.gd)]
+        * [@Control@165893:<Control#15687921709860>(puzzle_cell.gd)]
+        * [@Control@165891:<Control#15687854601006>(puzzle_cell.gd)]
+        * [@Control@165890:<Control#15687821046589>(puzzle_cell.gd)]
+        * [@Control@165849:<Control#15686445314895>(puzzle_cell.gd)]
+        * [@Control@165850:<Control#15686478869331>(puzzle_cell.gd)]
+        * [@Control@165859:<Control#15686780859429>(puzzle_cell.gd)]
+        * [@Control@165858:<Control#15686747304998>(puzzle_cell.gd)]
+        * [@Control@165861:<Control#15686847968295>(puzzle_cell.gd)]
+        * [@Control@165857:<Control#15686713750568>(puzzle_cell.gd)]
+        * [@Control@165856:<Control#15686680196139>(puzzle_cell.gd)]
+        * [@Control@165854:<Control#15686613087276>(puzzle_cell.gd)]
+        * [@Control@165853:<Control#15686579532846>(puzzle_cell.gd)]
+        * [@Control@165855:<Control#15686646641713>(puzzle_cell.gd)]
+        * [@Control@165852:<Control#15686545978418>(puzzle_cell.gd)]
+        * [@Control@165846:<Control#15686344651828>(puzzle_cell.gd)]
+        * [@Control@165844:<Control#15686277542966>(puzzle_cell.gd)]
+        * [@Control@165843:<Control#15686243988536>(puzzle_cell.gd)]
+        * [@Control@165842:<Control#15686210434582>(puzzle_cell.gd)][0m
+* test_a_reset_request_opens_the_confirm_box
+* test_a_refused_reset_changes_nothing
+* test_confirming_the_box_clears_the_record_and_re_reads_o1_and_o2
+* test_an_unknown_id_at_s3_changes_nothing
+* test_cancelling_the_box_writes_nothing
+[1m15/15 passed.
+[0m[4m
+
+res://test/test_solve_edge.gd
+[0m* test_a_wrong_fill_is_unchanged_and_is_not_a_solve
+* test_a_solving_fill_stops_elapsed_records_the_solve_and_clears_the_attempt
+* test_the_solve_returns_the_pre_clear_grid_and_line_status
+* test_a_longer_solve_keeps_the_personal_best
+* test_a_mark_while_marks_are_blocked_changes_nothing
+* test_a_mark_while_paused_changes_nothing
+* test_a_mark_that_changes_nothing_does_not_save_or_check_for_a_solve
+* test_the_solve_branch_skips_the_commit_and_other_marks_commit
+* test_a_mark_with_no_open_puzzle_returns_nothing
+[1m9/9 passed.
+[0m[4m
+
+res://test/test_ui_theme.gd
+[0m* test_a_catalogued_id_builds_one_tabular_family
+* test_t1_is_half_the_cell_side_with_the_readability_floor
+* test_t2_is_one_fortieth_of_the_frame_height
+* test_an_empty_id_keeps_the_default_face_without_an_error
+[34m[ExpectedError][0man empty id is not a resolve failure
+* test_an_id_absent_from_the_manifest_keeps_the_default_face_without_an_error
+[34m[ExpectedError][0mhas() gates resolve(), so nothing is pushed
+* test_gallery_chrome_and_tile_labels_use_the_one_family_at_t2
+* test_puzzle_chrome_and_clue_labels_use_the_one_family_at_t1_and_t2
+* test_t1_clue_labels_are_half_the_laid_out_cell_side
+* test_result_chrome_uses_the_one_family_at_t2
+* test_settings_chrome_uses_the_one_family_at_t2
+* test_a_screen_without_a_catalogued_family_keeps_the_default_face
+[34m[ExpectedError][0mthe app does not fail without a catalogued family
+* test_the_production_id_lives_only_in_the_shell_constant
+* test_chrome_words_are_sentence_case
+[1m13/13 passed.
+[0m[4m
+
+res://test/test_verification_seams.gd
+[0m* test_flag_off_hides_every_seam_and_keeps_the_boot
+* test_flag_on_builds_the_telemetry_sink_and_a_hidden_overlay
+SEV level=info event=session-start time=1793609247.132 session=session-1793609247 build=4.7.2-stable (official) story=- message=
+SEV level=info event=session-end time=1793609247.999 session=session-1793609247 build=4.7.2-stable (official) story=- message=
+* test_s1_pause_and_resume_halt_the_session
+SEV level=info event=session-start time=1793609248.153 session=session-1793609248 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609248.827 session=session-1793609248 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609248.837 session=session-1793609248 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609248.839 session=session-1793609248 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609248.849 session=session-1793609248 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609248.851 session=session-1793609248 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=pause time=1793609248.857 session=session-1793609248 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=resume time=1793609248.863 session=session-1793609248 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609248.864 session=session-1793609248 build=4.7.2-stable (official) story=- message=
+* test_s1_pause_with_nothing_open_changes_nothing
+SEV level=info event=session-start time=1793609249.017 session=session-1793609249 build=4.7.2-stable (official) story=- message=
+SEV level=info event=session-end time=1793609249.863 session=session-1793609249 build=4.7.2-stable (official) story=- message=
+* test_s1_open_by_id_in_place_and_unknown_id_g3
+SEV level=info event=session-start time=1793609250.007 session=session-1793609250 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609250.904 session=session-1793609250 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=open time=1793609250.932 session=session-1793609250 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609250.933 session=session-1793609250 build=4.7.2-stable (official) story=- message=
+[33m    130 Orphans[0m
+[33m        * [@Control@197416:<Control#17822654662261>(puzzle_cell.gd)]
+        * [@Control@197385:<Control#17821614474872>(puzzle_cell.gd)]
+        * [@Control@197424:<Control#17822923097734>(puzzle_cell.gd)]
+        * [@Control@197420:<Control#17822788880019>(puzzle_cell.gd)]
+        * [@Control@197381:<Control#17821480258179>(puzzle_cell.gd)]
+        * [@Control@197419:<Control#17822755326638>(puzzle_cell.gd)]
+        * [@Control@197425:<Control#17822956653354>(puzzle_cell.gd)]
+        * [@Control@197415:<Control#17822621109137>(puzzle_cell.gd)]
+        * [@Control@197382:<Control#17821513813096>(puzzle_cell.gd)]
+        * [@Control@197426:<Control#17822990208123>(puzzle_cell.gd)]
+        * [@Control@197418:<Control#17822721772915>(puzzle_cell.gd)]
+        * [@Control@197377:<Control#17821346041546>(puzzle_cell.gd)]
+        * [@Control@197414:<Control#17822587555608>(puzzle_cell.gd)]
+        * [@Control@197355:<Control#17820607844661>(puzzle_cell.gd)]
+        * [@Control@197346:<Control#17820305855601>(puzzle_cell.gd)]
+        * [@Control@197354:<Control#17820574291065>(puzzle_cell.gd)]
+        * [@Control@197353:<Control#17820540736641>(puzzle_cell.gd)]
+        * [@Control@197356:<Control#17820641399940>(puzzle_cell.gd)]
+        * [@Control@197378:<Control#17821379597473>(puzzle_cell.gd)]
+        * [@Control@197376:<Control#17821312489027>(puzzle_cell.gd)]
+        * [@Control@197379:<Control#17821413152337>(puzzle_cell.gd)]
+        * [@Control@197351:<Control#17820473628331>(puzzle_cell.gd)]
+        * [@Control@197350:<Control#17820440073924>(puzzle_cell.gd)]
+        * [@Control@197336:<Control#17819970311971>(puzzle_cell.gd)]
+        * [@Control@197347:<Control#17820339410906>(puzzle_cell.gd)]
+        * [@Control@197348:<Control#17820372965345>(puzzle_cell.gd)]
+        * [@Control@197428:<Control#17823057320096>(puzzle_cell.gd)]
+        * [@Control@197383:<Control#17821547370664>(puzzle_cell.gd)]
+        * [@Control@197386:<Control#17821648033972>(puzzle_cell.gd)]
+        * [@Control@197384:<Control#17821580925111>(puzzle_cell.gd)]
+        * [@Control@197411:<Control#17822486894987>(puzzle_cell.gd)]
+        * [@Control@197399:<Control#17822084241807>(puzzle_cell.gd)]
+        * [@Control@197409:<Control#17822419786135>(puzzle_cell.gd)]
+        * [@Control@197401:<Control#17822151350681>(puzzle_cell.gd)]
+        * [@Control@197404:<Control#17822252013979>(puzzle_cell.gd)]
+        * [@Control@197407:<Control#17822352677276>(puzzle_cell.gd)]
+        * [@Control@197413:<Control#17822554003869>(puzzle_cell.gd)]
+        * [@Control@197410:<Control#17822453340575>(puzzle_cell.gd)]
+        * [@Control@197406:<Control#17822319122849>(puzzle_cell.gd)]
+        * [@Control@197395:<Control#17821950024102>(puzzle_cell.gd)]
+        * [@Control@197402:<Control#17822184905129>(puzzle_cell.gd)]
+        * [@Control@197400:<Control#17822117796266>(puzzle_cell.gd)]
+        * [@Control@197393:<Control#17821882915245>(puzzle_cell.gd)]
+        * [@Control@197403:<Control#17822218459566>(puzzle_cell.gd)]
+        * [@Control@197408:<Control#17822386231727>(puzzle_cell.gd)]
+        * [@Control@197392:<Control#17821849360817>(puzzle_cell.gd)]
+        * [@Control@197398:<Control#17822050687411>(puzzle_cell.gd)]
+        * [@Control@197396:<Control#17821983578551>(puzzle_cell.gd)]
+        * [@Control@197405:<Control#17822285568440>(puzzle_cell.gd)]
+        * [@Control@197397:<Control#17822017132985>(puzzle_cell.gd)]
+        * [@Control@197390:<Control#17821782251965>(puzzle_cell.gd)]
+        * [@Control@197388:<Control#17821715143106>(puzzle_cell.gd)]
+        * [@Control@197394:<Control#17821916469699>(puzzle_cell.gd)]
+        * [@Control@197391:<Control#17821815806405>(puzzle_cell.gd)]
+        * [@Control@197387:<Control#17821681588679>(puzzle_cell.gd)]
+        * [@Control@197389:<Control#17821748697557>(puzzle_cell.gd)]
+        * [@Label@197323:<Label#17819534105117>]
+        * [@Label@197321:<Label#17819466996259>]
+        * [@Label@197320:<Label#17819433441828>]
+        * [@Label@197324:<Label#17819567659558>]
+        * [@VBoxContainer@197311:<VBoxContainer#17819131451943>] + 1
+        * [@Label@197325:<Label#17819601213992>]
+        * [@Label@197326:<Label#17819634768427>]
+        * [@Label@197322:<Label#17819500550709>]
+        * [@VBoxContainer@197317:<VBoxContainer#17819332778550>] + 1
+        * [@VBoxContainer@197309:<VBoxContainer#17819064343098>] + 1
+        * [@VBoxContainer@197315:<VBoxContainer#17819265669695>] + 1
+        * [@VBoxContainer@197313:<VBoxContainer#17819198560833>] + 1
+        * [@VBoxContainer@197303:<VBoxContainer#17818863016517>] + 1
+        * [@Label@197319:<Label#17819399887431>]
+        * [@VBoxContainer@197307:<VBoxContainer#17818997234257>] + 1
+        * [@VBoxContainer@197305:<VBoxContainer#17818930125400>] + 1
+        * [@VBoxContainer@197299:<VBoxContainer#17818728798810>] + 1
+        * [@VBoxContainer@197301:<VBoxContainer#17818795907677>] + 1
+        * [@Control@197427:<Control#17823023770737>(puzzle_cell.gd)]
+        * [@Control@197417:<Control#17822688227038>(puzzle_cell.gd)]
+        * [@Control@197412:<Control#17822520455119>(puzzle_cell.gd)]
+        * [@Control@197349:<Control#17820406525937>(puzzle_cell.gd)]
+        * [@Control@197343:<Control#17820205199356>(puzzle_cell.gd)]
+        * [@Control@197334:<Control#17819903209493>(puzzle_cell.gd)]
+        * [@Control@197331:<Control#17819802546201>(puzzle_cell.gd)]
+        * [@Control@197333:<Control#17819869655067>(puzzle_cell.gd)]
+        * [@Control@197330:<Control#17819768991774>(puzzle_cell.gd)]
+        * [@Control@197337:<Control#17820003872799>(puzzle_cell.gd)]
+        * [@Control@197332:<Control#17819836100648>(puzzle_cell.gd)]
+        * [@Label@197328:<Label#17819701882922>]
+        * [@Label@197327:<Label#17819668328491>]
+        * [@Control@197329:<Control#17819735437360>(puzzle_cell.gd)]
+        * [@Control@197339:<Control#17820070981683>(puzzle_cell.gd)]
+        * [@Control@197367:<Control#17821010505784>(puzzle_cell.gd)]
+        * [@Control@197335:<Control#17819936763968>(puzzle_cell.gd)]
+        * [@Control@197371:<Control#17821144723531>(puzzle_cell.gd)]
+        * [@Control@197368:<Control#17821044060240>(puzzle_cell.gd)]
+        * [@Control@197372:<Control#17821178277973>(puzzle_cell.gd)]
+        * [@Control@197370:<Control#17821111169111>(puzzle_cell.gd)]
+        * [@Control@197374:<Control#17821245386841>(puzzle_cell.gd)]
+        * [@Control@197375:<Control#17821278941276>(puzzle_cell.gd)]
+        * [@Control@197357:<Control#17820674961566>(puzzle_cell.gd)]
+        * [@Control@197345:<Control#17820272308390>(puzzle_cell.gd)]
+        * [@Control@197352:<Control#17820507189417>(puzzle_cell.gd)]
+        * [@Control@197361:<Control#17820809179392>(puzzle_cell.gd)]
+        * [@Control@197365:<Control#17820943397122>(puzzle_cell.gd)]
+        * [@Control@197358:<Control#17820708516100>(puzzle_cell.gd)]
+        * [@Control@197359:<Control#17820742070534>(puzzle_cell.gd)]
+        * [@Control@197360:<Control#17820775624967>(puzzle_cell.gd)]
+        * [@Control@197363:<Control#17820876288264>(puzzle_cell.gd)]
+        * [@Control@197364:<Control#17820909842699>(puzzle_cell.gd)]
+        * [@Control@197373:<Control#17821211832593>(puzzle_cell.gd)]
+        * [@Control@197366:<Control#17820976951572>(puzzle_cell.gd)]
+        * [@Control@197422:<Control#17822855999812>(puzzle_cell.gd)]
+        * [@Control@197421:<Control#17822822445381>(puzzle_cell.gd)]
+        * [@Control@197423:<Control#17822889554252>(puzzle_cell.gd)]
+        * [@Control@197344:<Control#17820238754264>(puzzle_cell.gd)]
+        * [@Control@197342:<Control#17820171645401>(puzzle_cell.gd)]
+        * [@Control@197341:<Control#17820138090975>(puzzle_cell.gd)]
+        * [@Control@197340:<Control#17820104536546>(puzzle_cell.gd)]
+        * [@Control@197338:<Control#17820037427692>(puzzle_cell.gd)]
+        * [@Control@197362:<Control#17820842734155>(puzzle_cell.gd)]
+        * [@Control@197369:<Control#17821077615180>(puzzle_cell.gd)]
+        * [@Control@197380:<Control#17821446714195>(puzzle_cell.gd)][0m
+* test_s2_inspect_returns_the_three_schemata_and_changes_nothing
+SEV level=info event=session-start time=1793609251.129 session=session-1793609251 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609251.987 session=session-1793609251 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609251.998 session=session-1793609251 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609251.999 session=session-1793609251 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609252.012 session=session-1793609251 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609252.013 session=session-1793609251 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609252.024 session=session-1793609251 build=4.7.2-stable (official) story=- message=
+* test_s2_inspect_reads_a_chosen_progress_record
+SEV level=info event=session-start time=1793609252.175 session=session-1793609252 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609253.024 session=session-1793609252 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609253.036 session=session-1793609252 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609253.037 session=session-1793609252 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609253.052 session=session-1793609252 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609253.054 session=session-1793609252 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=leave time=1793609253.061 session=session-1793609252 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609253.062 session=session-1793609252 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609253.145 session=session-1793609252 build=4.7.2-stable (official) story=- message=
+[33m    130 Orphans[0m
+[33m        * [@Control@203789:<Control#18189371049592>(puzzle_cell.gd)]
+        * [@Control@203734:<Control#18187525556958>(puzzle_cell.gd)]
+        * [@Control@203735:<Control#18187559111549>(puzzle_cell.gd)]
+        * [@Control@203748:<Control#18187995319184>(puzzle_cell.gd)]
+        * [@Control@203719:<Control#18187022240803>(puzzle_cell.gd)]
+        * [@Control@203736:<Control#18187592666174>(puzzle_cell.gd)]
+        * [@Control@203713:<Control#18186820914881>(puzzle_cell.gd)]
+        * [@Control@203732:<Control#18187458449356>(puzzle_cell.gd)]
+        * [@Control@203745:<Control#18187894657319>(puzzle_cell.gd)]
+        * [@Control@203730:<Control#18187391341179>(puzzle_cell.gd)]
+        * [@Control@203727:<Control#18187290678166>(puzzle_cell.gd)]
+        * [@Control@203725:<Control#18187223569311>(puzzle_cell.gd)]
+        * [@Control@203703:<Control#18186485371815>(puzzle_cell.gd)]
+        * [@Control@203739:<Control#18187693331375>(puzzle_cell.gd)]
+        * [@Control@203774:<Control#18188867736511>(puzzle_cell.gd)]
+        * [@Control@203744:<Control#18187861104033>(puzzle_cell.gd)]
+        * [@Control@203770:<Control#18188733519270>(puzzle_cell.gd)]
+        * [@Control@203765:<Control#18188565747113>(puzzle_cell.gd)]
+        * [@Control@203773:<Control#18188834182575>(puzzle_cell.gd)]
+        * [@Control@203741:<Control#18187760440758>(puzzle_cell.gd)]
+        * [@Control@203749:<Control#18188028876227>(puzzle_cell.gd)]
+        * [@Control@203724:<Control#18187190015484>(puzzle_cell.gd)]
+        * [@Control@203728:<Control#18187324233223>(puzzle_cell.gd)]
+        * [@Control@203707:<Control#18186619590153>(puzzle_cell.gd)]
+        * [@Control@203721:<Control#18187089352202>(puzzle_cell.gd)]
+        * [@Control@203704:<Control#18186518926859>(puzzle_cell.gd)]
+        * [@Control@203729:<Control#18187357787660>(puzzle_cell.gd)]
+        * [@Control@203737:<Control#18187626223121>(puzzle_cell.gd)]
+        * [@Control@203757:<Control#18188297311763>(puzzle_cell.gd)]
+        * [@Control@203740:<Control#18187726886425>(puzzle_cell.gd)]
+        * [@Control@203705:<Control#18186552481306>(puzzle_cell.gd)]
+        * [@Control@203766:<Control#18188599301662>(puzzle_cell.gd)]
+        * [@Control@203738:<Control#18187659777567>(puzzle_cell.gd)]
+        * [@Control@203742:<Control#18187793995308>(puzzle_cell.gd)]
+        * [@Control@203771:<Control#18188767073890>(puzzle_cell.gd)]
+        * [@Control@203750:<Control#18188062430867>(puzzle_cell.gd)]
+        * [@VBoxContainer@203665:<VBoxContainer#18185210304160>] + 1
+        * [@Control@203695:<Control#18186216937129>(puzzle_cell.gd)]
+        * [@VBoxContainer@203663:<VBoxContainer#18185143195319>] + 1
+        * [@Control@203720:<Control#18187055797959>(puzzle_cell.gd)]
+        * [@Control@203722:<Control#18187122906833>(puzzle_cell.gd)]
+        * [@Control@203717:<Control#18186955134677>(puzzle_cell.gd)]
+        * [@Control@203718:<Control#18186988689117>(puzzle_cell.gd)]
+        * [@Control@203723:<Control#18187156461286>(puzzle_cell.gd)]
+        * [@Label@203681:<Label#18185747175199>]
+        * [@VBoxContainer@203661:<VBoxContainer#18185076086578>] + 1
+        * [@Control@203777:<Control#18188968400716>(puzzle_cell.gd)]
+        * [@Label@203687:<Label#18185948501862>]
+        * [@Control@203775:<Control#18188901292118>(puzzle_cell.gd)]
+        * [@Control@203779:<Control#18189035509847>(puzzle_cell.gd)]
+        * [@VBoxContainer@203671:<VBoxContainer#18185411631268>] + 1
+        * [@Control@203788:<Control#18189337499828>(puzzle_cell.gd)]
+        * [@VBoxContainer@203669:<VBoxContainer#18185344522422>] + 1
+        * [@Control@203784:<Control#18189203282365>(puzzle_cell.gd)]
+        * [@Control@203786:<Control#18189270391234>(puzzle_cell.gd)]
+        * [@Control@203787:<Control#18189303945671>(puzzle_cell.gd)]
+        * [@Control@203785:<Control#18189236836821>(puzzle_cell.gd)]
+        * [@Control@203733:<Control#18187492011099>(puzzle_cell.gd)]
+        * [@Control@203743:<Control#18187827555420>(puzzle_cell.gd)]
+        * [@Control@203731:<Control#18187424902267>(puzzle_cell.gd)]
+        * [@Control@203712:<Control#18186787368312>(puzzle_cell.gd)]
+        * [@Control@203708:<Control#18186653150585>(puzzle_cell.gd)]
+        * [@Control@203702:<Control#18186451824001>(puzzle_cell.gd)]
+        * [@Control@203709:<Control#18186686705026>(puzzle_cell.gd)]
+        * [@Control@203710:<Control#18186720259459>(puzzle_cell.gd)]
+        * [@Control@203706:<Control#18186586041732>(puzzle_cell.gd)]
+        * [@Control@203711:<Control#18186753813896>(puzzle_cell.gd)]
+        * [@Control@203714:<Control#18186854477278>(puzzle_cell.gd)]
+        * [@Control@203716:<Control#18186921586143>(puzzle_cell.gd)]
+        * [@Control@203715:<Control#18186888031712>(puzzle_cell.gd)]
+        * [@Control@203726:<Control#18187257130467>(puzzle_cell.gd)]
+        * [@Control@203746:<Control#18187928219640>(puzzle_cell.gd)]
+        * [@Control@203790:<Control#18189404614696>(puzzle_cell.gd)]
+        * [@Control@203751:<Control#18188095991869>(puzzle_cell.gd)]
+        * [@Control@203767:<Control#18188632862818>(puzzle_cell.gd)]
+        * [@Control@203768:<Control#18188666417251>(puzzle_cell.gd)]
+        * [@Label@203682:<Label#18185780736105>]
+        * [@Control@203769:<Control#18188699971693>(puzzle_cell.gd)]
+        * [@Label@203690:<Label#18186049171570>]
+        * [@Label@203686:<Label#18185914953844>]
+        * [@Control@203694:<Control#18186183389303>(puzzle_cell.gd)]
+        * [@Control@203691:<Control#18186082726008>(puzzle_cell.gd)]
+        * [@Label@203688:<Label#18185982062713>]
+        * [@Label@203689:<Label#18186015617148>]
+        * [@Label@203684:<Label#18185847844991>]
+        * [@VBoxContainer@203673:<VBoxContainer#18185478746290>] + 1
+        * [@VBoxContainer@203675:<VBoxContainer#18185545855155>] + 1
+        * [@Control@203762:<Control#18188465090774>(puzzle_cell.gd)]
+        * [@Control@203753:<Control#18188163100887>(puzzle_cell.gd)]
+        * [@Control@203763:<Control#18188498645208>(puzzle_cell.gd)]
+        * [@Control@203755:<Control#18188230209756>(puzzle_cell.gd)]
+        * [@Control@203760:<Control#18188397981917>(puzzle_cell.gd)]
+        * [@Control@203759:<Control#18188364427486>(puzzle_cell.gd)]
+        * [@Control@203761:<Control#18188431536352>(puzzle_cell.gd)]
+        * [@Control@203756:<Control#18188263764198>(puzzle_cell.gd)]
+        * [@Control@203764:<Control#18188532199696>(puzzle_cell.gd)]
+        * [@VBoxContainer@203667:<VBoxContainer#18185277419804>] + 1
+        * [@Control@203701:<Control#18186418270502>(puzzle_cell.gd)]
+        * [@Control@203696:<Control#18186250498343>(puzzle_cell.gd)]
+        * [@Control@203698:<Control#18186317607217>(puzzle_cell.gd)]
+        * [@Label@203683:<Label#18185814290771>]
+        * [@Control@203783:<Control#18189169734019>(puzzle_cell.gd)]
+        * [@VBoxContainer@203679:<VBoxContainer#18185680073111>] + 1
+        * [@Control@203747:<Control#18187961774490>(puzzle_cell.gd)]
+        * [@Control@203693:<Control#18186149835207>(puzzle_cell.gd)]
+        * [@Control@203758:<Control#18188330873288>(puzzle_cell.gd)]
+        * [@Label@203685:<Label#18185881399757>]
+        * [@Control@203697:<Control#18186284052944>(puzzle_cell.gd)]
+        * [@Control@203699:<Control#18186351161810>(puzzle_cell.gd)]
+        * [@Control@203692:<Control#18186116280787>(puzzle_cell.gd)]
+        * [@Control@203700:<Control#18186384716245>(puzzle_cell.gd)]
+        * [@VBoxContainer@203677:<VBoxContainer#18185612964315>] + 1
+        * [@Control@203754:<Control#18188196655688>(puzzle_cell.gd)]
+        * [@Control@203752:<Control#18188129546830>(puzzle_cell.gd)]
+        * [@Control@203782:<Control#18189136180389>(puzzle_cell.gd)]
+        * [@Control@203772:<Control#18188800636157>(puzzle_cell.gd)]
+        * [@Control@203776:<Control#18188934853889>(puzzle_cell.gd)]
+        * [@Control@203781:<Control#18189102626051>(puzzle_cell.gd)]
+        * [@Control@203778:<Control#18189001962757>(puzzle_cell.gd)]
+        * [@Control@203780:<Control#18189069071624>(puzzle_cell.gd)][0m
+* test_s2_inspect_creates_no_record
+SEV level=info event=session-start time=1793609253.325 session=session-1793609253 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609254.228 session=session-1793609253 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609254.237 session=session-1793609253 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609254.238 session=session-1793609253 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609254.242 session=session-1793609253 build=4.7.2-stable (official) story=- message=
+* test_s3_story_overlay_shows_the_protocol_ids
+SEV level=info event=session-start time=1793609254.409 session=session-1793609254 build=4.7.2-stable (official) story=- message=
+SEV level=info event=session-end time=1793609255.263 session=session-1793609254 build=4.7.2-stable (official) story=L-solve.PS1.1 message=
+* test_s4_an_event_carries_tel1_to_tel5
+SEV level=info event=session-start time=1793609255.421 session=session-1793609255 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609256.135 session=session-1793609255 build=4.7.2-stable (official) story=L-solve.PS1.1 outcome=pass
+SEV level=info event=session-end time=1793609256.136 session=session-1793609255 build=4.7.2-stable (official) story=L-solve.PS1.1 message=
+* test_s4_each_reachable_action_emits_exactly_one_event
+SEV level=info event=session-start time=1793609256.296 session=session-1793609256 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609257.123 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609257.134 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609257.136 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609257.149 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609257.151 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=pause time=1793609257.159 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=resume time=1793609257.163 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=leave time=1793609257.171 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609257.171 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=open time=1793609257.266 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609257.280 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609257.281 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609257.294 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609257.296 session=session-1793609256 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609257.296 session=session-1793609256 build=4.7.2-stable (official) story=- message=
+[33m    130 Orphans[0m
+[33m        * [@Control@215346:<Control#18867824888644>(puzzle_cell.gd)]
+        * [@Control@215373:<Control#18868730858384>(puzzle_cell.gd)]
+        * [@Control@215349:<Control#18867925552071>(puzzle_cell.gd)]
+        * [@Control@215345:<Control#18867791334448>(puzzle_cell.gd)]
+        * [@Control@215421:<Control#18870341471283>(puzzle_cell.gd)]
+        * [@Control@215439:<Control#18870945451077>(puzzle_cell.gd)]
+        * [@Control@215429:<Control#18870609907643>(puzzle_cell.gd)]
+        * [@VBoxContainer@215333:<VBoxContainer#18867388682231>] + 1
+        * [@Control@215352:<Control#18868026216808>(puzzle_cell.gd)]
+        * [@Control@215442:<Control#18871046115758>(puzzle_cell.gd)]
+        * [@Label@215337:<Label#18867522900436>]
+        * [@Control@215350:<Control#18867959108248>(puzzle_cell.gd)]
+        * [@Control@215347:<Control#18867858444973>(puzzle_cell.gd)]
+        * [@Label@215340:<Label#18867623564190>]
+        * [@VBoxContainer@215315:<VBoxContainer#18866784703403>] + 1
+        * [@Label@215341:<Label#18867657118687>]
+        * [@Control@215443:<Control#18871079670843>(puzzle_cell.gd)]
+        * [@VBoxContainer@215329:<VBoxContainer#18867254465701>] + 1
+        * [@VBoxContainer@215331:<VBoxContainer#18867321574604>] + 1
+        * [@Label@215336:<Label#18867489346770>]
+        * [@VBoxContainer@215327:<VBoxContainer#18867187357006>] + 1
+        * [@VBoxContainer@215325:<VBoxContainer#18867120248193>] + 1
+        * [@Control@215441:<Control#18871012562333>(puzzle_cell.gd)]
+        * [@Label@215338:<Label#18867556455843>]
+        * [@Control@215354:<Control#18868093326769>(puzzle_cell.gd)]
+        * [@Control@215351:<Control#18867992663475>(puzzle_cell.gd)]
+        * [@Control@215372:<Control#18868697306563>(puzzle_cell.gd)]
+        * [@Label@215335:<Label#18867455792584>]
+        * [@Label@215339:<Label#18867590010345>]
+        * [@Control@215371:<Control#18868663752339>(puzzle_cell.gd)]
+        * [@Control@215399:<Control#18869603276458>(puzzle_cell.gd)]
+        * [@Control@215428:<Control#18870576354989>(puzzle_cell.gd)]
+        * [@Control@215398:<Control#18869569722038>(puzzle_cell.gd)]
+        * [@Control@215401:<Control#18869670385414>(puzzle_cell.gd)]
+        * [@Control@215400:<Control#18869636830998>(puzzle_cell.gd)]
+        * [@Control@215402:<Control#18869703939889>(puzzle_cell.gd)]
+        * [@Control@215355:<Control#18868126881662>(puzzle_cell.gd)]
+        * [@Control@215348:<Control#18867892000740>(puzzle_cell.gd)]
+        * [@Control@215444:<Control#18871113226223>(puzzle_cell.gd)]
+        * [@Control@215384:<Control#18869099960499>(puzzle_cell.gd)]
+        * [@VBoxContainer@215323:<VBoxContainer#18867053140148>] + 1
+        * [@Control@215358:<Control#18868227545506>(puzzle_cell.gd)]
+        * [@Control@215357:<Control#18868193991075>(puzzle_cell.gd)]
+        * [@Control@215356:<Control#18868160436648>(puzzle_cell.gd)]
+        * [@Control@215359:<Control#18868261099964>(puzzle_cell.gd)]
+        * [@Control@215385:<Control#18869133515202>(puzzle_cell.gd)]
+        * [@Control@215386:<Control#18869167069642>(puzzle_cell.gd)]
+        * [@Control@215377:<Control#18868865079791>(puzzle_cell.gd)]
+        * [@Control@215389:<Control#18869267732991>(puzzle_cell.gd)]
+        * [@Control@215383:<Control#18869066406407>(puzzle_cell.gd)]
+        * [@Control@215378:<Control#18868898634248>(puzzle_cell.gd)]
+        * [@Control@215438:<Control#18870911900170>(puzzle_cell.gd)]
+        * [@Control@215381:<Control#18868999297594>(puzzle_cell.gd)]
+        * [@Control@215353:<Control#18868059778191>(puzzle_cell.gd)]
+        * [@Control@215420:<Control#18870307925378>(puzzle_cell.gd)]
+        * [@Label@215343:<Label#18867724234266>]
+        * [@Label@215342:<Label#18867690679851>]
+        * [@Control@215440:<Control#18870979014657>(puzzle_cell.gd)]
+        * [@Control@215406:<Control#18869838163970>(puzzle_cell.gd)]
+        * [@Control@215379:<Control#18868932194311>(puzzle_cell.gd)]
+        * [@Control@215403:<Control#18869737500691>(puzzle_cell.gd)]
+        * [@Control@215387:<Control#18869200629782>(puzzle_cell.gd)]
+        * [@Control@215370:<Control#18868630204477>(puzzle_cell.gd)]
+        * [@Control@215430:<Control#18870643470402>(puzzle_cell.gd)]
+        * [@Control@215375:<Control#18868797976695>(puzzle_cell.gd)]
+        * [@Control@215433:<Control#18870744133763>(puzzle_cell.gd)]
+        * [@Control@215434:<Control#18870777688201>(puzzle_cell.gd)]
+        * [@Control@215391:<Control#18869334847634>(puzzle_cell.gd)]
+        * [@Label@215344:<Label#18867757789332>]
+        * [@Control@215392:<Control#18869368402096>(puzzle_cell.gd)]
+        * [@Control@215435:<Control#18870811242690>(puzzle_cell.gd)]
+        * [@Control@215432:<Control#18870710579395>(puzzle_cell.gd)]
+        * [@Control@215423:<Control#18870408589510>(puzzle_cell.gd)]
+        * [@Control@215427:<Control#18870542807239>(puzzle_cell.gd)]
+        * [@Control@215431:<Control#18870677024969>(puzzle_cell.gd)]
+        * [@Control@215419:<Control#18870274371786>(puzzle_cell.gd)]
+        * [@Control@215426:<Control#18870509252811>(puzzle_cell.gd)]
+        * [@Control@215418:<Control#18870240817356>(puzzle_cell.gd)]
+        * [@Control@215425:<Control#18870475698385>(puzzle_cell.gd)]
+        * [@Control@215417:<Control#18870207262931>(puzzle_cell.gd)]
+        * [@Control@215388:<Control#18869234184405>(puzzle_cell.gd)]
+        * [@Control@215390:<Control#18869301293326>(puzzle_cell.gd)]
+        * [@Control@215380:<Control#18868965749018>(puzzle_cell.gd)]
+        * [@Control@215422:<Control#18870375035210>(puzzle_cell.gd)]
+        * [@Control@215424:<Control#18870442144077>(puzzle_cell.gd)]
+        * [@Control@215374:<Control#18868764422554>(puzzle_cell.gd)]
+        * [@Control@215416:<Control#18870173708706>(puzzle_cell.gd)]
+        * [@Control@215413:<Control#18870073045414>(puzzle_cell.gd)]
+        * [@Control@215414:<Control#18870106599847>(puzzle_cell.gd)]
+        * [@Control@215415:<Control#18870140154280>(puzzle_cell.gd)]
+        * [@Control@215412:<Control#18870039490989>(puzzle_cell.gd)]
+        * [@Control@215411:<Control#18870005936559>(puzzle_cell.gd)]
+        * [@Control@215409:<Control#18869938827696>(puzzle_cell.gd)]
+        * [@Control@215407:<Control#18869871718833>(puzzle_cell.gd)]
+        * [@Control@215410:<Control#18869972382132>(puzzle_cell.gd)]
+        * [@Control@215408:<Control#18869905273269>(puzzle_cell.gd)]
+        * [@Control@215397:<Control#18869536174518>(puzzle_cell.gd)]
+        * [@Control@215395:<Control#18869469065655>(puzzle_cell.gd)]
+        * [@Control@215394:<Control#18869435511226>(puzzle_cell.gd)]
+        * [@Control@215393:<Control#18869401956797>(puzzle_cell.gd)]
+        * [@Control@215396:<Control#18869502620098>(puzzle_cell.gd)]
+        * [@Control@215376:<Control#18868831531463>(puzzle_cell.gd)]
+        * [@Control@215405:<Control#18869804610025>(puzzle_cell.gd)]
+        * [@Control@215404:<Control#18869771055680>(puzzle_cell.gd)]
+        * [@Control@215369:<Control#18868596650574>(puzzle_cell.gd)]
+        * [@Control@215382:<Control#18869032858510>(puzzle_cell.gd)]
+        * [@VBoxContainer@215321:<VBoxContainer#18866986038437>] + 1
+        * [@VBoxContainer@215317:<VBoxContainer#18866851820805>] + 1
+        * [@VBoxContainer@215319:<VBoxContainer#18866918929672>] + 1
+        * [@Control@215437:<Control#18870878353058>(puzzle_cell.gd)]
+        * [@Control@215436:<Control#18870844798627>(puzzle_cell.gd)]
+        * [@Control@215360:<Control#18868294661851>(puzzle_cell.gd)]
+        * [@Control@215361:<Control#18868328216285>(puzzle_cell.gd)]
+        * [@Control@215362:<Control#18868361770719>(puzzle_cell.gd)]
+        * [@Control@215363:<Control#18868395325153>(puzzle_cell.gd)]
+        * [@Control@215364:<Control#18868428879587>(puzzle_cell.gd)]
+        * [@Control@215365:<Control#18868462434021>(puzzle_cell.gd)]
+        * [@Control@215366:<Control#18868495988455>(puzzle_cell.gd)]
+        * [@Control@215367:<Control#18868529542889>(puzzle_cell.gd)]
+        * [@Control@215368:<Control#18868563097323>(puzzle_cell.gd)][0m
+* test_s4_solved_emits_one_event
+SEV level=info event=session-start time=1793609257.480 session=session-1793609257 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609258.327 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609258.338 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.339 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.351 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.352 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.366 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.367 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.376 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.378 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.387 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.389 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.399 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.400 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.409 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.411 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.420 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.422 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.431 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.432 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.441 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.442 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.451 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.452 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.461 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.463 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.471 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.473 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.482 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.483 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.492 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.493 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.501 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.502 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.510 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.511 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.520 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.521 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.532 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.534 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.543 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.544 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.555 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.556 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.566 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.567 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.577 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.578 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.588 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.589 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.599 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.600 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.610 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.612 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.621 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.622 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.632 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.633 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.645 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.646 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.656 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609258.657 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=solved time=1793609258.677 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609258.680 session=session-1793609257 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609258.681 session=session-1793609257 build=4.7.2-stable (official) story=- message=
+* test_s4_reset_emits_one_event
+SEV level=info event=session-start time=1793609258.832 session=session-1793609258 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609259.720 session=session-1793609258 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609259.731 session=session-1793609258 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609259.733 session=session-1793609258 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609259.747 session=session-1793609258 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609259.749 session=session-1793609258 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=reset time=1793609259.749 session=session-1793609258 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609259.750 session=session-1793609258 build=4.7.2-stable (official) story=- message=
+* test_s4_engine_errors_and_warnings_are_severity_tagged
+SEV level=info event=session-start time=1793609259.904 session=session-1793609259 build=4.7.2-stable (official) story=- message=
+SEV level=error event=engine time=1793609260.738 session=session-1793609259 build=4.7.2-stable (official) story=- message=boom (res://presentation/shell.gd:7)
+SEV level=warn event=engine time=1793609260.739 session=session-1793609259 build=4.7.2-stable (official) story=- message=soon (res://presentation/shell.gd:8)
+SEV level=info event=session-end time=1793609260.739 session=session-1793609259 build=4.7.2-stable (official) story=- message=
+* test_s4_severity_lines_carry_the_story_and_ignore_plain_output
+SEV level=info event=session-start time=1793609260.899 session=session-1793609260 build=4.7.2-stable (official) story=- message=
+seam-probe-plain-message
+SEV level=error event=engine time=1793609261.731 session=session-1793609260 build=4.7.2-stable (official) story=US1.7 message=probe
+SEV level=info event=session-end time=1793609261.731 session=session-1793609260 build=4.7.2-stable (official) story=US1.7 message=
+* test_s4_session_end_marker_closes_the_run
+SEV level=info event=session-start time=1793609261.853 session=session-a build=build-a story=- message=
+SEV level=info event=session-end time=1793609261.853 session=session-a build=build-a story=- message=
+* test_s5_state_dump_writes_under_the_run_folder_logs
+SEV level=info event=session-start time=1793609261.876 session=session-1793609261 build=4.7.2-stable (official) story=- message=
+TEL event=open time=1793609262.723 session=session-1793609261 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793609262.733 session=session-1793609261 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609262.735 session=session-1793609261 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793609262.748 session=session-1793609261 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793609262.749 session=session-1793609261 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-end time=1793609262.753 session=session-1793609261 build=4.7.2-stable (official) story=- message=
+[1m17/17 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m
+Totals
+------
+Scripts              22
+Tests               266
+Passing Tests       266
+Asserts           29839
+Time              114.896s
+
+
+[32m---- All tests passed! ----
+[0m
