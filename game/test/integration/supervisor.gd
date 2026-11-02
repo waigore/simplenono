@@ -394,6 +394,8 @@ func _leave() -> bool:
 	if _shell == null:
 		return _failed_with("no shell to leave through")
 	_shell.leave_puzzle()
+	if _shell.attempt() != null:
+		return _failed_with("leave did not clear the open attempt")
 	_attempt = null
 	_record_flow("back", true)
 	return _passed()
@@ -409,6 +411,8 @@ func _back() -> bool:
 		pressed = _press_result_button("%BackButton")
 	else:
 		pressed = _press_puzzle_button("%LeaveButton")
+		if pressed and _shell.attempt() != null:
+			return _failed_with("back did not leave through the O6 path")
 	if pressed:
 		_attempt = null
 		_record_flow("back", true)

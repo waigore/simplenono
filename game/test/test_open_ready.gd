@@ -16,6 +16,8 @@ extends GutTest
 
 const TEAPOT_ID := "teapot"
 const TEAPOT_PATH := "res://test/fixtures/teapot.json"
+const TEST_PATH := "user://progress-open-ready-test.cfg"
+const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 ## Row 7 of the teapot is one run of 10, cells 2…11 (see test_game_state.gd).
 const ROW_SEVEN := 7
@@ -32,10 +34,23 @@ func before_each():
 	_pack = _pack_with(_definition)
 
 
+func after_each():
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+
+
 ## A pack holding [param definition] and marked as loaded by a real O8 of the pack
-## fixtures, so O3 serves it and progress starts empty.
+## fixtures, so O3 serves it and progress starts empty. The temporary progress document
+## keeps the O5 writes off user data.
 func _pack_with(definition: PuzzleDefinition) -> Pack:
-	var pack := Pack.new()
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+	var pack := Pack.new(TEST_PATH)
 	pack.load_pack("res://test/fixtures/pack/valid.json")
 	pack.add_definition(definition)
 	return pack
@@ -320,7 +335,8 @@ func test_an_unknown_id_changes_nothing():
 	attempt.end_get_set_ready()
 	# A mark in progress, so the stored record carries a fill and a commit would be visible.
 	assert_true(attempt.state().apply_mark(ROW_SEVEN, 2, CellMark.Mark.FILL))
-	attempt.state().commit(_pack.progress(), TEAPOT_ID)
+	var state := attempt.state()
+	_pack.commit(TEAPOT_ID, state.marks(), state.elapsed(), state.in_progress())
 	var marks_before := attempt.state().marks().snapshot()
 	var record_before := _record_snapshot(_pack.progress().record(TEAPOT_ID))
 	assert_true(record_before[3], "the record stores a mark, so a commit is observable")

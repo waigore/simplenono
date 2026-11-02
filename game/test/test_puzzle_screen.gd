@@ -11,6 +11,8 @@ extends GutTest
 const SCREEN_SCENE := preload("res://presentation/puzzle.tscn")
 const TEAPOT_ID := "teapot"
 const TEAPOT_PATH := "res://test/fixtures/teapot.json"
+const TEST_PATH := "user://progress-puzzle-screen-test.cfg"
+const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 var _definition: PuzzleDefinition
 var _pack: Pack
@@ -25,11 +27,23 @@ func before_each():
 	_screen.set_process(false)
 
 
+func after_each():
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+
+
 func _pack_with(definition: PuzzleDefinition) -> Pack:
-	var pack := Pack.new()
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+	var pack := Pack.new(TEST_PATH)
 	pack.load_pack("res://test/fixtures/pack/valid.json")
 	pack.add_definition(definition)
 	return pack
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
 
 
 func _load_definition(path: String) -> PuzzleDefinition:

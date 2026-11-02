@@ -10,17 +10,32 @@ extends GutTest
 
 const SHELL_SCENE := "res://presentation/shell.tscn"
 const PUZZLE_ID := "pack-000"
+const TEST_PATH := "user://progress-result-navigation-test.cfg"
+const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 var _shell: Shell
 
 
 func before_each() -> void:
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
 	var scene := load(SHELL_SCENE) as PackedScene
 	assert_not_null(scene, "shell scene loads")
 	_shell = scene.instantiate() as Shell
+	_shell.progress_path = TEST_PATH
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
 	_shell.set_process(false)
+
+
+func after_each() -> void:
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
 
 
 func _control(node_name: String) -> Control:

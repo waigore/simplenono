@@ -52,9 +52,13 @@ const MORPH_STAGE_SETTING := "design/morph_stage_ms"
 ## empty value reads as "no catalogued family yet" and keeps the engine default face.
 const UI_FONT_ASSET_ID := "01a1996d-fc83-79ad-81e5-b3e431590f90"
 
+## The progress document the pack reads and replaces ([constant ProgressFile.PATH]).
+## Tests point this at a temporary path so a run never touches user data.
+var progress_path := ProgressFile.PATH
+
 ## The live [Attempt], or null when no puzzle is open.
 var _attempt: Attempt
-var _pack := Pack.new()
+var _pack: Pack
 var _view := GALLERY_VIEW
 
 ## Where settings returns: the gallery, or the puzzle paused to open it.
@@ -84,6 +88,7 @@ var _haptics: Haptics
 
 
 func _ready() -> void:
+	_pack = Pack.new(progress_path)
 	_resolver = AssetResolver.new()
 	_ui_theme = UiTheme.new(_resolver, UI_FONT_ASSET_ID)
 	_gallery.set_ui_theme(_ui_theme)
@@ -126,20 +131,19 @@ func open_puzzle(puzzle_id: String) -> bool:
 	_show_puzzle()
 	_audio.on_puzzle_open()
 	_attempt.solved.connect(_on_attempt_solved)
+	_attempt.left.connect(_on_attempt_left)
 	_seams.note_open(attempt)
 	return true
 
 
-## [b]CTR-attempt[/b] O6 via the screen's C1 intent, then back to the gallery
-## ([code]NAV.T3[/code]). The gallery re-reads O1/O2 so it shows the committed record.
+## [b]CTR-attempt[/b] O6 via the screen's C1 intent ([code]SEQ-leave[/code] S1), then
+## back to the gallery ([code]NAV.T3[/code]). The attempt commits and emits E2; the
+## gallery re-reads O1/O2 so it shows the committed record. With no open attempt the
+## current screen stays (B2).
 func leave_puzzle() -> void:
-	if _attempt != null:
-		_seams.note_leave(_attempt.puzzle_id())
-	_unbind_attempt()
-	_attempt = null
-	_puzzle.present(null)
-	_audio.on_puzzle_leave()
-	_show_gallery()
+	if _attempt == null:
+		return
+	_attempt.leave()
 
 
 ## [code]NAV.T5[/code]: the result screen's C1 returns to the gallery. The resolve is
@@ -288,10 +292,25 @@ func _on_attempt_solved(puzzle_id: String, _elapsed: int) -> void:
 	_show_result()
 
 
-## Drops this shell's E1 binding before the attempt is replaced or cleared.
+## [b]CTR-attempt[/b] E2 → [code]SEQ-leave[/code] S5: the attempt is already cleared, so
+## the shell drops its bindings, closes the puzzle screen, and shows the gallery.
+func _on_attempt_left(puzzle_id: String) -> void:
+	_seams.note_leave(puzzle_id)
+	_unbind_attempt()
+	_attempt = null
+	_puzzle.present(null)
+	_audio.on_puzzle_leave()
+	_show_gallery()
+
+
+## Drops this shell's E1/E2 bindings before the attempt is replaced or cleared.
 func _unbind_attempt() -> void:
-	if _attempt != null and _attempt.solved.is_connected(_on_attempt_solved):
+	if _attempt == null:
+		return
+	if _attempt.solved.is_connected(_on_attempt_solved):
 		_attempt.solved.disconnect(_on_attempt_solved)
+	if _attempt.left.is_connected(_on_attempt_left):
+		_attempt.left.disconnect(_on_attempt_left)
 
 
 ## [code]CFG.MORPH_STAGE_MS[/code] (specs/design/configuration.md). The setting is a

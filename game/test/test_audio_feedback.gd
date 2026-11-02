@@ -12,6 +12,8 @@ extends GutTest
 const SCREEN_SCENE := preload("res://presentation/puzzle.tscn")
 const TEAPOT_ID := "teapot"
 const TEAPOT_PATH := "res://test/fixtures/teapot.json"
+const TEST_PATH := "user://progress-audio-feedback-test.cfg"
+const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 ## A clear, non-empty-clue row (the teapot's rows 0-3 auto-cross at ready).
 const ROW := 7
@@ -70,6 +72,13 @@ func before_each():
 
 func after_each():
 	Input.action_release("in_drag_paint")
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
 
 
 func _record_mark(kind: CellMark.Mark) -> void:
@@ -216,6 +225,7 @@ func test_unchanged_mark_plays_nothing():
 func test_shell_owns_the_flags_and_wires_the_bed():
 	var scene := load("res://presentation/shell.tscn") as PackedScene
 	var shell := scene.instantiate() as Shell
+	shell.progress_path = TEST_PATH
 	add_child_autofree(shell)
 
 	assert_true(shell.session_flags().haptics_enabled(), "F1 defaults on")
@@ -234,7 +244,9 @@ func _wire(screen: PuzzleScreen) -> void:
 
 func _screen_with_attempt(finish_beat: bool = true) -> PuzzleScreen:
 	var definition := _load_definition()
-	var pack := Pack.new()
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+	var pack := Pack.new(TEST_PATH)
 	pack.load_pack("res://test/fixtures/pack/valid.json")
 	pack.add_definition(definition)
 	var attempt := Attempt.new(pack)

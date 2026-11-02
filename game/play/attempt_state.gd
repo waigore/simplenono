@@ -146,10 +146,3 @@ func _refresh_status() -> void:
 
 func _to_string() -> String:
 	return "attempt %s elapsed=%s paused=%s" % [_attempt_status, _elapsed, _paused]
-
-
-## [b]CTR-pack[/b] O5 ([code]commit[/code]) over this state, so the attempt commits its
-## own marks, elapsed, and attempt status (specs/technical/sequences/open.md S11) without
-## reaching into the pack's record itself. [param progress] is [method Pack.progress].
-func commit(progress: ProgressRules, puzzle_id: String) -> ProgressRecord:
-	return progress.commit(puzzle_id, _marks, _elapsed, in_progress())

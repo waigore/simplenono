@@ -62,6 +62,12 @@ class RecordingPack:
 	func progress() -> ProgressRules:
 		return recording_progress
 
+	## O5 through the recording rules; the file write is not this test's subject.
+	func commit(
+		puzzle_id: String, marks: MarkGrid, elapsed: int, in_progress: bool
+	) -> ProgressRecord:
+		return recording_progress.commit(puzzle_id, marks, elapsed, in_progress)
+
 
 var _definition: PuzzleDefinition
 var _pack: RecordingPack
