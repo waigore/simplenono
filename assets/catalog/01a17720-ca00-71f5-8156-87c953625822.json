@@ -1,0 +1,56 @@
+{
+  "id": "01a17720-ca00-71f5-8156-87c953625822",
+  "handle": "puzzle-pictures/pack-000-generated",
+  "kind_spec": "AK-puzzle-pictures",
+  "coverage": [
+    "V1"
+  ],
+  "serves": [
+    "E-puzzle.P5",
+    "PER.R5",
+    "ACC.G3"
+  ],
+  "state": "approved",
+  "version": 1,
+  "files": [
+    "puzzle-pictures/pack-000-generated.png"
+  ],
+  "source_type": "ai-generation",
+  "tool_role": {
+    "role": "TL.1",
+    "adr": "adr-free"
+  },
+  "recipe": "AK-puzzle-pictures.R1",
+  "generation": {
+    "prompt": "a single large wide dark slate blue-grey ceramic vase with a broad round body and a short neck, filling about 70 percent of the frame width and 65 percent of the frame height, plain smooth solid silhouette, one flat dark colour, no pattern, no highlight, no reflection, no gradient, no texture, centered, plain even pale cool grey background, no vignette, no border, no shadow, flat even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text. Calm clinical still-life; clear silhouette; readable at 10x10. Avoid: playful chrome; gore; horror.",
+    "negative_prompt": "playful chrome; gore; horror",
+    "tool": "Cheaper Inference",
+    "operation": "images.generations",
+    "settings": {
+      "model": "flux-2-max",
+      "size": "1024x1024",
+      "subject_class": "single-subject"
+    },
+    "seed": "n/a — tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": []
+    },
+    "steps": [
+      "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
+      "saved data[0] as PNG without resampling"
+    ]
+  },
+  "guidance": "Re-run .github/scripts/puzzle_derive.py derive from this square to reproduce the pixel file.",
+  "license": {
+    "grant": "Generated under Cheaper Inference terms of service; the project may use and modify the output",
+    "tool": "Cheaper Inference"
+  },
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-02",
+    "reviewer": "agent",
+    "report": "AK-puzzle-pictures R1/V1, pack-000 (single-subject). Generated square: flux-2-max 1024x1024, request 626df6b1-db80-43bc-8762-5189a7b8c5c6, saved as PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [222, 222, 224]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 30/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: slate blue-grey subject on pale cool grey, high contrast, calm still-life, no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+  }
+}
