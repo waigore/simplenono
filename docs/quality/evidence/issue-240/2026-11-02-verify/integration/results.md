@@ -1,7 +1,7 @@
 # Integration harness run
 
-- **Run folder:** `/Users/waigore/Documents/GitHub/simplenono_all/1/.orc/worktrees/issue-workflow-verify-agent-1-20261102T151108139674Z/docs/quality/evidence/issue-240/2026-11-02-verify`
-- **Generated:** 1793632493
+- **Run folder:** `/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/verify240-f4ecbcb/run-evidence`
+- **Generated:** 1793633074
 - **Protocols run:** app-start
 - **Manifest:** not written by the harness; `run-quality-evaluators` owns `manifest.md`.
 
@@ -9,7 +9,7 @@
 
 | Protocol | Invariant | Axis | Observation | Bar | Result | Artifact |
 |----------|-----------|------|-------------|-----|--------|----------|
-| app-start | I6 | time-to-playable | cold launch to the interactive shell home (gallery): 294.5 ms | <= 3 s | pass | integration/logs/harness-1793632493-app-start.log |
+| app-start | I6 | time-to-playable | cold launch to the interactive shell home (gallery): 276.1 ms | <= 3 s | pass | integration/logs/harness-1793633074-app-start.log |
 | paint | I1 | frame-time | protocol not run in this folder | <= 16.7 ms | not run | - |
 | paint | I2 | hitch-bound | protocol not run in this folder | <= 100 ms | not run | - |
 | paint | I9 | crash-free | protocol not run in this folder | No crash across open, solve, reset, and back | not run | - |

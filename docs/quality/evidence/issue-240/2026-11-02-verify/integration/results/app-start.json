@@ -2,25 +2,25 @@
 	"build_id": "4.7.2-stable (official)",
 	"crashed": false,
 	"driver_time": [],
-	"finished_at": 306161,
+	"finished_at": 287509,
 	"flows_failed": [],
 	"flows_ok": [],
-	"log": "integration/logs/harness-1793632493-app-start.log",
+	"log": "integration/logs/harness-1793633074-app-start.log",
 	"outcome": "pass",
 	"protocol": "app-start",
 	"reason": "",
 	"rows": [
 		{
-			"artifact": "integration/logs/harness-1793632493-app-start.log",
+			"artifact": "integration/logs/harness-1793633074-app-start.log",
 			"axis": "time-to-playable",
 			"bar": "<= 3 s",
 			"invariant": "I6",
-			"observation": "cold launch to the interactive shell home (gallery): 294.5 ms",
+			"observation": "cold launch to the interactive shell home (gallery): 276.1 ms",
 			"result": "pass"
 		}
 	],
-	"session_id": "harness-1793632493",
-	"started_at": 171248,
+	"session_id": "harness-1793633074",
+	"started_at": 157119,
 	"steps": [
 		{
 			"detail": "",
