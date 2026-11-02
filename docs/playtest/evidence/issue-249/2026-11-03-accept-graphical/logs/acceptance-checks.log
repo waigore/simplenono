@@ -1,0 +1,20 @@
+pack-066: OK
+pack-067: OK
+pack-068: OK
+pack-069: OK
+CATALOG RESULT pass
+
+== repo checks ==
+-- generate_pack.py --check:
+/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-249/game/data/pack.json is current
+-- asset_manifest.py --check:
+Asset manifest: 0 error(s).
+-- asset_catalog.py:
+Asset catalog: 0 error(s).
+-- spec_lint.py:
+  WARNING: specs/view/glossary.md:12 [glossary] 'Diagram' is also defined in specs/technical/glossary.md; define it once and link
+Spec lint: 0 error(s), 1 warning(s) across 9 checks.
+-- unit tests:
+wrote /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp4io5hwlc/game/data/pack.json (1 of 200 entries re-derived)
+wrote /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp6i122f8l/game/data/pack.json (1 of 200 entries re-derived)
+wrote /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp6i122f8l/game/data/pack.json (1 of 200 entries re-derived)
