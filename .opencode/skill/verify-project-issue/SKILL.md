@@ -4,8 +4,8 @@ description: |-
   Independently verify an epic/task/defect in status:pending-verification against
   its deliverables; post pass or fail and advance or return status. When linked
   PRs contain code changes, run review-code and treat a Fail as verify Fail.
-  When an Applies deterministic axis can move, run run-quality-evaluators and
-  treat a failed or blocked axis as verify Fail.
+  When an Applies deterministic axis can move, reuse or write the deterministic
+  record; a failed or blocked axis is a verify Fail.
   Use when checking implemented work (smoke test) before acceptance.
 
   Examples:

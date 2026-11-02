@@ -23,7 +23,7 @@ Errors fail the check. Warnings are printed but pass; add `--strict` to fail on 
 | `links` | A relative link in `specs/`, `docs/`, or `.agents/` points at a missing file. |
 | `orphans` | A spec or mockup is linked from no other spec. A link to a folder counts for its `README.md`. |
 | `glossary` | A glossary term repeats in the same file or breaks alphabetical order. A term defined in two glossaries is a warning. |
-| `word-limit` | A Markdown file in `docs/` or `specs/` exceeds 500 words, counted like `wc -w` on the raw file. Split it and link. |
+| `word-limit` | A Markdown file in `docs/` or `specs/` exceeds 500 words, counted like `wc -w`. Markdown under `docs/quality/evidence/issue-*` and `docs/playtest/evidence/issue-*` is exempt. |
 
 ## Asset catalog
 

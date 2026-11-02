@@ -23,19 +23,12 @@ The harness never writes `manifest.md`: that stays the evaluator's record of the
 
 ## When a folder is written
 
-A run writes a folder only when it selects at least one Applies axis. A run that selects nothing writes nothing.
+A run writes a folder only when it selects at least one Applies axis. A run that selects nothing writes nothing. Markdown under `issue-*` is outside the 500-word cap. This README stays inside it.
 
-## Who writes a record
+## Reuse
 
-| Mode | Who may write it | Who may cite it |
-|------|------------------|-----------------|
-| `deterministic` | `verify-project-issue` (the only legal producer), or a user-directed `run-quality-evaluators` run | Verification, and acceptance |
-| `llm-judge` | `accept-project-issue`, or a user-directed run | Acceptance |
+A passing `deterministic` record stays valid for that issue while `game/` at the deliverable commit matches `game/` at the recorded commit (`git diff <recorded> <deliverable> -- game/` is empty). Other paths may differ. A **fail** or **blocked** row still applies.
 
-A `manifest.md` names its issue, mode, and deliverable commit. Whoever writes it does not change the rubric, the target, or the mode.
+Verification writes a new `deterministic` record only when no passing record covers that `game/` tree. Land it on the open fix PR. After that PR has merged, an evidence-only chore PR is allowed only when nothing reusable exists.
 
-## Who cites it
-
-Verification cites the latest `deterministic` run for that issue and deliverable commit, and cannot Pass without it when an Applies deterministic axis can move. Acceptance cites that same run for deterministic axes and cites the latest `llm-judge` run for qualitative axes.
-
-Acceptance cites a deterministic record it did not produce. Citing means linking the path and its deliverable commit in the acceptance comment. Acceptance does not edit, re-run, or re-mode that record. If none covers the deliverable commit, acceptance comments and gates back to `pending-verification` ([`workflow-deterministic-record.md`](../../issues/workflow-deterministic-record.md)) instead of waiting on `pending-acceptance`.
+Acceptance cites the matching passing record and does not re-run `deterministic`. It cites the latest `llm-judge` run for qualitative axes.

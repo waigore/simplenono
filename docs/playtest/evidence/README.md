@@ -11,6 +11,8 @@ In-repo evidence from AI-agent playtesting. Schema and requirements: [`specs/pla
 - `screenshots/` — after a graphical run of the same build; a headless-only folder may omit it when `manifest.md` marks screenshots as waiting
 - `logs/`
 
+Markdown under `issue-*` is outside the 500-word cap. This README stays inside it.
+
 ## When required
 
 Only when acceptance deliverables change playable behavior. Spec-only and docs-only issues do not need a folder here.

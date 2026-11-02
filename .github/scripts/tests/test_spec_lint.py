@@ -143,5 +143,13 @@ class SpecLintTest(unittest.TestCase):
         self.write("specs/long.md", "word " * spec_lint.WORD_LIMIT)
         self.assertEqual(self.errors("word-limit"), [])
 
+    def test_word_limit_exempts_issue_runs_only(self) -> None:
+        long = "word " * (spec_lint.WORD_LIMIT + 1)
+        self.write("docs/quality/evidence/issue-1/run/manifest.md", long)
+        self.write("docs/playtest/evidence/issue-2/notes.md", long)
+        self.assertEqual(self.errors("word-limit"), [])
+        self.write("docs/quality/evidence/README.md", long)
+        self.assertEqual([f.path for f in self.errors("word-limit")], ["docs/quality/evidence/README.md"])
+
 if __name__ == "__main__":
     unittest.main()
