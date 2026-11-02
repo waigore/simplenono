@@ -53,6 +53,6 @@ same states the leave produced.
 
 ## Quality evaluator
 
-Deterministic: covered by [`docs/quality/evidence/issue-310/2026-11-02-verify/manifest.md`](../../../quality/evidence/issue-310/2026-11-02-verify/manifest.md)
+Deterministic: covered by [`docs/quality/evidence/issue-310/2026-11-02-verify/manifest.md`](../../../../../docs/quality/evidence/issue-310/2026-11-02-verify/manifest.md)
 (`game/` at `16c8df9` equals the deliverable tree). `llm-judge`: N/A — every rubric axis is
 deterministic.
