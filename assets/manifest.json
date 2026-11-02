@@ -44,6 +44,9 @@
   "01a17720-ca00-70db-b65c-415f3b82e2a9": [
     "res://assets/puzzle-pictures/pack-002-generated.png"
   ],
+  "01a17720-ca00-70e0-8c85-530f81468096": [
+    "res://assets/puzzle-pictures/pack-031-generated.png"
+  ],
   "01a17720-ca00-70f4-8e67-9ff8ea05c14e": [
     "res://assets/puzzle-pictures/pack-010-generated.png"
   ],
@@ -74,6 +77,9 @@
   "01a17720-ca00-7150-9498-e43b57cb0646": [
     "res://assets/puzzle-pictures/pack-020-pixel.png"
   ],
+  "01a17720-ca00-7152-ab88-dd5963fd3fea": [
+    "res://assets/puzzle-pictures/pack-033-generated.png"
+  ],
   "01a17720-ca00-7157-87d4-7b473931f328": [
     "res://assets/puzzle-pictures/pack-005-generated.png"
   ],
@@ -95,6 +101,9 @@
   "01a17720-ca00-71d5-8491-d4b817f4cc58": [
     "res://assets/puzzle-pictures/pack-004-pixel.png"
   ],
+  "01a17720-ca00-71dc-a0f1-9c32a00f8928": [
+    "res://assets/puzzle-pictures/pack-031-pixel.png"
+  ],
   "01a17720-ca00-71de-ba7a-7e36d04c729b": [
     "res://assets/puzzle-pictures/pack-007-pixel.png"
   ],
@@ -110,8 +119,17 @@
   "01a17720-ca00-7200-8f5a-101bff463a93": [
     "res://assets/puzzle-pictures/pack-018-generated.png"
   ],
+  "01a17720-ca00-7200-8fbf-c193557d2d7f": [
+    "res://assets/puzzle-pictures/pack-032-generated.png"
+  ],
+  "01a17720-ca00-7205-ade0-22b184852215": [
+    "res://assets/puzzle-pictures/pack-030-generated.png"
+  ],
   "01a17720-ca00-7205-bdf0-8b49565122f3": [
     "res://assets/puzzle-pictures/pack-023-pixel.png"
+  ],
+  "01a17720-ca00-721e-9c94-76ba44a0c176": [
+    "res://assets/puzzle-pictures/pack-030-pixel.png"
   ],
   "01a17720-ca00-7243-b057-842ac9bee87a": [
     "res://assets/puzzle-pictures/pack-015-pixel.png"
@@ -134,11 +152,17 @@
   "01a17720-ca00-72a8-92d9-ef244034e0d1": [
     "res://assets/puzzle-pictures/pack-001-pixel.png"
   ],
+  "01a17720-ca00-72bc-a71e-aa73746bb361": [
+    "res://assets/puzzle-pictures/pack-032-pixel.png"
+  ],
   "01a17720-ca00-72c0-ad76-40fb1c5e74fb": [
     "res://assets/puzzle-pictures/pack-015-generated.png"
   ],
   "01a17720-ca00-72c6-98a7-3a69605e3187": [
     "res://assets/puzzle-pictures/pack-010-pixel.png"
+  ],
+  "01a17720-ca00-72e8-aa99-5d670143bc6c": [
+    "res://assets/puzzle-pictures/pack-033-pixel.png"
   ],
   "01a17720-ca00-72fa-bf6c-d5cb792351df": [
     "res://assets/puzzle-pictures/pack-028-generated.png"

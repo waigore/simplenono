@@ -252,10 +252,11 @@ def prompts_for(klass: str, board: str = DEFAULT_BOARD) -> list[str]:
 
 
 def generate(prompt: str, out_dir: Path, key: str, attempt: int, key_env: str) -> tuple[Path, dict]:
+    """Generate one square from an already-composed prompt (the caller composes)."""
     raw = out_dir / f"{key}-attempt{attempt}.jpg"
     env = dict(os.environ, CHEAPERINFERENCE_API_KEY=key_env)
     proc = subprocess.run(
-        [sys.executable, str(GENERATOR), "generate", "--prompt", compose(prompt),
+        [sys.executable, str(GENERATOR), "generate", "--prompt", prompt,
          "--out", str(raw), "--model", MODEL, "--size", SIZE],
         capture_output=True, text=True, env=env,
     )
