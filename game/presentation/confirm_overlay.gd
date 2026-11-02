@@ -54,6 +54,7 @@ var _showing := false
 var _dim: ColorRect
 var _card: PanelContainer
 var _title: Label
+var _actions: HBoxContainer
 var _cancel_button: Button
 var _confirm_button: Button
 
@@ -145,6 +146,18 @@ func card_rect() -> Rect2:
 	return Rect2(_card.position, _card.size)
 
 
+## The title line's screen rectangle, so a test can hold the first sizing pass to the
+## approved mockups.
+func title_rect() -> Rect2:
+	return _title.get_global_rect()
+
+
+## The Cancel/Confirm row's screen rectangle, so a test can hold the first sizing pass
+## to the approved mockups.
+func actions_rect() -> Rect2:
+	return _actions.get_global_rect()
+
+
 ## [code]UIS.T2[/code]: adopts the gallery's frame-relative chrome size.
 func set_chrome_font_size(font_size: int) -> void:
 	_title.add_theme_font_size_override("font_size", font_size)
@@ -170,17 +183,17 @@ func _build() -> void:
 	_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_title.add_theme_color_override("font_color", PresentationPalette.INK)
 	content.add_child(_title)
-	var actions := HBoxContainer.new()
-	actions.add_theme_constant_override("separation", 12)
-	content.add_child(actions)
+	_actions = HBoxContainer.new()
+	_actions.add_theme_constant_override("separation", 12)
+	content.add_child(_actions)
 	_cancel_button = _action_button(COPY_CANCEL, false)
 	_cancel_button.focus_mode = Control.FOCUS_ALL
 	_cancel_button.pressed.connect(cancel)
-	actions.add_child(_cancel_button)
+	_actions.add_child(_cancel_button)
 	_confirm_button = _action_button(COPY_CONFIRM, true)
 	_confirm_button.focus_mode = Control.FOCUS_ALL
 	_confirm_button.pressed.connect(confirm)
-	actions.add_child(_confirm_button)
+	_actions.add_child(_confirm_button)
 
 
 ## Centers the card at desktop width and pins a sheet to the bottom on mobile width,
@@ -190,6 +203,13 @@ func _layout() -> void:
 		return
 	var margin := SHEET_MARGIN if size.x < WIDE_WIDTH else CARD_MARGIN
 	var width := minf(CARD_MAX_WIDTH, maxf(size.x - 2.0 * margin, 0.0))
+	# The autowrapped title reports a 1 px minimum width and the height of the copy
+	# wrapped one character per line until it is shaped at the card's real content
+	# width. Give it that width and reshape before reading the card's minimum, or the
+	# first pass sizes the card to an out-of-viewport height (#380).
+	var content_width := maxf(width - 2.0 * CARD_MARGIN, 1.0)
+	_title.size.x = content_width
+	_title.update_minimum_size()
 	var height := _card.get_combined_minimum_size().y
 	_card.size = Vector2(width, height)
 	if size.x < WIDE_WIDTH:
