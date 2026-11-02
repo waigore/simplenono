@@ -174,9 +174,11 @@ func _build() -> void:
 	actions.add_theme_constant_override("separation", 12)
 	content.add_child(actions)
 	_cancel_button = _action_button(COPY_CANCEL, false)
+	_cancel_button.focus_mode = Control.FOCUS_ALL
 	_cancel_button.pressed.connect(cancel)
 	actions.add_child(_cancel_button)
 	_confirm_button = _action_button(COPY_CONFIRM, true)
+	_confirm_button.focus_mode = Control.FOCUS_ALL
 	_confirm_button.pressed.connect(confirm)
 	actions.add_child(_confirm_button)
 

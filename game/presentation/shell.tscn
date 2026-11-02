@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://presentation/shell.gd" id="1_shell"]
 [ext_resource type="PackedScene" path="res://presentation/puzzle.tscn" id="2_puzzle"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://presentation/gallery.tscn" id="4_gallery"]
 [ext_resource type="PackedScene" path="res://presentation/settings.tscn" id="5_settings"]
 [ext_resource type="PackedScene" path="res://presentation/result.tscn" id="6_result"]
+[ext_resource type="Script" path="res://presentation/keyboard_input.gd" id="7_keyboard"]
 
 [node name="Shell" type="Control"]
 layout_mode = 3
@@ -34,6 +35,10 @@ layout_mode = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+
+[node name="Keyboard" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_keyboard")
 
 [node name="Seams" type="Node" parent="."]
 unique_name_in_owner = true
