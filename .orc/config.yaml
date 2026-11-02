@@ -168,6 +168,25 @@ agents:
       Parallel id: {parallel_id}. Assigned issue: {issue}.
       Handle that issue if assigned, otherwise one discovered issue, then exit.
 
+  handle-feedback-agent:
+    skill: handle-feedback-agent
+    provider: cursor
+    enabled: true
+    gate:
+      command:
+        - sh
+        - -c
+        - test "$(sh .orc/scripts/list-feedback-issues.sh)" != "[]"
+    issues:
+      command:
+        - sh
+        - .orc/scripts/list-feedback-issues.sh
+    prompt: |
+      Run the handle-feedback-agent skill unattended.
+      Follow docs/issues/feedback.md.
+      Parallel id: {parallel_id}. Assigned issue: {issue}.
+      Handle that issue if assigned, otherwise one discovered issue, then exit.
+
   babysit-pr-agent:
     skill: babysit-pr-agent
     provider: cursor

@@ -10,6 +10,9 @@
 - name: type:defect
   color: "D73A4A"
   description: "In-game or interface bug (not specs, docs, or planning)"
+- name: type:feedback
+  color: "F9D0C4"
+  description: "User feedback record (agent-filed)"
 - name: status:pending-review
   color: "FBCA04"
   description: "Pending review"
@@ -34,6 +37,15 @@
 - name: status:pending-redefinition
   color: "6E7781"
   description: "Comment cap hit; conversation locked pending redefine"
+- name: status:pending-analysis
+  color: "BFD4F2"
+  description: "Feedback awaiting analysis"
+- name: status:pending-resolution
+  color: "D4C5F9"
+  description: "Feedback awaiting linked work"
+- name: status:resolved
+  color: "C2E0C6"
+  description: "Feedback resolved; planner closes"
 - name: no-automerge
   color: "B60205"
   description: "PR: opt out of automatic squash-merge (user-requested only)"
