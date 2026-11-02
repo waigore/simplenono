@@ -41,6 +41,8 @@ var _picture_for := Callable()
 
 @onready var _background: ColorRect = %Background
 @onready var _grid: GridContainer = %Grid
+@onready var _greeting: Label = %Greeting
+@onready var _title: Label = %Title
 @onready var _completion_label: Label = %CompletionLabel
 @onready var _completion_bar: ProgressBar = %CompletionBar
 @onready var _settings_button: Button = %SettingsButton
@@ -57,6 +59,8 @@ func _ready() -> void:
 	_settings_button.pressed.connect(_on_settings_pressed)
 	resized.connect(_update_columns)
 	_update_columns()
+	get_viewport().size_changed.connect(_refresh_type_sizes)
+	_refresh_type_sizes()
 	if _pack != null:
 		_rebuild()
 
@@ -79,6 +83,14 @@ func refresh() -> void:
 ## owns the manifest resolver ([b]CMP-shell[/b] R6); the gallery owns only the drawing.
 func set_picture_provider(provider: Callable) -> void:
 	_picture_for = provider
+
+
+## [code]UIS.T1[/code]/[code]T2[/code]: adopts the shell's code-built theme and re-applies
+## the frame-relative chrome size. Null keeps the engine default face.
+func set_ui_theme(ui_theme: UiTheme) -> void:
+	theme = ui_theme.theme() if ui_theme != null else null
+	if is_node_ready():
+		_refresh_type_sizes()
 
 
 ## [code]copy.completion[/code] as R1 shows it, e.g. [code]Completed 50 / 200[/code].
@@ -194,6 +206,7 @@ func _rebuild() -> void:
 		stale.queue_free()
 		_tiles.erase(puzzle_id)
 	_update_completion()
+	_refresh_type_sizes()
 
 
 func _update_completion() -> void:
@@ -220,6 +233,18 @@ func _update_columns() -> void:
 	_grid.columns = WIDE_COLUMNS if size.x >= WIDE_WIDTH else NARROW_COLUMNS
 
 
+## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied on
+## viewport resize. Layout structure and copy stay fixed; only the type reflows.
+func _refresh_type_sizes() -> void:
+	var font_size := UiTheme.t2_size(get_viewport_rect().size.y)
+	_greeting.add_theme_font_size_override("font_size", font_size)
+	_title.add_theme_font_size_override("font_size", font_size)
+	_completion_label.add_theme_font_size_override("font_size", font_size)
+	_settings_button.add_theme_font_size_override("font_size", font_size)
+	for target: GalleryTile in _tiles.values():
+		target.set_chrome_font_size(font_size)
+
+
 func _on_tile_opened(puzzle_id: String) -> void:
 	puzzle_requested.emit(puzzle_id)
 
@@ -240,7 +265,6 @@ func _style_settings_button() -> void:
 	_settings_button.add_theme_color_override("font_color", PresentationPalette.INK)
 	_settings_button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
 	_settings_button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
-	_settings_button.add_theme_font_size_override("font_size", 13)
 
 
 func _panel_style() -> StyleBoxFlat:

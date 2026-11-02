@@ -53,6 +53,7 @@ var _elapsed_remainder: float = 0.0
 @onready var _clear_button: Button = %ClearButton
 @onready var _board: PuzzleBoard = %Board
 @onready var _ready_beat: Control = %ReadyBeat
+@onready var _ready_label: Label = %ReadyLabel
 @onready var _ready_timer: Timer = %ReadyTimer
 
 
@@ -68,12 +69,15 @@ func _ready() -> void:
 	_settings_button.pressed.connect(_on_settings_pressed)
 	_ready_timer.timeout.connect(_on_ready_timeout)
 	_apply_tool_visuals()
+	get_viewport().size_changed.connect(_refresh_type_sizes)
+	_refresh_type_sizes()
 	refresh()
 
 
 ## Shows [param attempt]'s open puzzle and starts its get-set-ready beat when the
 ## attempt has one pending. The shell or #112 calls this after O1.
 func present(attempt: Attempt) -> void:
+	_refresh_type_sizes()
 	if _attempt != null and _attempt.ready.is_connected(_on_attempt_ready):
 		_attempt.ready.disconnect(_on_attempt_ready)
 	_attempt = attempt
@@ -92,6 +96,14 @@ func present(attempt: Attempt) -> void:
 		_ready_beat.visible = true
 		_ready_timer.start(attempt.get_set_ready_ms() / 1000.0)
 	refresh()
+
+
+## [code]UIS.T1[/code]/[code]T2[/code]: adopts the shell's code-built theme and re-applies
+## the frame-relative chrome size. Null keeps the engine default face.
+func set_ui_theme(ui_theme: UiTheme) -> void:
+	theme = ui_theme.theme() if ui_theme != null else null
+	if is_node_ready():
+		_refresh_type_sizes()
 
 
 ## The current state ID: [constant STATE_GET_SET_READY], [constant STATE_PAUSED],
@@ -260,7 +272,6 @@ func _style_tool_buttons() -> void:
 		button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
 		button.add_theme_color_override("font_pressed_color", PresentationPalette.PAPER)
 		button.add_theme_color_override("font_disabled_color", PresentationPalette.DIM)
-		button.add_theme_font_size_override("font_size", 14)
 
 
 func _style_chrome_button(button: Button) -> void:
@@ -271,7 +282,16 @@ func _style_chrome_button(button: Button) -> void:
 	button.add_theme_color_override("font_color", PresentationPalette.INK)
 	button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
 	button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
-	button.add_theme_font_size_override("font_size", 14)
+
+
+## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied on
+## viewport resize. Layout structure, copy, and routing stay fixed.
+func _refresh_type_sizes() -> void:
+	var font_size := UiTheme.t2_size(get_viewport_rect().size.y)
+	for button in [_leave_button, _settings_button, _fill_button, _cross_button, _clear_button]:
+		button.add_theme_font_size_override("font_size", font_size)
+	_elapsed_label.add_theme_font_size_override("font_size", font_size)
+	_ready_label.add_theme_font_size_override("font_size", font_size)
 
 
 func _panel_style(fill: Color) -> StyleBoxFlat:

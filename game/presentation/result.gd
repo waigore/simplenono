@@ -48,6 +48,7 @@ func _ready() -> void:
 	_reveal.morph_finished.connect(_on_morph_finished)
 	_back_button.pressed.connect(_on_back_pressed)
 	_style_back_button()
+	get_viewport().size_changed.connect(_apply_layout)
 	_apply_layout()
 	_back_button.visible = false
 	_reveal.start(null, null, null)
@@ -65,6 +66,14 @@ func present(
 ) -> void:
 	_reveal.start(fills, pixel_picture, picture, stage_ms)
 	_refresh_chrome()
+
+
+## [code]UIS.T1[/code]/[code]T2[/code]: adopts the shell's code-built theme and re-applies
+## the frame-relative chrome size. Null keeps the engine default face.
+func set_ui_theme(ui_theme: UiTheme) -> void:
+	theme = ui_theme.theme() if ui_theme != null else null
+	if is_node_ready():
+		_apply_layout()
 
 
 ## Advances the reveal by [param delta_ms] ([code]CFG.MORPH_STAGE_MS[/code] per stage).
@@ -151,6 +160,15 @@ func _apply_layout() -> void:
 	if bound != null:
 		for side in ["left", "top", "right", "bottom"]:
 			bound.add_theme_constant_override("margin_" + side, int(margin))
+	_refresh_type_sizes()
+
+
+## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied with
+## the screen's layout on viewport resize.
+func _refresh_type_sizes() -> void:
+	_back_button.add_theme_font_size_override(
+		"font_size", UiTheme.t2_size(get_viewport_rect().size.y)
+	)
 
 
 func _style_back_button() -> void:

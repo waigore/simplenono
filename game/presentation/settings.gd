@@ -48,6 +48,8 @@ func _ready() -> void:
 	_mute_button.pressed.connect(_on_mute_pressed)
 	_back_button.pressed.connect(_on_back_pressed)
 	_style_back_button()
+	get_viewport().size_changed.connect(_refresh_type_sizes)
+	_refresh_type_sizes()
 	_refresh()
 
 
@@ -56,7 +58,16 @@ func _ready() -> void:
 func present(flags: SessionFlags) -> void:
 	_flags = flags
 	if is_node_ready():
+		_refresh_type_sizes()
 		_refresh()
+
+
+## [code]UIS.T1[/code]/[code]T2[/code]: adopts the shell's code-built theme and re-applies
+## the frame-relative chrome size. Null keeps the engine default face.
+func set_ui_theme(ui_theme: UiTheme) -> void:
+	theme = ui_theme.theme() if ui_theme != null else null
+	if is_node_ready():
+		_refresh_type_sizes()
 
 
 ## [code]copy.on[/code] or [code]copy.off[/code] for C1.
@@ -154,6 +165,23 @@ func _on_mute_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	activate_back()
+
+
+## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied on
+## viewport resize. Layout structure and copy stay fixed.
+func _refresh_type_sizes() -> void:
+	var font_size := UiTheme.t2_size(get_viewport_rect().size.y)
+	for target in [
+		_title,
+		_haptics_label,
+		_haptics_hint,
+		_mute_label,
+		_mute_hint,
+		_haptics_button,
+		_mute_button,
+		_back_button,
+	]:
+		target.add_theme_font_size_override("font_size", font_size)
 
 
 func _apply_toggle_style(button: Button, on: bool) -> void:

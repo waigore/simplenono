@@ -45,6 +45,7 @@ var _best_label: Label
 var _open_button: Button
 var _reset_holder: Control
 var _reset_button: Button
+var _chrome_font_size := 16
 
 
 func _init() -> void:
@@ -140,6 +141,20 @@ func reset_button() -> Button:
 	return _reset_button
 
 
+## [code]UIS.T2[/code]: the chrome size the gallery applies from the current frame
+## height. The tile keeps only the values, not the rule.
+func set_chrome_font_size(font_size: int) -> void:
+	_chrome_font_size = font_size
+	for label in [_title_label, _status_label, _best_label]:
+		label.add_theme_font_size_override("font_size", font_size)
+	_reset_button.add_theme_font_size_override("font_size", font_size)
+
+
+## The chrome size this tile last applied ([code]UIS.T2[/code]).
+func chrome_font_size() -> int:
+	return _chrome_font_size
+
+
 func _build() -> void:
 	custom_minimum_size = Vector2(TILE_WIDTH, 0.0)
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -174,11 +189,11 @@ func _build() -> void:
 	_meta_holder.add_theme_constant_override("margin_bottom", 8)
 	_meta_holder.add_child(meta)
 	content.add_child(_meta_holder)
-	_title_label = _make_label(13, PresentationPalette.INK)
+	_title_label = _make_label(PresentationPalette.INK)
 	meta.add_child(_title_label)
-	_status_label = _make_label(11, PresentationPalette.DIM)
+	_status_label = _make_label(PresentationPalette.DIM)
 	meta.add_child(_status_label)
-	_best_label = _make_label(11, PresentationPalette.DIM)
+	_best_label = _make_label(PresentationPalette.DIM)
 	meta.add_child(_best_label)
 	_reset_holder = _build_reset_holder()
 	layout.add_child(_reset_holder)
@@ -221,17 +236,15 @@ func _build_reset_holder() -> Control:
 	_reset_button.add_theme_stylebox_override("pressed", _panel_style(PresentationPalette.PAPER))
 	_reset_button.add_theme_color_override("font_color", PresentationPalette.DIM)
 	_reset_button.add_theme_color_override("font_hover_color", PresentationPalette.DIM)
-	_reset_button.add_theme_font_size_override("font_size", 11)
 	_reset_button.pressed.connect(_on_reset_pressed)
 	row.add_child(_reset_button)
 	margin.add_child(row)
 	return margin
 
 
-func _make_label(font_size: int, color: Color) -> Label:
+func _make_label(color: Color) -> Label:
 	var label := Label.new()
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", color)
 	return label
 
