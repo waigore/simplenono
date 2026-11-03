@@ -15,22 +15,38 @@ const TEST_PATH := "user://progress-shell-gallery-test.cfg"
 const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 var _shell: Shell
+var _seams: DebugSeams
 
 
 func before_each():
+	ProjectSettings.set_setting(DebugSeams.FLAG_SETTING, false)
 	_remove(TEST_PATH)
 	_remove(TEMP_PATH)
+	_boot()
+
+
+func after_each():
+	ProjectSettings.set_setting(DebugSeams.FLAG_SETTING, false)
+	_remove(TEST_PATH)
+	_remove(TEMP_PATH)
+
+
+## Instantiates the shell over the test document; the S4 sink exists only with the flag on.
+func _boot() -> void:
 	var scene := load(SHELL_SCENE) as PackedScene
 	assert_not_null(scene, "shell scene loads")
 	_shell = scene.instantiate() as Shell
 	_shell.progress_path = TEST_PATH
 	add_child_autofree(_shell)
 	_shell.get_node("%Puzzle").set_process(false)
+	_seams = _shell.get_node("%Seams") as DebugSeams
 
 
-func after_each():
-	_remove(TEST_PATH)
-	_remove(TEMP_PATH)
+## Boots a second shell with the verification seams on, so S4 is recorded.
+func _boot_with_seams() -> void:
+	_shell.queue_free()
+	ProjectSettings.set_setting(DebugSeams.FLAG_SETTING, true)
+	_boot()
 
 
 func _remove(path: String) -> void:
@@ -353,6 +369,89 @@ func test_cancelling_the_box_writes_nothing() -> void:
 	assert_eq(gallery.tile("pack-000").best_text(), "Best 1:00", "the personal best is kept")
 	assert_eq(gallery.completion_text(), "Completed 1 / 200", "the rate is unchanged")
 	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery is in Default")
+
+
+# SEQ reset S4a / S4 TEL.1-TEL.5: a gallery Confirm emits exactly one reset event with
+# every telemetry field, and it is the only event that Confirm records
+func test_a_gallery_confirm_records_exactly_one_reset_event() -> void:
+	_boot_with_seams()
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	_present_seeded(seeded)
+	var telemetry := _seams.telemetry()
+	assert_not_null(telemetry, "the S4 sink exists")
+	telemetry.set_story_id("US1.1")
+	var gallery := _shell.gallery_screen()
+	assert_true(gallery.activate_reset("pack-000"), "C2 is allowed")
+	var before := telemetry.count()
+
+	gallery.reset_confirm().confirm()
+
+	assert_eq(telemetry.count(), before + 1, "one event for one Confirm")
+	var resets := telemetry.events_named(Telemetry.EVENT_RESET)
+	assert_eq(resets.size(), 1, "S4a: exactly one reset event")
+	var event := resets[0]
+	assert_eq(event["name"], Telemetry.EVENT_RESET, "TEL.1: the event name")
+	assert_gt(float(event["timestamp"]), 0.0, "TEL.2: a timestamp")
+	assert_eq(event["session_id"], telemetry.session_id(), "TEL.3: the session id")
+	assert_eq(event["build_id"], telemetry.build_id(), "TEL.3: the build id")
+	assert_eq(event["story_id"], "US1.1", "TEL.4: the active story id")
+	assert_eq(event["outcome"], "pass", "TEL.5: the outcome")
+	assert_false(gallery.reset_confirm_showing(), "S6: the box is dismissed")
+
+
+# SEQ reset B3 / S4a: a Confirm whose O7 is refused emits no reset event
+func test_a_refused_gallery_confirm_records_no_reset_event() -> void:
+	_boot_with_seams()
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	_present_seeded(seeded)
+	var telemetry := _seams.telemetry()
+	var box := _shell.gallery_screen().reset_confirm()
+	box.show_for("no-such-puzzle")
+
+	box.confirm()
+
+	assert_eq(telemetry.events_named(Telemetry.EVENT_RESET).size(), 0, "B3: no reset event")
+
+
+# SEQ reset B2 / S4a: Cancel dismisses the box and emits no reset event
+func test_a_cancelled_gallery_confirm_records_no_reset_event() -> void:
+	_boot_with_seams()
+	var seeded := _in_progress_seed()
+	_present_seeded(seeded)
+	var telemetry := _seams.telemetry()
+	var gallery := _shell.gallery_screen()
+	assert_true(gallery.activate_reset("pack-000"), "C2 is allowed")
+
+	gallery.reset_confirm().cancel()
+
+	assert_eq(telemetry.events_named(Telemetry.EVENT_RESET).size(), 0, "B2: no reset event")
+
+
+# S4: the debug seam's own reset still records exactly one reset event, not two
+func test_the_debug_seam_reset_still_records_one_event() -> void:
+	_boot_with_seams()
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	_present_seeded(seeded)
+	var telemetry := _seams.telemetry()
+
+	assert_true(_seams.reset_puzzle("pack-000"), "the stage reset runs CTR-pack O7")
+
+	assert_eq(telemetry.events_named(Telemetry.EVENT_RESET).size(), 1, "one reset, not two")
+
+
+## A record that is done and in progress, so its tile offers C2 ([code]UI-gallery[/code]).
+func _in_progress_seed() -> ConfigFile:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	seeded.set_value("pack-000", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.ELAPSED_KEY, 30)
+	seeded.set_value("pack-000", ProgressFile.MARKS_KEY, _marks(15))
+	return seeded
 
 
 ## A stored mark grid with one fill, so a restored attempt counts as in progress.
