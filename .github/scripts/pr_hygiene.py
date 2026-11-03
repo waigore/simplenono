@@ -19,8 +19,13 @@ from typing import Callable, Sequence
 
 TEMPLATE = Path(__file__).resolve().parents[1] / "pull_request_template.md"
 TITLE_MAX = 72
-EVIDENCE_ROOT = "docs/playtest/evidence/"
+EVIDENCE_ROOTS = (
+    "docs/playtest/evidence/",
+    "docs/quality/evidence/",
+)
 EVIDENCE_MEDIA_DIRS = ("/screenshots/", "/logs/")
+PLAYTEST_EVIDENCE_ROOT = EVIDENCE_ROOTS[0]
+QUALITY_EVIDENCE_ROOT = EVIDENCE_ROOTS[1]
 
 
 @dataclass(frozen=True)
@@ -54,13 +59,36 @@ def normalize_path(path: str) -> str:
     return path.replace("\\", "/").lstrip("./")
 
 
-def is_playtest_evidence_media(path: str) -> bool:
-    """True when path is under evidence screenshots/ or logs/ (same as .gitignore)."""
+def evidence_root_for(path: str) -> str | None:
+    """Return the evidence root prefix if path is under one, else None."""
     p = normalize_path(path)
-    if not p.startswith(EVIDENCE_ROOT):
+    for root in EVIDENCE_ROOTS:
+        if p.startswith(root) or p.rstrip("/") == root.rstrip("/"):
+            return root
+    return None
+
+
+def is_evidence_media(path: str) -> bool:
+    """True when path is under evidence screenshots/ or logs/ (same as .gitignore)."""
+    root = evidence_root_for(path)
+    if root is None:
         return False
+    p = normalize_path(path)
     # Pad so a bare .../screenshots or .../logs path still matches /screenshots/ /logs/.
-    return any(media in f"/{p[len(EVIDENCE_ROOT):]}/" for media in EVIDENCE_MEDIA_DIRS)
+    return any(media in f"/{p[len(root):]}/" for media in EVIDENCE_MEDIA_DIRS)
+
+
+def media_message(path: str) -> str:
+    root = evidence_root_for(path)
+    if root == PLAYTEST_EVIDENCE_ROOT:
+        return (
+            "playtest screenshots/logs must go on the repo wiki "
+            "(docs/playtest/wiki-evidence.md); only manifest.md and notes.md belong in git."
+        )
+    return (
+        "quality evidence must stay markdown-only in git "
+        "(docs/quality/evidence/); do not commit screenshots/ or logs/."
+    )
 
 
 def headings(markdown: str) -> list[str]:
@@ -125,24 +153,65 @@ def template_sections(pr: PullRequest, required: Sequence[str] = REQUIRED_SECTIO
     return findings
 
 
-def playtest_evidence_media(pr: PullRequest) -> list[Finding]:
-    """Screenshots and logs belong on the wiki (docs/playtest/wiki-evidence.md), not in git."""
-    msg = (
-        "playtest screenshots/logs must go on the repo wiki "
-        "(docs/playtest/wiki-evidence.md); only manifest.md and notes.md belong in git."
-    )
+def evidence_media(pr: PullRequest) -> list[Finding]:
+    """Screenshots/logs under evidence roots must not land in git."""
     return [
-        Finding("playtest-evidence-media", "files", 0, f"{normalize_path(path)}: {msg}")
+        Finding("evidence-media", "files", 0, f"{normalize_path(path)}: {media_message(path)}")
         for path in pr.changed_paths
-        if is_playtest_evidence_media(path)
+        if is_evidence_media(path)
     ]
+
+
+def touched_evidence_roots(changed_paths: Sequence[str]) -> set[str]:
+    """Evidence roots that have non-media file changes in the PR."""
+    roots: set[str] = set()
+    for path in changed_paths:
+        if is_evidence_media(path):
+            continue
+        root = evidence_root_for(path)
+        if root is not None:
+            roots.add(root)
+    return roots
+
+
+def evidence_section_paths(pr: PullRequest) -> list[Finding]:
+    """Evidence section must cite each evidence root the PR actually touches."""
+    roots = touched_evidence_roots(pr.changed_paths)
+    if not roots:
+        return []
+    sections = parse_sections(pr.body)
+    if "evidence" not in sections:
+        return [
+            Finding(
+                "evidence-section-paths",
+                "body",
+                0,
+                "missing section '## Evidence'; cite " + ", ".join(sorted(r.rstrip("/") for r in roots)) + ".",
+            )
+        ]
+    line, content = sections["evidence"]
+    text = content.strip()
+    findings = []
+    for root in sorted(roots):
+        cite = root.rstrip("/")
+        if cite not in text:
+            findings.append(
+                Finding(
+                    "evidence-section-paths",
+                    "body",
+                    line,
+                    f"section '## Evidence' must cite '{cite}' because this PR changes files under that root.",
+                )
+            )
+    return findings
 
 
 RULES: list[Callable[[PullRequest], list[Finding]]] = [
     closing_keywords,
     title_format,
     template_sections,
-    playtest_evidence_media,
+    evidence_media,
+    evidence_section_paths,
 ]
 
 

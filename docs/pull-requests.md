@@ -1,6 +1,6 @@
 # Pull requests
 
-Every change reaches `main` through a PR; `main` is protected ([`github-repo-setup.md`](github-repo-setup.md)). Agents open the PR themselves when a change is done; do not stop at local edits or commits. PoC work asks first ([`pocs.md`](pocs.md#pull-requests)).
+Every change reaches `main` through a PR; `main` is protected ([`github-repo-setup.md`](github-repo-setup.md)). Agents open the PR when done; do not stop at local edits or commits. PoC work asks first ([`pocs.md`](pocs.md#pull-requests)).
 
 ## Flow
 
@@ -28,7 +28,7 @@ Imperative, under ~72 characters, no trailing period (e.g. `Add HUD layout`). It
 
 ## Body
 
-Fill every section of the template; write `N/A` with a reason rather than deleting one.
+Fill every template section; write `N/A` with a reason rather than deleting one.
 
 | Section | Contents |
 |---------|----------|
@@ -37,7 +37,7 @@ Fill every section of the template; write `N/A` with a reason rather than deleti
 | Authority | `specs/` paths and Accepted ADRs that authorize the change (spec first) |
 | Changes | Notable files or areas touched |
 | Test plan | Commands run and results; manual steps if any |
-| Evidence | In-repo `docs/playtest/evidence/` path and wiki page URL when playable behavior changes |
+| Evidence | Playtest: `docs/playtest/evidence/` path + wiki URL when playable. Quality: `docs/quality/evidence/` when a run lands. Else `N/A` with reason |
 
 ### `Refs`, not `Closes`
 
@@ -52,14 +52,15 @@ Required check ([`pr-hygiene.yml`](../.github/workflows/pr-hygiene.yml)); re-run
 | `closing-keywords` | Title or body has `Closes #n`, `Fixes #n`, `Resolves #n` (any form) |
 | `title-format` | Title is empty, over 72 characters, or ends with a period |
 | `template-sections` | A `##` section from the template is missing, empty (comments ignored), or a bare `N/A` |
-| `playtest-evidence-media` | PR adds/changes files under `docs/playtest/evidence/**/screenshots/` or `**/logs/` |
+| `evidence-media` | PR touches `screenshots/` or `logs/` under `docs/playtest/evidence/` or `docs/quality/evidence/` |
+| `evidence-section-paths` | PR changes non-media files under an evidence root but `## Evidence` omits that root |
 
 ## Auto-merge
 
-Every same-repo, non-draft PR squash-merges as soon as required checks pass on a branch up to date with `main` ([`automerge.yml`](../.github/workflows/automerge.yml)). If `main` moves, update the branch (`gh pr update-branch`). Open ready for review by default (no `no-automerge` label).
+Every same-repo, non-draft PR squash-merges when required checks pass on a branch up to date with `main` ([`automerge.yml`](../.github/workflows/automerge.yml)). If `main` moves, update the branch (`gh pr update-branch`). Open ready for review by default (no `no-automerge` label).
 
 - Open as **draft** (`gh pr create --draft`) while work is incomplete.
-- Add the **`no-automerge`** label only when the user explicitly asks to hold auto-merge. Agents never apply it on their own.
+- Add **`no-automerge`** only when the user asks to hold auto-merge. Agents never apply it on their own.
 
 ## Spec PRs
 
