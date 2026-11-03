@@ -31,7 +31,7 @@ git diff --quiet 9053c8c fb99b16 -- game/assets/puzzle-pictures/pack-122* \
 The record's selection still holds: this deliverable adds eight static `CompressedTexture2D` files to the gallery path
 and rewrites four rows' fills and clues, and changes no runtime code, so `time-to-playable` is the one Applies
 deterministic axis it can reach. The acceptance playtest ran on a graphical build of `fb99b16` —
-[`docs/playtest/evidence/issue-263/2026-11-03-accept-graphical/manifest.md`](../../../playtest/evidence/issue-263/2026-11-03-accept-graphical/manifest.md).
+[`docs/playtest/evidence/issue-263/2026-11-03-accept-graphical/manifest.md`](../../../../playtest/evidence/issue-263/2026-11-03-accept-graphical/manifest.md).
 
 | Axis | Evaluator | Observation | Bar | Result | Blocked reason | Evidence path |
 |------|-----------|-------------|-----|--------|----------------|---------------|
