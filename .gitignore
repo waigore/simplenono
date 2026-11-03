@@ -20,6 +20,8 @@ tmp/
 # Godot 4 local import/cache (ADR-0001 project under game/)
 **/.godot/
 
-# playtest media belongs on the repo wiki (docs/playtest/wiki-evidence.md)
+# evidence media: playtest on wiki (docs/playtest/wiki-evidence.md); quality is markdown-only
 docs/playtest/evidence/**/screenshots/
 docs/playtest/evidence/**/logs/
+docs/quality/evidence/**/screenshots/
+docs/quality/evidence/**/logs/
