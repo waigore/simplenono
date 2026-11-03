@@ -1,0 +1,68 @@
+{
+  "kind_spec": "AK-puzzle-pictures",
+  "coverage": [
+    "V1"
+  ],
+  "state": "approved",
+  "version": 1,
+  "source_type": "ai-generation",
+  "recipe": "AK-puzzle-pictures.R1",
+  "id": "01a17720-ca00-7166-97ff-9bc0b5ca87b8",
+  "handle": "puzzle-pictures/pack-147-pixel",
+  "serves": [
+    "E-puzzle.P6",
+    "PER.R5",
+    "ACC.G3"
+  ],
+  "files": [
+    "puzzle-pictures/pack-147-pixel.png"
+  ],
+  "tool_role": {
+    "role": "TL.2",
+    "adr": "adr-free"
+  },
+  "generation": {
+    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a heavy C filling most of the frame, about fifteen cells tall and fourteen cells wide, its arms four cells thick, with a clear eight-cell opening on its right side, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+    "negative_prompt": "playful chrome; gore; horror",
+    "seed": "n/a \u2014 tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": [
+        "01a17720-ca00-702b-82c9-247496582234"
+      ]
+    },
+    "tool": "puzzle_derive.py (local authoring script)",
+    "operation": "offline flatten + BOX downsample",
+    "settings": {
+      "model": "flux-2-max",
+      "subject_class": "single-subject",
+      "downsample": "box",
+      "size": 15,
+      "flatten_method": "outer frame set to the median colour of the outer ring",
+      "flatten_band_percent": 5.0,
+      "flatten_ring_percent": 1.0,
+      "flatten_background_rgb": [
+        203,
+        206,
+        211
+      ]
+    },
+    "steps": [
+      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [203, 206, 211])",
+      "BOX downsample to 15x15 colour cells, one per board cell, alpha composited over white",
+      "write puzzle-pictures/pack-147-pixel.png"
+    ]
+  },
+  "guidance": "Derived from the square in inputs.base_assets; re-run the derive command to reproduce it.",
+  "license": {
+    "grant": "Generated under Cheaper Inference terms of service; the project may use and modify the output",
+    "tool": "Cheaper Inference"
+  },
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-03",
+    "reviewer": "agent",
+    "report": "AK-puzzle-pictures R1/V1, pack-147 (single-subject). Derived from the generated square (request f040fdc9-3789-4793-a68b-e13a0b907845). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [203, 206, 211]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel byte-for-byte (zero differing cells) (S1, S5, S6, K1, K6). Filled 59/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: filled cells luma mean 71.0 against background luma mean 200.4 (contrast 129.4); silhouette a bold C-clamp, one continuous open ring with a clear opening on its right side, 1 connected mass (AES.P1, K4). Subject class: single-subject. No series (SS1 none). License: Cheaper Inference terms."
+  }
+}
