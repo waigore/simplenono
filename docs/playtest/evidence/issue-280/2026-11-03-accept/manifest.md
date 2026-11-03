@@ -51,6 +51,13 @@ Final line: `capture: RESULT pass (9 shots, 0 checks failed)`, 35 `capture: PASS
 
 ## Shared picture bar on #294 — independent checks
 
+> **Historical record (annotated 2026-11-03, #486).** This run measured the per-puzzle subject class under the
+> index rule then in force on #294. The product owner retired that class on 2026-11-03 (option 3), so no puzzle,
+> catalog entry, or prompt carries one now; the class column and the **Subject classes** paragraph below are the
+> measurement as taken at the time, kept unchanged with their masses and fill counts. Read the silhouette
+> descriptions as what the look review judged; they are the evidence that still counts
+> (`specs/assets/kinds/puzzle-pictures.md` K4).
+
 [`tools/expectations_280.py`](tools/expectations_280.py) re-implements the fill rule (alpha over white,
 `Y = 0.2126R + 0.7152G + 0.0722B` on 0–255 sRGB, filled when `Y < 128`, BOX 1024→20) and
 [`tools/nonogram.py`](tools/nonogram.py) is its own line solver and enumerator, so neither imports

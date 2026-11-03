@@ -28,7 +28,6 @@
     "operation": "offline flatten + BOX downsample",
     "settings": {
       "model": "flux-2-max",
-      "subject_class": "multi-subject and/or holed",
       "downsample": "box",
       "size": 20,
       "flatten_method": "outer frame set to the median colour of the outer ring",
@@ -63,6 +62,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-188 (multi-subject and/or holed). Derived from the generated square (request a1197625-fd3c-4c31-ae51-feab76f04969). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [188, 193, 196]), then BOX downsampled to 20x20, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 154/400 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 100-180 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 6.00% warm pixels; filled cells luma mean 73.2 against background luma mean 184.1 (contrast 110.9); silhouette a thick ring with a separate square mass standing in its right-hand opening (multi-subject; the ring's own hole is closed at 20x20 so the opening reads as the gap) (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-188. Derived from the generated square (request a1197625-fd3c-4c31-ae51-feab76f04969). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [188, 193, 196]), then BOX downsampled to 20x20, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 154/400 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 100-180 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 6.00% warm pixels; filled cells luma mean 73.2 against background luma mean 184.1 (contrast 110.9); silhouette a thick ring with a separate square mass standing in its right-hand opening the ring's own hole is closed at 20x20 so the opening reads as the gap (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a — tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-189 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 5601fd4c-8b79-48f3-83ce-7f76bf399e9d (attempt 1), saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as a ring with a solid block standing in its right-hand opening above a separate base bar (multi-subject and holed: the ring's interior is an open white region). Look evidence (measured on the committed square): 6.00% warm pixels (red-over-blue bias >= 25); subject luma mean 69.7 against background luma mean 210.2; pale cool grey ground. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-189. Generated square: flux-2-max 1024x1024, request 5601fd4c-8b79-48f3-83ce-7f76bf399e9d (attempt 1), saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as a ring with a solid block standing in its right-hand opening above a separate base bar the ring's interior is an open white region. Look evidence (measured on the committed square): 6.00% warm pixels (red-over-blue bias >= 25); subject luma mean 69.7 against background luma mean 210.2; pale cool grey ground. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

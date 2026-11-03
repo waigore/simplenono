@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "single-subject"
+      "size": "1024x1024"
     },
     "seed": "n/a — tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-120 (single-subject). Generated square: flux-2-max 1024x1024, request e3828fd9-c483-4dc1-b5e8-b77edd08fde4, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 97.6 against pale background luma mean 192.4 (contrast 94.8); square dark/pale luma 69.2/195.2. The generated square reads as one connected stepped dark mass on a pale cool field, a tall block with a lower shelf stepping out to the right at its base, with hard square edges. The stored 15x15 pixel silhouette keeps that reading: one connected stepped dark mass on a pale cool field, a tall block with a lower shelf stepping out to the right at its base. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: single-subject. No series (SS1 none). License: Cheaper Inference terms. Regenerated: 8 squares were generated; earlier attempts were rejected by the fixed judge for being outside the 56-101 fill band, and this accepted attempt is the first that passed."
+    "report": "AK-puzzle-pictures R1/V1, pack-120. Generated square: flux-2-max 1024x1024, request e3828fd9-c483-4dc1-b5e8-b77edd08fde4, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 97.6 against pale background luma mean 192.4 (contrast 94.8); square dark/pale luma 69.2/195.2. The generated square reads as one connected stepped dark mass on a pale cool field, a tall block with a lower shelf stepping out to the right at its base, with hard square edges. The stored 15x15 pixel silhouette keeps that reading: one connected stepped dark mass on a pale cool field, a tall block with a lower shelf stepping out to the right at its base. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Regenerated: 8 squares were generated; earlier attempts were rejected by the fixed judge for being outside the 56-101 fill band, and this accepted attempt is the first that passed. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

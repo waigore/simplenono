@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a — tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-182 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 4ba237e3-a345-4faa-b8e4-b7049e86f6d6 (attempt 1), saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as two dark paper cut-out masses joined by a thin upper cap, a narrow tall spine on the left and a wider block on the right, each with a square window near its shoulder. Look evidence (measured on the committed square): 0.00% warm pixels (red-over-blue bias >= 25); subject luma mean 65.8 against background luma mean 195.5; 33.4% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-182. Generated square: flux-2-max 1024x1024, request 4ba237e3-a345-4faa-b8e4-b7049e86f6d6 (attempt 1), saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as two dark paper cut-out masses joined by a thin upper cap, a narrow tall spine on the left and a wider block on the right, each with a square window near its shoulder. Look evidence (measured on the committed square): 0.00% warm pixels (red-over-blue bias >= 25); subject luma mean 65.8 against background luma mean 195.5; 33.4% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

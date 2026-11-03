@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "single-subject"
+      "size": "1024x1024"
     },
     "seed": "n/a \u2014 tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-140 (single-subject). Regenerated for the #267 verification repair (pack-139 was one mass, not multi-subject and/or holed; pack-140's stored square did not follow its prompt). Generated square: flux-2-max 1024x1024 (request 0c7fb850-7518-4c31-85d3-226ea4b80021), saved as PNG without resampling; the recorded prompt names the shape this square produced. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed file): 0.00% warm pixels (no red-over-blue cast); the subject is a flat dark slate blue-grey cut-out on a plain pale cool grey ground. The stored 15x15 pixel silhouette is a mass spanning rows 3-11 and columns 3-11 of 15, one filled mass of 56 cells, and 25 enclosed background cell(s). Calm clinical and cool-toned, with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: single-subject. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-140. Regenerated for the #267 verification repair (pack-139 was one mass; pack-140's stored square did not follow its prompt). Generated square: flux-2-max 1024x1024 (request 0c7fb850-7518-4c31-85d3-226ea4b80021), saved as PNG without resampling; the recorded prompt names the shape this square produced. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed file): 0.00% warm pixels (no red-over-blue cast); the subject is a flat dark slate blue-grey cut-out on a plain pale cool grey ground. The stored 15x15 pixel silhouette is a mass spanning rows 3-11 and columns 3-11 of 15, one filled mass of 56 cells, and 25 enclosed background cell(s). Calm clinical and cool-toned, with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

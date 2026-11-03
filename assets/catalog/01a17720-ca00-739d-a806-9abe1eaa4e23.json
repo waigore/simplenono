@@ -28,7 +28,6 @@
     "operation": "offline flatten + BOX downsample",
     "settings": {
       "model": "flux-2-max",
-      "subject_class": "multi-subject and/or holed",
       "downsample": "box",
       "size": 20,
       "flatten_method": "outer frame set to the median colour of the outer ring",
@@ -63,6 +62,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-191 (multi-subject and/or holed). Derived from the generated square (request 3a43d619-f284-480e-8eb7-57be4540c9ea). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [202, 205, 212]), then BOX downsampled to 20x20, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 138/400 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 100-180 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 6.00% warm pixels; filled cells luma mean 86.7 against background luma mean 201.9 (contrast 115.2); silhouette a heavy C-shaped ring with a second slab fused to its lower right arm (multi-subject; one connected mass with a deep notch, no enclosed hole at 20x20) (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-191. Derived from the generated square (request 3a43d619-f284-480e-8eb7-57be4540c9ea). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [202, 205, 212]), then BOX downsampled to 20x20, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 138/400 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 100-180 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 6.00% warm pixels; filled cells luma mean 86.7 against background luma mean 201.9 (contrast 115.2); silhouette a heavy C-shaped ring with a second slab fused to its lower right arm one connected mass with a deep notch, no enclosed hole at 20x20 (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

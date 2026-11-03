@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a \u2014 tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-099 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 5e9ffa02-0b73-45a8-a68d-444ae90baad2, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 84.4 against pale background luma mean 200.8 (contrast 116.4); square dark/pale luma 62.7/207.6. The generated square reads as two separate upright plates on a pale cool field, the left one carrying a recessed pale panel and the right one a plain solid slab, with a clear empty gap between them. The stored 15x15 pixel silhouette keeps that reading: two separate masses, a tall left bar with an enclosed pale recess and a wide plain right slab, divided by a pale channel (multi-subject and holed) (multi-subject and/or holed). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-099. Generated square: flux-2-max 1024x1024, request 5e9ffa02-0b73-45a8-a68d-444ae90baad2, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 84.4 against pale background luma mean 200.8 (contrast 116.4); square dark/pale luma 62.7/207.6. The generated square reads as two separate upright plates on a pale cool field, the left one carrying a recessed pale panel and the right one a plain solid slab, with a clear empty gap between them. The stored 15x15 pixel silhouette keeps that reading: two separate masses, a tall left bar with an enclosed pale recess and a wide plain right slab, divided by a pale channel. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

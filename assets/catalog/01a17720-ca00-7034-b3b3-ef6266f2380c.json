@@ -34,8 +34,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "steps": [
       "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-162 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 3dff1742-3be4-4ee3-9a12-587ca8bc3349, saved as PNG without resampling. Meets K1/K6 (square stored) and S6 (the square is the stored output). Pixel silhouette: 1 filled mass(es), 1 enclosed background hole(s). Look evidence (measured on the committed pixel): 0.00% warm pixels; filled cells luma mean 79.6 against background luma mean 197.5 (contrast 117.9). Calm clinical, cool-toned, with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-162. Generated square: flux-2-max 1024x1024, request 3dff1742-3be4-4ee3-9a12-587ca8bc3349, saved as PNG without resampling. Meets K1/K6 (square stored) and S6 (the square is the stored output). Pixel silhouette: 1 filled mass(es), 1 enclosed background hole(s). Look evidence (measured on the committed pixel): 0.00% warm pixels; filled cells luma mean 79.6 against background luma mean 197.5 (contrast 117.9). Calm clinical, cool-toned, with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }
