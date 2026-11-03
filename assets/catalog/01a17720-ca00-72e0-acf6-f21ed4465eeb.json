@@ -19,7 +19,6 @@
     "operation": "offline flatten + BOX downsample",
     "settings": {
       "model": "flux-2-max",
-      "subject_class": "multi-subject and/or holed",
       "downsample": "box",
       "size": 15,
       "flatten_method": "outer frame set to the median colour of the outer ring",
@@ -63,6 +62,6 @@
     "verdict": "Pass",
     "date": "2026-11-02",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-048 (multi-subject and/or holed). Derived from the generated square (request 74e8d2ec-7087-4f1a-b641-52018983b1a8). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [198, 202, 206]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 99/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 0.00% warm pixels; filled cells luma mean 78.6 against background luma mean 190.7 (contrast 112.1); silhouette two masses: a wide twelve-cell slab across the upper frame and a separate six-by-five block at the lower right (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-048. Derived from the generated square (request 74e8d2ec-7087-4f1a-b641-52018983b1a8). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [198, 202, 206]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 99/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 0.00% warm pixels; filled cells luma mean 78.6 against background luma mean 190.7 (contrast 112.1); silhouette two masses: a wide twelve-cell slab across the upper frame and a separate six-by-five block at the lower right (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

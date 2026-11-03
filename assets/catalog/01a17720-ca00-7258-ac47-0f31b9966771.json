@@ -28,7 +28,6 @@
     "operation": "offline flatten + BOX downsample",
     "settings": {
       "model": "flux-2-max",
-      "subject_class": "multi-subject and/or holed",
       "downsample": "box",
       "size": 15,
       "flatten_method": "outer frame set to the median colour of the outer ring",
@@ -63,6 +62,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-128 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 1fb41029-536d-4792-bec7-ba22df7967cc, saved as PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [199, 207, 210]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 100/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band of 25-45% (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: the pixel reads as a heavy L-shaped mass with a wide arm to the right and a deep notch in its lower right, leaving one enclosed four-cell hole, dark slate blue-grey on pale cool grey, high contrast, calm clinical composition with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-128. Generated square: flux-2-max 1024x1024, request 1fb41029-536d-4792-bec7-ba22df7967cc, saved as PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [199, 207, 210]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 100/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band of 25-45% (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: the pixel reads as a heavy L-shaped mass with a wide arm to the right and a deep notch in its lower right, leaving one enclosed four-cell hole, dark slate blue-grey on pale cool grey, high contrast, calm clinical composition with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

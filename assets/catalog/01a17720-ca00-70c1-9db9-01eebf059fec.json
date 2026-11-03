@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "single-subject"
+      "size": "1024x1024"
     },
     "seed": "n/a \u2014 tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-123 (single-subject). Generated square: flux-2-max 1024x1024, request 1dc844d3-e4dd-483d-97f2-eb9251754092, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 71.6 against pale ground luma mean 207.4 (contrast 135.8); square dark/pale luma 58.8/208.7. The generated square reads as one solid stepped dark mass, a tall block on the left with a lower step on its right, with hard crisp square edges on a pale cool field. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: single-subject. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-123. Generated square: flux-2-max 1024x1024, request 1dc844d3-e4dd-483d-97f2-eb9251754092, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 71.6 against pale ground luma mean 207.4 (contrast 135.8); square dark/pale luma 58.8/208.7. The generated square reads as one solid stepped dark mass, a tall block on the left with a lower step on its right, with hard crisp square edges on a pale cool field. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

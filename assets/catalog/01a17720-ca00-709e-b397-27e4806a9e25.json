@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a \u2014 tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-144 (multi-subject and/or holed). Regenerated for the #268 verification repair. Generated square: flux-2-max 1024x1024, request b2c7cc17-6add-46cb-9aff-06594eac07d7, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 82.2 against pale background luma mean 197.4 (filled 90/225). The stored 15x15 pixel silhouette reads as two separate solid blocks side by side, each five cells wide and nine cells tall, with a clear one-cell pale channel between them (2 masses of 45 and 45 cells, 0 enclosed pale regions). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed, measured on the pixel as the shared bar on #294 reads it. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-144. Regenerated for the #268 verification repair. Generated square: flux-2-max 1024x1024, request b2c7cc17-6add-46cb-9aff-06594eac07d7, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 82.2 against pale background luma mean 197.4 (filled 90/225). The stored 15x15 pixel silhouette reads as two separate solid blocks side by side, each five cells wide and nine cells tall, with a clear one-cell pale channel between them (2 masses of 45 and 45 cells, 0 enclosed pale regions). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }
