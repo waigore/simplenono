@@ -33,7 +33,7 @@ Inputs: issue number `n`, expected `from` status, desired `to` status.
 1. Confirm the issue has exactly one of `type:epic`, `type:task`, `type:defect`, or `type:feedback`; abort otherwise. Use the matching table in the transitions reference.
 2. Read current `status:*` and `priority:*` labels.
 3. If more than one status label: remove extras so only one remains, then continue.
-4. If none: report and ask whether to set the create default (`status:pending-review`, or `status:pending-analysis` for feedback) or abort — do not guess a mid-pipeline status.
+4. If none: report and ask whether to set the create default (`status:pending-review`, or `status:pending-resolution` / `status:resolved` for feedback per related work) or abort — do not guess a mid-pipeline status.
 5. **Priority hygiene:** if more than one `priority:*` label, remove the lower ones and keep only the highest (`critical` > `high` > `normal`). Do not add `priority:normal` to unlabeled issues. Do not otherwise change priority (humans only set or change it).
 6. Assert current status equals `from`; abort with current vs expected if not.
 7. Assert `from`→`to` is allowed per the transitions reference; abort if not.
@@ -46,7 +46,7 @@ Inputs: one or more issue numbers, or “all open typed issues”.
 
 1. List targets: given numbers, or `gh issue list --state open --label type:epic,type:task,type:defect,type:feedback` (run per type if needed) and union.
 2. For each issue:
-   - Zero status labels → set the create default (`status:pending-review`, or `status:pending-analysis` for feedback) **only if** the user confirmed bulk repair or the issue was just created; otherwise report and ask.
+   - Zero status labels → set the create default (`status:pending-review`, or `status:pending-resolution` / `status:resolved` for feedback per related work) **only if** the user confirmed bulk repair or the issue was just created; otherwise report and ask.
    - Multiple status labels → keep none until swap: apply a single status only when the user names the correct one, or when evidence clearly matches one transition endpoint; otherwise report duplicates and ask.
    - One valid status → OK.
    - Unknown/non-catalog status-like label → report; do not delete non-`status:*` labels.

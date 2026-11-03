@@ -87,7 +87,7 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 | Section | Required | Content |
 |---------|----------|---------|
 | `## Points` | yes | One bullet per distinct piece of feedback |
-| `## Analysis` | yes | `None` until analysis; then one bullet per point |
+| `## Analysis` | yes | One bullet per point: text, disposition, `#N` or `None` |
 | `## Related issues` | yes | `#N` list of open or newly filed work, or `None` |
 | `## Notes` | no | Raw feedback and source context |
 
@@ -96,11 +96,12 @@ Skills and forms emit these bodies. Fill every required section; use `None` / `n
 -
 
 ## Analysis
-None
+- <point> — <disposition> — <#N or None>
 
 ## Related issues
-None
+<#N, … or None>
 
 ## Notes
 <notes or None>
 ```
+

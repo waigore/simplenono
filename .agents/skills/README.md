@@ -24,7 +24,7 @@ Native facades (Cursor / OpenCode / Grok) and authoring rules (veneers, **Invoke
 | [`unblock-project-issues`](unblock-project-issues/SKILL.md) | Critically examine leftover blocked-by edges and delete those not justified under the hierarchy ban |
 | [`redefine-project-issue`](redefine-project-issue/SKILL.md) | Replace comment-capped `pending-redefinition` task/defect with a new `pending-clarification` task (planner) |
 | [`create-project-defect`](create-project-defect/SKILL.md) | Create a Defect issue (`type:defect`) with related links (no blocked-by) |
-| [`create-project-feedback`](create-project-feedback/SKILL.md) | File a Feedback issue (`type:feedback`) in point form |
+| [`create-project-feedback`](create-project-feedback/SKILL.md) | File feedback: dispose points, lock requirement changes, file follow-ups |
 | [`enforce-task-workflow-status`](enforce-task-workflow-status/SKILL.md) | Gate or audit `status:*` labels; hygiene for duplicate `priority:*` |
 | [`review-project-issue`](review-project-issue/SKILL.md) | Review pass / fail / clarify → next status |
 | [`refine-project-issue`](refine-project-issue/SKILL.md) | Refine issue body → pending-review |
@@ -39,7 +39,7 @@ Native facades (Cursor / OpenCode / Grok) and authoring rules (veneers, **Invoke
 | [`issue-workflow-implement-agent`](issue-workflow-implement-agent/SKILL.md) | Background dispatch → implement work + `implement-project-issue` |
 | [`issue-workflow-verify-agent`](issue-workflow-verify-agent/SKILL.md) | Background dispatch → `verify-project-issue` |
 | [`issue-workflow-accept-agent`](issue-workflow-accept-agent/SKILL.md) | Background dispatch → `accept-project-issue` |
-| [`handle-feedback-agent`](handle-feedback-agent/SKILL.md) | One feedback issue: analysis, then resolution |
+| [`handle-feedback-agent`](handle-feedback-agent/SKILL.md) | One `pending-resolution` feedback issue → `resolved` when related work is done |
 | [`babysit-pr-agent`](babysit-pr-agent/SKILL.md) | Soft Actions check queue (~3 active), then one same-repo PR: conflicts, behind, in-scope CI for auto-merge |
 | [`author-spec`](author-spec/SKILL.md) | Write or edit a spec from `.agents/specs/rules/`; do not copy the rules into the spec |
 | [`author-quality-rubrics`](author-quality-rubrics/SKILL.md) | Interview baseline targets and orthogonal domain axes; write via `author-spec`; execution is `run-quality-evaluators` |
