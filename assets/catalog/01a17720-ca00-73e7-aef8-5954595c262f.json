@@ -1,0 +1,68 @@
+{
+  "kind_spec": "AK-puzzle-pictures",
+  "coverage": [
+    "V1"
+  ],
+  "state": "approved",
+  "version": 1,
+  "source_type": "ai-generation",
+  "recipe": "AK-puzzle-pictures.R1",
+  "id": "01a17720-ca00-73e7-aef8-5954595c262f",
+  "handle": "puzzle-pictures/pack-181-pixel",
+  "serves": [
+    "E-puzzle.P6",
+    "PER.R5",
+    "ACC.G3"
+  ],
+  "files": [
+    "puzzle-pictures/pack-181-pixel.png"
+  ],
+  "tool_role": {
+    "role": "TL.2",
+    "adr": "adr-free"
+  },
+  "generation": {
+    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a wide flat slab filling most of the frame, twenty cells across and ten cells tall, with two six-cell square holes cut through it and one column standing below it on the right, each cell about 5 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 20x20 icon, no text. Calm clinical still-life; clear silhouette; readable at 20x20. Avoid: playful chrome; gore; horror.",
+    "negative_prompt": "playful chrome; gore; horror",
+    "tool": "puzzle_derive.py (local authoring script)",
+    "operation": "offline flatten + BOX downsample",
+    "settings": {
+      "model": "flux-2-max",
+      "subject_class": "multi-subject and/or holed",
+      "downsample": "box",
+      "size": 20,
+      "flatten_method": "outer frame set to the median colour of the outer ring",
+      "flatten_band_percent": 5.0,
+      "flatten_ring_percent": 1.0,
+      "flatten_background_rgb": [
+        198,
+        203,
+        208
+      ]
+    },
+    "seed": "n/a — tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": [
+        "01a17720-ca00-73ac-a1b5-651307de3d10"
+      ]
+    },
+    "steps": [
+      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [198, 203, 208])",
+      "BOX downsample to 20x20 colour cells, one per board cell, alpha composited over white",
+      "write puzzle-pictures/pack-181-pixel.png"
+    ]
+  },
+  "guidance": "Derived from the square in inputs.base_assets; re-run the derive command to reproduce it.",
+  "license": {
+    "grant": "Generated under Cheaper Inference terms of service; the project may use and modify the output",
+    "tool": "Cheaper Inference"
+  },
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-03",
+    "reviewer": "agent",
+    "report": "AK-puzzle-pictures R1/V1, pack-181 (multi-subject and/or holed). Derived from the generated square (request a3827ec3-73e1-4e32-9992-2e42d42b65f5). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [198, 203, 208]), then BOX downsampled to 20x20, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 137/400 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 100-180 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 0.00% warm pixels; filled cells luma mean 83.2 against background luma mean 198.8 (contrast 115.6); silhouette two separate masses: an upper block with two square windows and a lower-right column (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+  }
+}
