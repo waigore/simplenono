@@ -49,13 +49,13 @@ Capture: **25 `capture: PASS`, 0 `capture: FAIL`**, final line `capture: RESULT 
 
 ## Judged states (all images from this graphical run of this build)
 
-| Path | Protocol / pass item | What it shows |
+| Wiki path | Protocol / pass item | What it shows |
 |------|----------------------|---------------|
-| `screenshots/01-gallery-app-start.png` | `ACC.G3` | Gallery at app start on a fresh save: 200 tiles, `Completed 0 / 200` |
-| `screenshots/02-puzzle-open-picture.png` | `PTU-leave-resume` S1 | `pack-004` open after one real tap filled a clear cell |
-| `screenshots/03-gallery-after-leave.png` | `PTU-leave-resume` S2 | Back on the gallery, `#004` In progress, with its Reset control |
-| `screenshots/04-result-picture.png` | `ACC.G3`, `PTU-play-puzzle` P1 | `pack-003` solved: the stored picture resolved through the manifest and drawn |
-| `screenshots/05-gallery-after-back.png` | `ACC.G3`, `PTU-play-puzzle` P1 | Gallery after Back: `#003` Done, its tile drawing the catalogued picture |
+| wiki `screenshots/01-gallery-app-start.png` | `ACC.G3` | Gallery at app start on a fresh save: 200 tiles, `Completed 0 / 200` |
+| wiki `screenshots/02-puzzle-open-picture.png` | `PTU-leave-resume` S1 | `pack-004` open after one real tap filled a clear cell |
+| wiki `screenshots/03-gallery-after-leave.png` | `PTU-leave-resume` S2 | Back on the gallery, `#004` In progress, with its Reset control |
+| wiki `screenshots/04-result-picture.png` | `ACC.G3`, `PTU-play-puzzle` P1 | `pack-003` solved: the stored picture resolved through the manifest and drawn |
+| wiki `screenshots/05-gallery-after-back.png` | `ACC.G3`, `PTU-play-puzzle` P1 | Gallery after Back: `#003` Done, its tile drawing the catalogued picture |
 
 ## Release-build evidence (same tree, same session)
 
