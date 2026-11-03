@@ -136,6 +136,20 @@ func activate_reset() -> bool:
 	return true
 
 
+## The tile's controls in [code]Controls[/code] table order ([code]UI-gallery[/code]):
+## C1 open, then C2 Reset when it is allowed.
+func focus_controls() -> Array[Control]:
+	var controls: Array[Control] = [_open_button]
+	if reset_allowed():
+		controls.append(_reset_button)
+	return controls
+
+
+## The C1 control, for input tests.
+func open_button() -> Button:
+	return _open_button
+
+
 ## The C2 control, for input tests.
 func reset_button() -> Button:
 	return _reset_button
@@ -163,6 +177,7 @@ func _build() -> void:
 	layout.add_theme_constant_override("separation", 0)
 	add_child(layout)
 	_open_button = Button.new()
+	_open_button.focus_mode = Control.FOCUS_ALL
 	_open_button.custom_minimum_size = Vector2(0.0, TILE_WIDTH / PICTURE_ASPECT + META_FLOOR_HEIGHT)
 	_open_button.tooltip_text = ""
 	_open_button.add_theme_stylebox_override("normal", _flat_style())
@@ -230,6 +245,7 @@ func _build_reset_holder() -> Control:
 	row.add_child(spacer)
 	_reset_button = Button.new()
 	_reset_button.text = COPY_RESET
+	_reset_button.focus_mode = Control.FOCUS_ALL
 	_reset_button.custom_minimum_size = Vector2(0.0, 28.0)
 	_reset_button.add_theme_stylebox_override("normal", _panel_style(PresentationPalette.PAPER))
 	_reset_button.add_theme_stylebox_override("hover", _panel_style(PresentationPalette.PAPER))

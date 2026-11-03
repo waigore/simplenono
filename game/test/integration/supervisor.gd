@@ -150,8 +150,6 @@ func _execute(step: Dictionary) -> bool:
 		result = _pause()
 	elif kind == "resume":
 		result = _resume()
-	elif kind == "leave":
-		result = _leave()
 	elif kind == "settings":
 		result = _settings()
 	elif kind == "back":
@@ -390,15 +388,6 @@ func _resume() -> bool:
 	return _passed()
 
 
-func _leave() -> bool:
-	if _shell == null:
-		return _failed_with("no shell to leave through")
-	_shell.leave_puzzle()
-	_attempt = null
-	_record_flow("back", true)
-	return _passed()
-
-
 func _back() -> bool:
 	var from_settings := _shell != null and _shell.view() == Shell.SETTINGS_VIEW
 	var from_result := _shell != null and _shell.view() == Shell.RESULT_VIEW
@@ -409,6 +398,8 @@ func _back() -> bool:
 		pressed = _press_result_button("%BackButton")
 	else:
 		pressed = _press_puzzle_button("%LeaveButton")
+		if pressed and _shell.attempt() != null:
+			return _failed_with("back did not leave through the O6 path")
 	if pressed:
 		_attempt = null
 		_record_flow("back", true)

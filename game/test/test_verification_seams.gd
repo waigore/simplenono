@@ -10,6 +10,8 @@ extends GutTest
 ## restored afterwards; no test edits the project file.
 
 const SHELL_SCENE := "res://presentation/shell.tscn"
+const TEST_PATH := "user://progress-verification-seams-test.cfg"
+const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 var _shell: Shell
 var _seams: DebugSeams
@@ -19,13 +21,22 @@ var _spare_severity: SeverityLog
 
 func before_each():
 	ProjectSettings.set_setting(DebugSeams.FLAG_SETTING, false)
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
 
 
 func after_each():
 	ProjectSettings.set_setting(DebugSeams.FLAG_SETTING, false)
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
 	if _spare_severity != null:
 		_spare_severity.uninstall()
 		_spare_severity = null
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
 
 
 func _boot(with_seams: bool) -> void:
@@ -33,6 +44,7 @@ func _boot(with_seams: bool) -> void:
 	var scene := load(SHELL_SCENE) as PackedScene
 	assert_not_null(scene, "shell scene loads")
 	_shell = scene.instantiate() as Shell
+	_shell.progress_path = TEST_PATH
 	add_child_autofree(_shell)
 	_screen = _shell.puzzle_screen()
 	_screen.set_process(false)

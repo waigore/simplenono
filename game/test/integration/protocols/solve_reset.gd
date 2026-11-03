@@ -25,7 +25,12 @@ static func spec() -> Dictionary:
 			{"id": "puzzle", "kind": "wait_probe", "probe": "puzzle_ready", "timeout_ms": 5000},
 			{"id": "beat", "kind": "wait_beat", "timeout_ms": 5000},
 			{"id": "solve", "kind": "solve"},
-			{"id": "leave", "kind": "leave"},
+			# UI-result's C1 (`NAV.T5`) is refused until the morph reaches `S1`
+			# (US1.5b), so wait for both `CFG.MORPH_STAGE_MS` stages first as
+			# `navigate.gd` does; a bare back would be a no-op that still reports ok.
+			{"id": "result-default", "kind": "wait_ms", "ms": 900},
+			{"id": "result-back", "kind": "back"},
+			{"id": "result-view", "kind": "expect", "probe": "view", "value": "gallery"},
 			{"id": "reopen", "kind": "open", "puzzle": "pack-000"},
 			{"id": "second-beat", "kind": "wait_beat", "timeout_ms": 5000},
 			{"id": "mark", "kind": "mark", "row": 0, "column": 0, "mark": "fill"},

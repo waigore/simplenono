@@ -59,11 +59,13 @@ theme_override_constants/separation = 8
 [node name="LeaveButton" type="Button" parent="Margin/Layout/Chrome"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 2
 text = "Leave"
 
 [node name="SettingsButton" type="Button" parent="Margin/Layout/Chrome"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 2
 text = "Settings"
 
 [node name="Spacer" type="Control" parent="Margin/Layout/Chrome"]
@@ -137,16 +139,19 @@ theme_override_constants/separation = 8
 [node name="FillButton" type="Button" parent="Margin/Layout/Tools"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 2
 text = "Fill"
 
 [node name="CrossButton" type="Button" parent="Margin/Layout/Tools"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 2
 text = "Cross"
 
 [node name="ClearButton" type="Button" parent="Margin/Layout/Tools"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 2
 text = "Clear"
 
 [node name="ReadyTimer" type="Timer" parent="."]

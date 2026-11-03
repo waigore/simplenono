@@ -9,6 +9,8 @@ extends GutTest
 
 const SCREEN_SCENE := preload("res://presentation/result.tscn")
 const PUZZLE_ID := "pack-000"
+const TEST_PATH := "user://progress-result-screen-test.cfg"
+const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 var _screen: ResultScreen
 var _definition: PuzzleDefinition
@@ -23,6 +25,16 @@ func before_each() -> void:
 	_screen.set_process(false)
 
 
+func after_each() -> void:
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+
+
 ## The shipped puzzle's definition, read the way the shell reads it.
 func _shipped_definition() -> PuzzleDefinition:
 	var pack := Pack.new()
@@ -35,7 +47,9 @@ func _shipped_definition() -> PuzzleDefinition:
 ## One attempt solved through the real rule; returns the grid the solve carried
 ## ([code]CTR-attempt[/code] S12).
 func _solve_the_shipped_puzzle() -> MarkGrid:
-	var pack := Pack.new()
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+	var pack := Pack.new(TEST_PATH)
 	pack.load_pack(Pack.PACK_PATH)
 	var attempt := Attempt.new(pack)
 	assert_true(attempt.open(PUZZLE_ID), "the shipped puzzle opens")
@@ -210,3 +224,36 @@ func test_us1_5_no_frame_between_stages_is_empty() -> void:
 			_screen.advance(at_ms - elapsed)
 			elapsed = at_ms
 			_assert_a_drawable_layer_shows_at("%d ms" % at_ms)
+
+
+# R1 / PER.R5: the reveal paints one centered square, as the approved mockup's 200x200
+# morph, so a square stored picture on a wide host is not stretched into a flat band.
+func test_r1_reveal_layer_is_a_centered_square() -> void:
+	var slot := ResultMorphSlot.new()
+	add_child_autofree(slot)
+	slot.size = Vector2(400.0, 260.0)
+	var square := slot.square()
+	assert_almost_eq(square.size.x, 260.0, 0.01, "the shorter side sets the square")
+	assert_almost_eq(square.size.y, 260.0, 0.01, "the square is as tall as the host")
+	assert_almost_eq(square.position.x, 70.0, 0.01, "centered horizontally in the wide host")
+	assert_almost_eq(square.position.y, 0.0, 0.01, "flush with the host's top")
+
+	slot.show_picture(_texture(Color.WHITE))
+	var picture := slot.picture_box()
+	assert_almost_eq(picture.size.x, square.size.x, 0.01, "a square picture fills the square")
+	assert_almost_eq(picture.size.y, square.size.y, 0.01, "and keeps its natural proportions")
+
+
+# R1 / PER.R5: a non-square stored picture is fitted by its own proportions, never
+# stretched to the slot's box.
+func test_r1_non_square_picture_keeps_its_proportions() -> void:
+	var image := Image.create(4, 2, false, Image.FORMAT_RGBA8)
+	image.fill(Color.WHITE)
+	var slot := ResultMorphSlot.new()
+	add_child_autofree(slot)
+	slot.size = Vector2(400.0, 260.0)
+	slot.show_picture(ImageTexture.create_from_image(image))
+	var picture := slot.picture_box()
+	assert_almost_eq(picture.size.x / picture.size.y, 2.0, 0.01, "the source's 2:1 aspect stays")
+	assert_almost_eq(picture.size.x, 260.0, 0.01, "fitted to the square's width")
+	assert_almost_eq(picture.position.y, (260.0 - picture.size.y) * 0.5, 0.01, "centered")

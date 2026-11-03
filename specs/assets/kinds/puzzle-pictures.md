@@ -21,7 +21,7 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 | ID | Property | Value |
 |----|----------|-------|
 | S1 | Pixel grid | 1:1 with puzzle size (N×N colour); nearest-upscale for display |
-| S2 | Fill band | Luma threshold → ~25–45% filled cells |
+| S2 | Fill band | Luma threshold fills cells; band per K2 |
 | S3 | Clues | Run lengths from the fill set |
 | S4 | Solvability | Unique line-logic, else regenerate |
 | S5 | Background | Flatten vignette so border is not false fills |
@@ -71,7 +71,7 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 | ID | Check | Method | Pass criterion |
 |----|-------|--------|----------------|
 | K1 | Size | Inspect | N×N colour cells (S1) |
-| K2 | Fill band | Count | ~25–45% (S2) |
+| K2 | Fill band | Count | 25–45% of `size²`: 25–45 at 10×10, 56–101 at 15×15, 100–180 at 20×20 |
 | K3 | Unique line-logic | Offline judge | Pass S4 |
 | K4 | Style calm | Review | AES.P1 / prompt_policy |
 | K5 | Mix | Pack audit | Roughly V2 |

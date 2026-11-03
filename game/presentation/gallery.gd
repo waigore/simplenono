@@ -6,9 +6,10 @@ extends Control
 ## The screen is a read view over [b]CTR-pack[/b] O1 and O2: it draws the completion
 ## rate, one tile per accepted definition, and C2's allowedness from the persisted
 ## facts. It raises player intents instead of routing or writing: opening a puzzle is
-## [b]CMP-shell[/b]'s, settings is routed there too ([code]NAV.T2[/code]), and
-## [code]EX.confirm[/code] plus the reset call are #96's. A successful reset refreshes
-## through [method refresh] ([code]SEQ reset[/code] S5), so the tile reads back as new.
+## [b]CMP-shell[/b]'s, settings is routed there too ([code]NAV.T2[/code]), and the
+## [code]EX.confirm[/code] box shown here is answered by [b]CMP-shell[/b]'s reset path
+## ([code]SEQ reset[/code] S1-S6). A successful reset refreshes through
+## [method refresh] (S5), so the tile reads back as new.
 
 ## C1 ([code]IN.activate[/code]): the player asked to open [param puzzle_id].
 signal puzzle_requested(puzzle_id: String)
@@ -18,6 +19,14 @@ signal reset_requested(puzzle_id: String)
 
 ## C3 ([code]IN.activate[/code]): the player asked for settings.
 signal settings_requested
+
+## [code]EX.confirm[/code] Confirm ([code]IN.confirm[/code]): the shell runs
+## [b]CTR-pack[/b] O7 for [param puzzle_id] ([code]SEQ reset[/code] S2-S4).
+signal reset_confirmed(puzzle_id: String)
+
+## [code]EX.confirm[/code] Cancel ([code]IN.cancel[/code]): the shell dismisses with no
+## write ([code]SEQ reset[/code] B2).
+signal reset_cancelled(puzzle_id: String)
 
 const COPY_COMPLETION := "Completed %d / %d"
 const COPY_GREETING := "Local pack"
@@ -38,6 +47,7 @@ var _pack: Pack
 var _entries: Array[GalleryEntry] = []
 var _tiles: Dictionary = {}
 var _picture_for := Callable()
+var _confirm: ConfirmOverlay
 
 @onready var _background: ColorRect = %Background
 @onready var _grid: GridContainer = %Grid
@@ -57,6 +67,7 @@ func _ready() -> void:
 	_settings_button.text = COPY_SETTINGS
 	_style_settings_button()
 	_settings_button.pressed.connect(_on_settings_pressed)
+	_build_confirm()
 	resized.connect(_update_columns)
 	_update_columns()
 	get_viewport().size_changed.connect(_refresh_type_sizes)
@@ -166,8 +177,11 @@ func picture_width() -> float:
 	return target.picture_size().x if target != null else 0.0
 
 
-## Raises C1 for [param puzzle_id]. Returns false and changes nothing for an unknown id.
+## Raises C1 for [param puzzle_id]. Returns false and changes nothing for an unknown id
+## or while [code]EX.confirm[/code] blocks the screen.
 func activate_tile(puzzle_id: String) -> bool:
+	if reset_confirm_showing():
+		return false
 	var target := tile(puzzle_id)
 	if target == null:
 		return false
@@ -176,11 +190,57 @@ func activate_tile(puzzle_id: String) -> bool:
 
 
 ## Raises C2 for [param puzzle_id] when allowed (B1 when not). Returns whether it fired.
+## While [code]EX.confirm[/code] is showing the gallery is blocked, so nothing fires.
 func activate_reset(puzzle_id: String) -> bool:
+	if reset_confirm_showing():
+		return false
 	var target := tile(puzzle_id)
 	if target == null:
 		return false
 	return target.activate_reset()
+
+
+## [code]SEQ reset[/code] S1: shows [code]EX.confirm[/code] for [param puzzle_id] when
+## the tile allows C2. Returns false and changes nothing otherwise (B1).
+func present_reset_confirm(puzzle_id: String) -> bool:
+	if reset_confirm_showing():
+		return false
+	var target := tile(puzzle_id)
+	if target == null or not target.reset_allowed():
+		return false
+	_confirm.show_for(puzzle_id)
+	return true
+
+
+## [code]SEQ reset[/code] S6/B2: dismisses [code]EX.confirm[/code] and returns the
+## gallery to Default.
+func dismiss_reset_confirm() -> void:
+	_confirm.dismiss()
+
+
+## The screen's controls in [code]Controls[/code] table order ([code]controls.md[/code]
+## F1): C1 each tile, then C3 Settings, with each tile's C2 Reset right after it because
+## it belongs to that tile. [code]EX.confirm[/code]'s two actions are left out: while the
+## box shows, [code]IN.confirm[/code] and [code]IN.cancel[/code] reach it directly.
+func focus_controls() -> Array[Control]:
+	var controls: Array[Control] = []
+	for entry in _entries:
+		var target := tile(entry.id)
+		if target == null:
+			continue
+		controls.append_array(target.focus_controls())
+	controls.append(_settings_button)
+	return controls
+
+
+## The [code]EX.confirm[/code] overlay, so the shell and tests can reach its intents.
+func reset_confirm() -> ConfirmOverlay:
+	return _confirm
+
+
+## True while [code]EX.confirm[/code] is showing and the gallery is blocked.
+func reset_confirm_showing() -> bool:
+	return _confirm != null and _confirm.is_showing()
 
 
 func _rebuild() -> void:
@@ -233,6 +293,23 @@ func _update_columns() -> void:
 	_grid.columns = WIDE_COLUMNS if size.x >= WIDE_WIDTH else NARROW_COLUMNS
 
 
+## Builds [code]EX.confirm[/code] last so it sits over the whole screen ([code]S1[/code]
+## copy, Confirm and Cancel from the gallery copy table).
+func _build_confirm() -> void:
+	_confirm = ConfirmOverlay.new()
+	add_child(_confirm)
+	_confirm.confirmed.connect(_on_confirm_confirmed)
+	_confirm.cancelled.connect(_on_confirm_cancelled)
+
+
+func _on_confirm_confirmed(puzzle_id: String) -> void:
+	reset_confirmed.emit(puzzle_id)
+
+
+func _on_confirm_cancelled(puzzle_id: String) -> void:
+	reset_cancelled.emit(puzzle_id)
+
+
 ## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied on
 ## viewport resize. Layout structure and copy stay fixed; only the type reflows.
 func _refresh_type_sizes() -> void:
@@ -241,6 +318,7 @@ func _refresh_type_sizes() -> void:
 	_title.add_theme_font_size_override("font_size", font_size)
 	_completion_label.add_theme_font_size_override("font_size", font_size)
 	_settings_button.add_theme_font_size_override("font_size", font_size)
+	_confirm.set_chrome_font_size(font_size)
 	for target: GalleryTile in _tiles.values():
 		target.set_chrome_font_size(font_size)
 

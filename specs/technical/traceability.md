@@ -28,7 +28,7 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | Components | [`components/`](components/) | Applies |
 | Contracts | [`contracts/`](contracts/) | Applies |
 | Schemata and lifecycles | [`schemata/`](schemata/) | Applies |
-| Sequences | [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) | Applies |
+| Sequences | [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md), [`sequences/reset-telemetry.md`](sequences/reset-telemetry.md) | Applies |
 | Failure model | `failures.md` | N/A — a rejected call changes nothing, and there is no separate failure model |
 | Concurrency and update loop | `concurrency.md` | N/A — the shell advances the attempt on one main thread |
 | Persistence and save mapping | [`persistence.md`](persistence.md) | Applies |

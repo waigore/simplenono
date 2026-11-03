@@ -41,13 +41,13 @@ A skill whose procedure already lives in a doc, a spec, or a sibling `references
 
 - Contract detail lives in `docs/`, `specs/`, a leaf skill, or that skill's `references/`. Callers link.
 - Pattern: [`ensure-project-setup`](../.agents/skills/ensure-project-setup/SKILL.md).
-- Dispatch agents (`issue-workflow-*-agent`) are veneers over [`docs/issues/workflow-dispatch.md`](issues/workflow-dispatch.md) plus the mapped `*-project-issue` skill. An agent-orc line `Assigned issue: N` is `#n`; `none` means discover.
+- Dispatch agents (`issue-workflow-*-agent`) are veneers over [`docs/issues/workflow-dispatch.md`](issues/workflow-dispatch.md) plus the mapped `*-project-issue` skill. `handle-feedback-agent` is a veneer over [`docs/issues/feedback.md`](issues/feedback.md). An agent-orc line `Assigned issue: N` is `#n`; `none` means discover.
 
 ### Veneer references
 
 | Shared procedure | Used by |
 |------------------|---------|
-| [`typed-issue-create.md`](../.agents/skills/create-project-task/references/typed-issue-create.md) | create epic / task / defect |
+| [`typed-issue-create.md`](../.agents/skills/create-project-task/references/typed-issue-create.md) | create epic / task / defect / feedback |
 | [`action-shell.md`](../.agents/skills/enforce-task-workflow-status/references/action-shell.md) | review, refine, clarify, implement, verify, accept |
 | [`sources.md`](../.agents/skills/review-code/references/sources.md) | `review-code`, `audit-code-structure` |
 | [`change-pr.md`](../.agents/skills/manage-asset/references/change-pr.md) | asset runs, `create-poc`, `promote-poc` |

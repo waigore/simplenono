@@ -1,0 +1,36 @@
+== build under acceptance: 1161953 (squash of PR #431) ==
+1161953 Record one reset telemetry event on a gallery Confirm (#431)
+ game/presentation/debug_seams.gd             |  19 ++++-
+ game/presentation/shell.gd                   |  10 ++-
+ game/test/test_shell_open.gd                 | 105 ++++++++++++++++++++++++++-
+ specs/technical/components/shell.md          |   2 +-
+ specs/technical/sequences/reset-telemetry.md |  31 ++++++++
+ specs/technical/sequences/reset.md           |   1 +
+ specs/technical/technical.md                 |   2 +-
+ specs/technical/traceability.md              |   2 +-
+ specs/technical/verification.md              |   6 +-
+ 9 files changed, 162 insertions(+), 16 deletions(-)
+
+== gdlint game ==
+Success: no problems found
+
+== gdformat --check game ==
+90 files would be left unchanged
+
+== spec_lint ==
+  WARNING: specs/view/glossary.md:12 [glossary] 'Diagram' is also defined in specs/technical/glossary.md; define it once and link
+Spec lint: 0 error(s), 1 warning(s) across 9 checks.
+
+== GUT suite ==
+[0m
+Totals
+------
+Scripts              26
+Tests               324
+Passing Tests       324
+Asserts           23296
+Time              176.418s
+
+
+[32m---- All tests passed! ----
+[0m

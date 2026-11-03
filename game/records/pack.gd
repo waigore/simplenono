@@ -9,7 +9,7 @@ extends RefCounted
 ## [PuzzleDefinition] per accepted entry, and serves them by id ([method definition],
 ## O3). [method progress] is the one place the progress record lives, so nothing outside
 ## this component reaches it (R2). [ProgressFile] reads `user://progress.cfg` at pack
-## start and replaces it after a reset (R4, G3); the other writes are #96's.
+## start and replaces it after a commit (O5) and a reset (O7, R4, G3).
 ## This layer (L3) imports nothing from L1 or L2.
 
 ## The shipped pack ([b]CTR-pack[/b] pack layout).
@@ -120,10 +120,22 @@ func add_definition(definition: PuzzleDefinition) -> void:
 
 
 ## O4: the progress rules holding every puzzle's record; [method ProgressRules.record]
-## is the per-request read. [b]CMP-attempt[/b] opens a puzzle through it and commits the
-## auto-cross through [method ProgressRules.commit] (O5).
+## is the per-request read. [b]CMP-attempt[/b] opens a puzzle through it and commits
+## through [method commit] (O5).
 func progress() -> ProgressRules:
 	return _progress
+
+
+## O5: replaces [param puzzle_id]'s record and `user://progress.cfg` (G3) with
+## [param marks], [param elapsed], and [param in_progress]. The marks are copied, so
+## later changes to [param marks] do not reach the record. An unknown id changes
+## nothing (G2) and returns null.
+func commit(puzzle_id: String, marks: MarkGrid, elapsed: int, in_progress: bool) -> ProgressRecord:
+	if not _definitions.has(puzzle_id):
+		return null
+	var record := _progress.commit(puzzle_id, marks, elapsed, in_progress)
+	_progress_file.save(_progress, definition_ids())
+	return record
 
 
 ## O7: clears [param puzzle_id]'s marks, elapsed, personal best, and ever-completed,

@@ -13,9 +13,9 @@ extends Control
 ## only O1 — it never writes a mark, a record, or a derived value.
 ##
 ## R4/R5/R6: the asset resolver reads the manifest once here at app start; [AudioFeedback]
-## preloads the mark ticks, starts the bed while a puzzle is open, and plays the solve
-## sting; [Haptics] clicks on an accepted fill or cross. Marks reach them through
-## [MarkInput]'s S8 signal, and both read this shell's [SessionFlags]
+## preloads the mark ticks, starts the session bed (gallery, puzzle, and result alike),
+## and plays the solve sting; [Haptics] clicks on an accepted fill or cross. Marks reach
+## them through [MarkInput]'s S8 signal, and both read this shell's [SessionFlags]
 ## ([b]SCH-preferences[/b] F1/F2) rather than keeping their own copy.
 ##
 ## [GalleryScreen] is the no-puzzle screen ([code]SEQ-open[/code] B1 keeps it shown and
@@ -27,9 +27,12 @@ extends Control
 ## ([code]NAV.T5[/code]). The result's stage clock pauses with the attempt, so a halted
 ## session freezes the morph and a test can decide each stage exactly.
 ##
-## [code]EX.confirm[/code] stays with #96, so the gallery's C2 reset intent ends here: the
-## shell answers with [code]SEQ reset[/code] S6 on the gallery and re-reads [b]CTR-pack[/b]
-## O1/O2 (S5), leaving the O7 call to #96's confirm flow.
+## [code]EX.confirm[/code] is the gallery's reset confirm: the gallery's C2 reset intent
+## opens the box here ([code]SEQ reset[/code] S1), Confirm runs [b]CTR-pack[/b] O7 (S2-S4)
+## and re-reads O1/O2 (S5), and Cancel dismisses with no write (B2). Both return the
+## gallery to Default (S6). A successful Confirm also records the S4 [code]reset[/code]
+## telemetry event through the seams' one [Telemetry] sink; a refused one records nothing
+## (B3).
 
 ## Shown when nothing is open ([code]NAV.T1[/code]'s gallery).
 const GALLERY_VIEW := "gallery"
@@ -52,9 +55,13 @@ const MORPH_STAGE_SETTING := "design/morph_stage_ms"
 ## empty value reads as "no catalogued family yet" and keeps the engine default face.
 const UI_FONT_ASSET_ID := "01a1996d-fc83-79ad-81e5-b3e431590f90"
 
+## The progress document the pack reads and replaces ([constant ProgressFile.PATH]).
+## Tests point this at a temporary path so a run never touches user data.
+var progress_path := ProgressFile.PATH
+
 ## The live [Attempt], or null when no puzzle is open.
 var _attempt: Attempt
-var _pack := Pack.new()
+var _pack: Pack
 var _view := GALLERY_VIEW
 
 ## Where settings returns: the gallery, or the puzzle paused to open it.
@@ -84,6 +91,7 @@ var _haptics: Haptics
 
 
 func _ready() -> void:
+	_pack = Pack.new(progress_path)
 	_resolver = AssetResolver.new()
 	_ui_theme = UiTheme.new(_resolver, UI_FONT_ASSET_ID)
 	_gallery.set_ui_theme(_ui_theme)
@@ -93,12 +101,15 @@ func _ready() -> void:
 	_audio = AudioFeedback.new(_resolver, _flags)
 	add_child(_audio)
 	_audio.preload_ticks()
+	_audio.start_session()
 	_haptics = Haptics.new(_flags)
 	_pack.load_pack(Pack.PACK_PATH)
 	_gallery.set_picture_provider(_picture_for)
 	_gallery.puzzle_requested.connect(open_puzzle)
 	_gallery.settings_requested.connect(open_settings)
 	_gallery.reset_requested.connect(_on_gallery_reset_requested)
+	_gallery.reset_confirmed.connect(_on_reset_confirmed)
+	_gallery.reset_cancelled.connect(_on_reset_cancelled)
 	_gallery.present(_pack)
 	_puzzle.leave_requested.connect(leave_puzzle)
 	_puzzle.settings_requested.connect(open_settings)
@@ -107,6 +118,7 @@ func _ready() -> void:
 	_settings.back_requested.connect(close_settings)
 	_settings.present(_flags)
 	_result.back_requested.connect(close_result)
+	_result.reveal().morph_finished.connect(_on_result_morph_finished)
 	_show_gallery()
 
 
@@ -124,22 +136,21 @@ func open_puzzle(puzzle_id: String) -> bool:
 	_attempt = attempt
 	_puzzle.present(attempt)
 	_show_puzzle()
-	_audio.on_puzzle_open()
+	_audio.on_attempt_open()
 	_attempt.solved.connect(_on_attempt_solved)
+	_attempt.left.connect(_on_attempt_left)
 	_seams.note_open(attempt)
 	return true
 
 
-## [b]CTR-attempt[/b] O6 via the screen's C1 intent, then back to the gallery
-## ([code]NAV.T3[/code]). The gallery re-reads O1/O2 so it shows the committed record.
+## [b]CTR-attempt[/b] O6 via the screen's C1 intent ([code]SEQ-leave[/code] S1), then
+## back to the gallery ([code]NAV.T3[/code]). The attempt commits and emits E2; the
+## gallery re-reads O1/O2 so it shows the committed record. With no open attempt the
+## current screen stays (B2).
 func leave_puzzle() -> void:
-	if _attempt != null:
-		_seams.note_leave(_attempt.puzzle_id())
-	_unbind_attempt()
-	_attempt = null
-	_puzzle.present(null)
-	_audio.on_puzzle_leave()
-	_show_gallery()
+	if _attempt == null:
+		return
+	_attempt.leave()
 
 
 ## [code]NAV.T5[/code]: the result screen's C1 returns to the gallery. The resolve is
@@ -216,6 +227,136 @@ func view() -> String:
 	return _view
 
 
+## The current screen's controls in its [code]Controls[/code] table order
+## ([code]controls.md[/code] F1). The screen owns the list; the shell only serves it to
+## the keyboard path.
+func focus_controls() -> Array[Control]:
+	match _view:
+		GALLERY_VIEW:
+			return _gallery.focus_controls()
+		PUZZLE_VIEW:
+			return _puzzle.focus_controls()
+		SETTINGS_VIEW:
+			return _settings.focus_controls()
+		RESULT_VIEW:
+			return _result.focus_controls()
+	var none: Array[Control] = []
+	return none
+
+
+## Moves keyboard focus [param step] places through the current screen's ordered
+## controls ([code]IN.point[/code], B6/B16/B26). Focus clamps at either end rather than
+## wrapping, and an unfocused screen starts at its first available control.
+func move_focus(step: int) -> bool:
+	var controls := _focusable(focus_controls())
+	if controls.is_empty() or step == 0:
+		return false
+	var current := get_viewport().gui_get_focus_owner()
+	var index := controls.find(current)
+	var next := 0 if index < 0 else clampi(index + step, 0, controls.size() - 1)
+	controls[next].grab_focus()
+	return true
+
+
+## [code]IN.activate[/code] on the focused control (B4/B14/B24 when no
+## [code]EX.confirm[/code] is showing). An unfocused screen starts at its first
+## available control, so Enter and Space always reach something on a keyboard-only run.
+func activate_focused() -> bool:
+	var controls := _focusable(focus_controls())
+	if controls.is_empty():
+		return false
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused == null or not controls.has(focused):
+		focused = controls[0]
+		focused.grab_focus()
+	var button := focused as BaseButton
+	if button == null or button.disabled:
+		return false
+	button.pressed.emit()
+	return true
+
+
+## True while [code]EX.confirm[/code] blocks the gallery (B4/B5).
+func confirm_showing() -> bool:
+	return _gallery.reset_confirm_showing()
+
+
+## [code]IN.confirm[/code] for the showing [code]EX.confirm[/code]
+## ([code]SEQ reset[/code] S2). Does nothing when no box is showing.
+func confirm_from_input() -> bool:
+	if not confirm_showing():
+		return false
+	_gallery.reset_confirm().confirm()
+	return true
+
+
+## [code]IN.cancel[/code] for the showing [code]EX.confirm[/code]
+## ([code]SEQ reset[/code] B2). Does nothing when no box is showing.
+func cancel_from_input() -> bool:
+	if not confirm_showing():
+		return false
+	_gallery.reset_confirm().cancel()
+	return true
+
+
+## [code]IN.back[/code] when no [code]EX.confirm[/code] is showing (B5/B15/B25, B37):
+## the current screen's own back control — settings C3, puzzle C1 Leave, or result C1.
+## Only the gallery has no [code]IN.back[/code] control, so it is the one view that
+## reports false; the result screen consumes Back even while C1 is unavailable.
+func back_from_input() -> bool:
+	match _view:
+		SETTINGS_VIEW:
+			close_settings()
+			return true
+		PUZZLE_VIEW:
+			if _attempt == null:
+				return false
+			leave_puzzle()
+			return true
+		RESULT_VIEW:
+			_result.activate_back()
+			return true
+	return false
+
+
+## [code]IN.pause[/code] from an open puzzle (B10/B20/B30): the same route
+## [code]UI-puzzle.C6[/code] uses ([code]SEQ pause[/code] S1-S4), and nothing else.
+func pause_from_input() -> bool:
+	if _view != PUZZLE_VIEW or _attempt == null:
+		return false
+	return open_settings()
+
+
+## Keeps only controls a keyboard can focus right now: drawn, enabled, and focusable.
+func _focusable(controls: Array[Control]) -> Array[Control]:
+	var available: Array[Control] = []
+	for control in controls:
+		if control == null or not is_instance_valid(control):
+			continue
+		if not control.is_visible_in_tree():
+			continue
+		if control.focus_mode == Control.FOCUS_NONE:
+			continue
+		var button := control as BaseButton
+		if button != null and button.disabled:
+			continue
+		available.append(control)
+	return available
+
+
+## Puts focus on the first control of the screen just shown, so Enter/Space and the
+## arrows have a starting point without a pointer.
+func _focus_first() -> void:
+	var controls := _focusable(focus_controls())
+	if not controls.is_empty():
+		controls[0].grab_focus()
+
+
+func _on_result_morph_finished() -> void:
+	if _view == RESULT_VIEW:
+		_focus_first()
+
+
 ## True when settings would return to the paused puzzle rather than the gallery.
 func settings_returns_to_puzzle() -> bool:
 	return _settings_return == PUZZLE_VIEW
@@ -232,11 +373,28 @@ func pack() -> Pack:
 
 
 ## [code]SEQ reset[/code] S1: [code]UI-gallery.C2[/code]'s reset intent reaches the shell
-## for [param _puzzle_id]. S2-S4 (Confirm → [b]CTR-pack[/b] O7) stay in #96's confirm
-## flow, so no record is written here; the gallery returns to Default (S6) and re-reads
-## O1/O2 (S5), which is also where #96's confirm path lands after its O7 call.
-func _on_gallery_reset_requested(_puzzle_id: String) -> void:
+## for [param puzzle_id]. The gallery shows [code]EX.confirm[/code] and blocks itself; the
+## shell answers Confirm or Cancel through [method _on_reset_confirmed] and
+## [method _on_reset_cancelled].
+func _on_gallery_reset_requested(puzzle_id: String) -> void:
+	_gallery.present_reset_confirm(puzzle_id)
+
+
+## [code]SEQ reset[/code] S2-S6: Confirm runs [b]CTR-pack[/b] O7 for [param puzzle_id]
+## (S3-S4), records one S4 [code]reset[/code] event, re-reads O1/O2 (S5), and dismisses
+## the box back to gallery Default (S6). An unknown id changes nothing, writes nothing,
+## and records nothing (B3).
+func _on_reset_confirmed(puzzle_id: String) -> void:
+	if not _pack.reset(puzzle_id):
+		return
+	_seams.note_reset()
 	_gallery.refresh()
+	_gallery.dismiss_reset_confirm()
+
+
+## [code]SEQ reset[/code] B2: Cancel dismisses the box with no write.
+func _on_reset_cancelled(_puzzle_id: String) -> void:
+	_gallery.dismiss_reset_confirm()
 
 
 ## [b]SCH-preferences[/b] F1/F2: the session flags this shell owns. #95's settings
@@ -288,10 +446,26 @@ func _on_attempt_solved(puzzle_id: String, _elapsed: int) -> void:
 	_show_result()
 
 
-## Drops this shell's E1 binding before the attempt is replaced or cleared.
+## [b]CTR-attempt[/b] E2 → [code]SEQ-leave[/code] S5: the attempt is already cleared, so
+## the shell drops its bindings, closes the puzzle screen, and shows the gallery. The
+## session bed ([code]ACC.G2[/code]) keeps playing across the leave; leaving has no
+## audio of its own.
+func _on_attempt_left(puzzle_id: String) -> void:
+	_seams.note_leave(puzzle_id)
+	_unbind_attempt()
+	_attempt = null
+	_puzzle.present(null)
+	_show_gallery()
+
+
+## Drops this shell's E1/E2 bindings before the attempt is replaced or cleared.
 func _unbind_attempt() -> void:
-	if _attempt != null and _attempt.solved.is_connected(_on_attempt_solved):
+	if _attempt == null:
+		return
+	if _attempt.solved.is_connected(_on_attempt_solved):
 		_attempt.solved.disconnect(_on_attempt_solved)
+	if _attempt.left.is_connected(_on_attempt_left):
+		_attempt.left.disconnect(_on_attempt_left)
 
 
 ## [code]CFG.MORPH_STAGE_MS[/code] (specs/design/configuration.md). The setting is a
@@ -316,13 +490,19 @@ func _process(delta: float) -> void:
 	_result.advance(int(roundf(delta * 1000.0)))
 
 
+## Every gallery return ([code]NAV.T1[/code], T3, T5, T6). Clearing the paused-path
+## return here keeps the guard ([method close_settings]) as the only exit that resumes
+## an attempt paused into settings: a gallery path never resumes it and
+## [method settings_returns_to_puzzle] is false afterwards.
 func _show_gallery() -> void:
 	_view = GALLERY_VIEW
+	_settings_return = GALLERY_VIEW
 	_gallery.visible = true
 	_gallery.refresh()
 	_puzzle.visible = false
 	_result.visible = false
 	_settings.visible = false
+	_focus_first()
 
 
 func _show_puzzle() -> void:
@@ -331,6 +511,7 @@ func _show_puzzle() -> void:
 	_result.visible = false
 	_settings.visible = false
 	_puzzle.visible = true
+	_focus_first()
 
 
 func _show_result() -> void:
@@ -339,6 +520,7 @@ func _show_result() -> void:
 	_puzzle.visible = false
 	_settings.visible = false
 	_result.visible = true
+	_focus_first()
 
 
 func _show_settings() -> void:
@@ -348,3 +530,4 @@ func _show_settings() -> void:
 	_result.visible = false
 	_settings.present(_flags)
 	_settings.visible = true
+	_focus_first()

@@ -1,6 +1,6 @@
 # GitHub issue linking (sub-issues)
 
-Shared procedure for `create-project-epic`, `create-project-task`, and `create-project-defect`. Policy: [`docs/issues/`](../../../../docs/issues/) and [`docs/issues/hierarchy.md`](../../../../docs/issues/hierarchy.md).
+Shared procedure for `create-project-epic`, `create-project-task`, `create-project-defect`, and `create-project-feedback`. Policy: [`docs/issues/`](../../../../docs/issues/) and [`docs/issues/hierarchy.md`](../../../../docs/issues/hierarchy.md). Substitute the calling skill's type, initial status, and priority. The example below is the epic/task/defect default.
 
 Resolve `OWNER` / `REPO` once:
 
