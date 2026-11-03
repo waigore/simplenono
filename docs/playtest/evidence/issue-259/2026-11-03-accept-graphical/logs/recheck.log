@@ -1,0 +1,4 @@
+pack-106 filled=56 masses=2[31, 25] holes=0 luma mean/p5/p95=168.1/98.8/206.4 contrast=78.8 rederive_bg=(189, 196, 199) max_cell_delta=2.08 flipped_cells=1
+pack-107 filled=79 masses=1[79] holes=8 luma mean/p5/p95=152.4/68.3/210.3 contrast=105.4 rederive_bg=(195, 201, 208) max_cell_delta=2.05 flipped_cells=1
+pack-108 filled=56 masses=1[56] holes=0 luma mean/p5/p95=171.8/90.2/208.5 contrast=98.6 rederive_bg=(202, 207, 212) max_cell_delta=1.83 flipped_cells=0
+pack-109 filled=78 masses=2[42, 36] holes=0 luma mean/p5/p95=159.8/54.9/224.4 contrast=137.2 rederive_bg=(213, 218, 221) max_cell_delta=2.21 flipped_cells=0
