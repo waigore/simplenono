@@ -1,0 +1,77 @@
+# Playtest — issue #258
+
+- **Issue:** #258 Puzzle pictures pack-102–pack-105 (15×15) (`type:task`)
+- **Build / session id:** `main@7d3cd10` / `issue-258-accept` (the slice landed at PR #390's squash `84082e1`;
+  `pack-102`–`pack-105` and their eight catalog entries are byte-identical from `84082e1` to `7d3cd10`)
+- **Coverage mode:** `full`
+- **Run:** 2026-11-03, graphical through `xvfb-run` (Godot 4.7.2 stable, 900×1200, `godot --path game` — not
+  `--headless`), `--debug-seams`, on the working tree at `7d3cd10`
+- **Checkerboard of record:** [`expect.json`](expect.json), from [`tools/expectations_258.py`](tools/expectations_258.py),
+  read straight off each committed `-pixel.png` — no `puzzle_derive.py` in the loop
+- **Log:** [`logs/capture.log`](logs/capture.log); `DBG.2` state dump: [`logs/state-pack-105.json`](logs/state-pack-105.json)
+
+These four rows change playable behavior (each ships a different solution grid and clues, and each gallery tile now
+resolves a picture pair), so playtesting is required. The scope is the protocols these rows can reach; no other flow
+changed in the slice.
+
+## Results
+
+| Protocol | Level | Result | Screenshot |
+|----------|-------|--------|------------|
+| `PTU-play-puzzle` | UX | pass | `screenshots/01-gallery-fresh.png`, `02-puzzle-102-open-ready.png`, `04-result-102-pictures.png`, `05-gallery-102-done.png` |
+| `PTU-mark-input` | UX | pass | `screenshots/06-puzzle-103-marks.png`, `07-gallery-103-in-progress.png` |
+| `PTD-ready-and-marks` | Design | pass | `screenshots/02-puzzle-102-open-ready.png` |
+| `PTD-crosses-and-fills` | Design | pass | `screenshots/08-puzzle-104-crossed.png`, `03-puzzle-102-one-fill-from-solve.png` |
+| `PTD-solve-and-pb` | Design | pass | `screenshots/03-puzzle-102-one-fill-from-solve.png`, `09-puzzle-105-last-fill.png` |
+| `PTU-gallery-reset` | UX | N/A — no reset flow changed | — |
+| `PTD-pack-finished`, `PTU-leave-resume`, `PTU-settings` | — | N/A — not reached by a picture slice | — |
+
+Final line: `capture: RESULT pass (9 shots, 0 checks failed)`, 35 `capture: PASS` lines, 200 puzzles accepted and
+0 rejected.
+
+## Judged states (all images from this graphical run of this build)
+
+| Path | Protocol / pass item | What it shows |
+|------|----------------------|---------------|
+| `screenshots/01-gallery-fresh.png` | `PTU-play-puzzle` S1 | Gallery, 200 puzzles load, none completed |
+| `screenshots/02-puzzle-102-open-ready.png` | `PTU-play-puzzle` P1, `PTD-ready-and-marks` | pack-102 opened via `DBG.3`, Ready beat, clues drawn |
+| `screenshots/03-puzzle-102-one-fill-from-solve.png` | `PTD-crosses-and-fills` P2, `PTD-solve-and-pb` P1 | pack-102 board with every non-solution cell crossed and 88 of 89 fills placed |
+| `screenshots/04-result-102-pictures.png` | `PTU-play-puzzle` P1–P2 | pack-102 solved → result screen drawing its generated square (two upright blocks on a pale cool field) |
+| `screenshots/05-gallery-102-done.png` | `PTU-play-puzzle` P2 | Back → gallery, #102 Done with its own picture tile beside seeded-silhouette neighbours |
+| `screenshots/06-puzzle-103-marks.png` | `PTU-mark-input` P1–P5 | pack-103: fill, clear, complement to cross, cross-drag; `DBG.2` agrees after each |
+| `screenshots/07-gallery-103-in-progress.png` | `PTU-mark-input` | pack-103 In progress after unsolved marks; #102 still Done |
+| `screenshots/08-puzzle-104-crossed.png` | `PTD-crosses-and-fills` P1 | pack-104 with all 164 non-solution cells crossed |
+| `screenshots/09-puzzle-105-last-fill.png` | `PTD-solve-and-pb` P1 | pack-105 solved on its last fill → result screen, one stepped mass |
+
+## Shared picture bar on #294 — independent checks
+
+[`tools/expectations_258.py`](tools/expectations_258.py) re-implements the fill rule (alpha over white,
+`Y = 0.2126R + 0.7152G + 0.0722B` on 0–255 sRGB, filled when `Y < 128`, BOX 1024→15) and
+[`tools/nonogram.py`](tools/nonogram.py) is its own line solver and enumerator, so neither imports
+`.github/scripts/puzzle_derive.py`.
+
+```
+pack-102 89 1 True True True True
+pack-103 75 1 True True True True
+pack-104 61 1 True True True True
+pack-105 93 1 True True True True
+```
+
+Columns: filled / 225, solution count, line logic solves it, logic equals pixel, pixel equals pack `solution-fills`,
+pixel equals pack clues. All four filled counts sit inside the 56–101 band.
+
+Measured on the committed pixel files: 0.00% warm pixels on all four (`mean B > mean R`); luma mean/p5/p95
+134.9/65/202 (102), 153.9/61/217 (103), 163.0/70/208 (104), 143.8/63/207 (105). Subject-versus-background luma
+contrast 104.2 (102), 138.6 (103), 112.3 (104), 113.5 (105).
+
+Connected masses at 15×15 (4-connectivity): pack-102 **2** (50 + 39), pack-103 **1** (75), pack-104 **2** (40 + 21),
+pack-105 **1** (93); no enclosed background cells on any board.
+
+## Notes
+
+- The probe was removed from `game/` after the run; this evidence folder is the only addition.
+- The acceptance agent could not open the PNGs visually (no image input in this session). The look is therefore
+  recorded by measurement and printed silhouettes (see `notes.md`); a human look at
+  `04-result-102-pictures.png` stays open for the product owner and blocks no bar item.
+- Every pass above is also asserted through the shell API, real input events, and `DBG.2` (35 PASS lines), so no
+  pass item rests on a screenshot alone.

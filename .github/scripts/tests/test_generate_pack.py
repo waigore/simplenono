@@ -76,6 +76,29 @@ class PixelFixture(unittest.TestCase):
                 index += 1
         return entries
 
+    def pack_entries(self, entries: list[dict]) -> Path:
+        path = self.root / generate_pack.PACK_REL
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(generate_pack.render(entries), encoding="utf-8")
+        return path
+
+    def add_pixel(self, index: int, fills: set[tuple[int, int]], state: str = "approved") -> str:
+        size, start = None, 0
+        for candidate, count in generate_pack.SIZES:
+            if index < start + count:
+                size = candidate
+                break
+            start += count
+        assert size is not None
+        pixel_id = generate_pack.picture_ids(index)[1]
+        name = f"puzzle-pictures/pack-{index:03d}-pixel.png"
+        self.write_file(f"pack-{index:03d}-pixel.png", png_bytes(colour_board(size, fills)))
+        self.catalogue(pixel_id, {"id": pixel_id, "state": state, "files": [name]})
+        return pixel_id
+
+    def invoke(self, *args: str) -> int:
+        return generate_pack.run([*args, "--root", str(self.root)])
+
 
 class ShippedPackTest(unittest.TestCase):
     def setUp(self) -> None:
@@ -114,6 +137,109 @@ class ShippedPackTest(unittest.TestCase):
             self.assertTrue(is_asset_id(entry["picture-id"]), entry["id"])
             self.assertTrue(is_asset_id(entry["pixel-picture-id"]), entry["id"])
             self.assertNotEqual(entry["picture-id"], entry["pixel-picture-id"])
+
+    def test_shipped_pack_is_in_the_per_line_form(self) -> None:
+        text = generate_pack.PACK.read_text(encoding="utf-8")
+        self.assertEqual(text, generate_pack.render(self.entries))
+        self.assertEqual(len(text.splitlines()), 2 * len(self.entries) + 1)
+
+
+class RenderFormTest(PixelFixture):
+    """The per-line form parses to the same content as the old one-line form."""
+
+    def test_render_puts_one_entry_on_each_line(self) -> None:
+        entries = self.seeded_entries()
+        text = generate_pack.render(entries)
+        self.assertEqual(json.loads(text), entries)
+        self.assertEqual(text.splitlines()[0], "[")
+        self.assertEqual(text.splitlines()[-1], "]")
+        self.assertEqual(len(text.splitlines()), 2 * len(entries) + 1)
+        self.assertEqual(text.count("\n\n"), len(entries) - 1)
+
+    def test_full_rebuild_differs_from_the_old_form_only_in_whitespace(self) -> None:
+        entries = generate_pack.build(self.root)
+        old = json.dumps(entries, separators=(",", ":"), ensure_ascii=False) + "\n"
+        new = generate_pack.render(entries)
+        self.assertNotEqual(new, old)
+        self.assertEqual(json.loads(new), json.loads(old))
+        self.assertEqual("".join(new.split()), "".join(old.split()))
+
+
+class TargetedWriteTest(PixelFixture):
+    """--puzzle rewrites only the named rows, and never on a bad input."""
+
+    FILLS = {(0, 0), (0, 1), (0, 2), (5, 5)}
+    OTHER = {(1, 1), (2, 2)}
+
+    def setUp(self) -> None:
+        super().setUp()
+        self.entries = self.seeded_entries()
+        self.path = self.pack_entries(self.entries)
+
+    def changed_lines(self, before: str, after: str) -> list[int]:
+        return [line for line, (old, new) in enumerate(zip(before.splitlines(), after.splitlines()))
+                if old != new]
+
+    def test_targeted_write_changes_only_its_own_line(self) -> None:
+        self.add_pixel(0, self.FILLS)
+        before = self.path.read_text(encoding="utf-8")
+
+        self.assertEqual(self.invoke("--puzzle", "pack-000"), 0)
+
+        after = self.path.read_text(encoding="utf-8")
+        self.assertEqual(self.changed_lines(before, after), [1])
+        entries = json.loads(after)
+        self.assertEqual(entries[0]["solution-fills"], [[0, 0], [0, 1], [0, 2], [5, 5]])
+        self.assertEqual(entries[1:], self.entries[1:])
+
+    def test_targeted_write_accepts_several_ids(self) -> None:
+        self.add_pixel(0, self.FILLS)
+        self.add_pixel(1, self.OTHER)
+        before = self.path.read_text(encoding="utf-8")
+
+        self.assertEqual(self.invoke("--puzzle", "pack-000", "--puzzle", "pack-001"), 0)
+
+        after = self.path.read_text(encoding="utf-8")
+        self.assertEqual(self.changed_lines(before, after), [1, 3])
+        self.assertEqual(json.loads(after)[0]["solution-fills"], [[0, 0], [0, 1], [0, 2], [5, 5]])
+        self.assertEqual(json.loads(after)[1]["solution-fills"], [[1, 1], [2, 2]])
+
+    def test_targeted_write_is_a_no_op_when_the_row_is_current(self) -> None:
+        self.add_pixel(0, self.FILLS)
+        self.assertEqual(self.invoke("--puzzle", "pack-000"), 0)
+        once = self.path.read_bytes()
+        self.assertEqual(self.invoke("--puzzle", "pack-000"), 0)
+        self.assertEqual(self.path.read_bytes(), once)
+
+    def test_targeted_write_without_an_approved_pixel_writes_nothing(self) -> None:
+        before = self.path.read_bytes()
+        self.assertEqual(self.invoke("--puzzle", "pack-000"), 1)
+        self.assertEqual(self.path.read_bytes(), before)
+
+    def test_targeted_write_rejects_a_pre_migration_file(self) -> None:
+        self.add_pixel(0, self.FILLS)
+        one_line = json.dumps(self.entries, separators=(",", ":"), ensure_ascii=False) + "\n"
+        self.path.write_text(one_line, encoding="utf-8")
+
+        self.assertEqual(self.invoke("--puzzle", "pack-000"), 1)
+        self.assertEqual(self.path.read_text(encoding="utf-8"), one_line)
+
+    def test_targeted_write_rejects_an_unknown_id(self) -> None:
+        before = self.path.read_bytes()
+        self.assertEqual(self.invoke("--puzzle", "pack-999"), 1)
+        self.assertEqual(self.path.read_bytes(), before)
+
+    def test_check_stays_green_after_a_targeted_write_with_several_pixels(self) -> None:
+        self.add_pixel(0, self.FILLS)
+        self.add_pixel(1, self.OTHER)
+        self.assertEqual(self.invoke(), 0)
+        self.add_pixel(0, self.OTHER)
+
+        self.assertEqual(self.invoke("--puzzle", "pack-000"), 0)
+        self.assertEqual(self.invoke("--check"), 0)
+        entries = json.loads(self.path.read_text(encoding="utf-8"))
+        self.assertEqual(entries[0]["solution-fills"], [[1, 1], [2, 2]])
+        self.assertEqual(entries[1]["solution-fills"], [[1, 1], [2, 2]])
 
 
 class NoApprovedPixelTest(PixelFixture):

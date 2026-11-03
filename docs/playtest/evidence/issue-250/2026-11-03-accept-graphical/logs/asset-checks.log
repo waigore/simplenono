@@ -1,0 +1,18 @@
+=== catalog entries ===
+01a17720-ca00-7030 state= approved coverage= ['V1'] recipe= AK-puzzle-pictures.R1 tool_role= {'role': 'TL.1', 'adr': 'adr-free'} review= Pass series= False
+01a17720-ca00-713d state= approved coverage= ['V1'] recipe= AK-puzzle-pictures.R1 tool_role= {'role': 'TL.2', 'adr': 'adr-free'} review= Pass series= False
+01a17720-ca00-705a state= approved coverage= ['V1'] recipe= AK-puzzle-pictures.R1 tool_role= {'role': 'TL.1', 'adr': 'adr-free'} review= Pass series= False
+01a17720-ca00-7266 state= approved coverage= ['V1'] recipe= AK-puzzle-pictures.R1 tool_role= {'role': 'TL.2', 'adr': 'adr-free'} review= Pass series= False
+01a17720-ca00-7026 state= approved coverage= ['V1'] recipe= AK-puzzle-pictures.R1 tool_role= {'role': 'TL.1', 'adr': 'adr-free'} review= Pass series= False
+01a17720-ca00-7226 state= approved coverage= ['V1'] recipe= AK-puzzle-pictures.R1 tool_role= {'role': 'TL.2', 'adr': 'adr-free'} review= Pass series= False
+01a17720-ca00-7079 state= approved coverage= ['V1'] recipe= AK-puzzle-pictures.R1 tool_role= {'role': 'TL.1', 'adr': 'adr-free'} review= Pass series= False
+01a17720-ca00-73a0 state= approved coverage= ['V1'] recipe= AK-puzzle-pictures.R1 tool_role= {'role': 'TL.2', 'adr': 'adr-free'} review= Pass series= False
+=== square/pixel sizes ===
+pack-070 generated 1024x1024 import= True
+pack-070 pixel 15x15 import= True
+pack-071 generated 1024x1024 import= True
+pack-071 pixel 15x15 import= True
+pack-072 generated 1024x1024 import= True
+pack-072 pixel 15x15 import= True
+pack-073 generated 1024x1024 import= True
+pack-073 pixel 15x15 import= True

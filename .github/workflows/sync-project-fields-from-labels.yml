@@ -1,0 +1,46 @@
+# Keep GitHub Project "Workflow status" / "Issue type" / "Priority" in sync with
+# issue labels. Labels → project fields only. Requires repo secret
+# PROJECT_SYNC_TOKEN (classic PAT with `project` + `repo`, or fine-grained with
+# Projects write).
+name: Sync project fields from labels
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to sync into project #3
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.action == 'opened' ||
+      (
+        (github.event.action == 'labeled' || github.event.action == 'unlabeled') &&
+        (
+          startsWith(github.event.label.name, 'status:') ||
+          startsWith(github.event.label.name, 'type:') ||
+          startsWith(github.event.label.name, 'priority:')
+        )
+      )
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync project fields from labels
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_SYNC_TOKEN }}
+          PROJECT_OWNER: waigore
+          PROJECT_NUMBER: "3"
+          ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
+          ISSUE_NUMBER: ${{ inputs.issue_number || github.event.issue.number }}
+          REPO: ${{ github.repository }}
+        run: python3 .github/scripts/sync_project_fields_from_labels.py

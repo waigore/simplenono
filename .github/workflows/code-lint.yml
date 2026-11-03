@@ -46,3 +46,11 @@ jobs:
       - name: Check asset manifest
         run: python3 .github/scripts/asset_manifest.py --check
 
+      # The pack is a generated file too: a slice that changes a pixel or a
+      # catalog entry must commit the derived rows, so drift fails here.
+      - name: Test puzzle pack generator
+        run: python3 .github/scripts/tests/test_generate_pack.py
+
+      - name: Check puzzle pack
+        run: python3 .github/scripts/generate_pack.py --check
+

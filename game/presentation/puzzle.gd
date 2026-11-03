@@ -155,6 +155,13 @@ func mark_input() -> MarkInput:
 	return get_node("MarkInput") as MarkInput
 
 
+## The screen's controls in [code]Controls[/code] table order
+## ([code]controls.md[/code] F1): C1 Leave, C6 Settings, C3 Fill, C4 Cross, C5 Clear.
+## C2 is the board and is not a focus target.
+func focus_controls() -> Array[Control]:
+	return [_leave_button, _settings_button, _fill_button, _cross_button, _clear_button]
+
+
 ## The cell at [param row] and [param column], for the input layer (#111).
 func cell_at(row: int, column: int) -> PuzzleCell:
 	return _board.cell_at(row, column)

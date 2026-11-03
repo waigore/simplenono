@@ -1,0 +1,68 @@
+{
+  "kind_spec": "AK-puzzle-pictures",
+  "coverage": [
+    "V1"
+  ],
+  "state": "approved",
+  "version": 1,
+  "source_type": "ai-generation",
+  "recipe": "AK-puzzle-pictures.R1",
+  "license": {
+    "grant": "Generated under Cheaper Inference terms of service; the project may use and modify the output",
+    "tool": "Cheaper Inference"
+  },
+  "generation": {
+    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: two solid masses on a pale background, a tall narrow block on the left about fourteen cells tall and six cells wide and a wide flat slab on the right about eight cells tall and seven cells wide, a clear four-cell gap between them, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+    "negative_prompt": "playful chrome; gore; horror",
+    "seed": "n/a \u2014 tool has no seed",
+    "tool": "puzzle_derive.py (local authoring script)",
+    "operation": "offline flatten + BOX downsample",
+    "settings": {
+      "model": "flux-2-max",
+      "subject_class": "multi-subject and/or holed",
+      "downsample": "box",
+      "size": 15,
+      "flatten_method": "outer frame set to the median colour of the outer ring",
+      "flatten_band_percent": 5.0,
+      "flatten_ring_percent": 1.0,
+      "flatten_background_rgb": [
+        212,
+        216,
+        219
+      ]
+    },
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": [
+        "01a17720-ca00-709e-b397-27e4806a9e25"
+      ]
+    },
+    "steps": [
+      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [212, 216, 219])",
+      "BOX downsample to 15x15 colour cells, one per board cell, alpha composited over white",
+      "write puzzle-pictures/pack-144-pixel.png"
+    ]
+  },
+  "id": "01a17720-ca00-72ce-b9fc-fb01cc3107c6",
+  "handle": "puzzle-pictures/pack-144-pixel",
+  "serves": [
+    "E-puzzle.P6",
+    "PER.R5",
+    "ACC.G3"
+  ],
+  "files": [
+    "puzzle-pictures/pack-144-pixel.png"
+  ],
+  "tool_role": {
+    "role": "TL.2",
+    "adr": "adr-free"
+  },
+  "guidance": "Derived from the square in inputs.base_assets; re-run the derive command to reproduce it.",
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-03",
+    "reviewer": "agent",
+    "report": "AK-puzzle-pictures R1/V1, pack-144 (multi-subject and/or holed). Regenerated for the #268 verification repair. Derived from the generated square (request b2c7cc17-6add-46cb-9aff-06594eac07d7). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [212, 216, 219]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 90/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Pixel look: 0.00% warm pixels; filled cells luma mean 82.2 against background luma mean 197.4 (contrast 115.2); silhouette two separate solid blocks side by side, each five cells wide and nine cells tall, with a clear one-cell pale channel between them (2 masses of 45 and 45 cells, 0 enclosed pale regions) (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+  }
+}

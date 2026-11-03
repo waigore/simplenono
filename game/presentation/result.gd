@@ -116,6 +116,15 @@ func activate_back() -> bool:
 	return true
 
 
+## The screen's controls in [code]Controls[/code] table order ([code]controls.md[/code]
+## F1): C1 Back to gallery, once [code]S1[/code] makes it available.
+func focus_controls() -> Array[Control]:
+	var controls: Array[Control] = []
+	if can_go_back():
+		controls.append(_back_button)
+	return controls
+
+
 ## The rendered copy string for C1.
 func back_text() -> String:
 	return _back_button.text

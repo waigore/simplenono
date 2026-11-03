@@ -121,6 +121,12 @@ func activate_back() -> void:
 	back_requested.emit()
 
 
+## The screen's controls in [code]Controls[/code] table order
+## ([code]controls.md[/code] F1): C1 Haptics, C2 Mute BGM, C3 Back.
+func focus_controls() -> Array[Control]:
+	return [_haptics_button, _mute_button, _back_button]
+
+
 ## C1's control, for input tests.
 func haptics_button() -> Button:
 	return _haptics_button

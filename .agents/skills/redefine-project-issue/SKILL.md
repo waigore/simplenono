@@ -34,6 +34,7 @@ Replace one open `type:task` or `type:defect` in `status:pending-redefinition` w
 ## Rules
 
 - Always create a **task**, even when the old issue was a defect.
+- If feedback already superseded and closed the issue, stop ([`feedback.md`](../../../docs/issues/feedback.md)).
 - Do not unlock. Do not gate-transition `pending-redefinition` via `enforce-task-workflow-status`.
 - Keep the new body succinct; clarification is the next step.
 - Caller: [`project-planner-agent`](../project-planner-agent/SKILL.md).

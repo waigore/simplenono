@@ -1,0 +1,8 @@
+screenshot: 02-result-s1-default.png (900x1400)
+paper: (244, 247, 248)
+drawn picture region bbox: x 270-629, y 32-391
+drawn picture region: 360 x 360, aspect 1.0000
+drawn subject bbox: 310 x 175, aspect 1.7714
+source: pack-001-generated.png 1024 x 1024
+source subject bbox: 881 x 499, aspect 1.7655
+subject aspect delta: 0.0059

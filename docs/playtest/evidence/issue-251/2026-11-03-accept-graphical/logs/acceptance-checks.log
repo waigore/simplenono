@@ -1,0 +1,16 @@
+$ python3 .github/scripts/generate_pack.py --check
+/private/var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/opencode/accept-251/game/data/pack.json is current
+exit 0
+
+$ python3 .github/scripts/asset_manifest.py --check
+Asset manifest: 0 error(s).
+exit 0
+
+$ python3 .github/scripts/asset_catalog.py
+Asset catalog: 0 error(s).
+exit 0
+
+$ python3 -m unittest discover -s .github/scripts/tests
+wrote /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmpu4uv7iya/game/data/pack.json (1 of 200 entries re-derived)
+wrote /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp8hv0u22s/game/data/pack.json (1 of 200 entries re-derived)
+wrote /var/folders/nj/j957smtj3jz0fn193bb2g_2c0000gn/T/tmp8hv0u22s/game/data/pack.json (1 of 200 entries re-derived)

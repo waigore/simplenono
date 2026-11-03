@@ -14,6 +14,8 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 | S1 | From gallery, open a not-started puzzle. After Ready, fill at least one clear cell; note marks and elapsed via `DBG.2`. |
 | S2 | Leave with `UI-puzzle.C1`. Confirm gallery shows that tile in progress. |
 | S3 | Reopen the same tile with `UI-gallery.C1`. Wait through get-set-ready. |
+| S4 | Pause with `UI-puzzle.C6`, then quit the app while `UI-settings` shows. |
+| S5 | Relaunch and reopen the same tile with `UI-gallery.C1`. Wait through get-set-ready. |
 
 ## Pass
 
@@ -21,6 +23,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 |----|---------|
 | P1 | After reopen and Ready, the same cell marks are restored. |
 | P2 | Attempt stays in progress; elapsed resumes from the left value (same order of magnitude, not reset to 0). |
+| P3 | After reopen and Ready, the marks and elapsed committed at the pause are restored and elapsed ticks again. |
 
 ## Fail
 
@@ -28,6 +31,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 |----|---------|-------------------|
 | F1 | Leave loses marks or attempt status, or reopen starts a blank not-started board. | yes |
 | F2 | Elapsed resets to 0 on resume of an in-progress attempt. | yes |
+| F3 | A pause-then-quit restore loses the marks or the elapsed committed at the pause. | yes |
 
 ## Evidence
 
