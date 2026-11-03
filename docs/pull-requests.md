@@ -52,6 +52,7 @@ Required check ([`pr-hygiene.yml`](../.github/workflows/pr-hygiene.yml)); re-run
 | `closing-keywords` | Title or body has `Closes #n`, `Fixes #n`, `Resolves #n` (any form) |
 | `title-format` | Title is empty, over 72 characters, or ends with a period |
 | `template-sections` | A `##` section from the template is missing, empty (comments ignored), or a bare `N/A` |
+| `playtest-evidence-media` | PR adds/changes files under `docs/playtest/evidence/**/screenshots/` or `**/logs/` |
 
 ## Auto-merge
 
