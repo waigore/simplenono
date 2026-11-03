@@ -19,8 +19,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "inputs": {
       "style_anchors": [],
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-02",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-049 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 44410319-b709-4ce1-923a-dd9dd680c74e, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as one heavy solid slab filling most of the frame, split by a wide cross-shaped channel into four rectangular blocks. Look evidence (measured on the committed square): 0.00% warm pixels (no red-over-blue cast); subject luma mean 77.0 against pale background luma mean 194.9 (contrast 118.0); 46.3% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-049. Generated square: flux-2-max 1024x1024, request 44410319-b709-4ce1-923a-dd9dd680c74e, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as one heavy solid slab filling most of the frame, split by a wide cross-shaped channel into four rectangular blocks. Look evidence (measured on the committed square): 0.00% warm pixels (no red-over-blue cast); subject luma mean 77.0 against pale background luma mean 194.9 (contrast 118.0); 46.3% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a — tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-085 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 3c1b96bf-2e30-4227-a6ec-aa22cec04067, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 60.3 against pale background luma mean 201.2 (contrast 140.8); The generated square reads as two clean upright blocks of unequal width on a pale cool field with a clear empty channel between them. The stored 15x15 pixel silhouette keeps that reading (multi-subject). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-085. Generated square: flux-2-max 1024x1024, request 3c1b96bf-2e30-4227-a6ec-aa22cec04067, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 60.3 against pale background luma mean 201.2 (contrast 140.8); The generated square reads as two clean upright blocks of unequal width on a pale cool field with a clear empty channel between them. The stored 15x15 pixel silhouette keeps that reading. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

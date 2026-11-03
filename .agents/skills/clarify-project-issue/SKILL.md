@@ -13,7 +13,7 @@ description: |-
 
 # Clarify project issue
 
-Veneer over the [action shell](../enforce-task-workflow-status/references/action-shell.md) for `status:pending-clarification`.
+Veneer over the [action shell](../enforce-task-workflow-status/references/action-shell.md) for `status:pending-clarification` on epic, task, or defect. Feedback issues do not use this status ([`feedback.md`](../../../docs/issues/feedback.md)).
 
 Load the outstanding clarification questions. Collect the product-owner clarification. Ask if it is missing. Do not invent answers. Comment with the clarification and attribute the product owner when known.
 

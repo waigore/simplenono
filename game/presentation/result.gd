@@ -13,7 +13,8 @@ extends Control
 ## A build that ships no stored pictures ends the morph on the solved fills instead:
 ## [ResultReveal] holds the best shipped layer through the missing stage, so the win
 ## reveal always lands on an image and never on empty paper ([code]UI-result[/code] R1/S1).
-## The picture assets themselves are an asset-pass concern (#98).
+## The approved pictures are catalogued ([code]ACC.G3[/code]) and resolve through
+## [AssetResolver]; a puzzle whose picture is absent still ends on the fills.
 ##
 ## This screen owns no clock of its own. [b]CMP-shell[/b] drives [method advance] once
 ## per processed frame because it alone knows whether the morph has real time to spend

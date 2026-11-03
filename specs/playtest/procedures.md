@@ -17,7 +17,7 @@ At `status:pending-acceptance` (`accept-project-issue`) when the issue's deliver
 - Build under test is the one under acceptance.
 - Must tools from [`tools.md`](tools.md) are available (`DBG.*`, `TEL.*`, both drive paths).
 - Any Situational tool a selected protocol cites is available.
-- Evidence folder exists under [`docs/playtest/evidence/`](../../docs/playtest/evidence/) for this issue/run.
+- In-repo evidence folder exists under [`docs/playtest/evidence/`](../../docs/playtest/evidence/) for this issue/run; wiki ready for screenshots and logs per [`wiki-evidence.md`](../../docs/playtest/wiki-evidence.md).
 
 ## Per protocol
 
@@ -27,15 +27,15 @@ At `status:pending-acceptance` (`accept-project-issue`) when the issue's deliver
 | 2 | Drive with player-facing controls and debug commands as the protocol requires. |
 | 3 | Observe via `DBG.2`, `DBG.4`, and telemetry (`TEL.*`). |
 | 4 | Judge pass/fail against the cited design story (game outcome) or UX story/journey (interface operation). |
-| 5 | Write notes, logs, and `manifest.md` per [`evidence.md`](evidence.md). Write screenshots when the run has a display. |
+| 5 | Write notes and `manifest.md` in-repo per [`evidence.md`](evidence.md). Push logs (and screenshots when the run has a display) to the wiki. |
 
 Use `DBG.1` when pausing aids a reliable observation. Use `SIT.*` only when the protocol requires them.
 
 ## Headless and graphical runs
 
-A headless run (no display) may enter, drive, observe, and judge. It writes notes, logs, and `manifest.md`, and marks screenshots as waiting on a graphical run. Missing screenshots are not a fail and do not file a defect.
+A headless run (no display) may enter, drive, observe, and judge. It writes notes and `manifest.md` in-repo, pushes logs to the wiki, and marks screenshots as waiting on a graphical run. Missing screenshots are not a fail and do not file a defect.
 
-Before acceptance, a graphical run re-runs the protocols on the same build and writes the screenshots into its own run folder. It does not only attach images to the headless log. Its manifest names that same build id.
+Before acceptance, a graphical run re-runs the protocols on the same build and writes screenshots to the wiki for that run. It does not only attach images to the headless log. Its manifest names that same build id and the wiki page URL.
 
 A protocol that says no screenshot may be accepted from the headless run alone.
 

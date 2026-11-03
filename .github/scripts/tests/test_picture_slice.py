@@ -63,6 +63,20 @@ class BoardConfigTest(unittest.TestCase):
         self.assertNotEqual(single, multi)
         self.assertTrue(any("gap between them" in prompt for prompt in multi))
 
+    def test_20x20_single_opens_with_a_frame_filling_mass(self) -> None:
+        first = picture_slice.prompts_for("single", "20x20")[0]
+        self.assertIn("filling most of the frame", first)
+        self.assertIn("5 percent of the frame width", first)
+        self.assertTrue(any("the outline of" in prompt
+                            for prompt in picture_slice.prompts_for("single", "20x20")))
+
+    def test_20x20_class_sets_differ_and_multi_keeps_a_second_mass(self) -> None:
+        single = picture_slice.prompts_for("single", "20x20")
+        multi = picture_slice.prompts_for("multi", "20x20")
+        self.assertNotEqual(single, multi)
+        self.assertTrue(any("gap between them" in prompt for prompt in multi))
+        self.assertTrue(all("20x20" in prompt for prompt in single + multi))
+
     def test_compose_carries_master_and_negative(self) -> None:
         composed = picture_slice.compose("a shape", "15x15")
         self.assertIn("readable at 15x15", composed)

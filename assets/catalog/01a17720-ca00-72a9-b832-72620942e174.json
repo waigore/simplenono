@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "single-subject"
+      "size": "1024x1024"
     },
     "seed": "n/a — tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-127 (single-subject). Generated square: flux-2-max 1024x1024, request 989b1069-6fb2-47e9-ba3b-60dbb8d3cc0e, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as one bold letter E: three four-cell-thick horizontal bars off a four-cell vertical spine, inside the frame with a clear margin. Look evidence (measured on the committed square): 0.0% warm pixels; subject pixels average luma 68.8 against pale background luma 211.6 (contrast 142.7); 27.9% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: single-subject. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-127. Generated square: flux-2-max 1024x1024, request 989b1069-6fb2-47e9-ba3b-60dbb8d3cc0e, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as one bold letter E: three four-cell-thick horizontal bars off a four-cell vertical spine, inside the frame with a clear margin. Look evidence (measured on the committed square): 0.0% warm pixels; subject pixels average luma 68.8 against pale background luma 211.6 (contrast 142.7); 27.9% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

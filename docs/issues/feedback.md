@@ -1,22 +1,27 @@
 # Feedback issues
 
-`type:feedback` records user feedback until the work it starts is finished. Epic, task, and defect statuses stay in [workflow.md](workflow.md). Body: [body-shapes.md](body-shapes.md). File with `create-project-feedback`. Lifecycle: `handle-feedback-agent`.
+`type:feedback` records user feedback until the work it starts finishes. Epic/task/defect statuses: [workflow.md](workflow.md). Body: [body-shapes.md](body-shapes.md). File and dispose with `create-project-feedback`. Track linked work with `handle-feedback-agent`.
 
 ## Record
 
-Agents file these issues. There is no GitHub form. Split pasted prose into one bullet per point. Keep the raw text in **Notes**. **Analysis** and **Related issues** start as `None`. Labels: `type:feedback`, `status:pending-analysis`, `priority:normal`.
+Interactive, one run. No GitHub form. Split prose into one bullet per point; raw text in **Notes**. Dispose every point before create; fill **Analysis** and **Related issues**. Labels: `type:feedback`, `priority:normal`, plus `status:pending-resolution` (open related work) or `status:resolved` (none).
 
 ## Dispositions
 
 | Disposition | Action |
 |-------------|--------|
-| Defect | New or updated defect. In-game or interface only ([requirements.md](requirements.md)). |
-| Requirement change | New or updated task whose deliverables are the spec update and the implementation. |
+| Defect | New or updated defect ([requirements.md](requirements.md)). |
+| Requirement change | Critical exam, lock shape, then task or epic (below). |
 | Already covered | Name the owning issue. No new issue. |
 | No action | Record why. No issue. |
-| Needs clarification | Do not file that point. |
 
-File every clear point even when another point needs a decision. A later pass must not file a point that already has an issue link. Each **Analysis** bullet is the point text, the disposition name, and `#N` or `None`.
+No feedback-level clarification — filed tasks/defects own `pending-clarification`. Each **Analysis** bullet: point text, disposition, `#N` or `None`.
+
+## Requirement change
+
+1. Critically examine purpose (as stated), feasibility, and options that reduce effort or reach the goal another way (judgement). Wait for keep, revise, or drop.
+2. `capture-requirements` locks the requirement shape and which specs must change. Do not amend those specs here.
+3. File a task, or an epic when large (`create-project-task` / `create-project-epic`). Deliverables: spec updates and implementation. Cite the locked shape and specs to amend.
 
 ## Existing issues
 
@@ -24,13 +29,13 @@ Comment on the owning issue. Edit its body only in `pending-review`, `pending-re
 
 ## Supersede
 
-When a point contradicts an open task or defect, file the replacement at `pending-review` with the same parent and `Supersedes #OLD` in the description. Copy acceptance criteria the feedback leaves standing. Comment `Superseded by #NEW` and this feedback number, then `gh issue close OLD --reason not_planned`. **Related issues** names the new issue. Leave epics open. This close replaces [`redefine-project-issue`](../../.agents/skills/redefine-project-issue/SKILL.md).
+When a point contradicts an open task or defect, file the replacement at `pending-review` with the same parent and `Supersedes #OLD` in the description. Copy acceptance criteria the feedback leaves standing. Comment `Superseded by #NEW` and this feedback number, then `gh issue close OLD --reason not_planned`. **Related issues** names the new issue. Leave epics open. Replaces [`redefine-project-issue`](../../.agents/skills/redefine-project-issue/SKILL.md).
 
 New tasks use an existing epic as parent when one owns the area; otherwise no parent. Depth: [hierarchy.md](hierarchy.md).
 
 ## Priority
 
-Tasks and defects created, updated, or filed as replacements are `priority:high`. Set that when filing or adopting the issue. Leave an existing `priority:critical` label. The planner restores `priority:high` if a later edit drops it. The feedback issue stays `priority:normal`.
+Tasks and defects created, updated, or filed as replacements are `priority:high` (keep `priority:critical`). Planner restores `priority:high` if a later edit drops it. Feedback stays `priority:normal`.
 
 ## Status
 
@@ -38,15 +43,11 @@ Exactly one `status:*`. Gate with `enforce-task-workflow-status`.
 
 | Label | When |
 |-------|------|
-| `status:pending-analysis` | Create default, and the return from clarification. |
-| `status:pending-clarification` | Any point still needs a product-owner decision. |
-| `status:pending-resolution` | Analysis is done and a related issue is still open and not accepted. |
-| `status:resolved` | Every related issue is `status:accepted` or closed, including closed without acceptance. Points with no follow-up do not block. Leave the issue open. |
+| `status:pending-resolution` | Create when **Related issues** names open work |
+| `status:resolved` | Create when none; or every related issue is `accepted` or closed. Leave open. |
 
-Transitions: [`status-transitions.md`](../../.agents/skills/enforce-task-workflow-status/references/status-transitions.md). One issue per run (`pending-analysis`, else `pending-resolution`; [workflow-dispatch.md](workflow-dispatch.md)). **Related issues** lists open or newly filed work. Comment the evidence. Do not edit the repo or close the feedback issue.
-
-An open owner for an already-covered point is a related issue.
+Only transition: `pending-resolution` → `resolved`. One issue per `handle-feedback-agent` run ([workflow-dispatch.md](workflow-dispatch.md)). Comment evidence. Do not edit the repo, file work, clarify, or close the feedback issue. An open already-covered owner is a related issue.
 
 ## Planner
 
-For open tasks and defects named by an open feedback issue: unblock them first, keep them in the plan, restore `priority:high` (`priority:critical` stays), and close them once accepted before other accepted issues. Close every open feedback issue in `status:resolved` on that pass.
+For open tasks/defects named by open feedback: unblock first, keep in plan, restore `priority:high` (`critical` stays), close once accepted before other accepted issues. Close every open feedback in `status:resolved` on that pass.

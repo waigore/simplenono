@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "single-subject"
+      "size": "1024x1024"
     },
     "seed": "n/a — tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-093 (single-subject). Generated square: flux-2-max 1024x1024, request 41e4f021-c7e4-4874-b005-9c759c80c0b8, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as a bold C: a heavy square-sided ring open on its right side. Look evidence (measured on the committed square): 0.0% warm pixels; subject luma mean 63.5 against pale background luma mean 198.1 (contrast 134.6); 21.0% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: single-subject. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-093. Generated square: flux-2-max 1024x1024, request 41e4f021-c7e4-4874-b005-9c759c80c0b8, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as a bold C: a heavy square-sided ring open on its right side. Look evidence (measured on the committed square): 0.0% warm pixels; subject luma mean 63.5 against pale background luma mean 198.1 (contrast 134.6); 21.0% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

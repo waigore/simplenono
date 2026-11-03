@@ -1,0 +1,103 @@
+{
+ "pack-178": {
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "000000000000000",
+   "000011111100000",
+   "000111111110000",
+   "000111111111000",
+   "000100111001000",
+   "000111111111000",
+   "001111111111000",
+   "000000110000000",
+   "000111111111000",
+   "000111111111000",
+   "000000000000000",
+   "000000000000000",
+   "000000000000000"
+  ],
+  "filled": 67,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "pixel_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 158.5,
+   "luma_p5": 61.1,
+   "luma_p95": 208.5
+  },
+  "square_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 158.7,
+   "luma_p5": 56.0,
+   "luma_p95": 210.4
+  },
+  "masses": [
+   67
+  ],
+  "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a wide flat cap fifteen cells across and five cells tall standing on a six-cell-wide base, with two four-cell rectangular holes cut through the cap, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+  "enclosed_background": 4
+ },
+ "pack-179": {
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "000000000000000",
+   "001111000000000",
+   "001111000000000",
+   "001111011111110",
+   "001111011111100",
+   "001111011111110",
+   "001111011111100",
+   "001111011111110",
+   "001111000000000",
+   "001111000000000",
+   "000000000000000",
+   "000000000000000",
+   "000000000000000"
+  ],
+  "filled": 69,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "pixel_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 175.6,
+   "luma_p5": 78.1,
+   "luma_p95": 219.4
+  },
+  "square_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 175.8,
+   "luma_p5": 64.9,
+   "luma_p95": 221.7
+  },
+  "masses": [
+   36,
+   33
+  ],
+  "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: two solid masses on a pale background, a tall narrow block on the left about fourteen cells tall and six cells wide and a wide flat slab on the right about eight cells tall and seven cells wide, a clear four-cell gap between them, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+  "enclosed_background": 0
+ }
+}
