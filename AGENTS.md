@@ -13,7 +13,7 @@ Agent entrypoint for this repo. Keep this file short; put detail in `docs/`, `sp
 - **Setup**: TBD — after Engine ADR / `ensure-dev-env-setup`
 - **Run**: TBD — Godot editor / exported build
 - **Test**: TBD — after unit-test CI setup
-- **Build / export**: TBD — desktop + mobile Godot export presets
+- **Build / export**: `.github/scripts/export_release.sh` with the release presets in `game/export_presets.cfg`; [`docs/build-export.md`](docs/build-export.md)
 
 ## Labels
 

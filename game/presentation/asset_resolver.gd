@@ -1,8 +1,9 @@
 class_name AssetResolver
 extends RefCounted
-## [b]CMP-shell[/b] R6: the one runtime reader of the committed asset manifest
+## [b]CMP-shell[/b] R6: the one runtime reader of the asset manifest
 ## (specs/technical/asset-access.md R2, specs/assets/access.md [code]ACC.A1[/code]/[code]A2[/code],
-## [ADR-0003](specs/adr/decisions/0003-catalog-asset-roots.md)).
+## [ADR-0003](specs/adr/decisions/0003-catalog-asset-roots.md),
+## [ADR-0008](specs/adr/decisions/0008-release-asset-manifest.md)).
 ##
 ## The manifest is a generated asset-ID → [code]res://[/code] path list
 ## ([code]ACC.A2[/code], [code]asset-access[/code] R1). This resolver reads it once at app
@@ -12,29 +13,53 @@ extends RefCounted
 ## [code]game/[/code] reads the manifest or names an asset path.
 ##
 ## [code]res://[/code] is [code]game/[/code]
-## ([ADR-0003](specs/adr/decisions/0003-catalog-asset-roots.md)), so the committed
-## manifest two directories up is this resolver's only named path. Packaging it into an
-## exported build is later export work; outside the repo tree the resolver fails loudly
-## instead of falling back.
+## ([ADR-0003](specs/adr/decisions/0003-catalog-asset-roots.md)), so the committed manifest
+## two directories up is the dev read; an exported build packs only [code]res://[/code] and
+## reads the export script's copy at [constant RELEASE_MANIFEST_PATH] instead
+## ([ADR-0008](specs/adr/decisions/0008-release-asset-manifest.md)). Either read fails
+## loudly when its file is missing: the resolver never falls back to a baked path.
 ##
 ## An unresolved ID — unknown, draft, or deprecated ([code]ACC.A3[/code]) — and a
 ## missing or unreadable manifest both fail loudly and return null. Release builds rely
 ## on the catalog/manifest CI checks that no unresolved ID ships ([code]asset-access[/code] R3);
 ## this resolver never falls back to a baked file path.
 
-## The committed manifest, resolved from the project directory.
+## The committed manifest, resolved from the project directory: the dev read.
 const MANIFEST_PATH := "res://../assets/manifest.json"
+## The export script's copy of [constant MANIFEST_PATH] inside [code]res://[/code]: the
+## release build read ([ADR-0008](specs/adr/decisions/0008-release-asset-manifest.md)).
+const RELEASE_MANIFEST_PATH := "res://release/asset_manifest.json"
+## The only two reads this resolver may name ([code]asset-access[/code] R2).
+const SHIPPED_MANIFEST_PATHS := [MANIFEST_PATH, RELEASE_MANIFEST_PATH]
 
 var _by_id: Dictionary = {}
 var _manifest_path: String
 var _loaded := false
 
 
-## Reads [param manifest_path] once. Tests override the path to prove the loud failure;
-## the shell uses the default so the app start read has one source.
-func _init(manifest_path: String = MANIFEST_PATH) -> void:
-	_manifest_path = manifest_path
+## Reads the manifest once. [param manifest_path] overrides the default so tests and
+## callers can prove the loud failure; the shell passes nothing.
+func _init(manifest_path: String = "") -> void:
+	_manifest_path = manifest_path if not manifest_path.is_empty() else default_manifest_path()
 	_read_manifest()
+
+
+## The local committed manifest wins when present, so an editor run after
+## [code]export_release.sh[/code] still reads the source of truth; a build without it
+## packs only the copy and reads [constant RELEASE_MANIFEST_PATH]
+## ([ADR-0008](specs/adr/decisions/0008-release-asset-manifest.md)).
+static func default_manifest_path() -> String:
+	return pick_manifest_path(FileAccess.file_exists(MANIFEST_PATH))
+
+
+## The choice itself, free of file system state so a test can prove both branches.
+static func pick_manifest_path(dev_manifest_present: bool) -> String:
+	return MANIFEST_PATH if dev_manifest_present else RELEASE_MANIFEST_PATH
+
+
+## The manifest path this resolver read, for callers and tests that assert the choice.
+func manifest_path() -> String:
+	return _manifest_path
 
 
 ## True when the manifest lists [param asset_id] with at least one path. Callers that

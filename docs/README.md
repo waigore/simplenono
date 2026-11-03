@@ -22,6 +22,7 @@ Every file under `docs/` must stay under **500 words**, except Markdown under `q
 | [poc-promotion.md](poc-promotion.md) | Optional PoC reconcile act; keep/drop/adapt; reimplementation |
 | [poc-style-assets.md](poc-style-assets.md) | Style and asset gate when a PoC shows or plays them |
 | [android-debug.md](android-debug.md) | Debug APK via Actions + GitHub Release (`android-debug` branch); agent procedure |
+| [build-export.md](build-export.md) | Release exports: presets, templates, output paths, release-asset check, iOS PO inputs |
 | [dev-env-setup.md](dev-env-setup.md) | Local game-stack and asset-tool install/verify; then `setup-unit-test-ci` |
 | [open-design-skill-setup.md](open-design-skill-setup.md) | User-local Open Design skill + content under `~/.open-design-skill/`; optional agent wiring |
 | [ux-mockups.md](ux-mockups.md) | Mockup catalog approval; main-tree UI gate; verification and PoC promotion |

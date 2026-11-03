@@ -54,3 +54,11 @@ jobs:
       - name: Check puzzle pack
         run: python3 .github/scripts/generate_pack.py --check
 
+      # ADR-0008 / asset-access R3: what a release export would ship is complete,
+      # checked statically without an export so a broken asset fails every PR.
+      - name: Test release asset check
+        run: python3 .github/scripts/tests/test_check_release_assets.py
+
+      - name: Check release assets
+        run: python3 .github/scripts/check_release_assets.py
+
