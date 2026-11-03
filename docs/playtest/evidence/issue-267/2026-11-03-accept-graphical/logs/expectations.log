@@ -1,0 +1,5 @@
+pack-138 66 1 True True True True | masses [36, 30] holes 0 | pixel look {'warm_percent': 0.0, 'luma_mean': 169.5, 'luma_p5': 84.5, 'luma_p95': 211.7} | square look {'warm_percent': 0.21, 'luma_mean': 169.8, 'luma_p5': 57.6, 'luma_p95': 217.4}
+pack-139 97 1 True True True True | masses [47, 25, 25] holes 3 | pixel look {'warm_percent': 0.0, 'luma_mean': 147.2, 'luma_p5': 60.9, 'luma_p95': 204.4} | square look {'warm_percent': 0.0, 'luma_mean': 147.5, 'luma_p5': 56.1, 'luma_p95': 212.7}
+pack-140 56 1 True True True True | masses [56] holes 25 | pixel look {'warm_percent': 0.0, 'luma_mean': 169.9, 'luma_p5': 65.8, 'luma_p95': 208.7} | square look {'warm_percent': 0.0, 'luma_mean': 170.1, 'luma_p5': 61.5, 'luma_p95': 212.2}
+pack-141 91 1 True True True True | masses [49, 42] holes 0 | pixel look {'warm_percent': 0.0, 'luma_mean': 149.6, 'luma_p5': 67.4, 'luma_p95': 213.2} | square look {'warm_percent': 0.0, 'luma_mean': 149.8, 'luma_p5': 60.7, 'luma_p95': 216.2}
+expect.json written to /home/waigore/simplenono/1/.orc/worktrees/issue-workflow-accept-agent-1-20261103T031400885589Z/docs/playtest/evidence/issue-267/2026-11-03-accept-graphical/expect.json
