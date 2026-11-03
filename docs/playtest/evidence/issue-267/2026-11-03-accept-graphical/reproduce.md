@@ -47,7 +47,7 @@ sRGB, filled when `Y < 128`, BOX 1024→15, no gamma, no per-image threshold) an
 against the committed pack row. `nonogram.py` is its own line solver and enumerator; neither imports
 `.github/scripts/puzzle_derive.py`.
 
-Expected output ([`logs/expectations.log`](logs/expectations.log)):
+Expected output ([`logs/expectations.log`](https://raw.githubusercontent.com/wiki/waigore/simplenono/playtest/issue-267/2026-11-03-accept-graphical/logs/expectations.log)):
 
 ```
 pack-138 66 1 True True True True | masses [36, 30] holes 0 | ...
@@ -73,7 +73,7 @@ godot --path game -s res://probe_capture_267.gd -- \
 ```
 
 Expected final line: `capture: RESULT pass (9 shots, 0 checks failed)`. Full log in
-[`logs/capture.log`](logs/capture.log).
+[`logs/capture.log`](https://raw.githubusercontent.com/wiki/waigore/simplenono/playtest/issue-267/2026-11-03-accept-graphical/logs/capture.log).
 
 ## 3. Remove the probe
 
@@ -91,7 +91,7 @@ python3 .github/scripts/spec_lint.py                 # 0 error(s), 1 pre-existin
 python3 -m pytest .github/scripts/tests -q           # 142 passed, 49 subtests
 ```
 
-The derive and judge of record are in [`logs/derive-judge.log`](logs/derive-judge.log):
+The derive and judge of record are in [`logs/derive-judge.log`](https://raw.githubusercontent.com/wiki/waigore/simplenono/playtest/issue-267/2026-11-03-accept-graphical/logs/derive-judge.log):
 
 ```bash
 for p in 138 139 140 141; do
