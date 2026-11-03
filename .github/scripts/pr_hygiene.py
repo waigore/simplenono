@@ -1,28 +1,33 @@
 #!/usr/bin/env python3
-"""Lint a pull request's title and body against docs/pull-requests.md.
+"""Lint a pull request against docs/pull-requests.md.
 
 Each rule takes the PR and returns findings; add a rule by writing a
 function with that signature and listing it in RULES.
 
-Reads PR_TITLE and PR_BODY from the environment, or the body from stdin when neither is set.
+Reads PR_TITLE, PR_BODY, and optional PR_CHANGED_FILES (newline-separated
+paths) from the environment, or the body from stdin when title/body env
+vars are unset.
 """
 from __future__ import annotations
 
 import os
 import re
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable, Sequence
 
 TEMPLATE = Path(__file__).resolve().parents[1] / "pull_request_template.md"
 TITLE_MAX = 72
+EVIDENCE_ROOT = "docs/playtest/evidence/"
+EVIDENCE_MEDIA_DIRS = ("/screenshots/", "/logs/")
 
 
 @dataclass(frozen=True)
 class PullRequest:
     title: str
     body: str
+    changed_paths: Sequence[str] = field(default_factory=tuple)
 
 
 @dataclass(frozen=True)
@@ -42,6 +47,20 @@ CLOSING = re.compile(rf"\b(?:{KEYWORD})\b\s*:?\s+(?:{ISSUE_REF})|\b(?:{KEYWORD})
 COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
 HEADING = re.compile(r"^##\s+(.+?)\s*#*\s*$")
 BARE_NA = re.compile(r"^n/?a\.?$", re.IGNORECASE)
+
+
+def normalize_path(path: str) -> str:
+    """POSIX-style path with leading ./ stripped for matching."""
+    return path.replace("\\", "/").lstrip("./")
+
+
+def is_playtest_evidence_media(path: str) -> bool:
+    """True when path is under evidence screenshots/ or logs/ (same as .gitignore)."""
+    p = normalize_path(path)
+    if not p.startswith(EVIDENCE_ROOT):
+        return False
+    # Pad so a bare .../screenshots or .../logs path still matches /screenshots/ /logs/.
+    return any(media in f"/{p[len(EVIDENCE_ROOT):]}/" for media in EVIDENCE_MEDIA_DIRS)
 
 
 def headings(markdown: str) -> list[str]:
@@ -106,18 +125,42 @@ def template_sections(pr: PullRequest, required: Sequence[str] = REQUIRED_SECTIO
     return findings
 
 
-RULES: list[Callable[[PullRequest], list[Finding]]] = [closing_keywords, title_format, template_sections]
+def playtest_evidence_media(pr: PullRequest) -> list[Finding]:
+    """Screenshots and logs belong on the wiki (docs/playtest/wiki-evidence.md), not in git."""
+    msg = (
+        "playtest screenshots/logs must go on the repo wiki "
+        "(docs/playtest/wiki-evidence.md); only manifest.md and notes.md belong in git."
+    )
+    return [
+        Finding("playtest-evidence-media", "files", 0, f"{normalize_path(path)}: {msg}")
+        for path in pr.changed_paths
+        if is_playtest_evidence_media(path)
+    ]
+
+
+RULES: list[Callable[[PullRequest], list[Finding]]] = [
+    closing_keywords,
+    title_format,
+    template_sections,
+    playtest_evidence_media,
+]
 
 
 def lint(pr: PullRequest) -> list[Finding]:
     return [finding for rule in RULES for finding in rule(pr)]
 
 
+def changed_paths_from_env() -> tuple[str, ...]:
+    raw = os.environ.get("PR_CHANGED_FILES", "")
+    return tuple(line for line in raw.splitlines() if line.strip())
+
+
 def main() -> int:
+    paths = changed_paths_from_env()
     if "PR_TITLE" in os.environ or "PR_BODY" in os.environ:
-        pr = PullRequest(os.environ.get("PR_TITLE", ""), os.environ.get("PR_BODY", ""))
+        pr = PullRequest(os.environ.get("PR_TITLE", ""), os.environ.get("PR_BODY", ""), paths)
     else:
-        pr = PullRequest("", sys.stdin.read())
+        pr = PullRequest("", sys.stdin.read(), paths)
 
     findings = lint(pr)
     for f in findings:

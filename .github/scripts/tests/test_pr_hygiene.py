@@ -7,13 +7,22 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from pr_hygiene import REQUIRED_SECTIONS, TEMPLATE, PullRequest, closing_keywords, lint, template_sections, title_format  # noqa: E402
+from pr_hygiene import (  # noqa: E402
+    REQUIRED_SECTIONS,
+    TEMPLATE,
+    PullRequest,
+    closing_keywords,
+    lint,
+    playtest_evidence_media,
+    template_sections,
+    title_format,
+)
 
 FILLED_BODY = "\n".join(f"## {name}\n\n<!-- hint -->\nSomething about {name}.\n" for name in REQUIRED_SECTIONS)
 
 
-def body(text: str) -> PullRequest:
-    return PullRequest("Add HUD layout", text)
+def body(text: str, changed_paths: tuple[str, ...] = ()) -> PullRequest:
+    return PullRequest("Add HUD layout", text, changed_paths)
 
 
 class ClosingKeywordsTest(unittest.TestCase):
@@ -78,9 +87,51 @@ class TemplateSectionsTest(unittest.TestCase):
         self.assertEqual(template_sections(body(FILLED_BODY.replace("## Test plan", "## Test Plan"))), [])
 
 
+class PlaytestEvidenceMediaTest(unittest.TestCase):
+    def test_flags_screenshots_and_logs_under_evidence(self) -> None:
+        paths = (
+            "docs/playtest/evidence/issue-1/run-a/screenshots/fail.png",
+            "docs/playtest/evidence/issue-2/x/logs/session.log",
+            "docs/playtest/evidence/issue-3/y/screenshots",
+        )
+        findings = playtest_evidence_media(body(FILLED_BODY, paths))
+        self.assertEqual(len(findings), 3)
+        self.assertTrue(all(f.rule == "playtest-evidence-media" for f in findings))
+        self.assertTrue(all(f.field == "files" for f in findings))
+
+    def test_allows_manifest_notes_and_unrelated_media(self) -> None:
+        paths = (
+            "docs/playtest/evidence/issue-1/run-a/manifest.md",
+            "docs/playtest/evidence/issue-1/run-a/notes.md",
+            "docs/playtest/wiki-evidence.md",
+            "game/assets/character-sprites/player.png",
+            "pocs/foo/logs/debug.log",
+            "docs/playtest/evidence/issue-1/run-a/catalogs/index.md",
+        )
+        self.assertEqual(playtest_evidence_media(body(FILLED_BODY, paths)), [])
+
+    def test_normalizes_separators_and_dot_slash(self) -> None:
+        paths = (
+            r"docs\playtest\evidence\issue-1\run-a\screenshots\a.png",
+            "./docs/playtest/evidence/issue-1/run-a/logs/b.log",
+        )
+        self.assertEqual(len(playtest_evidence_media(body(FILLED_BODY, paths))), 2)
+
+    def test_empty_changed_paths_is_noop(self) -> None:
+        self.assertEqual(playtest_evidence_media(body(FILLED_BODY)), [])
+
+
 class LintTest(unittest.TestCase):
     def test_good_pr_passes_all_rules(self) -> None:
         self.assertEqual(lint(body(FILLED_BODY.replace("Something about Issue.", "Refs #12"))), [])
+
+    def test_evidence_media_fails_lint(self) -> None:
+        pr = body(
+            FILLED_BODY.replace("Something about Issue.", "Refs #12"),
+            ("docs/playtest/evidence/issue-1/run-a/screenshots/x.png",),
+        )
+        findings = lint(pr)
+        self.assertTrue(any(f.rule == "playtest-evidence-media" for f in findings))
 
 
 if __name__ == "__main__":
