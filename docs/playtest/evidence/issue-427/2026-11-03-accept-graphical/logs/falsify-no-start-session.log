@@ -1,0 +1,160 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+libasound.so.2: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+libasound.so.2: cannot open shared object file: No such file or directory
+WARNING: All audio drivers failed, falling back to the dummy driver.
+     at: initialize (servers/audio/audio_server.cpp:258)
+
+SEV level=info event=session-start time=1793671606.113 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume message=
+capture: pack accepted=200 rejected=0
+capture: PASS pack: all 200 puzzles load
+TEL event=reset time=1793671607.426 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=reset time=1793671607.426 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=reset time=1793671607.427 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: audio driver=Dummy mix_rate=44100 latency=0.000 device=Default devices=["Default"]
+capture: PASS G2: the app start position is the gallery
+capture: FAIL G2: SND.M1 is loaded at app start
+capture: G2: the bed plays on the gallery at app start | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL G2: the bed plays on the gallery at app start (AudioFeedback reports the bed streaming)
+capture: FAIL G2: the bed plays on the gallery at app start (SND.M1 has a player in the music channel)
+capture: FAIL G2: the bed plays on the gallery at app start (the stream has advanced past its start)
+capture: FAIL G2: the bed plays on the gallery at app start (the bed stream decodes to a real clip)
+capture: shot 01-gallery-app-start-bed -> /tmp/opencode/falsify/01-gallery-app-start-bed.png (error 0)
+TEL event=open time=1793671607.794 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: PASS DBG.3: pack-004 opens from the gallery
+TEL event=ready time=1793671607.811 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=commit time=1793671607.813 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: PASS P1: the puzzle screen shows
+capture: PASS P1: marks are allowed after get-set-ready
+capture: G2: the bed keeps playing in the open puzzle | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL G2: the bed keeps playing in the open puzzle (AudioFeedback reports the bed streaming)
+capture: FAIL G2: the bed keeps playing in the open puzzle (SND.M1 has a player in the music channel)
+capture: FAIL G2: the bed keeps playing in the open puzzle (the stream has advanced past its start)
+capture: FAIL G2: the bed keeps playing in the open puzzle (the bed stream decodes to a real clip)
+capture: PASS G2: the bed keeps playing in the open puzzle (no restart: pos 0.00ms >= 0.00ms)
+capture: PASS P1: pack-004 has a clear cell to fill
+TEL event=mark time=1793671608.083 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=commit time=1793671608.085 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: PASS P1: a real tap fills the clear cell
+capture: shot 02-puzzle-open-bed -> /tmp/opencode/falsify/02-puzzle-open-bed.png (error 0)
+TEL event=leave time=1793671608.360 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=commit time=1793671608.361 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: PASS P1: C1 Leave returns to the gallery
+capture: PASS P1: the attempt closed
+capture: G2: the bed keeps playing after leaving the puzzle | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL G2: the bed keeps playing after leaving the puzzle (AudioFeedback reports the bed streaming)
+capture: FAIL G2: the bed keeps playing after leaving the puzzle (SND.M1 has a player in the music channel)
+capture: FAIL G2: the bed keeps playing after leaving the puzzle (the stream has advanced past its start)
+capture: FAIL G2: the bed keeps playing after leaving the puzzle (the bed stream decodes to a real clip)
+capture: PASS G2: the bed keeps playing after leaving the puzzle (no restart: pos 0.00ms >= 0.00ms)
+capture: PASS P1: the gallery shows the tile
+capture: tile pack-004 status=In progress
+capture: PASS P1: the tile reads in progress
+capture: shot 03-gallery-after-leave-bed -> /tmp/opencode/falsify/03-gallery-after-leave-bed.png (error 0)
+TEL event=open time=1793671608.764 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: PASS S3: C1 opens the tile again
+TEL event=ready time=1793671608.781 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=commit time=1793671608.783 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: PASS P3: the reopened puzzle shows
+capture: G2: the bed keeps playing in the reopened puzzle | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL G2: the bed keeps playing in the reopened puzzle (AudioFeedback reports the bed streaming)
+capture: FAIL G2: the bed keeps playing in the reopened puzzle (SND.M1 has a player in the music channel)
+capture: FAIL G2: the bed keeps playing in the reopened puzzle (the stream has advanced past its start)
+capture: FAIL G2: the bed keeps playing in the reopened puzzle (the bed stream decodes to a real clip)
+capture: PASS G2: the bed keeps playing in the reopened puzzle (no restart: pos 0.00ms >= 0.00ms)
+capture: shot 04-puzzle-reopened-bed -> /tmp/opencode/falsify/04-puzzle-reopened-bed.png (error 0)
+TEL event=leave time=1793671609.029 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=commit time=1793671609.029 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=open time=1793671609.323 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: PASS DBG.3: pack-003 opens for the solve
+TEL event=ready time=1793671609.347 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=commit time=1793671609.350 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+TEL event=solved time=1793671609.874 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume outcome=pass
+capture: PASS P1: the shipped fills solve pack-003
+capture: G2: the bed keeps playing on the result screen | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL G2: the bed keeps playing on the result screen (AudioFeedback reports the bed streaming)
+capture: FAIL G2: the bed keeps playing on the result screen (SND.M1 has a player in the music channel)
+capture: FAIL G2: the bed keeps playing on the result screen (the stream has advanced past its start)
+capture: FAIL G2: the bed keeps playing on the result screen (the bed stream decodes to a real clip)
+capture: PASS G2: the bed keeps playing on the result screen (no restart: pos 0.00ms >= 0.00ms)
+capture: shot 05-result-bed -> /tmp/opencode/falsify/05-result-bed.png (error 0)
+capture: PASS P1: Back from the result returns to the gallery
+capture: G2: the bed keeps playing on the gallery after the result | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL G2: the bed keeps playing on the gallery after the result (AudioFeedback reports the bed streaming)
+capture: FAIL G2: the bed keeps playing on the gallery after the result (SND.M1 has a player in the music channel)
+capture: FAIL G2: the bed keeps playing on the gallery after the result (the stream has advanced past its start)
+capture: FAIL G2: the bed keeps playing on the gallery after the result (the bed stream decodes to a real clip)
+capture: PASS G2: the bed keeps playing on the gallery after the result (no restart: pos 0.00ms >= 0.00ms)
+capture: shot 06-gallery-after-back-bed -> /tmp/opencode/falsify/06-gallery-after-back-bed.png (error 0)
+capture: PASS C3: settings opens from the gallery
+capture: PASS C3: settings shows
+capture: F2: settings alone does not stop the bed while the mute is off | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL F2: settings alone does not stop the bed while the mute is off (AudioFeedback reports the bed streaming)
+capture: FAIL F2: settings alone does not stop the bed while the mute is off (SND.M1 has a player in the music channel)
+capture: FAIL F2: settings alone does not stop the bed while the mute is off (the stream has advanced past its start)
+capture: FAIL F2: settings alone does not stop the bed while the mute is off (the bed stream decodes to a real clip)
+capture: PASS F2: settings alone does not stop the bed while the mute is off (no restart: pos 0.00ms >= 0.00ms)
+capture: PASS F2: the BGM mute starts off
+capture: F2 turning the mute on
+capture: PASS F2: C2 turns the mute on
+capture: PASS F2: the mute stops the bed (no player)
+capture: PASS F2: the bed player is stopped while muted (no player)
+capture: shot 07-settings-mute-bed-stopped -> /tmp/opencode/falsify/07-settings-mute-bed-stopped.png (error 0)
+capture: F2 turning the mute off
+capture: PASS F2: C2 turns the mute off
+capture: F2: clearing the mute resumes the bed on the gallery | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL F2: clearing the mute resumes the bed on the gallery (AudioFeedback reports the bed streaming)
+capture: FAIL F2: clearing the mute resumes the bed on the gallery (SND.M1 has a player in the music channel)
+capture: FAIL F2: clearing the mute resumes the bed on the gallery (the stream has advanced past its start)
+capture: FAIL F2: clearing the mute resumes the bed on the gallery (the bed stream decodes to a real clip)
+capture: shot 08-settings-unmuted-bed -> /tmp/opencode/falsify/08-settings-unmuted-bed.png (error 0)
+capture: PASS C3: Back leaves settings
+capture: PASS C3: Back returns to the gallery
+capture: G2: the bed keeps playing after Back | bed_playing=false player=no player pos=0.00ms length=0ms loop=false
+capture: FAIL G2: the bed keeps playing after Back (AudioFeedback reports the bed streaming)
+capture: FAIL G2: the bed keeps playing after Back (SND.M1 has a player in the music channel)
+capture: FAIL G2: the bed keeps playing after Back (the stream has advanced past its start)
+capture: FAIL G2: the bed keeps playing after Back (the bed stream decodes to a real clip)
+capture: PASS G2: the bed keeps playing after Back (no restart: pos 0.00ms >= 0.00ms)
+capture: state dump /tmp/opencode/falsify/logs/state-pack-003.json
+capture: FAILED G2: SND.M1 is loaded at app start
+capture: FAILED G2: the bed plays on the gallery at app start (AudioFeedback reports the bed streaming)
+capture: FAILED G2: the bed plays on the gallery at app start (SND.M1 has a player in the music channel)
+capture: FAILED G2: the bed plays on the gallery at app start (the stream has advanced past its start)
+capture: FAILED G2: the bed plays on the gallery at app start (the bed stream decodes to a real clip)
+capture: FAILED G2: the bed keeps playing in the open puzzle (AudioFeedback reports the bed streaming)
+capture: FAILED G2: the bed keeps playing in the open puzzle (SND.M1 has a player in the music channel)
+capture: FAILED G2: the bed keeps playing in the open puzzle (the stream has advanced past its start)
+capture: FAILED G2: the bed keeps playing in the open puzzle (the bed stream decodes to a real clip)
+capture: FAILED G2: the bed keeps playing after leaving the puzzle (AudioFeedback reports the bed streaming)
+capture: FAILED G2: the bed keeps playing after leaving the puzzle (SND.M1 has a player in the music channel)
+capture: FAILED G2: the bed keeps playing after leaving the puzzle (the stream has advanced past its start)
+capture: FAILED G2: the bed keeps playing after leaving the puzzle (the bed stream decodes to a real clip)
+capture: FAILED G2: the bed keeps playing in the reopened puzzle (AudioFeedback reports the bed streaming)
+capture: FAILED G2: the bed keeps playing in the reopened puzzle (SND.M1 has a player in the music channel)
+capture: FAILED G2: the bed keeps playing in the reopened puzzle (the stream has advanced past its start)
+capture: FAILED G2: the bed keeps playing in the reopened puzzle (the bed stream decodes to a real clip)
+capture: FAILED G2: the bed keeps playing on the result screen (AudioFeedback reports the bed streaming)
+capture: FAILED G2: the bed keeps playing on the result screen (SND.M1 has a player in the music channel)
+capture: FAILED G2: the bed keeps playing on the result screen (the stream has advanced past its start)
+capture: FAILED G2: the bed keeps playing on the result screen (the bed stream decodes to a real clip)
+capture: FAILED G2: the bed keeps playing on the gallery after the result (AudioFeedback reports the bed streaming)
+capture: FAILED G2: the bed keeps playing on the gallery after the result (SND.M1 has a player in the music channel)
+capture: FAILED G2: the bed keeps playing on the gallery after the result (the stream has advanced past its start)
+capture: FAILED G2: the bed keeps playing on the gallery after the result (the bed stream decodes to a real clip)
+capture: FAILED F2: settings alone does not stop the bed while the mute is off (AudioFeedback reports the bed streaming)
+capture: FAILED F2: settings alone does not stop the bed while the mute is off (SND.M1 has a player in the music channel)
+capture: FAILED F2: settings alone does not stop the bed while the mute is off (the stream has advanced past its start)
+capture: FAILED F2: settings alone does not stop the bed while the mute is off (the bed stream decodes to a real clip)
+capture: FAILED F2: clearing the mute resumes the bed on the gallery (AudioFeedback reports the bed streaming)
+capture: FAILED F2: clearing the mute resumes the bed on the gallery (SND.M1 has a player in the music channel)
+capture: FAILED F2: clearing the mute resumes the bed on the gallery (the stream has advanced past its start)
+capture: FAILED F2: clearing the mute resumes the bed on the gallery (the bed stream decodes to a real clip)
+capture: FAILED G2: the bed keeps playing after Back (AudioFeedback reports the bed streaming)
+capture: FAILED G2: the bed keeps playing after Back (SND.M1 has a player in the music channel)
+capture: FAILED G2: the bed keeps playing after Back (the stream has advanced past its start)
+capture: FAILED G2: the bed keeps playing after Back (the bed stream decodes to a real clip)
+capture: RESULT fail (37 failures)
+SEV level=info event=session-end time=1793671611.537 session=issue-427-falsify build=main@4041ef6-mutant story=J-leave-resume message=
