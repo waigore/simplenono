@@ -1,6 +1,7 @@
 # Epic #294 — puzzle picture pack, closing audit
 
-Date: 2026-11-04. Tree: `main@348a6f3`. Author: `issue-workflow-implement-agent` (unattended, parallel id 1).
+Date: 2026-11-04. Tree: `main@348a6f3` (`@93271e3` after the #486 strip; see check 3).
+Author: `issue-workflow-implement-agent` (unattended, parallel id 1).
 Kind spec: [`specs/assets/kinds/puzzle-pictures.md`](../../../../../specs/assets/kinds/puzzle-pictures.md) `V1`, `K1`–`K6`.
 
 This record closes the four pack-wide checks in the #294 body. It asserts nothing per puzzle beyond what each
@@ -40,9 +41,13 @@ missing and none absent from disk.
 
 ## Check 3 — subject mix (`V2`, `K5`)
 
-The pack was delivered under the pre-#486 `V2` (~30% single-subject / ~70% multi), whose per-puzzle class the
-product owner retired on 2026-11-03 (option 3, [#486][486]); PR #495 rewords `V2`/`K5` to a class-free look
-audit. Measured from the delivered catalog as recorded at delivery time:
+The pack was generated under the pre-#486 `V2` (~30% single-subject / ~70% multi). The product owner retired the
+per-puzzle class on 2026-11-03 (option 3, [#486][486]), and PR #495 reworded `V2`/`K5` to a class-free look
+audit and stripped the class from the catalog. That landed as `b787999` while this record was in flight, so the
+shipped catalog on `main@93271e3` carries **no** subject class — `pack_audit.py` reports `unlabelled` for all 200,
+and that is the current, authoritative state.
+
+Recorded before the strip (from `main@348a6f3`), the delivered labels were:
 
 | Size | single-subject | multi-subject and/or holed | unlabelled |
 |---|---|---|---|
@@ -52,13 +57,13 @@ audit. Measured from the delivered catalog as recorded at delivery time:
 | **All** | **58** | **134** | **8** |
 
 The index rule that shaped the slices (index mod 10 ∈ {0, 3, 7}) names 60 single-subject out of 200 — 30%,
-exactly the `V2` target. The eight delivered entries that disagree with it are pack-192–pack-199, unlabelled
-because those last two slices were generated after the class was retired and never wrote one. **192 of 200**
-delivered entries carry the label the index rule names.
+exactly the `V2` target the pack was built to. The eight entries that disagree are pack-192–pack-199, unlabelled
+because those last two slices were generated after the retirement and never wrote one; **192 of 200** carried the
+label the index rule names.
 
-Under the class-free reading this is no longer a per-puzzle target: the pack look is the `K5` closing judgement —
-200 pictures, all approved, all calm-clinical and readable at N×N from their silhouettes, shipped as one
-variety-checked set. No picture is regenerated for a class.
+Under the class-free `V2`/`K5` that now ships this is no longer a per-puzzle target: the pack look is the `K5`
+closing judgement — 200 pictures, all approved, all calm-clinical and readable at N×N from their silhouettes,
+delivering the intended ~30/70 variety mix. No picture is regenerated for a class.
 
 ## Check 4 — regeneration record and discard rate
 
