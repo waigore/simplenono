@@ -13,9 +13,9 @@ extends Control
 ## only O1 — it never writes a mark, a record, or a derived value.
 ##
 ## R4/R5/R6: the asset resolver reads the manifest once here at app start; [AudioFeedback]
-## preloads the mark ticks, starts the bed while a puzzle is open, and plays the solve
-## sting; [Haptics] clicks on an accepted fill or cross. Marks reach them through
-## [MarkInput]'s S8 signal, and both read this shell's [SessionFlags]
+## preloads the mark ticks, starts the session bed (gallery, puzzle, and result alike),
+## and plays the solve sting; [Haptics] clicks on an accepted fill or cross. Marks reach
+## them through [MarkInput]'s S8 signal, and both read this shell's [SessionFlags]
 ## ([b]SCH-preferences[/b] F1/F2) rather than keeping their own copy.
 ##
 ## [GalleryScreen] is the no-puzzle screen ([code]SEQ-open[/code] B1 keeps it shown and
@@ -101,6 +101,7 @@ func _ready() -> void:
 	_audio = AudioFeedback.new(_resolver, _flags)
 	add_child(_audio)
 	_audio.preload_ticks()
+	_audio.start_session()
 	_haptics = Haptics.new(_flags)
 	_pack.load_pack(Pack.PACK_PATH)
 	_gallery.set_picture_provider(_picture_for)
@@ -135,7 +136,7 @@ func open_puzzle(puzzle_id: String) -> bool:
 	_attempt = attempt
 	_puzzle.present(attempt)
 	_show_puzzle()
-	_audio.on_puzzle_open()
+	_audio.on_attempt_open()
 	_attempt.solved.connect(_on_attempt_solved)
 	_attempt.left.connect(_on_attempt_left)
 	_seams.note_open(attempt)
@@ -446,13 +447,14 @@ func _on_attempt_solved(puzzle_id: String, _elapsed: int) -> void:
 
 
 ## [b]CTR-attempt[/b] E2 → [code]SEQ-leave[/code] S5: the attempt is already cleared, so
-## the shell drops its bindings, closes the puzzle screen, and shows the gallery.
+## the shell drops its bindings, closes the puzzle screen, and shows the gallery. The
+## session bed ([code]ACC.G2[/code]) keeps playing across the leave; leaving has no
+## audio of its own.
 func _on_attempt_left(puzzle_id: String) -> void:
 	_seams.note_leave(puzzle_id)
 	_unbind_attempt()
 	_attempt = null
 	_puzzle.present(null)
-	_audio.on_puzzle_leave()
 	_show_gallery()
 
 
