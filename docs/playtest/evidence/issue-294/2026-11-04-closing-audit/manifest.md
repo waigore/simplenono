@@ -5,7 +5,8 @@ Kind spec: [`specs/assets/kinds/puzzle-pictures.md`](../../../../../specs/assets
 
 This record closes the four pack-wide checks in the #294 body. It asserts nothing per puzzle beyond what each
 slice's own comment already recorded against the shared picture bar; every number below was read from `main`,
-not from slice claims.
+not from slice claims. #252 and #254 have no picture-slice evidence directory, so for them the shipped catalog
+and pack rows are the record.
 
 ## Reproduce
 
