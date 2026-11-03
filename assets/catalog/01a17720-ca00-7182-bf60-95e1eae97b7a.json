@@ -22,7 +22,7 @@
     "adr": "adr-free"
   },
   "generation": {
-    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a solid horizontal bar about twelve cells long and five cells tall near the top and a separate square mass about six cells on a side below its right end, a clear three-cell gap between them, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a wide flat cap fifteen cells across and five cells tall standing on a six-cell-wide base, with two four-cell rectangular holes cut through the cap, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
     "negative_prompt": "playful chrome; gore; horror",
     "tool": "Cheaper Inference",
     "operation": "images.generations",
@@ -51,6 +51,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-145 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 05540b04-b15e-4e55-8f8f-1d64392dc842, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 62.6 against pale background luma mean 206.5; The stored 15x15 pixel silhouette reads as one long dark horizontal bar across the top and a separate dark block below its right end with a pale channel between them. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-145 (multi-subject and/or holed). Regenerated for the #268 verification repair. Generated square: flux-2-max 1024x1024, request 2b1d6f17-80fc-47a5-82a2-ec6ade1cc943, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 91.2 against pale background luma mean 194.7 (filled 66/225). The stored 15x15 pixel silhouette reads as a wide flat cap standing on a narrower base, with two rectangular pale windows cut through the cap (1 mass of 66 cells with 8 enclosed pale regions, so it is holed). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed, measured on the pixel as the shared bar on #294 reads it. No series (SS1 none). License: Cheaper Inference terms."
   }
 }
