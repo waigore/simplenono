@@ -2,7 +2,8 @@
 
 One line per unattended `issue-workflow-accept-agent` run, oldest first; each ends in an accept
 or a hold. Context and the remaining holds: [`accept-dispatch-deadlock.md`](accept-dispatch-deadlock.md).
-The earliest twelve runs are on [page 1](accept-dispatch-rechecks-1.md).
+The earliest twelve runs are on [page 1](accept-dispatch-rechecks-1.md); later runs go to
+[page 2](accept-dispatch-rechecks-2.md).
 
 | Build | Suite | Picked | Outcome |
 |-------|-------|--------|---------|
