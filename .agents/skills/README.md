@@ -32,6 +32,7 @@ Native facades (Cursor / OpenCode / Grok) and authoring rules (veneers, **Invoke
 | [`implement-project-issue`](implement-project-issue/SKILL.md) | Implementation summary → pending-verification |
 | [`verify-project-issue`](verify-project-issue/SKILL.md) | Independent verify pass / fail |
 | [`accept-project-issue`](accept-project-issue/SKILL.md) | Accept / fail / clarify after verification |
+| [`migrate-playtest-evidence-to-wiki`](migrate-playtest-evidence-to-wiki/SKILL.md) | Move in-repo playtest screenshots/logs to the wiki; rewrite manifests; focused PR |
 | [`issue-workflow-review-agent`](issue-workflow-review-agent/SKILL.md) | Background dispatch → `review-project-issue` |
 | [`issue-workflow-refine-agent`](issue-workflow-refine-agent/SKILL.md) | Background dispatch → `refine-project-issue` |
 | [`issue-workflow-clarify-agent`](issue-workflow-clarify-agent/SKILL.md) | Background dispatch → `clarify-project-issue` |

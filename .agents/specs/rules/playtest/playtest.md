@@ -12,7 +12,7 @@ Playtesting proves the running build against game design and UX. It is downstrea
 - **Two levels only**: design playtests cite design story or element IDs; UX playtests cite UX story or journey IDs. No view-story protocols.
 - **No technology dump**: name required capabilities (debug UI, telemetry events) in product terms. Engines, frameworks, formats, and tool products belong in ADRs; seams and harness detail belong in `specs/technical/verification.md`.
 - **Traceable**: every protocol and requirement states which design or UX IDs it proves. Hub and unit specs stay consistent with those IDs.
-- **Evidence contract**: each required run records story IDs, pass/fail, notes, and logs under `docs/playtest/evidence/`. Screenshots come from a graphical re-run of the same build and are required before acceptance, unless the protocol says none. A headless run may omit them without a defect.
+- **Evidence contract**: each required run records story IDs, pass/fail, and notes under `docs/playtest/evidence/`; screenshots and logs live on the repo wiki and are cited by wiki page URL. Screenshots come from a graphical re-run of the same build and are required before acceptance, unless the protocol says none. A headless run may omit them without a defect.
 - **Concise**: each Markdown file stays under 500 words. Split by logical unit and link.
 
 ## Purpose and levels
@@ -33,7 +33,7 @@ State when playtesting is mandatory at acceptance: issues whose deliverables cha
 
 ## Evidence
 
-State the root path `docs/playtest/evidence/` and the required artifact kinds: story IDs, pass/fail, notes, logs, and screenshots from a graphical re-run of the same build before acceptance (unless the protocol says none). State that a headless run may omit screenshots without a defect.
+State the in-repo root `docs/playtest/evidence/` (manifest + notes), that screenshots and logs live on the repo wiki (cite the wiki page URL), and the required artifact kinds: story IDs, pass/fail, notes, logs, and screenshots from a graphical re-run of the same build before acceptance (unless the protocol says none). State that a headless run may omit screenshots without a defect. Point at [`docs/playtest/wiki-evidence.md`](../../../../docs/playtest/wiki-evidence.md) for wiki layout.
 
 ## Architecture constraints
 
