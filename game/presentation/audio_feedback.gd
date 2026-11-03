@@ -5,8 +5,9 @@ extends Node
 ## specs/technical/sequences/mark.md S8/S14).
 ##
 ## [code]G1[/code]: the three tick streams preload at app start and stay loaded for the
-## session. [code]G2[/code]: the bed starts when a puzzle opens, keeps playing under the
-## 1 s solve sting, and stops on leave. [code]SND.M2[/code] plays once at
+## session. [code]G2[/code]: the bed is a session stream — it starts at app start on the
+## gallery, keeps playing through the open puzzle, the result, and settings, and ends
+## only at session end or while F2 mutes it. [code]SND.M2[/code] plays once at
 ## [b]CTR-attempt[/b] E1, so a duplicate event plays nothing. [b]SCH-preferences[/b]
 ## [code]I1[/code]: F2 mutes the bed only — ticks and the sting stay audible.
 ##
@@ -75,7 +76,6 @@ var _sink: Sink
 var _ticks: Dictionary = {}
 var _bed: AudioStream
 var _sting: AudioStream
-var _open := false
 var _bed_playing := false
 var _sting_played := false
 
@@ -107,34 +107,35 @@ func tick_stream(kind: CellMark.Mark) -> AudioStream:
 	return _ticks.get(kind) as AudioStream
 
 
-## The bed stream, or null before a puzzle opened.
+## The bed stream, or null before the session started.
 func bed_stream() -> AudioStream:
 	return _bed
 
 
-## The solve sting stream, or null before a puzzle opened or solved.
+## True while the bed is streaming during an open session and unmuted
+## ([code]ACC.G2[/code], [b]SCH-preferences[/b] F2).
+func bed_playing() -> bool:
+	return _bed_playing
+
+
+## The solve sting stream, or null before the session started.
 func sting_stream() -> AudioStream:
 	return _sting
 
 
-## [code]ACC.G2[/code]: a puzzle opened, so the bed may stream and a newer attempt can
-## still play its sting. Re-opening in place keeps a running bed.
-func on_puzzle_open() -> void:
-	_open = true
-	_sting_played = false
-	if _bed == null:
-		_load_bed()
-	if _sting == null:
-		_sting = _load(AudioCues.SOLVE_STING)
+## [code]ACC.G2[/code]: the app session started, so the bed streams from here to session
+## end. Its context is the gallery, the open puzzle, and the result alike, so leaving a
+## puzzle never stops it; only [b]SCH-preferences[/b] F2 mutes it. The shell calls this
+## once at app start.
+func start_session() -> void:
+	_load_streams()
 	_refresh_bed()
 
 
-## [code]ACC.G2[/code]: the puzzle was left, so the bed stops. Ticks and the sting are
-## unaffected.
-func on_puzzle_leave() -> void:
-	_open = false
+## A newer attempt began, so it can still play its own [code]SND.M2[/code] sting. The
+## session bed is unaffected and keeps streaming across the open.
+func on_attempt_open() -> void:
 	_sting_played = false
-	_stop_bed()
 
 
 ## [b]SEQ-mark[/b] S8: plays the tick for the accepted [param kind]. The solve branch
@@ -161,10 +162,10 @@ func on_solved() -> void:
 ## [code]SCH-preferences[/code] F2 and [code]I1[/code]: the bed follows the flag, so the
 ## settings screen never reaches into playback. Ticks and the sting ignore F2.
 func _refresh_bed() -> void:
-	if _open and not _flags.mute_bgm():
-		_start_bed()
-	else:
+	if _flags.mute_bgm():
 		_stop_bed()
+	else:
+		_start_bed()
 
 
 func _on_flags_changed() -> void:
@@ -189,6 +190,15 @@ func _load_bed() -> void:
 	_bed = _load(AudioCues.MUSIC_BED)
 	if _bed != null and "loop" in _bed:
 		_bed.set("loop", true)
+
+
+## [code]ACC.G2[/code]: the session's music streams — the looped bed and the solve sting —
+## load once at app start and stay for the session.
+func _load_streams() -> void:
+	if _bed == null:
+		_load_bed()
+	if _sting == null:
+		_sting = _load(AudioCues.SOLVE_STING)
 
 
 ## Resolves one cue through [b]CMP-shell[/b] R6 and requires an audio stream, so a

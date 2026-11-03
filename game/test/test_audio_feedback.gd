@@ -10,6 +10,7 @@ extends GutTest
 ## already has that mark) are proved where the shell hears them.
 
 const SCREEN_SCENE := preload("res://presentation/puzzle.tscn")
+const SHELL_SCENE := preload("res://presentation/shell.tscn")
 const TEAPOT_ID := "teapot"
 const TEAPOT_PATH := "res://test/fixtures/teapot.json"
 const TEST_PATH := "user://progress-audio-feedback-test.cfg"
@@ -109,32 +110,45 @@ func test_each_accepted_mark_plays_its_own_tick():
 	assert_eq(_sink.streams[2], _feedback.tick_stream(CellMark.Mark.CLEAR))
 
 
-# G2: the bed starts with the puzzle and stops on leave
-func test_bed_starts_on_open_and_stops_on_leave():
-	_feedback.on_puzzle_open()
-	_feedback.on_puzzle_leave()
+# G2: the bed is a session stream — it starts at app start on the gallery
+func test_bed_starts_with_the_session_on_the_gallery():
+	_feedback.start_session()
 
-	assert_eq(_sink.calls, ["bed:start", "bed:stop"])
+	assert_eq(_sink.calls, ["bed:start"])
+	assert_true(_feedback.bed_playing(), "the gallery streams the bed")
+
+
+# G2: opening a puzzle neither restarts nor stops the session bed
+func test_bed_keeps_playing_across_an_attempt():
+	_feedback.start_session()
+	_feedback.on_attempt_open()
+
+	assert_eq(_sink.calls, ["bed:start"], "opening a puzzle does not restart the bed")
+	assert_true(_feedback.bed_playing(), "the bed streams in the open puzzle")
 
 
 # S14: the sting plays exactly once over the continuing bed
 func test_solve_plays_the_sting_once_over_the_continuing_bed():
-	_feedback.on_puzzle_open()
+	_feedback.start_session()
+	_feedback.on_attempt_open()
 	_feedback.on_solved()
 	_feedback.on_solved()
 
 	assert_eq(_sink.calls, ["bed:start", "sting"], "one sting and no bed stop")
 	assert_eq(_sink.streams[1], _feedback.sting_stream(), "the sting is the solve cue")
+	assert_true(_feedback.bed_playing(), "the bed continues under the sting")
 
 
 # I1 / F2: mute silences the bed only; ticks and the sting stay audible
 func test_mute_bgm_mutes_the_bed_only():
 	_flags.set_mute_bgm(true)
-	_feedback.on_puzzle_open()
+	_feedback.start_session()
+	_feedback.on_attempt_open()
 	_feedback.on_mark_accepted(CellMark.Mark.FILL)
 	_feedback.on_solved()
 
 	assert_eq(_sink.calls, ["tick:fill", "sting"], "no bed while muted")
+	assert_false(_feedback.bed_playing(), "a muted session streams no bed")
 
 	_flags.set_mute_bgm(false)
 	_flags.set_mute_bgm(true)
@@ -221,10 +235,9 @@ func test_unchanged_mark_plays_nothing():
 	assert_eq(_haptic_sink.clicks.size(), 1, "only the changed cell clicks")
 
 
-# F1/F2 and the R4/R6 wiring: the shell owns the flags and starts the bed on open
+# F1/F2 and the R4/R6 wiring: the shell owns the flags and streams the bed for the session
 func test_shell_owns_the_flags_and_wires_the_bed():
-	var scene := load("res://presentation/shell.tscn") as PackedScene
-	var shell := scene.instantiate() as Shell
+	var shell := SHELL_SCENE.instantiate() as Shell
 	shell.progress_path = TEST_PATH
 	add_child_autofree(shell)
 
@@ -232,7 +245,26 @@ func test_shell_owns_the_flags_and_wires_the_bed():
 	assert_false(shell.session_flags().mute_bgm(), "F2 defaults off")
 	assert_not_null(shell.audio_feedback().tick_stream(CellMark.Mark.FILL), "G1 loaded")
 	assert_true(shell.open_puzzle("pack-000"), "a puzzle opens")
-	assert_not_null(shell.audio_feedback().bed_stream(), "G2: the bed loads with the puzzle")
+	assert_not_null(shell.audio_feedback().bed_stream(), "G2: the bed stream is loaded")
+
+
+# G2 / ACC.G2: the bed plays from app start on the gallery and survives open and leave
+func test_shell_bed_streams_on_the_gallery_and_across_a_puzzle():
+	var shell := SHELL_SCENE.instantiate() as Shell
+	shell.progress_path = TEST_PATH
+	add_child_autofree(shell)
+	var audio := shell.audio_feedback()
+
+	assert_eq(shell.view(), Shell.GALLERY_VIEW, "the app starts on the gallery")
+	assert_true(audio.bed_playing(), "the gallery already streams the bed")
+
+	assert_true(shell.open_puzzle("pack-000"), "a puzzle opens")
+	assert_true(audio.bed_playing(), "the bed keeps playing in the puzzle")
+
+	shell.leave_puzzle()
+
+	assert_eq(shell.view(), Shell.GALLERY_VIEW, "leave returns to the gallery")
+	assert_true(audio.bed_playing(), "the bed keeps playing back on the gallery")
 
 
 func _wire(screen: PuzzleScreen) -> void:
