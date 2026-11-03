@@ -10,9 +10,9 @@
   `--headless`), `--debug-seams`, in a worktree at `8595d3f`
 - **Checkerboard of record:** [`expect.json`](expect.json), from [`tools/expectations_267.py`](tools/expectations_267.py),
   read straight off each committed `-pixel.png` — `puzzle_derive.py` is not in that path
-- **Log:** [`logs/capture.log`](logs/capture.log); derive and judge of record: [`logs/derive-judge.log`](logs/derive-judge.log);
-  independent expectations: [`logs/expectations.log`](logs/expectations.log); screenshot stats:
-  [`logs/screenshot-stats.log`](logs/screenshot-stats.log); `DBG.2` state dump: [`logs/state-pack-141.json`](logs/state-pack-141.json)
+- **Log / screenshots (wiki):** [Playtest-issue-267-2026-11-03-accept-graphical](https://github.com/waigore/simplenono/wiki/Playtest-issue-267-2026-11-03-accept-graphical)
+  (`logs/capture.log`, `logs/derive-judge.log`, `logs/expectations.log`, `logs/screenshot-stats.log`,
+  `logs/state-pack-141.json`, nine screenshots)
 
 These four rows change playable behavior (each ships a different solution grid and clues, and each gallery tile now
 resolves a picture pair), so playtesting is required. The scope is the protocols these rows can reach; no other flow
@@ -32,7 +32,7 @@ changed in the slice.
 
 Final line: `capture: RESULT pass (9 shots, 0 checks failed)`, 35 `capture: PASS` lines, 860 `TEL` lines,
 200 puzzles accepted and 0 rejected, session `issue-267-accept` / build `main@8595d3f`. The nine screenshots are
-900×1200 and all distinct ([`logs/screenshot-stats.log`](logs/screenshot-stats.log)).
+900×1200 and all distinct (`logs/screenshot-stats.log` on the wiki page).
 
 ## Judged states (all images from this graphical run of this build)
 
@@ -87,3 +87,10 @@ pack-141 91 1 True True True True | masses [49, 42] holes 0
   ring with a 2-cell frame and a 5×5 hole; `generation.prompt` is the prompt *as run*, and the shape it names (a
   bold squarish ring with a clear square hole) is what the picture is. Wording only; verification recorded the same
   note. No defect.
+
+## Paths
+
+| Artifact | Path |
+|----------|------|
+| Judged detail, scope, blockers | [`notes.md`](notes.md) |
+| Screenshots and logs | [wiki page](https://github.com/waigore/simplenono/wiki/Playtest-issue-267-2026-11-03-accept-graphical) |

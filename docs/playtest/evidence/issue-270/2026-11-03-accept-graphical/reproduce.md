@@ -25,7 +25,7 @@ Re-implements the shared picture bar's fill rule (alpha over white,
 `Y = 0.2126R + 0.7152G + 0.0722B` on 0–255 sRGB, filled when `Y < 128`, BOX 1024→15, no gamma, no per-image
 threshold) and checks each committed pixel against the committed pack row. `nonogram.py` is its own line solver and
 enumerator; neither imports `.github/scripts/puzzle_derive.py`. Observed output is in
-[`logs/expectations.log`](logs/expectations.log):
+[`logs/expectations.log`](https://raw.githubusercontent.com/wiki/waigore/simplenono/playtest/issue-270/2026-11-03-accept-graphical/logs/expectations.log):
 
 ```
 pack-150 70 1 True True True True | masses [70] holes 51 | ...
@@ -50,7 +50,7 @@ godot --path game -s res://probe_capture_270.gd -- \
 ```
 
 Expected final line: `capture: RESULT pass (9 shots, 0 checks failed)`. Full log in
-[`logs/capture.log`](logs/capture.log).
+[`logs/capture.log`](https://raw.githubusercontent.com/wiki/waigore/simplenono/playtest/issue-270/2026-11-03-accept-graphical/logs/capture.log).
 
 ## 3. Remove the probe
 
@@ -67,9 +67,9 @@ python3 .github/scripts/asset_catalog.py             # 0 error(s) — unfiltered
 python3 .github/scripts/spec_lint.py                 # 0 error(s), 1 pre-existing warning
 ```
 
-Observed output: [`logs/acceptance-checks.log`](logs/acceptance-checks.log).
+Observed output: [`logs/acceptance-checks.log`](https://raw.githubusercontent.com/wiki/waigore/simplenono/playtest/issue-270/2026-11-03-accept-graphical/logs/acceptance-checks.log).
 
-The derive and judge of record are in [`logs/derive-judge.log`](logs/derive-judge.log):
+The derive and judge of record are in [`logs/derive-judge.log`](https://raw.githubusercontent.com/wiki/waigore/simplenono/playtest/issue-270/2026-11-03-accept-graphical/logs/derive-judge.log):
 
 ```bash
 for p in 150 151 152 153; do
