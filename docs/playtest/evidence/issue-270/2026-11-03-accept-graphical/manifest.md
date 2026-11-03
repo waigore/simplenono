@@ -3,16 +3,16 @@
 - **Issue:** #270 Puzzle pictures pack-150–pack-153 (15×15) (`type:task`)
 - **Build / session id:** `main@d688934` / `issue-270-accept`. The slice landed at PR #422's squash `a967bfc`; its
   eight picture files, eight `.import` sidecars, eight catalog entries, and the four `pack.json` rows are identical
-  between `a967bfc` and `d688934` (`git diff a967bfc d688934 -- …` → no output, [`logs/derive-judge.log`](logs/derive-judge.log)),
+  between `a967bfc` and `d688934` (`git diff a967bfc d688934 -- …` → no output; see `logs/derive-judge.log` on the wiki page),
   so a graphical run of this later `main` is a run of the delivered slice.
 - **Coverage mode:** `full` ([`coverage.md`](../../../../../specs/playtest/coverage.md))
 - **Run:** 2026-11-03, graphical through `xvfb-run` (Godot 4.7.2 stable, 1440×1920 screen, `godot --path game` — not
-  `--headless`), `--debug-seams`, in a worktree at `d688934`
+    `--headless`), `--debug-seams`, in a worktree at `d688934`
 - **Checkerboard of record:** [`expect.json`](expect.json), from [`tools/expectations_270.py`](tools/expectations_270.py),
   read straight off each committed `-pixel.png` — `puzzle_derive.py` is not in that path
-- **Log:** [`logs/capture.log`](logs/capture.log); derive and judge of record: [`logs/derive-judge.log`](logs/derive-judge.log);
-  independent expectations: [`logs/expectations.log`](logs/expectations.log); repo checks:
-  [`logs/acceptance-checks.log`](logs/acceptance-checks.log); `DBG.2` state dump: [`logs/state-pack-153.json`](logs/state-pack-153.json)
+- **Log / screenshots (wiki):** [Playtest-issue-270-2026-11-03-accept-graphical](https://github.com/waigore/simplenono/wiki/Playtest-issue-270-2026-11-03-accept-graphical)
+  (`logs/capture.log`, `logs/derive-judge.log`, `logs/expectations.log`, `logs/acceptance-checks.log`,
+  `logs/state-pack-153.json`, nine screenshots)
 
 These four rows change playable behavior (each ships a different solution grid and clues, and each gallery tile now
 resolves a picture pair), so playtesting is required. The scope is the protocols these rows can reach; no other flow
@@ -70,7 +70,14 @@ mass with no enclosed region, pack-151 two masses (45 + 36), pack-152 two masses
 pixel file and every square.
 
 The repo's derive and judge were also re-run from the committed squares
-([`logs/derive-judge.log`](logs/derive-judge.log)): each derived pixel is byte-identical to its committed pixel, and
+(`logs/derive-judge.log` on the wiki page): each derived pixel is byte-identical to its committed pixel, and
 each judge reports `solutions: 1`, `logic_solved: true`, `matches_pixel: true`, filled inside the 56–101 band.
 
 Judgement text: [`notes.md`](notes.md). Reproduce steps: [`reproduce.md`](reproduce.md).
+
+## Paths
+
+| Artifact | Path |
+|----------|------|
+| Judged detail, scope, blockers | [`notes.md`](notes.md) |
+| Screenshots and logs | [wiki page](https://github.com/waigore/simplenono/wiki/Playtest-issue-270-2026-11-03-accept-graphical) |
