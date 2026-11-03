@@ -21,12 +21,18 @@ Usage:
     pack-004=multi \
     pack-010=15x15:single
 
-Each `KEY=CLASS` names the pack row id and its assigned subject class
-(`single` or `multi`). An optional `WIDTHxHEIGHT:` prefix picks a board config:
-`pack-010=15x15:single` uses the 15x15 prompt set. Without a prefix the 10x10
-config applies, which is what the earlier slices used. The board config fixes the
-derive size and the prompts, so the readable-at-NxN wording always matches the
-board the picture is stored for.
+Each `KEY=FAMILY` names the pack row id and the prompt family its attempts come
+from (`single` or `multi`). The family picks a prompt set: it is not a subject
+class and assigns no class to the puzzle. Since the product-owner decision on
+#486 (2026-11-03) no picture carries a per-puzzle single/multi subject class;
+what an accepted picture must show is a subject that reads at N×N, in the fill
+band, with unique line logic (`specs/assets/kinds/puzzle-pictures.md` K1–K4),
+which this script's judge and `review-asset`'s look review decide. V2 only bans
+the per-puzzle class tag; it asks for no particular mix. An optional
+`WIDTHxHEIGHT:` prefix picks a board config: `pack-010=15x15:single` uses the
+15x15 prompt set. Without a prefix the 10x10 config applies, which is what the
+earlier slices used. The board config fixes the derive size and the prompts, so
+the readable-at-NxN wording always matches the board the picture is stored for.
 
 The script prints one JSON line per attempt and writes the accepted squares,
 pixels, and a per-puzzle record to the manifest.
@@ -118,21 +124,36 @@ MULTI_PROMPTS_10 = [SINGLE_PROMPTS_10[0], SINGLE_PROMPTS_10[4], SINGLE_PROMPTS_1
                     SINGLE_PROMPTS_10[7]]
 
 
-def _prompt_15(shape: str) -> str:
-    """A 15x15 cut-out paper grid prompt for one shape, sized in board cells."""
+CELL_PERCENT = {10: "10", 15: "6.7", 20: "5"}
+
+
+def _grid_prompt(size: int, shape: str) -> str:
+    """A cut-out paper grid prompt for one shape, sized in an N x N board's cells."""
+    cell = CELL_PERCENT[size]
     return ("a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a "
-            "pale cool grey background: " + shape + ", each cell about 6.7 percent of the "
+            "pale cool grey background: " + shape + f", each cell about {cell} percent of the "
             "frame width, hard crisp square edges, no shadow, no reflection, no gradient, no "
             "texture, flat even lighting, strong high contrast, calm clinical still-life, "
-            "readable as a 15x15 icon, no text")
+            f"readable as a {size}x{size} icon, no text")
+
+
+def _prompt_15(shape: str) -> str:
+    """A 15x15 cut-out paper grid prompt for one shape, sized in board cells."""
+    return _grid_prompt(15, shape)
+
+
+def _prompt_20(shape: str) -> str:
+    """A 20x20 cut-out paper grid prompt for one shape, sized in board cells."""
+    return _grid_prompt(20, shape)
 
 
 # 15x15 prompt set. A cell is only about 4.7 percent of frame area, and the generator
 # draws a subject smaller than asked, so shapes are named large: a mass spanning ten or
 # more of the fifteen cells to read as twenty-five per cent or more after the box
 # downsample, and clear of the frame edge so the flattened band does not eat it.
-# Attempts 1-4 are single masses, 5-8 keep a second mass or a hole for the
-# multi-subject slices, 9-12 are wider-tile variants, 13-16 leave a margin.
+# Attempts 1-4 are single masses, 5-8 keep a second mass or a hole (the `multi`
+# prompt family, a prompt set and not a subject class, #486), 9-12 are wider-tile
+# variants, 13-16 leave a margin.
 SINGLE_PROMPTS_15 = [
     _prompt_15("one tall block that fills most of the frame, about fourteen cells wide and "
                "fourteen cells tall, with a four-cell notch cut out of its right side"),
@@ -176,7 +197,7 @@ SINGLE_PROMPTS_15 = [
                "a clear three-cell gap between them"),
 ]
 
-# 15x15 single-subject attempts, tried before the FRAME set. A mass that fills the
+# 15x15 outline-first attempts, tried before the FRAME set. A mass that fills the
 # frame passes the fill band but downsamples to a solid slab with no silhouette, so
 # these ask for a single outline whose own hole or channel survives at NxN, with the
 # shape well inside the frame.
@@ -199,8 +220,119 @@ SINGLE_ONLY_15 = [
                "on a pale background, each step four cells wide and four cells tall"),
 ]
 
-# Board configs: derive size and the single/multi prompt sets. The 10x10 config is
-# the default so the earlier slices re-run unchanged.
+# 20x20 prompt set, the same paper-grid families as the 15x15 set scaled to twenty
+# cells: a cell is only about a quarter of one percent of frame area, so shapes are
+# named large and kept inside the flattened border. Attempts 1-4 are single masses,
+# 5-8 keep a second mass or a hole (the `multi` prompt family), 9-12 are wider-tile
+# variants, 13-16 leave a margin.
+SINGLE_PROMPTS_20 = [
+    _prompt_20("one tall block that fills most of the frame, about eighteen cells wide and "
+               "eighteen cells tall, with a five-cell notch cut out of its right side"),
+    _prompt_20("a heavy C filling most of the frame, about twenty cells tall and eighteen "
+               "cells wide, its arms five cells thick, with a clear ten-cell opening on its "
+               "right side"),
+    _prompt_20("a bold square outline filling most of the frame, about twenty cells across, "
+               "its frame five cells thick, around a ten-cell square hole in the middle"),
+    _prompt_20("a solid stepped tower that fills most of the frame, twenty cells tall, "
+               "sixteen cells wide at its base, thirteen in the middle band, eight at its top"),
+    _prompt_20("two thick separate blocks filling the frame, a thirteen-cell tall block on the "
+               "left and an eleven-cell tall block on the right, four cells apart"),
+    _prompt_20("a large square outline filling most of the frame, twenty cells on a side with "
+               "five-cell-thick walls and an eight-cell hole low in its left wall, and an "
+               "eight-cell cube on the right"),
+    _prompt_20("a wide flat slab filling most of the frame, twenty cells across and eight "
+               "cells tall, with two five-cell square holes cut through it and one column "
+               "standing below it on the right"),
+    _prompt_20("a wide flat cap twenty cells across and seven cells tall standing on an "
+               "eight-cell-wide base, with two five-cell rectangular holes cut through the cap"),
+    _prompt_20("one very thick continuous ring filling most of the frame, twenty cells "
+               "across, eight cells of the frame, around a twelve-cell square hole"),
+    _prompt_20("a wide bar across the top two thirds of the frame and a thick stem below it, "
+               "the bar twenty cells wide and eleven tiles tall, the stem eight cells wide"),
+    _prompt_20("a very thick C filling most of the frame, twenty tiles tall and eighteen "
+               "tiles wide, tiles five cells thick, with a clear ten-cell opening on its right "
+               "side"),
+    _prompt_20("one very thick tall block filling most of the frame, eighteen tiles wide and "
+               "twenty tiles tall with an eight-tile notch cut into its top edge, tiles five "
+               "cells thick"),
+    _prompt_20("one heavy solid mass filling most of the frame and split by a wide clear "
+               "cross-shaped channel, two thick arms sixteen cells long and seven cells thick"),
+    _prompt_20("two heavy separate solid blocks filling the frame with a clear gap between "
+               "them, one tall block on the left and a shorter wide block on the right, a "
+               "five-cell gap through the middle"),
+    _prompt_20("two solid masses on a pale background, a tall narrow block on the left about "
+               "eighteen cells tall and eight cells wide and a wide flat slab on the right "
+               "about eleven cells tall and nine cells wide, a clear five-cell gap between "
+               "them"),
+    _prompt_20("a solid horizontal bar about sixteen cells long and seven cells tall near the "
+               "top and a separate square mass about eight cells on a side below its right "
+               "end, a clear four-cell gap between them"),
+]
+
+# 20x20 outline-first attempts, tried before the FRAME set, for the same reason as the
+# 15x15 set: a mass that fills the frame downsamples to a solid slab, so these ask for
+# one outline whose own hole or channel survives at 20x20.
+SINGLE_ONLY_20 = [
+    _prompt_20("the outline of one bold squarish ring fifteen cells across and fifteen cells "
+               "tall, its frame four cells thick, on a pale background, with one clear "
+               "seven-cell square hole in the middle"),
+    _prompt_20("the outline of a bold plus sign fifteen cells tall and fifteen cells wide "
+               "standing on a pale background, its arms five cells thick"),
+    _prompt_20("the outline of a bold keyhole standing on a pale background: a ring about "
+               "twelve cells across on a flaring five-cell-wide stem, with one clear hole in "
+               "the ring"),
+    _prompt_20("the outline of a bold arch standing on a pale background, sixteen cells tall "
+               "and fifteen cells wide, five cells thick, with one clear opening beneath it"),
+    _prompt_20("the outline of a bold letter E standing on a pale background, sixteen cells "
+               "tall and fifteen cells wide, its bars four cells thick"),
+    _prompt_20("the outline of a bold right-pointing arrow standing on a pale background, a "
+               "shaft in the middle with a triangular head five cells thick"),
+    _prompt_20("the outline of a bold stair step silhouette rising to the right in four steps "
+               "on a pale background, each step four cells wide and four cells tall"),
+]
+
+# 20x20 `multi` prompt-family attempts. The 15x15 two-mass family landed just under
+# the 25-45% band at twenty cells (a cell is a quarter of the area), so these keep the
+# frame-filling masses of the accepted 20x20 single prompt and add a second mass or a
+# hole that survives the downsample (a prompt set, not a subject class, #486).
+MULTI_PROMPTS_20 = [
+    _prompt_20("a heavy C filling most of the frame, twenty cells tall and eighteen cells "
+               "wide, its arms five cells thick, and a separate square mass seven cells on a "
+               "side standing in the clear opening on its right, outside the frame of the ring"),
+    _prompt_20("two heavy separate solid blocks filling the frame with a clear gap between "
+               "them, a block twenty cells tall and nine cells wide on the left and a block "
+               "sixteen cells tall and nine cells wide on the right, a four-cell gap through "
+               "the middle"),
+    _prompt_20("a wide flat slab filling most of the frame, twenty cells across and ten "
+               "cells tall, with two six-cell square holes cut through it and one column "
+               "standing below it on the right"),
+    _prompt_20("a wide flat cap twenty cells across and eight cells tall standing on a "
+               "nine-cell-wide base, with two five-cell rectangular holes cut through the cap"),
+    _prompt_20("a large square outline filling most of the frame, twenty cells on a side with "
+               "five-cell-thick walls and a ten-cell square hole, and a separate eight-cell "
+               "cube outside its lower right wall"),
+    _prompt_20("one heavy solid mass filling most of the frame and split by a wide clear "
+               "cross-shaped channel into two thick arms eighteen cells long and seven cells "
+               "thick"),
+    _prompt_20("a solid horizontal bar nineteen cells long and eight cells tall near the top "
+               "and a separate square mass nine cells on a side below its right end, a clear "
+               "four-cell gap between them"),
+    _prompt_20("two solid masses on a pale background, a tall narrow block on the left "
+               "eighteen cells tall and nine cells wide and a wide flat slab on the right "
+               "twelve cells tall and ten cells wide, a clear five-cell gap between them"),
+    SINGLE_PROMPTS_20[7],   # flat cap on a base, two holes through the cap
+    SINGLE_PROMPTS_20[6],   # flat slab, two holes, column below
+    SINGLE_PROMPTS_20[2],   # square outline around one big hole
+    SINGLE_PROMPTS_20[8],   # one very thick continuous ring
+    SINGLE_PROMPTS_20[5],   # square outline with a hole and a separate cube
+    SINGLE_PROMPTS_20[15],  # bar with a separate square mass below its right end
+    SINGLE_PROMPTS_20[13],  # two heavy blocks with a gap through the middle
+    SINGLE_PROMPTS_20[14],  # tall narrow block and wide slab with a gap
+]
+
+# Board configs: derive size and the two prompt families (`single`, `multi`). The
+# family is a prompt selector only; it assigns no subject class to any puzzle. The
+# 10x10 config is the default so the earlier slices re-run unchanged.
 BOARDS = {
     "10x10": {"size": 10, "single": SINGLE_PROMPTS_10, "multi": MULTI_PROMPTS_10},
     "15x15": {
@@ -209,6 +341,16 @@ BOARDS = {
         "single": SINGLE_ONLY_15 + SINGLE_PROMPTS_15,
         "multi": [SINGLE_PROMPTS_15[index]
                   for index in (14, 15, 13, 12, 4, 6, 5, 7, 0, 2, 8)],
+    },
+    "20x20": {
+        "size": 20,
+        # A twenty-cell board's cell is a quarter of a 15x15 cell's area, so outlines
+        # came in under the fill band: the frame-filling masses that passed lead, and
+        # the outline family follows as the recovery set.
+        "single": ([SINGLE_PROMPTS_20[index] for index in (1, 9, 6, 7, 0, 2, 11, 8, 12,
+                                                          13, 14, 15, 5, 4, 3)]
+                   + SINGLE_ONLY_20),
+        "multi": MULTI_PROMPTS_20,
     },
 }
 DEFAULT_BOARD = "10x10"
@@ -228,7 +370,7 @@ def api_key() -> str:
 
 
 def parse_target(raw: str) -> tuple[str, str, str]:
-    """`KEY=CLASS` or `KEY=BOARD:CLASS` -> (key, class, board)."""
+    """`KEY=FAMILY` or `KEY=BOARD:FAMILY` -> (key, prompt family, board)."""
     key, _, rest = raw.partition("=")
     board = DEFAULT_BOARD
     if ":" in rest:
@@ -364,7 +506,8 @@ def main(argv: list[str] | None = None) -> int:
             if ok:
                 accepted = entry
                 break
-        record[key] = {"class": klass, "board": board, "accepted": accepted,
+        # `prompt_family` names the prompt set this run used, not a subject class.
+        record[key] = {"prompt_family": klass, "board": board, "accepted": accepted,
                        "attempts": len(attempts), "log": attempts}
         manifest.write_text(json.dumps(record, indent=2) + "\n")
     missing = [k for k in record if not record[k]["accepted"]]

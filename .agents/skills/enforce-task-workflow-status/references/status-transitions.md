@@ -6,7 +6,7 @@ Contract: [`docs/issues/workflow.md`](../../../../docs/issues/workflow.md). Do n
 
 Epic, task, and defect: `status:pending-review`, `status:pending-refinement`, `status:pending-clarification`, `status:pending-implementation`, `status:pending-verification`, `status:pending-acceptance`, `status:accepted`, `status:pending-redefinition`.
 
-Feedback (`type:feedback`): `status:pending-analysis`, `status:pending-clarification`, `status:pending-resolution`, `status:resolved`. Contract: [`docs/issues/feedback.md`](../../../../docs/issues/feedback.md).
+Feedback (`type:feedback`): `status:pending-resolution`, `status:resolved`. Contract: [`docs/issues/feedback.md`](../../../../docs/issues/feedback.md).
 
 Exactly one `status:*` on each typed issue. Apply the table for that type.
 
@@ -40,10 +40,6 @@ It is not a general back-step for a late defect. A game or interface miss at acc
 
 | From | To | Typical evidence |
 |------|-----|------------------|
-| pending-analysis | pending-resolution | Analysis comment; related work still open |
-| pending-analysis | pending-clarification | A point needs a product-owner decision |
-| pending-analysis | resolved | Analysis comment; nothing left open |
-| pending-clarification | pending-analysis | PO clarification comment |
 | pending-resolution | resolved | Related issues accepted or closed |
 
 ## Label swap (`gh`)

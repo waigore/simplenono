@@ -171,6 +171,39 @@ func test_missing_manifest_fails_loudly():
 	assert_push_error("not loaded")
 
 
+# ADR-0008 / ACC.A1: the default read is the committed manifest in dev, and exactly one
+# export copy in a build without it; those are the only two paths the resolver names
+func test_default_read_is_the_committed_manifest_in_dev_and_the_export_copy_in_release():
+	assert_eq(AssetResolver.RELEASE_MANIFEST_PATH, "res://release/asset_manifest.json")
+	assert_eq(AssetResolver.SHIPPED_MANIFEST_PATHS.size(), 2, "two named reads, no more")
+	assert_eq(
+		AssetResolver.pick_manifest_path(true), AssetResolver.MANIFEST_PATH, "dev reads the source"
+	)
+	assert_eq(
+		AssetResolver.pick_manifest_path(false),
+		AssetResolver.RELEASE_MANIFEST_PATH,
+		"an export without the source reads the copy",
+	)
+
+	var resolver := AssetResolver.new()
+	assert_eq(
+		resolver.manifest_path(),
+		AssetResolver.MANIFEST_PATH,
+		"the repo has the committed manifest, so the shell reads it",
+	)
+	assert_true(resolver.has(_asset_id(AudioCues.FILL_TICK)), "the dev read resolves ids")
+
+
+# ADR-0008 / ACC.A3: the release read is a real path, and its absence fails loudly
+# rather than falling back to the dev manifest (an export script writes the copy)
+func test_the_release_read_is_a_real_path_that_fails_loudly_when_the_copy_is_absent():
+	var resolver := AssetResolver.new(AssetResolver.RELEASE_MANIFEST_PATH)
+
+	assert_eq(resolver.manifest_path(), AssetResolver.RELEASE_MANIFEST_PATH)
+	assert_false(ProjectSettings.globalize_path(resolver.manifest_path()).is_empty())
+	assert_push_error("not readable")
+
+
 # Single source: the five cue asset IDs appear only in audio_cues.gd
 func test_asset_ids_appear_only_in_the_cue_map():
 	var ids: Array[String] = []

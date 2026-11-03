@@ -20,3 +20,11 @@ tmp/
 # Godot 4 local import/cache (ADR-0001 project under game/)
 **/.godot/
 
+# release exports (issue #499, ADR-0008); the in-build manifest copy is generated there
+build/release/
+
+# evidence media: playtest on wiki (docs/playtest/wiki-evidence.md); quality is markdown-only
+docs/playtest/evidence/**/screenshots/
+docs/playtest/evidence/**/logs/
+docs/quality/evidence/**/screenshots/
+docs/quality/evidence/**/logs/

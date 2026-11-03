@@ -28,7 +28,6 @@
     "operation": "offline flatten + BOX downsample",
     "settings": {
       "model": "flux-2-max",
-      "subject_class": "multi-subject and/or holed",
       "downsample": "box",
       "size": 15,
       "flatten_method": "outer frame set to the median colour of the outer ring",
@@ -63,6 +62,6 @@
     "verdict": "Pass",
     "date": "2026-11-02",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-021 (multi-subject and/or holed; two separate rectangular blocks). Derived from the generated square (request 226564c2-767c-4302-bb5b-2147932ee80c). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [195, 202, 206]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 90/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: dark slate blue-grey shape on pale cool grey, flat even lighting, high contrast, calm clinical composition with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-021: two separate rectangular blocks. Derived from the generated square (request 226564c2-767c-4302-bb5b-2147932ee80c). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [195, 202, 206]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 90/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: dark slate blue-grey shape on pale cool grey, flat even lighting, high contrast, calm clinical composition with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

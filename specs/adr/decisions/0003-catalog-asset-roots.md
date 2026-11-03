@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/adr/decision.md`](../../../.agents/specs/
 - **Date**: 2026-11-01
 - **Category**: Integration
 - **Supersedes**: None
-- **Informed by**: Asset hub catalog and access ([`assets.md`](../../assets/assets.md), [`access.md`](../../assets/access.md), [`catalog.md`](../../assets/catalog.md)). Offline Godot project ([ADR-0001](0001-godot-gdscript.md)). Technical asset access ([`asset-access.md`](../../technical/asset-access.md)).
+- **Informed by**: Asset hub catalog and access ([`assets.md`](../../assets/assets.md), [`access.md`](../../assets/access.md), [`catalog.md`](../../assets/catalog.md)). Offline Godot project ([ADR-0001](0001-godot-gdscript.md)). [`asset-access.md`](../../technical/asset-access.md).
 
 ## Context
 
@@ -31,7 +31,7 @@ Where the Godot project, catalog entries, cataloged files, and the asset manifes
 1. Catalog outside import. Repo-root `assets/catalog/` never becomes a Godot resource.
 2. Files under `res://`. `game/assets/` gets import sidecars where the engine expects them.
 3. Manifest outside the asset root. Matches [`ACC.P2`](../../assets/access.md); CI can regenerate without touching playables.
-4. Shell resolves. Presentation already owns load groups G1–G3.
+4. Shell resolves. Presentation owns load groups G1–G3.
 
 ## Rejected alternatives
 
@@ -60,13 +60,13 @@ Paths and JSON only; no new licensed dependency. The five definition platforms s
 |-----------------|------------|
 | [`assets.md`](../../assets/assets.md) | Catalog root `assets/catalog/`; asset root `game/assets/` |
 | [`asset-access.md`](../../technical/asset-access.md) | Manifest, resolver, load mechanisms, and engine placement per Decision |
-| [`CMP-shell`](../../technical/components/shell.md) | Sole runtime reader of `assets/manifest.json` |
+| [`CMP-shell`](../../technical/components/shell.md) | Sole runtime reader: committed manifest in dev, [ADR-0008](0008-release-asset-manifest.md) output in release |
 | [`kinds/puzzle-pictures.md`](../../assets/kinds/puzzle-pictures.md) | Files under `game/assets/` from handle |
 
 ## Validation
 
 | Check | Method | When |
 |-------|--------|------|
-| Catalog and asset roots match this ADR | CI `asset_catalog.py` | every build once roots exist |
-| Manifest is generated, not hand-edited | review rule + CI | every build |
+| Catalog and asset roots match this ADR | CI `asset_catalog.py` | every build |
+| Manifest is generated, not hand-edited | review rule + CI drift | every build |
 | Runtime resolve goes only through CMP-shell | review rule | before acceptance |

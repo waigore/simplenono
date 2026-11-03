@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 - **Module**: [M1](../modules.md) presentation
 - **Serves**: Gallery, puzzle, result, and settings ([`ux.md`](../../ux/ux.md))
 - **Informed by**: [`screens/gallery.md`](../../ux/screens/gallery.md), [`screens/puzzle.md`](../../ux/screens/puzzle.md), [`screens/result.md`](../../ux/screens/result.md), [`screens/settings.md`](../../ux/screens/settings.md), [`haptics.md`](../../view/haptics.md), [`audio.md`](../../view/audio.md)
-- **ADRs**: [ADR-0001](../../adr/decisions/0001-godot-gdscript.md), [ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md), [ADR-0004](../../adr/decisions/0004-shell-attempt-rules-pack.md)
+- **ADRs**: [ADR-0001](../../adr/decisions/0001-godot-gdscript.md), [ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md), [ADR-0004](../../adr/decisions/0004-shell-attempt-rules-pack.md), [ADR-0008](../../adr/decisions/0008-release-asset-manifest.md)
 
 ## Responsibilities
 
@@ -17,7 +17,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | R3 | Draw the grid, clues, line cues, and the result fades. Request each stored picture by asset id when the gallery or result shows it |
 | R4 | Play the bed, mark ticks (fill/cross/clear), the solve sting, and the haptic click |
 | R5 | Hold session preferences: haptics default on, music mute default off |
-| R6 | Read `assets/manifest.json` and resolve asset IDs for G1–G3 ([ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md)) |
+| R6 | Read the asset manifest — committed `assets/manifest.json` in dev, `res://release/asset_manifest.json` in a release build ([ADR-0008](../../adr/decisions/0008-release-asset-manifest.md)) — and resolve asset IDs for G1–G3 |
 
 ## Communication
 

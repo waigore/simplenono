@@ -21,6 +21,8 @@ Every file under `docs/` must stay under **500 words**, except Markdown under `q
 | [pocs.md](pocs.md) | Proofs of concept under `pocs/`: requests, scope, relaxed bars, optional promotion |
 | [poc-promotion.md](poc-promotion.md) | Optional PoC reconcile act; keep/drop/adapt; reimplementation |
 | [poc-style-assets.md](poc-style-assets.md) | Style and asset gate when a PoC shows or plays them |
+| [android-debug.md](android-debug.md) | Debug APK via Actions + GitHub Release (`android-debug` branch); agent procedure |
+| [build-export.md](build-export.md) | Release exports: presets, templates, output paths, release-asset check, iOS PO inputs |
 | [dev-env-setup.md](dev-env-setup.md) | Local game-stack and asset-tool install/verify; then `setup-unit-test-ci` |
 | [open-design-skill-setup.md](open-design-skill-setup.md) | User-local Open Design skill + content under `~/.open-design-skill/`; optional agent wiring |
 | [ux-mockups.md](ux-mockups.md) | Mockup catalog approval; main-tree UI gate; verification and PoC promotion |
@@ -30,7 +32,8 @@ Every file under `docs/` must stay under **500 words**, except Markdown under `q
 | [labels.md](labels.md) | Label catalog and sync |
 | [pull-requests.md](pull-requests.md) | PR flow, branch names, body contract, auto-merge holds |
 | [requirements/](requirements/README.md) | Unconfirmed requirement notes awaiting capture into specs (not specs) |
-| [playtest/evidence/](playtest/evidence/) | AI-agent playtest evidence (story IDs, pass/fail, screenshots, notes, logs); requirements in `specs/playtest/` |
+| [playtest/evidence/](playtest/evidence/) | In-repo playtest index (`manifest.md`, `notes.md`); screenshots/logs on the wiki |
+| [playtest/wiki-evidence.md](playtest/wiki-evidence.md) | Wiki page naming, media layout, cite rules, migration from in-repo media |
 | [playtest/debug-seams.md](playtest/debug-seams.md) | How a playtest run drives S1–S5: the one flag, commands, keys, telemetry log lines |
 | [quality/evidence/](quality/evidence/) | Quality-evaluator evidence: per-axis pass, fail, or blocked for deterministic verification and llm-judge acceptance |
 | [skills.md](skills.md) | Skill authoring and native wiring |

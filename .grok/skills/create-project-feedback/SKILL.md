@@ -1,11 +1,13 @@
 ---
 name: create-project-feedback
 description: |-
-  File a type:feedback issue in point form. No GitHub form.
+  File a type:feedback issue: dispose every point, critically examine
+  requirement changes, lock shape via capture-requirements, then file
+  follow-up tasks/epics/defects. No GitHub form.
   Use when the user supplies feedback to record.
 
   Examples:
-    - user: "File this feedback: the jump feels late" → points, pending-analysis
+    - user: "File this feedback: the jump feels late" → dispose, file follow-ups, pending-resolution or resolved
     - user: "Draft the feedback issue only" → --no-create
 ---
 

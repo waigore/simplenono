@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "single-subject"
+      "size": "1024x1024"
     },
     "seed": "n/a — tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-107 (single-subject). Generated square: flux-2-max 1024x1024, request a3a49e63-bf57-488f-82be-6d3d26d9ef98, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as one tiled dark slab on a pale cool background with two clear pale square holes cut through it and a short column of small open squares standing below its right end: one connected subject. Look evidence (measured on the committed square): 0.0% warm pixels; subject luma mean 76.5 against pale background luma mean 201.6 (contrast 125.0); 39.0% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: single-subject. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-107. Generated square: flux-2-max 1024x1024, request a3a49e63-bf57-488f-82be-6d3d26d9ef98, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as one tiled dark slab on a pale cool background with two clear pale square holes cut through it and a short column of small open squares standing below its right end: one connected subject. Look evidence (measured on the committed square): 0.0% warm pixels; subject luma mean 76.5 against pale background luma mean 201.6 (contrast 125.0); 39.0% of the frame is below the fill threshold. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a \u2014 tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-089 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request c8f7feb9-5923-4f48-92f4-11dd919020d4, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 77.8 against pale background luma mean 203.8 (contrast 126.0); the stored 15x15 pixel silhouette is a wide horizontal cap with two rectangular holes cut through it and a narrow stem below its centre, calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-089. Generated square: flux-2-max 1024x1024, request c8f7feb9-5923-4f48-92f4-11dd919020d4, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 77.8 against pale background luma mean 203.8 (contrast 126.0); the stored 15x15 pixel silhouette is a wide horizontal cap with two rectangular holes cut through it and a narrow stem below its centre, calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

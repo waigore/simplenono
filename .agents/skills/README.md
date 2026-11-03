@@ -24,7 +24,7 @@ Native facades (Cursor / OpenCode / Grok) and authoring rules (veneers, **Invoke
 | [`unblock-project-issues`](unblock-project-issues/SKILL.md) | Critically examine leftover blocked-by edges and delete those not justified under the hierarchy ban |
 | [`redefine-project-issue`](redefine-project-issue/SKILL.md) | Replace comment-capped `pending-redefinition` task/defect with a new `pending-clarification` task (planner) |
 | [`create-project-defect`](create-project-defect/SKILL.md) | Create a Defect issue (`type:defect`) with related links (no blocked-by) |
-| [`create-project-feedback`](create-project-feedback/SKILL.md) | File a Feedback issue (`type:feedback`) in point form |
+| [`create-project-feedback`](create-project-feedback/SKILL.md) | File feedback: dispose points, lock requirement changes, file follow-ups |
 | [`enforce-task-workflow-status`](enforce-task-workflow-status/SKILL.md) | Gate or audit `status:*` labels; hygiene for duplicate `priority:*` |
 | [`review-project-issue`](review-project-issue/SKILL.md) | Review pass / fail / clarify → next status |
 | [`refine-project-issue`](refine-project-issue/SKILL.md) | Refine issue body → pending-review |
@@ -32,13 +32,14 @@ Native facades (Cursor / OpenCode / Grok) and authoring rules (veneers, **Invoke
 | [`implement-project-issue`](implement-project-issue/SKILL.md) | Implementation summary → pending-verification |
 | [`verify-project-issue`](verify-project-issue/SKILL.md) | Independent verify pass / fail |
 | [`accept-project-issue`](accept-project-issue/SKILL.md) | Accept / fail / clarify after verification |
+| [`migrate-playtest-evidence-to-wiki`](migrate-playtest-evidence-to-wiki/SKILL.md) | Move in-repo playtest screenshots/logs to the wiki; rewrite manifests; focused PR |
 | [`issue-workflow-review-agent`](issue-workflow-review-agent/SKILL.md) | Background dispatch → `review-project-issue` |
 | [`issue-workflow-refine-agent`](issue-workflow-refine-agent/SKILL.md) | Background dispatch → `refine-project-issue` |
 | [`issue-workflow-clarify-agent`](issue-workflow-clarify-agent/SKILL.md) | Background dispatch → `clarify-project-issue` |
 | [`issue-workflow-implement-agent`](issue-workflow-implement-agent/SKILL.md) | Background dispatch → implement work + `implement-project-issue` |
 | [`issue-workflow-verify-agent`](issue-workflow-verify-agent/SKILL.md) | Background dispatch → `verify-project-issue` |
 | [`issue-workflow-accept-agent`](issue-workflow-accept-agent/SKILL.md) | Background dispatch → `accept-project-issue` |
-| [`handle-feedback-agent`](handle-feedback-agent/SKILL.md) | One feedback issue: analysis, then resolution |
+| [`handle-feedback-agent`](handle-feedback-agent/SKILL.md) | One `pending-resolution` feedback issue → `resolved` when related work is done |
 | [`babysit-pr-agent`](babysit-pr-agent/SKILL.md) | Soft Actions check queue (~3 active), then one same-repo PR: conflicts, behind, in-scope CI for auto-merge |
 | [`author-spec`](author-spec/SKILL.md) | Write or edit a spec from `.agents/specs/rules/`; do not copy the rules into the spec |
 | [`author-quality-rubrics`](author-quality-rubrics/SKILL.md) | Interview baseline targets and orthogonal domain axes; write via `author-spec`; execution is `run-quality-evaluators` |
@@ -46,6 +47,7 @@ Native facades (Cursor / OpenCode / Grok) and authoring rules (veneers, **Invoke
 | [`capture-requirements`](capture-requirements/SKILL.md) | Default path: interview specs the user picks, foundation first; confirm, `author-spec`, open a spec PR. A PoC only when they ask to explore |
 | [`review-spec`](review-spec/SKILL.md) | Review a spec doc or the formalized set; placeholder-only files are not a Fail; whole-spec also runs applicability, terminology, and TBD audits |
 | [`serve-ux-mockups`](serve-ux-mockups/SKILL.md) | Explicit-only: serve `specs/ux/mockups/` on the LAN with a generated index, open it in the browser, and report localhost and LAN URLs |
+| [`export-android-debug`](export-android-debug/SKILL.md) | Explicit-only: PR into `android-debug` so Actions publishes a debug APK GitHub Release; no local export unless asked |
 | [`review-code`](review-code/SKILL.md) | Review code vs `docs/solid.md` (SOLID + continuity) and `docs/coding-conventions.md` (project rules + Code lint / Unit tests / Coverage); Pass/Fail, read-only |
 | [`audit-code-structure`](audit-code-structure/SKILL.md) | Audit implementation structure and debt (SOLID, conventions, continuity, duplication, dead code, seams, parallel structure); proposed targets; read-only |
 | [`suggest-code-refactors`](suggest-code-refactors/SKILL.md) | File refactor epics and tasks from an `audit-code-structure` pass; judgement sizes the cut; no repo edits |

@@ -4,28 +4,28 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 
 - **Kind**: Puzzle pictures
 - **Source types**: AI generation; Human-made (`register-asset`)
-- **Style**: Cool clinical look ([`AES.P1`](../../aesthetics/aesthetics.md)); calm subjects
+- **Style**: Cool clinical look ([`AES.P1`](../../aesthetics/aesthetics.md))
 - **Tool roles**: [`TL.1`](../tools.md), [`TL.2`](../tools.md)
 - **Approval**: As hub
-- **Serves**: Gallery thumbnail and result morph ([`entities/puzzle.md`](../../design/entities/puzzle.md), [`PER.R5`](../../view/perception.md))
+- **Serves**: Gallery thumbnail, result morph ([`entities/puzzle.md`](../../design/entities/puzzle.md), [`PER.R5`](../../view/perception.md))
 
 ## Coverage
 
 | ID | Subject | Required variants | Count |
 |----|---------|-------------------|-------|
-| V1 | Each pack [puzzle](../../design/entities/puzzle.md) | Generated square picture and N×N pixel picture | 2 |
-| V2 | Pack art mix | ~30% single-subject; ~70% multi-subject and/or holed | Across 200 |
+| V1 | Each pack [puzzle](../../design/entities/puzzle.md) | Square picture and N×N pixel picture | 2 |
+| V2 | Subject class | No per-puzzle multi/single (or multi/holed) tag or quota | Ban |
 
 ## Specification
 
 | ID | Property | Value |
 |----|----------|-------|
-| S1 | Pixel grid | 1:1 with puzzle size (N×N colour); nearest-upscale for display |
-| S2 | Fill band | Luma threshold fills cells; band per K2 |
-| S3 | Clues | Run lengths from the fill set |
+| S1 | Pixel grid | 1:1 with puzzle size (N×N colour); nearest-upscale |
+| S2 | Fill band | Luma threshold fills cells; band K2 |
+| S3 | Clues | Run lengths of the fill |
 | S4 | Solvability | Unique line-logic, else regenerate |
-| S5 | Background | Flatten vignette so border is not false fills |
-| S6 | Generated picture | Stored square output. The pixel file is its BOX downsample to N×N |
+| S5 | Background | Flatten vignette so borders are not fills |
+| S6 | Generated picture | Stored square; pixel file is its BOX downsample to N×N |
 
 ## Budgets
 
@@ -41,16 +41,16 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 - **Modality**: visual
 - **Enforce**: soft
 - **Style anchors**: None yet
-- **Style binding**: None — **project exception**: no Recraft; Cheaper Inference only ([`tools.md`](../tools.md) TL.1)
-- **Aesthetics**: [`AES.P1`](../../aesthetics/aesthetics.md); calm clinical; no gore/horror
+- **Style binding**: None — no Recraft; Cheaper Inference only ([`tools.md`](../tools.md) TL.1)
+- **Aesthetics**: [`AES.P1`](../../aesthetics/aesthetics.md); no gore/horror
 - **Built from**: None
-- **Refresh when**: aesthetics change or review Fail pattern
+- **Refresh when**: aesthetics change or review Fail
 
 #### Prompt policy
 
 - **Compose**: subject-first; append master + negative.
 - **Master**: calm clinical still-life or creatures; clear silhouette; readable at N×N
-- **Negative**: playful chrome; gore; horror
+- **Negative**: gore; horror; playful chrome
 
 ## Recipes
 
@@ -58,13 +58,13 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 
 - **Source type**: AI generation
 - **Tool role**: TL.1 then TL.2
-- **Inputs**: size N; subject prompt (V2 mix)
-- **Prompt template (bootstrap)**: clinical {subject}; clear gaps if multi; compose with `prompt_policy`
+- **Inputs**: size N; subject prompt (V1)
+- **Prompt template (bootstrap)**: clinical {subject}; compose with `prompt_policy`
 - **Prompt template (series)**: N/A — SS1 `none`
-- **Settings**: `flux-2-max`; keep the square file; BOX a copy to N×N
+- **Settings**: `flux-2-max`; keep square; BOX copy (S6)
 - **Seed policy**: n/a — no seed
-- **Post-processing**: flatten vignette; luma (S2); no hole-close; line-logic (S4); else a new prompt
-- **Outputs**: both catalogued pictures, plus pack fill/clues
+- **Post-processing**: flatten vignette; luma (S2); no hole-close; line-logic (S4); else new prompt
+- **Outputs**: both catalogued pictures, pack fill/clues
 
 ## Checks
 
@@ -73,9 +73,9 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 | K1 | Size | Inspect | N×N colour cells (S1) |
 | K2 | Fill band | Count | 25–45% of `size²`: 25–45 at 10×10, 56–101 at 15×15, 100–180 at 20×20 |
 | K3 | Unique line-logic | Offline judge | Pass S4 |
-| K4 | Style calm | Review | AES.P1 / prompt_policy |
-| K5 | Mix | Pack audit | Roughly V2 |
-| K6 | Both stored | Inspect | Square file and N×N downsample are both catalogued |
+| K4 | Calm, readable subject | Review | [`AES.P1`](../../aesthetics/aesthetics.md) / `prompt_policy`; silhouette reads at N×N; a sentence recorded, no class word; one mass passes |
+| K5 | Pack look | Closing review | 200 approved V1 pairs, files resolve, regeneration record per size band (B1), variety (V2) judged on pictures |
+| K6 | Both stored | Inspect | Square and N×N both catalogued |
 
 ## Naming
 

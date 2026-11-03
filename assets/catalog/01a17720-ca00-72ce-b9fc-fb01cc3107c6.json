@@ -19,7 +19,6 @@
     "operation": "offline flatten + BOX downsample",
     "settings": {
       "model": "flux-2-max",
-      "subject_class": "multi-subject and/or holed",
       "downsample": "box",
       "size": 15,
       "flatten_method": "outer frame set to the median colour of the outer ring",
@@ -63,6 +62,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-144 (multi-subject and/or holed). Regenerated for the #268 verification repair. Derived from the generated square (request b2c7cc17-6add-46cb-9aff-06594eac07d7). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [212, 216, 219]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 90/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Pixel look: 0.00% warm pixels; filled cells luma mean 82.2 against background luma mean 197.4 (contrast 115.2); silhouette two separate solid blocks side by side, each five cells wide and nine cells tall, with a clear one-cell pale channel between them (2 masses of 45 and 45 cells, 0 enclosed pale regions) (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-144. Regenerated for the #268 verification repair. Derived from the generated square (request b2c7cc17-6add-46cb-9aff-06594eac07d7). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [212, 216, 219]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 90/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Pixel look: 0.00% warm pixels; filled cells luma mean 82.2 against background luma mean 197.4 (contrast 115.2); silhouette two separate solid blocks side by side, each five cells wide and nine cells tall, with a clear one-cell pale channel between them (2 masses of 45 and 45 cells, 0 enclosed pale regions) (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

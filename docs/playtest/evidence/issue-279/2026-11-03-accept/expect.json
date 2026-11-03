@@ -1,0 +1,268 @@
+{
+ "pack-184": {
+  "rows": [
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000111111111100000",
+   "00001111111111100000",
+   "00011110000000000000",
+   "00011100000011111000",
+   "00011100000111111000",
+   "00011100000111111000",
+   "00011100000111111000",
+   "00011100000111111000",
+   "00011100000011111000",
+   "00011100000000000000",
+   "00001111111111100000",
+   "00000111111111100000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000"
+  ],
+  "filled": 101,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "pixel_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 168.5,
+   "luma_p5": 55.1,
+   "luma_p95": 216.6
+  },
+  "square_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 168.5,
+   "luma_p5": 49.7,
+   "luma_p95": 217.5
+  },
+  "cell_luma": {
+   "filled_min": 47.1,
+   "filled_max": 125.7,
+   "filled_mean": 72.6,
+   "background_min": 130.7,
+   "background_max": 217.9,
+   "background_mean": 200.9
+  },
+  "masses": [
+   67,
+   34
+  ],
+  "enclosed_background": 0,
+  "subject_class": "multi-subject and/or holed",
+  "catalog_subject_class": "multi-subject and/or holed",
+  "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a heavy C filling most of the frame, twenty cells tall and eighteen cells wide, its arms five cells thick, and a separate square mass seven cells on a side standing in the clear opening on its right, outside the frame of the ring, each cell about 5 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 20x20 icon, no text. Calm clinical still-life; clear silhouette; readable at 20x20. Avoid: playful chrome; gore; horror."
+ },
+ "pack-185": {
+  "rows": [
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00111111111111111100",
+   "00111111111111111100",
+   "00111000011000011100",
+   "00111000011000011100",
+   "00111000011000011100",
+   "00111000111100011100",
+   "00111111111111111100",
+   "00111111111111111100",
+   "00111111111111111100",
+   "00111111111111111100",
+   "00000000000000111000",
+   "00000000000000111000",
+   "00000000000000111000",
+   "00000000000000111000",
+   "00000000000000011000",
+   "00000000000000000000",
+   "00000000000000000000"
+  ],
+  "filled": 144,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "pixel_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 156.8,
+   "luma_p5": 61.0,
+   "luma_p95": 217.0
+  },
+  "square_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 157.2,
+   "luma_p5": 57.8,
+   "luma_p95": 223.1
+  },
+  "cell_luma": {
+   "filled_min": 56.2,
+   "filled_max": 127.3,
+   "filled_mean": 75.0,
+   "background_min": 133.5,
+   "background_max": 225.1,
+   "background_mean": 202.8
+  },
+  "masses": [
+   144
+  ],
+  "enclosed_background": 30,
+  "subject_class": "multi-subject and/or holed",
+  "catalog_subject_class": "multi-subject and/or holed",
+  "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a wide flat slab filling most of the frame, twenty cells across and ten cells tall, with two six-cell square holes cut through it and one column standing below it on the right, each cell about 5 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 20x20 icon, no text. Calm clinical still-life; clear silhouette; readable at 20x20. Avoid: playful chrome; gore; horror."
+ },
+ "pack-186": {
+  "rows": [
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00010110001111111100",
+   "00111111101111111100",
+   "00111111001111111100",
+   "00111111101111111100",
+   "00111111101111111100",
+   "00111111101111111100",
+   "00111111101111111100",
+   "00111111101111111100",
+   "00111111101111111100",
+   "00111111101111111100",
+   "00111111101111111100",
+   "00111111101111111100",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000"
+  ],
+  "filled": 175,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "pixel_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 154.8,
+   "luma_p5": 96.3,
+   "luma_p95": 204.8
+  },
+  "square_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 155.2,
+   "luma_p5": 70.1,
+   "luma_p95": 206.9
+  },
+  "cell_luma": {
+   "filled_min": 92.3,
+   "filled_max": 127.3,
+   "filled_mean": 107.7,
+   "background_min": 128.5,
+   "background_max": 207.9,
+   "background_mean": 191.4
+  },
+  "masses": [
+   96,
+   79
+  ],
+  "enclosed_background": 0,
+  "subject_class": "multi-subject and/or holed",
+  "catalog_subject_class": "multi-subject and/or holed",
+  "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: two solid masses on a pale background, a tall narrow block on the left eighteen cells tall and nine cells wide and a wide flat slab on the right twelve cells tall and ten cells wide, a clear five-cell gap between them, each cell about 5 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 20x20 icon, no text. Calm clinical still-life; clear silhouette; readable at 20x20. Avoid: playful chrome; gore; horror."
+ },
+ "pack-187": {
+  "rows": [
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000101111111110000",
+   "00001111111111110000",
+   "00001111111111110000",
+   "00001111100111110000",
+   "00001111100000110000",
+   "00001111100000000000",
+   "00001111100000000000",
+   "00001111100000000000",
+   "00001111100000000000",
+   "00001111100000000000",
+   "00001111100000000000",
+   "00001111100111111000",
+   "00001111100111111000",
+   "00001111111111111000",
+   "00001111111111111000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000"
+  ],
+  "filled": 129,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "pixel_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 159.1,
+   "luma_p5": 54.3,
+   "luma_p95": 218.7
+  },
+  "square_look": {
+   "warm_percent": 0.0,
+   "luma_mean": 159.8,
+   "luma_p5": 48.6,
+   "luma_p95": 219.4
+  },
+  "cell_luma": {
+   "filled_min": 41.5,
+   "filled_max": 127.5,
+   "filled_mean": 74.4,
+   "background_min": 128.3,
+   "background_max": 220.4,
+   "background_mean": 199.4
+  },
+  "masses": [
+   129
+  ],
+  "enclosed_background": 0,
+  "subject_class": "single-subject",
+  "catalog_subject_class": "single-subject",
+  "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a heavy C filling most of the frame, about twenty cells tall and eighteen cells wide, its arms five cells thick, with a clear ten-cell opening on its right side, each cell about 5 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 20x20 icon, no text. Calm clinical still-life; clear silhouette; readable at 20x20. Avoid: playful chrome; gore; horror."
+ }
+}

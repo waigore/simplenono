@@ -39,7 +39,7 @@
   description: "Comment cap hit; conversation locked pending redefine"
 - name: status:pending-analysis
   color: "BFD4F2"
-  description: "Feedback awaiting analysis"
+  description: "Legacy unused; do not apply"
 - name: status:pending-resolution
   color: "D4C5F9"
   description: "Feedback awaiting linked work"

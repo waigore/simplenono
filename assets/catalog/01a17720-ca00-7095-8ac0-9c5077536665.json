@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a \u2014 tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-115 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request 0b7d0d81-212b-4a69-a8bb-b61ee6c42195, attempt 1, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed 1024x1024 square): 0.06% warm pixels (no red-over-blue cast); dark subject luma mean 59.2 against pale background luma mean 205.4 (contrast 146.1); 1024x1024 is flat, grain-free, with no vignette, shadow, reflection, texture, or lettering. The generated square reads as two separate dark blocks on a pale field, a tall narrow upright block at the left and a wide flat slab at the right set slightly above its foot, a clear wide pale gap between them and a pale margin on every side (multi-subject). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-115. Generated square: flux-2-max 1024x1024, request 0b7d0d81-212b-4a69-a8bb-b61ee6c42195, attempt 1, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed 1024x1024 square): 0.06% warm pixels (no red-over-blue cast); dark subject luma mean 59.2 against pale background luma mean 205.4 (contrast 146.1); 1024x1024 is flat, grain-free, with no vignette, shadow, reflection, texture, or lettering. The generated square reads as two separate dark blocks on a pale field, a tall narrow upright block at the left and a wide flat slab at the right set slightly above its foot, a clear wide pale gap between them and a pale margin on every side. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

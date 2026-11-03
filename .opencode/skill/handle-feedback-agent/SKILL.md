@@ -1,13 +1,14 @@
 ---
 name: handle-feedback-agent
 description: |-
-  Carry one type:feedback issue through analysis and resolution.
+  Advance one type:feedback issue in pending-resolution to resolved when
+  related work is done. No disposition, filing, or clarification.
   Use when automation dispatches handle-feedback-agent, or a feedback issue
   needs that pass.
 
   Examples:
-    - Assigned issue: 12 → handle #12
-    - Assigned issue: none → one pending-analysis issue, else pending-resolution
+    - Assigned issue: 12 → track #12
+    - Assigned issue: none → one pending-resolution feedback issue
 ---
 
 # Handle feedback agent (facade)
