@@ -34,6 +34,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 - That puzzle is new: not started, no marks, elapsed 0, no personal best, not ever-completed.
 - `user://progress.cfg` holds that cleared record when S4 ran.
 - Completion rate and the tile match the cleared record.
+- The telemetry of the reset is [`reset-telemetry.md`](reset-telemetry.md), which realizes [`S4`](../verification.md).
 
 ## Diagram
 

@@ -28,8 +28,9 @@ extends Node
 ## The shell and the puzzle screen call [method note_open], [method note_mark],
 ## [method note_ready], [method note_solved], and [method note_leave] at the points they
 ## already reach. commit is observed from the pack record an action changed, so no
-## component gains a debug-only event. reset is the seam's own stage reset
-## ([method reset_puzzle]) until the gallery owns it (#94).
+## component gains a debug-only event. reset is [method note_reset], which the shell calls
+## after the gallery's Confirm runs [b]CTR-pack[/b] O7 and the seam's own stage reset
+## ([method reset_puzzle]) calls too, so one reset records exactly one event.
 
 ## [code]H2[/code]: the one project setting that switches the seams on in a debug build.
 const FLAG_SETTING := "debug/seams_enabled"
@@ -199,7 +200,8 @@ func dump_state(run_folder: String) -> String:
 
 
 ## [b]S4[/b]: resets [param puzzle_id]'s progress through [b]CTR-pack[/b] O7 and records
-## one reset event. The gallery owns this action in #94; the seam supplies it meanwhile.
+## one reset event through [method note_reset]. The gallery's Confirm records through the
+## same point, so a debug-seam reset and a real Confirm each record exactly one.
 func reset_puzzle(puzzle_id: String = "") -> bool:
 	if not is_enabled() or _shell == null:
 		return false
@@ -209,10 +211,19 @@ func reset_puzzle(puzzle_id: String = "") -> bool:
 	if id.is_empty():
 		return false
 	_shell.pack().progress().reset(id)
-	_telemetry.reset()
+	note_reset()
 	if _tracked != null and _tracked.puzzle_id() == id:
 		_progress_signature = StateSnapshot.record_signature(_tracked.progress_record())
 	return true
+
+
+## [b]S4[/b]: [b]CTR-pack[/b] O7 happened, so one reset event is recorded. The shell
+## calls this once the reset returned true; nothing here writes progress. Records nothing
+## while the seams are off.
+func note_reset() -> void:
+	if _telemetry == null:
+		return
+	_telemetry.reset()
 
 
 ## [b]S4[/b]: [b]CTR-attempt[/b] O1 happened. Tracks the new attempt for its ready and

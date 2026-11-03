@@ -30,7 +30,9 @@ extends Control
 ## [code]EX.confirm[/code] is the gallery's reset confirm: the gallery's C2 reset intent
 ## opens the box here ([code]SEQ reset[/code] S1), Confirm runs [b]CTR-pack[/b] O7 (S2-S4)
 ## and re-reads O1/O2 (S5), and Cancel dismisses with no write (B2). Both return the
-## gallery to Default (S6).
+## gallery to Default (S6). A successful Confirm also records the S4 [code]reset[/code]
+## telemetry event through the seams' one [Telemetry] sink; a refused one records nothing
+## (B3).
 
 ## Shown when nothing is open ([code]NAV.T1[/code]'s gallery).
 const GALLERY_VIEW := "gallery"
@@ -378,11 +380,13 @@ func _on_gallery_reset_requested(puzzle_id: String) -> void:
 
 
 ## [code]SEQ reset[/code] S2-S6: Confirm runs [b]CTR-pack[/b] O7 for [param puzzle_id]
-## (S3-S4), re-reads O1/O2 (S5), and dismisses the box back to gallery Default (S6). An
-## unknown id changes nothing and writes nothing (B3).
+## (S3-S4), records one S4 [code]reset[/code] event, re-reads O1/O2 (S5), and dismisses
+## the box back to gallery Default (S6). An unknown id changes nothing, writes nothing,
+## and records nothing (B3).
 func _on_reset_confirmed(puzzle_id: String) -> void:
 	if not _pack.reset(puzzle_id):
 		return
+	_seams.note_reset()
 	_gallery.refresh()
 	_gallery.dismiss_reset_confirm()
 
