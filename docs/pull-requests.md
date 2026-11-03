@@ -37,7 +37,7 @@ Fill every section of the template; write `N/A` with a reason rather than deleti
 | Authority | `specs/` paths and Accepted ADRs that authorize the change (spec first) |
 | Changes | Notable files or areas touched |
 | Test plan | Commands run and results; manual steps if any |
-| Evidence | `docs/playtest/evidence/` paths when playable behavior changes |
+| Evidence | In-repo `docs/playtest/evidence/` path and wiki page URL when playable behavior changes |
 
 ### `Refs`, not `Closes`
 

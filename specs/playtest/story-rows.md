@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/playtest/story-rows.md`](../../.agents/specs/rules/playtest/story-rows.md).
 
-Story↔work map for design stories and UX journeys/stories. Playtest results live under [`docs/playtest/evidence/`](../../docs/playtest/evidence/). View stories are out of scope. Issue routing: [`docs/issues/requirements.md`](../../docs/issues/requirements.md).
+Story↔work map for design stories and UX journeys/stories. Playtest results: in-repo index under [`docs/playtest/evidence/`](../../docs/playtest/evidence/); screenshots and logs on the wiki ([`wiki-evidence.md`](../../docs/playtest/wiki-evidence.md)). View stories are out of scope. Issue routing: [`docs/issues/requirements.md`](../../docs/issues/requirements.md).
 
 ## Rows
 

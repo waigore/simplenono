@@ -18,13 +18,13 @@ Restate the hub gate: required at `status:pending-acceptance` when deliverables 
 
 ## Prep
 
-Require: build under test; Must tools from `tools.md` available; Situational tools ready when a selected protocol cites them; evidence folder opened under `docs/playtest/evidence/` for this issue/run.
+Require: build under test; Must tools from `tools.md` available; Situational tools ready when a selected protocol cites them; in-repo evidence folder opened under `docs/playtest/evidence/` for this issue/run; wiki ready for screenshots and logs per [`docs/playtest/wiki-evidence.md`](../../../../docs/playtest/wiki-evidence.md).
 
 ## Per protocol
 
-Ordered steps the agent always follows: enter start position (including `DBG.3` when needed) → drive via player-facing controls and debug commands → observe via inspect, story-ID overlay, and telemetry → judge pass/fail against the cited design or UX story → write notes and logs into the evidence folder, and screenshots when the run has a display. Design-level protocols judge game outcomes; UX-level protocols judge interface operation.
+Ordered steps the agent always follows: enter start position (including `DBG.3` when needed) → drive via player-facing controls and debug commands → observe via inspect, story-ID overlay, and telemetry → judge pass/fail against the cited design or UX story → write notes and `manifest.md` in-repo, and push logs (and screenshots when the run has a display) to the wiki. Design-level protocols judge game outcomes; UX-level protocols judge interface operation.
 
-A headless run (no display) may complete those steps except screenshots. Missing screenshots are not a fail and do not file a defect. Before acceptance, a graphical run re-runs the protocols on the same build and writes the screenshots into its own run folder. It does not only attach images to the headless log. A protocol that says no screenshot may be accepted from the headless run alone.
+A headless run (no display) may complete those steps except screenshots. Missing screenshots are not a fail and do not file a defect. Before acceptance, a graphical run re-runs the protocols on the same build and writes screenshots to the wiki for that run. It does not only attach images to the headless log. A protocol that says no screenshot may be accepted from the headless run alone.
 
 ## Outcomes
 

@@ -22,4 +22,4 @@
 
 ## Evidence
 
-<!-- docs/playtest/evidence/ paths if playable behavior changed, or N/A. -->
+<!-- In-repo docs/playtest/evidence/ path and wiki page URL if playable behavior changed, or N/A. -->
