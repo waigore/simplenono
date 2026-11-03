@@ -8,11 +8,12 @@ Build: `main@5b260e8`, Godot 4.7.2.stable, graphical through `xvfb-run` (softwar
 ```bash
 git diff --name-only b2046dd 5b260e8 -- \
   game/assets/puzzle-pictures/pack-158* game/assets/puzzle-pictures/pack-159* \
-  game/assets/puzzle-pictures/pack-160* game/assets/puzzle-pictures/pack-161* \
-  game/data/pack.json assets/catalog
+  game/assets/puzzle-pictures/pack-160* game/assets/puzzle-pictures/pack-161*
 ```
 
-Expected: no output. `b2046dd` is PR #419's squash.
+Expected: no output. `b2046dd` is PR #419's squash. The four `pack.json` rows and the eight catalog entries named by
+those rows were checked the same way (comparing each row and each `picture-id` / `pixel-picture-id` entry against
+`b2046dd`) and are identical too.
 
 ## 1. Independent expectations
 

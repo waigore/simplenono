@@ -3,8 +3,8 @@
 - **Issue:** #272 Puzzle pictures pack-158–pack-161 (15×15) (`type:task`)
 - **Build / session id:** `main@5b260e8` / `issue-272-accept`. The slice landed at PR #419's squash `b2046dd`; its
   eight picture files, eight `.import` sidecars, eight catalog entries, and the four `pack.json` rows are identical
-  between `b2046dd` and `5b260e8` (`git diff b2046dd 5b260e8 -- …` → no output; logs on the wiki page), so a
-  graphical run of this later `main` is a run of the delivered slice.
+  between `b2046dd` and `5b260e8` (files compared with `git diff`; rows and catalog entries compared one by one, see
+  [`reproduce.md`](reproduce.md)), so a graphical run of this later `main` is a run of the delivered slice.
 - **Coverage mode:** `full` ([`coverage.md`](../../../../../specs/playtest/coverage.md))
 - **Run:** 2026-11-03, graphical through `xvfb-run` (Godot 4.7.2 stable, 1440×1920 screen, `godot --path game` — not
   `--headless`), `--debug-seams`, on `5b260e8`
