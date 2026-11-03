@@ -49,6 +49,25 @@ def entry(report: str, subject_class: str = "single-subject") -> dict:
     }
 
 
+# A font entry as `assets/catalog/` actually holds it: no `generation` block, no
+# class, and sentence prose with a space before a full stop (`S5: .ttf imports`).
+# #486's verify pass found the rewrite had eaten two of those spaces and
+# appended the picture note to it.
+FONT_ENTRY = {
+    "kind_spec": "AK-fonts",
+    "handle": "fonts/outfit",
+    "coverage": ["V1"],
+    "state": "approved",
+    "review": {
+        "verdict": "Pass",
+        "report": (
+            "S3/K2 tabular figures: the family's .tf glyphs are the default digit "
+            "mapping. S5: .ttf imports in Godot 4 as FontFile with no import fix-up."
+        ),
+    },
+}
+
+
 class StripReportTest(unittest.TestCase):
     def test_square_report_keeps_every_measurement(self) -> None:
         text = strip_subject_class.strip_report(SQUARE_REPORT)
@@ -104,6 +123,31 @@ class TrimEntryTest(unittest.TestCase):
         self.assertFalse(strip_subject_class.trim_entry(data))
         self.assertEqual(data["review"]["report"], report)
         self.assertNotIn("Subject class:", report)
+
+
+class OtherKindTest(unittest.TestCase):
+    def test_another_kind_is_byte_identical_through_main(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            font = root / "font.json"
+            font.write_text(json.dumps(FONT_ENTRY, indent=2) + "\n", encoding="utf-8")
+            before = font.read_text(encoding="utf-8")
+            (root / "picture.json").write_text(json.dumps(entry(SQUARE_REPORT), indent=2) + "\n",
+                                               encoding="utf-8")
+            self.assertEqual(strip_subject_class.main(["--root", str(root)]), 0)
+            self.assertEqual(font.read_text(encoding="utf-8"), before)
+            self.assertEqual(json.loads(before), FONT_ENTRY)
+            picture = json.loads((root / "picture.json").read_text(encoding="utf-8"))
+            self.assertNotIn("subject_class", picture["generation"]["settings"])
+
+    def test_trim_entry_leaves_another_kind_alone(self) -> None:
+        data = json.loads(json.dumps(FONT_ENTRY))
+        self.assertFalse(strip_subject_class.trim_entry(data))
+        self.assertEqual(data, FONT_ENTRY)
+
+    def test_a_plain_report_with_a_space_before_punctuation_is_unchanged(self) -> None:
+        report = FONT_ENTRY["review"]["report"]
+        self.assertEqual(strip_subject_class.strip_report(report), report)
 
 
 class MainTest(unittest.TestCase):

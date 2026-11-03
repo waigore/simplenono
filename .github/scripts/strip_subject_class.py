@@ -16,6 +16,10 @@ old rule:
 Nothing else changes: no other key, no file list, no prompt, no pixel, and no
 catalogued file. Field order and JSON indentation are kept.
 
+Only `AK-puzzle-pictures` entries are read or written. Every other kind in the
+catalog (fonts, tiles, audio, …) is skipped untouched, so re-running the script
+on a mixed catalog cannot reach a report it has nothing to do with.
+
 Usage:
   python3 .github/scripts/strip_subject_class.py            # rewrite in place
   python3 .github/scripts/strip_subject_class.py --check    # exit 1 if any remain
@@ -32,6 +36,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CATALOG_ROOT = REPO_ROOT / "assets" / "catalog"
 
+KIND_SPEC = "AK-puzzle-pictures"
 SETTINGS_KEY = "subject_class"
 CLASSLESS_NOTE = ("Per-puzzle subject class retired (PO decision on #486, 2026-11-03): "
                   "the subject is judged by look and the stored silhouette.")
@@ -56,6 +61,8 @@ _PACK_ID = re.compile(r"^([^\s,]+(?: [^\s,]+)*, pack-\d+) \((?:" + _CLASS + r")"
 # "… was one mass, not multi-subject and/or holed;" inside the #267 repair note.
 # The class contrast goes; the repair note itself is history and stays.
 _REPAIR_CLAUSE = re.compile(r",?\s*not\s+" + _CLASS + r"(?=[;,. )]|$)", re.I)
+# The space a removal leaves before a kept comma, full stop, or colon.
+_GAP_BEFORE_PUNCT = re.compile(r"(?<=\S)(\s)(?=[,.;:])")
 
 
 def _paren_spans(text: str) -> list[tuple[int, int]]:
@@ -105,6 +112,7 @@ def strip_report(report: str) -> str:
     text = re.sub(r"\.\s*Subject class: [^.]+?\.", ".", report, flags=re.I)
     text = re.sub(r"\A\s*Subject class: [^.]+?\.?\s*", "", text, flags=re.I)
     text = _REPAIR_CLAUSE.sub("", text)
+    edited = text != report
     # Remove class parentheticals by balanced span, keeping describing text.
     out, pos = [], 0
     for start, end in _paren_spans(text):
@@ -115,12 +123,16 @@ def strip_report(report: str) -> str:
         if re.match(r"(?:" + _CLASS + r")\b", inner):
             m = re.match(r"(?:" + _CLASS + r")[^;:)]*[;:]\s*(.+)$", inner)
             out.append(m.group(1).strip() if m and m.group(1).strip() else "")
+            edited = True
         else:
             out.append(text[start:end])
         pos = end
     out.append(text[pos:])
     text = "".join(out)
-    text = re.sub(r"\s+([,.;:])", r"\1", text)
+    # Close a space this function left before punctuation. A report it edited
+    # nowhere is returned byte-identical, so no other kind's prose is touched.
+    if edited:
+        text = _GAP_BEFORE_PUNCT.sub(r"\1", text)
     text = re.sub(r"\s{2,}", " ", text).strip()
     # Only seams at the very start/end are artifacts of a removal.
     text = re.sub(r"^[.;]\s*", "", text)
@@ -134,8 +146,12 @@ def trim_entry(data: dict, note: str | None = None) -> bool:
     """Rewrite one entry in place; True when anything changed.
 
     A rewritten report names the class it used to state and `note`, so the
-    review record stays honest about what was judged before and after.
+    review record stays honest about what was judged before and after. Entries
+    of any other kind are returned untouched: the retired class belongs to the
+    puzzle-picture kind alone.
     """
+    if data.get("kind_spec") != KIND_SPEC:
+        return False
     note = CLASSLESS_NOTE if note is None else note
     changed = False
     generation = data.get("generation")
@@ -189,10 +205,14 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     rewritten = 0
+    skipped = 0
     leftover: list[Path] = []
     for path in sorted(root.glob("*.json")):
         original = path.read_text(encoding="utf-8")
         data = json.loads(original)
+        if data.get("kind_spec") != KIND_SPEC:
+            skipped += 1
+            continue
         trimmed = json.loads(json.dumps(data))
         changed = trim_entry(trimmed)
         if changed:
@@ -205,6 +225,8 @@ def main(argv: list[str] | None = None) -> int:
             leftover.append(path)
     action = "can rewrite" if args.check else "would rewrite" if args.dry_run else "rewrote"
     print(f"{action} {rewritten} entr{'y' if rewritten == 1 else 'ies'} under {root}")
+    if skipped:
+        print(f"skipped {skipped} entr{'y' if skipped == 1 else 'ies'} of another kind")
     if leftover:
         print(f"{len(leftover)} entr{'y' if len(leftover) == 1 else 'ies'} still name a class",
               file=sys.stderr)
