@@ -27,15 +27,15 @@ The deliverable's own claims are build claims, so they were checked with command
 
 - **Release read.** A copy of the judged tree with the dev manifest removed and `game/release/asset_manifest.json` in
   place put the resolver on `res://release/asset_manifest.json` and resolved 406/406 manifest entries; an unknown ID
-  logged and returned null ([`logs/release-read.log`](logs/release-read.log)).
+  logged and returned null ([wiki `logs/release-read.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical)).
 - **Real export.** With 4.7.2 export templates installed, one `export_release.sh` run wrote `Linux/`, `Windows/`, and
   `macOS/` under one output root. The macOS PCK contains `release/asset_manifest.json`. The exported release starts and
   exits clean. `game/release/` is removed on exit and the repo is left clean
-  ([`logs/export.log`](logs/export.log)).
+  ([wiki `logs/export.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical)).
 - **Release-asset check.** 0 errors on this tree; exit 1 after a picture and its `.import` sidecar were removed; 0 again
-  after restoring them; 16 unit tests pass ([`logs/checks.log`](logs/checks.log)).
-- **H2.** `paint` without `--debug-seams` exits 2 and writes no run folder ([`logs/h2-no-seams.log`](logs/h2-no-seams.log)).
-- **GUT.** 328/328 with the override tests unmodified ([`logs/gut.log`](logs/gut.log)).
+  after restoring them; 16 unit tests pass ([wiki `logs/checks.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical)).
+- **H2.** `paint` without `--debug-seams` exits 2 and writes no run folder ([wiki `logs/h2-no-seams.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical)).
+- **GUT.** 328/328 with the override tests unmodified ([wiki `logs/gut.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical)).
 
 ## Blockers and gaps
 

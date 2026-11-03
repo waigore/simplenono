@@ -11,7 +11,7 @@
 ## Scope
 
 PR #500 is `MERGED` at `6d7286d`; `main` carries it as `eb6627f`, and `git diff eb6627f HEAD -- game/` is empty, so this
-tree plays exactly the delivered code ([`logs/checks.log`](logs/checks.log)).
+tree plays exactly the delivered code ([wiki `logs/checks.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical)).
 
 The deliverable is build tooling plus the resolver's release read: five release presets, `export_release.sh`,
 `check_release_assets.py`, and [ADR-0008](../../../../../specs/adr/decisions/0008-release-asset-manifest.md). It
@@ -45,7 +45,7 @@ Out of scope, with reason:
 | `ACC.G3` stored picture drawn | **pass** | result reveal (`04`) and the completed gallery tile (`05`) draw it |
 
 Capture: **25 `capture: PASS`, 0 `capture: FAIL`**, final line `capture: RESULT pass (5 shots, 0 checks failed)`, exit 0 —
-[`logs/capture.log`](logs/capture.log).
+[wiki `logs/capture.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical).
 
 ## Judged states (all images from this graphical run of this build)
 
@@ -64,12 +64,12 @@ the evidence the acceptance criteria name.
 
 | Log | What it proves |
 |-----|----------------|
-| [`logs/release-read.log`](logs/release-read.log) | With the dev manifest absent (exported conditions), the resolver reads `res://release/asset_manifest.json`; 406/406 manifest entries resolve; an unknown ID stays loud |
-| [`logs/export.log`](logs/export.log) | One `export_release.sh` run wrote `Linux/`, `Windows/`, and `macOS/`; the macOS PCK contains `release/asset_manifest.json`; the exported release starts and exits clean; `game/release/` is removed on exit |
-| [`logs/checks.log`](logs/checks.log) | `check_release_assets.py` 0 errors on this tree, exit 1 with a picture removed, 0 again after restore; its 16 tests pass; spec lint 0 errors; `build/release/` is ignored |
-| [`logs/h2-no-seams.log`](logs/h2-no-seams.log) | `paint` without `--debug-seams` exits 2 and writes no run folder |
-| [`logs/gut.log`](logs/gut.log) | GUT 328/328, override tests unmodified |
-| [`logs/state-pack-003.json`](logs/state-pack-003.json) | `DBG.2` state dump after the run |
+| [wiki `logs/release-read.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical) | With the dev manifest absent (exported conditions), the resolver reads `res://release/asset_manifest.json`; 406/406 manifest entries resolve; an unknown ID stays loud |
+| [wiki `logs/export.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical) | One `export_release.sh` run wrote `Linux/`, `Windows/`, and `macOS/`; the macOS PCK contains `release/asset_manifest.json`; the exported release starts and exits clean; `game/release/` is removed on exit |
+| [wiki `logs/checks.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical) | `check_release_assets.py` 0 errors on this tree, exit 1 with a picture removed, 0 again after restore; its 16 tests pass; spec lint 0 errors; `build/release/` is ignored |
+| [wiki `logs/h2-no-seams.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical) | `paint` without `--debug-seams` exits 2 and writes no run folder |
+| [wiki `logs/gut.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical) | GUT 328/328, override tests unmodified |
+| [wiki `logs/state-pack-003.json`](https://github.com/waigore/simplenono/wiki/Playtest-issue-499-2026-11-04-accept-graphical) | `DBG.2` state dump after the run |
 
 ## Paths
 
