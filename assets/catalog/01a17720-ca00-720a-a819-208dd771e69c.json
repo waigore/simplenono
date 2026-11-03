@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a — tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-094 (multi-subject and/or holed). Generated square: flux-2-max 1024x1024, request c8de4104-ab17-4ec9-b664-e7c75eeaddab, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed 1024x1024 square): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 83.9 against pale background luma mean 213.1 (contrast 129.2); 33.74% of the frame is below the fill threshold. The generated square reads as two dark rectangular slabs standing side by side on a pale background, a narrow pale channel between them, the right slab a little taller. The stored 15x15 pixel silhouette keeps that reading: two heavy blocks side by side split by a clear one-cell pale channel, the left block four cells wide and seven tall, the right five cells wide and seven tall with a single cell stepped above its top edge (multi-subject and/or holed). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-094. Generated square: flux-2-max 1024x1024, request c8de4104-ab17-4ec9-b664-e7c75eeaddab, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed 1024x1024 square): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 83.9 against pale background luma mean 213.1 (contrast 129.2); 33.74% of the frame is below the fill threshold. The generated square reads as two dark rectangular slabs standing side by side on a pale background, a narrow pale channel between them, the right slab a little taller. The stored 15x15 pixel silhouette keeps that reading: two heavy blocks side by side split by a clear one-cell pale channel, the left block four cells wide and seven tall, the right five cells wide and seven tall with a single cell stepped above its top edge. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

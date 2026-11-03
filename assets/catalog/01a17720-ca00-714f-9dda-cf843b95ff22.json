@@ -36,7 +36,6 @@
     "operation": "offline flatten + BOX downsample",
     "settings": {
       "model": "flux-2-max",
-      "subject_class": "single-subject",
       "downsample": "box",
       "size": 15,
       "flatten_method": "outer frame set to the median colour of the outer ring",
@@ -63,6 +62,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-167 (single-subject). Derived from the generated square (request 0d876dc1-f165-4b0b-8b12-537817413ad0). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [189, 196, 202]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 57/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 0.00% warm pixels; filled cells luma mean 93.9 against background luma mean 197.3 (contrast 103.3); silhouette 1 filled mass(es), no enclosed hole (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-167. Derived from the generated square (request 0d876dc1-f165-4b0b-8b12-537817413ad0). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [189, 196, 202]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 57/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 0.00% warm pixels; filled cells luma mean 93.9 against background luma mean 197.3 (contrast 103.3); silhouette 1 filled mass(es), no enclosed hole (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

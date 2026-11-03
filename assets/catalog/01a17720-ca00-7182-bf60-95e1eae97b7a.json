@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "multi-subject and/or holed"
+      "size": "1024x1024"
     },
     "seed": "n/a \u2014 tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-145 (multi-subject and/or holed). Regenerated for the #268 verification repair. Generated square: flux-2-max 1024x1024, request 2b1d6f17-80fc-47a5-82a2-ec6ade1cc943, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 91.2 against pale background luma mean 194.7 (filled 66/225). The stored 15x15 pixel silhouette reads as a wide flat cap standing on a narrower base, with two rectangular pale windows cut through the cap (1 mass of 66 cells with 8 enclosed pale regions, so it is holed). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: multi-subject and/or holed, measured on the pixel as the shared bar on #294 reads it. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-145. Regenerated for the #268 verification repair. Generated square: flux-2-max 1024x1024, request 2b1d6f17-80fc-47a5-82a2-ec6ade1cc943, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 91.2 against pale background luma mean 194.7 (filled 66/225). The stored 15x15 pixel silhouette reads as a wide flat cap standing on a narrower base, with two rectangular pale windows cut through the cap (1 mass of 66 cells with 8 enclosed pale regions, so it is holed). Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }

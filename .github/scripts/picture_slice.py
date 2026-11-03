@@ -21,12 +21,18 @@ Usage:
     pack-004=multi \
     pack-010=15x15:single
 
-Each `KEY=CLASS` names the pack row id and its assigned subject class
-(`single` or `multi`). An optional `WIDTHxHEIGHT:` prefix picks a board config:
-`pack-010=15x15:single` uses the 15x15 prompt set. Without a prefix the 10x10
-config applies, which is what the earlier slices used. The board config fixes the
-derive size and the prompts, so the readable-at-NxN wording always matches the
-board the picture is stored for.
+Each `KEY=FAMILY` names the pack row id and the prompt family its attempts come
+from (`single` or `multi`). The family picks a prompt set: it is not a subject
+class and assigns no class to the puzzle. Since the product-owner decision on
+#486 (2026-11-03) no picture carries a per-puzzle single/multi subject class;
+what an accepted picture must show is a subject that reads at N×N, in the fill
+band, with unique line logic (`specs/assets/kinds/puzzle-pictures.md` K1–K4),
+which this script's judge and `review-asset`'s look review decide. V2 only bans
+the per-puzzle class tag; it asks for no particular mix. An optional
+`WIDTHxHEIGHT:` prefix picks a board config: `pack-010=15x15:single` uses the
+15x15 prompt set. Without a prefix the 10x10 config applies, which is what the
+earlier slices used. The board config fixes the derive size and the prompts, so
+the readable-at-NxN wording always matches the board the picture is stored for.
 
 The script prints one JSON line per attempt and writes the accepted squares,
 pixels, and a per-puzzle record to the manifest.
@@ -145,8 +151,9 @@ def _prompt_20(shape: str) -> str:
 # draws a subject smaller than asked, so shapes are named large: a mass spanning ten or
 # more of the fifteen cells to read as twenty-five per cent or more after the box
 # downsample, and clear of the frame edge so the flattened band does not eat it.
-# Attempts 1-4 are single masses, 5-8 keep a second mass or a hole for the
-# multi-subject slices, 9-12 are wider-tile variants, 13-16 leave a margin.
+# Attempts 1-4 are single masses, 5-8 keep a second mass or a hole (the `multi`
+# prompt family, a prompt set and not a subject class, #486), 9-12 are wider-tile
+# variants, 13-16 leave a margin.
 SINGLE_PROMPTS_15 = [
     _prompt_15("one tall block that fills most of the frame, about fourteen cells wide and "
                "fourteen cells tall, with a four-cell notch cut out of its right side"),
@@ -190,7 +197,7 @@ SINGLE_PROMPTS_15 = [
                "a clear three-cell gap between them"),
 ]
 
-# 15x15 single-subject attempts, tried before the FRAME set. A mass that fills the
+# 15x15 outline-first attempts, tried before the FRAME set. A mass that fills the
 # frame passes the fill band but downsamples to a solid slab with no silhouette, so
 # these ask for a single outline whose own hole or channel survives at NxN, with the
 # shape well inside the frame.
@@ -216,7 +223,7 @@ SINGLE_ONLY_15 = [
 # 20x20 prompt set, the same paper-grid families as the 15x15 set scaled to twenty
 # cells: a cell is only about a quarter of one percent of frame area, so shapes are
 # named large and kept inside the flattened border. Attempts 1-4 are single masses,
-# 5-8 keep a second mass or a hole for the multi-subject slices, 9-12 are wider-tile
+# 5-8 keep a second mass or a hole (the `multi` prompt family), 9-12 are wider-tile
 # variants, 13-16 leave a margin.
 SINGLE_PROMPTS_20 = [
     _prompt_20("one tall block that fills most of the frame, about eighteen cells wide and "
@@ -262,7 +269,7 @@ SINGLE_PROMPTS_20 = [
                "end, a clear four-cell gap between them"),
 ]
 
-# 20x20 single-subject attempts, tried before the FRAME set, for the same reason as the
+# 20x20 outline-first attempts, tried before the FRAME set, for the same reason as the
 # 15x15 set: a mass that fills the frame downsamples to a solid slab, so these ask for
 # one outline whose own hole or channel survives at 20x20.
 SINGLE_ONLY_20 = [
@@ -284,10 +291,10 @@ SINGLE_ONLY_20 = [
                "on a pale background, each step four cells wide and four cells tall"),
 ]
 
-# 20x20 multi-subject and/or holed attempts. The 15x15 two-mass family landed just
-# under the 25-45% band at twenty cells (a cell is a quarter of the area), so these
-# keep the frame-filling masses of the accepted 20x20 single prompt and add a second
-# mass or a hole that survives the downsample.
+# 20x20 `multi` prompt-family attempts. The 15x15 two-mass family landed just under
+# the 25-45% band at twenty cells (a cell is a quarter of the area), so these keep the
+# frame-filling masses of the accepted 20x20 single prompt and add a second mass or a
+# hole that survives the downsample (a prompt set, not a subject class, #486).
 MULTI_PROMPTS_20 = [
     _prompt_20("a heavy C filling most of the frame, twenty cells tall and eighteen cells "
                "wide, its arms five cells thick, and a separate square mass seven cells on a "
@@ -323,8 +330,9 @@ MULTI_PROMPTS_20 = [
     SINGLE_PROMPTS_20[14],  # tall narrow block and wide slab with a gap
 ]
 
-# Board configs: derive size and the single/multi prompt sets. The 10x10 config is
-# the default so the earlier slices re-run unchanged.
+# Board configs: derive size and the two prompt families (`single`, `multi`). The
+# family is a prompt selector only; it assigns no subject class to any puzzle. The
+# 10x10 config is the default so the earlier slices re-run unchanged.
 BOARDS = {
     "10x10": {"size": 10, "single": SINGLE_PROMPTS_10, "multi": MULTI_PROMPTS_10},
     "15x15": {
@@ -362,7 +370,7 @@ def api_key() -> str:
 
 
 def parse_target(raw: str) -> tuple[str, str, str]:
-    """`KEY=CLASS` or `KEY=BOARD:CLASS` -> (key, class, board)."""
+    """`KEY=FAMILY` or `KEY=BOARD:FAMILY` -> (key, prompt family, board)."""
     key, _, rest = raw.partition("=")
     board = DEFAULT_BOARD
     if ":" in rest:
@@ -498,7 +506,8 @@ def main(argv: list[str] | None = None) -> int:
             if ok:
                 accepted = entry
                 break
-        record[key] = {"class": klass, "board": board, "accepted": accepted,
+        # `prompt_family` names the prompt set this run used, not a subject class.
+        record[key] = {"prompt_family": klass, "board": board, "accepted": accepted,
                        "attempts": len(attempts), "log": attempts}
         manifest.write_text(json.dumps(record, indent=2) + "\n")
     missing = [k for k in record if not record[k]["accepted"]]

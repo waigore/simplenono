@@ -28,8 +28,7 @@
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
-      "size": "1024x1024",
-      "subject_class": "single-subject"
+      "size": "1024x1024"
     },
     "seed": "n/a \u2014 tool has no seed",
     "inputs": {
@@ -51,6 +50,6 @@
     "verdict": "Pass",
     "date": "2026-11-03",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-133 (single-subject). Generated square: flux-2-max 1024x1024, request 290381a1-3747-47b5-b2c3-c5177895793f, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 90.3 against pale background luma mean 193.9 (contrast 103.6); The stored 15x15 pixel silhouette reads as one bold continuous square ring, several cells thick, around one clear square hole. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). Subject class: single-subject. No series (SS1 none). License: Cheaper Inference terms."
+    "report": "AK-puzzle-pictures R1/V1, pack-133. Generated square: flux-2-max 1024x1024, request 290381a1-3747-47b5-b2c3-c5177895793f, saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 90.3 against pale background luma mean 193.9 (contrast 103.6); The stored 15x15 pixel silhouette reads as one bold continuous square ring, several cells thick, around one clear square hole. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
   }
 }
