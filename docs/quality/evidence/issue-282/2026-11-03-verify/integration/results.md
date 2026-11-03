@@ -27,4 +27,4 @@
 | self-test | - | - | protocol not run in this folder | - | not run | - |
 
 Only `app-start` was run because it is the sole protocol whose axis this deliverable can reach (see
-[`manifest.md`](manifest.md), Not selected). Every other row is `not run` by design, not by omission.
+[`manifest.md`](../manifest.md), Not selected). Every other row is `not run` by design, not by omission.
