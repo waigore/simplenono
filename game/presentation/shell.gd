@@ -414,7 +414,7 @@ func ui_theme() -> UiTheme:
 
 
 ## [b]CMP-shell[/b] R6: the stored picture for [param asset_id], or null when this
-## build does not ship it yet (#98). The one manifest reader stays here.
+## build ships no picture for it ([code]ACC.G3[/code]). The one manifest reader stays here.
 func _picture_for(asset_id: String) -> Texture2D:
 	if not _resolver.has(asset_id):
 		return null
