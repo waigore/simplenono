@@ -1,0 +1,58 @@
+TEL event=open time=1793670389.362 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793670389.841 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.853 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.869 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.882 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.889 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.902 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.913 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.919 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.925 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.932 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.949 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.960 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.967 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.974 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.981 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670389.992 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.000 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.007 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.022 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.030 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.039 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.047 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.055 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.064 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.071 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.079 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.087 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.095 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.101 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.110 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=solved time=1793670390.144 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670390.156 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=open time=1793670391.147 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=ready time=1793670391.582 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793670391.587 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=mark time=1793670391.607 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793670391.609 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=reset time=1793670391.609 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=leave time=1793670391.620 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+TEL event=commit time=1793670391.621 session=session-1793670388 build=4.7.2-stable (official) story=- outcome=pass
+SEV level=info event=session-start time=1793670388.217 session=session-1793670388 build=4.7.2-stable (official) story=- message=
+SEV level=info event=session-end time=1793670391.810 session=session-1793670388 build=4.7.2-stable (official) story=- message=
+HARNESS step=launch kind=launch ok=true 
+HARNESS step=home kind=wait_probe ok=true 
+HARNESS step=open kind=open ok=true 
+HARNESS step=puzzle kind=wait_probe ok=true 
+HARNESS step=beat kind=wait_beat ok=true 
+HARNESS step=solve kind=solve ok=true 
+HARNESS step=result-default kind=wait_ms ok=true 
+HARNESS step=result-back kind=back ok=true 
+HARNESS step=result-view kind=expect ok=true 
+HARNESS step=reopen kind=open ok=true 
+HARNESS step=second-beat kind=wait_beat ok=true 
+HARNESS step=mark kind=mark ok=true 
+HARNESS step=reset kind=reset ok=true 
+HARNESS step=back kind=back ok=true 
+HARNESS step=quit kind=quit ok=true 
