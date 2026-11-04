@@ -30,6 +30,8 @@ S2 toggles haptics and stays on settings. Mute is the alternate toggle ([B1](#br
 | B1 | S2 | [`UI-settings.C2`](../screens/settings.md) instead of C1 | stays (`UI-settings`) |
 | B2 | S2 | [`UI-settings.C4`](../screens/settings.md) instead of C1; mobile builds only | stays (`UI-settings`), locked to the chosen orientation |
 
+S2, B1, and B2 all link to `settings-mobile.html#state-default`. `S1` is the screen's only state, so the mockup cannot anchor steps to individual controls; each step's link label names the control it exercises (`S2` → C1, `B1` → C2, `B2` → C4), and the state differs between them only in the value C4 shows.
+
 ## Experience intent
 
 Brief detour — open prefs, flip one toggle, back to the pack with no fuss. On mobile the framing follows the one choice and stays put.
