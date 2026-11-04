@@ -8,7 +8,7 @@ Workflow: [`.github/workflows/android-debug.yml`](../.github/workflows/android-d
 
 It runs on `pull_request` (`opened` / `synchronize` / `reopened`) into the long-lived **`android-debug`** branch (same-repo heads only). A push to that branch alone does not build.
 
-The job exports preset `Android` from `game/` via [`.github/scripts/export_android_debug.sh`](../.github/scripts/export_android_debug.sh) (CI-only: requires `ANDROID_EXPORT_CI=1`; rewrites Godot editor settings). Package `com.simplenono.debug`, arm64, signed with `game/export/android/debug.keystore`.
+The job exports preset `Android` from `game/` via [`.github/scripts/export_android_debug.sh`](../.github/scripts/export_android_debug.sh) (CI-only: requires `ANDROID_EXPORT_CI=1`; rewrites Godot editor settings). Before export the script copies `assets/manifest.json` to `game/release/asset_manifest.json` ([ADR-0008](../specs/adr/decisions/0008-release-asset-manifest.md)); the preset's `include_filter` packs that file so puzzle pictures resolve on device. Package `com.simplenono.debug`, arm64, signed with `game/export/android/debug.keystore`.
 
 ## Publish
 

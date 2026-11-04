@@ -1,7 +1,7 @@
 class_name Shell
 extends Control
-## [b]CMP-shell[/b] R1, R2, R4, R5, and R6: the app's first screen, the shell → puzzle
-## open leg, and the presentation feedback the screens consume
+## [b]CMP-shell[/b] R1, R2, R4, R5, R6, and R7: the app's first screen, the shell →
+## puzzle open leg, and the presentation feedback the screens consume
 ## (specs/technical/components/shell.md; specs/technical/sequences/open.md S1–S6,
 ## [`J-play-puzzle`](specs/ux/stories/journeys/play-puzzle.md) S1).
 ##
@@ -17,6 +17,13 @@ extends Control
 ## and plays the solve sting; [Haptics] clicks on an accepted fill or cross. Marks reach
 ## them through [MarkInput]'s S8 signal, and both read this shell's [SessionFlags]
 ## ([b]SCH-preferences[/b] F1/F2) rather than keeping their own copy.
+##
+## R7: before the first screen shows, the shell applies the stored mobile orientation
+## through [OrientationLock] ([b]SCH-preferences[/b] F3, ADR-0009): portrait at a cold
+## launch with nothing stored, otherwise the stored portrait or landscape, locked so a
+## tilt does not rotate it. The project's handheld orientation covers the lock itself
+## ([code]game/project.godot[/code]); desktop builds stay unlocked. The settings
+## control is a later task.
 ##
 ## [GalleryScreen] is the no-puzzle screen ([code]SEQ-open[/code] B1 keeps it shown and
 ## [code]NAV.N1[/code] starts on it). Its C1 opens a puzzle here and its C3 opens
@@ -59,6 +66,10 @@ const UI_FONT_ASSET_ID := "01a1996d-fc83-79ad-81e5-b3e431590f90"
 ## Tests point this at a temporary path so a run never touches user data.
 var progress_path := ProgressFile.PATH
 
+## [b]SCH-preferences[/b] F3 ([constant OrientationLock.PATH]): the durable orientation
+## document. Tests point this at a temporary path so a run never touches user data.
+var orientation_path := OrientationLock.PATH
+
 ## The live [Attempt], or null when no puzzle is open.
 var _attempt: Attempt
 var _pack: Pack
@@ -73,6 +84,9 @@ var _flags := SessionFlags.new()
 
 ## [b]CMP-shell[/b] R6: reads the committed manifest once, at app start.
 var _resolver: AssetResolver
+
+## [b]CMP-shell[/b] R7: [b]SCH-preferences[/b] F3, applied before the first screen.
+var _orientation: OrientationLock
 
 ## [code]UIS.T1[/code]/[code]T2[/code]: the one code-built UI theme and its family.
 var _ui_theme: UiTheme
@@ -91,6 +105,8 @@ var _haptics: Haptics
 
 
 func _ready() -> void:
+	_orientation = OrientationLock.new(orientation_path)
+	_orientation.apply()
 	_pack = Pack.new(progress_path)
 	_resolver = AssetResolver.new()
 	_ui_theme = UiTheme.new(_resolver, UI_FONT_ASSET_ID)
@@ -116,7 +132,9 @@ func _ready() -> void:
 	_puzzle.mark_applied.connect(_seams.note_mark)
 	_puzzle.mark_input().mark_accepted.connect(_on_mark_accepted)
 	_settings.back_requested.connect(close_settings)
+	_settings.orientation_requested.connect(_on_orientation_requested)
 	_settings.present(_flags)
+	_settings.present_orientation(_orientation)
 	_result.back_requested.connect(close_result)
 	_result.reveal().morph_finished.connect(_on_result_morph_finished)
 	_show_gallery()
@@ -161,6 +179,21 @@ func close_result() -> void:
 	if _view != RESULT_VIEW:
 		return
 	_show_gallery()
+
+
+func _on_orientation_requested(value: String) -> void:
+	change_mobile_orientation(value)
+
+
+## [code]UI-settings.C4[/code] ([b]SCH-preferences[/b] L2, [b]CMP-shell[/b] R7): the
+## orientation control asked for [param value]. [OrientationLock] stores it durably and
+## locks the screen at once; the screen then shows the lock's value. Returns false when
+## the lock refused it, which leaves the screen unchanged.
+func change_mobile_orientation(value: String) -> bool:
+	if not _orientation.set_orientation(value):
+		return false
+	_settings.refresh_orientation()
+	return true
 
 
 ## [code]NAV.T2[/code]/[code]T7[/code]: opens settings. From the gallery it is a plain
@@ -403,6 +436,11 @@ func session_flags() -> SessionFlags:
 	return _flags
 
 
+## [b]CMP-shell[/b] R7: [b]SCH-preferences[/b] F3, loaded and locked at app start.
+func orientation_lock() -> OrientationLock:
+	return _orientation
+
+
 ## [b]CMP-shell[/b] R4: the audio feedback this shell drives.
 func audio_feedback() -> AudioFeedback:
 	return _audio
@@ -529,5 +567,6 @@ func _show_settings() -> void:
 	_puzzle.visible = false
 	_result.visible = false
 	_settings.present(_flags)
+	_settings.present_orientation(_orientation)
 	_settings.visible = true
 	_focus_first()

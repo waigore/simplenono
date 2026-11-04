@@ -4,6 +4,11 @@
 # CI only. Refuses to run elsewhere because it rewrites
 # ~/.config/godot/editor_settings-4.7.tres for this Godot 4.7 export.
 #
+# ADR-0008: before export this copies the committed asset manifest to
+# res://release/asset_manifest.json (same destination as export_release.sh).
+# An APK packs only res://, so without that copy CMP-shell cannot resolve
+# puzzle pictures and the result morph holds on the solved fills (#506).
+#
 # Required environment:
 #   ANDROID_EXPORT_CI=1
 #   JAVA_HOME          JDK root (bin/java present)
@@ -21,6 +26,9 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 PROJECT="$ROOT/game"
 PRESET="$PROJECT/export_presets.cfg"
+MANIFEST="$ROOT/assets/manifest.json"
+INBUILD_DIR="$PROJECT/release"
+INBUILD="$INBUILD_DIR/asset_manifest.json"
 OUTPUT="${1:-}"
 
 fail() {
@@ -32,6 +40,7 @@ fail() {
 [[ "${ANDROID_EXPORT_CI:-}" == "1" ]] || fail "ANDROID_EXPORT_CI=1 is required; this script rewrites Godot editor settings"
 [[ -n "$OUTPUT" ]] || fail "usage: export_android_debug.sh <output.apk>"
 [[ -f "$PRESET" ]] || fail "missing $PRESET"
+[[ -f "$MANIFEST" ]] || fail "missing $MANIFEST; run .github/scripts/asset_manifest.py --write"
 command -v godot >/dev/null 2>&1 || fail "godot is not on PATH"
 [[ -n "${JAVA_HOME:-}" && -x "${JAVA_HOME}/bin/java" ]] || fail "JAVA_HOME must contain bin/java"
 [[ -n "${ANDROID_SDK_ROOT:-}" && -x "${ANDROID_SDK_ROOT}/platform-tools/adb" ]] || fail "ANDROID_SDK_ROOT must contain platform-tools/adb"
@@ -58,12 +67,18 @@ export/android/debug_keystore_user = "$GODOT_ANDROID_KEYSTORE_DEBUG_USER"
 export/android/debug_keystore_pass = "$GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD"
 EOF
 
+# ADR-0008: the copy is the committed manifest's bytes, the only in-build read.
+mkdir -p "$INBUILD_DIR"
+cp "$MANIFEST" "$INBUILD"
+
 backup="$(mktemp)"
 cp "$PRESET" "$backup"
 cleanup() {
 	local status=$?
 	cp "$backup" "$PRESET"
 	rm -f "$backup"
+	rm -f "$INBUILD"
+	rmdir "$INBUILD_DIR" 2>/dev/null || true
 	exit "$status"
 }
 trap cleanup EXIT
@@ -72,6 +87,11 @@ sed -i "s|^version/code=.*|version/code=${code}|" "$PRESET"
 sed -i "s|^version/name=.*|version/name=\"${name}\"|" "$PRESET"
 grep -q "^version/code=${code}$" "$PRESET" || fail "export preset is missing version/code"
 grep -q "^version/name=\"${name}\"$" "$PRESET" || fail "export preset is missing version/name"
+# The Android debug preset (preset.0) must pack the in-build manifest; release
+# presets already do. Match the filter on the first include_filter line only.
+android_filter="$(awk '/^\[preset\.0\]/{p=1} p&&/^include_filter=/{print; exit}' "$PRESET")"
+[[ "$android_filter" == 'include_filter="release/asset_manifest.json"' ]] ||
+	fail "Android preset must include_filter release/asset_manifest.json (ADR-0008); got: ${android_filter:-<missing>}"
 
 mkdir -p "$(dirname "$OUTPUT")"
 echo "Exporting Android debug APK to $OUTPUT (versionName=${name:-<empty>} versionCode=${code})"

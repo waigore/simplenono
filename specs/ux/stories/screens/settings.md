@@ -10,16 +10,17 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
-| R1 | Haptics and mute values | US1.1 |
+| R1 | Haptics, mute, and orientation values | US1.1, US1.6 |
 | R2 | Back chrome | US1.4, US1.5 |
 | C1 | Toggle haptics | US1.2 |
 | C2 | Toggle mute BGM | US1.3 |
+| C4 | Switch the locked orientation (mobile) | US1.6 |
 | C3 | Back to gallery or puzzle | US1.4, US1.5 |
 | S1 | Default | US1.1 |
 
 ## US1: Slim prefs
 
-As the Player, I change haptics or mute then leave so that prefs stick and pause can resume.
+As the Player, I change haptics, mute music, or (on mobile) the orientation, then leave so prefs stick and pause can resume.
 
 ### US1.1: Default shows toggles
 
@@ -29,7 +30,7 @@ As the Player, I change haptics or mute then leave so that prefs stick and pause
 Given UI-settings opens with haptics on and mute off
 When S1 Default is shown
 Then R1 shows Haptics On and Mute music Off
-And C1–C3 are available
+And C1–C3 are available, plus C4 on a mobile build
 ```
 
 ### US1.2: Haptics toggle
@@ -71,4 +72,16 @@ Then UI-gallery opens
 Given UI-settings opened from puzzle with GS.paused true
 When the Player activates C3
 Then UI-puzzle opens and GS.paused is false
+```
+
+### US1.6: Orientation toggle
+
+- **Proves**: R1, C4
+
+```gherkin
+Given a mobile build whose stored orientation is portrait
+When the Player activates C4
+Then C4 shows Landscape
+And the screen stays UI-settings, locked in landscape
+And a relaunch restores the locked landscape
 ```
