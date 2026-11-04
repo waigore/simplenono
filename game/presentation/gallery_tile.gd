@@ -212,16 +212,16 @@ func _build() -> void:
 	meta.add_child(_best_label)
 	_reset_holder = _build_reset_holder()
 	layout.add_child(_reset_holder)
-	_open_button.resized.connect(_hold_picture_square)
-	_meta_holder.minimum_size_changed.connect(_hold_picture_square)
-	_hold_picture_square.call_deferred()
+	_open_button.resized.connect(hold_picture_square)
+	_meta_holder.minimum_size_changed.connect(hold_picture_square)
+	hold_picture_square.call_deferred()
 
 
 ## Keeps the picture region as tall as the tile is wide ([code]R2[/code], both approved
-## mockups): the open button's height follows its width, so the picture is the mockup's
-## square over the metadata without a uniform re-layout of the 200-tile grid. The
-## minimum starts square ([constant TILE_WIDTH]) so the first layout is stable.
-func _hold_picture_square() -> void:
+## mockups): the open button's height follows its real width, so the picture is the
+## mockup's square over the metadata without a uniform re-layout of the 200-tile grid.
+## The minimum starts square ([constant TILE_WIDTH]) so the first layout is stable.
+func hold_picture_square() -> void:
 	var width := _open_button.size.x if _open_button.size.x > 0.0 else TILE_WIDTH
 	if _meta_holder == null:
 		return
@@ -261,6 +261,11 @@ func _build_reset_holder() -> Control:
 func _make_label(color: Color) -> Label:
 	var label := Label.new()
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# R2 keeps each tile's copy inside its own card: the chrome type follows the frame
+	# ([code]UIS.T2[/code]) while the tile follows its column, so a long status or a
+	# physical-pixel phone frame would otherwise draw across the neighbouring tile (#540).
+	label.clip_text = true
+	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	label.add_theme_color_override("font_color", color)
 	return label
 
