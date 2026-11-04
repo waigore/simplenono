@@ -22,9 +22,9 @@ Authoring rules: [`.agents/specs/rules/view/projection.md`](../../.agents/specs/
 | ID | Rule | Statement |
 |----|------|-----------|
 | A1 | Aspect range | About 9:16 through 16:9; outside that, letterbox or pillarbox |
-| S1 | System chrome band | The OS status bar and the navigation / home-indicator band stay visible, are drawn by the OS outside the game viewport, and are never covered by game content ([`view.md`](view.md) Platform implications). Its reserve in the mobile mockups is this band, not decoration. |
-| A2 | Safe area | Inner ~90% of the game viewport, which is the frame minus the S1 system chrome band; clues + grid stay inside ([`PER.R6`](perception.md)) and never extend under the status bar or the navigation / home-indicator band. |
-| A3 | Android chrome keys | Both Android presets capture `screen/immersive_mode=false` and `screen/edge_to_edge=false` — `[preset.0]` (Android debug) and `[preset.4]` (Android Release) in `game/export_presets.cfg` — so the OS keeps drawing the S1 band. A live read of these keys by game code is `specs/technical/` work, not view work. |
+| A2 | Safe area | Inner ~90% of the game viewport, which is the frame minus the A3 system chrome band; clues + grid stay inside ([`PER.R6`](perception.md)) and never extend under the status bar or the navigation / home-indicator band. |
+| A3 | System chrome band | The OS status bar and the navigation / home-indicator band stay visible, are drawn by the OS outside the game viewport, and are never covered by game content ([`view.md`](view.md) Platform implications). Its reserve in the mobile mockups is this band, not decoration. |
+| A4 | Android chrome keys | Both Android presets capture `screen/immersive_mode=false` and `screen/edge_to_edge=false` — `[preset.0]` (Android debug) and `[preset.4]` (Android Release) in `game/export_presets.cfg` — so the OS keeps drawing the A3 band. A live read of these keys by game code is `specs/technical/` work, not view work. |
 
 ## Pixel scale
 

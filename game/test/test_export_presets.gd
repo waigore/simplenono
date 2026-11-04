@@ -1,8 +1,8 @@
 extends GutTest
-## [b]#544[/b] — specs/view/projection.md [code]A3[/code]: both Android presets capture
+## [b]#544[/b] — specs/view/projection.md [code]A4[/code]: both Android presets capture
 ## [code]screen/immersive_mode=false[/code] and [code]screen/edge_to_edge=false[/code], so the OS
 ## status bar and the navigation / home-indicator band stay visible outside the game viewport
-## (specs/view/view.md Platform implications, projection.md S1/A2).
+## (specs/view/view.md Platform implications, projection.md A3/A2).
 ##
 ## The shipped presets file is read through the repo path, as
 ## [code]test_asset_resolver.gd[/code] reads the manifest, so this is an in-repo data check and
@@ -70,7 +70,7 @@ func _options(preset: String) -> Dictionary:
 	return _presets.get(preset + ".options", {})
 
 
-# A3: exactly the debug and release Android presets carry the pairing
+# A4: exactly the debug and release Android presets carry the pairing
 func test_the_android_presets_are_the_two_shipped_ones() -> void:
 	assert_eq(
 		_android_presets(),
@@ -79,7 +79,7 @@ func test_the_android_presets_are_the_two_shipped_ones() -> void:
 	)
 
 
-# A3 / S1: the OS keeps drawing the status bar and the navigation band, so both presets
+# A4 / A3: the OS keeps drawing the status bar and the navigation band, so both presets
 # never ask for immersive or edge-to-edge rendering
 func test_both_android_presets_keep_the_system_chrome_visible() -> void:
 	for preset in _android_presets():
@@ -92,7 +92,7 @@ func test_both_android_presets_keep_the_system_chrome_visible() -> void:
 			)
 
 
-# A3: no iOS or desktop preset opts into immersive or edge-to-edge
+# A4: no iOS or desktop preset opts into immersive or edge-to-edge
 func test_no_other_preset_opts_into_immersive_or_edge_to_edge() -> void:
 	var android := _android_presets()
 	for section_name in _presets:
