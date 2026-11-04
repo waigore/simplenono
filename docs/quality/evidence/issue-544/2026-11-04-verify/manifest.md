@@ -2,7 +2,7 @@
 
 - **Issue:** #544 Android system navigation chrome: lock whether the OS nav bar stays visible, then set the export presets (`type:task`)
 - **Mode:** `deterministic`
-- **Deliverable commit:** `6d4db77` (verify follow-up branch `verify/544-id-and-diagram`, PR #553, merged with `origin/main` at `26df61e`; the issue's own deliverable merged as `26df61e`). `git diff 26df61e 6d4db77 -- game/` changes `export_presets.cfg` comment text and `test_export_presets.gd` comments only, so this record covers the shipped `game/` tree and the verify-pruned one.
+- **Deliverable commit:** `37f469b` (`origin/main`, PR #553 squash of the verify follow-up branch `verify/544-id-and-diagram`, based on `26df61e` where the issue's own deliverable merged). The evaluated tree is the branch head `eabda08`; `git diff eabda08 37f469b` is empty, so the evaluated tree is the shipped tree. `git diff 26df61e 37f469b -- game/` changes `export_presets.cfg` comment text and `test_export_presets.gd` comments only, so this record covers both the issue deliverable and the verify follow-up.
 - **Evaluated:** 2026-11-04 by `issue-workflow-verify-agent` (parallel id 1), Godot 4.7.2 stable on macOS (darwin), quiet host.
 - **Observation source:** [`integration/results.md`](integration/results.md), from
   `godot --headless --path game -s test/integration/run_protocol.gd -- --debug-seams --protocol=<id> --run-dir=<this folder>`
@@ -15,7 +15,7 @@ presets-file comment can at all move — the full run the #540 record's criteria
 `hitch-bound` (I1, I2), `transition-latency` (I7), `response-delay` (I8), and `crash-free` (I9). All pass.
 
 No existing record covers `game/` at this tree: #540's latest record covers `0f626cd`, and
-`git diff 0f626cd 6d4db77 -- game/` is non-empty (`export_presets.cfg`, `test_export_presets.gd`,
+`git diff 0f626cd 37f469b -- game/` is non-empty (`export_presets.cfg`, `test_export_presets.gd`,
 `test_export_presets.gd.uid`), so this is a fresh run rather than a reuse.
 
 | Axis | Evaluator | Observation | Bar | Result | Blocked reason | Evidence path |
