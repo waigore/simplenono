@@ -525,7 +525,7 @@ func _expect_layout(step: Dictionary) -> bool:
 		return _failed_with("gallery picture aspect at %s is %.3f, expected 1" % [where, picture])
 	if step.has("fills"):
 		var widest := gallery.widest_tile_width()
-		var room := (screen.x - 2.0 * GalleryScreen.PAGE_MARGIN) / float(columns)
+		var room := (screen.x - 2.0 * gallery.page_margin()) / float(columns)
 		if widest > room + 0.5:
 			return _failed_with(
 				(
