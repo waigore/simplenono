@@ -10,7 +10,7 @@ Process gate: [`docs/ux-mockups.md`](../../../docs/ux-mockups.md).
 |----|------|------|--------|-------|----------|------|--------|
 | `MC.gallery-mobile` | screen | [`screens/gallery.md`](../screens/gallery.md) | [`screens/gallery-mobile.html`](screens/gallery-mobile.html) | approved | review-project-issue (#94) | 2026-11-02 | None |
 | `MC.gallery-desktop` | screen | [`screens/gallery.md`](../screens/gallery.md) | [`screens/gallery-desktop.html`](screens/gallery-desktop.html) | approved | review-project-issue (#94) | 2026-11-02 | None |
-| `MC.puzzle` | screen | [`screens/puzzle.md`](../screens/puzzle.md) | [`screens/puzzle.html`](screens/puzzle.html) | approved | review-project-issue (#110) | 2026-11-01 | None |
+| `MC.puzzle` | screen | [`screens/puzzle.md`](../screens/puzzle.md) | [`screens/puzzle.html`](screens/puzzle.html) | draft | None | 2026-11-04 | mobile board maximized in remaining viewport; desktop framing unchanged and unmocked |
 | `MC.result-mobile` | screen | [`screens/result.md`](../screens/result.md) | [`screens/result-mobile.html`](screens/result-mobile.html) | approved | review-project-issue (#95) | 2026-11-01 | None |
 | `MC.result-desktop` | screen | [`screens/result.md`](../screens/result.md) | [`screens/result-desktop.html`](screens/result-desktop.html) | approved | review-project-issue (#95) | 2026-11-01 | None |
 | `MC.settings-mobile` | screen | [`screens/settings.md`](../screens/settings.md) | [`screens/settings-mobile.html`](screens/settings-mobile.html) | approved | product owner | 2026-10-31 | None |

@@ -16,7 +16,7 @@ Serves Calm tactile grid, Snappy solve, and Cool clinical look; local 2D pack pl
 
 ## Platform implications
 
-- **iOS / Android (portrait or landscape)**: Board and clue margins stay readable in one framing; no pan of a world for a single puzzle.
+- **iOS / Android (portrait or landscape)**: Board and clue margins stay readable in one framing; no pan of a world for a single puzzle. The board fills the viewport left after [`UI-puzzle`](../ux/screens/puzzle.md) chrome (R1) and tools (R3), in both orientations and without scrolling. Smallest test viewports are 360×640 dp portrait and 640×360 dp landscape; mobile renders 1 dp = 1 control pixel, so the board lays out at 360×640 and 640×360 control pixels.
 - **Windows / macOS / Linux**: Same fixed board framing; extra screen margin is unused space, not a different viewpoint.
 
 ## Traceability

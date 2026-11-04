@@ -23,6 +23,13 @@ const FRAME_PADDING := 8.0
 const MIN_CELL_SIZE := 8.0
 const MAX_CELL_SIZE := 40.0
 
+## Desktop (Windows / macOS / Linux) keeps the comfortable cap: unused margin is
+## fine there. A test drives it without a real window.
+const PLATFORM_DESKTOP := "desktop"
+## Mobile (iOS / Android) fills what chrome and tools leave, so the cap is dropped
+## and the given rect alone bounds the cell ([code]UI-puzzle[/code] R2).
+const PLATFORM_MOBILE := "mobile"
+
 var _definition: PuzzleDefinition
 var _status: LineStatusCheck
 var _cells: Array[PuzzleCell] = []
@@ -36,6 +43,36 @@ var _row_clue_width := 0.0
 var _column_clue_height := 0.0
 var _content_size := Vector2.ZERO
 var _origin := Vector2.ZERO
+var _platform := ""
+
+
+## Picks the platform framing rule now, so a test can hold it without a device.
+func _init() -> void:
+	_platform = detect_platform()
+
+
+## The platform framing rule in force: [constant PLATFORM_MOBILE] or
+## [constant PLATFORM_DESKTOP]. Picked from the OS the build runs on.
+static func detect_platform() -> String:
+	if OS.has_feature("mobile"):
+		return PLATFORM_MOBILE
+	return PLATFORM_DESKTOP
+
+
+## Overrides the platform framing rule ([constant PLATFORM_MOBILE] or
+## [constant PLATFORM_DESKTOP]) so a test can drive both branches, then relayouts.
+func set_platform(platform: String) -> void:
+	assert(
+		platform == PLATFORM_MOBILE or platform == PLATFORM_DESKTOP,
+		"Unknown platform framing: %s" % platform
+	)
+	_platform = platform
+	_relayout()
+
+
+## The platform framing rule in force.
+func platform() -> String:
+	return _platform
 
 
 ## Replaces the board with [param definition]'s clues and an empty grid.
@@ -99,6 +136,12 @@ func cell_size() -> float:
 ## The clue size [code]T1[/code] currently applies ([method UiTheme.t1_size]).
 func clue_font_size() -> int:
 	return UiTheme.t1_size(_cell_size)
+
+
+## The framed board's extent (clue bars + grid) after the last relayout, so a test
+## can hold it inside the given rect and the safe area ([code]PRJ.A2[/code]).
+func content_size() -> Vector2:
+	return _content_size
 
 
 func _notification(what: int) -> void:
@@ -200,7 +243,10 @@ func _relayout() -> void:
 	var total_width := float(_definition.size) + _row_clue_units
 	var total_height := float(_definition.size) + _column_clue_units
 	var cell := minf(available.x / total_width, available.y / total_height)
-	cell = clampf(floorf(cell), MIN_CELL_SIZE, MAX_CELL_SIZE)
+	# Mobile gives the board whatever chrome and tools leave, so the rect bounds it;
+	# desktop keeps the comfortable cap and its unused margin.
+	var max_cell := MAX_CELL_SIZE if _platform == PLATFORM_DESKTOP else INF
+	cell = clampf(floorf(cell), MIN_CELL_SIZE, max_cell)
 	_cell_size = cell
 	_row_clue_width = _row_clue_units * cell
 	_column_clue_height = _column_clue_units * cell
