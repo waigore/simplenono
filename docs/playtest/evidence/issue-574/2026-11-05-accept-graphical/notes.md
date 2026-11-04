@@ -6,7 +6,7 @@ The deliverable tree `main@9a32abc` — PR #580
 (`game/presentation/gallery.gd` `_columns_for_width` step-down + the landscape frame-fit
 test in `game/test/test_gallery.gd`), where `git diff ee1d2fd 9a32abc -- game/` is empty.
 Two graphical runs of
-[`PTU-gallery-layout`](../../../../specs/playtest/ux/gallery-layout.md)
+[`PTU-gallery-layout`](../../../../../specs/playtest/ux/gallery-layout.md)
 (S1–S3 / P1–P6, judged per point per viewport), one probe
 (`probe/probe_accept_574_layout.gd`, adapted from the committed #573 acceptance probe —
 same checks, renamed identity/progress files):
@@ -48,7 +48,7 @@ The deliverable can move the Applies deterministic axes; the passing record that
 this `game/` tree is [`docs/quality/evidence/issue-574/2026-11-05-verify/manifest.md`](../../../../quality/evidence/issue-574/2026-11-05-verify/manifest.md)
 (all five axes pass at `ee1d2fd`; `game/` identical to this build's deliverable merge).
 Acceptance does not run `deterministic`. No `llm-judge` axis applies —
-[`specs/definition/quality/rubrics/baseline.md`](../../../../../../specs/definition/quality/rubrics/baseline.md)
+[`specs/definition/quality/rubrics/baseline.md`](../../../../../specs/definition/quality/rubrics/baseline.md)
 lists none. Paperwork note verified this run: origin/main after the #580 merge adds only
 #583/#584/#582/#583 + #540/#585 evidence (docs), #555's harness/test files
 (`game/test/integration/solve_oracle.gd`, `test_solve_oracle.gd`, `test_lane_recording.gd`,
