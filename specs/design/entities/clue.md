@@ -31,7 +31,7 @@ One **clue line**: the ordered run lengths for a single row or column. Those len
 |----|----------------|---------|---------|
 | I1 | Player | Read while solving | Guides fills and crosses |
 | I2 | [Line error](../glossary.md) | Fills vs run lengths | May raise or clear that line’s error |
-| I3 | [Cells](cell.md) | After [get-set-ready](../glossary.md), empty run list | Auto-cross every still-**clear** cell on that line; counts as crosses for [attempt status](../glossary.md) ([`loops/solve.md`](../loops/solve.md)) |
+| I3 | [Cells](cell.md) | Empty run list at any time | No automatic marking: the cells keep the marks the player and loaded [progress](../game-state.md) left; the line satisfies and dims by the usual fill rules ([`loops/solve.md`](../loops/solve.md)) |
 | I4 | View | Enter S2 | Dim that clue line |
 
 ## Placement and availability
@@ -40,4 +40,4 @@ Exactly `size` row clue lines and `size` column clue lines for the open puzzle. 
 
 ## Experience intent
 
-Clinical edge numbers. Dim when the line is done. Empty lines quietly auto-cross after ready so the board helps without noise.
+Clinical edge numbers. Dim when the line is done. An empty run list is valid pack data: the all-empty line satisfies by the same fill rule, and ready adds no free crosses.

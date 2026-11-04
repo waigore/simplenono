@@ -14,8 +14,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 |----|----------------|
 | R1 | Report whether the player's fill set equals the solution fill set. Crosses are ignored |
 | R2 | Report error and satisfied for each clue line from that line's run lengths and the current fills |
-| R3 | Return still-clear cells on an empty clue line for auto-cross |
-| R4 | Keep no stored clue-line identity |
+| R3 | Keep no stored clue-line identity |
 
 ## Communication
 

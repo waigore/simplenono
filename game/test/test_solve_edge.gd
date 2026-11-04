@@ -20,7 +20,7 @@ const TEAPOT_ID := "teapot"
 const TEAPOT_PATH := "res://test/fixtures/teapot.json"
 
 ## Row 7 of the teapot is one run of 10, cells 2…11 (see test_game_state.gd), so no cell
-## of it is cross from the empty-clue auto-cross and (7, 7) is a clear solution fill.
+## of it is ever cross from an empty-clue line and (7, 7) is a clear solution fill.
 const RUN_ROW := 7
 const RUN_CELL := 7
 
@@ -310,7 +310,7 @@ func test_a_mark_that_changes_nothing_does_not_save_or_check_for_a_solve():
 	var attempt := _ready_attempt(12)
 	var emissions := _listen_solved(attempt)
 	var commits_before := _pack.recording_progress.commit_calls
-	assert_true(attempt.state().in_progress(), "the auto-cross started the attempt")
+	assert_false(attempt.state().in_progress(), "ready does not start the attempt")
 
 	var first := attempt.mark(RUN_ROW, 2, CellMark.Mark.FILL)
 	var commits_after_first := _pack.recording_progress.commit_calls

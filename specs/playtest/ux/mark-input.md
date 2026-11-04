@@ -41,4 +41,4 @@ Runs on the puzzle screen alone. Do not solve the puzzle: a completing fill leav
 
 ## Evidence
 
-Default evidence rules. One screenshot of the judged cells for each of P1–P4, from a graphical run on the build under acceptance. If no chosen puzzle offers a run free of empty-clue auto-cross, record S5 as not applicable, name the puzzle id in `notes.md`, and do not fail S5 for it.
+Default evidence rules. One screenshot of the judged cells for each of P1–P4, from a graphical run on the build under acceptance. If no chosen puzzle offers a run of three or more clear cells free of other marks, record S5 as not applicable, name the puzzle id in `notes.md`, and do not fail S5 for it.

@@ -23,7 +23,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 
 | ID | Condition | Next steps | Outcome |
 |----|-----------|------------|---------|
-| B1 | Leave during get-set-ready | S2 | No auto-cross. Commit restored marks and elapsed as held; then S3–S5 |
+| B1 | Leave during get-set-ready | S2 | No board write from the beat. Commit restored marks and elapsed as held; then S3–S5 |
 | B2 | No open attempt at S1 | None | No change. The current screen stays |
 | B3 | Attempt not started and nothing to persist | S3 | Skip S2. Clear the attempt and show the gallery |
 

@@ -16,7 +16,7 @@ const TEAPOT_PATH := "res://test/fixtures/teapot.json"
 const TEST_PATH := "user://progress-mark-input-test.cfg"
 const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
-## A clear, non-empty-clue row (the teapot's rows 0-3 auto-cross at ready).
+## A row with clue runs (the teapot's rows 0-3 and 12-14 have empty clue lists).
 const ROW := 7
 const FIRST := 2
 
