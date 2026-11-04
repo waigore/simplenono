@@ -32,9 +32,10 @@ const PICTURE_ASPECT := 1.0
 ## size. The picture's square minimum starts here so the first frame is already square.
 const TILE_WIDTH := 150.0
 
-## Vertical room the metadata needs under a first-layout picture: its 8 px top and
-## bottom margins plus three label lines. Later layouts measure the holder instead.
-const META_FLOOR_HEIGHT := 8.0 + 3.0 * 18.0
+## Vertical room one metadata label needs under a first-layout picture; the body
+## padding (top and bottom) is added on top. Later layouts measure the holder instead.
+const META_LABEL_LINE := 18.0
+const META_LABEL_LINES := 3.0
 
 var _entry: GalleryEntry
 var _thumb: GalleryThumb
@@ -46,6 +47,9 @@ var _open_button: Button
 var _reset_holder: Control
 var _reset_button: Button
 var _chrome_font_size := 16
+## The tile body's inset on every side, held by the gallery from the frame: the
+## mockups' `.meta { padding }` starts at the mobile frame's 8 px (#557).
+var _body_padding := 8
 var _scroll_drag := ScrollDragRelease.new()
 
 
@@ -170,6 +174,27 @@ func chrome_font_size() -> int:
 	return _chrome_font_size
 
 
+## The tile body's inset on every side, as both mockups draw `.puzzle-tile .meta` and
+## `.reset` ([code]R2[/code]). The gallery holds it from the frame; the tile keeps only
+## the value, the way [code]UIS.T2[/code] does (#557).
+func set_body_padding(px: int) -> void:
+	_body_padding = px
+	if _meta_holder != null:
+		for side in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
+			_meta_holder.add_theme_constant_override(side, px)
+	if _reset_holder is MarginContainer:
+		var margin := _reset_holder as MarginContainer
+		for side in ["margin_left", "margin_right", "margin_bottom"]:
+			margin.add_theme_constant_override(side, px)
+		margin.add_theme_constant_override("margin_top", 0)
+		hold_picture_square.call_deferred()
+
+
+## The body padding this tile last applied ([code]R2[/code]).
+func body_padding() -> int:
+	return _body_padding
+
+
 func _build() -> void:
 	custom_minimum_size = Vector2(TILE_WIDTH, 0.0)
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -179,7 +204,9 @@ func _build() -> void:
 	add_child(layout)
 	_open_button = Button.new()
 	_open_button.focus_mode = Control.FOCUS_ALL
-	_open_button.custom_minimum_size = Vector2(0.0, TILE_WIDTH / PICTURE_ASPECT + META_FLOOR_HEIGHT)
+	_open_button.custom_minimum_size = Vector2(
+		0.0, TILE_WIDTH / PICTURE_ASPECT + 2.0 * _body_padding + META_LABEL_LINES * META_LABEL_LINE
+	)
 	_open_button.tooltip_text = ""
 	_open_button.add_theme_stylebox_override("normal", _flat_style())
 	_open_button.add_theme_stylebox_override("hover", _flat_style())
@@ -202,8 +229,8 @@ func _build() -> void:
 	meta.add_theme_constant_override("separation", 2)
 	_meta_holder = MarginContainer.new()
 	_meta_holder.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_meta_holder.add_theme_constant_override("margin_top", 8)
-	_meta_holder.add_theme_constant_override("margin_bottom", 8)
+	for side in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
+		_meta_holder.add_theme_constant_override(side, _body_padding)
 	_meta_holder.add_child(meta)
 	content.add_child(_meta_holder)
 	_title_label = _make_label(PresentationPalette.INK)
@@ -236,10 +263,10 @@ func hold_picture_square() -> void:
 func _build_reset_holder() -> Control:
 	var margin := MarginContainer.new()
 	margin.custom_minimum_size = Vector2(0.0, 36.0)
-	margin.add_theme_constant_override("margin_left", 8)
+	margin.add_theme_constant_override("margin_left", _body_padding)
 	margin.add_theme_constant_override("margin_top", 0)
-	margin.add_theme_constant_override("margin_right", 8)
-	margin.add_theme_constant_override("margin_bottom", 8)
+	margin.add_theme_constant_override("margin_right", _body_padding)
+	margin.add_theme_constant_override("margin_bottom", _body_padding)
 	var row := HBoxContainer.new()
 	row.custom_minimum_size = Vector2(0.0, 28.0)
 	var spacer := Control.new()

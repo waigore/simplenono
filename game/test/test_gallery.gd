@@ -505,6 +505,52 @@ func test_grid_spacing_follows_the_mockup_ratios() -> void:
 	)
 
 
+# R2 (#557): the tile body is inset the mockups' padding on every side, and the Reset
+# row matches it: 8 px at the mobile mockup's 390 px frame, 12 px held at the desktop
+# one, so the metadata copy never draws flush against the card's border.
+func test_tile_body_padding_follows_the_mockup_ratios() -> void:
+	var seeded := ConfigFile.new()
+	# A replay draws the Reset row next to the three metadata labels.
+	seeded.set_value("pack-003", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-003", ProgressFile.MARKS_KEY, _marks(15))
+	seeded.set_value("pack-003", ProgressFile.PERSONAL_BEST_KEY, 541)
+	_present(seeded)
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	assert_almost_eq(_gallery.tile_padding(), 8.0, 0.5, "the mobile mockup's padding")
+	_assert_tile_copy_inset(8, "the mobile mockup's padding is applied")
+	_gallery.size = Vector2(1080.0, 900.0)
+	await _settle()
+	assert_almost_eq(_gallery.tile_padding(), 12.0, 0.5, "the desktop mockup's padding")
+	_assert_tile_copy_inset(12, "the desktop mockup's padding is applied")
+
+
+func _assert_tile_copy_inset(expected: int, why: String) -> void:
+	var target := _gallery.tile("pack-003")
+	assert_eq(target.body_padding(), expected, why)
+	var card := target.get_global_rect()
+	for label: Label in target.find_children("*", "Label", true, false):
+		var drawn := label.get_global_rect()
+		assert_lte(
+			drawn.position.x + drawn.size.x,
+			card.position.x + card.size.x - float(expected) + 0.5,
+			"copy ends inside the card's padding"
+		)
+		assert_gte(
+			drawn.position.x,
+			card.position.x + expected - 0.5,
+			"copy starts inside the card's padding"
+		)
+	assert_true(target.reset_visible(), "the replay tile draws the Reset row")
+	var reset := target.reset_button().get_global_rect()
+	assert_lte(
+		reset.position.x + reset.size.x,
+		card.position.x + card.size.x - float(expected) + 0.5,
+		"Reset stays inside the same padding"
+	)
+
+
 ## Resizes the running window, so [code]UIS.T2[/code]'s frame-relative type is read from
 ## a phone-sized frame instead of the harness's small headless one.
 func _use_frame(frame: Vector2i) -> void:
