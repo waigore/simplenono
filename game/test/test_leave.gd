@@ -5,8 +5,8 @@ extends GutTest
 ## Proves the attempt-side write path: a leave commits the open attempt's marks,
 ## elapsed, and attempt status through the pack, replaces `user://progress.cfg`, clears
 ## the attempt, and emits E2. The teapot fixture has empty-clue rows 0-3 and 12-14 and
-## empty-clue columns 0-1 and 13-14, so a leave during get-set-ready can show that the
-## beat's auto-cross did not run.
+## empty-clue columns 0-1 and 13-14, so a leave during get-set-ready, before the beat
+## can end, commits exactly the restored marks.
 ##
 ## Every test uses a temporary progress document and removes it again, so no run
 ## touches the real `user://progress.cfg`.
@@ -128,8 +128,9 @@ func test_leave_with_changed_marks_writes_the_record_and_closes_the_attempt():
 	assert_eq(stored.elapsed, 7, "M1: the file holds the elapsed value")
 
 
-# B1: leave during get-set-ready commits the restored marks and elapsed, no auto-cross
-func test_leave_during_get_set_ready_commits_restored_marks_without_auto_cross():
+# B1: leave during get-set-ready commits the restored marks and elapsed, nothing from
+# the beat
+func test_leave_during_get_set_ready_commits_restored_marks_without_a_beat_write():
 	_pack.commit(TEAPOT_ID, _grid_with([Vector2i(RUN_ROW, RUN_CELL)]), 18, true)
 	var attempt := _opened()
 	assert_true(attempt.get_set_ready(), "the beat is still running")
@@ -143,7 +144,7 @@ func test_leave_during_get_set_ready_commits_restored_marks_without_auto_cross()
 	assert_eq(
 		record.marks.mark_at(0, 0),
 		CellMark.Mark.CLEAR,
-		"B1: the beat's auto-cross did not run",
+		"B1: nothing from the beat",
 	)
 
 

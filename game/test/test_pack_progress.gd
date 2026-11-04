@@ -397,8 +397,8 @@ func test_a_gallery_reset_after_finish_reopens_the_pack() -> void:
 	assert_eq(pack.completion_rate(), 0.995, "O2: 199 of 200 is 0.995")
 
 
-## The first solution fill that is still clear after the ready beat's auto-cross; opens
-## its own attempt so the case under test keeps its state.
+## The first solution fill that is still clear after ready; opens its own attempt so the
+## case under test keeps its state.
 func _first_clear_solution_fill(pack: Pack, puzzle_id: String) -> Vector2i:
 	var probe := Attempt.new(pack)
 	probe.open(puzzle_id)

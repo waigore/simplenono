@@ -32,8 +32,8 @@ As a player, I mark until fills match or I leave so that I finish or resume.
 Given P not started, marks-allowed false, solve-elapsed 0
 When get-set-ready completes
 Then marks-allowed is true
-And empty-clue lines auto-cross still-clear cells
-And attempt-status is in progress if any auto-cross occurred
+And cell-marks stay as the loaded progress left them (all clear when fresh)
+And attempt-status stays not started
 And solve-elapsed is 0 when ready completes
 ```
 
