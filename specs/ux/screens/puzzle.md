@@ -5,7 +5,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 - **Job**: Mark the board from clues; leave, pause into settings, or solve into result
 - **Actors**: [`player.md`](../actors/player.md)
 - **Serves**: Calm tactile grid, Snappy solve ([`L-solve`](../../design/loops/solve.md)); solution hidden while solving ([`PER.R4`](../../view/perception.md))
-- **Mockup**: [`puzzle.html`](../mockups/screens/puzzle.html) — mobile framing; desktop unmocked, unchanged
+- **Mockup**: [`puzzle.html`](../mockups/screens/puzzle.html) (mobile), [`puzzle-desktop.html`](../mockups/screens/puzzle-desktop.html) (desktop)
 - **Glossary terms**: [Player](../glossary.md), [Get-set-ready](../../design/glossary.md), [Line error](../../design/glossary.md)
 
 ## Shows
