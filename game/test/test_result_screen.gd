@@ -138,6 +138,30 @@ func test_us1_2_default_shows_the_picture_and_opens_back() -> void:
 	assert_eq(_screen.back_text(), "Back to gallery", "copy.back")
 
 
+# PAL.K1 / copy.back: focused C1 stays Ink. The shell focuses C1 at S1, and Godot
+# draws that idle state with font_focus_color (the default face is near-white).
+func test_back_label_is_ink_while_focused() -> void:
+	_shown()
+	_screen.finish_morph()
+	var button := _screen.back_button()
+	button.grab_focus()
+	assert_true(button.has_focus(), "C1 holds the focus the shell gives it at S1")
+	assert_true(button.visible, "R2 is shown")
+	assert_false(button.disabled, "C1 is enabled")
+	for item in [
+		"font_color",
+		"font_focus_color",
+		"font_hover_color",
+		"font_pressed_color",
+		"font_hover_pressed_color",
+	]:
+		var color := button.get_theme_color(item)
+		assert_true(
+			color.is_equal_approx(PresentationPalette.INK),
+			"%s is Ink (%s)" % [item, color],
+		)
+
+
 # US1.3 / C1: C1 changes nothing while the morph runs
 func test_us1_3_back_is_blocked_while_morphing() -> void:
 	_shown(_texture(Color.WHITE), _texture(Color.BLACK))
