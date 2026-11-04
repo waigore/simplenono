@@ -10,6 +10,7 @@ Agents use the matching `create-project-*` skill so labels, sub-issues, and bloc
 | [body-shapes.md](body-shapes.md) | Canonical body templates (Epic / Task / Defect / Feedback) |
 | [hierarchy.md](hierarchy.md) | Sub-issues, depth limit, blocked-by ban |
 | [workflow.md](workflow.md) | Epic / task / defect status labels and transitions |
+| [workflow-comments.md](workflow-comments.md) | When agents may comment; no stay-put noise |
 | [feedback.md](feedback.md) | Feedback record, dispositions, status, priority |
 | [workflow-comment-cap.md](workflow-comment-cap.md) | Task/defect comment cap; `pending-redefinition` |
 | [workflow-cascade.md](workflow-cascade.md) | When a failed review moves another issue |

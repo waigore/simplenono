@@ -11,7 +11,7 @@ description: |-
     - user: "Accept #12 with evidence in docs/playtest/evidence/... and wiki URL" → accept comment, status:accepted, leave open (planner may close later)
     - user: "Acceptance failed; file defect" → create defect (game/interface only), link, → pending-implementation
     - user: "Need PO input to finish acceptance on #12" → pending-clarification
-    - user: "Headless accept on #12; screenshots still waiting" → stay pending-acceptance, no defect
+    - user: "Headless accept on #12; screenshots still waiting" → stay pending-acceptance; comment once if new blocker, else silent
 ---
 
 # Accept project issue
@@ -37,8 +37,8 @@ When the deliverable can move an Applies `llm-judge` axis, run [`run-quality-eva
 ## Outcome
 
 - **Accept** — comment summarizing evidence per criterion and related PRs, including the in-repo playtest manifest path and wiki page URL (with graphical-run screenshots) when playtesting required them, the deterministic evidence path when a deterministic axis applies, and the llm-judge evidence path when a qualitative axis applies. Gate: `pending-acceptance` → `accepted`. Leave the issue open. Only [`project-planner-agent`](../project-planner-agent/SKILL.md) closes accepted work.
-- **Waiting on screenshots** — headless judgement is recorded and required screenshots are not on the wiki page yet. Comment with the in-repo evidence path, wiki page URL if any, and that acceptance waits on a graphical re-run of the same build. Stay on `pending-acceptance`. Do not file a defect. Do not call the status gate.
-- **Waiting on deterministic record** — an Applies deterministic axis can move and no passing `deterministic` record covers this `game/` tree. Comment that acceptance waits on that record. Verification supplies it. Stay on `pending-acceptance`. Do not run those checks in this skill. Do not file a defect. Do not call the status gate.
-- **Waiting on judge evidence** — an `llm-judge` row is **blocked** / `missing-evidence`. Comment with the axis id and the evidence the judge record allows. Stay on `pending-acceptance`. Do not file a defect. Do not call the status gate.
+- **Waiting on screenshots** — headless judgement is recorded and required screenshots are not on the wiki page yet. Comment **once** the first time this blocker appears on the issue (in-repo evidence path, wiki page URL if any, waits on graphical re-run of the same build); later re-runs with the same blocker stay silent ([workflow-comments.md](../../../docs/issues/workflow-comments.md)). Stay on `pending-acceptance`. Do not file a defect. Do not call the status gate.
+- **Waiting on deterministic record** — an Applies deterministic axis can move and no passing `deterministic` record covers this `game/` tree. Comment **once** the first time this blocker appears; later re-runs stay silent. Verification supplies the record. Stay on `pending-acceptance`. Do not run those checks in this skill. Do not file a defect. Do not call the status gate.
+- **Waiting on judge evidence** — an `llm-judge` row is **blocked** / `missing-evidence`. Comment **once** the first time this blocker appears (axis id and evidence the judge record allows); later re-runs stay silent. Stay on `pending-acceptance`. Do not file a defect. Do not call the status gate.
 - **Fail** — a protocol failed for a **game or interface** reason, a deterministic record row is **fail** or **blocked**, or an `llm-judge` row is **fail**. Create a Defect via `create-project-defect` when the miss is game or interface behavior, and link it in the comment. Gate: `pending-acceptance` → `pending-implementation`. Missing screenshots, a missing deterministic record, or missing judge evidence alone are not this outcome. Never file a defect for a spec, doc, or map problem.
 - **Clarify** — tests cannot proceed without product-owner input, a wrong or ambiguous **spec** blocks judging the acceptance criteria, or an `llm-judge` row is **blocked** / `missing-judge-record`. Summarize questions. The axis stays as written. Gate: `pending-acceptance` → `pending-clarification`. No defect.
