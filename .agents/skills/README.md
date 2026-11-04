@@ -46,7 +46,7 @@ Native facades (Cursor / OpenCode / Grok) and authoring rules (veneers, **Invoke
 | [`run-quality-evaluators`](run-quality-evaluators/SKILL.md) | Execute Applies axes: deterministic from verify (the only legal producer), llm-judge from accept; write `docs/quality/evidence/`; no status change |
 | [`capture-requirements`](capture-requirements/SKILL.md) | Default path: interview specs the user picks, foundation first; confirm, `author-spec`, open a spec PR. A PoC only when they ask to explore |
 | [`review-spec`](review-spec/SKILL.md) | Review a spec doc or the formalized set; placeholder-only files are not a Fail; whole-spec also runs applicability, terminology, and TBD audits |
-| [`serve-ux-mockups`](serve-ux-mockups/SKILL.md) | Explicit-only: serve `specs/ux/mockups/` on the LAN with a generated index, open it in the browser, and report localhost and LAN URLs |
+| [`serve-ux-mockups`](serve-ux-mockups/SKILL.md) | Explicit-only: serve `specs/ux/mockups/` on the LAN with a generated index, open it in the browser, and report localhost and LAN URLs; optional Tailscale Serve HTTPS when the user is on a tailnet |
 | [`export-android-debug`](export-android-debug/SKILL.md) | Explicit-only: PR into `android-debug` so Actions publishes a debug APK GitHub Release; no local export unless asked |
 | [`review-code`](review-code/SKILL.md) | Review code vs `docs/solid.md` (SOLID + continuity) and `docs/coding-conventions.md` (project rules + Code lint / Unit tests / Coverage); Pass/Fail, read-only |
 | [`audit-code-structure`](audit-code-structure/SKILL.md) | Audit implementation structure and debt (SOLID, conventions, continuity, duplication, dead code, seams, parallel structure); proposed targets; read-only |

@@ -26,7 +26,7 @@ Add the row when the HTML is created (`draft`). Templates are not rows.
 ## States
 
 - **draft**: present; not approved for main-tree UI.
-- **approved**: PO or `review-project-issue` approved; main-tree UI for that screen may proceed.
+- **approved**: product owner approved (clarification or direct catalog edit; review may write the row only after that affirmation); main-tree UI for that screen may proceed.
 - **deprecated**: retired; main-tree UI must not target it. Prefer a successor mockup row when replacing.
 
 ## Integrity
