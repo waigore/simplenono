@@ -35,36 +35,19 @@ Authoring rules: [`.agents/specs/rules/assets/kinds.md`](../../../.agents/specs/
 
 ## Style series
 
+Primary series: [`SS1 — primary`](puzzle-pictures/style-series.md).
+
 ### SS1 — primary
 
-- **State**: none
-- **Modality**: visual
-- **Enforce**: soft
-- **Style anchors**: None yet
-- **Style binding**: None — no Recraft; Cheaper Inference only ([`tools.md`](../tools.md) TL.1)
-- **Aesthetics**: colourful multi-element scenes with real backgrounds; [`AES.P1`](../../aesthetics/aesthetics.md) is chrome-only (aesthetics pillar scope); no gore/horror
-- **Built from**: None
-- **Refresh when**: aesthetics change or review Fail
+N/A — the series fields and `prompt_policy` live in [`puzzle-pictures/style-series.md`](puzzle-pictures/style-series.md).
 
 #### Prompt policy
 
-- **Compose**: subject-first; append master + negative.
-- **Master**: colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at N×N
-- **Negative**: gore; horror; centered single mass on empty ground; cool-gray clinical picture look
+N/A — the policy lives in [`puzzle-pictures/style-series.md`](puzzle-pictures/style-series.md).
 
 ## Recipes
 
-### R1 — Flux → nonogram (offline)
-
-- **Source type**: AI generation
-- **Tool role**: TL.1 then TL.2
-- **Inputs**: size N; subject prompt (V1)
-- **Prompt template (bootstrap)**: colourful multi-element scene of {subject} with a real background, completely asymmetrical; compose with `prompt_policy`
-- **Prompt template (series)**: N/A — SS1 `none`
-- **Settings**: `flux-2-max`; keep square; BOX copy (S6)
-- **Seed policy**: n/a — no seed
-- **Post-processing**: haze/vignette artifact cleanup; luma (S2); no hole-close; line-logic (S4); else new prompt
-- **Outputs**: both catalogued pictures, pack fill/clues
+N/A — the recipes live in [`puzzle-pictures/recipes.md`](puzzle-pictures/recipes.md).
 
 ## Checks
 
