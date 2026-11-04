@@ -16,8 +16,8 @@ Serves Calm tactile grid, Snappy solve, and Cool clinical look; local 2D pack pl
 
 ## Platform implications
 
-- **iOS / Android (portrait or landscape)**: Board and clue margins stay readable in one framing; no pan of a world for a single puzzle.
-- **Windows / macOS / Linux**: Same fixed board framing; extra screen margin is unused space, not a different viewpoint.
+- **iOS / Android (locked orientation)**: Board and clue margins stay readable in one framing; no pan of a world for a single puzzle. The screen does not follow the device: a cold launch opens in portrait, and the player's portrait or landscape choice stays locked, including after a force-quit (ADR-0009). A tilt never rotates the framing.
+- **Windows / macOS / Linux**: Same fixed board framing; extra screen margin is unused space, not a different viewpoint. No orientation lock.
 
 ## Traceability
 
