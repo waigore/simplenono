@@ -46,6 +46,7 @@ var _open_button: Button
 var _reset_holder: Control
 var _reset_button: Button
 var _chrome_font_size := 16
+var _scroll_drag := ScrollDragRelease.new()
 
 
 func _init() -> void:
@@ -185,6 +186,7 @@ func _build() -> void:
 	_open_button.add_theme_stylebox_override("pressed", _flat_style())
 	_open_button.add_theme_stylebox_override("focus", _flat_style())
 	_open_button.pressed.connect(_on_open_pressed)
+	_open_button.gui_input.connect(_on_open_input)
 	layout.add_child(_open_button)
 	var content := VBoxContainer.new()
 	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -274,6 +276,20 @@ func _on_open_pressed() -> void:
 	if _entry == null:
 		return
 	opened.emit(_entry.id)
+
+
+## #539: a touch drag that starts on C1 (the whole tile) is a scroll of R2, not a tap,
+## so the enclosing [ScrollContainer] gets it and the tile does not open.
+func _on_open_input(event: InputEvent) -> void:
+	if _scroll_drag.consume(event, _open_button):
+		_open_button.accept_event()
+
+
+## #539: a finger that leaves C1 before its release must not leave a tile "open" on
+## the next tap.
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_MOUSE_EXIT:
+		_scroll_drag.reset()
 
 
 func _on_reset_pressed() -> void:
