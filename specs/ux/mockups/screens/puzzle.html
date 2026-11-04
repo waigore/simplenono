@@ -127,20 +127,52 @@
       gap: 8px;
       flex: 0 0 36px;
     }
-    /* R2: a fixed frame. No scroll, no pan, no zoom. */
+    /* R2: a fixed frame. No scroll, no pan, no zoom.
+       The three puzzle sizes are alternatives, not a row: the code shows one
+       board in R2, so the samples stack in a single grid cell and only the
+       one named by data-show is drawn. */
     .board-wrap {
       position: relative;
       flex: 1 1 auto;
       min-height: 0;
       overflow: hidden;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
+      display: grid;
+      place-items: center;
       border: 1px solid var(--line);
       padding: 8px;
+    }
+    .board-wrap > .board-sample {
+      grid-area: 1 / 1;
+      display: none;
+    }
+    .board-wrap[data-show="10"] > .board-sample[data-size="10"],
+    .board-wrap[data-show="15"] > .board-sample[data-size="15"],
+    .board-wrap[data-show="20"] > .board-sample[data-size="20"] {
+      display: flex;
+    }
+    .board-picker {
+      position: absolute;
+      right: 6px;
+      bottom: 2px;
+      display: flex;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--muted);
+    }
+    .board-picker button {
+      font: inherit;
+      padding: 0 4px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .board-wrap[data-show="10"] .board-picker [data-pick="10"],
+    .board-wrap[data-show="15"] .board-picker [data-pick="15"],
+    .board-wrap[data-show="20"] .board-picker [data-pick="20"] {
+      border-color: var(--fg);
+      color: var(--fg);
     }
     .viewport-label {
       position: absolute;
@@ -158,6 +190,7 @@
       align-items: center;
     }
     .board-sample figcaption {
+      display: none;
       font-family: var(--mono);
       font-size: 9px;
       color: var(--muted);
@@ -265,8 +298,8 @@
           <p class="state-title">Default (Ready)</p>
           <div class="frames">
         <figure class="device" data-orientation="portrait" id="frame-portrait">
-          <figcaption class="caption">portrait · 328×632 dp</figcaption>
-          <div class="frame" style="width:328px;height:632px">
+          <figcaption class="caption">portrait · 360×640 dp</figcaption>
+          <div class="frame" style="width:360px;height:640px">
             <header class="chrome" data-region="R1" aria-label="Chrome">
               <div class="start">
                 <button type="button" class="leave" data-control="C1">Leave</button>
@@ -274,11 +307,13 @@
               </div>
               <span class="elapsed" aria-label="Elapsed">1:24</span>
             </header>
-            <div class="board-wrap" data-region="R2" aria-label="Board">
-              <div class="viewport-label">portrait viewport after R1 and R3 · R2 328×508</div>
-          <figure class="board-sample">
+            <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
+              <div class="viewport-label">portrait viewport after R1 and R3 · R2 326×514</div>
+              <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
+
+          <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:25px;--clue-w:52px;--clue-h:50px;--rows:10;--cols:10;--clue-font:12px">
+          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:26px;--clue-w:42px;--clue-h:52px;--rows:10;--cols:10;--clue-font:13px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -442,9 +477,9 @@
             <button type="button" class="cell" data-control="C2" aria-label="r10c10"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:18px;--clue-w:38px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:18px;--clue-w:37px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -770,9 +805,9 @@
             <button type="button" class="cell" data-control="C2" aria-label="r15c15"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:14px;--clue-w:30px;--clue-h:28px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:13px;--clue-w:27px;--clue-h:26px;--rows:20;--cols:20;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -1316,22 +1351,22 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 328×508 · board frame 302/307/309 px wide, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 326×514 · board frame 26/18/13 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
               <thead><tr><th>Grid</th><th>Cell</th><th>Board frame</th><th>Grid side</th></tr></thead>
               <tbody>
-            <tr><td>10×10</td><td>25 px</td><td>302×300 px</td><td>250 px</td></tr>
+            <tr><td>10×10</td><td>26 px</td><td>302×312 px</td><td>260 px</td></tr>
             <tr><td>15×15</td><td>18 px</td><td>307×306 px</td><td>270 px</td></tr>
-            <tr><td>20×20</td><td>14 px</td><td>309×308 px</td><td>280 px</td></tr>
+            <tr><td>20×20</td><td>13 px</td><td>287×286 px</td><td>260 px</td></tr>
               </tbody>
             </table>
           </details>
         </figure>
         <figure class="device" data-orientation="landscape" id="frame-landscape">
-          <figcaption class="caption">landscape · 608×328 dp</figcaption>
-          <div class="frame" style="width:608px;height:328px">
+          <figcaption class="caption">landscape · 640×360 dp</figcaption>
+          <div class="frame" style="width:640px;height:360px">
             <header class="chrome" data-region="R1" aria-label="Chrome">
               <div class="start">
                 <button type="button" class="leave" data-control="C1">Leave</button>
@@ -1339,11 +1374,13 @@
               </div>
               <span class="elapsed" aria-label="Elapsed">1:24</span>
             </header>
-            <div class="board-wrap" data-region="R2" aria-label="Board">
-              <div class="viewport-label">landscape viewport after R1 and R3 · R2 608×196</div>
-          <figure class="board-sample">
+            <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
+              <div class="viewport-label">landscape viewport after R1 and R3 · R2 606×234</div>
+              <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
+
+          <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:15px;--clue-w:32px;--clue-h:30px;--rows:10;--cols:10;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:18px;--clue-w:29px;--clue-h:36px;--rows:10;--cols:10;--clue-font:9px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -1507,9 +1544,9 @@
             <button type="button" class="cell" data-control="C2" aria-label="r10c10"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:10px;--clue-w:22px;--clue-h:20px;--rows:15;--cols:15;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:12px;--clue-w:25px;--clue-h:24px;--rows:15;--cols:15;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -1835,9 +1872,9 @@
             <button type="button" class="cell" data-control="C2" aria-label="r15c15"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:8px;--clue-w:17px;--clue-h:16px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:9px;--clue-w:19px;--clue-h:18px;--rows:20;--cols:20;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -2381,15 +2418,15 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 608×196, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 606×234 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
               <thead><tr><th>Grid</th><th>Cell</th><th>Board frame</th><th>Grid side</th></tr></thead>
               <tbody>
-            <tr><td>10×10</td><td>15 px</td><td>181×180 px</td><td>150 px</td></tr>
-            <tr><td>15×15</td><td>10 px</td><td>171×170 px</td><td>150 px</td></tr>
-            <tr><td>20×20</td><td>8 px</td><td>177×176 px</td><td>160 px</td></tr>
+            <tr><td>10×10</td><td>18 px</td><td>209×216 px</td><td>180 px</td></tr>
+            <tr><td>15×15</td><td>12 px</td><td>205×204 px</td><td>180 px</td></tr>
+            <tr><td>20×20</td><td>9 px</td><td>199×198 px</td><td>180 px</td></tr>
               </tbody>
             </table>
           </details>
@@ -2401,8 +2438,8 @@
           <p class="state-title">Get-set-ready</p>
           <div class="frames">
         <figure class="device" data-orientation="portrait" id="frame-portrait">
-          <figcaption class="caption">portrait · 328×632 dp</figcaption>
-          <div class="frame" style="width:328px;height:632px">
+          <figcaption class="caption">portrait · 360×640 dp</figcaption>
+          <div class="frame" style="width:360px;height:640px">
             <header class="chrome" data-region="R1" aria-label="Chrome">
               <div class="start">
                 <button type="button" class="leave" data-control="C1">Leave</button>
@@ -2410,11 +2447,13 @@
               </div>
               <span class="elapsed" aria-label="Elapsed">0:00</span>
             </header>
-            <div class="board-wrap" data-region="R2" aria-label="Board">
-              <div class="viewport-label">portrait viewport after R1 and R3 · R2 328×508</div>
-          <figure class="board-sample">
+            <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
+              <div class="viewport-label">portrait viewport after R1 and R3 · R2 326×514</div>
+              <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
+
+          <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:25px;--clue-w:52px;--clue-h:50px;--rows:10;--cols:10;--clue-font:12px">
+          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:26px;--clue-w:42px;--clue-h:52px;--rows:10;--cols:10;--clue-font:13px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -2578,9 +2617,9 @@
             <button type="button" class="cell" data-control="C2" disabled aria-label="r10c10"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:18px;--clue-w:38px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:18px;--clue-w:37px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -2906,9 +2945,9 @@
             <button type="button" class="cell" data-control="C2" disabled aria-label="r15c15"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:14px;--clue-w:30px;--clue-h:28px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:13px;--clue-w:27px;--clue-h:26px;--rows:20;--cols:20;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -3453,22 +3492,22 @@
               <button type="button" class="tool" data-control="C5" disabled>Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 328×508 · board frame 302/307/309 px wide, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 326×514 · board frame 26/18/13 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
               <thead><tr><th>Grid</th><th>Cell</th><th>Board frame</th><th>Grid side</th></tr></thead>
               <tbody>
-            <tr><td>10×10</td><td>25 px</td><td>302×300 px</td><td>250 px</td></tr>
+            <tr><td>10×10</td><td>26 px</td><td>302×312 px</td><td>260 px</td></tr>
             <tr><td>15×15</td><td>18 px</td><td>307×306 px</td><td>270 px</td></tr>
-            <tr><td>20×20</td><td>14 px</td><td>309×308 px</td><td>280 px</td></tr>
+            <tr><td>20×20</td><td>13 px</td><td>287×286 px</td><td>260 px</td></tr>
               </tbody>
             </table>
           </details>
         </figure>
         <figure class="device" data-orientation="landscape" id="frame-landscape">
-          <figcaption class="caption">landscape · 608×328 dp</figcaption>
-          <div class="frame" style="width:608px;height:328px">
+          <figcaption class="caption">landscape · 640×360 dp</figcaption>
+          <div class="frame" style="width:640px;height:360px">
             <header class="chrome" data-region="R1" aria-label="Chrome">
               <div class="start">
                 <button type="button" class="leave" data-control="C1">Leave</button>
@@ -3476,11 +3515,13 @@
               </div>
               <span class="elapsed" aria-label="Elapsed">0:00</span>
             </header>
-            <div class="board-wrap" data-region="R2" aria-label="Board">
-              <div class="viewport-label">landscape viewport after R1 and R3 · R2 608×196</div>
-          <figure class="board-sample">
+            <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
+              <div class="viewport-label">landscape viewport after R1 and R3 · R2 606×234</div>
+              <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
+
+          <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:15px;--clue-w:32px;--clue-h:30px;--rows:10;--cols:10;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:18px;--clue-w:29px;--clue-h:36px;--rows:10;--cols:10;--clue-font:9px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -3644,9 +3685,9 @@
             <button type="button" class="cell" data-control="C2" disabled aria-label="r10c10"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:10px;--clue-w:22px;--clue-h:20px;--rows:15;--cols:15;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:12px;--clue-w:25px;--clue-h:24px;--rows:15;--cols:15;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -3972,9 +4013,9 @@
             <button type="button" class="cell" data-control="C2" disabled aria-label="r15c15"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:8px;--clue-w:17px;--clue-h:16px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:9px;--clue-w:19px;--clue-h:18px;--rows:20;--cols:20;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -4519,15 +4560,15 @@
               <button type="button" class="tool" data-control="C5" disabled>Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 608×196, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 606×234 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
               <thead><tr><th>Grid</th><th>Cell</th><th>Board frame</th><th>Grid side</th></tr></thead>
               <tbody>
-            <tr><td>10×10</td><td>15 px</td><td>181×180 px</td><td>150 px</td></tr>
-            <tr><td>15×15</td><td>10 px</td><td>171×170 px</td><td>150 px</td></tr>
-            <tr><td>20×20</td><td>8 px</td><td>177×176 px</td><td>160 px</td></tr>
+            <tr><td>10×10</td><td>18 px</td><td>209×216 px</td><td>180 px</td></tr>
+            <tr><td>15×15</td><td>12 px</td><td>205×204 px</td><td>180 px</td></tr>
+            <tr><td>20×20</td><td>9 px</td><td>199×198 px</td><td>180 px</td></tr>
               </tbody>
             </table>
           </details>
@@ -4539,8 +4580,8 @@
           <p class="state-title">Paused</p>
           <div class="frames">
         <figure class="device" data-orientation="portrait" id="frame-portrait">
-          <figcaption class="caption">portrait · 328×632 dp</figcaption>
-          <div class="frame" style="width:328px;height:632px">
+          <figcaption class="caption">portrait · 360×640 dp</figcaption>
+          <div class="frame" style="width:360px;height:640px">
             <header class="chrome" data-region="R1" aria-label="Chrome">
               <div class="start">
                 <button type="button" class="leave" data-control="C1">Leave</button>
@@ -4548,11 +4589,13 @@
               </div>
               <span class="elapsed" aria-label="Elapsed">1:24</span>
             </header>
-            <div class="board-wrap" data-region="R2" aria-label="Board">
-              <div class="viewport-label">portrait viewport after R1 and R3 · R2 328×508</div>
-          <figure class="board-sample">
+            <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
+              <div class="viewport-label">portrait viewport after R1 and R3 · R2 326×514</div>
+              <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
+
+          <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board pausing board" style="--cell:25px;--clue-w:52px;--clue-h:50px;--rows:10;--cols:10;--clue-font:12px">
+          <div class="board-grid" role="grid" aria-label="10x10 board pausing board" style="--cell:26px;--clue-w:42px;--clue-h:52px;--rows:10;--cols:10;--clue-font:13px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -4716,9 +4759,9 @@
             <button type="button" class="cell" data-control="C2" disabled aria-label="r10c10"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board pausing board" style="--cell:18px;--clue-w:38px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="15x15 board pausing board" style="--cell:18px;--clue-w:37px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -5044,9 +5087,9 @@
             <button type="button" class="cell" data-control="C2" disabled aria-label="r15c15"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board pausing board" style="--cell:14px;--clue-w:30px;--clue-h:28px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board pausing board" style="--cell:13px;--clue-w:27px;--clue-h:26px;--rows:20;--cols:20;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -5590,22 +5633,22 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 328×508 · board frame 302/307/309 px wide, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 326×514 · board frame 26/18/13 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
               <thead><tr><th>Grid</th><th>Cell</th><th>Board frame</th><th>Grid side</th></tr></thead>
               <tbody>
-            <tr><td>10×10</td><td>25 px</td><td>302×300 px</td><td>250 px</td></tr>
+            <tr><td>10×10</td><td>26 px</td><td>302×312 px</td><td>260 px</td></tr>
             <tr><td>15×15</td><td>18 px</td><td>307×306 px</td><td>270 px</td></tr>
-            <tr><td>20×20</td><td>14 px</td><td>309×308 px</td><td>280 px</td></tr>
+            <tr><td>20×20</td><td>13 px</td><td>287×286 px</td><td>260 px</td></tr>
               </tbody>
             </table>
           </details>
         </figure>
         <figure class="device" data-orientation="landscape" id="frame-landscape">
-          <figcaption class="caption">landscape · 608×328 dp</figcaption>
-          <div class="frame" style="width:608px;height:328px">
+          <figcaption class="caption">landscape · 640×360 dp</figcaption>
+          <div class="frame" style="width:640px;height:360px">
             <header class="chrome" data-region="R1" aria-label="Chrome">
               <div class="start">
                 <button type="button" class="leave" data-control="C1">Leave</button>
@@ -5613,11 +5656,13 @@
               </div>
               <span class="elapsed" aria-label="Elapsed">1:24</span>
             </header>
-            <div class="board-wrap" data-region="R2" aria-label="Board">
-              <div class="viewport-label">landscape viewport after R1 and R3 · R2 608×196</div>
-          <figure class="board-sample">
+            <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
+              <div class="viewport-label">landscape viewport after R1 and R3 · R2 606×234</div>
+              <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
+
+          <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board pausing board" style="--cell:15px;--clue-w:32px;--clue-h:30px;--rows:10;--cols:10;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="10x10 board pausing board" style="--cell:18px;--clue-w:29px;--clue-h:36px;--rows:10;--cols:10;--clue-font:9px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -5781,9 +5826,9 @@
             <button type="button" class="cell" data-control="C2" disabled aria-label="r10c10"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board pausing board" style="--cell:10px;--clue-w:22px;--clue-h:20px;--rows:15;--cols:15;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="15x15 board pausing board" style="--cell:12px;--clue-w:25px;--clue-h:24px;--rows:15;--cols:15;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -6109,9 +6154,9 @@
             <button type="button" class="cell" data-control="C2" disabled aria-label="r15c15"></button>
             </div>
           </figure>
-          <figure class="board-sample">
+          <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board pausing board" style="--cell:8px;--clue-w:17px;--clue-h:16px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board pausing board" style="--cell:9px;--clue-w:19px;--clue-h:18px;--rows:20;--cols:20;--clue-font:7px">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -6655,15 +6700,15 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 608×196, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 606×234 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
               <thead><tr><th>Grid</th><th>Cell</th><th>Board frame</th><th>Grid side</th></tr></thead>
               <tbody>
-            <tr><td>10×10</td><td>15 px</td><td>181×180 px</td><td>150 px</td></tr>
-            <tr><td>15×15</td><td>10 px</td><td>171×170 px</td><td>150 px</td></tr>
-            <tr><td>20×20</td><td>8 px</td><td>177×176 px</td><td>160 px</td></tr>
+            <tr><td>10×10</td><td>18 px</td><td>209×216 px</td><td>180 px</td></tr>
+            <tr><td>15×15</td><td>12 px</td><td>205×204 px</td><td>180 px</td></tr>
+            <tr><td>20×20</td><td>9 px</td><td>199×198 px</td><td>180 px</td></tr>
               </tbody>
             </table>
           </details>
@@ -6673,5 +6718,16 @@
         </section>
     </article>
   </div>
+  <script>
+    // The three puzzle sizes share one R2 frame: the code draws one board at a
+    // time, so the picker swaps which sample is shown instead of stacking them.
+    for (const picker of document.querySelectorAll(".board-picker")) {
+      picker.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-pick]");
+        if (!button) return;
+        picker.closest(".board-wrap").dataset.show = button.dataset.pick;
+      });
+    }
+  </script>
 </body>
 </html>

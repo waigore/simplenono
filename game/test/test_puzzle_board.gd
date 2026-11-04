@@ -8,8 +8,11 @@ extends GutTest
 ##
 ## What the tests hold is the issue's deliverable: mobile no longer caps the cell, so
 ## a bigger rect yields bigger cells and the framed board stays inside R2 and the
-## safe area. The issue's 20 px cell target is measured, not asserted, because on this
-## layout the chrome and tools alone take what 20 px cells would need; see the PR.
+## safe area. The cell side each viewport actually reaches is pinned in
+## [constant ACHIEVED_CELL]. The issue's 20 px readability target is out of reach on
+## this framing — the fixed R1/R3 bands leave less room than 20 px cells need — so
+## that shortfall is asserted too, and a layout change that reaches 20 px trips it
+## instead of passing silently.
 
 const SCREEN_SCENE := preload("res://presentation/puzzle.tscn")
 const PACK_PATH := "res://data/pack.json"
@@ -20,6 +23,14 @@ const SAFE_AREA_RATIO := 0.9
 const PORTRAIT := Vector2(360, 640)
 const LANDSCAPE := Vector2(640, 360)
 const DESKTOP := Vector2(1280, 800)
+## The cell side the maximized mobile framing reaches at each test viewport, from
+## the same layout maths [PuzzleBoard] runs: the R2 rect left after R1 chrome and
+## R3 tools, over the board's clue units. Pinned so a layout change that shrinks
+## the board fails loudly instead of drifting.
+const ACHIEVED_CELL := {
+	"portrait": {10: 26, 15: 18, 20: 14},
+	"landscape": {10: 18, 15: 12, 20: 9},
+}
 
 var _pack: Pack
 var _screen: PuzzleScreen
@@ -103,9 +114,12 @@ func test_mobile_grows_past_the_cap_desktop_keeps_it():
 	assert_gt(board.cell_size(), TODAY_CELL_CAP, "mobile grows past the cap into the same rect")
 
 
-# AC: each size renders in one framing, unclipped, at both test viewports.
+# AC: each size renders in one framing, unclipped, at both test viewports, and the
+# cell side is the one the framing yields — every clue above [UiTheme.CLUE_MIN_SIZE].
 func test_mobile_board_renders_at_both_test_viewports():
-	for viewport: Vector2 in [PORTRAIT, LANDSCAPE]:
+	for entry: Array in [["portrait", PORTRAIT], ["landscape", LANDSCAPE]]:
+		var orientation: String = entry[0]
+		var viewport: Vector2 = entry[1]
 		for size in [10, 15, 20]:
 			var board := await _shown_at(viewport, size)
 			var context := "%sx%s at %s" % [size, size, viewport]
@@ -114,6 +128,35 @@ func test_mobile_board_renders_at_both_test_viewports():
 				board.cell_size(), PuzzleBoard.MIN_CELL_SIZE, "%s: above the floor" % context
 			)
 			assert_gte(board.clue_font_size(), UiTheme.CLUE_MIN_SIZE, "%s: clue floor" % context)
+			assert_eq(
+				board.cell_size(),
+				float(ACHIEVED_CELL[orientation][size]),
+				"%s: the cell side the maximized framing reaches" % context
+			)
+
+
+# The 20 px readability target is out of reach on this framing, and the reason is
+# the fixed R1/R3 bands rather than the board: a larger cell needs more room than R2
+# is left with. The binding axis differs by orientation — 360x640 runs out of width
+# first, 640x360 runs out of height — so the test pins whichever axis decides the
+# cell on that viewport. Pinned so a later layout change that reaches 20 px trips it.
+func test_twenty_px_cells_do_not_fit_the_current_chrome_and_tools():
+	var target := 20.0
+	for entry: Array in [["portrait", PORTRAIT, true], ["landscape", LANDSCAPE, false]]:
+		var viewport: Vector2 = entry[1]
+		var width_binds: bool = entry[2]
+		var board := await _shown_at(viewport, 20)
+		var available := (
+			board.size - Vector2(PuzzleBoard.FRAME_PADDING, PuzzleBoard.FRAME_PADDING) * 2.0
+		)
+		var needed := (
+			target * (20.0 + board.row_clue_units())
+			if width_binds
+			else target * (20.0 + board.column_clue_units())
+		)
+		var have := available.x if width_binds else available.y
+		assert_lt(have, needed, "%s: 20 px cells need %s, R2 has %s" % [viewport, needed, have])
+		assert_lt(board.cell_size(), target, "%s: so the cell stays under 20 px" % viewport)
 
 
 # AC: the remainder after chrome and tools is what sizes the board, not a fixed rect.
