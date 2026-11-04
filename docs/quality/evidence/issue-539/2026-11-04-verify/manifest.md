@@ -23,7 +23,7 @@ gallery's open and settings legs (I8), and `crash-free` for the open/solve/reset
 
 No existing passing record covers `game/` at `47dae7a`. The nearest, #544 at `37f469b`, diffs against this tree
 in `game/test/integration/supervisor.gd` and `game/test/integration/README.md` (PR #554), so the reuse rule in
-[`docs/quality/evidence/README.md`](../../../README.md) does not apply and this is a fresh run rather than a
+[`docs/quality/evidence/README.md`](../../README.md) does not apply and this is a fresh run rather than a
 reuse.
 
 | Axis | Evaluator | Observation | Bar | Result | Blocked reason | Evidence path |
