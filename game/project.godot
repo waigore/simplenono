@@ -82,6 +82,15 @@ in_pause={
 
 seams_enabled=false
 
+[display]
+
+; #504 / ADR-0009: mobile orientation is locked, portrait on a cold launch with
+; nothing stored. 1 is Portrait (0 Landscape, 2-3 reverse, 4-6 sensor). The Android
+; and iOS exporters read this one setting for android:screenOrientation and
+; UISupportedInterfaceOrientations, so a build never rotates on a tilt. Desktop
+; builds ignore it, and CMP-shell R7 locks a stored choice at app start.
+window/handheld/orientation=1
+
 [rendering]
 
 ; Android export rejects a project that does not import ETC2/ASTC (ADR-0001).
