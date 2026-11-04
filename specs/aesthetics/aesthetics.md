@@ -18,11 +18,13 @@ Authoring rules: [`.agents/specs/rules/aesthetics/aesthetics.md`](../../.agents/
 
 When pillars conflict, the higher ID wins (P1 over P2 over P3).
 
+**Pillar scope**: The pillars govern UI/chrome and board presentation. Puzzle-picture content is exempt from P1 — scenes are colourful, multi-element, and not required to be cool-toned or clinical (see [`kinds/puzzle-pictures.md`](../assets/kinds/puzzle-pictures.md)).
+
 ## Content limits
 
 - No cute mascots, warm “cozy” chrome, or narrative character art in UI.
 - No gore or horror.
-- Puzzle solution images may show calm subjects but must not break P1–P2 on the board or gallery.
+- Puzzle solution images are content, not chrome — colourful multi-element scenes (see the pillar scope above), not required to be cool-toned or clinical. The board and gallery chrome around them stays P1–P2.
 - None from market mandates — definition has no store-feature or rating mandates.
 
 ## Variation
