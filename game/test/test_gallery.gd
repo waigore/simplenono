@@ -526,6 +526,38 @@ func test_tile_body_padding_follows_the_mockup_ratios() -> void:
 	_assert_tile_copy_inset(12, "the desktop mockup's padding is applied")
 
 
+# R2 (#573): a card with no Reset has no strip — C1 covers the whole tile, so the band
+# that used to be the Reset row's reserved holder is part of the open surface.
+func test_a_fresh_tile_draws_no_reset_strip() -> void:
+	_present(ConfigFile.new())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	var target := _gallery.tile("pack-000")
+	assert_false(target.reset_visible(), "C2 is not drawn for a new puzzle")
+	var card := target.get_global_rect()
+	var button := target.open_button().get_global_rect()
+	assert_almost_eq(button.position.y, card.position.y, 1.0, "C1 starts at the card's top")
+	assert_almost_eq(button.end.y, card.end.y, 1.0, "C1 covers the tile: no reserved strip")
+
+
+# R2 (#573): when Reset is drawn, the row sits inside C1 — a press on the row's empty
+# side still reaches the open surface instead of stopping in the holder.
+func test_a_reset_row_draws_inside_c1() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 60)
+	_present(seeded)
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	var target := _gallery.tile("pack-000")
+	assert_true(target.reset_visible(), "C2 is drawn for a replay")
+	var row := target.reset_button().get_global_rect()
+	var button := target.open_button().get_global_rect()
+	assert_lte(row.end.y, button.end.y + 1.0, "the Reset row is part of C1's surface")
+
+
 func _assert_tile_copy_inset(expected: int, why: String) -> void:
 	var target := _gallery.tile("pack-003")
 	assert_eq(target.body_padding(), expected, why)

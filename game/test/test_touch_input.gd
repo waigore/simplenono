@@ -176,3 +176,71 @@ func test_gallery_tile_drag_scrolls_r2_without_opening_the_puzzle() -> void:
 	assert_gt(scroll.scroll_vertical, scroll_before, "#539: the drag scrolls R2")
 	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "#539: a drag does not open a puzzle")
 	assert_null(_shell.attempt(), "#539: no attempt starts from a scroll")
+
+
+# #573 / R2: the band below a tile's metadata is C1 — the mockup draws `.open` flexing
+# over the whole card, and a card with no Reset has no strip. A tap there opens the
+# puzzle; no dead band may swallow it.
+func test_gallery_band_below_the_metadata_taps_as_c1() -> void:
+	var gallery := _shell.gallery_screen()
+	var tile := gallery.tile(PUZZLE_ID)
+	assert_not_null(tile, "the shipped pack shows pack-000")
+	assert_false(tile.reset_visible(), "a fresh tile draws no Reset row")
+	var band := Vector2(
+		tile.get_global_rect().position.x + 24.0, tile.get_global_rect().end.y - 4.0
+	)
+
+	_tap_at(band)
+
+	assert_eq(_shell.view(), Shell.PUZZLE_VIEW, "#573: the band raises this tile's C1")
+	assert_eq(_shell.puzzle_id(), PUZZLE_ID, "#573: the band belongs to this tile")
+	assert_false(gallery.reset_confirm_showing(), "#573: no Reset surface appears")
+
+
+# #573 / #539: a drag that starts in the band below the metadata scrolls R2 and opens
+# nothing — C1 is a tap, not a hold, whatever part of the card the finger starts on.
+func test_gallery_band_below_the_metadata_drags_as_r2_scroll() -> void:
+	var gallery := _shell.gallery_screen()
+	var scroll := gallery.get_node("Margin/Layout/Scroll") as ScrollContainer
+	assert_not_null(scroll, "R2 is the screen's scroll region")
+	var tile := gallery.tile(PUZZLE_ID)
+	var scroll_before := scroll.scroll_vertical
+	var origin := Vector2(
+		tile.get_global_rect().position.x + 24.0, tile.get_global_rect().end.y - 4.0
+	)
+
+	_push_drag(origin, origin - Vector2(0.0, 240.0))
+
+	assert_gt(scroll.scroll_vertical, scroll_before, "#573/#539: a band drag scrolls R2")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "#573/#539: a band drag opens no puzzle")
+	assert_null(_shell.attempt(), "#573/#539: no attempt starts from a band scroll")
+
+
+# #573 / US1.6: with Reset drawn, a press on the row's empty side still belongs to C1 —
+# only a press on the Reset button itself raises C2.
+func test_gallery_reset_row_side_taps_as_c1_not_c2() -> void:
+	assert_true(_shell.open_puzzle(PUZZLE_ID), "a puzzle is open")
+	_shell.puzzle_screen().finish_ready_beat()
+	var marked: Attempt = _shell.attempt()
+	assert_true(marked.mark(0, 0, CellMark.Mark.FILL).marks.has_any_mark(), "a mark is made")
+	_shell.leave_puzzle()
+	await get_tree().process_frame
+	var gallery := _shell.gallery_screen()
+	var tile := gallery.tile(PUZZLE_ID)
+	assert_not_null(tile, "the gallery re-reads the record on leave")
+	assert_true(tile.reset_visible(), "an in-progress tile draws the Reset row")
+	var row := Vector2(
+		tile.get_global_rect().position.x + 24.0, tile.get_global_rect().end.y - 24.0
+	)
+
+	_tap_at(row)
+
+	assert_eq(_shell.view(), Shell.PUZZLE_VIEW, "#573: the row's empty side raises C1")
+	assert_eq(_shell.puzzle_id(), PUZZLE_ID, "#573: the band belongs to this tile")
+	assert_false(gallery.reset_confirm_showing(), "#573: the empty side raises no C2")
+
+
+## A touch press and release at [param position], through the real viewport route.
+func _tap_at(position: Vector2) -> void:
+	_touch_event(position, true)
+	_touch_event(position, false)

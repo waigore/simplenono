@@ -9,7 +9,9 @@ extends PanelContainer
 ## read facts allow it (US1.6, US1.6b). The tile raises intents only: navigation and the
 ## confirm surface belong to [b]CMP-shell[/b] (#95, #96).
 
-## C1 ([code]IN.activate[/code]): the player asked for this puzzle.
+## The strip that holds C2 belongs to C1, as both approved mockups draw the tile
+## ([code].open { flex: 1 1 auto }[/code]): a card with no Reset has no strip, and a tap
+## below the metadata opens the puzzle (#573).
 signal opened(puzzle_id: String)
 
 ## C2 ([code]IN.activate[/code]) when allowed: the player asked to reset this puzzle.
@@ -65,7 +67,9 @@ func setup(entry: GalleryEntry, picture: Texture2D) -> void:
 	_status_label.text = status_text()
 	_best_label.text = best_text()
 	_thumb.show_picture(picture if entry.thumbnail_visible else null)
+	_reset_holder.visible = reset_allowed()
 	_reset_button.visible = reset_allowed()
+	hold_picture_square.call_deferred()
 
 
 ## The entry this tile renders, or null before [method setup].
@@ -239,8 +243,10 @@ func _build() -> void:
 	meta.add_child(_status_label)
 	_best_label = _make_label(PresentationPalette.DIM)
 	meta.add_child(_best_label)
+	# #573: the strip lives inside C1, so the band below the metadata still opens the
+	# tile or scrolls the grid; the Reset button itself keeps its own surface.
 	_reset_holder = _build_reset_holder()
-	layout.add_child(_reset_holder)
+	content.add_child(_reset_holder)
 	_open_button.resized.connect(hold_picture_square)
 	_meta_holder.minimum_size_changed.connect(hold_picture_square)
 	hold_picture_square.call_deferred()
@@ -255,23 +261,34 @@ func hold_picture_square() -> void:
 	if _meta_holder == null:
 		return
 	var meta_height := maxf(_meta_holder.get_combined_minimum_size().y, 0.0)
+	# #573: the strip is part of C1, so the button's floor includes it only when the
+	# Reset row is drawn; a card with no Reset has no strip at all.
+	var strip_height := (
+		_reset_holder.get_combined_minimum_size().y if _reset_holder.visible else 0.0
+	)
 	_open_button.custom_minimum_size = Vector2(
-		0.0, maxf(width / PICTURE_ASPECT, 44.0) + meta_height
+		0.0, maxf(width / PICTURE_ASPECT, 44.0) + meta_height + strip_height
 	)
 
 
 func _build_reset_holder() -> Control:
 	var margin := MarginContainer.new()
+	# #573: the containers around the Reset button must not swallow the band; presses
+	# there belong to C1 (the enclosed open button) or R2's scroll drag.
+	margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	margin.custom_minimum_size = Vector2(0.0, 36.0)
 	margin.add_theme_constant_override("margin_left", _body_padding)
 	margin.add_theme_constant_override("margin_top", 0)
 	margin.add_theme_constant_override("margin_right", _body_padding)
 	margin.add_theme_constant_override("margin_bottom", _body_padding)
 	var row := HBoxContainer.new()
+	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	row.custom_minimum_size = Vector2(0.0, 28.0)
 	var spacer := Control.new()
+	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(spacer)
+	# C2 keeps MOUSE_FILTER_STOP, so a press on the button still raises Reset.
 	_reset_button = Button.new()
 	_reset_button.text = COPY_RESET
 	_reset_button.focus_mode = Control.FOCUS_ALL
