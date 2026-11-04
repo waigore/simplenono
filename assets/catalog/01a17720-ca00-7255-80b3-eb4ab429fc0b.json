@@ -11,7 +11,7 @@
     "ACC.G3"
   ],
   "state": "approved",
-  "version": 1,
+  "version": 2,
   "files": [
     "puzzle-pictures/pack-000-pixel.png"
   ],
@@ -22,8 +22,8 @@
   },
   "recipe": "AK-puzzle-pictures.R1",
   "generation": {
-    "prompt": "a single large wide dark slate blue-grey ceramic vase with a broad round body and a short neck, filling about 70 percent of the frame width and 65 percent of the frame height, plain smooth solid silhouette, one flat dark colour, no pattern, no highlight, no reflection, no gradient, no texture, centered, plain even pale cool grey background, no vignette, no border, no shadow, flat even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text. Calm clinical still-life; clear silhouette; readable at 10x10. Avoid: playful chrome; gore; horror.",
-    "negative_prompt": "playful chrome; gore; horror",
+    "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
+    "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
     "tool": "puzzle_derive.py (local authoring script)",
     "operation": "offline flatten + BOX downsample",
     "settings": {
@@ -34,9 +34,9 @@
       "flatten_band_percent": 5.0,
       "flatten_ring_percent": 1.0,
       "flatten_background_rgb": [
-        222,
-        222,
-        224
+        109,
+        153,
+        129
       ]
     },
     "seed": "n/a — tool has no seed",
@@ -48,9 +48,9 @@
       ]
     },
     "steps": [
-      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [222, 222, 224])",
-      "BOX downsample to 10x10 colour cells, one per board cell, alpha composited over white",
-      "write puzzle-pictures/pack-000-pixel.png"
+      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [109, 153, 129])",
+      "BOX downsample to 10x10 colour cells, alpha over white",
+      "judge: one solution, reached by line logic alone, equal to the pixel fill set; filled 41, in band [25, 45]"
     ]
   },
   "guidance": "Derived from the square in inputs.base_assets; re-run the derive command to reproduce it.",
@@ -60,8 +60,47 @@
   },
   "review": {
     "verdict": "Pass",
-    "date": "2026-11-02",
+    "date": "2026-11-05",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-000. Generated square: flux-2-max 1024x1024, request 626df6b1-db80-43bc-8762-5189a7b8c5c6, saved as PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [222, 222, 224]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 30/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: slate blue-grey subject on pale cool grey, high contrast, calm still-life, no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
-  }
+    "report": "AK-puzzle-pictures R1/V1, pack-000. Generated square: flux-2-max 1024x1024, request 66c68a9d-a067-4099-bfe4-45c9d020cc35, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [109, 153, 129]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 41/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a dark green lighthouse with a keeper's hut on a bright rocky headland, a fleet of colourfully hulled sailboats, beach umbrellas and towels K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+  },
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-02",
+      "reason": "Regenerated under the colourful multi-element scene policy (#564/#570) on #565",
+      "generation": {
+        "prompt": "a single large wide dark slate blue-grey ceramic vase with a broad round body and a short neck, filling about 70 percent of the frame width and 65 percent of the frame height, plain smooth solid silhouette, one flat dark colour, no pattern, no highlight, no reflection, no gradient, no texture, centered, plain even pale cool grey background, no vignette, no border, no shadow, flat even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text. Calm clinical still-life; clear silhouette; readable at 10x10. Avoid: playful chrome; gore; horror.",
+        "negative_prompt": "playful chrome; gore; horror",
+        "tool": "puzzle_derive.py (local authoring script)",
+        "operation": "offline flatten + BOX downsample",
+        "settings": {
+          "model": "flux-2-max",
+          "downsample": "box",
+          "size": 10,
+          "flatten_method": "outer frame set to the median colour of the outer ring",
+          "flatten_band_percent": 5.0,
+          "flatten_ring_percent": 1.0,
+          "flatten_background_rgb": [
+            222,
+            222,
+            224
+          ]
+        },
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": [
+            "01a17720-ca00-71f5-8156-87c953625822"
+          ]
+        },
+        "steps": [
+          "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [222, 222, 224])",
+          "BOX downsample to 10x10 colour cells, one per board cell, alpha composited over white",
+          "write puzzle-pictures/pack-000-pixel.png"
+        ]
+      }
+    }
+  ]
 }

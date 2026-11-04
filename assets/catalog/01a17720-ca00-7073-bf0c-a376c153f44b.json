@@ -4,7 +4,7 @@
     "V1"
   ],
   "state": "approved",
-  "version": 1,
+  "version": 2,
   "source_type": "ai-generation",
   "recipe": "AK-puzzle-pictures.R1",
   "id": "01a17720-ca00-7073-bf0c-a376c153f44b",
@@ -22,8 +22,8 @@
     "adr": "adr-free"
   },
   "generation": {
-    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a heavy C eight tiles tall and seven tiles wide with a clear three-tile gap on its right side, tiles about 10 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text. Calm clinical still-life; clear silhouette; readable at 10x10. Avoid: playful chrome; gore; horror.",
-    "negative_prompt": "playful chrome; gore; horror",
+    "prompt": "colourful multi-element scene of a red rubber duck on a cluttered bathroom shelf beside soap bars, folded towels and a small plant, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+    "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
     "tool": "puzzle_derive.py (local authoring script)",
     "operation": "offline flatten + BOX downsample",
     "settings": {
@@ -34,12 +34,12 @@
       "flatten_band_percent": 5.0,
       "flatten_ring_percent": 1.0,
       "flatten_background_rgb": [
-        196,
-        200,
-        202
+        128,
+        118,
+        103
       ]
     },
-    "seed": "n/a \u2014 tool has no seed",
+    "seed": "n/a — tool has no seed",
     "inputs": {
       "style_anchors": [],
       "refs": [],
@@ -48,9 +48,9 @@
       ]
     },
     "steps": [
-      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [196, 200, 202])",
-      "BOX downsample to 10x10 colour cells, one per board cell, alpha composited over white",
-      "write puzzle-pictures/pack-009-pixel.png"
+      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [128, 118, 103])",
+      "BOX downsample to 10x10 colour cells, alpha over white",
+      "judge: one solution, reached by line logic alone, equal to the pixel fill set; filled 45, in band [25, 45]"
     ]
   },
   "guidance": "Derived from the square in inputs.base_assets; re-run the derive command to reproduce it.",
@@ -60,8 +60,47 @@
   },
   "review": {
     "verdict": "Pass",
-    "date": "2026-11-02",
+    "date": "2026-11-05",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-009. Generated square: flux-2-max 1024x1024, request 13ecf010-6714-4fd9-98f2-5349293a8a6d, saved as PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [196, 200, 202]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 27/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: dark slate blue-grey shape on pale cool grey, flat even lighting, high contrast, calm clinical composition with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
-  }
+    "report": "AK-puzzle-pictures R1/V1, pack-009. Generated square: flux-2-max 1024x1024, request 448801f0-2fef-4f1d-a2b9-87194f5c11b0, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [128, 118, 103]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 45/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a red rubber duck on a cluttered bathroom shelf beside stacked towels, soap bars, bottles and a potted plant K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+  },
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-02",
+      "reason": "Regenerated under the colourful multi-element scene policy (#564/#570) on #565",
+      "generation": {
+        "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a heavy C eight tiles tall and seven tiles wide with a clear three-tile gap on its right side, tiles about 10 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text. Calm clinical still-life; clear silhouette; readable at 10x10. Avoid: playful chrome; gore; horror.",
+        "negative_prompt": "playful chrome; gore; horror",
+        "tool": "puzzle_derive.py (local authoring script)",
+        "operation": "offline flatten + BOX downsample",
+        "settings": {
+          "model": "flux-2-max",
+          "downsample": "box",
+          "size": 10,
+          "flatten_method": "outer frame set to the median colour of the outer ring",
+          "flatten_band_percent": 5.0,
+          "flatten_ring_percent": 1.0,
+          "flatten_background_rgb": [
+            196,
+            200,
+            202
+          ]
+        },
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": [
+            "01a17720-ca00-73da-8939-7405f8b471f9"
+          ]
+        },
+        "steps": [
+          "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [196, 200, 202])",
+          "BOX downsample to 10x10 colour cells, one per board cell, alpha composited over white",
+          "write puzzle-pictures/pack-009-pixel.png"
+        ]
+      }
+    }
+  ]
 }

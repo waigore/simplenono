@@ -11,7 +11,7 @@
     "ACC.G3"
   ],
   "state": "approved",
-  "version": 1,
+  "version": 2,
   "files": [
     "puzzle-pictures/pack-001-pixel.png"
   ],
@@ -22,8 +22,8 @@
   },
   "recipe": "AK-puzzle-pictures.R1",
   "generation": {
-    "prompt": "a tight zoomed-in close-up of three tall dark slate blue-grey ceramic cups in a row, each cup about three times taller than wide, close together with narrow clear pale gaps, no handles, plain smooth solid silhouette, no pattern, no highlight, no reflection, no gradient, no texture, the group large and centered, spanning 80 percent of the frame width and 70 percent of the frame height, plain even pale cool grey background, no vignette, no border, no shadow, flat even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text. Calm clinical still-life; clear silhouette; readable at 10x10. Avoid: playful chrome; gore; horror.",
-    "negative_prompt": "playful chrome; gore; horror",
+    "prompt": "colourful multi-element scene of three glazed blue ceramic cups in a row on a whitewashed bakery counter with a wooden shelf of pastries and jars behind them, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+    "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
     "tool": "puzzle_derive.py (local authoring script)",
     "operation": "offline flatten + BOX downsample",
     "settings": {
@@ -34,9 +34,9 @@
       "flatten_band_percent": 5.0,
       "flatten_ring_percent": 1.0,
       "flatten_background_rgb": [
-        224,
-        225,
-        229
+        152,
+        133,
+        117
       ]
     },
     "seed": "n/a — tool has no seed",
@@ -48,9 +48,9 @@
       ]
     },
     "steps": [
-      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [224, 225, 229])",
-      "BOX downsample to 10x10 colour cells, one per board cell, alpha composited over white",
-      "write puzzle-pictures/pack-001-pixel.png"
+      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [152, 133, 117])",
+      "BOX downsample to 10x10 colour cells, alpha over white",
+      "judge: one solution, reached by line logic alone, equal to the pixel fill set; filled 42, in band [25, 45]"
     ]
   },
   "guidance": "Derived from the square in inputs.base_assets; re-run the derive command to reproduce it.",
@@ -60,8 +60,47 @@
   },
   "review": {
     "verdict": "Pass",
-    "date": "2026-11-02",
+    "date": "2026-11-05",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-001. Generated square: flux-2-max 1024x1024, request 452c8561-8a08-49d3-9dde-308f32fe479a, saved as PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [224, 225, 229]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 28/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: slate blue-grey subject on pale cool grey, high contrast, calm still-life, no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
-  }
+    "report": "AK-puzzle-pictures R1/V1, pack-001. Generated square: flux-2-max 1024x1024, request 89f8535b-f56e-49cc-acc6-750dda8dc53e, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [152, 133, 117]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 42/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: three glazed blue ceramic cups on a bakery counter beside piled breads, a wooden shelf of pastries, jars and a trailing plant K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+  },
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-02",
+      "reason": "Regenerated under the colourful multi-element scene policy (#564/#570) on #565",
+      "generation": {
+        "prompt": "a tight zoomed-in close-up of three tall dark slate blue-grey ceramic cups in a row, each cup about three times taller than wide, close together with narrow clear pale gaps, no handles, plain smooth solid silhouette, no pattern, no highlight, no reflection, no gradient, no texture, the group large and centered, spanning 80 percent of the frame width and 70 percent of the frame height, plain even pale cool grey background, no vignette, no border, no shadow, flat even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text. Calm clinical still-life; clear silhouette; readable at 10x10. Avoid: playful chrome; gore; horror.",
+        "negative_prompt": "playful chrome; gore; horror",
+        "tool": "puzzle_derive.py (local authoring script)",
+        "operation": "offline flatten + BOX downsample",
+        "settings": {
+          "model": "flux-2-max",
+          "downsample": "box",
+          "size": 10,
+          "flatten_method": "outer frame set to the median colour of the outer ring",
+          "flatten_band_percent": 5.0,
+          "flatten_ring_percent": 1.0,
+          "flatten_background_rgb": [
+            224,
+            225,
+            229
+          ]
+        },
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": [
+            "01a17720-ca00-7282-8d49-faa77f364925"
+          ]
+        },
+        "steps": [
+          "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [224, 225, 229])",
+          "BOX downsample to 10x10 colour cells, one per board cell, alpha composited over white",
+          "write puzzle-pictures/pack-001-pixel.png"
+        ]
+      }
+    }
+  ]
 }

@@ -28,7 +28,10 @@ const DESKTOP := Vector2(1280, 800)
 ## R3 tools, over the board's clue units. Pinned so a layout change that shrinks
 ## the board fails loudly instead of drifting.
 const ACHIEVED_CELL := {
-	"portrait": {10: 26, 15: 18, 20: 14},
+	# 10 and 20 portrait dropped one pixel when #565 regenerated pack-000 and
+	# pack-180: the new pictures' clue lines carry more numbers, so the clue
+	# gutter takes one more unit of the same R2 rect.
+	"portrait": {10: 25, 15: 18, 20: 13},
 	"landscape": {10: 18, 15: 12, 20: 9},
 }
 
