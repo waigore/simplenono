@@ -258,7 +258,11 @@ func test_board_draws_marks_and_clues_without_the_solution():
 	var attempt := _shown()
 	_screen.finish_ready_beat()
 
-	assert_eq(_screen.cell_at(0, 0).mark, CellMark.Mark.CROSS, "the auto-cross is drawn")
+	assert_eq(
+		_screen.cell_at(0, 0).mark,
+		CellMark.Mark.CLEAR,
+		"the board stays as the loaded progress after ready",
+	)
 	assert_eq(_row_clue_text(0), "·", "an empty clue line shows the empty glyph")
 	assert_eq(_board().column_clue_labels(0)[0].text, "·", "an empty column clue shows the glyph")
 	assert_true(
@@ -319,8 +323,8 @@ func test_board_does_not_read_the_definition_solution():
 
 	assert_eq(
 		_screen.cell_at(0, 0).mark,
-		CellMark.Mark.CROSS,
-		"the empty-clue auto-cross is drawn although the decoy has no solution fills",
+		CellMark.Mark.CLEAR,
+		"the decoy board stays at the load after ready although the decoy has no solution fills",
 	)
 	for row in _definition.size:
 		for column in _definition.size:

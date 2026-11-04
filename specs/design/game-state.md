@@ -30,8 +30,8 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 ## Global invariants
 
 - **V1**: Ever-completed ⇒ personal best exists.
-- **V2**: Attempt in progress ⇒ ≥1 fill or cross (incl. empty-clue auto-cross).
-- **V3**: Attempt not started ⇒ all clear, elapsed 0 (auto-cross after ready → in progress).
+- **V2**: Attempt in progress ⇒ ≥1 fill or cross.
+- **V3**: Attempt not started ⇒ all clear (ready after open adds no marks).
 - **V4**: Personal best only shrinks or stays while set.
 - **V5**: Each cell is clear, fill, or cross.
 - **V6**: Replay may be ever-completed and in progress together.

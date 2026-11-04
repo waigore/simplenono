@@ -4,11 +4,10 @@ extends RefCounted
 ##
 ## The state behind [SCH-attempt]: one [MarkGrid] (F2), elapsed (F3), paused (F4),
 ## and marks-allowed (F5). What it keeps ([code]GS.attempt-status[/code]) goes only
-## through [method allow_marks], [method apply_mark], [method auto_cross],
-## [method show_grid], and [method clear_attempt], which turn the fields.md rules into
-## writes:
-## - a first fill or cross, including an auto-cross, sets in progress while
-##   [code]GS.ever-completed[/code] is left alone (V6);
+## through [method allow_marks], [method apply_mark], [method show_grid], and
+## [method clear_attempt], which turn the fields.md rules into writes:
+## - a first fill or cross sets in progress while [code]GS.ever-completed[/code] is left
+##   alone (V6);
 ## - clearing the last mark, a solve, or a reset returns to not started, elapsed 0 (V3);
 ## - while marks are blocked or the puzzle is paused nothing changes ([SCH-attempt] I2).
 ##
@@ -76,20 +75,6 @@ func apply_mark(row: int, column: int, mark: CellMark.Mark) -> bool:
 		return false
 	_refresh_status()
 	return true
-
-
-## Crosses still-clear cells on empty-clue lines after ready (specs/technical/sequences/open.md S9).
-## A cross sets in progress, so an empty-clue line alone starts the attempt. Gated by the
-## stage flag only, not [code]GS.paused[/code]: the beat's own write runs at S8-S9 even when
-## the puzzle is paused, while pause still blocks the player's marks ([method apply_mark]).
-## Returns 0 while the stage is blocked (get-set-ready, [SCH-attempt] I2).
-func auto_cross(positions: Array[Vector2i]) -> int:
-	if not _marks.marks_allowed():
-		return 0
-	var crossed := _marks.auto_cross(positions)
-	if crossed > 0:
-		_refresh_status()
-	return crossed
 
 
 ## Adds [param amount] to elapsed only while marks are allowed and the puzzle is not

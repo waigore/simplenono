@@ -3,8 +3,8 @@ extends RefCounted
 ## The mark grid of the open attempt ([SCH-mark-grid]).
 ##
 ## Row-major cells, one mark each ([SCH-mark-grid] I1). Writes go only through
-## [method apply_mark] and [method auto_cross], and only while marks are
-## allowed ([SCH-mark-grid] lifecycle L2, specs/design/entities/cell.md I1, I4, I5).
+## [method apply_mark], and only while marks are allowed ([SCH-mark-grid] lifecycle L2,
+## specs/design/entities/cell.md I1, I4).
 ## Solution membership is not held here ([SCH-mark-grid] I2).
 
 ## 10, 15, or 20 — matches the open puzzle ([SCH-mark-grid] F1).
@@ -69,25 +69,6 @@ func apply_mark(row: int, column: int, mark: CellMark.Mark) -> bool:
 		return false
 	cell.mark = mark
 	return true
-
-
-## Crosses still-clear cells on empty-clue lines after ready
-## (specs/design/entities/cell.md I5). Each position is row then column.
-## A cell that is no longer clear is left as it is. Returns how many changed.
-func auto_cross(positions: Array[Vector2i]) -> int:
-	if not _marks_allowed:
-		return 0
-	var crossed := 0
-	for position in positions:
-		var row := position.x
-		var column := position.y
-		if not is_inside(row, column):
-			continue
-		if _cell(row, column).mark != CellMark.Mark.CLEAR:
-			continue
-		if apply_mark(row, column, CellMark.Mark.CROSS):
-			crossed += 1
-	return crossed
 
 
 ## The filled positions, row-major, as row and column (S2). Crosses are not included.

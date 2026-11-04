@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Drive one puzzle-picture slice: generate squares, derive pixels, judge, retry.
 
-Drop-in companion to `.github/scripts/puzzle_derive.py` for the picture-slice tasks
-under epic #98. For each puzzle it:
+Drop-in companion to `.github/scripts/puzzle_derive.py` for the picture-slice
+tasks. For each puzzle it:
 
   1. asks Cheaper Inference `flux-2-max` for a 1024x1024 square (TL.1, R1);
   2. converts the returned JPEG to PNG without resampling;
@@ -10,34 +10,32 @@ under epic #98. For each puzzle it:
      N x N, read the fill set with the fixed luma rule, and judge it;
   4. keeps the square only when the judge passes (25-45 filled, one solution, line
      logic reaches it, solution equals the pixel); otherwise it regenerates from a
-     new prompt until an attempt passes.
+     new prompt until the plan runs out.
 
-Look review (K4, AES.P1) stays with `review-asset`; this script does not decide it.
+Prompts are not built here. Since the #564 / #570 spec amendment the composed
+prompt comes from the kind recipe (`specs/assets/kinds/puzzle-pictures/recipes.md`
+R1) and the kind's `prompt_policy` (`specs/assets/kinds/puzzle-pictures/style-series.md`),
+written per puzzle and supplied through an attempt-plan file:
+
+    {"pack-004": {"board": "10x10", "prompts": ["…", "…"]},
+     "pack-010": {"board": "15x15", "prompts": ["…"]}}
+
+Each prompt is one composed attempt (a retry is always a new prompt). A board's
+derive size comes from the file's `board` key or the `KEY=BOARD` target form look-up
+in BOARDS. Look review (K4) stays with `review-asset`; this script does not decide
+it.
 
 Usage:
   python3 .github/scripts/picture_slice.py \
     --out-dir /tmp/pictures \
     --manifest /tmp/pictures/slice.json \
-    pack-004=multi \
-    pack-010=15x15:single
-
-Each `KEY=FAMILY` names the pack row id and the prompt family its attempts come
-from (`single` or `multi`). The family picks a prompt set: it is not a subject
-class and assigns no class to the puzzle. Since the product-owner decision on
-#486 (2026-11-03) no picture carries a per-puzzle single/multi subject class;
-what an accepted picture must show is a subject that reads at N×N, in the fill
-band, with unique line logic (`specs/assets/kinds/puzzle-pictures.md` K1–K4),
-which this script's judge and `review-asset`'s look review decide. V2 only bans
-the per-puzzle class tag; it asks for no particular mix. An optional
-`WIDTHxHEIGHT:` prefix picks a board config: `pack-010=15x15:single` uses the
-15x15 prompt set. Without a prefix the 10x10 config applies, which is what the
-earlier slices used. The board config fixes the derive size and the prompts, so
-the readable-at-NxN wording always matches the board the picture is stored for.
+    --attempt-prompts /tmp/pictures/attempt_prompts.json \
+    pack-004 pack-010=15x15
 
 The script prints one JSON line per attempt and writes the accepted squares,
 pixels, and a per-puzzle record to the manifest.
 
-Output PNGs written here are working files; the slice task copies the accepted four
+Output PNGs written here are working files; the slice task copies the accepted
 files per puzzle into `game/assets/puzzle-pictures/` and catalogues them.
 """
 from __future__ import annotations
@@ -56,309 +54,10 @@ DERIVER = REPO_ROOT / ".github" / "scripts" / "puzzle_derive.py"
 MODEL = "flux-2-max"
 SIZE = "1024x1024"
 
-MASTER = "Calm clinical still-life; clear silhouette; readable at {board}."
-NEGATIVE = "playful chrome; gore; horror"
-
-# Subject words for prompts that name a mass. Each attempt uses the next word, so a
-# retry is always a new prompt.
-SUBJECTS = ["L-shaped caliper block", "thick T-shaped brace", "short crossbar brace",
-            "twisted column", "hook brace", "three-lobed clamp", "stepped wedge brace",
-            "H-shaped spacer", "bold C-clamp", "short broad T-shaped bracket",
-            "W-shaped bracket"]
-
-_TAIL = ("plain smooth solid silhouette, one flat dark colour, no pattern, no highlight, "
-         "no reflection, no gradient, no texture, plain even pale cool grey background, no "
-         "vignette, no border, no shadow, flat even lighting, strong high contrast, calm "
-         "clinical still-life, readable as a 10x10 icon, no text")
-
-SINGLE_PROMPTS_10 = [
-    # A cut-out paper grid is the only prompt family that reliably lands the subject
-    # several cells thick: pixel art and voxel wording collapse to one cell. Attempts
-    # 1-4 ask for a grid-wide shape, 5-8 for a wider-tile variant of it.
-    "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool "
-    "grey background: one bold continuous ring six cells thick around a four-cell square hole, "
-    "each cell about 7 percent of the frame width, hard crisp square edges, no shadow, no "
-    "reflection, no gradient, no texture, flat even lighting, strong high contrast, calm "
-    "clinical still-life, readable as a 10x10 icon, no text",
-    "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool "
-    "grey background: a wide bar across the upper third and a narrow stem below it, the bar "
-    "seven cells wide and three cells tall, the stem two cells wide and four cells tall, each "
-    "cell about 7 percent of the frame width, hard crisp square edges, no shadow, no "
-    "reflection, no gradient, no texture, flat even lighting, strong high contrast, calm "
-    "clinical still-life, readable as a 10x10 icon, no text",
-    "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool "
-    "grey background: a heavy thick C nine cells tall and seven cells wide with a clear three "
-    "cell gap on its right side, each cell about 7 percent of the frame width, hard crisp "
-    "square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, "
-    "strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text",
-    "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool "
-    "grey background: one solid tall block eight cells wide and eight cells tall with a "
-    "two-cell-wide notch cut into its top edge, each cell about 7 percent of the frame width, "
-    "hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even "
-    "lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text",
-    "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool "
-    "grey background: one bold continuous ring five tiles thick around a two-tile square hole, "
-    "tiles four times wider than the paper thickness, each tile about 10 percent of the frame "
-    "width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat "
-    "even lighting, strong high contrast, calm clinical still-life, readable as a 10x10 icon, no text",
-    "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool "
-    "grey background: a wide bar across the upper half and a narrow stem below it, the bar "
-    "eight tiles wide and four tiles tall, the stem three tiles wide and four tiles tall, "
-    "tiles about 10 percent of the frame width, hard crisp square edges, no shadow, no "
-    "reflection, no gradient, no texture, flat even lighting, strong high contrast, calm "
-    "clinical still-life, readable as a 10x10 icon, no text",
-    "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool "
-    "grey background: a heavy C eight tiles tall and seven tiles wide with a clear three-tile "
-    "gap on its right side, tiles about 10 percent of the frame width, hard crisp square "
-    "edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high "
-    "contrast, calm clinical still-life, readable as a 10x10 icon, no text",
-    "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool "
-    "grey background: one tall block seven tiles wide and eight tiles tall with a two-tile "
-    "notch cut into its top edge, tiles about 10 percent of the frame width, hard crisp square "
-    "edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high "
-    "contrast, calm clinical still-life, readable as a 10x10 icon, no text",
-]
-
-MULTI_PROMPTS_10 = [SINGLE_PROMPTS_10[0], SINGLE_PROMPTS_10[4], SINGLE_PROMPTS_10[5],
-                    SINGLE_PROMPTS_10[2], SINGLE_PROMPTS_10[3], SINGLE_PROMPTS_10[6],
-                    SINGLE_PROMPTS_10[7]]
-
-
-CELL_PERCENT = {10: "10", 15: "6.7", 20: "5"}
-
-
-def _grid_prompt(size: int, shape: str) -> str:
-    """A cut-out paper grid prompt for one shape, sized in an N x N board's cells."""
-    cell = CELL_PERCENT[size]
-    return ("a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a "
-            "pale cool grey background: " + shape + f", each cell about {cell} percent of the "
-            "frame width, hard crisp square edges, no shadow, no reflection, no gradient, no "
-            "texture, flat even lighting, strong high contrast, calm clinical still-life, "
-            f"readable as a {size}x{size} icon, no text")
-
-
-def _prompt_15(shape: str) -> str:
-    """A 15x15 cut-out paper grid prompt for one shape, sized in board cells."""
-    return _grid_prompt(15, shape)
-
-
-def _prompt_20(shape: str) -> str:
-    """A 20x20 cut-out paper grid prompt for one shape, sized in board cells."""
-    return _grid_prompt(20, shape)
-
-
-# 15x15 prompt set. A cell is only about 4.7 percent of frame area, and the generator
-# draws a subject smaller than asked, so shapes are named large: a mass spanning ten or
-# more of the fifteen cells to read as twenty-five per cent or more after the box
-# downsample, and clear of the frame edge so the flattened band does not eat it.
-# Attempts 1-4 are single masses, 5-8 keep a second mass or a hole (the `multi`
-# prompt family, a prompt set and not a subject class, #486), 9-12 are wider-tile
-# variants, 13-16 leave a margin.
-SINGLE_PROMPTS_15 = [
-    _prompt_15("one tall block that fills most of the frame, about fourteen cells wide and "
-               "fourteen cells tall, with a four-cell notch cut out of its right side"),
-    _prompt_15("a heavy C filling most of the frame, about fifteen cells tall and fourteen "
-               "cells wide, its arms four cells thick, with a clear eight-cell opening on its "
-               "right side"),
-    _prompt_15("a bold square outline filling most of the frame, about fifteen cells across, "
-               "its frame four cells thick, around an eight-cell square hole in the middle"),
-    _prompt_15("a solid stepped tower that fills most of the frame, fifteen cells tall, "
-               "twelve cells wide at its base, ten in the middle band, six at its top"),
-    _prompt_15("two thick separate blocks filling the frame, a ten-cell tall block on the left "
-               "and an eight-cell tall block on the right, three cells apart"),
-    _prompt_15("a large square outline filling most of the frame, fifteen cells on a side with "
-               "four-cell-thick walls and a six-cell hole low in its left wall, and a six-cell "
-               "cube on the right"),
-    _prompt_15("a wide flat slab filling most of the frame, fifteen cells across and six cells "
-               "tall, with two four-cell square holes cut through it and one column standing "
-               "below it on the right"),
-    _prompt_15("a wide flat cap fifteen cells across and five cells tall standing on a "
-               "six-cell-wide base, with two four-cell rectangular holes cut through the cap"),
-    _prompt_15("one very thick continuous ring filling most of the frame, fifteen cells "
-               "across, six cells of the frame, around a nine-cell square hole"),
-    _prompt_15("a wide bar across the top two thirds of the frame and a thick stem below it, "
-               "the bar fifteen cells wide and eight tiles tall, the stem six cells wide"),
-    _prompt_15("a very thick C filling most of the frame, fifteen tiles tall and fourteen "
-               "tiles wide, tiles four cells thick, with a clear eight-cell opening on its "
-               "right side"),
-    _prompt_15("one very thick tall block filling most of the frame, fourteen tiles wide and "
-               "fifteen tiles tall with a six-tile notch cut into its top edge, tiles four "
-               "cells thick"),
-    _prompt_15("one heavy solid mass filling most of the frame and split by a wide clear "
-               "cross-shaped channel, two thick arms twelve cells long and five cells thick"),
-    _prompt_15("two heavy separate solid blocks filling the frame with a clear gap between "
-               "them, one tall block on the left and a shorter wide block on the right, a "
-               "four-cell gap through the middle"),
-    _prompt_15("two solid masses on a pale background, a tall narrow block on the left about "
-               "fourteen cells tall and six cells wide and a wide flat slab on the right about "
-               "eight cells tall and seven cells wide, a clear four-cell gap between them"),
-    _prompt_15("a solid horizontal bar about twelve cells long and five cells tall near the "
-               "top and a separate square mass about six cells on a side below its right end, "
-               "a clear three-cell gap between them"),
-]
-
-# 15x15 outline-first attempts, tried before the FRAME set. A mass that fills the
-# frame passes the fill band but downsamples to a solid slab with no silhouette, so
-# these ask for a single outline whose own hole or channel survives at NxN, with the
-# shape well inside the frame.
-SINGLE_ONLY_15 = [
-    _prompt_15("the outline of one bold squarish ring eleven cells across and eleven cells "
-               "tall, its frame four cells thick, on a pale background, with one clear "
-               "seven-cell square hole in the middle"),
-    _prompt_15("the outline of a bold plus sign eleven cells tall and eleven cells wide "
-               "standing on a pale background, its arms four cells thick"),
-    _prompt_15("the outline of a bold keyhole standing on a pale background: a ring about "
-               "nine cells across on a flaring four-cell-wide stem, with one clear hole in "
-               "the ring"),
-    _prompt_15("the outline of a bold arch standing on a pale background, twelve cells tall "
-               "and eleven cells wide, four cells thick, with one clear opening beneath it"),
-    _prompt_15("the outline of a bold letter E standing on a pale background, twelve cells "
-               "tall and eleven cells wide, its bars four cells thick"),
-    _prompt_15("the outline of a bold right-pointing arrow standing on a pale background, a "
-               "shaft in the middle with a triangular head four cells thick"),
-    _prompt_15("the outline of a bold stair step silhouette rising to the right in four steps "
-               "on a pale background, each step four cells wide and four cells tall"),
-]
-
-# 20x20 prompt set, the same paper-grid families as the 15x15 set scaled to twenty
-# cells: a cell is only about a quarter of one percent of frame area, so shapes are
-# named large and kept inside the flattened border. Attempts 1-4 are single masses,
-# 5-8 keep a second mass or a hole (the `multi` prompt family), 9-12 are wider-tile
-# variants, 13-16 leave a margin.
-SINGLE_PROMPTS_20 = [
-    _prompt_20("one tall block that fills most of the frame, about eighteen cells wide and "
-               "eighteen cells tall, with a five-cell notch cut out of its right side"),
-    _prompt_20("a heavy C filling most of the frame, about twenty cells tall and eighteen "
-               "cells wide, its arms five cells thick, with a clear ten-cell opening on its "
-               "right side"),
-    _prompt_20("a bold square outline filling most of the frame, about twenty cells across, "
-               "its frame five cells thick, around a ten-cell square hole in the middle"),
-    _prompt_20("a solid stepped tower that fills most of the frame, twenty cells tall, "
-               "sixteen cells wide at its base, thirteen in the middle band, eight at its top"),
-    _prompt_20("two thick separate blocks filling the frame, a thirteen-cell tall block on the "
-               "left and an eleven-cell tall block on the right, four cells apart"),
-    _prompt_20("a large square outline filling most of the frame, twenty cells on a side with "
-               "five-cell-thick walls and an eight-cell hole low in its left wall, and an "
-               "eight-cell cube on the right"),
-    _prompt_20("a wide flat slab filling most of the frame, twenty cells across and eight "
-               "cells tall, with two five-cell square holes cut through it and one column "
-               "standing below it on the right"),
-    _prompt_20("a wide flat cap twenty cells across and seven cells tall standing on an "
-               "eight-cell-wide base, with two five-cell rectangular holes cut through the cap"),
-    _prompt_20("one very thick continuous ring filling most of the frame, twenty cells "
-               "across, eight cells of the frame, around a twelve-cell square hole"),
-    _prompt_20("a wide bar across the top two thirds of the frame and a thick stem below it, "
-               "the bar twenty cells wide and eleven tiles tall, the stem eight cells wide"),
-    _prompt_20("a very thick C filling most of the frame, twenty tiles tall and eighteen "
-               "tiles wide, tiles five cells thick, with a clear ten-cell opening on its right "
-               "side"),
-    _prompt_20("one very thick tall block filling most of the frame, eighteen tiles wide and "
-               "twenty tiles tall with an eight-tile notch cut into its top edge, tiles five "
-               "cells thick"),
-    _prompt_20("one heavy solid mass filling most of the frame and split by a wide clear "
-               "cross-shaped channel, two thick arms sixteen cells long and seven cells thick"),
-    _prompt_20("two heavy separate solid blocks filling the frame with a clear gap between "
-               "them, one tall block on the left and a shorter wide block on the right, a "
-               "five-cell gap through the middle"),
-    _prompt_20("two solid masses on a pale background, a tall narrow block on the left about "
-               "eighteen cells tall and eight cells wide and a wide flat slab on the right "
-               "about eleven cells tall and nine cells wide, a clear five-cell gap between "
-               "them"),
-    _prompt_20("a solid horizontal bar about sixteen cells long and seven cells tall near the "
-               "top and a separate square mass about eight cells on a side below its right "
-               "end, a clear four-cell gap between them"),
-]
-
-# 20x20 outline-first attempts, tried before the FRAME set, for the same reason as the
-# 15x15 set: a mass that fills the frame downsamples to a solid slab, so these ask for
-# one outline whose own hole or channel survives at 20x20.
-SINGLE_ONLY_20 = [
-    _prompt_20("the outline of one bold squarish ring fifteen cells across and fifteen cells "
-               "tall, its frame four cells thick, on a pale background, with one clear "
-               "seven-cell square hole in the middle"),
-    _prompt_20("the outline of a bold plus sign fifteen cells tall and fifteen cells wide "
-               "standing on a pale background, its arms five cells thick"),
-    _prompt_20("the outline of a bold keyhole standing on a pale background: a ring about "
-               "twelve cells across on a flaring five-cell-wide stem, with one clear hole in "
-               "the ring"),
-    _prompt_20("the outline of a bold arch standing on a pale background, sixteen cells tall "
-               "and fifteen cells wide, five cells thick, with one clear opening beneath it"),
-    _prompt_20("the outline of a bold letter E standing on a pale background, sixteen cells "
-               "tall and fifteen cells wide, its bars four cells thick"),
-    _prompt_20("the outline of a bold right-pointing arrow standing on a pale background, a "
-               "shaft in the middle with a triangular head five cells thick"),
-    _prompt_20("the outline of a bold stair step silhouette rising to the right in four steps "
-               "on a pale background, each step four cells wide and four cells tall"),
-]
-
-# 20x20 `multi` prompt-family attempts. The 15x15 two-mass family landed just under
-# the 25-45% band at twenty cells (a cell is a quarter of the area), so these keep the
-# frame-filling masses of the accepted 20x20 single prompt and add a second mass or a
-# hole that survives the downsample (a prompt set, not a subject class, #486).
-MULTI_PROMPTS_20 = [
-    _prompt_20("a heavy C filling most of the frame, twenty cells tall and eighteen cells "
-               "wide, its arms five cells thick, and a separate square mass seven cells on a "
-               "side standing in the clear opening on its right, outside the frame of the ring"),
-    _prompt_20("two heavy separate solid blocks filling the frame with a clear gap between "
-               "them, a block twenty cells tall and nine cells wide on the left and a block "
-               "sixteen cells tall and nine cells wide on the right, a four-cell gap through "
-               "the middle"),
-    _prompt_20("a wide flat slab filling most of the frame, twenty cells across and ten "
-               "cells tall, with two six-cell square holes cut through it and one column "
-               "standing below it on the right"),
-    _prompt_20("a wide flat cap twenty cells across and eight cells tall standing on a "
-               "nine-cell-wide base, with two five-cell rectangular holes cut through the cap"),
-    _prompt_20("a large square outline filling most of the frame, twenty cells on a side with "
-               "five-cell-thick walls and a ten-cell square hole, and a separate eight-cell "
-               "cube outside its lower right wall"),
-    _prompt_20("one heavy solid mass filling most of the frame and split by a wide clear "
-               "cross-shaped channel into two thick arms eighteen cells long and seven cells "
-               "thick"),
-    _prompt_20("a solid horizontal bar nineteen cells long and eight cells tall near the top "
-               "and a separate square mass nine cells on a side below its right end, a clear "
-               "four-cell gap between them"),
-    _prompt_20("two solid masses on a pale background, a tall narrow block on the left "
-               "eighteen cells tall and nine cells wide and a wide flat slab on the right "
-               "twelve cells tall and ten cells wide, a clear five-cell gap between them"),
-    SINGLE_PROMPTS_20[7],   # flat cap on a base, two holes through the cap
-    SINGLE_PROMPTS_20[6],   # flat slab, two holes, column below
-    SINGLE_PROMPTS_20[2],   # square outline around one big hole
-    SINGLE_PROMPTS_20[8],   # one very thick continuous ring
-    SINGLE_PROMPTS_20[5],   # square outline with a hole and a separate cube
-    SINGLE_PROMPTS_20[15],  # bar with a separate square mass below its right end
-    SINGLE_PROMPTS_20[13],  # two heavy blocks with a gap through the middle
-    SINGLE_PROMPTS_20[14],  # tall narrow block and wide slab with a gap
-]
-
-# Board configs: derive size and the two prompt families (`single`, `multi`). The
-# family is a prompt selector only; it assigns no subject class to any puzzle. The
-# 10x10 config is the default so the earlier slices re-run unchanged.
-BOARDS = {
-    "10x10": {"size": 10, "single": SINGLE_PROMPTS_10, "multi": MULTI_PROMPTS_10},
-    "15x15": {
-        "size": 15,
-        "single": SINGLE_PROMPTS_15,
-        "single": SINGLE_ONLY_15 + SINGLE_PROMPTS_15,
-        "multi": [SINGLE_PROMPTS_15[index]
-                  for index in (14, 15, 13, 12, 4, 6, 5, 7, 0, 2, 8)],
-    },
-    "20x20": {
-        "size": 20,
-        # A twenty-cell board's cell is a quarter of a 15x15 cell's area, so outlines
-        # came in under the fill band: the frame-filling masses that passed lead, and
-        # the outline family follows as the recovery set.
-        "single": ([SINGLE_PROMPTS_20[index] for index in (1, 9, 6, 7, 0, 2, 11, 8, 12,
-                                                          13, 14, 15, 5, 4, 3)]
-                   + SINGLE_ONLY_20),
-        "multi": MULTI_PROMPTS_20,
-    },
-}
+# Board configs: the derive size per board name. Prompts live in the attempt-plan
+# file so the slice's composed wording stays with the issue that authored it.
+BOARDS = {"10x10": {"size": 10}, "15x15": {"size": 15}, "20x20": {"size": 20}}
 DEFAULT_BOARD = "10x10"
-
-
-
-def compose(prompt: str, board: str = DEFAULT_BOARD) -> str:
-    return f"{prompt}. {MASTER.format(board=board)} Avoid: {NEGATIVE}."
 
 
 def api_key() -> str:
@@ -369,29 +68,42 @@ def api_key() -> str:
     raise SystemExit("CHEAPERINFERENCE_API_KEY is not set in this shell")
 
 
-def parse_target(raw: str) -> tuple[str, str, str]:
-    """`KEY=FAMILY` or `KEY=BOARD:FAMILY` -> (key, prompt family, board)."""
-    key, _, rest = raw.partition("=")
-    board = DEFAULT_BOARD
-    if ":" in rest:
-        board, _, klass = rest.partition(":")
-    else:
-        klass = rest
-    if not key or klass not in ("single", "multi"):
-        raise SystemExit(f"bad target {raw!r}; expected KEY=single or KEY=[BOARD:]multi")
+def load_attempt_plan(path: Path) -> dict[str, dict]:
+    """{key: {"board": board, "prompts": [str, …]}} from an attempt-plan file.
+
+    Board defaults to `10x10` when the entry omits it; every omitted or wrong key
+    fails loudly here instead of sending the wrong board's derive size later.
+    """
+    plan = json.loads(path.read_text())
+    if not isinstance(plan, dict) or not plan:
+        raise SystemExit(f"{path} is not a non-empty JSON object")
+    for key, entry in plan.items():
+        if not isinstance(entry, dict) or not isinstance(entry.get("prompts"), list) \
+                or not entry["prompts"]:
+            raise SystemExit(f"{path}: key {key!r} needs a non-empty 'prompts' list")
+        if not all(isinstance(prompt, str) and prompt.strip()
+                   for prompt in entry["prompts"]):
+            raise SystemExit(f"{path}: key {key!r} has an empty attempt prompt")
+        board = entry.get("board", DEFAULT_BOARD)
+        if board not in BOARDS:
+            raise SystemExit(f"{path}: key {key!r} has board {board!r}; "
+                             f"expected one of {', '.join(sorted(BOARDS))}")
+        entry["board"] = board
+    return plan
+
+
+def parse_target(raw: str, plan: dict[str, dict]) -> tuple[str, str, list[str]]:
+    """`KEY` or `KEY=BOARD` -> (key, board, attempt prompts)."""
+    key, _, board = raw.partition("=")
+    if not key:
+        raise SystemExit(f"bad target {raw!r}; expected KEY or KEY=BOARD")
+    entry = plan.get(key)
+    if entry is None:
+        raise SystemExit(f"no attempt plan for {key!r} in the attempt-prompts file")
+    board = board or entry.get("board", DEFAULT_BOARD)
     if board not in BOARDS:
         raise SystemExit(f"bad board {board!r}; expected one of {', '.join(sorted(BOARDS))}")
-    return key, klass, board
-
-
-def prompts_for(klass: str, board: str = DEFAULT_BOARD) -> list[str]:
-    """One prompt per attempt: each template with a different subject word."""
-    templates = BOARDS[board][klass]
-    out = []
-    for index, template in enumerate(templates):
-        word = SUBJECTS[index % len(SUBJECTS)]
-        out.append(template.replace("{subject}", word))
-    return out
+    return key, board, entry["prompts"]
 
 
 TRANSIENT_HTTP_CODES = ("HTTP 429", "HTTP 500", "HTTP 502", "HTTP 503", "HTTP 504")
@@ -404,7 +116,7 @@ def is_transient(stderr: str) -> bool:
     return any(code in stderr for code in TRANSIENT_HTTP_CODES)
 
 
-def generate(prompt: str, out_dir: Path, key: str, attempt: int, key_env: str,
+def generate(composed: str, out_dir: Path, key: str, attempt: int, key_env: str,
              retries: int = TRANSIENT_RETRIES,
              wait: float = TRANSIENT_WAIT_SECONDS) -> tuple[Path, dict]:
     """Generate one square from an already-composed prompt (the caller composes).
@@ -416,7 +128,7 @@ def generate(prompt: str, out_dir: Path, key: str, attempt: int, key_env: str,
     env = dict(os.environ, CHEAPERINFERENCE_API_KEY=key_env)
     for remaining in range(retries + 1):
         proc = subprocess.run(
-            [sys.executable, str(GENERATOR), "generate", "--prompt", prompt,
+            [sys.executable, str(GENERATOR), "generate", "--prompt", composed,
              "--out", str(raw), "--model", MODEL, "--size", SIZE],
             capture_output=True, text=True, env=env,
         )
@@ -442,7 +154,7 @@ def generate(prompt: str, out_dir: Path, key: str, attempt: int, key_env: str,
     return png, meta
 
 
-def derive(square: Path, pixel: Path, size: int = BOARDS[DEFAULT_BOARD]["size"]) -> dict:
+def derive(square: Path, pixel: Path, size: int) -> dict:
     proc = subprocess.run(
         [sys.executable, str(DERIVER), "derive", "--square", str(square),
          "--pixel", str(pixel), "--size", str(size)],
@@ -457,6 +169,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--manifest", required=True)
+    parser.add_argument("--attempt-prompts", required=True, dest="attempt_prompts")
     parser.add_argument("targets", nargs="+")
     parser.add_argument("--fresh", action="store_true",
                         help="ignore an existing manifest and start these targets over")
@@ -465,20 +178,23 @@ def main(argv: list[str] | None = None) -> int:
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     manifest = Path(args.manifest)
+    plan_path = Path(args.attempt_prompts)
+    plan = load_attempt_plan(plan_path)
     record: dict[str, dict] = {}
     if manifest.is_file() and not args.fresh:
         record = json.loads(manifest.read_text() or "{}")
+    failed: list[str] = []
     for raw in args.targets:
-        key, klass, board = parse_target(raw)
+        key, board, prompts = parse_target(raw, plan)
         if record.get(key, {}).get("accepted"):
             continue
         attempts = []
         accepted = None
-        for attempt, prompt in enumerate(prompts_for(klass, board), start=1):
-            composed = compose(prompt, board)
+        size = BOARDS[board]["size"]
+        for attempt, composed in enumerate(prompts, start=1):
             square, meta = generate(composed, out_dir, key, attempt, key_env)
             pixel = out_dir / f"{key}-attempt{attempt}-pixel.png"
-            report = derive(square, pixel, BOARDS[board]["size"])
+            report = derive(square, pixel, size)
             ok = report.get("verdict") == "pass"
             flatten = next((step for step in report.get("steps", [])
                             if isinstance(step, dict) and "background_rgb" in step), {})
@@ -506,13 +222,19 @@ def main(argv: list[str] | None = None) -> int:
             if ok:
                 accepted = entry
                 break
-        # `prompt_family` names the prompt set this run used, not a subject class.
-        record[key] = {"prompt_family": klass, "board": board, "accepted": accepted,
-                       "attempts": len(attempts), "log": attempts}
+        if accepted is None:
+            failed.append(key)
+            print(json.dumps({"puzzle": key, "attempts": len(attempts),
+                              "rejected": True}), flush=True)
+        record[key] = {"attempt_prompts": str(plan_path), "board": board,
+                       "accepted": accepted, "attempts": len(attempts),
+                       "log": attempts}
         manifest.write_text(json.dumps(record, indent=2) + "\n")
-    missing = [k for k in record if not record[k]["accepted"]]
+    missing = [key for key in record if not record[key].get("accepted")]
+    if failed:
+        print(f"no accepted picture for: {', '.join(failed)}", file=sys.stderr)
     if missing:
-        print(f"no accepted picture for: {', '.join(missing)}", file=sys.stderr)
+        print(f"manifest has no accepted picture for: {', '.join(missing)}", file=sys.stderr)
         return 1
     return 0
 

@@ -124,26 +124,12 @@ func test_line_status_covers_every_row_and_column() -> void:
 	)
 
 
-## PS1.6 / V2: an accepted mark sets in progress, including an empty-clue auto-cross.
+## PS1.6 / V2: an accepted mark sets in progress.
 func test_in_progress_needs_a_mark() -> void:
 	var state := _ready_state()
 	assert_eq(state.attempt_status(), AttemptState.Status.NOT_STARTED, "V2: no mark yet")
 	state.apply_mark(4, 5, CellMark.Mark.FILL)
 	assert_eq(state.attempt_status(), AttemptState.Status.IN_PROGRESS, "PS1.6: a fill starts it")
-
-
-## PS1.6 / V2: the open sequence's empty-clue auto-cross alone starts the attempt.
-func test_an_empty_clue_auto_cross_sets_in_progress() -> void:
-	_definition = _load_definition(TEAPOT_PATH)
-	var state := _ready_state()
-	var crossed := state.auto_cross(Rules.new(_definition).auto_cross_cells(state.marks()))
-	assert_gt(crossed, 0, "PS1.6: the teapot has empty-clue lines to cross")
-	assert_eq(
-		state.attempt_status(),
-		AttemptState.Status.IN_PROGRESS,
-		"PS1.6 / V2: a cross is a mark, so the attempt is in progress",
-	)
-	assert_true(state.marks().has_any_mark(), "V2: in progress implies at least one mark")
 
 
 ## PS1.6: clearing the last mark returns to not started with elapsed 0.

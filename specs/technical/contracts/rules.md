@@ -15,7 +15,6 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 |----|------|-------|-----------------|------|
 | O1 | is-solved | Solution fill set and player fills | True when the sets are equal | After a mark |
 | O2 | line-status | Size, row clues, column clues, and marks | One [`SCH-line-status`](../schemata/line-status.md) per row and column | After a mark, and when ready completes |
-| O3 | auto-cross-cells | Size, clues, and marks | Positions that are still clear on empty-clue lines | When ready completes |
 
 ## Events
 
@@ -37,4 +36,4 @@ None — the attempt receives the return value.
 
 ## Diagram
 
-None — three operations and no events.
+None — two operations and no events.

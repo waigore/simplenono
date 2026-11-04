@@ -17,7 +17,7 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../../.agents/spe
 | S2 | Satisfied when fills match runs | PS1.2 |
 | I1 | Guides fills (consult) | PS1.3 |
 | I2 | Line error vs runs | PS1.3 |
-| I3 | Empty list auto-cross after ready | PS1.4 |
+| I3 | Empty list marks nothing itself | PS1.4 |
 | I4 | Satisfied dim cue | PS1.2 |
 
 ## PS1: Clue lines
@@ -66,13 +66,14 @@ When fills no longer contradict
 Then that line's line error is false
 ```
 
-### PS1.4: Empty list auto-cross
+### PS1.4: Empty list marks nothing
 
 - **Proves**: P3, I3
 
 ```gherkin
-Given a clue line with empty run list and get-set-ready has completed
-When auto-cross runs on still-clear cells of that line
-Then those cells are cross
-And attempt-status is in progress if any were crossed
+Given a clue line with empty run list and a not-started attempt
+When get-set-ready completes
+Then the line's cells keep the marks the player and loaded progress left (all clear when fresh)
+And attempt-status stays not started
+And the line satisfies and dims once no cell of it is a fill
 ```

@@ -27,7 +27,7 @@ Authoring rules: [`.agents/specs/rules/technical/schemata.md`](../../../.agents/
 | ID | Phase | Who | What changes |
 |----|-------|-----|--------------|
 | L1 | create | [`CMP-attempt`](../components/attempt.md) | All clear, or restored from progress |
-| L2 | update | [`CMP-attempt`](../components/attempt.md) | A mark or an auto-cross |
+| L2 | update | [`CMP-attempt`](../components/attempt.md) | A player fill, cross, or clear |
 | L3 | destroy | [`CMP-attempt`](../components/attempt.md) | Cleared when the open attempt ends |
 
 ## Relationships

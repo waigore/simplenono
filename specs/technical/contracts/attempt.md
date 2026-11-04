@@ -26,7 +26,7 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 |----|------|---------|--------------|-------------------|
 | E1 | solved | Puzzle id and elapsed | The fill set matches after a mark | [`CMP-shell`](../components/shell.md) |
 | E2 | left | Puzzle id | Leave finished | [`CMP-shell`](../components/shell.md) |
-| E3 | ready | Puzzle id, grid, and line status | Get-set-ready ends while the puzzle is still open, after auto-cross and line status | [`CMP-shell`](../components/shell.md) |
+| E3 | ready | Puzzle id, grid, and line status | Get-set-ready ends while the puzzle is still open, after line status | [`CMP-shell`](../components/shell.md) |
 
 ## Guarantees
 
