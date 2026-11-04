@@ -3,9 +3,9 @@
 - **Issue:** #540 Mobile gallery tiles: cramped spacing, overlapping labels, uncentered thumbnails (`type:defect`, `priority:high`)
 - **Run id:** `2026-11-05-accept-graphical`
 - **Runner:** `issue-workflow-accept-agent` (parallel id 1), unattended, 2026-11-05
-- **Build / session id:** `main@9a32abc` (origin/main; `git diff ee1d2fd 9a32abc -- game/` is
-  empty, so `game/` equals the shipped-tree record
-  [`issue-574/2026-11-05-verify/manifest.md`](../../../../quality/evidence/issue-574/2026-11-05-verify/manifest.md)),
+- **Build / session id:** `main@9a32abc` (origin/main; `game/` equals the shipped-tree record
+  [`issue-539/2026-11-05-verify-2/manifest.md`](../../../../quality/evidence/issue-539/2026-11-05-verify-2/manifest.md),
+  deterministic, all five axes pass at this commit),
   Godot 4.7.2.stable, Metal Forward+ (macOS, Apple M5), sessions `portrait` / `landscape` / `issue-540-accept`, fresh `user://` per run
 - **Coverage mode:** `full` · graphical, three runs (360×640 and 640×360 test viewports, plus the mobile mockup frame 390×844 for the reset journey)
 - **Wiki page:** <https://github.com/waigore/simplenono/wiki/Playtest-issue-540-2026-11-05-accept-graphical>

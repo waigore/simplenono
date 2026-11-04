@@ -31,13 +31,10 @@ padding), #579 (the strip below the metadata returns to C1 taps and drags), and 
 ## Why the deterministic record is cited, not re-run
 
 The deliverable can move the Applies deterministic axes and the reuse rule is met by
-[`issue-574/2026-11-05-verify/manifest.md`](../../../../quality/evidence/issue-574/2026-11-05-verify/manifest.md):
-all five axes pass at `ee1d2fd` and `git diff ee1d2fd 9a32abc -- game/` is empty. Acceptance
+[`issue-539/2026-11-05-verify-2/manifest.md`](../../../../quality/evidence/issue-539/2026-11-05-verify-2/manifest.md):
+all five axes pass at `9a32abc`, the same `main` this run played. Acceptance
 does not run `deterministic`. No `llm-judge` axis applies (the rubrics list none for the axes
-this deliverable moves). Paperwork note: that record currently sits on
-`origin/defect/574-gallery-fits-landscape-frame` (`ed5a14e`, committed 2026-11-05 01:43 +0800)
-and is not yet merged to `main` — the citation above points at the same file as landed with the
-branch. #574 keeps `status:pending-acceptance`; landing its record is its own handoff.
+this deliverable moves).
 
 ## How the runs were made
 
