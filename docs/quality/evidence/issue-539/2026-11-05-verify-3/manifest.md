@@ -52,7 +52,7 @@ puzzle's `solution_fills`, not an empty grid.
 - `runtime-signals` (I11) — no log, sampler, or telemetry source added or removed; #555 added a
   field to the harness's own result JSON, not a runtime signal source.
 - `save-survives`, `failed-write` (I4) — no save schema or commit path changed.
-- Accessibility and Localization axes — `N/A` in [`specs/definition/quality.md`](../../../specs/definition/quality.md).
+- Accessibility and Localization axes — `N/A` in [`specs/definition/quality.md`](../../../../../specs/definition/quality.md).
 
 The judged device behaviour itself (a finger drag scrolling R2 to the last of the 200 tiles on a
 real handset, across the refit three-column landscape layout) is a playtest observation, not a
@@ -61,5 +61,5 @@ non-accepting and is not counted here.
 
 ## llm-judge
 
-Not applicable: every axis in [`specs/definition/quality/rubrics.md`](../../../specs/definition/quality/rubrics.md) is
+Not applicable: every axis in [`specs/definition/quality/rubrics.md`](../../../../../specs/definition/quality/rubrics.md) is
 `deterministic`, and the domain axes list is empty. No judge row applies.
