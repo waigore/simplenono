@@ -16,7 +16,7 @@ Every formalized interactive visual surface (screens, menus, HUD, overlays) and 
 
 `specs/ux/mockups/catalog.md` tracks each screen and journey mockup: `draft`, `approved`, or `deprecated`.
 
-- **Approve**: the product owner, or [`review-project-issue`](../.agents/skills/review-project-issue/SKILL.md) when it passes an issue (update the catalog in that same action). Do not approve when judgment finds a **material** gap between the mockup and its upstream (aesthetics, UX Markdown, design facts it shows).
+- **Approve**: the product owner (clarification on the issue, or a direct catalog edit). [`review-project-issue`](../.agents/skills/review-project-issue/SKILL.md) Clarifies when main-tree UI needs approval and the row is still `draft`; after PO affirmation, the next Pass may write the catalog citing that clarification. Do not approve when judgment finds a **material** gap between the mockup and its upstream (aesthetics, UX Markdown, design facts it shows).
 - **Revoke**: the product owner may set `draft` (or `deprecated`) at any time; record approver/date/reason.
 - **Unapprove on change**: when an agent judges a change to a mockup or its upstream **material**, set the row to `draft`, record a short reason, and leave thin notes on open UI issues. Do not invent a parallel status machine.
 

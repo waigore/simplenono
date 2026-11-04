@@ -21,7 +21,7 @@ Load parent, sub-issues, and siblings when available (`gh issue view`; linking d
 
 ## Review
 
-Scope: [Review scope](../../../docs/issues/workflow.md#review-scope). On a delta pass, follow that scope; a pass still applies the mockup approval below.
+Scope: [Review scope](../../../docs/issues/workflow.md#review-scope). On a delta pass, follow that scope; a pass still applies the in-repo approval rule below.
 
 On a holistic pass, review the whole issue:
 
@@ -36,13 +36,17 @@ On a holistic pass, review the whole issue:
 - **Technical elements:** When the title or body names a specific layer, module, component, contract, schema, or sequence, it cites a qualified ID or a `specs/technical/` path that already exists. A cited element ID (such as `CMP-input.R2`) exists in that spec. A file that still contains `<!-- fill in -->` counts. Keys: [`ids.md`](../../specs/rules/technical/ids.md) (`LAY`, `MOD`, `CMP-<name>`, `CTR-<name>`, `SCH-<name>`, `SEQ-<name>`). An issue that never names one of these is unaffected.
   - No such ID or file → **Fail**. Refinement: cite the real ID or path, or make the deliverable authoring that element and drop any implementation of it.
   - Spec-authoring exception: the issue may name an element that does not exist yet when the deliverable is creating it (a new file under `components/`, `contracts/`, `schemata/`, or `sequences/`, or a new ID in `layers.md` or `modules.md`). It must not treat that name as an existing ID, and it must not ask to implement it.
-- **Main-tree UI / mockups** ([`docs/ux-mockups.md`](../../../docs/ux-mockups.md)): When the issue will implement main-tree UI for a screen (menus, HUD, overlays included), that screen must have a mockup and a catalog row. Prefer Fail if UI and non-UI are mixed in one task (split). On **Pass**, this skill may **approve** in-scope screen (and journey, when in scope) catalog rows when judgment finds no material gap versus aesthetics and UX Markdown. Update [`specs/ux/mockups/catalog.md`](../../../specs/ux/mockups/catalog.md) in the same change (approver, date, state `approved`). Do not approve when a material upstream-to-mockup divergence remains. Fail or Clarify instead. The product owner may revoke later. Record `draft` plus a reason if asked.
+- **Main-tree UI / mockups** ([`docs/ux-mockups.md`](../../../docs/ux-mockups.md)): When the issue will implement main-tree UI for a screen (menus, HUD, overlays included), that screen must have a mockup and a catalog row. Prefer Fail if UI and non-UI are mixed in one task (split). Material upstream-to-mockup divergence → Fail or Clarify. Do not set catalog `approved` from agent judgment alone.
+- **In-repo approval needed now** (Clarify; do not Pass and do not write the record unilaterally). Skip when already approved or the issue does not need the record yet (for example mockup-authoring without main-tree UI). Asset catalog, ADR acceptance, and quality rubrics are out of scope here.
+  - **Mockups:** main-tree UI for screen S (journey when in scope) and the catalog row is not `approved` → Clarify with explicit approve/reject questions listing those IDs.
+  - **Aesthetics references:** deliverables add or replace `REF` / reference images not yet PO-approved → Clarify (approve these references?).
+  - **Style anchors:** deliverables establish or refresh a Style series and `style_anchors` still need which approved IDs are anchors → Clarify (which IDs?).
 
 ## Outcome
 
-- **Pass** — post a clear pass review comment (it must be the latest comment when transitioning). Gate: `pending-review` → `pending-implementation`. Include mockup catalog updates when this skill approved rows.
+- **Pass** — post a clear pass review comment (it must be the latest comment when transitioning). Gate: `pending-review` → `pending-implementation`. Update in-repo approval records (mockup catalog, aesthetics refs, style anchors) **only** when a prior PO clarification comment on this issue already authorized those exact items; cite that comment in the pass note and catalog/registry fields. Otherwise Pass with no approval writes.
 - **Fail** — post problems and refinement direction. Gate this issue: `pending-review` → `pending-refinement`. Cascade another issue only under [Cascade (fail review)](../../../docs/issues/workflow-cascade.md) (user order only; no agent cascade). For each authorized issue, comment (point at this fail and the user order) and apply the fail-review cascade via `enforce-task-workflow-status`, with that issue’s current status as `from`. For any issue the user asked about that was not ordered onto the cascade, comment why the status stays and leave it unchanged.
-- **Clarify** — summarize questions that cannot be inferred from project scope, including material spec ambiguity. Gate: `pending-review` → `pending-clarification`.
+- **Clarify** — summarize questions that cannot be inferred from project scope, including material spec ambiguity and in-repo approval needed now. Gate: `pending-review` → `pending-clarification`.
 
 ## Rules
 

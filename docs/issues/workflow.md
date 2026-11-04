@@ -31,7 +31,7 @@ Evidence is freeform prose; intent clear. Post it as an issue comment (refinemen
 |------|-------------------|-----|
 | pending-review | Pass review (latest comment); body consistent; deliverables/AC align with parent or project vision; note new requirements | pending-implementation |
 | pending-review | Fail review: problems + refinement direction. Cascade another issue only when [workflow-cascade.md](workflow-cascade.md) authorizes it | pending-refinement |
-| pending-review | Gaps that cannot be inferred from project scope: clarification questions | pending-clarification |
+| pending-review | Gaps that cannot be inferred from project scope: clarification questions (includes in-repo approval needed now for mockups, aesthetics references, or style anchors) | pending-clarification |
 | pending-refinement | Refined issue body + summary comment | pending-review |
 | pending-clarification | PO clarification comment | pending-review, or pending-refinement if refine still needed |
 | pending-implementation | Comment summarizing deliverables (PRs/commits) | pending-verification |
