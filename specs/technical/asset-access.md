@@ -24,7 +24,7 @@ Authoring rules: [`.agents/specs/rules/technical/asset-access.md`](../../.agents
 
 | ID | Output | Generator | Inputs | Location | Committed |
 |----|--------|-----------|--------|----------|-----------|
-| O1 | In-build asset manifest, copied byte for byte from the committed root manifest ([ADR-0008](../adr/decisions/0008-release-asset-manifest.md)) | `.github/scripts/export_release.sh` | The committed `assets/manifest.json` ([ADR-0006](../adr/decisions/0006-asset-manifest-generator.md)) | `game/release/asset_manifest.json`; the release presets' `include_filter` names it | No — written by the export script and ignored by git |
+| O1 | In-build asset manifest, copied byte for byte from the committed root manifest ([ADR-0008](../adr/decisions/0008-release-asset-manifest.md)) | `.github/scripts/export_release.sh`; `.github/scripts/export_android_debug.sh` | The committed `assets/manifest.json` ([ADR-0006](../adr/decisions/0006-asset-manifest-generator.md)) | `game/release/asset_manifest.json`; the Android debug and release presets' `include_filter` names it | No — written by the export script and ignored by git |
 | O2 | Godot `.import` sidecars for cataloged files, as [`ACC.P1`](../assets/access.md) allows; scope is the manifest's listed paths only | Godot import | `ACC.G1`–`G3` | `game/assets/` | Rebuilt by the editor / export; sidecars may be committed with source files |
 
 ## Load groups
