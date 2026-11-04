@@ -155,7 +155,7 @@ func test_pause_then_quit_restores_the_marks_and_elapsed_on_reopen() -> void:
 
 
 # SEQ pause B2: pausing during get-set-ready commits the restored marks and elapsed as
-# held, runs no auto-cross, and still pauses into settings.
+# held, writes nothing for the beat, and still pauses into settings.
 func test_pause_during_get_set_ready_commits_the_restored_marks_as_held() -> void:
 	var size: int = _shell.pack().definition(PUZZLE_ID).size
 	var fill := Vector2i(0, 0)
@@ -177,7 +177,7 @@ func test_pause_during_get_set_ready_commits_the_restored_marks_as_held() -> voi
 	assert_eq(
 		stored.get_value(PUZZLE_ID, ProgressFile.MARKS_KEY),
 		marks,
-		"B2: the restored marks are committed as held, with no auto-cross",
+		"B2: the restored marks are committed as held, with nothing from the beat",
 	)
 	assert_eq(stored.get_value(PUZZLE_ID, ProgressFile.ELAPSED_KEY), 18, "elapsed held at 18")
 

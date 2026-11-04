@@ -26,7 +26,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 | ID | Condition | Next steps | Outcome |
 |----|-----------|------------|---------|
 | B1 | No open attempt at S1 | None | No change. Gallery Settings is not this sequence |
-| B2 | Pause during get-set-ready | S2 | Commit as held; then S3–S4. The Ready beat continues; auto-cross waits on [`open.md`](open.md) S7 |
+| B2 | Pause during get-set-ready | S2 | Commit as held; then S3–S4. The Ready beat continues |
 | B3 | Nothing to persist at S2 | S3 | Skip S2. Still pause and show settings |
 | B4 | Pref toggles on settings | — | Shell-only ([`SCH-preferences`](../schemata/preferences.md)); not steps here |
 

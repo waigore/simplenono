@@ -1,1 +1,82 @@
-{"kind_spec":"AK-puzzle-pictures","coverage":["V1"],"state":"approved","version":1,"source_type":"ai-generation","recipe":"AK-puzzle-pictures.R1","id":"01a17720-ca00-70b4-94f6-387736e08adf","handle":"puzzle-pictures/pack-196-generated","serves":["E-puzzle.P5","PER.R5","ACC.G3"],"files":["puzzle-pictures/pack-196-generated.png"],"tool_role":{"role":"TL.1","adr":"adr-free"},"generation":{"prompt":"a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a heavy C filling most of the frame, twenty cells tall and eighteen cells wide, its arms five cells thick, and a separate square mass seven cells on a side standing in the clear opening on its right, outside the frame of the ring, each cell about 5 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 20x20 icon, no text. Calm clinical still-life; clear silhouette; readable at 20x20. Avoid: playful chrome; gore; horror.","negative_prompt":"playful chrome; gore; horror","tool":"Cheaper Inference","operation":"images.generations","settings":{"model":"flux-2-max","size":"1024x1024"},"seed":"n/a — tool has no seed","inputs":{"style_anchors":[],"refs":[],"base_assets":[]},"steps":["Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)","saved data[0] as a PNG without resampling"]},"guidance":"Re-run .github/scripts/puzzle_derive.py derive from this square to reproduce the pixel file.","license":{"grant":"Generated under Cheaper Inference terms of service; the project may use and modify the output","tool":"Cheaper Inference"},"review":{"verdict":"Pass","date":"2026-11-03","reviewer":"agent","report":"AK-puzzle-pictures R1/V1, pack-196. Generated square: flux-2-max 1024x1024, request b2ddd363-eaec-4626-aeef-03ac434fc40b (attempt 1), saved as PNG without resampling. Meets K6 (square stored) and S6 (square is the stored output). The square reads as a heavy C-shaped ring with a separate square mass standing inside its opening on a pale cool grey ground; readability judged on look alone, no per-puzzle subject class (PO decision on #486, option 3). Look evidence (measured on the committed square): 0.00% warm pixels (red-over-blue bias >= 25); subject luma mean 71.6 against background luma mean 200.2. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms."}}
+{
+  "kind_spec": "AK-puzzle-pictures",
+  "coverage": [
+    "V1"
+  ],
+  "state": "approved",
+  "version": 2,
+  "source_type": "ai-generation",
+  "recipe": "AK-puzzle-pictures.R1",
+  "id": "01a17720-ca00-70b4-94f6-387736e08adf",
+  "handle": "puzzle-pictures/pack-196-generated",
+  "serves": [
+    "E-puzzle.P5",
+    "PER.R5",
+    "ACC.G3"
+  ],
+  "files": [
+    "puzzle-pictures/pack-196-generated.png"
+  ],
+  "tool_role": {
+    "role": "TL.1",
+    "adr": "adr-free"
+  },
+  "generation": {
+    "prompt": "colourful multi-element scene of a giant paper festival dragon draped between lantern poles over a whitewashed noon plaza, scene on a pale misty morning with soft light and dark accents only on the subject, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 20x20 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+    "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
+    "tool": "Cheaper Inference",
+    "operation": "images.generations",
+    "settings": {
+      "model": "flux-2-max",
+      "size": "1024x1024"
+    },
+    "seed": "n/a — tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": []
+    },
+    "steps": [
+      "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
+      "saved data[0] as a PNG without resampling"
+    ]
+  },
+  "guidance": "Re-run .github/scripts/puzzle_derive.py derive from this square to reproduce the pixel file.",
+  "license": {
+    "grant": "Generated under Cheaper Inference terms of service; the project may use and modify the output",
+    "tool": "Cheaper Inference"
+  },
+  "review": {
+    "verdict": "Pass",
+    "date": "2026-11-05",
+    "reviewer": "agent",
+    "report": "AK-puzzle-pictures R1/V1, pack-196. Generated square: flux-2-max 1024x1024, request f37a8972-c2a2-4908-95f6-3f66f438d351, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [100, 99, 97]), then BOX downsampled to 20x20, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 164/400 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 100-180 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a giant paper festival dragon with a lantern string swooping over a whitewashed plaza with crates, ropes and a basket of banners K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+  },
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-03",
+      "reason": "Regenerated under the colourful multi-element scene policy (#564/#570) on #565",
+      "generation": {
+        "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: a heavy C filling most of the frame, twenty cells tall and eighteen cells wide, its arms five cells thick, and a separate square mass seven cells on a side standing in the clear opening on its right, outside the frame of the ring, each cell about 5 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 20x20 icon, no text. Calm clinical still-life; clear silhouette; readable at 20x20. Avoid: playful chrome; gore; horror.",
+        "negative_prompt": "playful chrome; gore; horror",
+        "tool": "Cheaper Inference",
+        "operation": "images.generations",
+        "settings": {
+          "model": "flux-2-max",
+          "size": "1024x1024"
+        },
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": []
+        },
+        "steps": [
+          "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
+          "saved data[0] as a PNG without resampling"
+        ]
+      }
+    }
+  ]
+}

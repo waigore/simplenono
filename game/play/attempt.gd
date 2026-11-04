@@ -6,14 +6,13 @@ extends RefCounted
 ## [method open] is [b]CTR-attempt[/b] O1 (specs/technical/sequences/open.md S1-S5): it
 ## loads the definition ([b]CTR-pack[/b] O3) and progress (O4), holds the loaded grid
 ## with marks blocked and not paused, and returns the grid and elapsed. Nothing else
-## starts until the beat ends: [method end_get_set_ready] is S7-S13, the one call that
-## auto-crosses empty clue lines through [b]CTR-rules[/b] O3 (S8-S9), asks for line status
-## (S10), commits through [b]CTR-pack[/b] O5 when the marks or attempt status changed
-## (S11), allows marks when not paused (S12), and emits [b]CTR-attempt[/b] E3
-## [code]ready[/code] (S13). [method mark] is O2 (R4): it writes one accepted mark,
-## checks [b]CTR-rules[/b] O1 for a solve, and runs the solve branch (S9-S13) or commits
-## the change (S6). [method advance] is O3 (R3) and ticks elapsed only after the beat and
-## while not paused.
+## starts until the beat ends: [method end_get_set_ready] is S7-S11, the one call that
+## asks for line status ([b]CTR-rules[/b] O2, S8), commits through [b]CTR-pack[/b] O5
+## when the marks or attempt status changed (S9), allows marks when not paused (S10),
+## and emits [b]CTR-attempt[/b] E3 [code]ready[/code] (S11). [method mark] is O2 (R4):
+## it writes one accepted mark, checks [b]CTR-rules[/b] O1 for a solve, and runs the
+## solve branch (S9-S13) or commits the change (S6). [method advance] is O3 (R3) and
+## ticks elapsed only after the beat and while not paused.
 ##
 ## The beat is a time input, not a timer node: the scene owns the node and calls
 ## [method end_get_set_ready] after [code]CFG.GET_SET_READY_MS[/code]
@@ -25,7 +24,7 @@ extends RefCounted
 ## [method leave] is O6 (specs/technical/sequences/leave.md S1-S5, B1-B3). Every commit
 ## goes through [b]CTR-pack[/b] O5, which replaces `user://progress.cfg` (G3).
 
-## [b]CTR-attempt[/b] E3: (puzzle id, the post-auto-cross grid, the line status from
+## [b]CTR-attempt[/b] E3: (puzzle id, the open attempt's grid, the line status from
 ## [b]CTR-rules[/b] O2), emitted each time the beat ends with the puzzle open. Connect
 ## with [code]attempt.ready.connect(callable)[/code].
 signal ready(puzzle_id: String, grid: MarkGrid, line_status: LineStatusCheck)
@@ -100,15 +99,15 @@ func open_result() -> OpenResult:
 	return OpenResult.new(_state.marks(), _state.elapsed())
 
 
-## S7-S13: ends get-set-ready. Auto-crosses the still-clear cells of the rules' empty-clue
-## lines (S8-S9), takes line status (S10), commits through [b]CTR-pack[/b] O5 only when
-## the marks or attempt status changed (S11), allows marks when not paused (S12), and
-## emits E3 with the puzzle id, grid, and line status (S13).
-## A pause during the beat does not end it early (B3): the auto-cross still waits for this
-## call, and it is written at S8-S9 even while paused, because [code]GS.paused[/code] blocks
-## the player's marks rather than the beat's own stage change. S12 then leaves marks blocked
-## while paused ([code]GS.marks-allowed[/code] is already true, [code]GS.paused[/code] gates
-## it), so resume() makes them usable without reopening the puzzle.
+## S7-S11: ends get-set-ready. Takes line status (S8), commits through [b]CTR-pack[/b]
+## O5 only when the marks or attempt status changed (S9), allows marks when not paused
+## (S10), and emits E3 with the puzzle id, grid, and line status (S11). The board stays
+## as the loaded progress left it: ready writes no marks, so a not-started attempt
+## stays not started until the player's first fill or cross.
+## A pause during the beat does not end it early (B3): this call still ends it, and
+## the pause keeps the player's marks blocked ([code]GS.paused[/code] gates
+## marks on its own, pause.md S6), so resume() makes them usable without reopening
+## the puzzle.
 ## Returns true when this call ended the beat; otherwise nothing changes and it is false.
 func end_get_set_ready() -> bool:
 	if not _beat_running:
@@ -116,19 +115,17 @@ func end_get_set_ready() -> bool:
 	_beat_running = false
 	var marks_before := _state.marks().snapshot()
 	var was_in_progress := _state.in_progress()
-	# S8-S9 need the stage flag: the empty-line auto-cross is the beat's own write, so the
-	# stage ends first. This is not S12's "marks allowed" for the player: AttemptState
-	# keeps [code]GS.paused[/code] on top of the stage flag, so a paused attempt still
-	# rejects player marks and does not tick (B3, pause.md S6).
+	# S10 needs the stage flag; allowing marks first keeps the beat's own edge free of
+	# player writes. This is not "the beat writes marks": AttemptState keeps
+	# [code]GS.paused[/code] on top of the stage flag, so a paused attempt still rejects
+	# player marks and does not tick (B3, pause.md S6).
 	_state.allow_marks()
-	# S8-S9: the rules report, the attempt writes. A cross sets in progress.
-	_state.auto_cross(_rules.auto_cross_cells(_state.marks()))
-	# S10.
+	# S8.
 	var line_status := _rules.line_status(_state.marks())
-	# S11: commit only on a change.
+	# S9: commit only on a change; ready itself writes no marks.
 	if _state.marks().snapshot() != marks_before or _state.in_progress() != was_in_progress:
 		_commit()
-	# S13.
+	# S11.
 	ready.emit(_puzzle_id, _state.marks(), line_status)
 	return true
 
@@ -205,7 +202,8 @@ func advance(amount: int) -> void:
 ## O4 (specs/technical/sequences/pause.md S1-S3, B3): sets paused, which freezes elapsed
 ## and blocks marks, and commits marks and elapsed when there is a mark to persist (S2).
 ## With nothing open it changes nothing (B1). The get-set-ready beat keeps running (B2):
-## the auto-cross still waits for [method end_get_set_ready].
+## the board stays as the loaded progress left it when [method end_get_set_ready] ends
+## the beat.
 func pause() -> void:
 	if _state == null:
 		return
@@ -226,8 +224,8 @@ func resume() -> void:
 ## O6 (specs/technical/sequences/leave.md S1-S5, B1-B3): commits the open attempt's
 ## marks, elapsed, and attempt status through [b]CTR-pack[/b] O5 when there is something
 ## to persist (S2), clears pause and the open attempt (S3), and emits E2 with the puzzle
-## id (S4). A leave during get-set-ready commits the restored marks and elapsed as held
-## and does not run the beat's auto-cross (B1). A not-started attempt with nothing to
+## id (S4). A leave during get-set-ready happens before the beat ends, so the board is
+## the loaded progress exactly as held (B1). A not-started attempt with nothing to
 ## persist skips the commit (B3). With no open attempt it changes nothing and returns
 ## false (B2).
 func leave() -> bool:

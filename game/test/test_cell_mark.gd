@@ -1,5 +1,5 @@
 extends GutTest
-## Cell mark semantics — specs/design/stories/entities/cell.md PS1.1–PS1.5.
+## Cell mark semantics — specs/design/stories/entities/cell.md PS1.1–PS1.4.
 
 
 # PS1.1: Grid positions
@@ -91,35 +91,3 @@ func test_unknown_mark_is_rejected():
 	assert_false(CellMark.is_mark(99))
 	assert_true(CellMark.is_mark(CellMark.Mark.CROSS))
 	assert_eq(cell.mark, CellMark.Mark.CLEAR)
-
-
-# PS1.5: Empty-clue auto-cross
-func test_auto_cross_crosses_still_clear_cells():
-	var grid := MarkGrid.new(10, true)
-	grid.apply_mark(0, 0, CellMark.Mark.FILL)
-	var crossed := grid.auto_cross([Vector2i(0, 1), Vector2i(0, 2)])
-	assert_eq(crossed, 2)
-	assert_eq(grid.mark_at(0, 1), CellMark.Mark.CROSS)
-	assert_eq(grid.mark_at(0, 2), CellMark.Mark.CROSS)
-
-
-func test_auto_cross_leaves_crossed_cells_unchanged():
-	var grid := MarkGrid.new(10, true)
-	grid.apply_mark(0, 0, CellMark.Mark.CROSS)
-	var crossed := grid.auto_cross([Vector2i(0, 0)])
-	assert_eq(crossed, 0)
-	assert_eq(grid.mark_at(0, 0), CellMark.Mark.CROSS)
-
-
-func test_auto_cross_never_overwrites_a_fill():
-	var grid := MarkGrid.new(10, true)
-	grid.apply_mark(0, 0, CellMark.Mark.FILL)
-	var crossed := grid.auto_cross([Vector2i(0, 0)])
-	assert_eq(crossed, 0)
-	assert_eq(grid.mark_at(0, 0), CellMark.Mark.FILL)
-
-
-func test_auto_cross_changes_nothing_while_blocked():
-	var grid := MarkGrid.new(10)
-	assert_eq(grid.auto_cross([Vector2i(0, 0)]), 0)
-	assert_eq(grid.mark_at(0, 0), CellMark.Mark.CLEAR)

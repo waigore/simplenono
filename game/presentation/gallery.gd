@@ -337,8 +337,26 @@ func _picture_for_entry(entry: GalleryEntry) -> Texture2D:
 
 
 func _update_layout() -> void:
-	_grid.columns = WIDE_COLUMNS if size.x >= wide_breakpoint() else NARROW_COLUMNS
+	_grid.columns = _columns_for_width(size.x)
 	_apply_frame_spacing()
+
+
+## The column count the mockups' tile floors actually allow: a frame at
+## [method wide_breakpoint] starts from the desktop mockup's four, then steps down while
+## four [constant GalleryTile.TILE_WIDTH] floors beside the page margin would still
+## exceed the frame (#574). The 640×360 landscape test viewport reads wide at its height,
+## so the count drops to three and every column, the gutter, and the chrome stay inside
+## the window instead of clipping off both edges — the same hold-between-the-mockups
+## logic the frame-relative margin, gap, and padding follow (#540, #557).
+func _columns_for_width(width: float) -> int:
+	var columns := WIDE_COLUMNS if width >= wide_breakpoint() else NARROW_COLUMNS
+	var gap := grid_gap()
+	var margins := 2.0 * page_margin()
+	var minimum := columns * GalleryTile.TILE_WIDTH + (columns - 1) * gap + margins
+	while columns > NARROW_COLUMNS and minimum > width:
+		columns -= 1
+		minimum = columns * GalleryTile.TILE_WIDTH + (columns - 1) * gap + margins
+	return columns
 
 
 ## R2's page margin, tile gap, and tile body padding, from the frame width the way
