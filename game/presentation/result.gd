@@ -181,14 +181,23 @@ func _refresh_type_sizes() -> void:
 	)
 
 
+## [code]PAL.K1[/code]: [code]copy.back[/code] is Ink on Paper in every drawn state.
+## A focused idle button uses [code]font_focus_color[/code], and the shell focuses C1
+## when the morph ends, so the engine's light focus color would hide the label
+## until a press. Hover-pressed is the same gap on a touch release.
 func _style_back_button() -> void:
 	_back_button.text = COPY_BACK
 	_back_button.custom_minimum_size = Vector2(0.0, 44.0)
 	for state in ["normal", "hover", "pressed", "disabled"]:
 		_back_button.add_theme_stylebox_override(state, _button_style(state == "disabled"))
-	_back_button.add_theme_color_override("font_color", PresentationPalette.INK)
-	_back_button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
-	_back_button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
+	for item in [
+		"font_color",
+		"font_focus_color",
+		"font_hover_color",
+		"font_pressed_color",
+		"font_hover_pressed_color",
+	]:
+		_back_button.add_theme_color_override(item, PresentationPalette.INK)
 	_back_button.add_theme_color_override("font_disabled_color", PresentationPalette.DIM)
 
 
