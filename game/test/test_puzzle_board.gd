@@ -26,10 +26,13 @@ const DESKTOP := Vector2(1280, 800)
 ## The cell side the maximized mobile framing reaches at each test viewport, from
 ## the same layout maths [PuzzleBoard] runs: the R2 rect left after R1 chrome and
 ## R3 tools, over the board's clue units. Pinned so a layout change that shrinks
-## the board fails loudly instead of drifting.
+## the board fails loudly instead of drifting. Re-measured 2026-11-05 after the
+## #563 pack regen changed the packed clue-run widths (first 10x10 bar grows with
+## the much-run colourful rows, so portrait drops one cell per size and
+## landscape-10 one too; landscape 15/20 still land on their old pins).
 const ACHIEVED_CELL := {
-	"portrait": {10: 26, 15: 18, 20: 14},
-	"landscape": {10: 18, 15: 12, 20: 9},
+	"portrait": {10: 25, 15: 17, 20: 13},
+	"landscape": {10: 17, 15: 12, 20: 9},
 }
 
 var _pack: Pack
