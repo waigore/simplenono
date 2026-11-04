@@ -420,6 +420,43 @@ func test_every_column_fits_an_edge_width() -> void:
 		)
 
 
+# R2 layout (#574): at the 640 x 360 landscape test viewport the wide four floors plus
+# spacing exceed the frame, so the count steps down and the whole screen stays inside the
+# window — the baseline drew R2's scroll region at x = -8, 656 px wide, the first card
+# clipped off the left edge, and the 32 px page margin never on screen.
+func test_the_landscape_viewport_fits_inside_the_frame() -> void:
+	_present(ConfigFile.new())
+	_gallery.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(640.0, 360.0)
+	await _settle()
+	assert_lt(_gallery.wide_breakpoint(), 640.0, "the frame reads wide at its height")
+	assert_gt(
+		4.0 * GalleryTile.TILE_WIDTH + 3.0 * _gallery.grid_gap() + 2.0 * _gallery.page_margin(),
+		640.0,
+		"the wide four floors plus spacing do not fit, so the count steps down"
+	)
+	assert_eq(_gallery.columns(), 3, "the count that fits beside the page margin")
+	var grid := _gallery.get_node("%Grid") as GridContainer
+	for region: Control in [_gallery.get_node("Margin") as Control, grid]:
+		assert_gte(region.position.x, -0.5, "%s starts inside the frame" % region.name)
+		assert_lte(
+			region.position.x + region.size.x, 640.0 + 0.5, "%s ends inside the frame" % region.name
+		)
+	var room := (640.0 - 2.0 * _gallery.page_margin()) / float(_gallery.columns())
+	assert_lte(
+		_gallery.widest_tile_width(),
+		room + 0.5,
+		"every column is visible at the landscape viewport"
+	)
+	var first := _gallery.tile("pack-000").get_global_rect()
+	assert_gte(first.position.x, _gallery.page_margin() - 0.5, "the page margin is visible")
+	assert_lte(
+		first.position.x + first.size.x,
+		640.0 - _gallery.page_margin() + 0.5,
+		"the last column does not run past the page margin"
+	)
+
+
 # R2 layout (#540): a phone reports physical pixels, so the mockups' frame is much larger
 # than the 390 x 844 they draw at. The breakpoint has to follow the frame the way the
 # chrome type does; a fixed 720 px reads the phone as a desktop and splits the grid into
