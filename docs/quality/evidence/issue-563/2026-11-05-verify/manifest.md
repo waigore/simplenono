@@ -19,8 +19,8 @@ new content loaded (`frame-time`, `hitch-bound`, I1/I2), and the open/solve/rese
 run against the re-derived `pack.json` rows (`crash-free`, I9).
 
 No existing passing record covers `game/` at `89263b6`: the nearest, #574's record at `ee1d2fd`
-([`issue-574/2026-11-05-verify`](../../issue-574/2026-11-05-verify/manifest.md)), diffs against this tree as
-81 files changed / 372 insertions across `game/`, and #573's at `38937ec` as 80 files / 371 insertions — the resize rule in
+(`docs/quality/evidence/issue-574/2026-11-05-verify/manifest.md`, tree-checked out of `main`), diffs against this tree as
+81 files changed / 372 insertions across `game/`, and #573's at `38937ec` as 80 files / 371 insertions — the reuse rule in
 [`docs/quality/evidence/README.md`](../../README.md) does not apply, so this is a fresh run rather than a reuse.
 
 | Axis | Evaluator | Observation | Bar | Result | Blocked reason | Evidence path |
