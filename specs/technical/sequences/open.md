@@ -20,28 +20,26 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 | S5 | CMP-attempt | CMP-shell | CTR-attempt.O1 | Return the grid and elapsed. Get-set-ready started |
 | S6 | CMP-shell | CMP-shell | internal | Show the puzzle screen and the Ready beat |
 | S7 | CMP-attempt | CMP-attempt | internal | The beat ends |
-| S8 | CMP-attempt | CMP-rules | CTR-rules.O3 | Empty-line auto-cross cells |
-| S9 | CMP-attempt | CMP-attempt | internal | Write those crosses. A cross sets in progress |
-| S10 | CMP-attempt | CMP-rules | CTR-rules.O2 | Line status |
-| S11 | CMP-attempt | CMP-pack | CTR-pack.O5 | Commit if marks or status changed |
-| S12 | CMP-attempt | CMP-attempt | internal | Allow marks when not paused. Elapsed ticks only then |
-| S13 | CMP-attempt | CMP-shell | CTR-attempt.E3 | Ready: puzzle id, grid, and line status |
+| S8 | CMP-attempt | CMP-rules | CTR-rules.O2 | Line status |
+| S9 | CMP-attempt | CMP-pack | CTR-pack.O5 | Commit if marks or status changed |
+| S10 | CMP-attempt | CMP-attempt | internal | Allow marks when not paused. Elapsed ticks only then |
+| S11 | CMP-attempt | CMP-shell | CTR-attempt.E3 | Ready: puzzle id, grid, and line status |
 
 ## Branches
 
 | ID | Condition | Next steps | Outcome |
 |----|-----------|------------|---------|
 | B1 | Unknown puzzle id at S1 | None | No change. The gallery stays |
-| B2 | Leave before the beat ends | None | No auto-cross. Hand off to [`leave.md`](leave.md) B1 |
-| B3 | Pause during the beat | S7 | The beat continues. Auto-cross waits for S7. Hand off pause cover to [`pause.md`](pause.md) B2; marks stay blocked until S7 and while paused |
+| B2 | Leave before the beat ends | None | No board write from the beat. Hand off to [`leave.md`](leave.md) B1 |
+| B3 | Pause during the beat | S7 | The beat continues. Marks stay blocked until S7 and while paused. Hand off pause cover to [`pause.md`](pause.md) B2 |
 
 ## Postconditions
 
 - The puzzle screen is showing.
-- The attempt holds loaded marks, any auto-cross, and restored elapsed.
-- The shell has the grid and line status from S13.
+- The attempt holds the loaded marks and restored elapsed; ready writes no marks, so a not-started attempt stays not started until the player's first fill or cross.
+- The shell has the grid and line status from S11.
 - Marks are allowed when S7 has passed and the puzzle is not paused.
-- The progress file changes only if auto-cross changed marks or status.
+- The progress file does not change during the ready edge: ready commits nothing while the board and status are unchanged.
 
 ## Diagram
 
@@ -61,17 +59,15 @@ sequenceDiagram
     attempt-->>shell: S5
     Note over shell: S6
     alt B2
-      Note over attempt: No auto-cross
+      Note over attempt: No board write
     else
       Note over attempt: B3 S7
       attempt->>rules: S8
-      Note over attempt: S9
-      attempt->>rules: S10
-      opt S11
+      opt S9
         attempt->>pack: O5
       end
-      Note over attempt: S12
-      attempt-->>shell: S13 E3
+      Note over attempt: S10
+      attempt-->>shell: S11 E3
     end
   end
 ```

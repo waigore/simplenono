@@ -21,7 +21,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 | ID | Outcome |
 |----|---------|
 | P1 | Marks do not stick during get-set-ready; after Ready, clear → fill → clear → cross transitions work. |
-| P2 | Empty-clue lines, if any, auto-cross still-clear cells after ready; attempt may become in progress. |
+| P2 | Empty-clue lines, if any, keep exactly the marks the loaded progress left after ready (all clear when fresh); the attempt stays not started until the player's first fill or cross. |
 | P3 | Wrong fills do not solve and do not enter a fail state; pause freezes elapsed and blocks marks. |
 
 ## Fail
@@ -33,4 +33,4 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 
 ## Evidence
 
-Default evidence rules. Note empty-clue auto-cross as N/A if the fixture has no empty clue lines.
+Default evidence rules. Note P2 as N/A if the fixture has no empty clue lines.

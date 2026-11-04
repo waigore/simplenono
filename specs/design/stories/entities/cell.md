@@ -19,7 +19,6 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../../.agents/spe
 | I2 | Solve uses fills only | PS1.3 |
 | I3 | Line error from fills | PS1.3 |
 | I4 | Get-set-ready blocks marks | PS1.4 |
-| I5 | Empty-clue auto-cross | PS1.5 |
 
 ## PS1: Cell marks
 
@@ -85,13 +84,13 @@ When the player attempts a mark on a cell
 Then the cell mark is unchanged
 ```
 
-### PS1.5: Empty-clue auto-cross
+### PS1.5: Ready leaves an all-clear line clear
 
-- **Proves**: S1, I5
+- **Proves**: S1
 
 ```gherkin
-Given a line with empty clue run list and a cell on that line still clear after ready
-When empty-clue auto-cross runs
-Then that cell is cross
-And attempt-status is in progress
+Given a clue line with empty clue run list and a not-started attempt
+When get-set-ready completes
+Then each cell on that line stays clear (S1)
+And attempt-status stays not started
 ```

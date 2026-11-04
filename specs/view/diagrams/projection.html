@@ -16,6 +16,7 @@
     svg text { font: 12px system-ui, sans-serif; fill: var(--fg); }
     .frame { fill: none; stroke: var(--fg); stroke-width: 2; }
     .safe { fill: none; stroke: var(--accent); stroke-dasharray: 6 4; }
+    .chrome { fill: var(--muted); fill-opacity: 0.18; stroke: none; }
     .aspect { fill: none; stroke: var(--muted); stroke-dasharray: 2 4; }
     .ray { stroke: var(--warn); stroke-width: 1.5; }
     .axis { stroke: var(--fg); stroke-width: 1.5; marker-end: url(#arrow); }
@@ -43,12 +44,16 @@
           <text x="44" y="34">PRJ.A1 aspect ~9:16–16:9; bars outside</text>
         </g>
         <g data-element="PRJ.V1">
-          <rect class="frame" x="80" y="60" width="480" height="240" />
+          <rect class="frame" x="80" y="60" width="480" height="224" />
           <text x="84" y="76">PRJ.V1 full size×size grid (+ clue chrome in framing)</text>
         </g>
+        <g data-element="PRJ.A3">
+          <rect class="chrome" x="80" y="284" width="480" height="16" />
+          <text x="84" y="314">PRJ.A3 system chrome band; drawn by the OS outside the game viewport</text>
+        </g>
         <g data-element="PRJ.A2">
-          <rect class="safe" x="104" y="72" width="432" height="216" />
-          <text x="108" y="282">PRJ.A2 safe ~90%; clues + grid inside</text>
+          <rect class="safe" x="104" y="72" width="432" height="200" />
+          <text x="330" y="270">PRJ.A2 safe ~90%; clues + grid inside</text>
         </g>
         <g data-element="SPC.A1">
           <line class="axis" x1="320" y1="180" x2="380" y2="180" />

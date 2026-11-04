@@ -27,6 +27,12 @@ const DEFAULT_TIMEOUT_MS := 10000
 ## the 500 ms latency bars, so a slow but real acknowledgement is measured, not cut off.
 const ACK_TIMEOUT_MS := 2000
 
+## Frames a layout expectation lets a resize settle in before it reads the gallery
+## (#539). A resize lays the 200-tile grid out again and each tile re-words its own
+## minimum height, so the settled layout is normally one or two passes; the bound keeps a
+## layout that never settles failing instead of hanging.
+const LAYOUT_SETTLE_FRAMES := 8
+
 var _spec: Dictionary = {}
 var _folder: IntegrationRunFolder
 var _session_id: String = ""
@@ -552,19 +558,18 @@ func _expect(step: Dictionary) -> bool:
 	return _passed()
 
 
-## A layout expectation: sizes the shell to [code]size[/code], crosses a frame, then
-## checks the gallery's columns and the tile picture's square shape. For a screen with
-## [code]fills[/code], it also checks the widest tile fits its column beside the page
-## margin, so every column is visible rather than overflowing the screen edge.
+## A layout expectation: sizes the shell to [code]size[/code], lets the gallery's tile
+## layout settle ([method _settle_layout]), then checks the gallery's columns and the
+## tile picture's square shape. For a screen with [code]fills[/code], it also checks the
+## widest tile fits its column beside the page margin, so every column is visible rather
+## than overflowing the screen edge.
 func _expect_layout(step: Dictionary) -> bool:
 	if _shell == null:
 		return _failed_with("no shell to lay out")
 	var wanted: Array = step["size"]
 	var screen := Vector2(float(wanted[0]), float(wanted[1]))
-	_shell.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-	_shell.size = screen
-	await _frames(1)
 	var gallery := _shell.gallery_screen()
+	await _settle_layout(gallery, screen)
 	var columns := gallery.columns()
 	var where := "%dx%d" % [int(screen.x), int(screen.y)]
 	if step.has("columns") and columns != int(step["columns"]):
@@ -572,6 +577,8 @@ func _expect_layout(step: Dictionary) -> bool:
 			"gallery columns at %s is %d, expected %d" % [where, columns, int(step["columns"])]
 		)
 	var picture := gallery.picture_aspect()
+	if picture <= 0.0:
+		return _failed_with("gallery drew no tile at %s, expected a square picture" % where)
 	if not is_equal_approx(picture, 1.0):
 		return _failed_with("gallery picture aspect at %s is %.3f, expected 1" % [where, picture])
 	if step.has("fills"):
@@ -585,6 +592,24 @@ func _expect_layout(step: Dictionary) -> bool:
 				)
 			)
 	return _passed()
+
+
+## Sizes the shell to [param screen] and crosses frames until the gallery's drawn tile
+## layout stops changing, within [constant LAYOUT_SETTLE_FRAMES]. One frame is not
+## enough to measure: a resize lays the 200-tile grid out again, and each tile holds its
+## picture square by rewording its own button's minimum height, which queues another
+## pass, so an early frame can still read the previous layout or a tile that has no size
+## yet (#539).
+func _settle_layout(gallery: GalleryScreen, screen: Vector2) -> void:
+	_shell.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_shell.size = screen
+	var previous := Vector2(-1.0, -1.0)
+	for _frame in LAYOUT_SETTLE_FRAMES:
+		await _frames(1)
+		var current := Vector2(gallery.picture_aspect(), gallery.widest_tile_width())
+		if current.x > 0.0 and current == previous:
+			return
+		previous = current
 
 
 func _probe(name: String, step: Dictionary) -> Variant:

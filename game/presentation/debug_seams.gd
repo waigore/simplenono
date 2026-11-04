@@ -239,8 +239,8 @@ func note_open(attempt: Attempt) -> void:
 	_telemetry.open()
 
 
-## [b]S4[/b]: [b]CTR-attempt[/b] E3. The beat's auto-cross may have committed (S11), so
-## the record is compared for a commit event.
+## [b]S4[/b]: [b]CTR-attempt[/b] E3. Ready writes no board change of its own, but the
+## record is compared for a commit event around the beat.
 func note_ready(_puzzle_id: String, _grid: MarkGrid, _status: LineStatusCheck) -> void:
 	if _telemetry == null:
 		return

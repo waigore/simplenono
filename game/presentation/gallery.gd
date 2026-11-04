@@ -41,6 +41,11 @@ const COPY_SETTINGS := "Settings"
 const NARROW_FRAME_WIDTH := 390.0
 const NARROW_PAGE_MARGIN := 20.0
 const NARROW_GRID_GAP := 10.0
+## [b]UI-gallery[/b] R2's tile body padding: `.puzzle-tile .meta { padding }` and
+## `.puzzle-tile .reset` draw 8 px on the mobile mockup's frame and 12 px on the
+## desktop one (#557).
+const NARROW_TILE_PAD := 8.0
+const WIDE_TILE_PAD := 12.0
 const WIDE_PAGE_MARGIN := 32.0
 const WIDE_GRID_GAP := 20.0
 
@@ -178,6 +183,12 @@ func grid_gap() -> float:
 	return clampf(size.x * NARROW_GRID_GAP / NARROW_FRAME_WIDTH, NARROW_GRID_GAP, WIDE_GRID_GAP)
 
 
+## The mockup's tile body padding at this frame width, held between the two mockups'
+## values (#557).
+func tile_padding() -> float:
+	return clampf(size.x * NARROW_TILE_PAD / NARROW_FRAME_WIDTH, NARROW_TILE_PAD, WIDE_TILE_PAD)
+
+
 ## The frame width the mockups' four columns need at this frame height. A phone reports
 ## physical pixels, so the breakpoint grows with the frame the way the type does.
 func wide_breakpoint() -> float:
@@ -301,6 +312,7 @@ func _rebuild() -> void:
 		stale.queue_free()
 		_tiles.erase(puzzle_id)
 	_update_completion()
+	_apply_frame_spacing()
 	_refresh_type_sizes()
 
 
@@ -329,14 +341,17 @@ func _update_layout() -> void:
 	_apply_frame_spacing()
 
 
-## R2's page margin and tile gap, from the frame width the way [code]UIS.T2[/code] takes
-## the chrome type from the frame height (#540).
+## R2's page margin, tile gap, and tile body padding, from the frame width the way
+## [code]UIS.T2[/code] takes the chrome type from the frame height (#540, #557).
 func _apply_frame_spacing() -> void:
 	var page := page_margin()
 	for side in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
 		_margin.add_theme_constant_override(side, int(roundf(page)))
 	_grid.add_theme_constant_override("h_separation", int(grid_gap()))
 	_grid.add_theme_constant_override("v_separation", int(grid_gap()))
+	var pad := int(roundf(tile_padding()))
+	for target: GalleryTile in _tiles.values():
+		target.set_body_padding(pad)
 
 
 ## Builds [code]EX.confirm[/code] last so it sits over the whole screen ([code]S1[/code]
