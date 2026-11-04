@@ -40,10 +40,16 @@ var _attempt: Attempt = null
 var _sampler := IntegrationSampler.new()
 var _marks: Dictionary = {}
 var _durations: Dictionary = {}
+## Measured legs whose action failed or whose `until` timed out: they have no lane time,
+## and their row reports them as not completed ([method _record_lane_time], #550).
+var _incomplete: Dictionary = {}
 var _steps: Array[Dictionary] = []
 var _driver_time: Array[String] = []
 var _flows_ok: Array[String] = []
 var _flows_failed: Array[String] = []
+## Per-flow readings a verifier cites from `results/<protocol>.json` (`flows.solve`),
+## written by the step that owns the flow (#550).
+var _flows: Dictionary = {}
 var _failed: bool = false
 var _failure: String = ""
 var _detail: String = ""
@@ -145,7 +151,7 @@ func _execute(step: Dictionary) -> bool:
 	elif kind == "paint":
 		result = await _paint()
 	elif kind == "solve":
-		result = await _solve()
+		result = await _solve(step)
 	elif kind == "pause":
 		result = _pause()
 	elif kind == "resume":
@@ -234,7 +240,8 @@ func _measure(step: Dictionary) -> bool:
 	var action_detail := _detail
 	await _frames(1)
 	var acknowledged := await _await_condition(step)
-	_durations[name] = float(Time.get_ticks_usec() - start) / 1000.0
+	var elapsed_ms := float(Time.get_ticks_usec() - start) / 1000.0
+	var completed := _record_lane_time(name, elapsed_ms, action_ok, acknowledged)
 	if not action_ok:
 		_detail = action_detail
 		return false
@@ -245,7 +252,18 @@ func _measure(step: Dictionary) -> bool:
 				% [name, int(step.get("timeout_ms", ACK_TIMEOUT_MS))]
 			)
 		)
-	return _passed()
+	return completed
+
+
+## Records a leg's wall clock only when the leg completed: its action ran and its
+## `until` condition was met. A failed leg never reaches `_durations`, so no `I6`/`I7`/`I8`
+## row can cite a millisecond figure that measured a leg which did not finish (#550).
+func _record_lane_time(name: String, elapsed_ms: float, action_ok: bool, completed: bool) -> bool:
+	if not action_ok or not completed:
+		_incomplete[name] = true
+		return false
+	_durations[name] = elapsed_ms
+	return true
 
 
 ## Waits until the step's [code]until[/code] condition holds, or the timeout expires.
@@ -356,23 +374,56 @@ func _paint_pass(size: int, rows_first: bool) -> bool:
 	return true
 
 
-func _solve() -> bool:
+## Fills every solution cell until the attempt solves, then judges the result with the
+## solved-state oracle (#550). The claim is the grid the solve carried compared with
+## `solution_fills`, never the grid's emptiness: a solve clears the grid
+## ([b]CTR-attempt[/b] S11) and a refused fill leaves it empty too, so emptiness cannot
+## tell "solved" from "nothing was written".
+##
+## The step owns its budget: [code]timeout_ms[/code] defaults to
+## [constant DEFAULT_TIMEOUT_MS]. The enclosing `measure` step's timeout is not the
+## budget, because this runs before its `until` wait.
+func _solve(step: Dictionary) -> bool:
 	if _attempt == null or _attempt.definition() == null:
 		return _failed_with("no puzzle open to solve")
-	var solved := false
-	for cell in _attempt.definition().solution_fills:
+	var definition: PuzzleDefinition = _attempt.definition()
+	var state := _attempt.state()
+	var marks_allowed := state != null and state.marks_allowed()
+	var deadline := Time.get_ticks_msec() + int(step.get("timeout_ms", DEFAULT_TIMEOUT_MS))
+	var refusals: Array = []
+	for cell in definition.solution_fills:
+		if Time.get_ticks_msec() >= deadline:
+			break
+		var open := _attempt.state() != null
 		var result := _attempt.mark(cell.x, cell.y, CellMark.Mark.FILL)
 		if result == null:
+			refusals.append(IntegrationSolveOracle.Refusal.new(cell, marks_allowed, open))
+			break
+		# A solve clears the attempt (S11) and carries the grid (S12), so the carried
+		# grid is the only evidence that the fill won.
+		if _attempt.state() == null or _attempt.solved_grid() != null:
+			break
+		if not CellMark.counts_as_fill(_attempt.state().marks().mark_at(cell.x, cell.y)):
+			refusals.append(
+				IntegrationSolveOracle.Refusal.new(cell, _attempt.state().marks_allowed(), open)
+			)
 			break
 		if _shell != null and _shell.puzzle_screen() != null:
 			_shell.puzzle_screen().show_mark_result(result)
-		if not _attempt.state().marks().has_any_mark():
-			solved = true
-			break
 		await get_tree().process_frame
-	_record_flow("solve", solved)
-	if not solved:
-		return _failed_with("filling the solution did not solve the puzzle")
+	var oracle := IntegrationSolveOracle.compare(
+		definition.id, _attempt.solved_grid(), definition.solution_fills, refusals
+	)
+	var passed := bool(oracle["ok"])
+	_record_flow("solve", passed)
+	# Every run carries the oracle's reading, so a verifier cites `flows.solve` rather
+	# than the absence of a failed step (`results/<protocol>.json`).
+	_flows["solve"] = {
+		"solved_grid": oracle["solved_grid"],
+		"solution_fills": oracle["solution_fills"],
+	}
+	if not passed:
+		return _failed_with(String(oracle["message"]))
 	return _passed()
 
 
@@ -606,6 +657,7 @@ func _finish() -> void:
 		"rows": _rows(),
 		"flows_ok": _flows_ok,
 		"flows_failed": _flows_failed,
+		"flows": _flows,
 		"driver_time": _driver_time,
 		"crashed": false,
 	}
@@ -696,18 +748,19 @@ func _row(invariant_id: String) -> Dictionary:
 		"I6":
 			passed = _duration_within("time-to-playable", TIME_TO_PLAYABLE_BAR_MS)
 			observation = (
-				"cold launch to the interactive shell home (gallery): %s"
-				% _duration_text("time-to-playable")
+				"cold launch to the interactive shell home (gallery): %s%s"
+				% [_duration_text("time-to-playable"), _incomplete_text("time-to-playable")]
 			)
 			artifact = _log_artifact()
 		"I7":
 			var transitions := _duration_names("transition:")
 			passed = _durations_within("transition:", ACK_BAR_MS)
 			observation = (
-				"longest transition among %s: %s"
+				"longest transition among %s: %s%s"
 				% [
 					", ".join(PackedStringArray(transitions)),
 					_duration_text(_longest("transition:")),
+					_incomplete_text("transition:"),
 				]
 			)
 			artifact = _log_artifact()
@@ -715,10 +768,11 @@ func _row(invariant_id: String) -> Dictionary:
 			var acks := _duration_names("ack:")
 			passed = _durations_within("ack:", ACK_BAR_MS)
 			observation = (
-				"longest acknowledgement among %s: %s"
+				"longest acknowledgement among %s: %s%s"
 				% [
 					", ".join(PackedStringArray(acks)),
 					_duration_text(_longest("ack:")),
+					_incomplete_text("ack:"),
 				]
 			)
 			artifact = _log_artifact()
@@ -791,6 +845,22 @@ func _window_p95_text() -> String:
 			)
 		)
 	return "%s (all windows %.2f ms)" % [", ".join(parts), _sampler.frame_time_p95_ms()]
+
+
+## The legs named [param prefix] that were measured but did not complete
+## ([method _record_lane_time]): their action failed or their `until` timed out. They
+## carry no time, so the row names them as not completed instead of printing a wall
+## clock a verifier could cite (#550).
+func _incomplete_text(prefix: String) -> String:
+	var names: Array[String] = []
+	for key in _incomplete.keys():
+		var name := String(key)
+		if name.begins_with(prefix) and not _durations.has(name):
+			names.append(name)
+	names.sort()
+	if names.is_empty():
+		return ""
+	return "; not completed: %s" % ", ".join(names)
 
 
 func _durations_within(prefix: String, bar_ms: float) -> bool:

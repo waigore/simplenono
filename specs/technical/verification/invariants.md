@@ -14,6 +14,8 @@ Parent: [`../verification.md`](../verification.md).
 | I6 | Cold launch to interactive gallery stays within `time-to-playable` | integration | App-start harness |
 | I7 | Gallery↔puzzle, puzzle→result, and result→gallery stay within `transition-latency` | integration | Each navigation protocol |
 | I8 | Open puzzle, settings toggle, and Back acknowledge within `response-delay` | integration | Each non-paint UI protocol |
+
+`I6`–`I8` lane times are observations only for a leg that completed: its `until` condition was met and its action did not fail. A failed leg still fails its row, which reports the leg as not completed and prints no millisecond figure, so no verifier can cite it.
 | I9 | Open, solve, reset, and back complete without a crash (`crash-free`) | integration | Each of those flows |
 | I10 | After kill mid-puzzle, next launch is gallery and reopen restores marks/elapsed (`resume-after-failure`) | integration | Kill-and-relaunch harness |
 | I11 | Severity-tagged error/crash logs, frame/hitch samples, and story-ID telemetry events are present (`runtime-signals`) | smoke | Debug build with S4 |

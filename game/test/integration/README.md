@@ -48,6 +48,14 @@ a missing protocol leaves its axes unobserved.
 `crash-free` is run-level: every I9 flow (open, solve, reset, back) must have run in
 at least one protocol in the folder without a failed flow or a crashed run.
 
+The `solve` step is judged by [`solve_oracle.gd`](solve_oracle.gd): it compares the grid
+the solve carried (`Attempt.solved_grid()`) with the puzzle's `solution_fills`, so an
+empty grid after a refused fill no longer passes. Each run records
+`flows.solve` = `{solved_grid, solution_fills}` in `results/<protocol>.json`; on
+failure the comparison's message is the step's `detail`. A `measure` leg's time counts
+only when the leg completed — its action ran and its `until` was met — so a failed leg
+fails its `I6`/`I7`/`I8` row as "not completed" with no millisecond figure.
+
 ### Known gaps on current `main`
 
 The game protocols drive what exists today and fail honestly where a screen or flow
@@ -93,6 +101,7 @@ folder's manifest stay the playtest record.
 |------|------|
 | [`run_protocol.gd`](run_protocol.gd) | Entry: parses arguments, gates the debug build, starts the supervisor |
 | [`supervisor.gd`](supervisor.gd) | Drives one step list, samples frames, reduces rows, writes evidence |
+| [`solve_oracle.gd`](solve_oracle.gd) | Solved-state comparison behind the `solve` step and its `flows.solve` record |
 | [`sampler.gd`](sampler.gd) | Per-frame capture and p95 / hitch reduction |
 | [`run_folder.gd`](run_folder.gd) | Run-folder writer and `results.md` summary |
 | [`protocol_catalog.gd`](protocol_catalog.gd) | Protocol ids, invariant → axis → bar table |
