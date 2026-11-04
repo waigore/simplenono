@@ -67,6 +67,20 @@ func _tap(control: Control) -> void:
 	_touch_event(center, false)
 
 
+## A held touch drag from [param from] to [param to], delivered the way the platform
+## sends it: one press, intermediate drags with their own relative motion, a release.
+func _push_drag(from: Vector2, to: Vector2) -> void:
+	_touch_event(from, true)
+	var steps := 8
+	for step in range(1, steps + 1):
+		var drag := InputEventScreenDrag.new()
+		drag.index = 0
+		drag.position = from.lerp(to, float(step) / steps)
+		drag.relative = (to - from) / steps
+		_shell.get_viewport().push_input(drag)
+	_touch_event(to, false)
+
+
 ## The puzzle's C3-C6 controls in [code]Controls[/code] table order (F1).
 func _puzzle_control(node_name: String) -> Control:
 	return _shell.puzzle_screen().get_node("%" + node_name) as Control
@@ -143,3 +157,22 @@ func test_b36_android_tap_on_puzzle_settings_pauses_into_settings() -> void:
 	attempt.advance(5)
 	assert_eq(attempt.state().elapsed(), elapsed_before, "S3: elapsed is frozen while paused")
 	assert_false(attempt.state().marks_allowed(), "S3: marks are blocked while paused")
+
+
+# #539 / R2: a touch drag that starts on a gallery tile scrolls the puzzle grid and
+# does not open that tile. R2 is "Scrollable free-order tiles for all 200 puzzles"
+# (specs/ux/screens/gallery.md), and C1 is a tap, not a hold.
+func test_gallery_tile_drag_scrolls_r2_without_opening_the_puzzle() -> void:
+	var gallery := _shell.gallery_screen()
+	var scroll := gallery.get_node("Margin/Layout/Scroll") as ScrollContainer
+	assert_not_null(scroll, "R2 is the screen's scroll region")
+	var tile := gallery.tile(PUZZLE_ID)
+	assert_not_null(tile, "the shipped pack shows pack-000")
+	var scroll_before := scroll.scroll_vertical
+
+	var origin := tile.open_button().get_global_rect().get_center()
+	_push_drag(origin, origin - Vector2(0.0, 240.0))
+
+	assert_gt(scroll.scroll_vertical, scroll_before, "#539: the drag scrolls R2")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "#539: a drag does not open a puzzle")
+	assert_null(_shell.attempt(), "#539: no attempt starts from a scroll")

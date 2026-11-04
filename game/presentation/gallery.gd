@@ -33,15 +33,36 @@ const COPY_GREETING := "Local pack"
 const COPY_TITLE := "Gallery"
 const COPY_SETTINGS := "Settings"
 
-## [b]UI-gallery[/b]'s page margin around the grid, from [code]gallery.tscn[/code]'s
-## [code]Margin[/code] container. The harness reads it to check a tile fits its column
-## at each edge screen.
-const PAGE_MARGIN := 16.0
+## [b]UI-gallery[/b]'s page margin and tile gap at the mockups' own frame. Both mockups
+## draw spacing as a share of the frame the way [code]UIS.T2[/code] draws type: 20 px
+## gutter and 10 px tile gap on the 390 px mobile frame, 32 px and 20 px on the desktop
+## one. A physical-pixel phone frame otherwise keeps the fixed values while the type
+## grows with it, which is what reads as cramped cards (#540).
+const NARROW_FRAME_WIDTH := 390.0
+const NARROW_PAGE_MARGIN := 20.0
+const NARROW_GRID_GAP := 10.0
+## [b]UI-gallery[/b] R2's tile body padding: `.puzzle-tile .meta { padding }` and
+## `.puzzle-tile .reset` draw 8 px on the mobile mockup's frame and 12 px on the
+## desktop one (#557).
+const NARROW_TILE_PAD := 8.0
+const WIDE_TILE_PAD := 12.0
+const WIDE_PAGE_MARGIN := 32.0
+const WIDE_GRID_GAP := 20.0
+
+## The narrowest page margin, so a degenerate frame still keeps its border.
+const MIN_PAGE_MARGIN := 8.0
 
 ## Tiles per row: the mobile mockup's two and the desktop mockup's four.
 const NARROW_COLUMNS := 2
 const WIDE_COLUMNS := 4
+
+## The four-column width read at the mobile mockup's own 844 px height. Both mockups are
+## device-independent frames, so the breakpoint follows the frame like [code]UIS.T2[/code]'s
+## type instead of a fixed pixel count: a phone reports ~1080 physical pixels across, which
+## a fixed 720 would take for a desktop and split into four cramped columns under
+## desktop-sized type (#540).
 const WIDE_WIDTH := 720.0
+const MOCKUP_FRAME_HEIGHT := 844.0
 
 var _pack: Pack
 var _entries: Array[GalleryEntry] = []
@@ -50,6 +71,7 @@ var _picture_for := Callable()
 var _confirm: ConfirmOverlay
 
 @onready var _background: ColorRect = %Background
+@onready var _margin: MarginContainer = $Margin
 @onready var _grid: GridContainer = %Grid
 @onready var _greeting: Label = %Greeting
 @onready var _title: Label = %Title
@@ -68,8 +90,8 @@ func _ready() -> void:
 	_style_settings_button()
 	_settings_button.pressed.connect(_on_settings_pressed)
 	_build_confirm()
-	resized.connect(_update_columns)
-	_update_columns()
+	resized.connect(_update_layout)
+	_update_layout()
 	get_viewport().size_changed.connect(_refresh_type_sizes)
 	_refresh_type_sizes()
 	if _pack != null:
@@ -147,6 +169,30 @@ func entries() -> Array[GalleryEntry]:
 ## Tiles per row, from the screen width.
 func columns() -> int:
 	return _grid.columns
+
+
+## The mockup's page margin at this frame width, held between the two mockups' values.
+func page_margin() -> float:
+	return clampf(
+		size.x * NARROW_PAGE_MARGIN / NARROW_FRAME_WIDTH, MIN_PAGE_MARGIN, WIDE_PAGE_MARGIN
+	)
+
+
+## The mockup's tile gap at this frame width, held between the two mockups' values.
+func grid_gap() -> float:
+	return clampf(size.x * NARROW_GRID_GAP / NARROW_FRAME_WIDTH, NARROW_GRID_GAP, WIDE_GRID_GAP)
+
+
+## The mockup's tile body padding at this frame width, held between the two mockups'
+## values (#557).
+func tile_padding() -> float:
+	return clampf(size.x * NARROW_TILE_PAD / NARROW_FRAME_WIDTH, NARROW_TILE_PAD, WIDE_TILE_PAD)
+
+
+## The frame width the mockups' four columns need at this frame height. A phone reports
+## physical pixels, so the breakpoint grows with the frame the way the type does.
+func wide_breakpoint() -> float:
+	return WIDE_WIDTH * maxf(size.y, 1.0) / MOCKUP_FRAME_HEIGHT
 
 
 ## The widest drawn tile among the current entries, so a test can check every column
@@ -266,6 +312,7 @@ func _rebuild() -> void:
 		stale.queue_free()
 		_tiles.erase(puzzle_id)
 	_update_completion()
+	_apply_frame_spacing()
 	_refresh_type_sizes()
 
 
@@ -289,8 +336,22 @@ func _picture_for_entry(entry: GalleryEntry) -> Texture2D:
 	return null
 
 
-func _update_columns() -> void:
-	_grid.columns = WIDE_COLUMNS if size.x >= WIDE_WIDTH else NARROW_COLUMNS
+func _update_layout() -> void:
+	_grid.columns = WIDE_COLUMNS if size.x >= wide_breakpoint() else NARROW_COLUMNS
+	_apply_frame_spacing()
+
+
+## R2's page margin, tile gap, and tile body padding, from the frame width the way
+## [code]UIS.T2[/code] takes the chrome type from the frame height (#540, #557).
+func _apply_frame_spacing() -> void:
+	var page := page_margin()
+	for side in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
+		_margin.add_theme_constant_override(side, int(roundf(page)))
+	_grid.add_theme_constant_override("h_separation", int(grid_gap()))
+	_grid.add_theme_constant_override("v_separation", int(grid_gap()))
+	var pad := int(roundf(tile_padding()))
+	for target: GalleryTile in _tiles.values():
+		target.set_body_padding(pad)
 
 
 ## Builds [code]EX.confirm[/code] last so it sits over the whole screen ([code]S1[/code]

@@ -13,11 +13,13 @@ const TEST_PATH := "user://progress-gallery-test.cfg"
 const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
 var _gallery: GalleryScreen
+var _window_size := Vector2i.ZERO
 
 
 func before_each():
 	_remove(TEMP_PATH)
 	_remove(TEST_PATH)
+	_window_size = get_tree().root.size
 	var scene := load(GALLERY_SCENE) as PackedScene
 	assert_not_null(scene, "gallery scene loads")
 	_gallery = scene.instantiate() as GalleryScreen
@@ -27,6 +29,7 @@ func before_each():
 func after_each():
 	_remove(TEMP_PATH)
 	_remove(TEST_PATH)
+	get_tree().root.size = _window_size
 
 
 func _remove(path: String) -> void:
@@ -409,9 +412,160 @@ func test_every_column_fits_an_edge_width() -> void:
 	for width: float in [390.0, 1100.0]:
 		_gallery.size = Vector2(width, 844.0)
 		await get_tree().process_frame
-		var room := (width - 2.0 * GalleryScreen.PAGE_MARGIN) / float(_gallery.columns())
+		var room := (width - 2.0 * _gallery.page_margin()) / float(_gallery.columns())
 		assert_lte(
 			_gallery.widest_tile_width(),
 			room + 0.5,
 			"the widest tile fits %d columns at %d px" % [_gallery.columns(), int(width)]
 		)
+
+
+# R2 layout (#540): a phone reports physical pixels, so the mockups' frame is much larger
+# than the 390 x 844 they draw at. The breakpoint has to follow the frame the way the
+# chrome type does; a fixed 720 px reads the phone as a desktop and splits the grid into
+# four cramped columns under desktop-sized type.
+func test_a_phone_frame_keeps_the_mobile_two_columns() -> void:
+	_use_frame(Vector2i(1080, 2340))
+	_present(ConfigFile.new())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(1080.0, 2340.0)
+	await _settle()
+	assert_eq(_gallery.columns(), 2, "the mobile mockup's two columns on a phone frame")
+	assert_gt(_gallery.wide_breakpoint(), 1080.0, "four columns need a desktop-width frame")
+	assert_true(_gallery.tile("pack-000").chrome_font_size() > 20, "type grew with the frame")
+
+
+# R2 (#540): each tile's copy stays inside its own card. The chrome type follows the
+# frame while the tile follows its column, so a long status at a phone frame used to draw
+# across the neighbouring tile; every label is now clipped to the card.
+func test_tile_copy_never_draws_outside_its_card() -> void:
+	_use_frame(Vector2i(1080, 2340))
+	var seeded := ConfigFile.new()
+	# A replay draws the longest R2 status: Done · In progress, plus the best time.
+	seeded.set_value("pack-003", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-003", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-003", ProgressFile.MARKS_KEY, _marks(15))
+	seeded.set_value("pack-003", ProgressFile.PERSONAL_BEST_KEY, 541)
+	_gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return _texture())
+	_present(seeded)
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(1080.0, 2340.0)
+	await _settle()
+	var target := _gallery.tile("pack-003")
+	var card := target.get_global_rect()
+	var labels := target.find_children("*", "Label", true, false)
+	assert_eq(labels.size(), 3, "title, status, and best are drawn")
+	for label: Label in labels:
+		assert_true(label.clip_text, "'%s' is clipped to its card" % label.text)
+		var drawn := label.get_global_rect()
+		assert_lte(
+			drawn.position.x + drawn.size.x,
+			card.position.x + card.size.x + 0.5,
+			"copy stays inside the card"
+		)
+		assert_gte(drawn.position.x, card.position.x - 0.5, "copy starts inside the card")
+
+
+# R2 (#540): the picture is the mockup's square, spans the card's inner width, and is
+# centered across the card, so no side gap or drift makes it look off-center.
+func test_tile_picture_is_square_and_centered_on_a_phone_frame() -> void:
+	_use_frame(Vector2i(1080, 2340))
+	_present(ConfigFile.new())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(1080.0, 2340.0)
+	await _settle()
+	var target := _gallery.tile("pack-000")
+	var thumb := _thumb_of(target)
+	var picture := thumb.get_global_rect()
+	var card := target.get_global_rect()
+	assert_almost_eq(picture.size.x, picture.size.y, 0.5, "the picture is square")
+	assert_almost_eq(picture.size.x, card.size.x, 1.0, "the picture spans the card's inner width")
+	assert_almost_eq(picture.get_center().x, card.get_center().x, 1.0, "centered across the card")
+
+
+# R2 (#540): cards are spaced by the mockups' share of the frame, not a fixed pixel gap:
+# 20 px gutter and 10 px gap at the mobile mockup's 390 px, growing to the desktop
+# mockup's 32 px and 20 px on a wider frame.
+func test_grid_spacing_follows_the_mockup_ratios() -> void:
+	_present(ConfigFile.new())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	var margin := _gallery.get_node("Margin") as MarginContainer
+	var grid := _gallery.get_node("%Grid") as GridContainer
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	assert_almost_eq(_gallery.page_margin(), 20.0, 0.5, "the mobile mockup's gutter")
+	assert_almost_eq(_gallery.grid_gap(), 10.0, 0.5, "the mobile mockup's tile gap")
+	assert_eq(margin.get_theme_constant("margin_left"), 20, "the gutter is applied")
+	assert_eq(grid.get_theme_constant("h_separation"), 10, "the tile gap is applied")
+	_gallery.size = Vector2(1080.0, 900.0)
+	await _settle()
+	assert_almost_eq(_gallery.grid_gap(), 20.0, 0.5, "the desktop mockup's tile gap")
+	assert_eq(
+		margin.get_theme_constant("margin_right"), 32, "the gutter stops at the desktop value"
+	)
+
+
+# R2 (#557): the tile body is inset the mockups' padding on every side, and the Reset
+# row matches it: 8 px at the mobile mockup's 390 px frame, 12 px held at the desktop
+# one, so the metadata copy never draws flush against the card's border.
+func test_tile_body_padding_follows_the_mockup_ratios() -> void:
+	var seeded := ConfigFile.new()
+	# A replay draws the Reset row next to the three metadata labels.
+	seeded.set_value("pack-003", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-003", ProgressFile.MARKS_KEY, _marks(15))
+	seeded.set_value("pack-003", ProgressFile.PERSONAL_BEST_KEY, 541)
+	_present(seeded)
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	assert_almost_eq(_gallery.tile_padding(), 8.0, 0.5, "the mobile mockup's padding")
+	_assert_tile_copy_inset(8, "the mobile mockup's padding is applied")
+	_gallery.size = Vector2(1080.0, 900.0)
+	await _settle()
+	assert_almost_eq(_gallery.tile_padding(), 12.0, 0.5, "the desktop mockup's padding")
+	_assert_tile_copy_inset(12, "the desktop mockup's padding is applied")
+
+
+func _assert_tile_copy_inset(expected: int, why: String) -> void:
+	var target := _gallery.tile("pack-003")
+	assert_eq(target.body_padding(), expected, why)
+	var card := target.get_global_rect()
+	for label: Label in target.find_children("*", "Label", true, false):
+		var drawn := label.get_global_rect()
+		assert_lte(
+			drawn.position.x + drawn.size.x,
+			card.position.x + card.size.x - float(expected) + 0.5,
+			"copy ends inside the card's padding"
+		)
+		assert_gte(
+			drawn.position.x,
+			card.position.x + expected - 0.5,
+			"copy starts inside the card's padding"
+		)
+	assert_true(target.reset_visible(), "the replay tile draws the Reset row")
+	var reset := target.reset_button().get_global_rect()
+	assert_lte(
+		reset.position.x + reset.size.x,
+		card.position.x + card.size.x - float(expected) + 0.5,
+		"Reset stays inside the same padding"
+	)
+
+
+## Resizes the running window, so [code]UIS.T2[/code]'s frame-relative type is read from
+## a phone-sized frame instead of the harness's small headless one.
+func _use_frame(frame: Vector2i) -> void:
+	get_tree().root.size = frame
+
+
+## Lets the frame resize, the gallery's deferred column pass, and its tile sizing run.
+func _settle() -> void:
+	for _frame in 6:
+		await get_tree().process_frame
+
+
+## The tile's [GalleryThumb], found by type so the tile's private layout stays private.
+func _thumb_of(target: GalleryTile) -> GalleryThumb:
+	for node in target.find_children("*", "Control", true, false):
+		if node is GalleryThumb:
+			return node as GalleryThumb
+	return null
