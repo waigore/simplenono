@@ -19,7 +19,7 @@ run) drives the whole `PTU-gallery-layout` step list at one viewport per run:
 
 All input goes through the real routes: `Input.parse_input_event` mouse for taps (the desktop host is not a product
 platform; the touch path is the product's) and viewport-pushed `InputEventScreenTouch`/`ScreenDrag` for drags, the
-same synthetic route [`scroll_drag_release.gd`](../../../../../../game/presentation/scroll_drag_release.gd) serves.
+same synthetic route [`scroll_drag_release.gd`](../../../../../game/presentation/scroll_drag_release.gd) serves.
 
 ## Judgement anchors and tolerances
 

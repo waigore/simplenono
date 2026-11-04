@@ -18,7 +18,7 @@ the transition legs ride the shell's re-layout on return (`transition-latency`),
 re-layout (`response-delay`), and the open/back flows climb through the same path (`crash-free`).
 
 No existing passing record covers `game/` at `ee1d2fd`. The nearest, #573's record at `38937ec`
-([`issue-573/2026-11-05-verify`](../issue-573/2026-11-05-verify/manifest.md)), diffs against this tree in
+([`issue-573/2026-11-05-verify`](../../issue-573/2026-11-05-verify/manifest.md)), diffs against this tree in
 `game/presentation/gallery.gd` and `game/test/test_gallery.gd`, so the reuse rule in
 [`docs/quality/evidence/README.md`](../../README.md) does not apply and this is a fresh run rather than a reuse.
 
