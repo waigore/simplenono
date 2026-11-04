@@ -1,7 +1,7 @@
-"""Tests for picture_slice.py: target parsing, board configs, and prompt composition.
+"""Tests for picture_slice.py: attempt plans, target parsing, and bookkeeping.
 
-The script's network and derive steps are not exercised here; these tests cover the
-pure helpers that decide the board size and the prompt a slice sends.
+The script's network and derive steps are not exercised here; these tests cover
+the pure helpers that read the attempt plan and decide the board a slice derives.
 """
 from __future__ import annotations
 
@@ -17,71 +17,92 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import picture_slice  # noqa: E402
 
 
-class ParseTargetTest(unittest.TestCase):
-    def test_bare_class_uses_the_default_board(self) -> None:
-        self.assertEqual(picture_slice.parse_target("pack-004=multi"),
-                         ("pack-004", "multi", picture_slice.DEFAULT_BOARD))
+def plan(size_board: str = "10x10") -> dict:
+    return {"pack-004": {"board": size_board, "prompts": ["p1", "p2"]},
+            "pack-010": {"board": "15x15", "prompts": ["p1"]}}
 
-    def test_board_prefix_selects_that_board(self) -> None:
-        self.assertEqual(picture_slice.parse_target("pack-010=15x15:single"),
-                         ("pack-010", "single", "15x15"))
+
+class ParseTargetTest(unittest.TestCase):
+    def test_bare_key_uses_the_plan_board(self) -> None:
+        self.assertEqual(picture_slice.parse_target("pack-010", plan()),
+                         ("pack-010", "15x15", ["p1"]))
+
+    def test_known_board_default_applies_when_the_plan_omits_it(self) -> None:
+        raw = {"pack-004": {"prompts": ["p1", "p2"]}}
+        self.assertEqual(picture_slice.parse_target("pack-004", raw),
+                         ("pack-004", picture_slice.DEFAULT_BOARD, ["p1", "p2"]))
+
+    def test_board_prefix_overrides_the_plan_board(self) -> None:
+        self.assertEqual(picture_slice.parse_target("pack-004=15x15", plan()),
+                         ("pack-004", "15x15", ["p1", "p2"]))
 
     def test_unknown_board_is_rejected(self) -> None:
         with self.assertRaises(SystemExit):
-            picture_slice.parse_target("pack-010=24x24:single")
-
-    def test_unknown_class_is_rejected(self) -> None:
-        with self.assertRaises(SystemExit):
-            picture_slice.parse_target("pack-010=15x15:huge")
+            picture_slice.parse_target("pack-004=24x24", plan())
 
     def test_missing_key_is_rejected(self) -> None:
         with self.assertRaises(SystemExit):
-            picture_slice.parse_target("=15x15:single")
+            picture_slice.parse_target("=15x15", plan())
+
+    def test_unknown_key_is_rejected(self) -> None:
+        with self.assertRaises(SystemExit):
+            picture_slice.parse_target("pack-130", plan())
 
 
-class BoardConfigTest(unittest.TestCase):
-    def test_every_board_has_a_derive_size_matching_its_name(self) -> None:
-        for name, config in picture_slice.BOARDS.items():
-            self.assertEqual(config["size"], int(name.split("x")[0]), name)
-            self.assertTrue(config["single"], name)
-            self.assertTrue(config["multi"], name)
+class AttemptPlanTest(unittest.TestCase):
+    def write_plan(self, text: str, tmp: Path) -> Path:
+        path = tmp / "attempt_prompts.json"
+        path.write_text(text)
+        return picture_slice.load_attempt_plan(path)
 
-    def test_prompts_name_their_own_board(self) -> None:
-        for name in picture_slice.BOARDS:
-            for klass in ("single", "multi"):
-                for prompt in picture_slice.prompts_for(klass, name):
-                    self.assertIn(f"readable as a {name} icon", prompt, (name, klass))
+    def test_reads_boards_and_prompts(self) -> None:
+        import json
+        import tempfile
 
-    def test_15x15_single_leads_with_a_single_outline(self) -> None:
-        first = picture_slice.prompts_for("single", "15x15")[0]
-        self.assertIn("the outline of", first)
-        self.assertIn("pale background", first)
+        with tempfile.TemporaryDirectory() as tmp:
+            loaded = self.write_plan(json.dumps(plan()), Path(tmp))
+        self.assertEqual(loaded, plan())
 
-    def test_15x15_class_sets_differ_and_multi_keeps_a_second_mass(self) -> None:
-        single = picture_slice.prompts_for("single", "15x15")
-        multi = picture_slice.prompts_for("multi", "15x15")
-        self.assertNotEqual(single, multi)
-        self.assertTrue(any("gap between them" in prompt for prompt in multi))
+    def test_board_defaults_to_the_default_board(self) -> None:
+        import json
+        import tempfile
 
-    def test_20x20_single_opens_with_a_frame_filling_mass(self) -> None:
-        first = picture_slice.prompts_for("single", "20x20")[0]
-        self.assertIn("filling most of the frame", first)
-        self.assertIn("5 percent of the frame width", first)
-        self.assertTrue(any("the outline of" in prompt
-                            for prompt in picture_slice.prompts_for("single", "20x20")))
+        with tempfile.TemporaryDirectory() as tmp:
+            loaded = self.write_plan('{"pack-004": {"prompts": ["p1"]}}', Path(tmp))
+        self.assertEqual(loaded["pack-004"]["board"], picture_slice.DEFAULT_BOARD)
 
-    def test_20x20_class_sets_differ_and_multi_keeps_a_second_mass(self) -> None:
-        single = picture_slice.prompts_for("single", "20x20")
-        multi = picture_slice.prompts_for("multi", "20x20")
-        self.assertNotEqual(single, multi)
-        self.assertTrue(any("gap between them" in prompt for prompt in multi))
-        self.assertTrue(all("20x20" in prompt for prompt in single + multi))
+    def test_unknown_board_is_rejected(self) -> None:
+        import json
+        import tempfile
 
-    def test_compose_carries_master_and_negative(self) -> None:
-        composed = picture_slice.compose("a shape", "15x15")
-        self.assertIn("readable at 15x15", composed)
-        self.assertIn(picture_slice.NEGATIVE, composed)
-        self.assertTrue(composed.startswith("a shape. "))
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(SystemExit):
+                self.write_plan(json.dumps({"pack-004": {"board": "24x24",
+                                                         "prompts": ["p1"]}}), Path(tmp))
+
+    def test_missing_prompts_are_rejected(self) -> None:
+        import json
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(SystemExit):
+                self.write_plan('{"pack-004": {"board": "10x10"}}', Path(tmp))
+
+    def test_empty_attempt_prompts_are_rejected(self) -> None:
+        import json
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(SystemExit):
+                self.write_plan('{"pack-004": {"board": "10x10", "prompts": ["p1", ""]}}',
+                                Path(tmp))
+
+    def test_empty_plan_is_rejected(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(SystemExit):
+                self.write_plan("{}", Path(tmp))
 
 
 class TransientErrorTest(unittest.TestCase):
