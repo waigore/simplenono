@@ -110,10 +110,10 @@ func _listen_ready(attempt: Attempt) -> Array:
 	return emissions
 
 
-# PS1.1: Fresh ready
+# PS1.1 / cell PS1.5: Fresh ready
 func test_ready_leaves_the_board_as_loaded_progress_and_not_started():
-	# PS1.1: not started, marks-allowed false, elapsed 0 → ready: marks allowed, the
-	# board is unchanged, not started, elapsed 0
+	# PS1.1 / cell.md PS1.5: not started, marks-allowed false, elapsed 0 → ready: marks
+	# allowed, the board is unchanged, not started, elapsed 0
 	var attempt := _opened()
 	var state := attempt.state()
 	assert_eq(state.attempt_status(), AttemptState.Status.NOT_STARTED)
