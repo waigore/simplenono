@@ -31,7 +31,7 @@ as acceptance evidence for another issue.
 
 Capture: **42 checks `capture: PASS`, 0 `capture: FAIL`**, final line
 `capture: RESULT pass (4 shots, 42 checks, 0 failed)`, exit 0 —
-[`capture.log`](capture.log) (the same file is the wiki page's `logs/capture.log`).
+`logs/capture.log` on the run's wiki page.
 
 ## New in-game/interface failures found by this run (filed here; not fixed in this task)
 
@@ -54,7 +54,7 @@ None. The screenshot for every judged state and the logs are on the wiki page fo
 | Artifact | Path |
 |----------|------|
 | Probe (run from the repo root, project given by `--path game`) | [`../probe/probe_gallery_r2_baseline.gd`](../probe/probe_gallery_r2_baseline.gd) |
-| Capture console (42 PASS, final RESULT) | [`capture.log`](capture.log) |
+| Capture console (42 PASS, final RESULT) | wiki page, `playtest/issue-545/2026-11-04-r2-baseline/logs/` |
 | Screenshots (4 frames) | wiki page, `playtest/issue-545/2026-11-04-r2-baseline/screenshots/` |
 | Logs | wiki page, `playtest/issue-545/2026-11-04-r2-baseline/logs/` |
 
