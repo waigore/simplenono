@@ -80,11 +80,15 @@
       color: var(--muted);
       max-width: 100%;
     }
+    /* The drawn frame is the test viewport itself (360×640 / 640×360 CSS px),
+       border included: 16 dp margin per side for content, then one R1 band
+       (36), one R3 band (36), and two 12 gaps, leaving the code's R2 rect —
+       328×512 portrait, 608×232 landscape. */
     .frame {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      padding: 15px 16px 13px;
+      padding: 16px;
       border: 1px solid var(--line);
       background: var(--bg);
     }
@@ -308,12 +312,12 @@
               <span class="elapsed" aria-label="Elapsed">1:24</span>
             </header>
             <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
-              <div class="viewport-label">portrait viewport after R1 and R3 · R2 326×514</div>
+              <div class="viewport-label">portrait viewport after R1 and R3 · R2 328×512</div>
               <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
 
           <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:26px;--clue-w:42px;--clue-h:52px;--rows:10;--cols:10;--clue-font:13px">
+          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:26px;--clue-w:calc(1.6 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:10;--cols:10;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -479,7 +483,7 @@
           </figure>
           <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:18px;--clue-w:37px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:18px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:15;--cols:15;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -807,7 +811,7 @@
           </figure>
           <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:13px;--clue-w:27px;--clue-h:26px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:14px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:20;--cols:20;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -1351,7 +1355,7 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 326×514 · board frame 26/18/13 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 328×512 · board frame 26/18/14 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
@@ -1359,7 +1363,7 @@
               <tbody>
             <tr><td>10×10</td><td>26 px</td><td>302×312 px</td><td>260 px</td></tr>
             <tr><td>15×15</td><td>18 px</td><td>307×306 px</td><td>270 px</td></tr>
-            <tr><td>20×20</td><td>13 px</td><td>287×286 px</td><td>260 px</td></tr>
+            <tr><td>20×20</td><td>14 px</td><td>309×308 px</td><td>280 px</td></tr>
               </tbody>
             </table>
           </details>
@@ -1375,12 +1379,12 @@
               <span class="elapsed" aria-label="Elapsed">1:24</span>
             </header>
             <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
-              <div class="viewport-label">landscape viewport after R1 and R3 · R2 606×234</div>
+              <div class="viewport-label">landscape viewport after R1 and R3 · R2 608×232</div>
               <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
 
           <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:18px;--clue-w:29px;--clue-h:36px;--rows:10;--cols:10;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:18px;--clue-w:calc(1.6 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:10;--cols:10;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -1546,7 +1550,7 @@
           </figure>
           <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:12px;--clue-w:25px;--clue-h:24px;--rows:15;--cols:15;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:12px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:15;--cols:15;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -1874,7 +1878,7 @@
           </figure>
           <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:9px;--clue-w:19px;--clue-h:18px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:9px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:20;--cols:20;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -2418,7 +2422,7 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 606×234 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 608×232 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
@@ -2448,12 +2452,12 @@
               <span class="elapsed" aria-label="Elapsed">0:00</span>
             </header>
             <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
-              <div class="viewport-label">portrait viewport after R1 and R3 · R2 326×514</div>
+              <div class="viewport-label">portrait viewport after R1 and R3 · R2 328×512</div>
               <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
 
           <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:26px;--clue-w:42px;--clue-h:52px;--rows:10;--cols:10;--clue-font:13px">
+          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:26px;--clue-w:calc(1.6 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:10;--cols:10;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -2619,7 +2623,7 @@
           </figure>
           <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:18px;--clue-w:37px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:18px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:15;--cols:15;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -2947,7 +2951,7 @@
           </figure>
           <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:13px;--clue-w:27px;--clue-h:26px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:14px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:20;--cols:20;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -3492,7 +3496,7 @@
               <button type="button" class="tool" data-control="C5" disabled>Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 326×514 · board frame 26/18/13 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 328×512 · board frame 26/18/14 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
@@ -3500,7 +3504,7 @@
               <tbody>
             <tr><td>10×10</td><td>26 px</td><td>302×312 px</td><td>260 px</td></tr>
             <tr><td>15×15</td><td>18 px</td><td>307×306 px</td><td>270 px</td></tr>
-            <tr><td>20×20</td><td>13 px</td><td>287×286 px</td><td>260 px</td></tr>
+            <tr><td>20×20</td><td>14 px</td><td>309×308 px</td><td>280 px</td></tr>
               </tbody>
             </table>
           </details>
@@ -3516,12 +3520,12 @@
               <span class="elapsed" aria-label="Elapsed">0:00</span>
             </header>
             <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
-              <div class="viewport-label">landscape viewport after R1 and R3 · R2 606×234</div>
+              <div class="viewport-label">landscape viewport after R1 and R3 · R2 608×232</div>
               <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
 
           <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:18px;--clue-w:29px;--clue-h:36px;--rows:10;--cols:10;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="10x10 board" style="--cell:18px;--clue-w:calc(1.6 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:10;--cols:10;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -3687,7 +3691,7 @@
           </figure>
           <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:12px;--clue-w:25px;--clue-h:24px;--rows:15;--cols:15;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="15x15 board" style="--cell:12px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:15;--cols:15;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -4015,7 +4019,7 @@
           </figure>
           <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:9px;--clue-w:19px;--clue-h:18px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board" style="--cell:9px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:20;--cols:20;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -4560,7 +4564,7 @@
               <button type="button" class="tool" data-control="C5" disabled>Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 606×234 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 608×232 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
@@ -4590,12 +4594,12 @@
               <span class="elapsed" aria-label="Elapsed">1:24</span>
             </header>
             <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
-              <div class="viewport-label">portrait viewport after R1 and R3 · R2 326×514</div>
+              <div class="viewport-label">portrait viewport after R1 and R3 · R2 328×512</div>
               <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
 
           <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board pausing board" style="--cell:26px;--clue-w:42px;--clue-h:52px;--rows:10;--cols:10;--clue-font:13px">
+          <div class="board-grid" role="grid" aria-label="10x10 board pausing board" style="--cell:26px;--clue-w:calc(1.6 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:10;--cols:10;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -4761,7 +4765,7 @@
           </figure>
           <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board pausing board" style="--cell:18px;--clue-w:37px;--clue-h:36px;--rows:15;--cols:15;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="15x15 board pausing board" style="--cell:18px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:15;--cols:15;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -5089,7 +5093,7 @@
           </figure>
           <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board pausing board" style="--cell:13px;--clue-w:27px;--clue-h:26px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board pausing board" style="--cell:14px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:20;--cols:20;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -5633,7 +5637,7 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 326×514 · board frame 26/18/13 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 328×512 · board frame 26/18/14 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
@@ -5641,7 +5645,7 @@
               <tbody>
             <tr><td>10×10</td><td>26 px</td><td>302×312 px</td><td>260 px</td></tr>
             <tr><td>15×15</td><td>18 px</td><td>307×306 px</td><td>270 px</td></tr>
-            <tr><td>20×20</td><td>13 px</td><td>287×286 px</td><td>260 px</td></tr>
+            <tr><td>20×20</td><td>14 px</td><td>309×308 px</td><td>280 px</td></tr>
               </tbody>
             </table>
           </details>
@@ -5657,12 +5661,12 @@
               <span class="elapsed" aria-label="Elapsed">1:24</span>
             </header>
             <div class="board-wrap" data-region="R2" data-show="10" aria-label="Board">
-              <div class="viewport-label">landscape viewport after R1 and R3 · R2 606×234</div>
+              <div class="viewport-label">landscape viewport after R1 and R3 · R2 608×232</div>
               <div class="board-picker" aria-label="Puzzle size shown in R2"><button type="button" data-pick="10">10&times;10</button><button type="button" data-pick="15">15&times;15</button><button type="button" data-pick="20">20&times;20</button></div>
 
           <figure class="board-sample" data-size="10">
             <figcaption>10×10</figcaption>
-          <div class="board-grid" role="grid" aria-label="10x10 board pausing board" style="--cell:18px;--clue-w:29px;--clue-h:36px;--rows:10;--cols:10;--clue-font:9px">
+          <div class="board-grid" role="grid" aria-label="10x10 board pausing board" style="--cell:18px;--clue-w:calc(1.6 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:10;--cols:10;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -5828,7 +5832,7 @@
           </figure>
           <figure class="board-sample" data-size="15">
             <figcaption>15×15</figcaption>
-          <div class="board-grid" role="grid" aria-label="15x15 board pausing board" style="--cell:12px;--clue-w:25px;--clue-h:24px;--rows:15;--cols:15;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="15x15 board pausing board" style="--cell:12px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:15;--cols:15;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -6156,7 +6160,7 @@
           </figure>
           <figure class="board-sample" data-size="20">
             <figcaption>20×20</figcaption>
-          <div class="board-grid" role="grid" aria-label="20x20 board pausing board" style="--cell:9px;--clue-w:19px;--clue-h:18px;--rows:20;--cols:20;--clue-font:7px">
+          <div class="board-grid" role="grid" aria-label="20x20 board pausing board" style="--cell:9px;--clue-w:calc(2.08 * var(--cell));--clue-h:calc(2.0 * var(--cell));--rows:20;--cols:20;--clue-font:max(7px, calc(var(--cell) / 2))">
             <div class="corner" role="presentation"></div>
             <div class="clue col" role="columnheader" aria-label="column 1 clue empty">
               <span class="run" aria-hidden="true">&middot;</span>
@@ -6700,7 +6704,7 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 606×234 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 608×232 · 18/12/9 px cells, the same box as the code-side landscape rect · no scroll, pan, or zoom</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
