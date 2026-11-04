@@ -144,6 +144,18 @@ func content_size() -> Vector2:
 	return _content_size
 
 
+## The column clue bar's height in cell units: what a cell of a given side needs
+## above the grid, so a test can check a readability target against the rect.
+func column_clue_units() -> float:
+	return _column_clue_units
+
+
+## The row clue bar's width in cell units, the horizontal counterpart of
+## [method column_clue_units].
+func row_clue_units() -> float:
+	return _row_clue_units
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		_relayout()
