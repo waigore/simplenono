@@ -21,7 +21,7 @@ A quality run whose axes are observed by the [integration harness](../../../game
 
 The harness never writes `manifest.md`: that stays the evaluator's record of the issue, mode, and deliverable commit. `run-quality-evaluators` cites `integration/results.md` for the observation path of each axis.
 
-Each raw result also carries `flows`: [`flows.solve`](../../../game/test/integration/solve_oracle.gd) is the solved-state oracle's reading — `solved_grid` is `pass`, `absent`, `mismatch`, or `refused`, and `solution_fills` is `match` or the cells left unfilled. It is a citation of the harness's own record, not a new invariant row. A lane time in `I6`–`I8` is an observation only when its leg completed (`specs/technical/verification/invariants.md`); a failed leg is reported as not completed with no millisecond figure.
+Each raw result also carries `flows`: [`flows.solve`](../../../game/test/integration/solve_oracle.gd) is the solved-state oracle's reading — `solved_grid` is `pass`, `absent`, `mismatch`, or `refused`, and `solution_fills` is `match` or the cells left unfilled. It is a citation of the harness's own record, not a new invariant row. A lane time in `I6`–`I8` is an observation only when its leg completed (`specs/technical/verification.md` H5); a failed leg is reported as not completed with no millisecond figure.
 
 ## When a folder is written
 
