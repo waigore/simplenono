@@ -6,6 +6,6 @@ A fail moves the reviewed issue to `pending-refinement`. Another issue moves onl
 
 **User order.** An explicit user order (for example “fail #8; also impacts #9”) authorizes each named issue. Move it to `pending-refinement` from any current status except `status:pending-redefinition` (comment-capped; redefine instead). Record the order in the fail comment. Dependence proof is not required. Never cascade onto or off `status:pending-redefinition`.
 
-**Not authorized.** For any issue the user asked about that was not ordered onto the cascade, post a short comment that points at the fail and states why the status stays.
+**Not authorized.** Issues the user asked about that were not ordered onto the cascade stay unchanged. Do not comment that the status stays ([workflow-comments.md](workflow-comments.md)).
 
 **Planner.** [`project-planner-agent`](../../.agents/skills/project-planner-agent/SKILL.md) removes every cascade this file does not still authorize. The issue that failed review stays in `pending-refinement`. Restore each other issue’s prior `status:*`; when that label cannot be read, use `pending-review`. Comment the reason.

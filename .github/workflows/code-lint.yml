@@ -62,3 +62,8 @@ jobs:
       - name: Check release assets
         run: python3 .github/scripts/check_release_assets.py
 
+      # #506: Android debug must stage and pack the same in-build manifest, or
+      # the result morph holds on fills with no stored picture on device.
+      - name: Test Android debug manifest staging
+        run: python3 .github/scripts/tests/test_export_android_debug_manifest.py
+

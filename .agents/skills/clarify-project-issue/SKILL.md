@@ -1,9 +1,8 @@
 ---
 name: clarify-project-issue
 description: |-
-  Record product-owner clarification on an issue in
-  status:pending-clarification, then move to pending-review, pending-refinement,
-  or pending-analysis for type:feedback.
+  Record product-owner clarification on an epic/task/defect in
+  status:pending-clarification, then move to pending-review or pending-refinement.
   Use when the PO answers open questions or the user provides clarification to post.
 
   Examples:
@@ -17,7 +16,8 @@ Veneer over the [action shell](../enforce-task-workflow-status/references/action
 
 Load the outstanding clarification questions. Collect the product-owner clarification. Ask if it is missing. Do not invent answers. Comment with the clarification and attribute the product owner when known.
 
-- `type:feedback` → gate `pending-clarification` → `pending-analysis` ([`feedback.md`](../../../docs/issues/feedback.md)).
+When the outstanding questions are in-repo approval (mockup catalog rows, aesthetics references, or style anchors), record approve/reject clearly, and for style anchors the chosen approved IDs, so the next `review-project-issue` Pass can apply catalog/registry writes. Do not write those records here unless the product owner asks to apply them in the same turn; default is comment → `pending-review`.
+
 - Body still needs edits → gate `pending-clarification` → `pending-refinement`, then use `refine-project-issue` if refining now.
 - Otherwise → gate `pending-clarification` → `pending-review`.
 

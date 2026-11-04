@@ -1,0 +1,65 @@
+build=main@3fe0ebd engine=4.7.2-stable (official) frame=900x1600
+capture: PASS fixture: this desktop host runs the unlocked orientation rule
+capture: PASS fixture: pack-000 opens from the gallery
+capture: PASS S1/AC portrait 10x10 (pack-000): UI-puzzle is the view
+capture: PASS S1/AC portrait 10x10 (pack-000): the framed board sits inside R2
+capture: PASS S1/AC portrait 10x10 (pack-000): the frame has its padding all round
+capture: PASS PRJ.A2 portrait 10x10 (pack-000): the frame is the ~90% safe area of the screen
+capture: PASS P3/AC portrait 10x10 (pack-000): every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 10x10 (pack-000): no clue paints outside the frame (outside: 0)
+capture: PASS UIS.T1 portrait 10x10 (pack-000): the clue face is 36 px, at least the 7 px floor
+capture: PASS F3 portrait 10x10 (pack-000): the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 10x10 (pack-000): the board is drawn at its own cells (100)
+capture: PASS capture: wrote 01-portrait-10x10
+capture: PASS fixture: pack-010 opens from the gallery
+capture: PASS S1/AC portrait 15x15 (pack-010): UI-puzzle is the view
+capture: PASS S1/AC portrait 15x15 (pack-010): the framed board sits inside R2
+capture: PASS S1/AC portrait 15x15 (pack-010): the frame has its padding all round
+capture: PASS PRJ.A2 portrait 15x15 (pack-010): the frame is the ~90% safe area of the screen
+capture: PASS P3/AC portrait 15x15 (pack-010): every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 15x15 (pack-010): no clue paints outside the frame (outside: 0)
+capture: PASS UIS.T1 portrait 15x15 (pack-010): the clue face is 24 px, at least the 7 px floor
+capture: PASS F3 portrait 15x15 (pack-010): the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 15x15 (pack-010): the board is drawn at its own cells (225)
+capture: PASS capture: wrote 02-portrait-15x15
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS S1/AC portrait 20x20 (pack-180): UI-puzzle is the view
+capture: PASS S1/AC portrait 20x20 (pack-180): the framed board sits inside R2
+capture: PASS S1/AC portrait 20x20 (pack-180): the frame has its padding all round
+capture: PASS PRJ.A2 portrait 20x20 (pack-180): the frame is the ~90% safe area of the screen
+capture: PASS P3/AC portrait 20x20 (pack-180): every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 20x20 (pack-180): no clue paints outside the frame (outside: 0)
+capture: PASS UIS.T1 portrait 20x20 (pack-180): the clue face is 19 px, at least the 7 px floor
+capture: PASS F3 portrait 20x20 (pack-180): the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 20x20 (pack-180): the board is drawn at its own cells (400)
+capture: PASS capture: wrote 03-portrait-20x20
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: opening settings from the puzzle asks for the pause
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: settings is the view
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: the attempt is paused
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: the attempt the screen draws from is paused
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: returning resumes the puzzle
+capture: PASS S1/AC portrait 20x20 (pack-180) after the pause intent: the framed board sits inside R2
+capture: PASS S1/AC portrait 20x20 (pack-180) after the pause intent: the frame has its padding all round
+capture: PASS PRJ.A2 portrait 20x20 (pack-180) after the pause intent: the frame is the ~90% safe area of the screen
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: no clue paints outside the frame (outside: 0)
+capture: PASS UIS.T1 portrait 20x20 (pack-180) after the pause intent: the clue face is 19 px, at least the 7 px floor
+capture: PASS F3 portrait 20x20 (pack-180) after the pause intent: the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: the board is drawn at its own cells (400)
+capture: PASS capture: wrote 04-portrait-20x20-paused
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS P3/AC portrait 20x20 with included marks: a fill and a cross are drawn in their cells
+capture: PASS S1/AC portrait 20x20 with included marks: the framed board sits inside R2
+capture: PASS S1/AC portrait 20x20 with included marks: the frame has its padding all round
+capture: PASS PRJ.A2 portrait 20x20 with included marks: the frame is the ~90% safe area of the screen
+capture: PASS P3/AC portrait 20x20 with included marks: every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 20x20 with included marks: no clue paints outside the frame (outside: 0)
+capture: PASS UIS.T1 portrait 20x20 with included marks: the clue face is 19 px, at least the 7 px floor
+capture: PASS F3 portrait 20x20 with included marks: the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 20x20 with included marks: the board is drawn at its own cells (400)
+capture: PASS capture: wrote 05-portrait-20x20-marks
+capture: PASS S1/AC landscape: the app's orientation lock exists
+capture: PASS S1/AC landscape: the stored/default orientation is portrait
+capture: PASS S1/AC landscape: the platform request is DisplayServer's landscape
+capture: RESULT pass (5 shots, 63 checks, 0 failed)

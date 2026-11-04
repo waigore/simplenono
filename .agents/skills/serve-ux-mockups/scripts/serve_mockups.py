@@ -7,7 +7,9 @@ import argparse
 import html
 import json
 import re
+import shutil
 import socket
+import subprocess
 import sys
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -20,6 +22,7 @@ IDENTITY_PATH = "/__serve_ux_mockups"
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
 H1_RE = re.compile(r"<h1>(.*?)</h1>", re.IGNORECASE | re.DOTALL)
 TAG_RE = re.compile(r"<[^>]+>")
+TAILSCALE_BIN = "tailscale"
 
 
 def repo_root() -> Path:
@@ -50,6 +53,65 @@ def lan_ips() -> list[str]:
     finally:
         probe.close()
     return found
+
+
+def tailscale_status() -> dict:
+    if not shutil.which(TAILSCALE_BIN):
+        raise RuntimeError(f"{TAILSCALE_BIN} CLI not found on PATH")
+    try:
+        completed = subprocess.run(
+            [TAILSCALE_BIN, "status", "--json"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except subprocess.CalledProcessError as exc:
+        detail = (exc.stderr or exc.stdout or str(exc)).strip()
+        raise RuntimeError(detail or "tailscale status failed") from exc
+    try:
+        data = json.loads(completed.stdout)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("tailscale status --json returned invalid JSON") from exc
+    if data.get("BackendState") != "Running":
+        state = data.get("BackendState") or "unknown"
+        raise RuntimeError(f"Tailscale is not running (BackendState={state})")
+    return data
+
+
+def tailscale_https_base(status: dict) -> str:
+    self_node = status.get("Self") or {}
+    dns = (self_node.get("DNSName") or "").rstrip(".")
+    if not dns:
+        raise RuntimeError("Tailscale MagicDNS name missing from status")
+    return f"https://{dns}/"
+
+
+def enable_tailscale_serve(port: int) -> str:
+    """Proxy the local port via Tailscale Serve (HTTPS on :443). Returns the base URL."""
+    status = tailscale_status()
+    base = tailscale_https_base(status)
+    try:
+        subprocess.run(
+            [TAILSCALE_BIN, "serve", "--bg", "--yes", str(port)],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except subprocess.CalledProcessError as exc:
+        detail = (exc.stderr or exc.stdout or str(exc)).strip()
+        raise RuntimeError(detail or "tailscale serve failed") from exc
+    return base
+
+
+def reset_tailscale_serve() -> None:
+    if not shutil.which(TAILSCALE_BIN):
+        return
+    subprocess.run(
+        [TAILSCALE_BIN, "serve", "reset"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
 
 
 def page_label(path: Path) -> str:
@@ -160,7 +222,14 @@ def make_handler(root: Path):
     return Handler
 
 
-def announce(status: str, port: int, target: str | None) -> None:
+def announce(
+    status: str,
+    port: int,
+    target: str | None,
+    *,
+    tailscale_url: str | None = None,
+    tailscale_error: str | None = None,
+) -> None:
     print(f"status: {status}", flush=True)
     print(f"port: {port}", flush=True)
     print(f"localhost: http://127.0.0.1:{port}/", flush=True)
@@ -170,8 +239,17 @@ def announce(status: str, port: int, target: str | None) -> None:
             print(f"lan: http://{ip}:{port}/", flush=True)
     else:
         print("lan: none", flush=True)
+    if tailscale_url:
+        print(f"tailscale: {tailscale_url}", flush=True)
+    elif tailscale_error:
+        print(f"tailscale: error: {tailscale_error}", flush=True)
     if target:
         print(f"target: http://127.0.0.1:{port}/{target.lstrip('/')}", flush=True)
+        if tailscale_url:
+            print(
+                f"target-tailscale: {tailscale_url.rstrip('/')}/{target.lstrip('/')}",
+                flush=True,
+            )
 
 
 def choose_port(root: Path, preferred: int) -> tuple[str, int]:
@@ -197,10 +275,32 @@ def main() -> None:
         "--target",
         help="Mockup path under specs/ux/mockups, such as screens/title.html",
     )
+    parser.add_argument(
+        "--tailscale",
+        action="store_true",
+        help="Expose via Tailscale Serve as https://<MagicDNS>/ (tailnet only)",
+    )
     args = parser.parse_args()
     root = mockup_root(repo_root())
     status, port = choose_port(root, args.port)
-    announce(status, port, args.target)
+
+    tailscale_url: str | None = None
+    tailscale_error: str | None = None
+    tailscale_owned = False
+    if args.tailscale:
+        try:
+            tailscale_url = enable_tailscale_serve(port)
+            tailscale_owned = True
+        except RuntimeError as exc:
+            tailscale_error = str(exc)
+
+    announce(
+        status,
+        port,
+        args.target,
+        tailscale_url=tailscale_url,
+        tailscale_error=tailscale_error,
+    )
     if status == "reused":
         return
     server = ThreadingHTTPServer(("0.0.0.0", port), make_handler(root))
@@ -208,6 +308,9 @@ def main() -> None:
         server.serve_forever()
     except KeyboardInterrupt:
         server.shutdown()
+    finally:
+        if tailscale_owned:
+            reset_tailscale_serve()
 
 
 if __name__ == "__main__":
