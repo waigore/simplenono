@@ -39,7 +39,7 @@ a missing protocol leaves its axes unobserved.
 |----------|--------|------------|------------|
 | `app-start` | Launch to the first interactive screen, hold, quit | I6 | `time-to-playable` (≤ 3 s) |
 | `paint` | Open, fill every row then cross every column, one mark per frame, pause/resume, quit | I1, I2, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `crash-free` |
-| `navigate` | Gallery→puzzle, then solve across the result's morph stages, result→gallery, back; samples the gallery and reveal windows and checks the tile layout at both edge widths | I1, I2, I7, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `transition-latency` (≤ 500 ms), `crash-free` |
+| `navigate` | Gallery→puzzle, then solve across the result's morph stages, result→gallery, back; samples the gallery and reveal windows and checks the tile layout at both edge widths, once the grid has re-laid itself out | I1, I2, I7, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `transition-latency` (≤ 500 ms), `crash-free` |
 | `ui-ack` | Open, settings, back to the puzzle | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
 | `solve-reset` | Open, solve, result, back; open, mark, reset, back | I9 | `crash-free` |
 | `kill-relaunch` | Open, mark, hold, kill, relaunch, reopen | I10 | `resume-after-failure` |
