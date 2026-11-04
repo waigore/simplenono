@@ -505,6 +505,62 @@ func test_grid_spacing_follows_the_mockup_ratios() -> void:
 	)
 
 
+# R2 (#540, found at acceptance as #557): the tile's body padding is the mockups' own
+# value — `.puzzle-tile .meta { padding: 8px }` and `.reset { margin: auto 8px 8px }` on
+# the 390 px mobile frame, 12 px on the desktop one — held between them the way the page
+# margin and tile gap are, and applied to the drawn tiles.
+func test_tile_body_padding_follows_the_mockup_ratios() -> void:
+	_present(ConfigFile.new())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	assert_almost_eq(_gallery.tile_padding(), 8.0, 0.5, "the mobile mockup's tile-body padding")
+	_gallery.size = Vector2(1080.0, 900.0)
+	await _settle()
+	assert_almost_eq(_gallery.tile_padding(), 12.0, 0.5, "the desktop mockup's tile-body padding")
+	assert_almost_eq(
+		_gallery.tile("pack-000").chrome_padding(), 12.0, 0.5, "the tile applies the frame's value"
+	)
+
+
+# R2 (#540, found at acceptance as #557): the metadata copy used to draw flush against
+# the card's border while C2 Reset kept its 8 px, so a tile read lopsided. The metadata
+# holder now pads every side like the Reset button below it, measured against the open
+# button that spans the card's inner width.
+func test_tile_metadata_is_inset_like_the_reset_button() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-001", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-001", ProgressFile.MARKS_KEY, _marks(10))
+	_present(seeded)
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	var target := _gallery.tile("pack-001")
+	var inset := target.chrome_padding()
+	var body := target.open_button().get_global_rect()
+	for label: Label in target.find_children("*", "Label", true, false):
+		var drawn := label.get_global_rect()
+		assert_almost_eq(
+			drawn.position.x - body.position.x,
+			inset,
+			0.5,
+			"'%s' is inset from its card's left border" % label.text
+		)
+		assert_almost_eq(
+			body.position.x + body.size.x - (drawn.position.x + drawn.size.x),
+			inset,
+			0.5,
+			"'%s' is inset from its card's right border" % label.text
+		)
+	var reset := target.reset_button().get_global_rect()
+	assert_almost_eq(
+		body.position.x + body.size.x - (reset.position.x + reset.size.x),
+		inset,
+		0.5,
+		"Reset is inset from the card like the copy above it"
+	)
+
+
 ## Resizes the running window, so [code]UIS.T2[/code]'s frame-relative type is read from
 ## a phone-sized frame instead of the harness's small headless one.
 func _use_frame(frame: Vector2i) -> void:

@@ -47,6 +47,13 @@ const WIDE_GRID_GAP := 20.0
 ## The narrowest page margin, so a degenerate frame still keeps its border.
 const MIN_PAGE_MARGIN := 8.0
 
+## The tile body's padding at the mockups' own frames: both approved mockups pad
+## [code].puzzle-tile .meta[/code] and [code].reset[/code] the same, 8 px on the mobile
+## one and 12 px on the desktop one, so the tile chrome follows the frame the way the
+## type does (#557). The tile keeps only the values, not the rule.
+const NARROW_TILE_PADDING := 8.0
+const WIDE_TILE_PADDING := 12.0
+
 ## Tiles per row: the mobile mockup's two and the desktop mockup's four.
 const NARROW_COLUMNS := 2
 const WIDE_COLUMNS := 4
@@ -178,6 +185,14 @@ func grid_gap() -> float:
 	return clampf(size.x * NARROW_GRID_GAP / NARROW_FRAME_WIDTH, NARROW_GRID_GAP, WIDE_GRID_GAP)
 
 
+## The mockup's tile-body padding at this frame width, held between the two mockups'
+## values (#557).
+func tile_padding() -> float:
+	return clampf(
+		size.x * NARROW_TILE_PADDING / NARROW_FRAME_WIDTH, NARROW_TILE_PADDING, WIDE_TILE_PADDING
+	)
+
+
 ## The frame width the mockups' four columns need at this frame height. A phone reports
 ## physical pixels, so the breakpoint grows with the frame the way the type does.
 func wide_breakpoint() -> float:
@@ -302,6 +317,7 @@ func _rebuild() -> void:
 		_tiles.erase(puzzle_id)
 	_update_completion()
 	_refresh_type_sizes()
+	_apply_frame_spacing()
 
 
 func _update_completion() -> void:
@@ -329,14 +345,16 @@ func _update_layout() -> void:
 	_apply_frame_spacing()
 
 
-## R2's page margin and tile gap, from the frame width the way [code]UIS.T2[/code] takes
-## the chrome type from the frame height (#540).
+## R2's page margin, tile gap, and each tile's body padding, from the frame width the
+## way [code]UIS.T2[/code] takes the chrome type from the frame height (#540, #557).
 func _apply_frame_spacing() -> void:
 	var page := page_margin()
 	for side in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
 		_margin.add_theme_constant_override(side, int(roundf(page)))
 	_grid.add_theme_constant_override("h_separation", int(grid_gap()))
 	_grid.add_theme_constant_override("v_separation", int(grid_gap()))
+	for target: GalleryTile in _tiles.values():
+		target.set_chrome_padding(tile_padding())
 
 
 ## Builds [code]EX.confirm[/code] last so it sits over the whole screen ([code]S1[/code]
