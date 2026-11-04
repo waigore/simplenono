@@ -1,0 +1,4156 @@
+{
+  "pack-000": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a red lighthouse on a rocky coast with fishing boats",
+    "accepted": {
+      "round": 1,
+      "attempt": 1,
+      "request_id": "1ea292ad-1a0c-47ea-a359-2544d960b08b",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a red lighthouse on a rocky coast with fishing boats, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 25,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      1
+    ],
+    "attempts_total": 1,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 25,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-001": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a hot-air balloon over patchwork farm fields",
+    "accepted": {
+      "round": 1,
+      "attempt": 1,
+      "request_id": "7f0e4e81-74f4-48b5-b3e2-5831f1fdd305",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a hot-air balloon over patchwork farm fields, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 35,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      1
+    ],
+    "attempts_total": 1,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 35,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-002": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a mountain village with terraced fields",
+    "accepted": {
+      "round": 1,
+      "attempt": 7,
+      "request_id": "b21bbe9a-7bfa-4a41-a9e2-6f861d373c3c",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.048300",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 31.000000000000007
+      },
+      "prompt": "colourful multi-element scene of a mountain village with terraced fields, in sparkling midday light on pale sand and bright water. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 40,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      7
+    ],
+    "attempts_total": 7,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 46,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 50,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 76,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 84,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 76,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 57,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 40,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-003": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a harbour with colourful sailboats and crates",
+    "accepted": {
+      "round": 1,
+      "attempt": 2,
+      "request_id": "2e8da33a-2dc7-4baa-8b3c-c0513c07b746",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.048300",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 31.000000000000007
+      },
+      "prompt": "colourful multi-element scene of a harbour with colourful sailboats and crates, photographed high-key in dazzling morning sun. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 35,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      2
+    ],
+    "attempts_total": 2,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 47,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 35,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-004": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a red barn and windmill on a green hillside",
+    "accepted": {
+      "round": 1,
+      "attempt": 1,
+      "request_id": "7a9a4b53-2545-4581-92cf-2de71a95653e",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.048300",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 31.000000000000007
+      },
+      "prompt": "colourful multi-element scene of a red barn and windmill on a green hillside, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 41,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      1
+    ],
+    "attempts_total": 1,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 41,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-005": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a castle above a stone bridge over a river",
+    "accepted": {
+      "round": 1,
+      "attempt": 2,
+      "request_id": "bdd750e4-b2b9-48c9-97aa-9652c8b49096",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.051100",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 27.000000000000014
+      },
+      "prompt": "colourful multi-element scene of a castle above a stone bridge over a river, photographed high-key in dazzling morning sun. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 38,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      2
+    ],
+    "attempts_total": 2,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 68,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 38,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-006": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a steam train crossing a tall viaduct",
+    "accepted": {
+      "round": 1,
+      "attempt": 11,
+      "request_id": "120ca1a4-95a7-4f8c-a094-219f5043ba12",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a steam train crossing a tall viaduct, on a bright overcast day with pale stone around the darker element. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 36,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      11
+    ],
+    "attempts_total": 11,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 47,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 54,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 57,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 65,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 76,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 6,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 30,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 63,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 81,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 65,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 36,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-007": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a desert oasis with palm trees and camels",
+    "accepted": {
+      "round": 1,
+      "attempt": 2,
+      "request_id": "78fbca78-3f26-4d6a-88b6-df76d9b4d252",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a desert oasis with palm trees and camels, photographed high-key in dazzling morning sun. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 42,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      2
+    ],
+    "attempts_total": 2,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 9,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 42,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-008": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a striped-lawn beach cafe with parasols and row boats on pale sand",
+    "accepted": {
+      "round": 2,
+      "attempt": 8,
+      "request_id": "747e8e5d-6a1f-4556-a876-4b3d49677063",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a striped-lawn beach cafe with parasols and row boats on pale sand, in brilliant summer light, pale walls and bright ground around darker figures. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 36,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      8
+    ],
+    "attempts_total": 20,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 55,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 62,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 90,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 72,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 96,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 47,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 87,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 76,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 87,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 58,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 86,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 86,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 7,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 23,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 13,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 7,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 23,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 10,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 38,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 36,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-009": {
+    "size": 10,
+    "board": "10x10",
+    "band_start": 25,
+    "band_end": 45,
+    "subject": "a canal town with tall row houses and moored boats",
+    "accepted": {
+      "round": 1,
+      "attempt": 1,
+      "request_id": "350f0621-53c2-49ba-8f65-02ee9fd1356a",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a canal town with tall row houses and moored boats, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 26,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      1
+    ],
+    "attempts_total": 1,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 26,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-010": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a clock tower above market rooftops",
+    "accepted": {
+      "round": 1,
+      "attempt": 2,
+      "request_id": "36b727ef-6089-48e5-85d8-0ff29646c769",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a clock tower above market rooftops, photographed high-key in dazzling morning sun. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 92,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      2
+    ],
+    "attempts_total": 2,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 130,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 92,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-011": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a shipwreck half-sunk at low tide",
+    "accepted": {
+      "round": 1,
+      "attempt": 1,
+      "request_id": "414f4eae-eb7f-48a5-976c-359effb1a45a",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a shipwreck half-sunk at low tide, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 70,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      1
+    ],
+    "attempts_total": 1,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 70,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-012": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a fish market stall with buckets and crates on pale wet pavement at midday",
+    "accepted": {
+      "round": 2,
+      "attempt": 1,
+      "request_id": "b54d667c-b3e4-4336-87f5-33a87456a5ad",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a fish market stall with buckets and crates on pale wet pavement at midday, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 80,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      1
+    ],
+    "attempts_total": 13,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 149,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 192,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 167,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 151,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 168,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 165,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 184,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 187,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 197,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 151,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 205,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 172,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 80,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-013": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a cherry orchard in bloom with a stone wall",
+    "accepted": {
+      "round": 1,
+      "attempt": 6,
+      "request_id": "7f9b2308-ebec-46ff-90d1-f2df79b299ce",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a cherry orchard in bloom with a stone wall, high-key with a light pastel sky and bright reflective ground. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 62,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      6
+    ],
+    "attempts_total": 6,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 38,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 20,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 81,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 125,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 133,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 62,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-014": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a ski chalet on a dark snowy slope",
+    "accepted": {
+      "round": 1,
+      "attempt": 1,
+      "request_id": "fb789003-34c9-459c-8d29-32583d66c243",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.048300",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 31.000000000000007
+      },
+      "prompt": "colourful multi-element scene of a ski chalet on a dark snowy slope, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 65,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      1
+    ],
+    "attempts_total": 1,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 65,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-015": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a nomad camp beside giant sand dunes",
+    "accepted": {
+      "round": 1,
+      "attempt": 2,
+      "request_id": "52b04d32-4a3b-4172-98a0-fd151198cd81",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.048300",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 31.000000000000007
+      },
+      "prompt": "colourful multi-element scene of a nomad camp beside giant sand dunes, photographed high-key in dazzling morning sun. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 72,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      2
+    ],
+    "attempts_total": 2,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 50,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 72,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-016": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a terraced vineyard hillside with dark cypress pairs and a pale gravel road",
+    "accepted": {
+      "round": 3,
+      "attempt": 2,
+      "request_id": "209c6d23-3662-46bb-b79f-ea263b790efb",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.056700",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 19.000000000000007
+      },
+      "prompt": "colourful multi-element scene of a terraced vineyard hillside with dark cypress pairs and a pale gravel road, photographed high-key in dazzling morning sun. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 88,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      12,
+      2
+    ],
+    "attempts_total": 26,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 130,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 42,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 193,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 95,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 143,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 39,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 109,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 176,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 172,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 121,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 137,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 121,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 140,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 85,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 172,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 150,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 180,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 139,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 161,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 170,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 182,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 141,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 66,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 174,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 83,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 88,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-017": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a tide-pool ledge with starfish and dunes behind",
+    "accepted": {
+      "round": 1,
+      "attempt": 11,
+      "request_id": "899cc388-7560-49ee-8d16-30c06425d041",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a tide-pool ledge with starfish and dunes behind, on a bright overcast day with pale stone around the darker element. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 85,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      11
+    ],
+    "attempts_total": 11,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 135,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 145,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 153,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 70,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 132,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 58,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 94,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 115,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 155,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 116,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 85,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-018": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "paddle boats in a bright lagoon beside a dark cypress grove",
+    "accepted": {
+      "round": 2,
+      "attempt": 6,
+      "request_id": "29fd50ff-57c5-4d2c-8c11-a546da4f2179",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of paddle boats in a bright lagoon beside a dark cypress grove, high-key with a light pastel sky and bright reflective ground. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 58,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      6
+    ],
+    "attempts_total": 18,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 39,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 110,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 149,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 27,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 23,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 5,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 78,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 122,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 167,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 16,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 58,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 133,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 128,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 106,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 146,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 106,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 101,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 58,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-019": {
+    "size": 15,
+    "board": "15x15",
+    "band_start": 56,
+    "band_end": 101,
+    "subject": "a greenhouse with rows of flowers and a workbench",
+    "accepted": {
+      "round": 1,
+      "attempt": 7,
+      "request_id": "d9c0afc2-01a5-456b-8ade-76b3ad5a7f86",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a greenhouse with rows of flowers and a workbench, in sparkling midday light on pale sand and bright water. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 85,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      7
+    ],
+    "attempts_total": 7,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 159,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 147,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 161,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 128,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 169,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 74,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 85,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-180": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a hot-air balloon festival over bright green fields",
+    "accepted": {
+      "round": 2,
+      "attempt": 10,
+      "request_id": "60387ac3-df08-4f43-85ea-262716195f7c",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a hot-air balloon festival over bright green fields, in high-key backlight with a glowing pale haze. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 148,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      10
+    ],
+    "attempts_total": 22,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 273,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 291,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 311,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 344,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 336,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 303,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 279,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 320,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 306,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 311,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 298,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 326,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 38,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 91,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 130,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 54,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 138,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 80,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 133,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 230,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 272,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 148,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-181": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a tall dark crane beside stacked white containers at a bright dock",
+    "accepted": {
+      "round": 3,
+      "attempt": 4,
+      "request_id": "6a953e8a-a651-4fe7-b8e3-85b14e9c4c86",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a tall dark crane beside stacked white containers at a bright dock, rendered high-key, dark accents on a pale golden background. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 122,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      12,
+      4
+    ],
+    "attempts_total": 28,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 201,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 147,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 230,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 219,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 260,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 218,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 224,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 247,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 291,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 218,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 215,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 251,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 41,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 153,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 117,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 33,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 107,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 56,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 119,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 163,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 180,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 122,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 78,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 87,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 79,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 59,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 149,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 122,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-182": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a canyon with a rope bridge and layered rock",
+    "accepted": {
+      "round": 1,
+      "attempt": 12,
+      "request_id": "dff6c098-4c7f-4c73-ab9a-b00827670846",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.053900",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 23
+      },
+      "prompt": "colourful multi-element scene of a canyon with a rope bridge and layered rock, in strong clear daylight over pale open ground. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 176,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12
+    ],
+    "attempts_total": 12,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 256,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 239,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 348,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 160,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 308,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 218,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 234,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 209,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 315,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 245,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 216,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 176,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-183": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a dark ski-lift tower over bright pistes with black pine clusters",
+    "accepted": {
+      "round": 3,
+      "attempt": 5,
+      "request_id": "730061c8-b52c-4011-9d9a-0c93d53ceb39",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a dark ski-lift tower over bright pistes with black pine clusters, in bright even noon light with the scene's dark shapes plainly darker than their pale surroundings. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 170,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      12,
+      5
+    ],
+    "attempts_total": 29,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 154,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 252,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 271,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 122,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 195,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 233,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 259,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 293,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 345,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 230,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 272,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 275,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 154,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 252,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 271,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 122,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 195,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 233,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 259,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 293,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 345,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 230,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 272,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 275,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 81,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 109,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 127,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 73,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 170,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-184": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a stone amphitheatre on a windswept headland",
+    "accepted": {
+      "round": 1,
+      "attempt": 1,
+      "request_id": "aea09c41-8ca0-40ec-8d05-76882e08ab5e",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a stone amphitheatre on a windswept headland, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 127,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      1
+    ],
+    "attempts_total": 1,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 127,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-185": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a red dune buggy on pale sand beside dark scrub and a driftwood fence",
+    "accepted": {
+      "round": 3,
+      "attempt": 1,
+      "request_id": "a3e86540-5cc6-45da-a01c-3b22ac7b2169",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a red dune buggy on pale sand beside dark scrub and a driftwood fence, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 125,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      12,
+      1
+    ],
+    "attempts_total": 25,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 221,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 237,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 312,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 236,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 219,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 78,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 248,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 270,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 306,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 320,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 120,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 309,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 221,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 237,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 312,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 236,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 219,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 78,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 248,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 270,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 306,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 320,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 120,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 309,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 125,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-186": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a winter harbour with ice and moored trawlers",
+    "accepted": {
+      "round": 1,
+      "attempt": 10,
+      "request_id": "ccde1cd1-0263-4c7d-b862-1cd8f2f6cff5",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a winter harbour with ice and moored trawlers, in high-key backlight with a glowing pale haze. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 131,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      10
+    ],
+    "attempts_total": 10,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 83,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 63,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 146,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 67,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 158,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 38,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 90,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 156,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 158,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 131,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-187": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a canal view with a dark arched bridge and white palazzos",
+    "accepted": {
+      "round": 3,
+      "attempt": 10,
+      "request_id": "4178d650-fa58-4af1-aaa8-832fd1df257d",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a canal view with a dark arched bridge and white palazzos, in high-key backlight with a glowing pale haze. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 168,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12,
+      12,
+      10
+    ],
+    "attempts_total": 34,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 171,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 185,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 273,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 173,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 283,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 77,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 180,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 262,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 280,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 234,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 169,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 87,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 171,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 185,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 273,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 173,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 283,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 77,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 180,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 262,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 280,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 234,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 169,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 2,
+        "filled": 87,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 252,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 198,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 264,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 88,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 285,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 78,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 212,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 239,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 283,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 3,
+        "filled": 168,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-188": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a rice harvest with scarecrows and windmills",
+    "accepted": {
+      "round": 1,
+      "attempt": 1,
+      "request_id": "34098d4e-d03d-4f9d-9ffc-c9bad69abd44",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a rice harvest with scarecrows and windmills, washed in bright high-key daylight against a pale luminous sky. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 126,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      1
+    ],
+    "attempts_total": 1,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 126,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  },
+  "pack-189": {
+    "size": 20,
+    "board": "20x20",
+    "band_start": 100,
+    "band_end": 180,
+    "subject": "a ghost ship beached under hanging lanterns",
+    "accepted": {
+      "round": 1,
+      "attempt": 12,
+      "request_id": "d5f9df8d-8408-406b-bd81-5e7f2acd7816",
+      "billing": {
+        "status": "settled",
+        "billed_cost_usd": "0.045500",
+        "currency": "USD",
+        "zero_data_retention": false,
+        "effective_discount_percent": 35.00000000000001
+      },
+      "prompt": "colourful multi-element scene of a ghost ship beached under hanging lanterns, in strong clear daylight over pale open ground. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20 Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text.",
+      "judge": {
+        "filled": 172,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    },
+    "attempts_per_round": [
+      12
+    ],
+    "attempts_total": 12,
+    "judge_sequence": [
+      {
+        "round": 1,
+        "filled": 212,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 219,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 202,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 249,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 250,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 200,
+        "in_band": false,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 101,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 216,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 311,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 217,
+        "in_band": false,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 102,
+        "in_band": true,
+        "unique": false,
+        "solutions": 2,
+        "logic_solved": false,
+        "matches_pixel": false,
+        "verdict": "fail"
+      },
+      {
+        "round": 1,
+        "filled": 172,
+        "in_band": true,
+        "unique": true,
+        "solutions": 1,
+        "logic_solved": true,
+        "matches_pixel": true,
+        "verdict": "pass"
+      }
+    ]
+  }
+}
