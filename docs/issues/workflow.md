@@ -25,7 +25,7 @@ Exactly one `priority:*` label (`critical` / `high` / `normal`). Create applies 
 
 ## Transitions and evidence
 
-Evidence is freeform prose; intent clear. Post it as an issue comment (refinement also edits the body). Then call `enforce-task-workflow-status`.
+Evidence is freeform; intent clear. Comment when [workflow-comments.md](workflow-comments.md) requires it (refinement also edits the body). Then `enforce-task-workflow-status`.
 
 | From | Action / evidence | To |
 |------|-------------------|-----|

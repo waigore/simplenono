@@ -46,7 +46,7 @@ Exactly one `status:*`. Gate with `enforce-task-workflow-status`.
 | `status:pending-resolution` | Create when **Related issues** names open work |
 | `status:resolved` | Create when none; or every related issue is `accepted` or closed. Leave open. |
 
-Only transition: `pending-resolution` → `resolved`. One issue per `handle-feedback-agent` run ([workflow-dispatch.md](workflow-dispatch.md)). Comment evidence. Do not edit the repo, file work, clarify, or close the feedback issue. An open already-covered owner is a related issue.
+Only transition: `pending-resolution` → `resolved`. One issue per `handle-feedback-agent` run ([workflow-dispatch.md](workflow-dispatch.md)). Comment when gating to `resolved`, or when at least one related issue newly accepted/closed since the last feedback comment on this issue. If related work is still open with no such change, stay silent and leave status unchanged. Comments: [workflow-comments.md](workflow-comments.md). Do not edit the repo, file work, clarify, or close the feedback issue. An open already-covered owner is a related issue.
 
 ## Planner
 
