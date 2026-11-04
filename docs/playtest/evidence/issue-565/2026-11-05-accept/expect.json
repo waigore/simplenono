@@ -1,0 +1,5084 @@
+{
+ "pack-000": {
+  "size": 10,
+  "rows": [
+   "0000000000",
+   "0000000000",
+   "0000000100",
+   "0000000100",
+   "0011111111",
+   "1111111111",
+   "0111111011",
+   "0000000111",
+   "1000001111",
+   "0000011111"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [
+    1
+   ],
+   [
+    1
+   ],
+   [
+    8
+   ],
+   [
+    10
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    5
+   ]
+  ],
+  "col_clues": [
+   [
+    1,
+    1
+   ],
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    4,
+    3
+   ],
+   [
+    6
+   ],
+   [
+    6
+   ]
+  ],
+  "filled": 41,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1
+  ],
+  "empty_clue_cols": [],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.314,
+   "min_saturation": 0.0,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   40,
+   1
+  ],
+  "enclosed_background": 1,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-001": {
+  "size": 10,
+  "rows": [
+   "0000000001",
+   "0000000011",
+   "0000000111",
+   "0000111111",
+   "0101111111",
+   "0111111111",
+   "0111011111",
+   "0010000110",
+   "0000000000",
+   "0000000011"
+  ],
+  "row_clues": [
+   [
+    1
+   ],
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    9
+   ],
+   [
+    3,
+    5
+   ],
+   [
+    1,
+    2
+   ],
+   [],
+   [
+    2
+   ]
+  ],
+  "col_clues": [
+   [],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    4
+   ],
+   [
+    4
+   ],
+   [
+    6
+   ],
+   [
+    7,
+    1
+   ],
+   [
+    7,
+    1
+   ]
+  ],
+  "filled": 42,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   8
+  ],
+  "empty_clue_cols": [
+   0
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.322,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.95
+  },
+  "masses": [
+   40,
+   2
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of three glazed blue ceramic cups in a row on a whitewashed bakery counter with a wooden shelf of pastries and jars behind them, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-002": {
+  "size": 10,
+  "rows": [
+   "1000000001",
+   "0000000000",
+   "0100000000",
+   "0111111111",
+   "1111111111",
+   "1111110000",
+   "0111100000",
+   "1100000000",
+   "1000000000",
+   "1110000001"
+  ],
+  "row_clues": [
+   [
+    1,
+    1
+   ],
+   [],
+   [
+    1
+   ],
+   [
+    9
+   ],
+   [
+    10
+   ],
+   [
+    6
+   ],
+   [
+    4
+   ],
+   [
+    2
+   ],
+   [
+    1
+   ],
+   [
+    3,
+    1
+   ]
+  ],
+  "col_clues": [
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    6,
+    1
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    4
+   ],
+   [
+    4
+   ],
+   [
+    3
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    1,
+    2,
+    1
+   ]
+  ],
+  "filled": 39,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   1
+  ],
+  "empty_clue_cols": [],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.294,
+   "min_saturation": 0.019,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   36,
+   1,
+   1,
+   1
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-003": {
+  "size": 10,
+  "rows": [
+   "0000000010",
+   "0000000111",
+   "0000000111",
+   "0000000111",
+   "0000001111",
+   "0000001111",
+   "0000011111",
+   "0001100110",
+   "0011111111",
+   "0001101110"
+  ],
+  "row_clues": [
+   [
+    1
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    4
+   ],
+   [
+    4
+   ],
+   [
+    5
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    8
+   ],
+   [
+    2,
+    3
+   ]
+  ],
+  "col_clues": [
+   [],
+   [],
+   [
+    1
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    9
+   ],
+   [
+    10
+   ],
+   [
+    6,
+    1
+   ]
+  ],
+  "filled": 40,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [],
+  "empty_clue_cols": [
+   0,
+   1
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.4,
+   "min_saturation": 0.083,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   40
+  ],
+  "enclosed_background": 2,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a smooth round striped river stone resting among fallen maple leaves and reeds on a pale pebbly pond-edge ground, scene under a pale summer sky with sunlight dancing on light stone and shade kept narrow, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-004": {
+  "size": 10,
+  "rows": [
+   "0000000001",
+   "0000000000",
+   "0000000000",
+   "1100110111",
+   "0000110001",
+   "0011110000",
+   "1111111000",
+   "1111000111",
+   "1100000111",
+   "1000011111"
+  ],
+  "row_clues": [
+   [
+    1
+   ],
+   [],
+   [],
+   [
+    2,
+    2,
+    3
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    4
+   ],
+   [
+    7
+   ],
+   [
+    4,
+    3
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    1,
+    5
+   ]
+  ],
+  "col_clues": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    4
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    2,
+    3
+   ]
+  ],
+  "filled": 40,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   1,
+   2
+  ],
+  "empty_clue_cols": [],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.209,
+   "min_saturation": 0.0,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   22,
+   11,
+   4,
+   2,
+   1
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a stone chess figure of a knight on a garden plinth surrounded by flowerbeds, ivy and light gravel paths, scene with most of the frame in pale refracted sea light and dark accents kept to the subject, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-005": {
+  "size": 10,
+  "rows": [
+   "0000000000",
+   "0000000000",
+   "0110001010",
+   "0111001110",
+   "0111111110",
+   "0111111100",
+   "0111111110",
+   "0110011010",
+   "0000000000",
+   "0000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [
+    2,
+    1,
+    1
+   ],
+   [
+    3,
+    3
+   ],
+   [
+    8
+   ],
+   [
+    7
+   ],
+   [
+    8
+   ],
+   [
+    2,
+    2,
+    1
+   ],
+   [],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    6
+   ],
+   [
+    6
+   ],
+   [
+    4
+   ],
+   [
+    3
+   ],
+   [
+    4
+   ],
+   [
+    6
+   ],
+   [
+    4
+   ],
+   [
+    3,
+    2
+   ],
+   []
+  ],
+  "filled": 38,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   8,
+   9
+  ],
+  "empty_clue_cols": [
+   0,
+   9
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.282,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.92
+  },
+  "masses": [
+   38
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a brightly painted wind-up tin robot standing between stacks of comic books and a beige radio on a pale linen jumble-stall table, scene on a pale misty morning with soft light and dark accents only on the subject, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-006": {
+  "size": 10,
+  "rows": [
+   "1100000000",
+   "1110000000",
+   "1111000000",
+   "1110000001",
+   "1110000001",
+   "1110000011",
+   "1010010010",
+   "0000011110",
+   "0000011111",
+   "0000000110"
+  ],
+  "row_clues": [
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    4
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    1,
+    1,
+    1,
+    1
+   ],
+   [
+    4
+   ],
+   [
+    5
+   ],
+   [
+    2
+   ]
+  ],
+  "col_clues": [
+   [
+    7
+   ],
+   [
+    6
+   ],
+   [
+    6
+   ],
+   [
+    1
+   ],
+   [],
+   [
+    3
+   ],
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    5
+   ],
+   [
+    3,
+    1
+   ]
+  ],
+  "filled": 37,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [],
+  "empty_clue_cols": [
+   4
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.473,
+   "min_saturation": 0.072,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   20,
+   17
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a bright parrot perched on a market cage stand among hanging fabrics and fruit baskets, scene in bright high-key light over pale sand and whitewashed walls with only small pockets of shade, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-007": {
+  "size": 10,
+  "rows": [
+   "0000010000",
+   "0000011110",
+   "0000011110",
+   "0000011110",
+   "0000011111",
+   "0000011111",
+   "0011111110",
+   "0001111100",
+   "0000000000",
+   "0000000000"
+  ],
+  "row_clues": [
+   [
+    1
+   ],
+   [
+    4
+   ],
+   [
+    4
+   ],
+   [
+    4
+   ],
+   [
+    5
+   ],
+   [
+    5
+   ],
+   [
+    7
+   ],
+   [
+    5
+   ],
+   [],
+   []
+  ],
+  "col_clues": [
+   [],
+   [],
+   [
+    1
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    8
+   ],
+   [
+    7
+   ],
+   [
+    7
+   ],
+   [
+    6
+   ],
+   [
+    2
+   ]
+  ],
+  "filled": 35,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   8,
+   9
+  ],
+  "empty_clue_cols": [
+   0,
+   1
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.256,
+   "min_saturation": 0.027,
+   "spread_cells_share": 0.99
+  },
+  "masses": [
+   35
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a brass lion-head door knocker on a glazed blue door above a pale tiled doorstep with a small potted fern, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-008": {
+  "size": 10,
+  "rows": [
+   "1100000001",
+   "1000000000",
+   "1000000000",
+   "0000000000",
+   "1000001000",
+   "1000001011",
+   "1000001111",
+   "1000011111",
+   "1100001001",
+   "1000001111"
+  ],
+  "row_clues": [
+   [
+    2,
+    1
+   ],
+   [
+    1
+   ],
+   [
+    1
+   ],
+   [],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    1,
+    1
+   ],
+   [
+    1,
+    4
+   ]
+  ],
+  "col_clues": [
+   [
+    3,
+    6
+   ],
+   [
+    1,
+    1
+   ],
+   [],
+   [],
+   [],
+   [
+    1
+   ],
+   [
+    6
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    1,
+    5
+   ]
+  ],
+  "filled": 31,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   3
+  ],
+  "empty_clue_cols": [
+   2,
+   3,
+   4
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.311,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.97
+  },
+  "masses": [
+   19,
+   7,
+   4,
+   1
+  ],
+  "enclosed_background": 2,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a lighthouse-shaped ceramic money box on a cluttered souvenir shop windowsill among shells and postcards, scene in bright high-key light over pale sand and whitewashed walls with only small pockets of shade, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-009": {
+  "size": 10,
+  "rows": [
+   "1100000000",
+   "0100000000",
+   "0000000000",
+   "0000000000",
+   "0000000100",
+   "0001100111",
+   "1011111111",
+   "1111100111",
+   "1111111011",
+   "1111111111"
+  ],
+  "row_clues": [
+   [
+    2
+   ],
+   [
+    1
+   ],
+   [],
+   [],
+   [
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    1,
+    8
+   ],
+   [
+    5,
+    3
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    10
+   ]
+  ],
+  "col_clues": [
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    4
+   ],
+   [
+    5
+   ],
+   [
+    5
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    5
+   ],
+   [
+    5
+   ]
+  ],
+  "filled": 45,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   2,
+   3
+  ],
+  "empty_clue_cols": [],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   10,
+   10
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 10,
+   "mean_saturation": 0.273,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.9
+  },
+  "masses": [
+   42,
+   3
+  ],
+  "enclosed_background": 3,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a red rubber duck on a cluttered bathroom shelf beside soap bars, folded towels and a small plant, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 10x10 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-018": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "000000000001000",
+   "000000000001000",
+   "000000000001000",
+   "000000000001011",
+   "000000000011111",
+   "000000000111111",
+   "000000000111111",
+   "000101111111111",
+   "011111111111111",
+   "111111111001101",
+   "000000000110011",
+   "011001100110111",
+   "011111100000111",
+   "000011111001111"
+  ],
+  "row_clues": [
+   [],
+   [
+    1
+   ],
+   [
+    1
+   ],
+   [
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    5
+   ],
+   [
+    6
+   ],
+   [
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    14
+   ],
+   [
+    9,
+    2,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    2,
+    2,
+    3
+   ],
+   [
+    6,
+    3
+   ],
+   [
+    5,
+    4
+   ]
+  ],
+  "col_clues": [
+   [
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    3
+   ],
+   [
+    3,
+    3
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    10,
+    1
+   ],
+   [
+    6,
+    3
+   ],
+   [
+    6,
+    4
+   ],
+   [
+    11
+   ]
+  ],
+  "filled": 91,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0
+  ],
+  "empty_clue_cols": [],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.338,
+   "min_saturation": 0.011,
+   "spread_cells_share": 0.996
+  },
+  "masses": [
+   72,
+   15,
+   4
+  ],
+  "enclosed_background": 3,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-035": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "011110000001000",
+   "011111100011000",
+   "011111111100000",
+   "011111100000000",
+   "011101000000000",
+   "011010010101000",
+   "011100000111110",
+   "011111110000010",
+   "011111111000010",
+   "011110011100000",
+   "011111011110000",
+   "011111111100000",
+   "011011011000000",
+   "000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    4,
+    1
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    9
+   ],
+   [
+    6
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    2,
+    1,
+    1,
+    1,
+    1
+   ],
+   [
+    3,
+    5
+   ],
+   [
+    7,
+    1
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    4,
+    3
+   ],
+   [
+    5,
+    4
+   ],
+   [
+    9
+   ],
+   [
+    2,
+    2,
+    2
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    13
+   ],
+   [
+    13
+   ],
+   [
+    5,
+    6
+   ],
+   [
+    4,
+    1,
+    6
+   ],
+   [
+    4,
+    2,
+    3
+   ],
+   [
+    3,
+    2,
+    1
+   ],
+   [
+    1,
+    1,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    1
+   ],
+   [
+    3
+   ],
+   []
+  ],
+  "filled": 94,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   14
+  ],
+  "empty_clue_cols": [
+   0,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.523,
+   "min_saturation": 0.009,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   80,
+   9,
+   3,
+   1,
+   1
+  ],
+  "enclosed_background": 5,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a striped red-and-yellow market awning over carts of fruit on a sunlit seaside promenade with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-052": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "000000000000000",
+   "000000000000010",
+   "000000000000000",
+   "000000000110000",
+   "000001111111100",
+   "011111111000100",
+   "011111000111110",
+   "011000001111010",
+   "001111011111100",
+   "011111111110000",
+   "011111110000000",
+   "001111110000010",
+   "000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [],
+   [
+    1
+   ],
+   [],
+   [
+    2
+   ],
+   [
+    8
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    5,
+    5
+   ],
+   [
+    2,
+    4,
+    1
+   ],
+   [
+    4,
+    6
+   ],
+   [
+    10
+   ],
+   [
+    7
+   ],
+   [
+    6,
+    1
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    3,
+    2
+   ],
+   [
+    7
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   []
+  ],
+  "filled": 71,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   2,
+   4,
+   14
+  ],
+  "empty_clue_cols": [
+   0,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.158,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.969
+  },
+  "masses": [
+   69,
+   1,
+   1
+  ],
+  "enclosed_background": 13,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of heavy war cannons parked on a whitewashed fortress terrace with stacked cannonballs, barrels and a drill-party tent, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 15x15 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-069": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "000000000000000",
+   "000000000000000",
+   "000000000000000",
+   "000000011001110",
+   "000011111011110",
+   "000111111001110",
+   "011111111111110",
+   "011111111111110",
+   "011110000111110",
+   "000000000011110",
+   "000000001111110",
+   "000000000000000",
+   "000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    2,
+    3
+   ],
+   [
+    5,
+    4
+   ],
+   [
+    6,
+    3
+   ],
+   [
+    13
+   ],
+   [
+    13
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    4
+   ],
+   [
+    6
+   ],
+   [],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    4
+   ],
+   [
+    5
+   ],
+   [
+    4
+   ],
+   [
+    4
+   ],
+   [
+    5
+   ],
+   [
+    5,
+    1
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    8
+   ],
+   [
+    8
+   ],
+   [
+    8
+   ],
+   []
+  ],
+  "filled": 68,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   13,
+   14
+  ],
+  "empty_clue_cols": [
+   0,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.205,
+   "min_saturation": 0.0,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   68
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of two painted carnival horses on a carousel platform under a striped awning with a ticket booth, scene in crisp midday light over pale sand and whitewashed walls with only small pockets of shade, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 15x15 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-086": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "010001000000000",
+   "010001000000000",
+   "010011000000010",
+   "011100000000110",
+   "011111101101110",
+   "011111101011110",
+   "011100001111110",
+   "001000000111110",
+   "001101000000010",
+   "011100100000010",
+   "001111110000010",
+   "011111110000010",
+   "011111000000110",
+   "000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    6,
+    2,
+    3
+   ],
+   [
+    6,
+    1,
+    4
+   ],
+   [
+    3,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    1,
+    1
+   ],
+   [
+    3,
+    1,
+    1
+   ],
+   [
+    6,
+    1
+   ],
+   [
+    7,
+    1
+   ],
+   [
+    5,
+    2
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    7,
+    1,
+    2
+   ],
+   [
+    10
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    3,
+    2,
+    1,
+    3
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    3
+   ],
+   [
+    4
+   ],
+   [
+    5,
+    1
+   ],
+   [
+    11
+   ],
+   []
+  ],
+  "filled": 81,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   14
+  ],
+  "empty_clue_cols": [
+   0,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.27,
+   "min_saturation": 0.013,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   46,
+   30,
+   4,
+   1
+  ],
+  "enclosed_background": 1,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a stone fountain with a tiered basin in a plaza ringed by market stalls, planters and pigeons, scene on a bright overcast day with cream and pastel surfaces and the subject in saturated colour, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 15x15 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-103": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "011000000000010",
+   "011100000011110",
+   "011111000011110",
+   "011111110111110",
+   "011111100011110",
+   "011111101010110",
+   "011100001110000",
+   "011100001111000",
+   "000001100001110",
+   "001101000001110",
+   "001111110011110",
+   "001101100111110",
+   "000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [
+    2,
+    1
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    5,
+    4
+   ],
+   [
+    7,
+    5
+   ],
+   [
+    6,
+    4
+   ],
+   [
+    6,
+    1,
+    1,
+    2
+   ],
+   [
+    3,
+    3
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    1,
+    3
+   ],
+   [
+    6,
+    4
+   ],
+   [
+    2,
+    2,
+    5
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    8
+   ],
+   [
+    8,
+    3
+   ],
+   [
+    7,
+    3
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    4,
+    4
+   ],
+   [
+    3,
+    1,
+    2
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    3
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    5,
+    4
+   ],
+   [
+    6,
+    4
+   ],
+   []
+  ],
+  "filled": 94,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   14
+  ],
+  "empty_clue_cols": [
+   0,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.351,
+   "min_saturation": 0.0,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   44,
+   35,
+   15
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of two glass fishing floats spilled from a torn net among wooden crates, rope coils and sea chests on a dock, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 15x15 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-120": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "000000000000000",
+   "000000000000000",
+   "010000101000000",
+   "000011000011000",
+   "011110100011110",
+   "011111110011100",
+   "010001111111110",
+   "011111111111110",
+   "011111111101110",
+   "011100111111110",
+   "011111000111100",
+   "011111000111110",
+   "011111000001110",
+   "000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    4,
+    1,
+    4
+   ],
+   [
+    7,
+    3
+   ],
+   [
+    1,
+    9
+   ],
+   [
+    13
+   ],
+   [
+    9,
+    3
+   ],
+   [
+    3,
+    8
+   ],
+   [
+    5,
+    4
+   ],
+   [
+    5,
+    5
+   ],
+   [
+    5,
+    3
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    1,
+    9
+   ],
+   [
+    2,
+    6
+   ],
+   [
+    2,
+    6
+   ],
+   [
+    3,
+    2,
+    3
+   ],
+   [
+    1,
+    4,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    5
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    6
+   ],
+   [
+    5,
+    3
+   ],
+   [
+    10
+   ],
+   [
+    9
+   ],
+   [
+    1,
+    4,
+    2
+   ],
+   []
+  ],
+  "filled": 99,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   2,
+   14
+  ],
+  "empty_clue_cols": [
+   0,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.225,
+   "min_saturation": 0.0,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   96,
+   1,
+   1,
+   1
+  ],
+  "enclosed_background": 7,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a busy harbour pier with stacked lobster pots, moored fishing boats, and colourful storefronts behind with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-137": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "011101110000000",
+   "011100000000000",
+   "011000000000000",
+   "011000000000000",
+   "010111000000000",
+   "011111000000000",
+   "011111110000000",
+   "111111111110000",
+   "111111111110000",
+   "111001111100000",
+   "111101110000000",
+   "011111000110000",
+   "111110000010000",
+   "010000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    3,
+    3
+   ],
+   [
+    3
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    5
+   ],
+   [
+    7
+   ],
+   [
+    11
+   ],
+   [
+    11
+   ],
+   [
+    3,
+    5
+   ],
+   [
+    4,
+    3
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    5,
+    1
+   ],
+   [
+    1
+   ]
+  ],
+  "col_clues": [
+   [
+    4,
+    1
+   ],
+   [
+    14
+   ],
+   [
+    4,
+    8
+   ],
+   [
+    2,
+    5,
+    3
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    1,
+    8
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    3
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [],
+   [],
+   [],
+   []
+  ],
+  "filled": 80,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0
+  ],
+  "empty_clue_cols": [
+   11,
+   12,
+   13,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.517,
+   "min_saturation": 0.014,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   74,
+   3,
+   3
+  ],
+  "enclosed_background": 4,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a striped red-and-yellow market awning over carts of fruit on a sunlit seaside promenade with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-154": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "000001111111000",
+   "000011111111000",
+   "011011111111100",
+   "011011111111000",
+   "011011111111100",
+   "011011111111100",
+   "011111111111100",
+   "011111111111100",
+   "000000000000000",
+   "000000000000000",
+   "011000000000010",
+   "010000000000000",
+   "011110000000000",
+   "000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    7
+   ],
+   [
+    8
+   ],
+   [
+    2,
+    9
+   ],
+   [
+    2,
+    8
+   ],
+   [
+    2,
+    9
+   ],
+   [
+    2,
+    9
+   ],
+   [
+    12
+   ],
+   [
+    12
+   ],
+   [],
+   [],
+   [
+    2,
+    1
+   ],
+   [
+    1
+   ],
+   [
+    4
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    6,
+    3
+   ],
+   [
+    6,
+    1,
+    1
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    7,
+    1
+   ],
+   [
+    8
+   ],
+   [
+    8
+   ],
+   [
+    8
+   ],
+   [
+    8
+   ],
+   [
+    8
+   ],
+   [
+    8
+   ],
+   [
+    8
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1
+   ],
+   []
+  ],
+  "filled": 90,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   9,
+   10,
+   14
+  ],
+  "empty_clue_cols": [
+   0,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.402,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.916
+  },
+  "masses": [
+   82,
+   7,
+   1
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of an old theatre grand piano on a stage with red curtains and footlights, scene in bright high-key light over pale sand and whitewashed walls with only small pockets of shade, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 15x15 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-171": {
+  "size": 15,
+  "rows": [
+   "000000000000000",
+   "000000001101110",
+   "000000011111110",
+   "000000011111100",
+   "000000010111100",
+   "000000000111100",
+   "001000001111110",
+   "011000111101110",
+   "000000011101110",
+   "000000111101000",
+   "000000000000000",
+   "010000000000110",
+   "110000000000000",
+   "111000000000000",
+   "000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    2,
+    3
+   ],
+   [
+    7
+   ],
+   [
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    4,
+    3
+   ],
+   [
+    3,
+    3
+   ],
+   [
+    4,
+    1
+   ],
+   [],
+   [
+    1,
+    2
+   ],
+   [
+    2
+   ],
+   [
+    3
+   ],
+   []
+  ],
+  "col_clues": [
+   [
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    1
+   ],
+   [],
+   [],
+   [],
+   [
+    1,
+    1
+   ],
+   [
+    3,
+    3
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    9
+   ],
+   [
+    5
+   ],
+   [
+    9
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    2,
+    3,
+    1
+   ],
+   []
+  ],
+  "filled": 62,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   10,
+   14
+  ],
+  "empty_clue_cols": [
+   3,
+   4,
+   5,
+   14
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   15,
+   15
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 15,
+   "mean_saturation": 0.369,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.973
+  },
+  "masses": [
+   51,
+   6,
+   3,
+   2
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a hay barn with one big open doorway showing stacked bales and a coat-hung wall inside, scene in bright noon light with a large solid dark doorway, broad plain walls and a wide pale yard in front, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 15x15 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-180": {
+  "size": 20,
+  "rows": [
+   "00000000000000000000",
+   "00000000000001111110",
+   "00000000010011111110",
+   "01111110111111111110",
+   "00111111111111111110",
+   "01111111111110000000",
+   "01111111111100101100",
+   "01111111111100001100",
+   "01111111111100001100",
+   "01111111111000000000",
+   "01111111111100000010",
+   "01111111111110000010",
+   "01111111100000000000",
+   "01110000000000000000",
+   "00011000000000001100",
+   "00011000000000001100",
+   "00011100000000001100",
+   "00011100000000000000",
+   "00000100000000000000",
+   "00000000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    6,
+    11
+   ],
+   [
+    17
+   ],
+   [
+    12
+   ],
+   [
+    11,
+    1,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    10
+   ],
+   [
+    11,
+    1
+   ],
+   [
+    12,
+    1
+   ],
+   [
+    8
+   ],
+   [
+    3
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    3
+   ],
+   [
+    1
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    1,
+    9
+   ],
+   [
+    11
+   ],
+   [
+    15
+   ],
+   [
+    10,
+    4
+   ],
+   [
+    10,
+    3
+   ],
+   [
+    10
+   ],
+   [
+    9
+   ],
+   [
+    10
+   ],
+   [
+    10
+   ],
+   [
+    9
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    4
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    4
+   ],
+   [
+    4,
+    3,
+    3
+   ],
+   [
+    4,
+    3,
+    3
+   ],
+   [
+    4,
+    2
+   ],
+   []
+  ],
+  "filled": 163,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   19
+  ],
+  "empty_clue_cols": [
+   0,
+   19
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.367,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.973
+  },
+  "masses": [
+   148,
+   6,
+   6,
+   2,
+   1
+  ],
+  "enclosed_background": 0,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a vintage red steam locomotive beside a bright snow-white station platform with pale luggage trolleys, scene in golden morning light along one edge against a bright pale stone ground, the subject richly dark, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 20x20 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-182": {
+  "size": 20,
+  "rows": [
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000100",
+   "00000000000000001100",
+   "00000000000000001100",
+   "00000000000000001100",
+   "00000000000000001100",
+   "00000000000000001110",
+   "00000100111111111110",
+   "00000000111111111110",
+   "00000000000000111110",
+   "00000000011111111010",
+   "01111110111111111110",
+   "01111111101111111110",
+   "00001101111011110110",
+   "00001111010100011100",
+   "01011011111100011110",
+   "01110000011100100010",
+   "01011100110001110010",
+   "00000000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [
+    1
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    1,
+    11
+   ],
+   [
+    11
+   ],
+   [
+    5
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    6,
+    11
+   ],
+   [
+    8,
+    9
+   ],
+   [
+    2,
+    4,
+    4,
+    2
+   ],
+   [
+    4,
+    1,
+    1,
+    3
+   ],
+   [
+    1,
+    2,
+    6,
+    4
+   ],
+   [
+    3,
+    3,
+    1,
+    1
+   ],
+   [
+    1,
+    3,
+    2,
+    3,
+    1
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    5,
+    1
+   ],
+   [
+    1,
+    4,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    4
+   ],
+   [
+    2,
+    3,
+    1,
+    1
+   ],
+   [
+    2,
+    2,
+    5
+   ],
+   [
+    2,
+    4,
+    2
+   ],
+   [
+    2,
+    3,
+    3
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    2,
+    4,
+    1
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    9,
+    1
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    9,
+    5
+   ],
+   [
+    8,
+    3
+   ],
+   []
+  ],
+  "filled": 135,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   19
+  ],
+  "empty_clue_cols": [
+   0,
+   19
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.364,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.925
+  },
+  "masses": [
+   130,
+   4,
+   1
+  ],
+  "enclosed_background": 7,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-184": {
+  "size": 20,
+  "rows": [
+   "00000000000000000000",
+   "00000000000000100000",
+   "00000000000000000000",
+   "00000000000000110000",
+   "00000000000000110000",
+   "00000000000000110000",
+   "00000000000000110000",
+   "00000000000001111110",
+   "00000000000001111110",
+   "00000000101101111110",
+   "00000001100111110110",
+   "00000001111111101110",
+   "00000000101111111110",
+   "00000111111011111110",
+   "00100000111111111110",
+   "01000100001111111110",
+   "01010110011111111110",
+   "01111111101111101110",
+   "01110011111111011110",
+   "00000000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    1
+   ],
+   [],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    6
+   ],
+   [
+    6
+   ],
+   [
+    1,
+    2,
+    6
+   ],
+   [
+    2,
+    5,
+    2
+   ],
+   [
+    8,
+    3
+   ],
+   [
+    1,
+    9
+   ],
+   [
+    6,
+    7
+   ],
+   [
+    1,
+    11
+   ],
+   [
+    1,
+    1,
+    9
+   ],
+   [
+    1,
+    1,
+    2,
+    10
+   ],
+   [
+    8,
+    5,
+    3
+   ],
+   [
+    3,
+    8,
+    4
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    4
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    3
+   ],
+   [
+    1
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    1,
+    2
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    1,
+    2,
+    1,
+    1
+   ],
+   [
+    1,
+    8
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    9
+   ],
+   [
+    12
+   ],
+   [
+    1,
+    15
+   ],
+   [
+    8,
+    5,
+    1
+   ],
+   [
+    3,
+    8
+   ],
+   [
+    12
+   ],
+   [
+    12
+   ],
+   []
+  ],
+  "filled": 141,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   2,
+   19
+  ],
+  "empty_clue_cols": [
+   0,
+   19
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.304,
+   "min_saturation": 0.01,
+   "spread_cells_share": 0.968
+  },
+  "masses": [
+   139,
+   1,
+   1
+  ],
+  "enclosed_background": 6,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-186": {
+  "size": 20,
+  "rows": [
+   "11111111111111111111",
+   "10000000000000000001",
+   "10000000000000000001",
+   "10000000000000000001",
+   "10000000000000000011",
+   "10000000000000000001",
+   "10000000000000000001",
+   "10000000000101000101",
+   "10000000000111001111",
+   "10010000000111011111",
+   "11110001101111011111",
+   "11000011111111000111",
+   "11100000000111111111",
+   "11000000000000001111",
+   "11100000000000001111",
+   "11110000000000000011",
+   "11110100000000000111",
+   "11110000000000001111",
+   "11100000000001111111",
+   "11111111111111111111"
+  ],
+  "row_clues": [
+   [
+    20
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    3,
+    4
+   ],
+   [
+    1,
+    1,
+    3,
+    5
+   ],
+   [
+    4,
+    2,
+    4,
+    5
+   ],
+   [
+    2,
+    8,
+    3
+   ],
+   [
+    3,
+    9
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    4,
+    1,
+    3
+   ],
+   [
+    4,
+    4
+   ],
+   [
+    3,
+    7
+   ],
+   [
+    20
+   ]
+  ],
+  "col_clues": [
+   [
+    20
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    1,
+    1,
+    1,
+    6
+   ],
+   [
+    1,
+    2,
+    3,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   [
+    1,
+    6,
+    1
+   ],
+   [
+    1,
+    5,
+    1
+   ],
+   [
+    1,
+    6,
+    2
+   ],
+   [
+    1,
+    1,
+    2
+   ],
+   [
+    1,
+    2,
+    1,
+    2
+   ],
+   [
+    1,
+    3,
+    3,
+    3
+   ],
+   [
+    1,
+    8,
+    4
+   ],
+   [
+    1,
+    1,
+    12
+   ],
+   [
+    20
+   ]
+  ],
+  "filled": 161,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [],
+  "empty_clue_cols": [],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.236,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.953
+  },
+  "masses": [
+   160,
+   1
+  ],
+  "enclosed_background": 239,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of two copper brewery vats standing in a bright whitewashed courtyard with white parasols and pale tables, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 20x20 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-188": {
+  "size": 20,
+  "rows": [
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000010000",
+   "00000000000000000000",
+   "00000000011111111110",
+   "00000001111111111110",
+   "01111111111111111100",
+   "01111111111111111110",
+   "01111111111100111110",
+   "01100001111111110110",
+   "00000111111111111010",
+   "01111100001111111000",
+   "00101100000110111100",
+   "00000000011000111010",
+   "00000000110001100110",
+   "00001110111011001110",
+   "00111111111110001110",
+   "01111111101110001110",
+   "00000000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [],
+   [
+    1
+   ],
+   [],
+   [
+    10
+   ],
+   [
+    12
+   ],
+   [
+    17
+   ],
+   [
+    18
+   ],
+   [
+    11,
+    5
+   ],
+   [
+    2,
+    9,
+    2
+   ],
+   [
+    12,
+    1
+   ],
+   [
+    5,
+    7
+   ],
+   [
+    1,
+    2,
+    2,
+    4
+   ],
+   [
+    2,
+    3,
+    1
+   ],
+   [
+    2,
+    2,
+    2
+   ],
+   [
+    3,
+    3,
+    2,
+    3
+   ],
+   [
+    11,
+    3
+   ],
+   [
+    8,
+    3,
+    3
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    4,
+    1,
+    1
+   ],
+   [
+    4,
+    2,
+    2
+   ],
+   [
+    3,
+    1,
+    2
+   ],
+   [
+    3,
+    2,
+    3
+   ],
+   [
+    3,
+    3,
+    3
+   ],
+   [
+    3,
+    1,
+    3
+   ],
+   [
+    6,
+    2
+   ],
+   [
+    6,
+    4
+   ],
+   [
+    7,
+    4
+   ],
+   [
+    8,
+    1,
+    3
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    4,
+    4,
+    3
+   ],
+   [
+    4,
+    3,
+    2
+   ],
+   [
+    11
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    5,
+    4,
+    3
+   ],
+   [
+    6,
+    1,
+    4
+   ],
+   [
+    2,
+    4,
+    5
+   ],
+   []
+  ],
+  "filled": 172,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   2,
+   4,
+   19
+  ],
+  "empty_clue_cols": [
+   0,
+   19
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.402,
+   "min_saturation": 0.0,
+   "spread_cells_share": 1.0
+  },
+  "masses": [
+   159,
+   12,
+   1
+  ],
+  "enclosed_background": 12,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-190": {
+  "size": 20,
+  "rows": [
+   "00000000000000000000",
+   "00110000000000000000",
+   "00000000000000000000",
+   "00001100000000000000",
+   "00111000000000000000",
+   "00011000100000000000",
+   "01111000110000000000",
+   "01111110111000000000",
+   "01111111111110000000",
+   "00000000000011000000",
+   "01111000010001011000",
+   "01110010111000000110",
+   "01111110111111000010",
+   "01111111111111110100",
+   "01111111011111111110",
+   "01111111111111100110",
+   "01110111111111111110",
+   "01111111111111111110",
+   "01111000001111111110",
+   "00000000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    2
+   ],
+   [],
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    6,
+    3
+   ],
+   [
+    12
+   ],
+   [
+    2
+   ],
+   [
+    4,
+    1,
+    1,
+    2
+   ],
+   [
+    3,
+    1,
+    3,
+    2
+   ],
+   [
+    6,
+    6,
+    1
+   ],
+   [
+    15,
+    1
+   ],
+   [
+    7,
+    10
+   ],
+   [
+    14,
+    2
+   ],
+   [
+    3,
+    14
+   ],
+   [
+    18
+   ],
+   [
+    4,
+    9
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    3,
+    9
+   ],
+   [
+    1,
+    1,
+    3,
+    9
+   ],
+   [
+    1,
+    5,
+    9
+   ],
+   [
+    6,
+    1,
+    4,
+    2
+   ],
+   [
+    1,
+    2,
+    6
+   ],
+   [
+    2,
+    7
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    4,
+    3,
+    3
+   ],
+   [
+    3,
+    8
+   ],
+   [
+    2,
+    8
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    7
+   ],
+   [
+    2,
+    7
+   ],
+   [
+    6
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    5
+   ],
+   []
+  ],
+  "filled": 166,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   2,
+   19
+  ],
+  "empty_clue_cols": [
+   0,
+   19
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.356,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.95
+  },
+  "masses": [
+   121,
+   38,
+   3,
+   2,
+   2
+  ],
+  "enclosed_background": 4,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a sunny vineyard terrace with long tables, striped umbrellas, and stone farm buildings with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 20x20. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look."
+ },
+ "pack-192": {
+  "size": 20,
+  "rows": [
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "01001111110000000100",
+   "01111110110000000100",
+   "01111111010000000110",
+   "01111111110000000110",
+   "01111111011000001110",
+   "01111111110000111110",
+   "01111111110000110010",
+   "01111100000000000110",
+   "01111111000000000000",
+   "01111111111111000110",
+   "00000000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    1,
+    6,
+    1
+   ],
+   [
+    6,
+    2,
+    1
+   ],
+   [
+    7,
+    1,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    7,
+    2,
+    3
+   ],
+   [
+    9,
+    5
+   ],
+   [
+    9,
+    2,
+    1
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    7
+   ],
+   [
+    13,
+    2
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    10
+   ],
+   [
+    9
+   ],
+   [
+    9
+   ],
+   [
+    10
+   ],
+   [
+    10
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    1,
+    5,
+    2
+   ],
+   [
+    2,
+    1,
+    2,
+    1
+   ],
+   [
+    7,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1
+   ],
+   [
+    1
+   ],
+   [
+    1
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    6,
+    1,
+    1
+   ],
+   [
+    6,
+    1
+   ],
+   []
+  ],
+  "filled": 105,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   19
+  ],
+  "empty_clue_cols": [
+   0,
+   19
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.184,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.873
+  },
+  "masses": [
+   84,
+   19,
+   2
+  ],
+  "enclosed_background": 3,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a wide flat stone mill wheel leaning on a chalk-whitewashed watermill wall, scene washed in bright high-key daylight against a pale luminous sky, one bold dark mass spanning much of the scene, shapes large and clean, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 20x20 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-194": {
+  "size": 20,
+  "rows": [
+   "00000000000000000000",
+   "00000000000001111000",
+   "00000000001111111000",
+   "00000000001111111000",
+   "00000000000111111000",
+   "00000000000111111000",
+   "00000000000110111000",
+   "00000000000001101010",
+   "00001100000011101010",
+   "00001110111111111000",
+   "00000111111111111010",
+   "00000011111111111110",
+   "00000001111111111110",
+   "00001011101111111110",
+   "00000011111111100110",
+   "00000001111111111100",
+   "00111111111111111010",
+   "00111111111111111110",
+   "01011111111111111010",
+   "00000000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [
+    4
+   ],
+   [
+    7
+   ],
+   [
+    7
+   ],
+   [
+    6
+   ],
+   [
+    6
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    1,
+    1
+   ],
+   [
+    2,
+    3,
+    1,
+    1
+   ],
+   [
+    3,
+    9
+   ],
+   [
+    12,
+    1
+   ],
+   [
+    13
+   ],
+   [
+    12
+   ],
+   [
+    1,
+    3,
+    9
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    11
+   ],
+   [
+    15,
+    1
+   ],
+   [
+    17
+   ],
+   [
+    1,
+    14,
+    1
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    1
+   ],
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    2,
+    1,
+    3
+   ],
+   [
+    3,
+    3
+   ],
+   [
+    3,
+    2,
+    3
+   ],
+   [
+    9
+   ],
+   [
+    10
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    2,
+    10
+   ],
+   [
+    5,
+    10
+   ],
+   [
+    5,
+    11
+   ],
+   [
+    5,
+    12
+   ],
+   [
+    18
+   ],
+   [
+    6,
+    5,
+    4
+   ],
+   [
+    13,
+    4
+   ],
+   [
+    5,
+    1
+   ],
+   [
+    2,
+    5,
+    3
+   ],
+   []
+  ],
+  "filled": 180,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   19
+  ],
+  "empty_clue_cols": [
+   0,
+   19
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.346,
+   "min_saturation": 0.057,
+   "spread_cells_share": 0.995
+  },
+  "masses": [
+   176,
+   2,
+   1,
+   1
+  ],
+  "enclosed_background": 7,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a huge carved dragon head on the prow of a beached longship among driftwood and tide pools, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 20x20 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-196": {
+  "size": 20,
+  "rows": [
+   "11111111111111111111",
+   "10000000000000000001",
+   "10000000000000000011",
+   "11111100000000000001",
+   "11111111000000000001",
+   "11111110000000000001",
+   "10001000000000000001",
+   "10000000000000000001",
+   "10000000000000000001",
+   "10000000000000000001",
+   "10000000000000000001",
+   "10000000000000000001",
+   "10000000010000000001",
+   "11100000000000000001",
+   "11111000000000001111",
+   "11111110000000011111",
+   "11111111010001111111",
+   "11111111101011111111",
+   "11111111111111111111",
+   "11111111111111111111"
+  ],
+  "row_clues": [
+   [
+    20
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    6,
+    1
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    7,
+    1
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    5,
+    4
+   ],
+   [
+    7,
+    5
+   ],
+   [
+    8,
+    1,
+    7
+   ],
+   [
+    9,
+    1,
+    8
+   ],
+   [
+    20
+   ],
+   [
+    20
+   ]
+  ],
+  "col_clues": [
+   [
+    20
+   ],
+   [
+    1,
+    3,
+    7
+   ],
+   [
+    1,
+    3,
+    7
+   ],
+   [
+    1,
+    3,
+    6
+   ],
+   [
+    1,
+    4,
+    6
+   ],
+   [
+    1,
+    3,
+    5
+   ],
+   [
+    1,
+    2,
+    5
+   ],
+   [
+    1,
+    1,
+    4
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    1,
+    1,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    1,
+    6
+   ],
+   [
+    20
+   ]
+  ],
+  "filled": 164,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [],
+  "empty_clue_cols": [],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.152,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.87
+  },
+  "masses": [
+   162,
+   1,
+   1
+  ],
+  "enclosed_background": 236,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of a giant paper festival dragon draped between lantern poles over a whitewashed noon plaza, scene on a pale misty morning with soft light and dark accents only on the subject, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 20x20 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ },
+ "pack-198": {
+  "size": 20,
+  "rows": [
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "00000000000000000000",
+   "01101000000000000110",
+   "01111100000111100110",
+   "01111100000000110010",
+   "00111110000111111110",
+   "01111110001111111110",
+   "01111110001111111110",
+   "01111111111111111110",
+   "01111111111111111110",
+   "01111110111111111110",
+   "01111100000111111100",
+   "01111100111000011110",
+   "01111000111111110010",
+   "01110000001111111110",
+   "00000000000000000000"
+  ],
+  "row_clues": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    2,
+    1,
+    2
+   ],
+   [
+    5,
+    4,
+    2
+   ],
+   [
+    5,
+    2,
+    1
+   ],
+   [
+    5,
+    8
+   ],
+   [
+    6,
+    9
+   ],
+   [
+    6,
+    9
+   ],
+   [
+    18
+   ],
+   [
+    18
+   ],
+   [
+    6,
+    11
+   ],
+   [
+    5,
+    7
+   ],
+   [
+    5,
+    3,
+    4
+   ],
+   [
+    4,
+    8,
+    1
+   ],
+   [
+    3,
+    9
+   ],
+   []
+  ],
+  "col_clues": [
+   [],
+   [
+    3,
+    9
+   ],
+   [
+    13
+   ],
+   [
+    12
+   ],
+   [
+    12
+   ],
+   [
+    10
+   ],
+   [
+    6
+   ],
+   [
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    5,
+    3
+   ],
+   [
+    1,
+    7,
+    2
+   ],
+   [
+    1,
+    7,
+    2
+   ],
+   [
+    1,
+    7,
+    2
+   ],
+   [
+    9,
+    2
+   ],
+   [
+    11
+   ],
+   [
+    8,
+    1
+   ],
+   [
+    2,
+    8,
+    1
+   ],
+   [
+    9,
+    3
+   ],
+   []
+  ],
+  "filled": 169,
+  "in_band": true,
+  "solutions": 1,
+  "line_logic_solves": true,
+  "logic_matches_pixel": true,
+  "matches_pack_fills": true,
+  "matches_pack_clues": true,
+  "empty_clue_rows": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   19
+  ],
+  "empty_clue_cols": [
+   0,
+   19
+  ],
+  "asymmetry": {
+   "horizontal": true,
+   "vertical": true,
+   "diagonal": true
+  },
+  "pixel_size": [
+   20,
+   20
+  ],
+  "square_size": [
+   1024,
+   1024
+  ],
+  "square_colour": {
+   "grid_cells": 20,
+   "mean_saturation": 0.369,
+   "min_saturation": 0.0,
+   "spread_cells_share": 0.77
+  },
+  "masses": [
+   169
+  ],
+  "enclosed_background": 6,
+  "catalog_version": 2,
+  "prompt": "colourful multi-element scene of two weathered film projector reels on a cinema balcony with red velvet seats, scene washed in bright high-key daylight against a pale luminous sky, completely asymmetrical. colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at a 20x20 board. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look. No text."
+ }
+}
