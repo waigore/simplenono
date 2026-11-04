@@ -132,7 +132,9 @@ func _ready() -> void:
 	_puzzle.mark_applied.connect(_seams.note_mark)
 	_puzzle.mark_input().mark_accepted.connect(_on_mark_accepted)
 	_settings.back_requested.connect(close_settings)
+	_settings.orientation_requested.connect(_on_orientation_requested)
 	_settings.present(_flags)
+	_settings.present_orientation(_orientation)
 	_result.back_requested.connect(close_result)
 	_result.reveal().morph_finished.connect(_on_result_morph_finished)
 	_show_gallery()
@@ -177,6 +179,21 @@ func close_result() -> void:
 	if _view != RESULT_VIEW:
 		return
 	_show_gallery()
+
+
+func _on_orientation_requested(value: String) -> void:
+	change_mobile_orientation(value)
+
+
+## [code]UI-settings.C4[/code] ([b]SCH-preferences[/b] L2, [b]CMP-shell[/b] R7): the
+## orientation control asked for [param value]. [OrientationLock] stores it durably and
+## locks the screen at once; the screen then shows the lock's value. Returns false when
+## the lock refused it, which leaves the screen unchanged.
+func change_mobile_orientation(value: String) -> bool:
+	if not _orientation.set_orientation(value):
+		return false
+	_settings.refresh_orientation()
+	return true
 
 
 ## [code]NAV.T2[/code]/[code]T7[/code]: opens settings. From the gallery it is a plain
@@ -550,5 +567,6 @@ func _show_settings() -> void:
 	_puzzle.visible = false
 	_result.visible = false
 	_settings.present(_flags)
+	_settings.present_orientation(_orientation)
 	_settings.visible = true
 	_focus_first()
