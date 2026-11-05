@@ -236,25 +236,16 @@ func test_b6_arrows_walk_the_settings_controls_in_table_order() -> void:
 	var expected: Array[Control] = [
 		screen.haptics_button(),
 		screen.mute_button(),
-		screen.single_line_button(),
-		screen.multi_line_button(),
-		screen.line_fillable_button(),
 		screen.back_button(),
 	]
-	assert_eq(screen.focus_controls(), expected, "C1, C2, C5-C7, C3")
+	assert_eq(screen.focus_controls(), expected, "C1, C2, C3")
 
 	_press(KEY_RIGHT)
 	assert_eq(_focused(), expected[1], "Right steps to C2")
 	_press(KEY_DOWN)
-	assert_eq(_focused(), expected[2], "Down steps to C5")
-	_press(KEY_DOWN)
-	assert_eq(_focused(), expected[3], "Down steps to C6")
-	_press(KEY_DOWN)
-	assert_eq(_focused(), expected[4], "Down steps to C7")
-	_press(KEY_DOWN)
-	assert_eq(_focused(), expected[5], "Down steps to C3 Back")
+	assert_eq(_focused(), expected[2], "Down steps to C3")
 	_press(KEY_LEFT)
-	assert_eq(_focused(), expected[4], "Left steps back to C7")
+	assert_eq(_focused(), expected[1], "Left steps back to C2")
 
 
 func test_b6_arrow_keys_fire_only_point() -> void:

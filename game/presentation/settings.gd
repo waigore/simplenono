@@ -1,28 +1,23 @@
 class_name SettingsScreen
 extends Control
-## [code]UI-settings[/code]: the slim haptics, music-mute, and hint-assist
-## preferences, plus the mobile-only orientation control (specs/ux/screens/settings.md
-## R1-R2, C1-C7, S1; stories US1.1-US1.8).
+## [code]UI-settings[/code]: the slim haptics and music-mute preferences, plus the
+## mobile-only orientation control (specs/ux/screens/settings.md R1-R2, C1-C4, S1;
+## stories US1.1-US1.6).
 ##
 ## The screen reads and writes the one session-flag source [b]SCH-preferences[/b]
-## F1/F2 that [b]CMP-shell[/b] R5 owns: C1 flips haptics, C2 flips the BGM mute, and
-## neither keeps a copy of the value. C5-C7 write the durable hint-assist source
-## F4-F6 ([b]CMP-shell[/b] R8, [HintPreferences], ADR-0010) the shell presents the
-## same way: each toggle stores durably at once and an on-enable during an open
-## attempt is observable for hint-free through the store's [signal changed] — the
-## screen keeps no copy. C4 is the mobile-only orientation control ([code]F3[/code],
-## [b]CMP-shell[/b] R7): it hands the new value to the shell's [OrientationLock],
-## which stores it durably and locks the screen at once, so the screen keeps no copy
-## of it either. C4 raises [signal orientation_requested] and the shell applies it
-## through [OrientationLock], so a desktop build never shows or writes the control.
-## C3 raises [signal back_requested] instead of routing, so the shell decides whether
-## Back returns to the gallery or resumes the paused puzzle
+## F1/F2 that [b]CMP-shell[/b] R5 owns: C1 flips haptics, C2 flips the BGM mute,
+## and neither keeps a copy of the value. C4 is the mobile-only orientation control
+## ([code]F3[/code], [b]CMP-shell[/b] R7): it hands the new value to the shell's
+## [OrientationLock], which stores it durably and locks the screen at once, so the
+## screen keeps no copy of it either. C4 raises [signal orientation_requested] and the
+## shell applies it through [OrientationLock], so a desktop build never shows or
+## writes the control. C3 raises [signal back_requested] instead of routing, so the
+## shell decides whether Back returns to the gallery or resumes the paused puzzle
 ## ([code]NAV.T6[/code]/[code]T8[/code]).
 ##
 ## Haptics default on and music mute default off ([code]F1[/code]/[code]F2[/code]);
-## the orientation defaults to portrait ([code]F3[/code]) and the three hint assists
-## default off ([code]F4[/code]-[code]F6[/code]). The hints are the approved mockups'
-## explanatory lines, not new copy keys.
+## the orientation defaults to portrait ([code]F3[/code]). The hints are the approved
+## mockups' explanatory lines, not new copy keys.
 
 ## [code]UI-settings.C3[/code] ([code]IN.back[/code]): the player asked to go back.
 signal back_requested
@@ -34,11 +29,6 @@ signal orientation_requested(value: String)
 const COPY_TITLE := "Settings"
 const COPY_HAPTICS := "Haptics"
 const COPY_MUTE := "Mute music"
-## [code]copy.hint-single[/code] / [code]copy.hint-multi[/code] /
-## [code]copy.hint-fillable[/code], C5-C7's labels.
-const COPY_HINT_SINGLE := "Single-line hint"
-const COPY_HINT_MULTI := "Multi-line hint"
-const COPY_HINT_FILLABLE := "Line-fillable hint"
 const COPY_ORIENTATION := "Orientation"
 ## [code]copy.portrait[/code] / [code]copy.landscape[/code], C4's current value.
 const COPY_PORTRAIT := "Portrait"
@@ -50,13 +40,9 @@ const COPY_OFF := "Off"
 ## The approved mockups' hint lines under each option.
 const HINT_HAPTICS := "Default on"
 const HINT_MUTE := "BGM only · SFX on"
-const HINT_SINGLE := "Assist · not clues · default off"
-const HINT_MULTI := "Assist · one-level · default off"
-const HINT_FILLABLE := "Assist · fill-tool shade · default off"
 const HINT_ORIENTATION := "Locked · no tilt"
 
 var _flags: SessionFlags
-var _hint_prefs: HintPreferences
 var _orientation: OrientationLock
 
 @onready var _background: ColorRect = %Background
@@ -66,21 +52,12 @@ var _orientation: OrientationLock
 @onready var _haptics_hint: Label = %HapticsHint
 @onready var _mute_label: Label = %MuteLabel
 @onready var _mute_hint: Label = %MuteHint
-@onready var _single_line_label: Label = %SingleLineLabel
-@onready var _single_line_hint: Label = %SingleLineHint
-@onready var _multi_line_label: Label = %MultiLineLabel
-@onready var _multi_line_hint: Label = %MultiLineHint
-@onready var _line_fillable_label: Label = %LineFillableLabel
-@onready var _line_fillable_hint: Label = %LineFillableHint
 @onready var _orientation_row: MarginContainer = %OrientationRow
 @onready var _orientation_rule: ColorRect = %OrientationRule
 @onready var _orientation_label: Label = %OrientationLabel
 @onready var _orientation_hint: Label = %OrientationHint
 @onready var _haptics_button: Button = %HapticsButton
 @onready var _mute_button: Button = %MuteButton
-@onready var _single_line_button: Button = %SingleLineButton
-@onready var _multi_line_button: Button = %MultiLineButton
-@onready var _line_fillable_button: Button = %LineFillableButton
 @onready var _orientation_button: Button = %OrientationButton
 @onready var _back_button: Button = %BackButton
 
@@ -91,9 +68,6 @@ func _ready() -> void:
 	_apply_copy()
 	_haptics_button.pressed.connect(_on_haptics_pressed)
 	_mute_button.pressed.connect(_on_mute_pressed)
-	_single_line_button.pressed.connect(_on_single_line_pressed)
-	_multi_line_button.pressed.connect(_on_multi_line_pressed)
-	_line_fillable_button.pressed.connect(_on_line_fillable_pressed)
 	_orientation_button.pressed.connect(_on_orientation_pressed)
 	_back_button.pressed.connect(_on_back_pressed)
 	_style_back_button()
@@ -129,14 +103,6 @@ func set_ui_theme(ui_theme: UiTheme) -> void:
 		_refresh_type_sizes()
 
 
-## Shows the C5–C7 source [param hint_prefs] the shell owns ([b]SCH-preferences[/b]
-## F4–F6, [HintPreferences], ADR-0010), with the same one-source rule as [method present].
-func present_hints(hint_prefs: HintPreferences) -> void:
-	_hint_prefs = hint_prefs
-	if is_node_ready():
-		_refresh()
-
-
 ## [code]copy.on[/code] or [code]copy.off[/code] for C1.
 func haptics_text() -> String:
 	return COPY_ON if haptics_enabled() else COPY_OFF
@@ -145,21 +111,6 @@ func haptics_text() -> String:
 ## [code]copy.on[/code] or [code]copy.off[/code] for C2.
 func mute_text() -> String:
 	return COPY_ON if mute_bgm() else COPY_OFF
-
-
-## [code]copy.on[/code] or [code]copy.off[/code] for C5.
-func single_line_text() -> String:
-	return COPY_ON if single_line() else COPY_OFF
-
-
-## [code]copy.on[/code] or [code]copy.off[/code] for C6.
-func multi_line_text() -> String:
-	return COPY_ON if multi_line() else COPY_OFF
-
-
-## [code]copy.on[/code] or [code]copy.off[/code] for C7.
-func line_fillable_text() -> String:
-	return COPY_ON if line_fillable() else COPY_OFF
 
 
 ## [code]SCH-preferences[/code] F1 as this screen shows it; the default before a
@@ -176,28 +127,6 @@ func mute_bgm() -> bool:
 	if _flags == null:
 		return SessionFlags.DEFAULT_MUTE_BGM
 	return _flags.mute_bgm()
-
-
-## [code]SCH-preferences[/code] F4 as this screen shows it; always off before a
-## [method present_hints] ([HintPreferences.DEFAULT_ENABLED]).
-func single_line() -> bool:
-	if _hint_prefs == null:
-		return HintPreferences.DEFAULT_ENABLED
-	return _hint_prefs.single_line()
-
-
-## [code]SCH-preferences[/code] F5 as this screen shows it.
-func multi_line() -> bool:
-	if _hint_prefs == null:
-		return HintPreferences.DEFAULT_ENABLED
-	return _hint_prefs.multi_line()
-
-
-## [code]SCH-preferences[/code] F6 as this screen shows it.
-func line_fillable() -> bool:
-	if _hint_prefs == null:
-		return HintPreferences.DEFAULT_ENABLED
-	return _hint_prefs.line_fillable()
 
 
 ## True on a build where C4 exists: the screen holds an [OrientationLock] whose
@@ -239,36 +168,6 @@ func activate_mute() -> bool:
 	return _flags.mute_bgm()
 
 
-## C5 ([code]IN.activate[/code]): flips the single-line hint assist through the
-## presented store, which stores durably at once and raises [signal changed] for the
-## hint-free consumers, and returns the store's new value. Returns false and changes
-## nothing when no store was presented; a refused write also leaves the shown value.
-func activate_single_line() -> bool:
-	if _hint_prefs == null:
-		return false
-	_hint_prefs.set_single_line(not _hint_prefs.single_line())
-	_refresh()
-	return _hint_prefs.single_line()
-
-
-## C6 ([code]IN.activate[/code]): same persist / observability for F5.
-func activate_multi_line() -> bool:
-	if _hint_prefs == null:
-		return false
-	_hint_prefs.set_multi_line(not _hint_prefs.multi_line())
-	_refresh()
-	return _hint_prefs.multi_line()
-
-
-## C7 ([code]IN.activate[/code]): same persist / observability for F6.
-func activate_line_fillable() -> bool:
-	if _hint_prefs == null:
-		return false
-	_hint_prefs.set_line_fillable(not _hint_prefs.line_fillable())
-	_refresh()
-	return _hint_prefs.line_fillable()
-
-
 ## C4 ([code]IN.activate[/code]): raises the other locked orientation for the shell to
 ## store and apply, and returns it. Returns an empty string and changes nothing when
 ## the build is not mobile or no lock was presented.
@@ -297,20 +196,12 @@ func activate_back() -> void:
 
 
 ## The screen's controls in [code]Controls[/code] table order
-## ([code]controls.md[/code] F1): C1 Haptics, C2 Mute BGM, C5–C7 hint assists,
-## C4 Orientation on mobile, C3 Back last.
+## ([code]controls.md[/code] F1): C1 Haptics, C2 Mute BGM, C4 Orientation on mobile,
+## C3 Back last.
 func focus_controls() -> Array[Control]:
-	var controls: Array[Control] = [
-		_haptics_button,
-		_mute_button,
-		_single_line_button,
-		_multi_line_button,
-		_line_fillable_button,
-	]
 	if orientation_available():
-		controls.append(_orientation_button)
-	controls.append(_back_button)
-	return controls
+		return [_haptics_button, _mute_button, _orientation_button, _back_button]
+	return [_haptics_button, _mute_button, _back_button]
 
 
 ## C1's control, for input tests.
@@ -321,21 +212,6 @@ func haptics_button() -> Button:
 ## C2's control, for input tests.
 func mute_button() -> Button:
 	return _mute_button
-
-
-## C5's control, for input tests.
-func single_line_button() -> Button:
-	return _single_line_button
-
-
-## C6's control, for input tests.
-func multi_line_button() -> Button:
-	return _multi_line_button
-
-
-## C7's control, for input tests.
-func line_fillable_button() -> Button:
-	return _line_fillable_button
 
 
 ## C4's control, for input tests. Hidden on a desktop build.
@@ -353,12 +229,6 @@ func _refresh() -> void:
 	_mute_button.text = mute_text()
 	_apply_toggle_style(_haptics_button, haptics_enabled())
 	_apply_toggle_style(_mute_button, mute_bgm())
-	_single_line_button.text = single_line_text()
-	_multi_line_button.text = multi_line_text()
-	_line_fillable_button.text = line_fillable_text()
-	_apply_toggle_style(_single_line_button, single_line())
-	_apply_toggle_style(_multi_line_button, multi_line())
-	_apply_toggle_style(_line_fillable_button, line_fillable())
 	var mobile := orientation_available()
 	_orientation_rule.visible = mobile
 	_orientation_row.visible = mobile
@@ -375,12 +245,6 @@ func _apply_copy() -> void:
 	_haptics_hint.text = HINT_HAPTICS
 	_mute_label.text = COPY_MUTE
 	_mute_hint.text = HINT_MUTE
-	_single_line_label.text = COPY_HINT_SINGLE
-	_single_line_hint.text = HINT_SINGLE
-	_multi_line_label.text = COPY_HINT_MULTI
-	_multi_line_hint.text = HINT_MULTI
-	_line_fillable_label.text = COPY_HINT_FILLABLE
-	_line_fillable_hint.text = HINT_FILLABLE
 	_orientation_label.text = COPY_ORIENTATION
 	_orientation_hint.text = HINT_ORIENTATION
 	_back_button.text = COPY_BACK
@@ -392,18 +256,6 @@ func _on_haptics_pressed() -> void:
 
 func _on_mute_pressed() -> void:
 	activate_mute()
-
-
-func _on_single_line_pressed() -> void:
-	activate_single_line()
-
-
-func _on_multi_line_pressed() -> void:
-	activate_multi_line()
-
-
-func _on_line_fillable_pressed() -> void:
-	activate_line_fillable()
 
 
 func _on_orientation_pressed() -> void:
@@ -424,19 +276,10 @@ func _refresh_type_sizes() -> void:
 		_haptics_hint,
 		_mute_label,
 		_mute_hint,
-		_single_line_label,
-		_single_line_hint,
-		_multi_line_label,
-		_multi_line_hint,
-		_line_fillable_label,
-		_line_fillable_hint,
 		_orientation_label,
 		_orientation_hint,
 		_haptics_button,
 		_mute_button,
-		_single_line_button,
-		_multi_line_button,
-		_line_fillable_button,
 		_orientation_button,
 		_back_button,
 	]:
