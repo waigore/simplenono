@@ -83,16 +83,17 @@ func _draw_placeholder(box: Rect2) -> void:
 	if font == null:
 		return
 	var font_size := maxi(1, int(roundf(frame_size * MARK_SIZE_RATIO)))
-	var mark_size := font.get_string_size(
-		PLACEHOLDER_MARK,
-		HORIZONTAL_ALIGNMENT_LEFT,
-		-1,
-		font_size,
+	var mark_size := (
+		font
+		. get_string_size(
+			PLACEHOLDER_MARK,
+			HORIZONTAL_ALIGNMENT_LEFT,
+			-1,
+			font_size,
+		)
 	)
 	var baseline := (
-		frame.position
-		+ (frame.size - mark_size) * 0.5
-		+ Vector2(0.0, font.get_ascent(font_size))
+		frame.position + (frame.size - mark_size) * 0.5 + Vector2(0.0, font.get_ascent(font_size))
 	)
 	draw_string(
 		font,
