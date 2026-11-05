@@ -188,7 +188,7 @@ func test_puzzle_chrome_and_clue_labels_use_the_one_family_at_t1_and_t2() -> voi
 		_assert_family(control, node_name)
 		_assert_chrome_size(control, node_name)
 	var board := screen.get_node("%Board") as PuzzleBoard
-	_assert_family(board.row_clue_label(0), "a row clue label")
+	_assert_family(board.row_clue_labels(0)[0], "a row clue label")
 	_assert_family(board.column_clue_labels(0)[0], "a column clue label")
 	_assert_resize_wiring(screen)
 
@@ -207,7 +207,7 @@ func test_t1_clue_labels_are_half_the_laid_out_cell_side() -> void:
 		UiTheme.t1_size(board.cell_size()),
 		"the clue size is T1 of the cell side",
 	)
-	var label := board.row_clue_label(0)
+	var label: Label = board.row_clue_labels(0)[0]
 	assert_eq(
 		label.get_theme_font_size("font_size"),
 		board.clue_font_size(),

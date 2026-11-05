@@ -14,7 +14,7 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 | ID | Name | Input | Output / effect | When |
 |----|------|-------|-----------------|------|
 | O1 | is-solved | Solution fill set and player fills | True when the sets are equal | After a mark |
-| O2 | line-status | Size, row clues, column clues, and marks | One [`SCH-line-status`](../schemata/line-status.md) per row and column | After a mark, and when ready completes |
+| O2 | line-status | Size, row clues, column clues, and marks | One [`SCH-line-status`](../schemata/line-status.md) per row and column, carrying error, satisfied, and the per-clue-number match | After a mark, and when ready completes |
 
 ## Events
 
@@ -25,7 +25,7 @@ None — the attempt receives the return value.
 | ID | Guarantee |
 |----|-----------|
 | G1 | The same inputs return the same result |
-| G2 | Crosses are ignored for O1 and for fill logic in O2 |
+| G2 | Crosses are ignored for O1 and for the fill side of O2; a cross ends a fill island exactly as a clear does |
 | G3 | The grid is not written |
 
 ## Errors

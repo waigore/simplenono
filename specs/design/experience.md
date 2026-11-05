@@ -22,7 +22,7 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 |-------|------------------------|----------|
 | Mark applied | Cell is clear, fill, or cross | high |
 | Line error | This row/col’s fills contradict its clues | high |
-| Clue satisfied | That line’s runs are realized (dim) | medium |
+| Clue satisfied | Each matched clue number dims; unmatched numbers stay highlighted | medium |
 | Solved | Picture complete; ever-completed set; personal best updates when the solve is shorter | high |
 | Gallery progress | Attempt status, ever-completed, personal best, completion rate | medium |
 | Get-set-ready | Marks not allowed yet | medium |

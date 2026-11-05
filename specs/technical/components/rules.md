@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | ID | Responsibility |
 |----|----------------|
 | R1 | Report whether the player's fill set equals the solution fill set. Crosses are ignored |
-| R2 | Report error and satisfied for each clue line from that line's run lengths and the current fills |
+| R2 | Report error, satisfied, and the per-clue-number match for each clue line from that line's run lengths and the current fills |
 | R3 | Keep no stored clue-line identity |
 
 ## Communication
