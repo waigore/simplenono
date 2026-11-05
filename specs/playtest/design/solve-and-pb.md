@@ -14,6 +14,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 | S1 | `DBG.3` into a not-started puzzle one correct fill from solve, `personal-best` none. Place that fill. |
 | S2 | After win clear, reopen the same puzzle. `DBG.3` (or play) to near-solve with elapsed clearly **longer** than the stored PB; solve. |
 | S3 | Near-solve again with elapsed clearly **shorter** than the stored PB; solve. |
+| S4 | With all hint toggles off, solve once; confirm hint-free. Enable any hint during a later open attempt; confirm void. Reset the puzzle; confirm hint-free cleared with other progress. |
 
 ## Pass
 
@@ -22,6 +23,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 | P1 | First solve: ever-completed true; attempt not started; marks and elapsed cleared; PB set to that run’s time. |
 | P2 | Longer replay keeps the prior PB; ever-completed stays true. |
 | P3 | Shorter replay replaces PB; marks/elapsed clear again after solve. |
+| P4 | Clean solve sets hint-free; enabling a hint during an active attempt clears it; gallery reset clears hint-free. |
 
 ## Fail
 
@@ -29,6 +31,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 |----|---------|-------------------|
 | F1 | First solve does not set ever-completed / PB, or leaves marks/attempt in progress. | yes |
 | F2 | Longer run overwrites PB, or shorter run fails to improve it. | yes |
+| F3 | Clean solve skips hint-free, enable does not void, or reset leaves hint-free. | yes |
 
 ## Evidence
 

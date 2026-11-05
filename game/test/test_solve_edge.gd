@@ -31,9 +31,11 @@ class RecordingProgress:
 	var solve_calls: Array = []
 	var commit_calls: int = 0
 
-	func record_solve(puzzle_id: String, elapsed: int) -> ProgressRecord:
-		solve_calls.append([puzzle_id, elapsed])
-		return super.record_solve(puzzle_id, elapsed)
+	func record_solve(
+		puzzle_id: String, elapsed: int, hint_free_eligible: bool = true
+	) -> ProgressRecord:
+		solve_calls.append([puzzle_id, elapsed, hint_free_eligible])
+		return super.record_solve(puzzle_id, elapsed, hint_free_eligible)
 
 	func commit(
 		puzzle_id: String,
@@ -67,6 +69,16 @@ class RecordingPack:
 		puzzle_id: String, marks: MarkGrid, elapsed: int, in_progress: bool
 	) -> ProgressRecord:
 		return recording_progress.commit(puzzle_id, marks, elapsed, in_progress)
+
+	## O6 / O9 through the recording rules (no progress file in this fixture pack).
+	func record_solve(
+		puzzle_id: String, elapsed: int, hint_free_eligible: bool = true
+	) -> ProgressRecord:
+		return recording_progress.record_solve(puzzle_id, elapsed, hint_free_eligible)
+
+	func void_hint_free(puzzle_id: String) -> bool:
+		recording_progress.void_hint_free(puzzle_id)
+		return true
 
 
 var _definition: PuzzleDefinition
@@ -191,9 +203,10 @@ func test_a_solving_fill_stops_elapsed_records_the_solve_and_clears_the_attempt(
 	assert_true(attempt.rules().is_solved(result.marks), "PS1.5: is-solved is true")
 	assert_eq(
 		_pack.recording_progress.solve_calls,
-		[[TEAPOT_ID, 50]],
+		[[TEAPOT_ID, 50, true]],
 		"PS1.5: O6 once with the stopped elapsed"
 	)
+	assert_true(_pack.progress().record(TEAPOT_ID).hint_free, "PS1.5: clean solve earns hint-free")
 	assert_eq(emissions, [[TEAPOT_ID, 50]], "PS1.5: E1 with the puzzle id and elapsed")
 	assert_eq(
 		attempt.state().attempt_status(), AttemptState.Status.NOT_STARTED, "PS1.5: not started"
@@ -251,7 +264,7 @@ func test_a_longer_solve_keeps_the_personal_best():
 
 	assert_eq(
 		_pack.recording_progress.solve_calls,
-		[[TEAPOT_ID, 50]],
+		[[TEAPOT_ID, 50, true]],
 		"PS1.6: O6 receives the longer solve"
 	)
 	var record := _pack.progress().record(TEAPOT_ID)

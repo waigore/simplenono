@@ -3,10 +3,10 @@ extends RefCounted
 ## [b]CMP-pack[/b] R4: read and replace `user://progress.cfg` ([b]CTR-pack[/b] G3;
 ## specs/technical/persistence.md M1-M2, ADR-0002).
 ##
-## One [ConfigFile] section per puzzle id holds [SCH-progress] F2-F6. Ever-completed,
-## attempt status, elapsed, and personal best are plain keys; marks are stored
-## row-major as mark names and only while the attempt is in progress (M2). The file
-## version is stored in a meta section for a later migration (G1).
+## One [ConfigFile] section per puzzle id holds [SCH-progress] F2-F7. Ever-completed,
+## attempt status, elapsed, personal best, and hint-free are plain keys; marks are
+## stored row-major as mark names and only while the attempt is in progress (M2). The
+## file version is stored in a meta section for a later migration (G1).
 ##
 ## A write goes to a temp file first and is renamed onto the target, so a failed
 ## write leaves the previous file in place (G3). Only [b]CMP-pack[/b] calls this class.
@@ -26,6 +26,7 @@ const EVER_COMPLETED_KEY := "ever-completed"
 const IN_PROGRESS_KEY := "in-progress"
 const ELAPSED_KEY := "elapsed"
 const PERSONAL_BEST_KEY := "personal-best"
+const HINT_FREE_KEY := "hint-free"
 const MARKS_KEY := "marks"
 
 var _path: String
@@ -72,6 +73,7 @@ func _store_record(config: ConfigFile, record: ProgressRecord) -> void:
 	config.set_value(section, EVER_COMPLETED_KEY, record.ever_completed)
 	config.set_value(section, IN_PROGRESS_KEY, record.in_progress)
 	config.set_value(section, ELAPSED_KEY, record.elapsed)
+	config.set_value(section, HINT_FREE_KEY, record.hint_free)
 	if record.has_personal_best():
 		config.set_value(section, PERSONAL_BEST_KEY, record.personal_best)
 	if record.in_progress:
@@ -90,13 +92,15 @@ func _restore_record(rules: ProgressRules, config: ConfigFile, puzzle_id: String
 		stored_marks = _marks_from(config.get_value(puzzle_id, MARKS_KEY, []))
 	var stored_elapsed: int = config.get_value(puzzle_id, ELAPSED_KEY, 0)
 	var stored_best: int = config.get_value(puzzle_id, PERSONAL_BEST_KEY, -1)
+	var stored_hint_free: bool = config.get_value(puzzle_id, HINT_FREE_KEY, false)
 	rules.restore(
 		puzzle_id,
 		stored_ever_completed,
 		stored_in_progress,
 		stored_marks,
 		stored_elapsed,
-		stored_best
+		stored_best,
+		stored_hint_free
 	)
 
 
