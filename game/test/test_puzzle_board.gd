@@ -257,6 +257,28 @@ func test_row_clue_numbers_dim_individually():
 		)
 
 
+# #619: every row clue number is laid out wide enough to draw its glyph. A
+# clip_text label with no minimum width collapses to 1 px in the row HBoxContainer,
+# so the number is clipped away even though its font_color is right.
+func test_row_clue_numbers_are_laid_out_wide_enough_to_draw():
+	for size in [10, 15, 20]:
+		var board := await _shown_at(PORTRAIT, size)
+		await get_tree().process_frame
+		for row in size:
+			for label: Label in board.row_clue_labels(row):
+				var context := "%sx%s row %s number %s" % [size, size, row, label.text]
+				var glyph_width := _glyph_width(label)
+				assert_gt(label.size.x, 1.0, "%s: laid out wider than 1 px" % context)
+				assert_gte(label.size.x, glyph_width, "%s: fits its glyph" % context)
+				var box := label.get_parent() as Control
+				assert_gte(label.position.x, 0.0, "%s: starts inside its clue bar" % context)
+				assert_lte(
+					label.position.x + label.size.x,
+					box.size.x,
+					"%s: ends inside its clue bar, so clip_contents cannot cut it" % context,
+				)
+
+
 # R2 / E-clue I4: column clue numbers follow the same per-number rule.
 func test_column_clue_numbers_dim_individually():
 	var definition := _clue_definition(_empty_lines(6), [[2, 3]] + _empty_lines(5))
@@ -287,6 +309,13 @@ func _layout_board(definition: PuzzleDefinition) -> PuzzleBoard:
 
 func _label_color(label: Label) -> Color:
 	return label.get_theme_color("font_color")
+
+
+## The drawn width of [param label]'s text at its current font size.
+func _glyph_width(label: Label) -> float:
+	var font := label.get_theme_font("font")
+	var font_size := label.get_theme_font_size("font_size")
+	return font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 
 
 func _clue_definition(row_clues: Array, col_clues: Array) -> PuzzleDefinition:

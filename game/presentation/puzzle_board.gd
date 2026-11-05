@@ -305,6 +305,10 @@ func _position_children() -> void:
 		box.add_theme_constant_override("separation", maxi(1, int(roundf(_cell_size * 0.12))))
 		for label in _row_labels[row]:
 			label.add_theme_font_size_override("font_size", font_size)
+			# A clip_text label has no minimum width of its own, so the row
+			# HBoxContainer would collapse it to 1 px and clip the number away
+			# (#619). Hold each number to its glyph width at the clue size.
+			label.custom_minimum_size = Vector2(_clue_text_width(label, font_size), 0.0)
 	for row in _definition.size:
 		for column in _definition.size:
 			var cell := cell_at(row, column)
@@ -350,6 +354,13 @@ func _number_dims(status: LineStatus, number: int) -> bool:
 	if status.number_matched.is_empty():
 		return status.satisfied
 	return status.number_matches(number)
+
+
+## The width [param label]'s text needs at [param font_size], so a row clue number
+## is never laid out narrower than its glyphs (#619).
+func _clue_text_width(label: Label, font_size: int) -> float:
+	var font := label.get_theme_font("font")
+	return ceilf(font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x)
 
 
 func _runs_text(runs: Array) -> String:
