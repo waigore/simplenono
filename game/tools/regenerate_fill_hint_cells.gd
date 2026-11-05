@@ -56,7 +56,9 @@ func _with_hint_cells(entry: Dictionary) -> Dictionary:
 	var single_map: Dictionary = single
 	var multi_map: Dictionary = {}
 	if not single_map.is_empty():
-		var multi: Dictionary = _union_forced(entry["row-clues"], entry["col-clues"], size, single_map)
+		var multi: Dictionary = _union_forced(
+			entry["row-clues"], entry["col-clues"], size, single_map
+		)
 		for position: Variant in multi:
 			if not single_map.has(position):
 				multi_map[position] = multi[position]
@@ -107,8 +109,10 @@ func _line_forced(
 	solver.solve()
 	if solver.total == 0:
 		push_error(
-			"No valid arrangement for %s %d with the known marks; the pack is inconsistent"
-			% ["row" if by_row else "column", index]
+			(
+				"No valid arrangement for %s %d with the known marks; the pack is inconsistent"
+				% ["row" if by_row else "column", index]
+			)
 		)
 		quit(1)
 		return {}
@@ -130,7 +134,10 @@ func _absorb(forced: Dictionary, marks: Dictionary, where: String) -> void:
 		var mark: String = marks[position]
 		if forced.has(position) and forced[position] != mark:
 			push_error(
-				"%s forces %s as %s but another line says %s" % [where, position, mark, forced[position]]
+				(
+					"%s forces %s as %s but another line says %s"
+					% [where, position, mark, forced[position]]
+				)
 			)
 			quit(1)
 			return
@@ -152,16 +159,13 @@ func _to_cells(marks: Dictionary, fills: Dictionary) -> Array:
 	return cells
 
 
-## The whole array of [param entries] as one line per entry with blank lines between
-## them, matching the layout the pack already uses so the diff stays data-only.
+## The whole array of [param entries] as one compact line per entry with a blank line
+## between neighbours, matching `.github/scripts/generate_pack.py` render form.
 func _write_pack(entries: Array) -> void:
 	var lines: PackedStringArray = []
-	for index in entries.size():
-		var line := JSON.stringify(entries[index])
-		if index < entries.size() - 1:
-			line += ","
-		lines.append(line)
-	var text := "[\n\n%s\n]\n" % "\n\n".join(lines)
+	for entry: Variant in entries:
+		lines.append(JSON.stringify(entry))
+	var text := "[\n%s\n]\n" % ",\n\n".join(lines)
 	var file := FileAccess.open(PACK_PATH, FileAccess.WRITE)
 	if file == null:
 		push_error("Cannot write pack file: %s" % PACK_PATH)
@@ -192,7 +196,6 @@ class _LineSolver:
 	## How many valid arrangements the line has; zero is a pack defect.
 	var total := 0
 
-
 	## Count the arrangements and record per-cell fill counts.
 	func solve() -> void:
 		fill_counts.clear()
@@ -203,7 +206,6 @@ class _LineSolver:
 		state.resize(length)
 		state.fill(EMPTY_MARK)
 		_place(0, 0, state)
-
 
 	## Place run [param run_index] at or after cell [param minimum] on a [param state]
 	## snapshot, then recurse; with no run left the line closes over the remaining
