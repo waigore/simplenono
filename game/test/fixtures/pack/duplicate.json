@@ -37,7 +37,9 @@
    ]
   ],
   "picture-id": "picture-a",
-  "pixel-picture-id": "pixel-a"
+  "pixel-picture-id": "pixel-a",
+ "single-fill-hint-cells": [],
+ "multi-fill-hint-cells": []
  },
  {
   "id": "fixture-a",
@@ -77,7 +79,9 @@
    ]
   ],
   "picture-id": "picture-b",
-  "pixel-picture-id": "pixel-b"
+  "pixel-picture-id": "pixel-b",
+ "single-fill-hint-cells": [],
+ "multi-fill-hint-cells": []
  },
  {
   "id": "fixture-b",
@@ -117,7 +121,9 @@
    ]
   ],
   "picture-id": "picture-a",
-  "pixel-picture-id": "pixel-b"
+  "pixel-picture-id": "pixel-b",
+ "single-fill-hint-cells": [],
+ "multi-fill-hint-cells": []
  },
  {
   "id": "fixture-c",
@@ -157,6 +163,8 @@
    ]
   ],
   "picture-id": "picture-b",
-  "pixel-picture-id": "pixel-a"
+  "pixel-picture-id": "pixel-a",
+ "single-fill-hint-cells": [],
+ "multi-fill-hint-cells": []
  }
 ]

@@ -111,7 +111,7 @@ class ShippedPackTest(unittest.TestCase):
         counts = collections.Counter(entry["size"] for entry in self.entries)
         self.assertEqual(counts, {10: 10, 15: 170, 20: 20})
 
-    def test_fields_are_f1_to_f7(self) -> None:
+    def test_fields_are_f1_to_f9(self) -> None:
         for entry in self.entries:
             self.assertEqual(set(entry), set(generate_pack.FIELDS))
 

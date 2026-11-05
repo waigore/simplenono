@@ -4,7 +4,9 @@
 The pack is the fixed local pack: 10 puzzles of 10x10, 170 of 15x15, and 20 of 20x20
 (specs/design/entities/puzzle.md, placement and availability). Layout and entry fields
 are fixed by specs/technical/contracts/pack.md (pack layout) and
-specs/technical/schemata/puzzle-def.md (F1-F7); this script only decides content.
+specs/technical/schemata/puzzle-def.md (F1-F9); this script only decides content.
+F8/F9 fill-hint cells are derived at pack time from clues and solution fills (CTR-pack
+G6); the same algorithm lives in game/tools/regenerate_fill_hint_cells.gd.
 
 Content method (recorded in the pull request for #105): a puzzle whose pixel picture is
 approved and catalogued derives its fills from that pixel file, which is the source
@@ -66,7 +68,19 @@ EPOCH_MS = 1_793_000_000_000  # fixed so asset ids are reproducible
 GROWTH = {10: 0.42, 15: 0.55, 20: 0.55}
 PACK_REL = Path("game") / "data" / "pack.json"
 PACK = REPO_ROOT / PACK_REL
-FIELDS = ("id", "size", "row-clues", "col-clues", "solution-fills", "picture-id", "pixel-picture-id")
+FIELDS = (
+    "id",
+    "size",
+    "row-clues",
+    "col-clues",
+    "solution-fills",
+    "picture-id",
+    "pixel-picture-id",
+    "single-fill-hint-cells",
+    "multi-fill-hint-cells",
+)
+FILL = "fill"
+CROSS = "cross"
 
 # ADR-0003: catalog entries at the repo root; cataloged files under the Godot project.
 CATALOG_ROOT = Path("assets") / "catalog"
@@ -79,6 +93,10 @@ FILL_LUMA = 128.0
 
 class PixelError(Exception):
     """An approved pixel file cannot be read by the fixed rule."""
+
+
+class PackError(Exception):
+    """The committed pack file cannot be used for a targeted write, or fill hints fail."""
 
 
 def uuid7(seed: bytes) -> str:
@@ -275,19 +293,141 @@ def runs(line: list[bool]) -> list[int]:
     return out
 
 
+def line_forced(run_lengths: list[int], length: int, known: dict[int, str]) -> dict[int, str]:
+    """Marks forced on one line by enumerating every valid arrangement of its runs."""
+    fill_counts = [0] * length
+    total = 0
+
+    def place(run_index: int, minimum: int, state: list[int]) -> None:
+        nonlocal total
+        if run_index == len(run_lengths):
+            for step in range(minimum, length):
+                if known.get(step) == FILL:
+                    return
+                state[step] = 0
+            total += 1
+            for step in range(length):
+                if state[step] == 1:
+                    fill_counts[step] += 1
+            return
+        tail = 0
+        for step in range(run_index, len(run_lengths)):
+            tail += run_lengths[step]
+            if step < len(run_lengths) - 1:
+                tail += 1
+        for start in range(minimum, length - tail + 1):
+            line = state[:]
+            ok = True
+            for step in range(minimum, start):
+                if known.get(step) == FILL:
+                    ok = False
+                    break
+                line[step] = 0
+            if not ok:
+                continue
+            for step in range(start, start + run_lengths[run_index]):
+                if known.get(step) == CROSS:
+                    ok = False
+                    break
+                line[step] = 1
+            if not ok:
+                continue
+            if run_index == len(run_lengths) - 1:
+                for step in range(start + run_lengths[run_index], length):
+                    if known.get(step) == FILL:
+                        ok = False
+                        break
+                    line[step] = 0
+                if ok:
+                    total += 1
+                    for step in range(length):
+                        if line[step] == 1:
+                            fill_counts[step] += 1
+                continue
+            if known.get(start + run_lengths[run_index]) == FILL:
+                continue
+            line[start + run_lengths[run_index]] = 0
+            place(run_index + 1, start + run_lengths[run_index] + 1, line)
+
+    place(0, 0, [-1] * length)
+    if total == 0:
+        raise PackError("no valid arrangement for a line's runs against its known marks")
+    marks: dict[int, str] = {}
+    for step in range(length):
+        if fill_counts[step] == total:
+            marks[step] = FILL
+        elif fill_counts[step] == 0:
+            marks[step] = CROSS
+    return marks
+
+
+def union_forced(
+    row_clues: list[list[int]],
+    col_clues: list[list[int]],
+    size: int,
+    known: dict[tuple[int, int], str],
+) -> dict[tuple[int, int], str]:
+    """F8 (known empty) or F9 (known = F8) forced marks over every row and column."""
+    forced: dict[tuple[int, int], str] = {}
+
+    def absorb(marks: dict[tuple[int, int], str]) -> None:
+        for position, mark in marks.items():
+            if position in forced and forced[position] != mark:
+                raise PackError(f"contradictory forced mark at {position}")
+            forced[position] = mark
+
+    for row in range(size):
+        line_known = {column: known[(row, column)] for column in range(size) if (row, column) in known}
+        absorb({(row, column): mark for column, mark in line_forced(row_clues[row], size, line_known).items()})
+    for column in range(size):
+        line_known = {row: known[(row, column)] for row in range(size) if (row, column) in known}
+        absorb({(row, column): mark for row, mark in line_forced(col_clues[column], size, line_known).items()})
+    return forced
+
+
+def fill_hint_cells(
+    row_clues: list[list[int]],
+    col_clues: list[list[int]],
+    size: int,
+    fills: set[tuple[int, int]],
+) -> tuple[list[list], list[list]]:
+    """F8 then one-level F9 as sorted [row, column, mark] triples (puzzle-def I6-I8)."""
+    single = union_forced(row_clues, col_clues, size, {})
+    multi: dict[tuple[int, int], str] = {}
+    if single:
+        second = union_forced(row_clues, col_clues, size, single)
+        multi = {position: mark for position, mark in second.items() if position not in single}
+
+    def to_cells(marks: dict[tuple[int, int], str]) -> list[list]:
+        cells = []
+        for row, column in sorted(marks):
+            mark = marks[(row, column)]
+            if mark == FILL and (row, column) not in fills:
+                raise PackError(f"fill hint at ({row}, {column}) is not a solution fill")
+            cells.append([row, column, mark])
+        return cells
+
+    return to_cells(single), to_cells(multi)
+
+
 def entry(index: int, size: int, rng: random.Random, fills: set[tuple[int, int]] | None = None) -> dict:
     cells = silhouette(size, rng) if fills is None else fills
     grid = [[(row, column) in cells for column in range(size)] for row in range(size)]
     columns = [[grid[row][column] for row in range(size)] for column in range(size)]
+    row_clues = [runs(row) for row in grid]
+    col_clues = [runs(column) for column in columns]
+    single_hints, multi_hints = fill_hint_cells(row_clues, col_clues, size, cells)
     picture_id, pixel_id = picture_ids(index)
     return {
         "id": f"pack-{index:03d}",
         "size": size,
-        "row-clues": [runs(row) for row in grid],
-        "col-clues": [runs(column) for column in columns],
+        "row-clues": row_clues,
+        "col-clues": col_clues,
         "solution-fills": sorted([row, column] for row, column in cells),
         "picture-id": picture_id,
         "pixel-picture-id": pixel_id,
+        "single-fill-hint-cells": single_hints,
+        "multi-fill-hint-cells": multi_hints,
     }
 
 
@@ -313,10 +453,6 @@ def render(entries: list[dict]) -> str:
     return "[\n" + ",\n\n".join(lines) + "\n]\n"
 
 
-class PackError(Exception):
-    """The committed pack file cannot be used for a targeted write."""
-
-
 def parse(text: str) -> list[dict]:
     """The entries of a pack file, or PackError when it is not a JSON array of objects."""
     try:
@@ -339,11 +475,16 @@ def derive_row(row: dict, root: Path) -> dict:
         raise PackError(f"pixel-picture-id {pixel_id} has no approved pixel; nothing to derive")
     grid = [[(r, c) in fills for c in range(size)] for r in range(size)]
     columns = [[grid[r][c] for r in range(size)] for c in range(size)]
+    row_clues = [runs(r) for r in grid]
+    col_clues = [runs(c) for c in columns]
+    single_hints, multi_hints = fill_hint_cells(row_clues, col_clues, size, fills)
     return {
         **row,
-        "row-clues": [runs(r) for r in grid],
-        "col-clues": [runs(c) for c in columns],
+        "row-clues": row_clues,
+        "col-clues": col_clues,
         "solution-fills": sorted([r, c] for r, c in fills),
+        "single-fill-hint-cells": single_hints,
+        "multi-fill-hint-cells": multi_hints,
     }
 
 

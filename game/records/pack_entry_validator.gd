@@ -1,12 +1,12 @@
 class_name PackEntryValidator
 extends RefCounted
-## Validates one pack entry against [SCH-puzzle-def] F1–F7 and I1–I3.
+## Validates one pack entry against [SCH-puzzle-def] F1–F9 and I1–I8.
 ##
 ## Used by [b]CMP-pack[/b] at pack load ([b]CTR-pack[/b] O8). Uniqueness (I4–I5) needs
 ## the accepted pack, so the loader checks it. Returns the accepted definition, or
 ## null when the entry must be rejected, together with a reason for the log.
 
-## The field names of F1–F7 as they appear in the pack.
+## The field names of F1–F9 as they appear in the pack.
 const FIELDS: Array[String] = [
 	"id",
 	"size",
@@ -15,8 +15,16 @@ const FIELDS: Array[String] = [
 	"solution-fills",
 	"picture-id",
 	"pixel-picture-id",
+	"single-fill-hint-cells",
+	"multi-fill-hint-cells",
 ]
 const SIZES: Array[int] = [10, 15, 20]
+
+## Field names of the two precomputed fill-hint fields ([SCH-puzzle-def] F8 and F9).
+const HINT_FIELDS: Array[String] = ["single-fill-hint-cells", "multi-fill-hint-cells"]
+
+## The forced marks a fill-hint cell may carry ([SCH-puzzle-def] F8, F9).
+const HINT_MARKS: Array[String] = ["fill", "cross"]
 
 
 ## The definition for [param entry], or null with [param reason] set to the first
@@ -64,6 +72,20 @@ static func definition_for(entry: Variant, reason: Array[String] = []) -> Puzzle
 	if _runs(filled, size, false) != col_clues:
 		reason.append("col-clues are not the runs of solution-fills")
 		return null
+	var single_cells: Variant = _hint_cells(fields["single-fill-hint-cells"], size)
+	if single_cells == null:
+		reason.append("single-fill-hint-cells is not positions paired with fill or cross")
+		return null
+	var multi_cells: Variant = _hint_cells(fields["multi-fill-hint-cells"], size)
+	if multi_cells == null:
+		reason.append("multi-fill-hint-cells is not positions paired with fill or cross")
+		return null
+	var single_hints: Dictionary[Vector2i, String] = single_cells
+	var multi_hints: Dictionary[Vector2i, String] = multi_cells
+	var hint_reason := _hint_invariants(single_hints, multi_hints, filled, size)
+	if not hint_reason.is_empty():
+		reason.append(hint_reason)
+		return null
 	return (
 		PuzzleDefinition
 		. new(
@@ -74,6 +96,8 @@ static func definition_for(entry: Variant, reason: Array[String] = []) -> Puzzle
 			filled,
 			fields["picture-id"],
 			fields["pixel-picture-id"],
+			single_hints,
+			multi_hints,
 		)
 	)
 
@@ -160,6 +184,59 @@ static func _fills(value: Variant, size: int) -> Variant:
 			fills.append(position)
 	fills.sort()
 	return fills
+
+
+## [SCH-puzzle-def] F8 / F9 shape: a list of positions each paired with exactly one
+## forced mark ([constant HINT_MARKS], L2 of the schema). Returns the mark map, or
+## null when the shape is wrong: a duplicate position means one cell claims two marks.
+## Positions may go anywhere in the grid; whether they obey I6 and I7 is the invariant
+## check ([method _hint_invariants]).
+static func _hint_cells(value: Variant, size: int) -> Variant:
+	if typeof(value) != TYPE_ARRAY:
+		return null
+	var cells: Variant = value
+	var marks: Dictionary[Vector2i, String] = {}
+	for cell: Variant in cells:
+		if typeof(cell) != TYPE_ARRAY or cell.size() != 3:
+			return null
+		var row: Variant = cell[0]
+		var column: Variant = cell[1]
+		var mark: Variant = cell[2]
+		if not _is_whole_number(row) or not _is_whole_number(column):
+			return null
+		if typeof(mark) != TYPE_STRING or mark not in HINT_MARKS:
+			return null
+		var position := Vector2i(int(row), int(column))
+		if marks.has(position):
+			return null
+		marks[position] = mark
+	return marks
+
+
+## [SCH-puzzle-def] invariant text over the two hint-cell maps. Fills with:
+## I6 — every position of both maps is inside the grid; I7 — a `fill` mark sits on an
+## F5 position and a `cross` mark sits off it; I8 — the maps share no position.
+## Returns "" when they hold, otherwise the first violated invariant's reason.
+static func _hint_invariants(
+	single_hints: Dictionary[Vector2i, String],
+	multi_hints: Dictionary[Vector2i, String],
+	filled: Array[Vector2i],
+	size: int,
+) -> String:
+	for map in [single_hints, multi_hints]:
+		for position: Vector2i in map:
+			var mark: String = map[position]
+			if not _is_inside(position, size):
+				return "I6: hint cell %s is not inside the grid" % position
+			var on_solution := filled.has(position)
+			if mark == "fill" and not on_solution:
+				return "I7: fill hint cell %s is not a solution fill" % position
+			if mark == "cross" and on_solution:
+				return "I7: cross hint cell %s is a solution fill" % position
+	for position: Vector2i in single_hints:
+		if multi_hints.has(position):
+			return "I8: hint cell %s is in both F8 and F9" % position
+	return ""
 
 
 static func _is_inside(position: Vector2i, size: int) -> bool:
