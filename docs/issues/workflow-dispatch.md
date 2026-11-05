@@ -23,7 +23,7 @@ No agent for `status:accepted` (terminal). No agent closes `status:resolved`; th
    2. **Within the same tier**, pick by judgement (not a rigid sort). Soft preferences, which an unblocker or foundational issue can outweigh: defects over tasks, and tasks over epics; an earlier wave over a later one; an issue named by an open `pending-resolution` feedback issue ([feedback.md](feedback.md)). A wave is the issue’s milestone titled `Wave N — …` ([waves.md](waves.md)). Also prefer high-impact work — bottlenecks that unblock others (judge fan-out and how much dependents matter — not a raw count), foundational work, and issues that move the project most. Prefer issues that are themselves unblocked and ready to advance; prefer a leaf over its parent when both are eligible; age can break near-ties. Skip issues that clearly need human-only input you do not have (e.g. PO clarification with no answer in context).
 4. Read and run the mapped skill for that issue. Do not invent parallel statuses, evidence formats, or transition rules.
 
-Agents must not set or change `priority:*` labels, except hygiene via `enforce-task-workflow-status` and the feedback rule in [feedback.md](feedback.md).
+Agents must not set or change `priority:*` labels, except hygiene via `enforce-task-workflow-status`.
 
 Trivial `[orc-e2e]` probe issues may use a minimal PR or doc touch as the implement deliverable.
 
