@@ -13,9 +13,25 @@ exactly named `Windows`, `macOS`, `Linux`, `Android Release`, and `iOS`
 template is installed for its own version ([ADR-0001](../specs/adr/decisions/0001-godot-gdscript.md)):
 an engine bump needs no preset edit.
 
-Each release preset includes one build output, `release/asset_manifest.json` — the
-export script's copy of the committed `assets/manifest.json`. An export packs only
-`res://`, so without the copy no asset ID resolves.
+Each release preset includes two build outputs: `release/asset_manifest.json` — the
+export script's copy of the committed `assets/manifest.json` — and
+`release/build_info.json`, the main menu's build stamp. An export packs only `res://`,
+so without the copies no asset ID resolves and the stamp has no values.
+
+## Build stamp
+
+`CTR-build-info` ([`build-info.md`](../specs/technical/contracts/build-info.md)) gives
+the main menu its product version and short git SHA. Before exporting, the script:
+
+- reads the product version from `game/project.godot` `config/version`;
+- reads the short SHA from the checked-out commit (`git rev-parse --short=7 HEAD`);
+- writes both to `game/release/build_info.json`, which the release presets pack;
+- writes the same version into the presets' `application/version` (macOS, iOS) and
+  Android `version/name` for platform metadata, restoring the preset file on exit.
+
+The export fails when either value is missing or the SHA is not 7–12 lowercase hex, so
+a shipped build never shows an empty stamp. A dev run has no `build_info.json` and
+falls back to `config/version` plus a fixed 7-hex placeholder.
 
 ## Templates
 
