@@ -11,6 +11,7 @@
       --fg: #1B2833;
       --muted: #6E7F8C;
       --line: #C5D0D6;
+      --major: #B0BBC3;
       --cross: #5C6B78;
       --dim: #6E7F8C;
       --error: #3A6F8F;
@@ -264,6 +265,19 @@
       background: var(--bg);
       padding: 0;
       cursor: pointer;
+    }
+    /* PAL.C7 Major at every multiple of 5 (SRF.O2). $="c5" also matches c15. */
+    .cell[aria-label$="c5"]:not([aria-label$="c15"]),
+    .cell[aria-label$="c10"],
+    .cell[aria-label$="c15"],
+    .cell[aria-label$="c20"] {
+      border-right-color: var(--major);
+    }
+    .cell[aria-label^="r5c"],
+    .cell[aria-label^="r10c"],
+    .cell[aria-label^="r15c"],
+    .cell[aria-label^="r20c"] {
+      border-bottom-color: var(--major);
     }
     .cell.fill { background: var(--fg); }
     .cell.cross {
