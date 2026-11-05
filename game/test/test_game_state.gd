@@ -106,6 +106,105 @@ func test_line_satisfied_tracks_the_runs() -> void:
 	assert_false(diverged.row(4).satisfied, "PS1.4b: a diverging fill is not satisfied")
 
 
+## PS1.4 / E-clue P4: a correct prefix of finished fill islands dims only those clue
+## numbers; the unfinished rest stay unmatched.
+func test_a_matched_prefix_dims_only_its_numbers() -> void:
+	var rules := Rules.new(_clue_definition([[3, 2]] + _empty_lines(5)))
+	var marks := _clue_marks([0, 1, 2])
+	var row: LineStatus = rules.line_status(marks).row(0)
+	assert_eq(row.number_matched, [true, false], "only the finished island's number matches")
+	assert_true(row.number_matches(0), "clue number 1 matches its island")
+	assert_false(row.number_matches(1), "clue number 2 has no island yet")
+	assert_false(row.satisfied, "a prefix does not satisfy the line")
+	assert_false(row.error, "a prefix is still possible")
+
+
+## PS1.4c / E-clue P4: an incomplete island and an over-long island both leave their
+## number unmatched.
+func test_incomplete_and_over_long_islands_stay_highlighted() -> void:
+	var rules := Rules.new(_clue_definition([[3, 2]] + _empty_lines(5)))
+	var incomplete: LineStatus = rules.line_status(_clue_marks([0, 1])).row(0)
+	assert_eq(incomplete.number_matched, [false, false], "two fills toward a 3 do not match")
+	var over_long: LineStatus = rules.line_status(_clue_marks([0, 1, 2, 3])).row(0)
+	assert_eq(over_long.number_matched, [false, false], "an island longer than its number")
+	assert_true(over_long.error, "the over-long island contradicts the clue")
+
+
+## E-clue P4: matching is positional, not by length alone — swapped island lengths match
+## neither number.
+func test_numbers_match_by_position_not_length_alone() -> void:
+	var rules := Rules.new(_clue_definition([[2, 3]] + _empty_lines(5)))
+	var row: LineStatus = rules.line_status(_clue_marks([0, 1, 2, 4, 5])).row(0)
+	assert_eq(row.number_matched, [false, false], "3 then 2 is not 2 then 3")
+	assert_false(row.satisfied, "a swapped line is not satisfied")
+
+
+## PS1.4 / E-clue P4: a cross and a clear both end a fill island, so fill → cross → fill
+## is two islands and each matches its own clue number.
+func test_a_cross_and_a_clear_both_end_a_fill_island() -> void:
+	var definition := _clue_definition([[2, 2], [2, 2]] + _empty_lines(4))
+	var rules := Rules.new(definition)
+	var marks := MarkGrid.new(definition.size, true)
+	for column in [0, 1, 3, 4]:
+		marks.apply_mark(0, column, CellMark.Mark.FILL)
+		marks.apply_mark(1, column, CellMark.Mark.FILL)
+	marks.apply_mark(0, 2, CellMark.Mark.CROSS)
+	var status: LineStatusCheck = rules.line_status(marks)
+	assert_eq(status.row(0).number_matched, [true, true], "a cross splits the islands")
+	assert_eq(status.row(1).number_matched, [true, true], "a clear splits the islands too")
+
+
+## PS1.4: exact realization matches every number and satisfies the line.
+func test_a_fully_realized_line_matches_every_number() -> void:
+	var rules := Rules.new(_clue_definition([[3, 2]] + _empty_lines(5)))
+	var row: LineStatus = rules.line_status(_clue_marks([0, 1, 2, 4, 5])).row(0)
+	assert_eq(row.number_matched, [true, true], "both numbers match")
+	assert_true(row.satisfied, "the fills exactly realize the runs")
+
+
+## PS1.4b / L-solve K2: every mark re-evaluates the whole board — the broken line's
+## numbers return to highlighted, while a line that still matches stays matched even
+## when another line contradicts its clue.
+func test_a_mark_re_evaluates_the_whole_board() -> void:
+	var definition := _clue_definition([[3, 2], [2], []] + _empty_lines(3))
+	var rules := Rules.new(definition)
+	var marks := MarkGrid.new(definition.size, true)
+	for column in [0, 1, 2, 4, 5]:
+		marks.apply_mark(0, column, CellMark.Mark.FILL)
+	for column in [0, 1]:
+		marks.apply_mark(1, column, CellMark.Mark.FILL)
+	var matched: LineStatusCheck = rules.line_status(marks)
+	assert_eq(matched.row(0).number_matched, [true, true], "row 0 starts fully matched")
+
+	marks.apply_mark(0, 0, CellMark.Mark.CLEAR)
+	var first_broken: LineStatusCheck = rules.line_status(marks)
+	assert_eq(
+		first_broken.row(0).number_matched,
+		[false, true],
+		"the broken island's number un-dims; the island after it still matches its own number",
+	)
+	assert_eq(first_broken.row(1).number_matched, [true], "a line elsewhere stays matched")
+
+	marks.apply_mark(0, 5, CellMark.Mark.CLEAR)
+	marks.apply_mark(2, 0, CellMark.Mark.FILL)
+	var changed: LineStatusCheck = rules.line_status(marks)
+	assert_eq(changed.row(0).number_matched, [false, false], "no number on the line matches now")
+	assert_eq(changed.row(1).number_matched, [true], "the line that still matches keeps its dim")
+	assert_true(changed.row(2).error, "the contradiction lands on its own line")
+
+
+## E-clue P3/PS1.4: an all-empty line has no number to dim and satisfies once it has no
+## fills.
+func test_an_all_empty_line_has_nothing_to_match() -> void:
+	var rule_set: Rules = Rules.new(_clue_definition([[]] + _empty_lines(5)))
+	var empty: LineStatus = rule_set.line_status(_clue_marks([])).row(0)
+	assert_eq(empty.number_matched, [], "no clue number, no match flags")
+	assert_true(empty.satisfied, "an empty line with no fills is satisfied")
+	var filled: LineStatus = rule_set.line_status(_clue_marks([0])).row(0)
+	assert_eq(filled.number_matched, [], "still no number to match")
+	assert_false(filled.satisfied, "a fill stops the all-empty line satisfying")
+
+
 ## O2 returns one status per row and per column ([SCH-line-status] F1/F2), which is how
 ## the derived row-error / col-error / clue-satisfied values reach the screen.
 func test_line_status_covers_every_row_and_column() -> void:
@@ -307,6 +406,30 @@ func _fixture_definition() -> PuzzleDefinition:
 		FIXTURE_ID, FIXTURE_SIZE, [[], [], []], [[], [], []], [], "picture.fixture", "pixel.fixture"
 	)
 	return definition
+
+
+## A size-six definition whose only clue data is the given row clues; every column is
+## all-empty, so a test reads one row's per-number match without other lines interfering.
+func _clue_definition(row_clues: Array) -> PuzzleDefinition:
+	var col_clues := _empty_lines(row_clues.size())
+	return PuzzleDefinition.new(
+		"clue-match", row_clues.size(), row_clues, col_clues, [], "picture.clue", "pixel.clue"
+	)
+
+
+func _empty_lines(count: int) -> Array:
+	var lines := []
+	for line in count:
+		lines.append([])
+	return lines
+
+
+## Row 0 filled at [param columns], nothing else marked.
+func _clue_marks(columns: Array) -> MarkGrid:
+	var marks := MarkGrid.new(6, true)
+	for column in columns:
+		marks.apply_mark(0, column, CellMark.Mark.FILL)
+	return marks
 
 
 func _definition_to_marks() -> MarkGrid:

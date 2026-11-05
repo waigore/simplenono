@@ -298,7 +298,7 @@ func test_board_draws_marks_and_clues_without_the_solution():
 
 
 func _row_clue_text(row: int) -> String:
-	return _board().row_clue_label(row).text
+	return _board().row_clue_labels(row)[0].text
 
 
 # US1.2 / PS1.4: a satisfied clue dims and a contradicting fill turns the line cue
@@ -318,7 +318,7 @@ func test_satisfied_and_error_clues_use_the_palette():
 
 
 func _row_clue_color(row: int) -> Color:
-	return _board().row_clue_label(row).get_theme_color("font_color")
+	return _board().row_clue_labels(row)[0].get_theme_color("font_color")
 
 
 # C2 is inert here: the input layer (#111) owns every mark

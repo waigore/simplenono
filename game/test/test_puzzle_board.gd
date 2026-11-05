@@ -227,3 +227,76 @@ func test_mobile_keeps_the_minimum_guard_and_drops_the_cap():
 	board.set_platform(PuzzleBoard.PLATFORM_MOBILE)
 	board.show_puzzle(_definition_of(20))
 	assert_eq(board.cell_size(), PuzzleBoard.MIN_CELL_SIZE, "a degenerate rect keeps the floor")
+
+
+# R2 / E-clue I4: a row clue is one label per clue number, and each number dims on its
+# own match; line error still wins over the dim.
+func test_row_clue_numbers_dim_individually():
+	var definition := _clue_definition([[3, 2]] + _empty_lines(5), _empty_lines(6))
+	var board := await _layout_board(definition)
+	var labels := board.row_clue_labels(0)
+	assert_eq(labels.size(), 2, "the row clue is two labels, not one joined label")
+	assert_eq(labels[0].text, "3")
+	assert_eq(labels[1].text, "2")
+
+	var rules := Rules.new(definition)
+	var marks := MarkGrid.new(6, true)
+	for column in [0, 1, 2]:
+		marks.apply_mark(0, column, CellMark.Mark.FILL)
+	board.set_marks(marks, rules.line_status(marks))
+	assert_eq(_label_color(labels[0]), PresentationPalette.DIM, "the matched number dims")
+	assert_eq(_label_color(labels[1]), PresentationPalette.INK, "the unmatched number stays Ink")
+
+	marks.apply_mark(0, 3, CellMark.Mark.FILL)
+	board.set_marks(marks, rules.line_status(marks))
+	for number in labels.size():
+		assert_eq(
+			_label_color(labels[number]),
+			PresentationPalette.CONTRADICTION,
+			"line error wins over the dim on number %s" % number,
+		)
+
+
+# R2 / E-clue I4: column clue numbers follow the same per-number rule.
+func test_column_clue_numbers_dim_individually():
+	var definition := _clue_definition(_empty_lines(6), [[2, 3]] + _empty_lines(5))
+	var board := await _layout_board(definition)
+	var labels := board.column_clue_labels(0)
+	var rules := Rules.new(definition)
+	var marks := MarkGrid.new(6, true)
+	for row in [0, 1]:
+		marks.apply_mark(row, 0, CellMark.Mark.FILL)
+	board.set_marks(marks, rules.line_status(marks))
+	assert_eq(_label_color(labels[0]), PresentationPalette.DIM, "the matched number dims")
+	assert_eq(_label_color(labels[1]), PresentationPalette.INK, "the unmatched number stays Ink")
+
+	for row in [3, 4, 5]:
+		marks.apply_mark(row, 0, CellMark.Mark.FILL)
+	board.set_marks(marks, rules.line_status(marks))
+	assert_eq(_label_color(labels[0]), PresentationPalette.DIM, "both numbers match now")
+	assert_eq(_label_color(labels[1]), PresentationPalette.DIM, "both numbers dim")
+
+
+func _layout_board(definition: PuzzleDefinition) -> PuzzleBoard:
+	await _layout_at(PORTRAIT)
+	var board := _board()
+	board.show_puzzle(definition)
+	board.set_platform(PuzzleBoard.PLATFORM_MOBILE)
+	return board
+
+
+func _label_color(label: Label) -> Color:
+	return label.get_theme_color("font_color")
+
+
+func _clue_definition(row_clues: Array, col_clues: Array) -> PuzzleDefinition:
+	return PuzzleDefinition.new(
+		"clue-dim", row_clues.size(), row_clues, col_clues, [], "picture.dim", "pixel.dim"
+	)
+
+
+func _empty_lines(count: int) -> Array:
+	var lines := []
+	for line in count:
+		lines.append([])
+	return lines

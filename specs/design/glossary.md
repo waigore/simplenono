@@ -13,6 +13,7 @@ Authoring rules: [`.agents/specs/rules/design/glossary.md`](../../.agents/specs/
 | Completion rate | Ever-completed puzzles divided by pack size (200). | [`progression.md`](progression.md), [`game-state.md`](game-state.md) |
 | Cross | Optional mark meaning “I treat this cell as not filled”; ignored by solve check and line-error fill logic. | [`entities/cell.md`](entities/cell.md), [`loops/solve.md`](loops/solve.md) |
 | Ever completed | Sticky flag after at least one successful solve; may coexist with an in-progress attempt on replay. | [`progression.md`](progression.md), [`entities/puzzle.md`](entities/puzzle.md) |
+| Fill island | A maximal run of fills on one line, ended by a clear or a cross; the board-side counterpart of a clue number. | [`entities/clue.md`](entities/clue.md), [`entities/cell.md`](entities/cell.md) |
 | Gallery | Free-order pack selection: every puzzle listed and selectable, with attempt status, ever-completed, personal best, and thumbnail when ever completed. | [`progression.md`](progression.md) |
 | Generated picture | The puzzle's stored full-resolution pack image (1024×1024): the gallery [thumbnail](entities/puzzle.md) and the final result stage. | [`entities/puzzle.md`](entities/puzzle.md) |
 | Get-set-ready | Short prep beat before marks are allowed on a puzzle attempt. | [`progression.md`](progression.md), [`loops/solve.md`](loops/solve.md) |

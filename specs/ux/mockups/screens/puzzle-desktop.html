@@ -254,6 +254,7 @@
       gap: 3px;
     }
     .clue .run { display: block; }
+    .clue .run.dim { color: var(--dim); }
     .clue.error { color: var(--error); font-weight: 600; }
     .clue.empty .run { color: var(--muted); }
     .cell {
@@ -411,8 +412,9 @@
             <button type="button" class="cell" data-control="C2" aria-label="r3c8"></button>
             <button type="button" class="cell" data-control="C2" aria-label="r3c9"></button>
             <button type="button" class="cell" data-control="C2" aria-label="r3c10"></button>
-            <div class="clue row" role="rowheader" aria-label="row 4 clue 3">
-              <span class="run">3</span>
+            <div class="clue row" role="rowheader" aria-label="row 4 clue 3-2, first number matched">
+              <span class="run dim">3</span>
+              <span class="run">2</span>
             </div>
             <button type="button" class="cell" data-control="C2" aria-label="r4c1"></button>
             <button type="button" class="cell" data-control="C2" aria-label="r4c2"></button>

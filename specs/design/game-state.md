@@ -24,7 +24,8 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 | `GS.completion-rate` | Ever-completed count ÷ 200 | [`progression.md`](progression.md) |
 | `GS.is-solved` | Player fills = solution fills (crosses ignored) | [`loops/solve.md`](loops/solve.md) |
 | `GS.row-error[i]` / `GS.col-error[j]` | Fills contradict line [clues](entities/clue.md); crosses ignored | Line error feedback |
-| `GS.clue-satisfied[i|j]` | Fills exactly match that [clue](entities/clue.md) line | Dim cue |
+| `GS.clue-num-matched[i|j][k]` | The line's `k`-th [fill island](glossary.md) exists and its length equals its `k`-th clue number, in order | Dim cue, per clue number |
+| `GS.clue-satisfied[i|j]` | Every clue number on that [clue](entities/clue.md) line matched and no fill island left over — the fills exactly match the line; true for an all-empty line with no fills | Line-level aggregate for the [puzzle screen](../ux/screens/puzzle.md) R2 and [`PTD-ready-and-marks`](../playtest/design/ready-and-marks.md) P2 |
 | `GS.gallery-thumbnail` | Stored generated picture when ever-completed; else hidden | Gallery only |
 
 ## Global invariants
@@ -39,7 +40,7 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 ## Hidden and visible state
 
 - **H1**: The player cannot know a puzzle's fill set while solving; the stored pixel picture becomes knowable after a successful solve, the stored generated picture (gallery thumbnail) once ever-completed.
-- **H2**: Ever-completed, attempt, marks, elapsed, paused, personal best, completion rate, line errors, clue-satisfied — knowable.
+- **H2**: Ever-completed, attempt, marks, elapsed, paused, personal best, completion rate, line errors, clue-satisfied, clue-num-matched — knowable.
 
 ## Randomness and determinism
 
