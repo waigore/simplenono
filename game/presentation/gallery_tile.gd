@@ -4,10 +4,10 @@ extends PanelContainer
 ##
 ## Renders one [GalleryEntry] from [b]CTR-pack[/b] O1: size, attempt status,
 ## [code]copy.status.*[/code], [code]copy.best[/code] only when a best is set, and the
-## stored picture only when [code]GS.gallery-thumbnail[/code] allows it; otherwise the
-## generic placeholder (US1.2, US1.3). C1 opens the puzzle and C2 offers Reset when the
-## read facts allow it (US1.6, US1.6b). The tile raises intents only: navigation and the
-## confirm surface belong to [b]CMP-shell[/b] (#95, #96).
+## stored picture only when [code]GS.gallery-thumbnail[/code] allows it; otherwise a
+## simple box with a centered question mark (US1.2, US1.3). C1 opens the puzzle and C2
+## offers Reset when the read facts allow it (US1.6, US1.6b). The tile raises intents
+## only: navigation and the confirm surface belong to [b]CMP-shell[/b] (#95, #96).
 
 ## The strip that holds C2 belongs to C1, as both approved mockups draw the tile
 ## ([code].open { flex: 1 1 auto }[/code]): a card with no Reset has no strip, and a tap

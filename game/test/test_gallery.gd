@@ -110,7 +110,7 @@ func test_r2_completed_tile_shows_done_best_and_picture() -> void:
 	assert_true(target.reset_visible(), "C2 is available")
 
 
-# US1.3 / R2: a not-started tile keeps the generic placeholder
+# US1.3 / R2: a not-started tile keeps the box + "?" placeholder
 func test_r2_not_started_tile_shows_the_placeholder() -> void:
 	var requested: Array[String] = []
 	_gallery.set_picture_provider(
@@ -122,7 +122,7 @@ func test_r2_not_started_tile_shows_the_placeholder() -> void:
 	var target := _gallery.tile("pack-000")
 	assert_eq(target.status_text(), "Not started", "copy.status.not-started")
 	assert_eq(target.best_text(), "", "no copy.best without a personal best")
-	assert_false(target.shows_picture(), "R2 shows the generic placeholder")
+	assert_false(target.shows_picture(), "R2 shows the box + \"?\" placeholder")
 	assert_true(requested.is_empty(), "no picture is requested for a new tile")
 	assert_false(target.reset_visible(), "C2 is not available")
 
@@ -294,7 +294,7 @@ func test_refresh_after_o7_renders_the_cleared_puzzle_as_new() -> void:
 	assert_eq(_gallery.completion_rate(), 0.005, "END.O2: O2 is read again")
 	assert_eq(target.status_text(), "Not started", "S5: the tile reads as new")
 	assert_eq(target.best_text(), "", "S5: no personal best")
-	assert_false(target.shows_picture(), "S5: the generic placeholder is drawn")
+	assert_false(target.shows_picture(), "S5: the box + \"?\" placeholder is drawn")
 	assert_false(target.reset_visible(), "C2 is not available for the new puzzle")
 	assert_eq(_gallery.tile("pack-007").status_text(), "Done", "the other puzzle's record is kept")
 	var picture_id: String = pack.definition("pack-000").picture_id
