@@ -4,7 +4,7 @@
     "V1"
   ],
   "state": "approved",
-  "version": 1,
+  "version": 2,
   "source_type": "ai-generation",
   "recipe": "AK-puzzle-pictures.R1",
   "id": "01a17720-ca00-732d-be32-e9cbf66e8859",
@@ -22,8 +22,8 @@
     "adr": "adr-free"
   },
   "generation": {
-    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: two solid masses on a pale background, a tall narrow block on the left about fourteen cells tall and six cells wide and a wide flat slab on the right about eight cells tall and seven cells wide, a clear four-cell gap between them, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
-    "negative_prompt": "playful chrome; gore; horror",
+    "prompt": "colourful multi-element scene of a joiner's bench with planes, chisels, stacked timber, jars of nails and hanging saws with a real background, completely asymmetrical, separate tools and boxes scattered through the frame, scene in crisp midday light over pale sand and whitewashed walls with only small pockets of shade. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
+    "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
     "tool": "puzzle_derive.py (local authoring script)",
     "operation": "offline flatten + BOX downsample",
     "settings": {
@@ -34,12 +34,12 @@
       "flatten_band_percent": 5.0,
       "flatten_ring_percent": 1.0,
       "flatten_background_rgb": [
-        207,
-        211,
-        215
+        223,
+        202,
+        178
       ]
     },
-    "seed": "n/a \u2014 tool has no seed",
+    "seed": "n/a — tool has no seed",
     "inputs": {
       "style_anchors": [],
       "refs": [],
@@ -48,9 +48,9 @@
       ]
     },
     "steps": [
-      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [207, 211, 215])",
-      "BOX downsample to 15x15 colour cells, one per board cell, alpha composited over white",
-      "write puzzle-pictures/pack-098-pixel.png"
+      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [223, 202, 178])",
+      "BOX downsample to 15x15 colour cells, alpha over white",
+      "judge: one solution, reached by line logic alone, equal to the pixel fill set; filled 87, in band [56, 101]"
     ]
   },
   "guidance": "Derived from the square in inputs.base_assets; re-run the derive command to reproduce it.",
@@ -60,8 +60,47 @@
   },
   "review": {
     "verdict": "Pass",
-    "date": "2026-11-03",
+    "date": "2026-11-05",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-098. Derived from the generated square (request 7220b9ea-642f-411d-a041-fa274f54f2bd). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [207, 211, 215]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 90/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look evidence (measured on the committed files): 0.00% warm pixels (no red-over-blue cast); dark subject luma mean 83.1 against pale background luma mean 202.5 (contrast 119.4); square dark/pale luma 73.2/209.4. The generated square reads as two clean upright plates of equal height standing on a pale cool field with a clear empty channel between them. The stored 15x15 pixel silhouette keeps that reading: two separate upright bars of equal height with a one-cell pale channel between them. Calm clinical with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
-  }
+    "report": "AK-puzzle-pictures R1/V1, pack-098. Generated square: flux-2-max 1024x1024, request 22c33525-7afc-4d6a-941a-21658a34d48d, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [223, 202, 178]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 87/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a joiner's bench with planes, chisels, stacked timber, jars of nails and hanging saws — composed from the generation prompt; the pair's colour and asymmetry are corroborated by measurement in the K5 record (mean saturation 0.312, 5-95% hue span 0.098, 87/225 filled with no dihedral symmetry of the fill). K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+  },
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-03",
+      "reason": "Replaced by the #610 K5 pack-look closing review: delivered the same N x N picture as pack-021",
+      "generation": {
+        "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: two solid masses on a pale background, a tall narrow block on the left about fourteen cells tall and six cells wide and a wide flat slab on the right about eight cells tall and seven cells wide, a clear four-cell gap between them, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+        "negative_prompt": "playful chrome; gore; horror",
+        "tool": "puzzle_derive.py (local authoring script)",
+        "operation": "offline flatten + BOX downsample",
+        "settings": {
+          "model": "flux-2-max",
+          "downsample": "box",
+          "size": 15,
+          "flatten_method": "outer frame set to the median colour of the outer ring",
+          "flatten_band_percent": 5.0,
+          "flatten_ring_percent": 1.0,
+          "flatten_background_rgb": [
+            207,
+            211,
+            215
+          ]
+        },
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": [
+            "01a17720-ca00-720b-b854-5d67b0dcce24"
+          ]
+        },
+        "steps": [
+          "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [207, 211, 215])",
+          "BOX downsample to 15x15 colour cells, one per board cell, alpha composited over white",
+          "write puzzle-pictures/pack-098-pixel.png"
+        ]
+      }
+    }
+  ]
 }
