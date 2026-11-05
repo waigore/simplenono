@@ -110,6 +110,24 @@ func test_focused_chrome_and_tool_labels_stay_ink():
 	assert_eq((_control("LeaveButton") as Button).text, "Leave", "copy.leave shows without a press")
 
 
+# PAL.K1 / copy.elapsed (defect #644): R1's timer must pin Ink on Paper so it stays
+# readable while the puzzle is open — same chrome-visibility class as C1 Leave (#601).
+func test_elapsed_label_stays_ink_on_paper():
+	_shown()
+	var label := _control("ElapsedLabel") as Label
+	assert_not_null(label, "ElapsedLabel is present")
+	var color := label.get_theme_color("font_color")
+	assert_true(
+		color.is_equal_approx(PresentationPalette.INK),
+		"copy.elapsed is Ink (%s)" % color,
+	)
+	assert_false(
+		color.is_equal_approx(PresentationPalette.PAPER),
+		"copy.elapsed never matches the Paper background",
+	)
+	assert_eq(_screen.elapsed_text(), "0:00", "copy.elapsed shows while the puzzle is open")
+
+
 # US1.1 / US1.7: S2 shows copy.ready, blocks marks, keeps C1 and C6, and freezes elapsed
 func test_get_set_ready_shows_ready_beat_blocks_marks_and_keeps_chrome():
 	var attempt := _shown()
