@@ -255,8 +255,10 @@ func test_shell_bed_streams_on_the_gallery_and_across_a_puzzle():
 	add_child_autofree(shell)
 	var audio := shell.audio_feedback()
 
-	assert_eq(shell.view(), Shell.GALLERY_VIEW, "the app starts on the gallery")
-	assert_true(audio.bed_playing(), "the gallery already streams the bed")
+	assert_eq(shell.view(), Shell.MENU_VIEW, "the app starts on the menu")
+	assert_true(audio.bed_playing(), "the menu already streams the bed")
+	assert_true(shell.open_gallery(), "UI-menu.C1 opens the gallery")
+	assert_true(audio.bed_playing(), "the gallery keeps the bed playing")
 
 	assert_true(shell.open_puzzle("pack-000"), "a puzzle opens")
 	assert_true(audio.bed_playing(), "the bed keeps playing in the puzzle")

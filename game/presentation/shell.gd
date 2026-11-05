@@ -41,6 +41,9 @@ extends Control
 ## telemetry event through the seams' one [Telemetry] sink; a refused one records nothing
 ## (B3).
 
+## The front door a new session opens on ([code]NAV.N1[/code], [code]UI-menu[/code]).
+const MENU_VIEW := "menu"
+
 ## Shown when nothing is open ([code]NAV.T1[/code]'s gallery).
 const GALLERY_VIEW := "gallery"
 
@@ -70,13 +73,20 @@ var progress_path := ProgressFile.PATH
 ## document. Tests point this at a temporary path so a run never touches user data.
 var orientation_path := OrientationLock.PATH
 
+## The quit call C3 makes. A field so a test records the intent without ending the run;
+## while it is not set, [method quit_app] quits the tree.
+var quit_callable: Callable
+
 ## The live [Attempt], or null when no puzzle is open.
 var _attempt: Attempt
 var _pack: Pack
-var _view := GALLERY_VIEW
+var _view := MENU_VIEW
 
-## Where settings returns: the gallery, or the puzzle paused to open it.
-var _settings_return := GALLERY_VIEW
+## Where settings returns: the menu, the gallery, or the puzzle paused to open it.
+var _settings_return := MENU_VIEW
+
+## [b]CTR-build-info[/b] O1/O2: read once at app start for the menu stamp (G1).
+var _build_info: BuildInfo
 
 ## [b]SCH-preferences[/b] F1/F2: the one session-flag source; the settings screen
 ## updates it through [method session_flags].
@@ -97,6 +107,7 @@ var _audio: AudioFeedback
 ## [b]HAP.H1[/b]: the accepted-mark click.
 var _haptics: Haptics
 
+@onready var _menu: MenuScreen = %Menu
 @onready var _gallery: GalleryScreen = %Gallery
 @onready var _puzzle: PuzzleScreen = %Puzzle
 @onready var _result: ResultScreen = %Result
@@ -110,6 +121,9 @@ func _ready() -> void:
 	_pack = Pack.new(progress_path)
 	_resolver = AssetResolver.new()
 	_ui_theme = UiTheme.new(_resolver, UI_FONT_ASSET_ID)
+	_build_info = BuildInfo.new()
+	_menu.set_ui_theme(_ui_theme)
+	_menu.present(_build_info)
 	_gallery.set_ui_theme(_ui_theme)
 	_puzzle.set_ui_theme(_ui_theme)
 	_result.set_ui_theme(_ui_theme)
@@ -120,9 +134,13 @@ func _ready() -> void:
 	_audio.start_session()
 	_haptics = Haptics.new(_flags)
 	_pack.load_pack(Pack.PACK_PATH)
+	_menu.puzzles_requested.connect(open_gallery)
+	_menu.settings_requested.connect(open_settings)
+	_menu.exit_requested.connect(quit_app)
 	_gallery.set_picture_provider(_picture_for)
 	_gallery.puzzle_requested.connect(open_puzzle)
 	_gallery.settings_requested.connect(open_settings)
+	_gallery.menu_requested.connect(open_menu)
 	_gallery.reset_requested.connect(_on_gallery_reset_requested)
 	_gallery.reset_confirmed.connect(_on_reset_confirmed)
 	_gallery.reset_cancelled.connect(_on_reset_cancelled)
@@ -137,7 +155,12 @@ func _ready() -> void:
 	_settings.present_orientation(_orientation)
 	_result.back_requested.connect(close_result)
 	_result.reveal().morph_finished.connect(_on_result_morph_finished)
-	_show_gallery()
+	# NAV.N1/N2: a new session opens on the menu; an interrupted one resumes on the
+	# gallery so the player lands where they left off.
+	if _has_resume():
+		_show_gallery()
+	else:
+		_show_menu()
 
 
 ## [code]SEQ-open[/code] S1–S6: opens [param puzzle_id] through [b]CTR-attempt[/b] O1 in
@@ -158,6 +181,36 @@ func open_puzzle(puzzle_id: String) -> bool:
 	_attempt.solved.connect(_on_attempt_solved)
 	_attempt.left.connect(_on_attempt_left)
 	_seams.note_open(attempt)
+	return true
+
+
+## [code]NAV.T9[/code]: [code]UI-menu.C1[/code] opens the gallery. Returns false and
+## changes nothing when the menu is not the shown screen.
+func open_gallery() -> bool:
+	if _view != MENU_VIEW:
+		return false
+	_show_gallery()
+	return true
+
+
+## [code]NAV.T12[/code]: [code]UI-gallery.C4[/code] returns to the main menu. Returns
+## false and changes nothing when the gallery is not the shown screen.
+func open_menu() -> bool:
+	if _view != GALLERY_VIEW:
+		return false
+	_show_menu()
+	return true
+
+
+## [code]NAV.T11[/code]: [code]UI-menu.C3[/code] quits on a desktop build. Returns false
+## and changes nothing on a mobile build, where the control is absent.
+func quit_app() -> bool:
+	if _view != MENU_VIEW or not _menu.exit_available():
+		return false
+	if quit_callable.is_valid():
+		quit_callable.call()
+		return true
+	get_tree().quit()
 	return true
 
 
@@ -196,26 +249,30 @@ func change_mobile_orientation(value: String) -> bool:
 	return true
 
 
-## [code]NAV.T2[/code]/[code]T7[/code]: opens settings. From the gallery it is a plain
-## screen swap; from the puzzle it pauses the open attempt through [b]CTR-attempt[/b]
-## O4 first ([code]SEQ pause[/code] S1-S4), which freezes elapsed and blocks marks.
-## Returns false when settings is already showing or when the result screen is up;
-## the result screen has no settings control ([code]UI-result[/code] C1 only).
+## [code]NAV.T2[/code]/[code]T7[/code]/[code]T10[/code]: opens settings. From the menu
+## or the gallery it is a plain screen swap; from the puzzle it pauses the open attempt
+## through [b]CTR-attempt[/b] O4 first ([code]SEQ pause[/code] S1-S4), which freezes
+## elapsed and blocks marks. Returns false when settings is already showing or when the
+## result screen is up; the result screen has no settings control
+## ([code]UI-result[/code] C1 only).
 func open_settings() -> bool:
 	if _view == SETTINGS_VIEW or _view == RESULT_VIEW:
 		return false
 	if _view == PUZZLE_VIEW and _attempt != null:
 		_attempt.pause()
 		_settings_return = PUZZLE_VIEW
+	elif _view == MENU_VIEW:
+		_settings_return = MENU_VIEW
 	else:
 		_settings_return = GALLERY_VIEW
 	_show_settings()
 	return true
 
 
-## [code]NAV.T6[/code]/[code]T8[/code]: settings' C3. Returns to the gallery, or resumes
-## the paused attempt through [b]CTR-attempt[/b] O5 and shows the puzzle again
-## ([code]SEQ pause[/code] S5-S7). Does nothing when settings is not showing.
+## [code]NAV.T6[/code]/[code]T8[/code]/[code]T13[/code]: settings' C3. Returns to the
+## menu it opened from, the gallery, or resumes the paused attempt through
+## [b]CTR-attempt[/b] O5 and shows the puzzle again ([code]SEQ pause[/code] S5-S7). Does
+## nothing when settings is not showing.
 func close_settings() -> void:
 	if _view != SETTINGS_VIEW:
 		return
@@ -224,6 +281,10 @@ func close_settings() -> void:
 		_show_puzzle()
 		_puzzle.refresh()
 		_settings_return = GALLERY_VIEW
+		return
+	if _settings_return == MENU_VIEW:
+		_settings_return = MENU_VIEW
+		_show_menu()
 		return
 	_settings_return = GALLERY_VIEW
 	_show_gallery()
@@ -237,6 +298,11 @@ func attempt() -> Attempt:
 ## The puzzle screen this shell swaps in ([b]CMP-shell[/b] R1).
 func puzzle_screen() -> PuzzleScreen:
 	return _puzzle
+
+
+## The main menu this shell opens a new session on ([code]UI-menu[/code]).
+func menu_screen() -> MenuScreen:
+	return _menu
 
 
 ## The gallery this shell shows when no puzzle is open ([b]CMP-shell[/b] R1).
@@ -254,8 +320,8 @@ func result_screen() -> ResultScreen:
 	return _result
 
 
-## [constant GALLERY_VIEW], [constant PUZZLE_VIEW], [constant RESULT_VIEW], or
-## [constant SETTINGS_VIEW].
+## [constant MENU_VIEW], [constant GALLERY_VIEW], [constant PUZZLE_VIEW],
+## [constant RESULT_VIEW], or [constant SETTINGS_VIEW].
 func view() -> String:
 	return _view
 
@@ -265,6 +331,8 @@ func view() -> String:
 ## the keyboard path.
 func focus_controls() -> Array[Control]:
 	match _view:
+		MENU_VIEW:
+			return _menu.focus_controls()
 		GALLERY_VIEW:
 			return _gallery.focus_controls()
 		PUZZLE_VIEW:
@@ -390,9 +458,14 @@ func _on_result_morph_finished() -> void:
 		_focus_first()
 
 
-## True when settings would return to the paused puzzle rather than the gallery.
+## True when settings would return to the paused puzzle rather than the gallery or menu.
 func settings_returns_to_puzzle() -> bool:
 	return _settings_return == PUZZLE_VIEW
+
+
+## True when settings would return to the main menu ([code]NAV.T13[/code]).
+func settings_returns_to_menu() -> bool:
+	return _settings_return == MENU_VIEW
 
 
 ## The open puzzle id, or empty when nothing is open.
@@ -532,9 +605,24 @@ func _process(delta: float) -> void:
 ## return here keeps the guard ([method close_settings]) as the only exit that resumes
 ## an attempt paused into settings: a gallery path never resumes it and
 ## [method settings_returns_to_puzzle] is false afterwards.
+## [code]NAV.N1[/code]/[code]T12[/code]/[code]T13[/code]: the front door. The stamp is
+## re-presented from the one [b]CTR-build-info[/b] read, so it never goes stale.
+func _show_menu() -> void:
+	_view = MENU_VIEW
+	_settings_return = MENU_VIEW
+	_menu.present(_build_info)
+	_menu.visible = true
+	_gallery.visible = false
+	_puzzle.visible = false
+	_result.visible = false
+	_settings.visible = false
+	_focus_first()
+
+
 func _show_gallery() -> void:
 	_view = GALLERY_VIEW
 	_settings_return = GALLERY_VIEW
+	_menu.visible = false
 	_gallery.visible = true
 	_gallery.refresh()
 	_puzzle.visible = false
@@ -545,6 +633,7 @@ func _show_gallery() -> void:
 
 func _show_puzzle() -> void:
 	_view = PUZZLE_VIEW
+	_menu.visible = false
 	_gallery.visible = false
 	_result.visible = false
 	_settings.visible = false
@@ -554,6 +643,7 @@ func _show_puzzle() -> void:
 
 func _show_result() -> void:
 	_view = RESULT_VIEW
+	_menu.visible = false
 	_gallery.visible = false
 	_puzzle.visible = false
 	_settings.visible = false
@@ -563,6 +653,7 @@ func _show_result() -> void:
 
 func _show_settings() -> void:
 	_view = SETTINGS_VIEW
+	_menu.visible = false
 	_gallery.visible = false
 	_puzzle.visible = false
 	_result.visible = false
@@ -570,3 +661,13 @@ func _show_settings() -> void:
 	_settings.present_orientation(_orientation)
 	_settings.visible = true
 	_focus_first()
+
+
+## [code]NAV.N2[/code]: an interrupted session resumes on the gallery. The pack's O1
+## entries carry the in-progress fact, so the boot decision reads the same document the
+## gallery will draw.
+func _has_resume() -> bool:
+	for entry in _pack.list_entries():
+		if entry.in_progress:
+			return true
+	return false

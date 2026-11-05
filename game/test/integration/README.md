@@ -67,13 +67,14 @@ is still missing. These are product gaps, not harness errors:
   `paint`'s window plus these) no longer rest on `paint` alone. Each window's p95 is
   named in the I1 observation and tagged per frame in `samples/navigate-samples.ndjson`.
   Its `result-gallery` leg is product-acknowledged: the result screen's C1 routes
-  through the shell (#95). The gallery is the shell's real home view since #94.
+  through the shell (#95). A new session opens on the menu (`NAV.N1`); the protocol
+  presses `UI-menu.C1` to reach the gallery before sampling.
 - `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
   stops when settings is showing (`NAV.T7`), and Back stops at the resumed puzzle on
   settings' C3 (`NAV.T8`). The pause inside the attempt is #96's.
-- `app-start` measures launch to the shell's interactive home, the real gallery since
-  #94. It claims I6 only: I9 needs one of the open/solve/reset/back flows recorded,
-  and reaching home records none.
+- `app-start` measures launch to the shell's interactive home, the menu on a new
+  session since #623 (`NAV.N1`). It claims I6 only: I9 needs one of the
+  open/solve/reset/back flows recorded, and reaching home records none.
 
 ## Run folder
 
