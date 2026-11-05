@@ -1,11 +1,11 @@
 extends SceneTree
 ## One phase of the `kill-relaunch` protocol (`specs/technical/verification.md` I10).
 ##
-## `--phase=mark` opens a puzzle, marks one cell, advances elapsed, dumps the state,
-## and holds until the supervisor kills it. `--phase=verify` relaunches, records the
-## launch entry, reopens the same puzzle, and asserts the progress record still holds
-## the mark and the elapsed value. Both phases require the one debug seam flag H2
-## defines.
+## `--phase=mark` opens a puzzle, advances elapsed, marks one cell (the commit that
+## persists both), dumps the state, and holds until the supervisor kills it.
+## `--phase=verify` relaunches, records the launch entry, reopens the same puzzle, and
+## asserts the progress record still holds the mark and the elapsed value the mark
+## phase's marker reports. Both phases require the one debug seam flag H2 defines.
 ##
 ##     godot --headless --path game -s test/integration/relaunch_child.gd -- \
 ##         --debug-seams --phase=mark --puzzle-id=pack-000 --run-folder=<run>
@@ -55,47 +55,52 @@ func _start() -> void:
 
 func _mark_phase(run_folder: String, puzzle_id: String) -> int:
 	var shell := _shell()
-	if not shell.open_puzzle(puzzle_id):
-		return _fail("could not open %s" % puzzle_id)
-	var attempt := shell.attempt()
-	attempt.end_get_set_ready()
-	var result := attempt.mark(MARK_ROW, MARK_COLUMN, CellMark.Mark.FILL)
-	if result == null:
-		return _fail("could not mark the open puzzle")
-	attempt.advance(MARKED_ELAPSED)
+	# The sequence lives in IntegrationRelaunchMark so the GUT test drives the same order
+	# (#604). It persists marks, elapsed, and attempt status before it returns.
+	var marked := IntegrationRelaunchMark.run(
+		shell, puzzle_id, MARK_ROW, MARK_COLUMN, MARKED_ELAPSED
+	)
+	if not bool(marked.get("ok", false)):
+		return _fail(str(marked.get("message", IntegrationRelaunchMark.MARK_REFUSED)))
 	var dump := StateSnapshot.write(
-		StateSnapshot.for_attempt(attempt, shell.pack(), puzzle_id), run_folder
+		StateSnapshot.for_attempt(shell.attempt(), shell.pack(), puzzle_id), run_folder
 	)
 	if dump.is_empty():
 		return _fail("could not write the pre-kill dump")
 	var marker := {
-		"puzzle_id": puzzle_id,
-		"row": MARK_ROW,
-		"column": MARK_COLUMN,
-		"elapsed": attempt.state().elapsed(),
+		"puzzle_id": marked["puzzle_id"],
+		"row": marked["row"],
+		"column": marked["column"],
+		"elapsed": marked["elapsed"],
 		"dump": dump,
 	}
+	# The supervisor kills the child as soon as this file exists, and the commit above has
+	# already landed, so the marker is never written ahead of the record it describes.
 	if not _write_json(_path(run_folder, IntegrationRelaunch.MARK_FILE), marker):
 		return _fail("could not write the mark marker")
-	print("RELAUNCH mark held puzzle=%s elapsed=%d" % [puzzle_id, attempt.state().elapsed()])
+	print("RELAUNCH mark held puzzle=%s elapsed=%d" % [puzzle_id, int(marker["elapsed"])])
 	return EXIT_OK
 
 
 func _verify_phase(run_folder: String, puzzle_id: String) -> int:
 	var shell := _shell()
 	var gallery_entry := shell.view() == Shell.GALLERY_VIEW
+	var marker := _read_json(_path(run_folder, IntegrationRelaunch.MARK_FILE))
+	var marked_elapsed := int(marker.get("elapsed", 0))
 	var opened := shell.open_puzzle(puzzle_id)
 	if not opened:
-		return _write_verdict(run_folder, gallery_entry, false, false, false, 0)
+		return _write_verdict(run_folder, gallery_entry, false, false, false, 0, marked_elapsed)
 	var attempt := shell.attempt()
 	attempt.end_get_set_ready()
 	var record := attempt.progress_record()
 	var in_progress := record != null and record.in_progress
 	var marks_restored := in_progress and _restored_mark(record)
 	var elapsed := attempt.state().elapsed() if attempt.state() != null else 0
-	var elapsed_restored := elapsed >= MARKED_ELAPSED
+	# The marker's own elapsed, not the mark phase's constant: a phase that advanced a
+	# different amount cannot pass on a bar, and a missing or zero marker fails the leg.
+	var elapsed_restored := marked_elapsed > 0 and elapsed == marked_elapsed
 	return _write_verdict(
-		run_folder, gallery_entry, true, marks_restored, elapsed_restored, elapsed
+		run_folder, gallery_entry, true, marks_restored, elapsed_restored, elapsed, marked_elapsed
 	)
 
 
@@ -106,6 +111,7 @@ func _write_verdict(
 	marks_restored: bool,
 	elapsed_restored: bool,
 	elapsed: int,
+	marked_elapsed: int,
 ) -> int:
 	var passed := gallery_entry and opened and marks_restored and elapsed_restored
 	var verdict := {
@@ -114,6 +120,7 @@ func _write_verdict(
 		"marks_restored": marks_restored,
 		"elapsed_restored": elapsed_restored,
 		"elapsed": elapsed,
+		"marked_elapsed": marked_elapsed,
 		"pass": passed,
 	}
 	_write_json(_path(run_folder, IntegrationRelaunch.VERIFY_FILE), verdict)
@@ -153,6 +160,16 @@ func _write_json(path: String, payload: Dictionary) -> bool:
 	file.store_string(JSON.stringify(payload, "\t"))
 	file.close()
 	return true
+
+
+## The mark phase's marker, or an empty dictionary when it is missing or unreadable.
+func _read_json(path: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return {}
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	if typeof(parsed) != TYPE_DICTIONARY:
+		return {}
+	return parsed
 
 
 func _fail(message: String) -> int:

@@ -71,8 +71,6 @@ is still missing. These are product gaps, not harness errors:
 - `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
   stops when settings is showing (`NAV.T7`), and Back stops at the resumed puzzle on
   settings' C3 (`NAV.T8`). The pause inside the attempt is #96's.
-- `kill-relaunch` fails I10 until progress persistence restores marks and elapsed
-  (#96).
 - `app-start` measures launch to the shell's interactive home, the real gallery since
   #94. It claims I6 only: I9 needs one of the open/solve/reset/back flows recorded,
   and reaching home records none.
