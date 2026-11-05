@@ -55,7 +55,7 @@ Status transitions: [`docs/issues/workflow.md`](issues/workflow.md). Feedback: [
 
 ### Priority
 
-Exactly **one** `priority:*` label on typed issues. Create forms and `create-project-*` skills apply `priority:normal` by default. Unlabeled issues are treated as normal. Effective priority if more than one is present: critical > high > normal; hygiene keeps only the highest. Humans set or change priority. Agents only drop lower duplicate `priority:*` labels, except feedback-linked work ([issues/feedback.md](issues/feedback.md)).
+Exactly **one** `priority:*` label on typed issues. Create forms and `create-project-*` skills apply `priority:normal` by default. Unlabeled issues are treated as normal. Effective priority if more than one is present: critical > high > normal; hygiene keeps only the highest. Humans set or change priority. Agents only drop lower duplicate `priority:*` labels. Feedback follow-ups: [issues/feedback.md](issues/feedback.md).
 
 ## Adding a label
 
