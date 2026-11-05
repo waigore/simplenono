@@ -4,7 +4,7 @@
     "V1"
   ],
   "state": "approved",
-  "version": 2,
+  "version": 3,
   "source_type": "ai-generation",
   "recipe": "AK-puzzle-pictures.R1",
   "id": "01a17720-ca00-728a-92ba-74f8da770937",
@@ -22,7 +22,7 @@
     "adr": "adr-free"
   },
   "generation": {
-    "prompt": "colourful multi-element scene of a striped red-and-yellow market awning over carts of fruit on a sunlit seaside promenade with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
+    "prompt": "colourful multi-element scene of a harbour chandlery counter with rope coils, stacked buoys, lanterns, barrels and a wooden ladder with a real background, completely asymmetrical, many separate small objects spread across the whole frame with clear gaps between them, scene washed in bright high-key daylight against a pale luminous sky. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
     "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
     "tool": "Cheaper Inference",
     "operation": "images.generations",
@@ -50,9 +50,34 @@
     "verdict": "Pass",
     "date": "2026-11-05",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-137. Generated square: flux-2-max 1024x1024, request 17bc84ec-071e-41d7-bd70-4167b42bb26d, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [169, 147, 121]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 80/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a red-and-yellow striped canopy over fruit-filled barrows beside a sea wall promenade with walkers and a dog K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+    "report": "AK-puzzle-pictures R1/V1, pack-137. Generated square: flux-2-max 1024x1024, request 638e7bb6-71aa-4758-a23a-095be0df4abc, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [201, 192, 176]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 89/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a harbour chandlery counter with rope coils, stacked buoys, lanterns, barrels and a wooden ladder — composed from the generation prompt; the pair's colour and asymmetry are corroborated by measurement in the K5 record (mean saturation 0.17, 5-95% hue span 0.639, 89/225 filled with no dihedral symmetry of the fill). K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
   },
   "history": [
+    {
+      "version": 2,
+      "date": "2026-11-05",
+      "reason": "Replaced by the #610 K5 pack-look closing review: near-twin of pack-035's market-awning composition; pack-035 is kept",
+      "generation": {
+        "prompt": "colourful multi-element scene of a striped red-and-yellow market awning over carts of fruit on a sunlit seaside promenade with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
+        "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
+        "tool": "Cheaper Inference",
+        "operation": "images.generations",
+        "settings": {
+          "model": "flux-2-max",
+          "size": "1024x1024"
+        },
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": []
+        },
+        "steps": [
+          "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
+          "saved data[0] as a PNG without resampling"
+        ]
+      }
+    },
     {
       "version": 1,
       "date": "2026-11-03",

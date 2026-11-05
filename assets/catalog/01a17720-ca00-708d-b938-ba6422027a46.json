@@ -4,7 +4,7 @@
     "V1"
   ],
   "state": "approved",
-  "version": 1,
+  "version": 2,
   "source_type": "ai-generation",
   "recipe": "AK-puzzle-pictures.R1",
   "id": "01a17720-ca00-708d-b938-ba6422027a46",
@@ -22,19 +22,19 @@
     "adr": "adr-free"
   },
   "generation": {
-    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: the outline of a bold plus sign eleven cells tall and eleven cells wide standing on a pale background, its arms four cells thick, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
-    "negative_prompt": "playful chrome; gore; horror",
-    "seed": "n/a \u2014 tool has no seed",
-    "inputs": {
-      "style_anchors": [],
-      "refs": [],
-      "base_assets": []
-    },
+    "prompt": "colourful multi-element scene of a busy timber yard with stacked planks, sawn log ends, a handcart, rope coils and an open shed with a real background, completely asymmetrical, many separate small objects spread across the whole frame with clear gaps between them, scene washed in bright high-key daylight against a pale luminous sky. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
+    "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
     "tool": "Cheaper Inference",
     "operation": "images.generations",
     "settings": {
       "model": "flux-2-max",
       "size": "1024x1024"
+    },
+    "seed": "n/a — tool has no seed",
+    "inputs": {
+      "style_anchors": [],
+      "refs": [],
+      "base_assets": []
     },
     "steps": [
       "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
@@ -48,8 +48,35 @@
   },
   "review": {
     "verdict": "Pass",
-    "date": "2026-11-03",
+    "date": "2026-11-05",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-167. Generated square: flux-2-max 1024x1024, request 0d876dc1-f165-4b0b-8b12-537817413ad0, saved as PNG without resampling. Meets K1/K6 (square stored) and S6 (the square is the stored output). Pixel silhouette: 1 filled mass(es), no enclosed hole. Look evidence (measured on the committed pixel): 0.00% warm pixels; filled cells luma mean 93.9 against background luma mean 197.3 (contrast 103.3). Calm clinical, cool-toned, with no cute, warm, playful, gore, or horror traits (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
-  }
+    "report": "AK-puzzle-pictures R1/V1, pack-167. Generated square: flux-2-max 1024x1024, request 961de677-82d4-4198-a6d7-8b08ba087c55, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [227, 205, 182]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 82/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a busy timber yard with stacked planks, sawn log ends, a handcart, rope coils and an open shed — composed from the generation prompt; the pair's colour and asymmetry are corroborated by measurement in the K5 record (mean saturation 0.328, 5-95% hue span 0.125, 82/225 filled with no dihedral symmetry of the fill). K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+  },
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-03",
+      "reason": "Replaced by the #610 K5 pack-look closing review: delivered the same N x N picture as pack-063",
+      "generation": {
+        "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: the outline of a bold plus sign eleven cells tall and eleven cells wide standing on a pale background, its arms four cells thick, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+        "negative_prompt": "playful chrome; gore; horror",
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": []
+        },
+        "tool": "Cheaper Inference",
+        "operation": "images.generations",
+        "settings": {
+          "model": "flux-2-max",
+          "size": "1024x1024"
+        },
+        "steps": [
+          "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
+          "saved data[0] as a PNG without resampling"
+        ]
+      }
+    }
+  ]
 }

@@ -57,7 +57,7 @@ N/A — the recipes live in [`puzzle-pictures/recipes.md`](puzzle-pictures/recip
 | K2 | Fill band | Count | 25–45% of `size²`: 25–45 at 10×10, 56–101 at 15×15, 100–180 at 20×20 |
 | K3 | Unique line-logic | Offline judge | Pass S4 |
 | K4 | Colourful readable scene | Review | `prompt_policy` and the aesthetics pillar scope (picture content exempt from [`AES.P1`](../../aesthetics/aesthetics.md)); colourful multi-element complex scene with a real background, completely asymmetrical; reads at N×N; a sentence recorded, no class word |
-| K5 | Pack look | Closing review | 200 approved V1 pairs, files resolve, regeneration record per size band (B1), variety (V2) judged on pictures |
+| K5 | Pack look | Closing review | 200 approved V1 pairs, files resolve, regeneration record per size band (B1); variety judged on pictures: no two pairs deliver the same N×N picture (equal under any rotation or flip), and each named scene is used by at most one pair per size band |
 | K6 | Both stored | Inspect | Square and N×N both catalogued |
 
 ## Naming
