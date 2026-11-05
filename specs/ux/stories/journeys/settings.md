@@ -18,6 +18,7 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 | B1 | Mute instead of haptics | US1.2 |
 | B2 | Orientation instead of haptics (mobile) | US1.3 |
 | B3 | Menu → settings → menu | US1.4 |
+| B4 | Hint assist instead of haptics | US1.5 |
 
 ## US1: Prefs detour
 
@@ -71,4 +72,15 @@ When the Player activates UI-menu.C2
 Then UI-settings opens
 When the Player activates UI-settings.C3
 Then UI-menu opens
+```
+
+### US1.5: Hint-assist branch
+
+- **Proves**: B4
+
+```gherkin
+Given UI-settings opened from gallery at step S2
+When the Player activates UI-settings.C5 instead of C1
+Then the screen stays UI-settings with single-line hint On
+And a later session still shows that choice
 ```
