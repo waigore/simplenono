@@ -257,6 +257,28 @@ func test_row_clue_numbers_dim_individually():
 		)
 
 
+# R2 / E-clue I4: every row clue number is laid out at its glyph width, so it is
+# drawn. Regression for #619: a clipped label reports no minimum width, so the row
+# HBoxContainer gave each number a 1 px box and the glyph never appeared.
+func test_row_clue_numbers_are_laid_out_at_their_glyph_width():
+	var definition := _clue_definition([[1, 4]] + _empty_lines(5), _empty_lines(6))
+	var board := await _layout_board(definition)
+	await get_tree().process_frame
+	var labels := board.row_clue_labels(0)
+	assert_eq(labels.size(), 2, "the row clue is two labels")
+	for number in labels.size():
+		var label: Label = labels[number]
+		var advance := _glyph_advance(label)
+		assert_gt(label.size.x, 1.0, "number %s is wider than 1 px" % number)
+		assert_gte(label.size.x, advance, "number %s fits its glyph" % number)
+	var empty_label: Label = board.row_clue_labels(1)[0]
+	assert_gte(
+		empty_label.size.x,
+		_glyph_advance(empty_label),
+		"the all-empty row's glyph is drawn too",
+	)
+
+
 # R2 / E-clue I4: column clue numbers follow the same per-number rule.
 func test_column_clue_numbers_dim_individually():
 	var definition := _clue_definition(_empty_lines(6), [[2, 3]] + _empty_lines(5))
@@ -287,6 +309,13 @@ func _layout_board(definition: PuzzleDefinition) -> PuzzleBoard:
 
 func _label_color(label: Label) -> Color:
 	return label.get_theme_color("font_color")
+
+
+## The width [param label]'s text needs at its current font size.
+func _glyph_advance(label: Label) -> float:
+	var font := label.get_theme_font("font")
+	var font_size := label.get_theme_font_size("font_size")
+	return font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size).x
 
 
 func _clue_definition(row_clues: Array, col_clues: Array) -> PuzzleDefinition:

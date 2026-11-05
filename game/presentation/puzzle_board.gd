@@ -240,12 +240,12 @@ func _build_children() -> void:
 		var labels: Array[Label] = []
 		var row_runs: Array = _definition.row_clues[row]
 		if row_runs.is_empty():
-			var empty_label := _make_clue_label(EMPTY_CLUE_GLYPH)
+			var empty_label := _make_clue_label(EMPTY_CLUE_GLYPH, false)
 			empty_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			box.add_child(empty_label)
 			labels.append(empty_label)
 		for run in row_runs:
-			var label := _make_clue_label(_runs_text([run]))
+			var label := _make_clue_label(_runs_text([run]), false)
 			label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			box.add_child(label)
 			labels.append(label)
@@ -257,10 +257,13 @@ func _build_children() -> void:
 			_cells.append(cell)
 
 
-func _make_clue_label(text: String) -> Label:
+## A clue number's label. [param clip] keeps a column number inside its cell-wide
+## box; a row number must not clip, because its [HBoxContainer] sizes each child from
+## its minimum width and a clipped label reports none, collapsing to 1 px (#619).
+func _make_clue_label(text: String, clip: bool = true) -> Label:
 	var label := Label.new()
 	label.text = text
-	label.clip_text = true
+	label.clip_text = clip
 	label.mouse_filter = MOUSE_FILTER_IGNORE
 	label.add_theme_color_override("font_color", PresentationPalette.INK)
 	return label
