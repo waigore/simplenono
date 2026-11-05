@@ -198,14 +198,39 @@ func test_one_framing_stays_inside_the_safe_area():
 				content.x <= safe.x and content.y <= safe.y, "%s: inside the safe area" % context
 			)
 			var last := board.cell_at(size - 1, size - 1)
-			var frame_end := board._origin + content
+			var content_end := (
+				board.frame_rect().end
+				- Vector2(PuzzleBoard.FRAME_PADDING, PuzzleBoard.FRAME_PADDING)
+			)
 			assert_true(
-				last.position.x + last.size.x <= frame_end.x + 0.01,
+				last.position.x + last.size.x <= content_end.x + 0.01,
 				"%s: the last column ends at the frame edge" % context
 			)
 			assert_true(
-				last.position.y + last.size.y <= frame_end.y + 0.01,
+				last.position.y + last.size.y <= content_end.y + 0.01,
 				"%s: the last row ends at the frame edge" % context
+			)
+
+
+# #645: the paper frame sits centered in R2 (equal leftover margin on opposing
+# sides), matching MC.puzzle place-items: center, while the board still fills
+# what R1 and R3 leave — no shrink-to-fake-center.
+func test_mobile_board_frame_is_centered_in_remaining_viewport():
+	for viewport: Vector2 in [PORTRAIT, LANDSCAPE]:
+		for size in [10, 15, 20]:
+			var board := await _shown_at(viewport, size)
+			var context := "%sx%s at %s" % [size, size, viewport]
+			var frame := board.frame_rect()
+			var left := frame.position.x
+			var right := board.size.x - (frame.position.x + frame.size.x)
+			var top := frame.position.y
+			var bottom := board.size.y - (frame.position.y + frame.size.y)
+			assert_almost_eq(left, right, 1.0, "%s: equal horizontal leftover in R2" % context)
+			assert_almost_eq(top, bottom, 1.0, "%s: equal vertical leftover in R2" % context)
+			assert_eq(
+				board.size,
+				(_screen.get_node("Margin/Layout/BoardArea") as Control).size,
+				"%s: R2 still fills what R1 and R3 leave" % context
 			)
 
 
