@@ -46,8 +46,8 @@ never touches board state.
 
 - **I1**: Enabling an assist during an active attempt is observable so hint-free voids
   ([SCH-preferences](../../technical/schemata/preferences.md) F4-F6; [ADR-0010](../../adr/decisions/0010-hint-preferences.md)); the void logic is not this feature's rule.
-- **I2**: The line-level fillable hint is a later mechanic of the same assist class; its
-  spec owns the tap → shade interaction.
+- **I2**: The [line-level fillable shade](line-fillable-shade.md) is the later mechanic of the same assist
+  class; that spec owns the tap → shade interaction.
 
 ## Edge cases
 

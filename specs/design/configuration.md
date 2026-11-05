@@ -16,7 +16,7 @@ Authoring rules: [`.agents/specs/rules/design/configuration.md`](../../.agents/s
 | Multi-line fill hint | on / off | off | Same assist class; one-level multi-line overlays only when on | Player, any time in settings | Never |
 | Line-level fillable hint | on / off | off | Same assist class; when on, fill-tool taps may shade a max legal run | Player, any time in settings | Never |
 
-Presentation prefs (haptics, mute BGM, orientation) are not rule variants. The overlay behaviour of the two fill hints is specified in [`features/fill-hints.md`](features/fill-hints.md); shade, hint-free earn/void behaviour are owned by their design/UX/technical specs; this table only locks the three persisted assist options and defaults.
+Presentation prefs (haptics, mute BGM, orientation) are not rule variants. The overlay behaviour of the two fill hints is specified in [`features/fill-hints.md`](features/fill-hints.md), and the line-level shade in [`features/line-fillable-shade.md`](features/line-fillable-shade.md); the hint-free earn/void behaviour is owned by its design/UX/technical specs; this table only locks the three persisted assist options and defaults.
 
 ## Designer tunables
 
