@@ -323,7 +323,9 @@ func _on_open_pressed() -> void:
 
 
 ## #539: a touch drag that starts on C1 (the whole tile) is a scroll of R2, not a tap,
-## so the enclosing [ScrollContainer] gets it and the tile does not open.
+## so the enclosing [ScrollContainer] gets it and the tile does not open. #600: the
+## mouse Godot emulates from the same touch is consumed too, or its release would open
+## the tile the finger only scrolled past.
 func _on_open_input(event: InputEvent) -> void:
 	if _scroll_drag.consume(event, _open_button):
 		_open_button.accept_event()
