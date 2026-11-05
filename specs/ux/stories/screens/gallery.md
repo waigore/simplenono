@@ -51,7 +51,7 @@ Then R2 shows Done, Best {time}, and the solution thumbnail
 ```gherkin
 Given puzzle P ever-completed false
 When UI-gallery shows P's tile
-Then R2 shows a generic placeholder, not the solution thumbnail
+Then R2 shows a simple box with a centered question mark, not the solution thumbnail
 ```
 
 ### US1.4: Settings
