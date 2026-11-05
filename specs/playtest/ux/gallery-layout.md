@@ -6,13 +6,13 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 - **Spec key**: `PTU-gallery-layout`
 - **Cites**: `J-play-puzzle` (N1, S1), `UI-gallery` (R2, `C1`, `C2`)
 - **Situational tools**: None
-- **Visual reference**: `MC.gallery-mobile`, while that row stays `approved` ([mockups/catalog.md](../../../specs/ux/mockups/catalog.md)); its frame gives the shares — page margin 20 per side at 390, a 10 gap, 2 portrait columns, whole-card `C1`, no fresh-tile reset row. Shares hold as drawn at 360×640, scaled elsewhere. No mockup depicts 640×360: its count is an `S1` observation, judged via `P1` and `P2`.
+- **Visual reference**: `MC.gallery-mobile`, while that row is current ([mockups/catalog.md](../../../specs/ux/mockups/catalog.md)); its frame gives the shares — page margin 20 per side at 390, a 10 gap, 2 portrait columns, whole-card `C1`, no fresh-tile reset row. Shares hold at 360×640, scaled elsewhere. No mockup depicts 640×360; its count is judged via `P1` and `P2`.
 
 ## Steps
 
 | ID | Action |
 |----|--------|
-| S1 | Per test viewport ([`view.md`](../../view/view.md)), 360×640 then 640×360: open the gallery on the full pack, screenshot the first viewport; note count, page margin, neighbour gap, clipped card or chrome. |
+| S1 | Per test viewport ([`view.md`](../../view/view.md)), 360×640 then 640×360: cold start on `UI-menu`, activate `UI-menu.C1`, open the gallery on the full pack; screenshot the first viewport; note count, margin, gap, clipped card or chrome. |
 | S2 | Per viewport: touch-drag from a card's `C1` area until R2's last row is inside, then tap a below-fold tile; screenshot the final scrolled state; note mid-drag opens and the tapped tile's `C1` entry. |
 | S3 | Per viewport: labels sit inside cards, untruncated; thumbnails square, full-width, centred; fresh tiles show no blank strip. Tap a fresh tile's metadata strip; scroll-drag from another fresh tile's strip; note both outcomes. |
 
