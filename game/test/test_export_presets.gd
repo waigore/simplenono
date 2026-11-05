@@ -92,6 +92,17 @@ func test_both_android_presets_keep_the_system_chrome_visible() -> void:
 			)
 
 
+# CTR-build-info: every release preset packs the export script's build_info.json, so
+# the main menu stamp has its two values in a shipped build
+func test_release_presets_pack_the_build_info() -> void:
+	for preset in ["preset.1", "preset.2", "preset.3", "preset.4", "preset.5"]:
+		var include := str(_presets[preset].get("include_filter", ""))
+		assert_true(
+			include.split(",").has("release/build_info.json"),
+			"%s packs release/build_info.json" % preset,
+		)
+
+
 # A4: no iOS or desktop preset opts into immersive or edge-to-edge
 func test_no_other_preset_opts_into_immersive_or_edge_to_edge() -> void:
 	var android := _android_presets()
