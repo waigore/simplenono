@@ -33,6 +33,9 @@ static func spec() -> Dictionary:
 		[
 			{"id": "launch", "kind": "launch", "scene": "res://presentation/shell.tscn"},
 			{"id": "home", "kind": "wait_probe", "probe": "home_ready", "timeout_ms": 10000},
+			# NAV.N1 / T9: a new session opens on the menu; Puzzles reaches the gallery.
+			{"id": "menu-puzzles", "kind": "puzzles"},
+			{"id": "gallery-view", "kind": "expect", "probe": "view", "value": "gallery"},
 			# R2 layout: the tile picture is square, and both edge states show every column.
 			{
 				"id": "gallery-mobile",

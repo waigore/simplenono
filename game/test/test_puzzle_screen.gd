@@ -87,6 +87,29 @@ func _board() -> PuzzleBoard:
 	return _screen.get_node("%Board") as PuzzleBoard
 
 
+# PAL.K1 / copy.leave (defect #601): the shell focuses the first control when the
+# puzzle is shown (C1 Leave), and Godot draws that focused idle state with
+# font_focus_color — near-white by default — so an unset override hid "Leave" until a
+# press. Every focusable chrome and tool label stays Ink on the Paper background.
+func test_focused_chrome_and_tool_labels_stay_ink():
+	_shown()
+	for control: Control in _screen.focus_controls():
+		var button := control as Button
+		assert_not_null(button, "%s is a button" % control.name)
+		button.grab_focus()
+		assert_true(button.has_focus(), "%s can hold the shell's focus" % button.name)
+		var color := button.get_theme_color("font_focus_color")
+		assert_true(
+			color.is_equal_approx(PresentationPalette.INK),
+			"%s focus label is Ink (%s)" % [button.name, color],
+		)
+		assert_false(
+			color.is_equal_approx(PresentationPalette.PAPER),
+			"%s focus label never matches the Paper background" % button.name,
+		)
+	assert_eq((_control("LeaveButton") as Button).text, "Leave", "copy.leave shows without a press")
+
+
 # US1.1 / US1.7: S2 shows copy.ready, blocks marks, keeps C1 and C6, and freezes elapsed
 func test_get_set_ready_shows_ready_beat_blocks_marks_and_keeps_chrome():
 	var attempt := _shown()
@@ -275,7 +298,7 @@ func test_board_draws_marks_and_clues_without_the_solution():
 
 
 func _row_clue_text(row: int) -> String:
-	return _board().row_clue_label(row).text
+	return _board().row_clue_labels(row)[0].text
 
 
 # US1.2 / PS1.4: a satisfied clue dims and a contradicting fill turns the line cue
@@ -295,7 +318,7 @@ func test_satisfied_and_error_clues_use_the_palette():
 
 
 func _row_clue_color(row: int) -> Color:
-	return _board().row_clue_label(row).get_theme_color("font_color")
+	return _board().row_clue_labels(row)[0].get_theme_color("font_color")
 
 
 # C2 is inert here: the input layer (#111) owns every mark

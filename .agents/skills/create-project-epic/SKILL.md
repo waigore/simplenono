@@ -22,7 +22,7 @@ Veneer for a repository **Epic** (`type:epic`).
 
 - Collect optional notes. Do not collect or wire `blocked_by` / `blocking`.
 - Do not create child tasks unless asked. Use `create-project-task` for children.
-- When `create-project-feedback` is the caller, set `priority:high` per [`feedback.md`](../../../docs/issues/feedback.md).
+- When `create-project-feedback` is the caller, keep default priority unless the human requested otherwise ([`feedback.md`](../../../docs/issues/feedback.md)).
 
 ## Related
 

@@ -25,7 +25,7 @@ Veneer for `type:feedback`. Contract: [`docs/issues/feedback.md`](../../../docs/
   - **Requirement change:** critical exam (purpose, feasibility, cheaper/other means — judgement) → wait for keep/revise/drop → [`capture-requirements`](../capture-requirements/SKILL.md) to lock shape and which specs must change (do not amend specs here) → file a task or epic via `create-project-task` / `create-project-epic`.
   - **Defect:** file via `create-project-defect`.
   - **Already covered** / **No action:** record only; no new issue.
-- Follow-ups use `priority:high` and any `Supersedes #N` per the contract. Prefer an existing epic as parent when one owns the area.
+- Follow-ups use `priority:normal` unless the human requests `high` or `critical`; apply any `Supersedes #N` per the contract. Prefer an existing epic as parent when one owns the area.
 - Fill **Analysis** and **Related issues** before create. Initial status `pending-resolution` when Related issues names open work; otherwise `resolved`.
 - Do not leave disposition or filing for `handle-feedback-agent`. That skill only tracks related issues to `resolved`. Clarification lives on filed tasks/defects, not on the feedback issue.
 

@@ -227,3 +227,105 @@ func test_mobile_keeps_the_minimum_guard_and_drops_the_cap():
 	board.set_platform(PuzzleBoard.PLATFORM_MOBILE)
 	board.show_puzzle(_definition_of(20))
 	assert_eq(board.cell_size(), PuzzleBoard.MIN_CELL_SIZE, "a degenerate rect keeps the floor")
+
+
+# R2 / E-clue I4: a row clue is one label per clue number, and each number dims on its
+# own match; line error still wins over the dim.
+func test_row_clue_numbers_dim_individually():
+	var definition := _clue_definition([[3, 2]] + _empty_lines(5), _empty_lines(6))
+	var board := await _layout_board(definition)
+	var labels := board.row_clue_labels(0)
+	assert_eq(labels.size(), 2, "the row clue is two labels, not one joined label")
+	assert_eq(labels[0].text, "3")
+	assert_eq(labels[1].text, "2")
+
+	var rules := Rules.new(definition)
+	var marks := MarkGrid.new(6, true)
+	for column in [0, 1, 2]:
+		marks.apply_mark(0, column, CellMark.Mark.FILL)
+	board.set_marks(marks, rules.line_status(marks))
+	assert_eq(_label_color(labels[0]), PresentationPalette.DIM, "the matched number dims")
+	assert_eq(_label_color(labels[1]), PresentationPalette.INK, "the unmatched number stays Ink")
+
+	marks.apply_mark(0, 3, CellMark.Mark.FILL)
+	board.set_marks(marks, rules.line_status(marks))
+	for number in labels.size():
+		assert_eq(
+			_label_color(labels[number]),
+			PresentationPalette.CONTRADICTION,
+			"line error wins over the dim on number %s" % number,
+		)
+
+
+# #619: every row clue number is laid out wide enough to draw its glyph. A
+# clip_text label with no minimum width collapses to 1 px in the row HBoxContainer,
+# so the number is clipped away even though its font_color is right.
+func test_row_clue_numbers_are_laid_out_wide_enough_to_draw():
+	for size in [10, 15, 20]:
+		var board := await _shown_at(PORTRAIT, size)
+		await get_tree().process_frame
+		for row in size:
+			for label: Label in board.row_clue_labels(row):
+				var context := "%sx%s row %s number %s" % [size, size, row, label.text]
+				var glyph_width := _glyph_width(label)
+				assert_gt(label.size.x, 1.0, "%s: laid out wider than 1 px" % context)
+				assert_gte(label.size.x, glyph_width, "%s: fits its glyph" % context)
+				var box := label.get_parent() as Control
+				assert_gte(label.position.x, 0.0, "%s: starts inside its clue bar" % context)
+				assert_lte(
+					label.position.x + label.size.x,
+					box.size.x,
+					"%s: ends inside its clue bar, so clip_contents cannot cut it" % context,
+				)
+
+
+# R2 / E-clue I4: column clue numbers follow the same per-number rule.
+func test_column_clue_numbers_dim_individually():
+	var definition := _clue_definition(_empty_lines(6), [[2, 3]] + _empty_lines(5))
+	var board := await _layout_board(definition)
+	var labels := board.column_clue_labels(0)
+	var rules := Rules.new(definition)
+	var marks := MarkGrid.new(6, true)
+	for row in [0, 1]:
+		marks.apply_mark(row, 0, CellMark.Mark.FILL)
+	board.set_marks(marks, rules.line_status(marks))
+	assert_eq(_label_color(labels[0]), PresentationPalette.DIM, "the matched number dims")
+	assert_eq(_label_color(labels[1]), PresentationPalette.INK, "the unmatched number stays Ink")
+
+	for row in [3, 4, 5]:
+		marks.apply_mark(row, 0, CellMark.Mark.FILL)
+	board.set_marks(marks, rules.line_status(marks))
+	assert_eq(_label_color(labels[0]), PresentationPalette.DIM, "both numbers match now")
+	assert_eq(_label_color(labels[1]), PresentationPalette.DIM, "both numbers dim")
+
+
+func _layout_board(definition: PuzzleDefinition) -> PuzzleBoard:
+	await _layout_at(PORTRAIT)
+	var board := _board()
+	board.show_puzzle(definition)
+	board.set_platform(PuzzleBoard.PLATFORM_MOBILE)
+	return board
+
+
+func _label_color(label: Label) -> Color:
+	return label.get_theme_color("font_color")
+
+
+## The drawn width of [param label]'s text at its current font size.
+func _glyph_width(label: Label) -> float:
+	var font := label.get_theme_font("font")
+	var font_size := label.get_theme_font_size("font_size")
+	return font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+
+
+func _clue_definition(row_clues: Array, col_clues: Array) -> PuzzleDefinition:
+	return PuzzleDefinition.new(
+		"clue-dim", row_clues.size(), row_clues, col_clues, [], "picture.dim", "pixel.dim"
+	)
+
+
+func _empty_lines(count: int) -> Array:
+	var lines := []
+	for line in count:
+		lines.append([])
+	return lines

@@ -12,7 +12,7 @@ The person playing for themselves in short sessions—someone who knows or will 
 
 ## Goals
 
-- Pick any puzzle and solve it from the clues
+- Start from the main menu and pick any puzzle to solve from the clues
 - Improve a personal best when they choose to replay
 - See pack progress (completion rate and statuses)
 - Leave an attempt and resume an in-progress board later
@@ -20,10 +20,11 @@ The person playing for themselves in short sessions—someone who knows or will 
 
 ## Can operate
 
-- **C1**: Gallery — browse the pack, open a puzzle, reset a puzzle, open settings ([`screens/gallery.md`](../screens/gallery.md))
+- **C1**: Gallery — browse the pack, open a puzzle, reset a puzzle, open settings, return to the main menu ([`screens/gallery.md`](../screens/gallery.md))
 - **C2**: Puzzle — mark while allowed; Fill / Cross / Clear; leave or pause into settings ([`screens/puzzle.md`](../screens/puzzle.md))
 - **C3**: Result — see the pixel picture, then the generated picture; return to gallery ([`screens/result.md`](../screens/result.md))
-- **C4**: Settings — change haptics on/off and mute BGM; return to gallery or resume a paused puzzle ([`screens/settings.md`](../screens/settings.md))
+- **C4**: Settings — change haptics on/off and mute BGM; return to the opener ([`screens/settings.md`](../screens/settings.md))
+- **C5**: Main menu — open the pack, open settings, or quit on desktop ([`screens/menu.md`](../screens/menu.md))
 
 ## Cannot operate
 

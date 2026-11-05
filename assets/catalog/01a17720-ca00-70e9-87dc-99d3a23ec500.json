@@ -4,7 +4,7 @@
     "V1"
   ],
   "state": "approved",
-  "version": 1,
+  "version": 2,
   "source_type": "ai-generation",
   "recipe": "AK-puzzle-pictures.R1",
   "id": "01a17720-ca00-70e9-87dc-99d3a23ec500",
@@ -22,8 +22,8 @@
     "adr": "adr-free"
   },
   "generation": {
-    "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: one heavy solid mass filling most of the frame and split by a wide clear cross-shaped channel, two thick arms twelve cells long and five cells thick, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
-    "negative_prompt": "playful chrome; gore; horror",
+    "prompt": "colourful multi-element scene of a dark shed door with rakes, stacked pots and a barrow of seed trays spilling across the step with a real background, completely asymmetrical, thin handles and small pots threaded through the frame, scene in bright noon light with one large solid dark mass, broad plain walls and a wide pale yard in front. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 15x15. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
+    "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
     "tool": "puzzle_derive.py (local authoring script)",
     "operation": "offline flatten + BOX downsample",
     "settings": {
@@ -34,9 +34,9 @@
       "flatten_band_percent": 5.0,
       "flatten_ring_percent": 1.0,
       "flatten_background_rgb": [
-        198,
-        201,
-        206
+        174,
+        158,
+        121
       ]
     },
     "seed": "n/a — tool has no seed",
@@ -48,9 +48,9 @@
       ]
     },
     "steps": [
-      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [198, 201, 206])",
-      "BOX downsample to 15x15 colour cells, one per board cell, alpha composited over white",
-      "write puzzle-pictures/pack-092-pixel.png"
+      "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [174, 158, 121])",
+      "BOX downsample to 15x15 colour cells, alpha over white",
+      "judge: one solution, reached by line logic alone, equal to the pixel fill set; filled 89, in band [56, 101]"
     ]
   },
   "guidance": "Derived from the square in inputs.base_assets; re-run the derive command to reproduce it.",
@@ -60,8 +60,47 @@
   },
   "review": {
     "verdict": "Pass",
-    "date": "2026-11-03",
+    "date": "2026-11-05",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-092. Derived from the generated square (request 39a81a4d-4487-48af-9c24-9239f4c901af). Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [198, 201, 206]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel with zero differing cells (S1, S5, S6, K1, K6). Filled 100/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band; one line-logic solution reaching this fill set (S2-S4, K2, K3). Pixel look: 0.0% warm pixels; filled cells luma mean 73.6 against background luma mean 199.5 (contrast 125.9); silhouette four heavy blocks in a 2x2 arrangement, split by a clear cross channel (AES.P1, K4). No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486, 2026-11-03): the subject is judged by look and the stored silhouette. Class tag removed on 2026-11-03."
-  }
+    "report": "AK-puzzle-pictures R1/V1, pack-092. Generated square: flux-2-max 1024x1024, request 4f7e2450-ab82-4061-bd52-3d9bafc0ae5e, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [174, 158, 121]), then BOX downsampled to 15x15, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 89/225 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 56-101 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a dark shed door with rakes, stacked pots and a barrow of seed trays spilling across the step — composed from the generation prompt; the pair's colour and asymmetry are corroborated by measurement in the K5 record (mean saturation 0.314, 5-95% hue span 0.141, 89/225 filled with no dihedral symmetry of the fill). K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+  },
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-11-03",
+      "reason": "Replaced by the #610 K5 pack-look closing review: delivered the same N x N picture as pack-011",
+      "generation": {
+        "prompt": "a flat top-down photograph of a dark slate blue-grey paper cut-out grid over a pale cool grey background: one heavy solid mass filling most of the frame and split by a wide clear cross-shaped channel, two thick arms twelve cells long and five cells thick, each cell about 6.7 percent of the frame width, hard crisp square edges, no shadow, no reflection, no gradient, no texture, flat even lighting, strong high contrast, calm clinical still-life, readable as a 15x15 icon, no text. Calm clinical still-life; clear silhouette; readable at 15x15. Avoid: playful chrome; gore; horror.",
+        "negative_prompt": "playful chrome; gore; horror",
+        "tool": "puzzle_derive.py (local authoring script)",
+        "operation": "offline flatten + BOX downsample",
+        "settings": {
+          "model": "flux-2-max",
+          "downsample": "box",
+          "size": 15,
+          "flatten_method": "outer frame set to the median colour of the outer ring",
+          "flatten_band_percent": 5.0,
+          "flatten_ring_percent": 1.0,
+          "flatten_background_rgb": [
+            198,
+            201,
+            206
+          ]
+        },
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": [
+            "01a17720-ca00-7349-a9bd-0d2a6728a1ff"
+          ]
+        },
+        "steps": [
+          "flatten vignette: outer 5% frame set to the median colour of the outer 1% ring (RGB [198, 201, 206])",
+          "BOX downsample to 15x15 colour cells, one per board cell, alpha composited over white",
+          "write puzzle-pictures/pack-092-pixel.png"
+        ]
+      }
+    }
+  ]
 }

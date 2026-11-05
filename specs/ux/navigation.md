@@ -6,6 +6,7 @@ Authoring rules: [`.agents/specs/rules/ux/navigation.md`](../../.agents/specs/ru
 
 | Screen | Job | Actors | Spec | Mockup |
 |--------|-----|--------|------|--------|
+| `UI-menu` | Open the pack, open settings, or quit | [`player.md`](actors/player.md) | [`screens/menu.md`](screens/menu.md) | [`menu-mobile.html`](mockups/screens/menu-mobile.html), [`menu-desktop.html`](mockups/screens/menu-desktop.html) |
 | `UI-gallery` | Browse pack; open puzzle or settings; see progress | [`player.md`](actors/player.md) | [`screens/gallery.md`](screens/gallery.md) | [`gallery-mobile.html`](mockups/screens/gallery-mobile.html), [`gallery-desktop.html`](mockups/screens/gallery-desktop.html) |
 | `UI-puzzle` | Mark board from clues; leave, pause, or solve to result | [`player.md`](actors/player.md) | [`screens/puzzle.md`](screens/puzzle.md) | [`puzzle.html`](mockups/screens/puzzle.html) |
 | `UI-result` | Win morph then return to gallery | [`player.md`](actors/player.md) | [`screens/result.md`](screens/result.md) | [`result-mobile.html`](mockups/screens/result-mobile.html), [`result-desktop.html`](mockups/screens/result-desktop.html) |
@@ -20,13 +21,18 @@ Authoring rules: [`.agents/specs/rules/ux/navigation.md`](../../.agents/specs/ru
 | T3 | `UI-puzzle` | [`UI-puzzle.C1`](screens/puzzle.md) | `UI-gallery` | Always ([`END.O1`](../design/end-conditions.md)) | Player |
 | T4 | `UI-puzzle` | Solve ([`END.W1`](../design/end-conditions.md)) | `UI-result` | Fills match solution | Player |
 | T5 | `UI-result` | [`UI-result.C1`](screens/result.md) | `UI-gallery` | Morph complete | Player |
-| T6 | `UI-settings` | [`UI-settings.C3`](screens/settings.md) | `UI-gallery` | Opened from gallery | Player |
+| T6 | `UI-settings` | [`UI-settings.C3`](screens/settings.md) | `UI-gallery` | Opened from gallery; not menu or puzzle | Player |
 | T7 | `UI-puzzle` | [`UI-puzzle.C6`](screens/puzzle.md) / `IN.pause` | `UI-settings` | Always ([`GS.paused`](../design/game-state.md)) | Player |
 | T8 | `UI-settings` | [`UI-settings.C3`](screens/settings.md) | `UI-puzzle` | Opened from puzzle; clears pause | Player |
+| T9 | `UI-menu` | [`UI-menu.C1`](screens/menu.md) | `UI-gallery` | Always | Player |
+| T10 | `UI-menu` | [`UI-menu.C2`](screens/menu.md) | `UI-settings` | Always | Player |
+| T11 | `UI-menu` | [`UI-menu.C3`](screens/menu.md) | — (app quits) | Desktop builds only | Player |
+| T12 | `UI-gallery` | [`UI-gallery.C4`](screens/gallery.md) | `UI-menu` | Always | Player |
+| T13 | `UI-settings` | [`UI-settings.C3`](screens/settings.md) | `UI-menu` | Opened from menu | Player |
 
 Reset confirm stays on `UI-gallery` ([`EX.confirm`](exceptions.md) → [`END.O2`](../design/end-conditions.md)).
 
 ## Entry and resume
 
-- **N1**: New session opens on `UI-gallery` for the Player.
+- **N1**: New session opens on `UI-menu` for the Player.
 - **N2**: After interruption, resume on `UI-gallery` ([`PRG.M1`](../design/progression.md)).

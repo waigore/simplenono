@@ -191,7 +191,7 @@ func test_the_shell_applies_a_stored_choice_at_app_start() -> void:
 		OrientationLock.LANDSCAPE,
 		"R7 applied the stored value",
 	)
-	assert_eq(shell.view(), Shell.GALLERY_VIEW, "the gallery is still the first screen")
+	assert_eq(shell.view(), Shell.MENU_VIEW, "the menu is still the first screen")
 
 
 # R7 / L1: a shell launch with nothing stored holds portrait

@@ -11,7 +11,7 @@
     "ACC.G3"
   ],
   "state": "approved",
-  "version": 2,
+  "version": 3,
   "files": [
     "puzzle-pictures/pack-002-generated.png"
   ],
@@ -22,7 +22,7 @@
   },
   "recipe": "AK-puzzle-pictures.R1",
   "generation": {
-    "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
+    "prompt": "wide view of a red tractor parked among apple crates, a wheelbarrow and a wooden fence in an orchard with a real background, completely asymmetrical, scene on a bright overcast day with cream and pastel surfaces and the subject in saturated colour. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
     "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
     "tool": "Cheaper Inference",
     "operation": "images.generations",
@@ -50,9 +50,34 @@
     "verdict": "Pass",
     "date": "2026-11-05",
     "reviewer": "agent",
-    "report": "AK-puzzle-pictures R1/V1, pack-002. Generated square: flux-2-max 1024x1024, request ded6afb6-1d07-44e7-8d7a-3ba331c509c5, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [93, 113, 118]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 39/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: a dark green lighthouse beside flat-roofed harbour cottages and docks above a calm sea with boats and shore haze K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
+    "report": "AK-puzzle-pictures R1/V1, pack-002. Generated square: flux-2-max 1024x1024, request ee076a34-c949-4d5e-aace-fe712b781f84, saved as a PNG without resampling. Pixel: outer 5% frame flattened to the median of the outer 1% ring (RGB [149, 125, 61]), then BOX downsampled to 10x10, one colour per board cell; re-running the derive reproduces the committed pixel (S1, S5, S6, K1, K6). Filled 33/100 by the fixed rule (alpha over white, Y = 0.2126R + 0.7152G + 0.0722B on 0-255 sRGB, Y < 128), inside the 25-45 band (S2, K2); clues are the run lengths (S3). Judge: one solution, reached by line logic alone, equal to the pixel fill set (S4, K3). Look: wide view of a red tractor parked among apple crates, a wheelbarrow and a wooden fence in an orchard with a real background, completely asymmetrical, scene on a bright overcast day with cream and pastel surfaces and the subject in saturated colour — composed from the generation prompt; the pair's colour and asymmetry are corroborated by measurement in the K5 record (mean saturation 0.46, 5-95% hue span 0.078, 33/100 filled with no dihedral symmetry of the fill). K4: colourful multi-element complex scene with a real background, completely asymmetrical; picture content is exempt from AES.P1 per the aesthetics pillar scope. No series (SS1 none). License: Cheaper Inference terms. Per-puzzle subject class retired (PO decision on #486): no class word."
   },
   "history": [
+    {
+      "version": 2,
+      "date": "2026-11-05",
+      "reason": "Replaced by the #610 K5 pack-look closing review: repeated the \"lighthouse coast\" scene template; pack-000 is kept as the 10x10 representative",
+      "generation": {
+        "prompt": "colourful multi-element scene of a dark green lighthouse on a bright rocky coast with sailboats and beach umbrellas with a real background, completely asymmetrical. Colourful multi-element complex scene with a real background, completely asymmetrical across all axes; the named subject sits inside the scene; readable at 10x10. Avoid: gore; horror; centered single mass on empty ground; cool-gray clinical picture look.",
+        "negative_prompt": "gore; horror; centered single mass on empty ground; cool-gray clinical picture look",
+        "tool": "Cheaper Inference",
+        "operation": "images.generations",
+        "settings": {
+          "model": "flux-2-max",
+          "size": "1024x1024"
+        },
+        "seed": "n/a — tool has no seed",
+        "inputs": {
+          "style_anchors": [],
+          "refs": [],
+          "base_assets": []
+        },
+        "steps": [
+          "Cheaper Inference images.generations flux-2-max, 1024x1024 (bootstrap; AK-puzzle-pictures SS1 is none)",
+          "saved data[0] as a PNG without resampling"
+        ]
+      }
+    },
     {
       "version": 1,
       "date": "2026-11-02",

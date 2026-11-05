@@ -3,9 +3,9 @@ extends RefCounted
 ## accepts input (`specs/technical/verification.md` I6).
 ##
 ## The run is measured from engine start (`mark_start` with `from_start`), so the
-## figure is a cold launch to the first interactive screen. `UI-gallery` is #94;
-## until it lands the shell's interactive home is the entry the launch leg reaches,
-## and the observation says so.
+## figure is a cold launch to the first interactive screen: `UI-menu` on a new session
+## (`NAV.N1`), or the gallery when an interrupted attempt resumes (`NAV.N2`).
+## `home_ready` follows N1's new-session home.
 ##
 ## The protocol claims I6 only. I9 (`crash-free`) is a run-level aggregate over the
 ## open, solve, reset, and back flows; reaching the home view records none of them,

@@ -8,7 +8,7 @@ Authoring rules: [`.agents/specs/rules/design/design.md`](../../.agents/specs/ru
 - **Genre(s)**: Nonogram. Each row and each column lists the lengths of consecutive filled groups, in order. A filled group is a run of filled cells with no empty cell inside it. Groups on the same line are separated by at least one empty cell. The player marks fills from those clues until the fill set matches the hidden picture. Crosses are optional memory aids and are not required to solve.
 
 - **Conventions adopted**:
-  - Clue runs. Each line's [clues](entities/clue.md) are filled-group lengths in order (empty list = all-empty; dim when satisfied). Clues alone decide fills.
+  - Clue runs. Each line's [clues](entities/clue.md) are filled-group lengths in order (empty list = all-empty; dim each matched clue number). Clues alone decide fills.
   - Three mark actions. The player fills a cell, places a cross, or clears a mark. A wrong mark stays until the player changes it. Crosses do not count toward the solution.
   - Solution match. Solved when the player's fill set equals the solution fill set. Crosses are ignored. Whole-puzzle fills only, not per-cell correctness while marking. That successful time is the personal best (the score); a later solve replaces it only when shorter. Ever-completed is sticky and independent of the current attempt, so replay can be both ever-completed and in progress.
   - Line error. Each row and column can signal when fills contradict that line's clues; off while incomplete but still possible.

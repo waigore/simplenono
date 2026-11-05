@@ -61,6 +61,7 @@ func _present_seeded(config: ConfigFile) -> Pack:
 	assert_eq(config.save(TEST_PATH), OK, "the seeded progress document is written")
 	var pack := _shell.pack()
 	pack.load_pack(SHIPPED_PACK)
+	_shell.open_gallery()
 	_shell.gallery_screen().present(pack)
 	return pack
 
@@ -69,8 +70,8 @@ func _control(node_name: String) -> Control:
 	return _shell.get_node("%" + node_name) as Control
 
 
-# NAV.N1 / US1.9: the app boots into the gallery, not the puzzle
-func test_main_scene_is_the_shell_and_it_shows_the_gallery():
+# NAV.N1 / US1.9: the app boots into the main menu, not the gallery or the puzzle
+func test_main_scene_is_the_shell_and_it_shows_the_menu():
 	var project := ConfigFile.new()
 	assert_eq(project.load(PROJECT_FILE), OK, "project.godot loads")
 	assert_eq(
@@ -78,9 +79,18 @@ func test_main_scene_is_the_shell_and_it_shows_the_gallery():
 		"res://presentation/shell.tscn",
 		"the shell is the run entry",
 	)
-	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the app starts on the gallery")
+	assert_eq(_shell.view(), Shell.MENU_VIEW, "the app starts on the menu")
 	assert_eq(_shell.puzzle_id(), "", "nothing is open yet")
-	assert_true(_control("Gallery").visible, "UI-gallery is the shown screen")
+	assert_true(_control("Menu").visible, "UI-menu is the shown screen")
+	assert_false(_control("Gallery").visible, "the gallery is not the first screen")
+
+
+# NAV.T9 / UI-menu US1.2: C1 Puzzles opens the gallery
+func test_menu_puzzles_opens_the_gallery():
+	assert_true(_shell.open_gallery(), "UI-menu.C1 opens the gallery")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "UI-gallery shows")
+	assert_true(_control("Gallery").visible, "the gallery is on")
+	assert_false(_control("Menu").visible, "the menu is hidden")
 
 
 # UI-gallery R2: the gallery lists the whole shipped pack in free order
@@ -145,6 +155,7 @@ func test_unknown_id_changes_nothing():
 
 # SEQ-open B1: an unknown id with nothing open leaves the gallery as it was
 func test_unknown_id_on_the_gallery_view_changes_nothing():
+	_shell.open_gallery()
 	assert_false(_shell.open_puzzle("no-such-puzzle"), "an unknown id is refused")
 	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "the gallery stays")
 	assert_null(_shell.attempt(), "no attempt is opened")
@@ -161,6 +172,7 @@ func test_leave_returns_to_the_gallery():
 
 # SEQ-leave B2: a leave with no open attempt keeps the current screen
 func test_leave_with_no_open_attempt_keeps_the_gallery():
+	_shell.open_gallery()
 	_shell.leave_puzzle()
 	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "B2: the gallery stays")
 	assert_null(_shell.attempt(), "B2: no attempt is opened")

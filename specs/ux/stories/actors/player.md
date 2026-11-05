@@ -14,11 +14,12 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 | C2 | Puzzle ops | US1.2 |
 | C3 | Result ops | US1.3 |
 | C4 | Settings ops | US1.4 |
+| C5 | Main menu ops | US1.6 |
 | K1 | No editor/account UI | US1.5 |
 
 ## US1: Sole operator
 
-As the Player, I operate gallery, puzzle, result, and settings so that I play the pack alone.
+As the Player, I operate the main menu, gallery, puzzle, result, and settings so that I play the pack alone.
 
 ### US1.1: Gallery capabilities
 
@@ -68,4 +69,15 @@ Then haptics or mute toggles, or Back returns to the previous screen
 Given any formalized screen
 When the Player looks for pack-editor or online-account controls
 Then no such controls exist and none activate
+```
+
+### US1.6: Main menu capabilities
+
+- **Proves**: C5
+
+```gherkin
+Given the Player is on UI-menu
+When the Player activates C1, C2, or C3 on a desktop build
+Then Puzzles opens the gallery, Settings opens settings, and Exit quits
+And on a mobile build C3 is absent
 ```

@@ -37,6 +37,7 @@ func before_each() -> void:
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
 	_shell.set_process(false)
+	_shell.open_gallery()
 	await get_tree().process_frame
 
 
@@ -216,6 +217,66 @@ func test_gallery_band_below_the_metadata_drags_as_r2_scroll() -> void:
 	assert_null(_shell.attempt(), "#573/#539: no attempt starts from a band scroll")
 
 
+# #600 / R2 P5: a device delivers every touch twice — the touch itself and the mouse
+# Godot emulates from it. A drag over a tile is only a scroll of R2: the mirrored
+# mouse release must not reach C1 and open the puzzle.
+func test_platform_drag_from_a_tile_scrolls_r2_without_opening() -> void:
+	var gallery := _shell.gallery_screen()
+	var scroll := gallery.get_node("Margin/Layout/Scroll") as ScrollContainer
+	assert_not_null(scroll, "R2 is the screen's scroll region")
+	var tile := gallery.tile(PUZZLE_ID)
+	assert_not_null(tile, "the shipped pack shows pack-000")
+	var scroll_before := scroll.scroll_vertical
+	var origin := tile.open_button().get_global_rect().get_center()
+
+	await _push_platform_drag(origin, origin - Vector2(0.0, 240.0))
+
+	assert_gt(scroll.scroll_vertical, scroll_before, "#600: the drag scrolls R2")
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "#600: a drag does not open a puzzle")
+	assert_null(_shell.attempt(), "#600: no attempt starts from a scroll")
+
+
+# #600 / R2 C1: the same mirrored pair feeds a tap. C1 is one activation, not two, so
+# the platform tap opens the tile exactly once.
+func test_platform_tap_opens_a_tile_exactly_once() -> void:
+	var gallery := _shell.gallery_screen()
+	var tile := gallery.tile(PUZZLE_ID)
+	assert_not_null(tile, "the shipped pack shows pack-000")
+	var opens := [0]
+	tile.opened.connect(func(_puzzle_id: String) -> void: opens[0] += 1)
+	var center := tile.open_button().get_global_rect().get_center()
+
+	await _tap_platform(center)
+
+	assert_eq(opens[0], 1, "#600: one platform tap raises C1 once")
+	assert_eq(_shell.view(), Shell.PUZZLE_VIEW, "#600: the tap opens the puzzle")
+	assert_eq(_shell.puzzle_id(), PUZZLE_ID, "#600: the tapped tile's puzzle is the one opened")
+
+
+# #600 / R2 P5: a scroll drag leaves C1 usable — the first tap after a scroll opens the
+# tile under the finger instead of being swallowed.
+func test_tap_after_a_scroll_drag_still_opens() -> void:
+	var gallery := _shell.gallery_screen()
+	var scroll := gallery.get_node("Margin/Layout/Scroll") as ScrollContainer
+	assert_not_null(scroll, "R2 is the screen's scroll region")
+	var tile := gallery.tile(PUZZLE_ID)
+	assert_not_null(tile, "the shipped pack shows pack-000")
+	var origin := tile.open_button().get_global_rect().get_center()
+
+	await _push_platform_drag(origin, origin - Vector2(0.0, 240.0))
+	assert_eq(_shell.view(), Shell.GALLERY_VIEW, "#600: the drag only scrolls R2")
+
+	var other := gallery.tile("pack-001")
+	assert_not_null(other, "the shipped pack shows pack-001")
+	var rect := other.open_button().get_global_rect()
+	var clip := scroll.get_global_rect()
+	var point := Vector2(rect.get_center().x, maxf(rect.position.y, clip.position.y) + 40.0)
+	await _tap_platform(point)
+
+	assert_eq(_shell.view(), Shell.PUZZLE_VIEW, "#600: the tap after a scroll opens a tile")
+	assert_eq(_shell.puzzle_id(), other.puzzle_id(), "#600: the tile under the finger opens")
+
+
 # #573 / US1.6: with Reset drawn, a press on the row's empty side still belongs to C1 —
 # only a press on the Reset button itself raises C2.
 func test_gallery_reset_row_side_taps_as_c1_not_c2() -> void:
@@ -244,3 +305,35 @@ func test_gallery_reset_row_side_taps_as_c1_not_c2() -> void:
 func _tap_at(position: Vector2) -> void:
 	_touch_event(position, true)
 	_touch_event(position, false)
+
+
+## One touch through [method Input.parse_input_event], the way a device delivers it:
+## Godot also sends the mouse event it emulates from that touch (#600).
+func _platform_touch(position: Vector2, pressed: bool) -> void:
+	var event := InputEventScreenTouch.new()
+	event.index = 0
+	event.position = position
+	event.pressed = pressed
+	Input.parse_input_event(event)
+	await get_tree().process_frame
+
+
+## A held touch drag as a device sends it: press, drags, release, each parsed by
+## [method Input] so the emulated mouse partner arrives too (#600).
+func _push_platform_drag(from: Vector2, to: Vector2) -> void:
+	await _platform_touch(from, true)
+	var steps := 8
+	for step in range(1, steps + 1):
+		var drag := InputEventScreenDrag.new()
+		drag.index = 0
+		drag.position = from.lerp(to, float(step) / steps)
+		drag.relative = (to - from) / steps
+		Input.parse_input_event(drag)
+		await get_tree().process_frame
+	await _platform_touch(to, false)
+
+
+## A platform tap at [param position]: one press and release, emulated mouse included.
+func _tap_platform(position: Vector2) -> void:
+	await _platform_touch(position, true)
+	await _platform_touch(position, false)

@@ -13,8 +13,8 @@ Authoring rules: [`.agents/specs/rules/ux/presentation.md`](../../.agents/specs/
 
 | Surface | Screens | Template | Craft |
 |---------|---------|----------|-------|
-| Meta UI — mobile (iOS, Android) | gallery, result, settings | `mobile-app` | `state-coverage`, accessibility |
-| Meta UI — desktop (Windows, macOS, Linux) | gallery, result, settings | `web-prototype` | `state-coverage`, accessibility |
+| Meta UI — mobile (iOS, Android) | menu, gallery, result, settings | `mobile-app` | `state-coverage`, accessibility |
+| Meta UI — desktop (Windows, macOS, Linux) | menu, gallery, result, settings | `web-prototype` | `state-coverage`, accessibility |
 | Play UI — all platforms | puzzle | [`mockups/screens/_template.html`](mockups/screens/_template.html) + remapped DS tokens | `state-coverage`, accessibility |
 
 At `small` depth, meta mockups use platform-group kebab suffixes: `<screen>-mobile.html` and `<screen>-desktop.html`. Play uses one mockup path per screen until a platform split is needed.

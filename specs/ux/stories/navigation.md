@@ -18,12 +18,17 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../.agents/specs/rule
 | T6 | Settings → gallery | US1.6 |
 | T7 | Puzzle → settings (pause) | US1.7 |
 | T8 | Settings → puzzle (resume) | US1.8 |
-| N1 | New session → gallery | US1.9 |
+| T9 | Menu → gallery | `UI-menu` US1.2 |
+| T10 | Menu → settings | `UI-menu` US1.3 |
+| T11 | Menu → quit (desktop) | `UI-menu` US1.4 |
+| T12 | Gallery → menu | `UI-gallery` US1.7 |
+| T13 | Settings → menu | `UI-settings` US1.7 |
+| N1 | New session → menu | US1.9 |
 | N2 | Resume after interrupt → gallery | US1.10 |
 
 ## US1: Screen flow
 
-As the Player, I move between gallery, puzzle, result, and settings so that play stays free-order.
+As the Player, I move between menu, gallery, puzzle, result, and settings so that play stays free-order.
 
 ### US1.1: Open puzzle
 
@@ -132,7 +137,7 @@ Then UI-puzzle opens and GS.paused is false
 ```gherkin
 Given a new session
 When the app opens
-Then UI-gallery is shown
+Then UI-menu is shown
 ```
 
 ### US1.10: Resume after interrupt

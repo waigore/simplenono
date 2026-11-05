@@ -30,6 +30,98 @@ func before_each() -> void:
 	_shell.progress_path = TEST_PATH
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
+	_shell.open_gallery()
+
+
+func after_each() -> void:
+	_remove(TEMP_PATH)
+	_remove(TEST_PATH)
+
+
+func _orientation_path() -> String:
+	return "user://settings-navigation-orientation-test.cfg"
+
+
+## Runs the shell's lock as a mobile build, recording the platform call instead of
+## touching a device. [method Shell.orientation_path] is read on [code]_ready[/code],
+## so the document is swapped by [method _reshell] before the scene enters the tree.
+func _mobile_shell() -> Shell:
+	_reshell(true)
+	return _shell
+
+
+## Replaces [member _shell] with one whose lock document is [method _orientation_path],
+## as a mobile build when [param mobile]. The shell's own ready applies the lock.
+func _reshell(mobile: bool) -> void:
+	if is_instance_valid(_shell):
+		_shell.queue_free()
+	var scene := load(SHELL_SCENE) as PackedScene
+	_shell = scene.instantiate() as Shell
+	_shell.progress_path = TEST_PATH
+	_shell.orientation_path = _orientation_path()
+	add_child_autofree(_shell)
+	_shell.puzzle_screen().set_process(false)
+	_shell.open_gallery()
+	_shell.orientation_lock().mobile = mobile
+	_shell.orientation_lock().platform_orientation = func(orientation: int) -> void:
+		_applied.append(orientation)
+	_shell.settings_screen().present_orientation(_shell.orientation_lock())
+
+
+# US1.6 / C4 / SCH-preferences L2 + F3: activating C4 writes the durable choice and
+# locks the screen at once, without a relaunch, and the screen shows the new value
+func test_mobile_orientation_control_writes_and_locks() -> void:
+	_mobile_shell()
+	_shell.gallery_screen().settings_requested.emit()
+	var screen := _shell.settings_screen()
+	assert_eq(screen.orientation_text(), SettingsScreen.COPY_PORTRAIT, "F3 starts portrait")
+
+	screen.orientation_button().pressed.emit()
+
+	assert_eq(
+		OrientationLock.stored(_orientation_path()),
+		OrientationLock.LANDSCAPE,
+		"the choice is stored durably",
+	)
+	assert_eq(
+		_shell.orientation_lock().current(), OrientationLock.LANDSCAPE, "the lock holds landscape"
+	)
+	assert_eq(_applied, [DisplayServer.SCREEN_LANDSCAPE], "the screen locked without a relaunch")
+	assert_eq(screen.orientation_text(), SettingsScreen.COPY_LANDSCAPE, "C4 shows Landscape")
+	assert_eq(_shell.view(), Shell.SETTINGS_VIEW, "the choice stays on this screen")
+
+
+# US1.6: the stored choice is what a relaunch restores
+func test_stored_mobile_choice_survives_a_relaunch() -> void:
+	_mobile_shell()
+	_shell.gallery_screen().settings_requested.emit()
+	_shell.settings_screen().orientation_button().pressed.emit()
+
+	var relaunched := OrientationLock.new(_orientation_path())
+	relaunched.mobile = true
+	relaunched.platform_orientation = func(_orientation: int) -> void: pass
+	assert_eq(relaunched.apply(), OrientationLock.LANDSCAPE, "a relaunch reads landscape back")
+
+
+# S1: on a desktop build settings never shows or writes the orientation control
+func test_desktop_settings_has_no_orientation_control() -> void:
+	_reshell(false)
+	_shell.gallery_screen().settings_requested.emit()
+	var screen := _shell.settings_screen()
+
+	assert_false(screen.orientation_available(), "no C4 on desktop")
+	assert_false(
+		screen.get_node("%OrientationRow").visible, "the desktop screen keeps C1 and C2 only"
+	)
+	screen.orientation_button().pressed.emit()
+	assert_false(
+		FileAccess.file_exists(_orientation_path()), "a desktop build writes no orientation"
+	)
+
+
+func _remove(path: String) -> void:
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
 
 
 func after_each() -> void:

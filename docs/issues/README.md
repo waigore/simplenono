@@ -35,7 +35,7 @@ Labels: [`.github/project-labels.yml`](../../.github/project-labels.yml). Choose
 | Humans (GitHub UI) | New issue → Epic / Task / Defect form |
 | Agents | `create-project-epic`, `create-project-task`, `create-project-defect`, or `create-project-feedback`; wave maps via `plan-project-waves`; filed-wave coherence via `audit-project-wave`; leftover blocked-by cleanup via `unblock-project-issues` ([hierarchy.md](hierarchy.md)) |
 
-Agent defaults: create on GitHub with `status:pending-review` and `priority:normal`. Feedback defaults are in [feedback.md](feedback.md). Pass `--no-create` (or “draft only”) for title + body without filing. Optional inputs shared by skills: `title`, parent issue number (where applicable), and a human-requested priority (`critical` / `high` / `normal`). Do not collect or wire blocked-by. Collect content for every required section of the type; ask when missing — do not invent goal, scope, deliverables, or defect expected/actual. Agents must not change priority after create, except [feedback.md](feedback.md).
+Agent defaults: create on GitHub with `status:pending-review` and `priority:normal`. Feedback defaults are in [feedback.md](feedback.md). Pass `--no-create` (or “draft only”) for title + body without filing. Optional inputs shared by skills: `title`, parent issue number (where applicable), and a human-requested priority (`critical` / `high` / `normal`). Do not collect or wire blocked-by. Collect content for every required section of the type; ask when missing — do not invent goal, scope, deliverables, or defect expected/actual. Agents must not change priority after create.
 
 ## Workflow status
 

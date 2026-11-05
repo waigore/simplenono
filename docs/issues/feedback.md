@@ -35,7 +35,7 @@ New tasks use an existing epic as parent when one owns the area; otherwise no pa
 
 ## Priority
 
-Tasks and defects created, updated, or filed as replacements are `priority:high` (keep `priority:critical`). Planner restores `priority:high` if a later edit drops it. Feedback stays `priority:normal`.
+Feedback stays `priority:normal`. Follow-ups use create default (`priority:normal`) unless the human requests `high` or `critical`. Agents do not elevate or restore priority on them.
 
 ## Status
 
@@ -50,4 +50,4 @@ Only transition: `pending-resolution` → `resolved`. One issue per `handle-feed
 
 ## Planner
 
-For open tasks/defects named by open feedback: unblock first, keep in plan, restore `priority:high` (`critical` stays), close once accepted before other accepted issues. Close every open feedback in `status:resolved` on that pass.
+Open tasks/defects named by open feedback: unblock first, keep in plan, close once accepted before other accepted issues; leave `priority:*` unchanged. Close every open `status:resolved` feedback on that pass.
