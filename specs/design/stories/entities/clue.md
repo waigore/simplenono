@@ -47,6 +47,8 @@ When the player fills one more cell inside that first fill island
 Then both clue numbers are highlighted
 When the player clears that extra fill, crosses the next cell, and fills two cells after it
 Then the line has two fill islands, three then two, and both numbers dim (S2)
+When a fill island is shorter than its number
+Then that clue number stays highlighted
 ```
 
 ### PS1.2b: A broken match returns its number to highlighted
