@@ -1,6 +1,6 @@
 extends GutTest
 ## Pack data and loader — [b]CMP-pack[/b] R5, [b]CTR-pack[/b] O8 and O3,
-## [SCH-puzzle-def] F1-F7 and I1-I5.
+## [SCH-puzzle-def] F1-F9 and I1-I8.
 ##
 ## Seam S6 (specs/technical/verification.md) and invariant I12. Fixtures live beside this
 ## test so the shipped pack stays the real one.
@@ -31,6 +31,8 @@ func _valid_entry(
 		"solution-fills": [[4, 4]],
 		"picture-id": picture,
 		"pixel-picture-id": pixel,
+		"single-fill-hint-cells": [],
+		"multi-fill-hint-cells": [],
 	}
 
 
@@ -52,7 +54,7 @@ func test_shipped_pack_has_the_entity_sizes():
 	assert_eq(sizes, {10: 10, 15: 170, 20: 20})
 
 
-# F1–F7 mapping, and I1–I3 over every accepted definition
+# F1–F9 mapping, and I1–I8 over every accepted definition
 func test_loaded_definitions_satisfy_the_schema():
 	var pack := _load(Pack.PACK_PATH)
 	for id in pack.definition_ids():
@@ -82,6 +84,27 @@ func test_loaded_definitions_satisfy_the_schema():
 				"I2: every fill is inside the grid",
 			)
 		assert_false(definition.picture_id == definition.pixel_picture_id, "I5: F6 differs from F7")
+		for map in [definition.single_fill_hint_cells, definition.multi_fill_hint_cells]:
+			for position: Vector2i in map:
+				assert_true(
+					_is_inside(position, definition.size),
+					"I6: hint cell %s is inside the grid" % position,
+				)
+				var mark: String = map[position]
+				var on_solution: bool = definition.solution_fills.has(position)
+				assert_true(mark in ["fill", "cross"], "F8/F9 marks are fill or cross")
+				assert_true(
+					(not on_solution) if mark == "cross" else on_solution,
+					"I7: mark belongs to its cell of the solution",
+				)
+		var shared := definition.single_fill_hint_cells.keys().filter(
+			func(position: Vector2i) -> bool: return definition.multi_fill_hint_cells.has(position)
+		)
+		assert_eq(shared, [], "I8: F8 and F9 share no position")
+
+
+func _is_inside(position: Vector2i, size: int) -> bool:
+	return position.x >= 0 and position.x < size and position.y >= 0 and position.y < size
 
 
 func test_field_mapping_from_pack_data():
@@ -98,6 +121,19 @@ func test_field_mapping_from_pack_data():
 	assert_eq(definition.solution_fills[0], Vector2i(4, 4))
 	assert_eq(definition.picture_id, "picture-a")
 	assert_eq(definition.pixel_picture_id, "pixel-a")
+	assert_eq(definition.single_fill_hint_cells, {}, "F8 carries the empty hint list")
+	assert_eq(definition.multi_fill_hint_cells, {}, "F9 carries the empty hint list")
+
+
+# F8 and F9 map from the pack keys to the mark maps of the definition
+func test_hint_cells_map_from_pack_data():
+	var pack := _load("%s/with-hints.json" % FIXTURES)
+	var definition := pack.definition("fixture-hints")
+	assert_not_null(definition)
+	assert_eq(definition.single_fill_hint_cells.get(Vector2i(0, 0)), "cross")
+	assert_eq(definition.single_fill_hint_cells.size(), 99, "every cell except the center")
+	assert_false(definition.single_fill_hint_cells.has(Vector2i(4, 4)))
+	assert_eq(definition.multi_fill_hint_cells, {Vector2i(4, 4): "fill"})
 
 
 # O3 by puzzle id; G2 for an unknown id
@@ -136,6 +172,31 @@ func test_fill_outside_the_grid_is_rejected():
 
 func test_malformed_clue_shape_is_rejected():
 	_assert_only_rejected("bad-clue-shape.json", "fixture-b")
+
+
+# A missing or malformed F8/F9 field rejects the entry (O8 validates F1–F9 and I1–I8)
+func test_entry_missing_a_hint_field_is_rejected():
+	_assert_only_rejected("missing-hint-field.json", "fixture-b")
+
+
+func test_hint_cell_outside_the_grid_is_rejected():
+	_assert_only_rejected("hint-outside-grid.json", "fixture-b")
+
+
+func test_fill_hint_off_the_solution_is_rejected():
+	_assert_only_rejected("fill-hint-off-solution.json", "fixture-b")
+
+
+func test_cross_hint_on_the_solution_is_rejected():
+	_assert_only_rejected("cross-hint-on-solution.json", "fixture-b")
+
+
+func test_hint_mark_shared_by_both_fields_is_rejected():
+	_assert_only_rejected("shared-position-hints.json", "fixture-b")
+
+
+func test_hint_mark_that_is_not_fill_or_cross_is_rejected():
+	_assert_only_rejected("unknown-hint-mark.json", "fixture-b")
 
 
 func test_repeated_puzzle_id_is_rejected():

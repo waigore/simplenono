@@ -66,13 +66,17 @@ func _load_definition(path: String) -> PuzzleDefinition:
 	return definition
 
 
-## The teapot fixture predates the pack schema and names [SCH-puzzle-def] F1-F7 with
-## underscores; the pack names them with hyphens. Same rename as test_game_state.gd.
+## The teapot fixture predates the pack schema and names [SCH-puzzle-def] F1-F9 with
+## underscores; the pack names them with hyphens. Hint cells (F8, F9) default to empty
+## lists for the pre-schema fixture; the schema requires pack entries to carry them.
 func _pack_entry(fixture: Variant) -> Dictionary:
 	var entry: Dictionary = {}
 	for field in PackEntryValidator.FIELDS:
 		var fixture_field := field.replace("-", "_")
-		entry[field] = fixture.get(fixture_field)
+		var value: Variant = fixture.get(fixture_field)
+		if value == null and PackEntryValidator.HINT_FIELDS.has(field):
+			value = []
+		entry[field] = value
 	return entry
 
 
