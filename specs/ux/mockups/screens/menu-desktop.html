@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Main menu · desktop · SimpleNono</title>
+  <style>
+    :root {
+      --bg: #F4F7F8;
+      --fg: #1B2833;
+      --muted: #6E7F8C;
+      --line: #C5D0D6;
+      --font: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+      --radius: 0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.45 var(--font);
+      color: var(--fg);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+    .doc { max-width: 28rem; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+    .caption {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+    }
+    .caption strong { color: var(--fg); }
+    nav[aria-label="States"] { margin-bottom: 1rem; font-size: 14px; }
+    nav[aria-label="States"] a { color: var(--fg); }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.75rem;
+    }
+    .actions { display: flex; flex-direction: column; gap: 10px; }
+    button.action {
+      min-height: 44px;
+      width: 100%;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--fg);
+      font: inherit;
+      font-size: 15px;
+      text-align: left;
+      cursor: pointer;
+    }
+    button.action.primary {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+      font-weight: 600;
+    }
+    .stamp {
+      margin-top: 3rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+    <p class="caption"><strong>UI-menu</strong> · desktop · Open Design web-prototype · aesthetics remap</p>
+    <nav aria-label="States"><a href="#state-default">Default</a></nav>
+    <article data-screen="UI-menu">
+      <div class="states">
+        <section id="state-default" data-state="default">
+          <div data-region="R1" aria-label="Title">
+            <h1>simplenono</h1>
+          </div>
+          <div class="actions" data-region="R2" aria-label="Actions">
+            <button type="button" class="action primary" data-control="C1">Puzzles</button>
+            <button type="button" class="action" data-control="C2">Settings</button>
+            <button type="button" class="action" data-control="C3">Exit</button>
+          </div>
+          <p class="stamp" data-region="R3" aria-label="Build stamp">v0.1.0 · 1a2b3c4</p>
+        </section>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

@@ -12,6 +12,14 @@ extends RefCounted
 ##
 ## [code]mark_input.gd[/code] uses the same threshold for [code]IN.drag-paint[/code],
 ## so a drag on the gallery and a drag on the puzzle feel the same.
+##
+## A device sends every touch twice: the touch itself, and the mouse Godot emulates
+## from it (#600). The owner answers the touch, so the mirror stays with this helper:
+## left to reach the control, its release fires the control's press a second time, and
+## after a scroll drag it opens the tile the finger only meant to scroll.
+##
+## The drag also cancels the control's held press ([constant
+## Control.NOTIFICATION_SCROLL_BEGIN]) so the next tap after a scroll still opens.
 
 ## Movement past this many pixels with the finger held starts a scroll instead of a
 ## tap. Matches Godot's own drag threshold for a comfortable touch target.
@@ -23,14 +31,25 @@ var _press_position := Vector2.ZERO
 
 
 ## Reads [param event] for [param owner], the control that owns this helper. Returns
-## true when the owner must consume it: a scroll drag it reported, or the release that
-## ends one. The owner's tap path only runs when this returns false.
+## true when the owner must consume it: a scroll drag it reported, the release that
+## ends one, or the emulated mouse event that mirrors a touch. The owner's tap path
+## only runs when this returns false.
 func consume(event: InputEvent, owner: Control) -> bool:
+	if _is_touch_mirror(event):
+		return true
 	if event is InputEventScreenDrag:
 		return _track_drag(event as InputEventScreenDrag, owner)
 	if event is InputEventScreenTouch:
 		return _track_touch(event as InputEventScreenTouch)
 	return false
+
+
+## True for the mouse events Godot emulates from a touch: the same finger press, motion,
+## and release the owner already answers as a touch (#600).
+func _is_touch_mirror(event: InputEvent) -> bool:
+	if event.device != InputEvent.DEVICE_ID_EMULATION:
+		return false
+	return event is InputEventMouseButton or event is InputEventMouseMotion
 
 
 ## Forgets the gesture, so a release the owner never saw leaves nothing behind.
@@ -46,6 +65,10 @@ func _track_drag(drag: InputEventScreenDrag, owner: Control) -> bool:
 		if drag.position.distance_to(_press_position) < DRAG_THRESHOLD:
 			return false
 		_dragging = true
+		# #600: a press that becomes a scroll is not a tap. [BaseButton] holds its press
+		# until the matching release and drops every later tap while it waits, so the
+		# drag cancels that press the way the engine does when a scroll begins.
+		owner.notification(Control.NOTIFICATION_SCROLL_BEGIN)
 	var scroll := _enclosing_scroll(owner)
 	if scroll != null:
 		scroll.scroll_vertical -= roundi(drag.relative.y)

@@ -10,12 +10,13 @@ Global specs: [`glossary.md`](glossary.md), [`traceability.md`](traceability.md)
 
 - **Actors**: [`player.md`](actors/player.md) — casual puzzle player; sole operator
 - **Screens**:
-  - [`gallery.md`](screens/gallery.md) — browse pack; status / personal best / thumbnails; prominent completion rate; gallery reset; open puzzle or settings
+  - [`menu.md`](screens/menu.md) — new-session entry; Puzzles, Settings, Exit (desktop only); version + short SHA stamp
+  - [`gallery.md`](screens/gallery.md) — browse pack; status / personal best / thumbnails; prominent completion rate; gallery reset; open puzzle or settings; back to main menu
   - [`puzzle.md`](screens/puzzle.md) — get-set-ready and mark loop; Fill / Cross / Clear tools; pause into settings; no win morph on this screen
   - [`result.md`](screens/result.md) — after solve: fills, then the stored pixel picture, then the stored generated picture; control returns to gallery
-  - [`settings.md`](screens/settings.md) — slim: haptics on/off; mute BGM only (SFX stay on); Back to gallery or resume paused puzzle
+  - [`settings.md`](screens/settings.md) — slim: haptics on/off; mute BGM only (SFX stay on); Back to the opener (menu, gallery, or paused puzzle)
 - **Journeys**:
-  - [`play-puzzle.md`](journeys/play-puzzle.md) — gallery → puzzle → result → gallery
+  - [`play-puzzle.md`](journeys/play-puzzle.md) — menu → gallery → puzzle → result → gallery
   - [`leave-resume.md`](journeys/leave-resume.md) — leave puzzle → gallery → reopen in progress
   - [`gallery-reset.md`](journeys/gallery-reset.md) — gallery reset → puzzle treated as new
   - [`settings.md`](journeys/settings.md) — open slim settings → change haptics or mute → back

@@ -13,6 +13,7 @@ const FIXTURE_ID := "01a19b24-5e6f-7a01-8b2c-3d4e5f607182"
 const ABSENT_ID := "01a19b24-5e6f-7a01-8b2c-3d4e5f607183"
 const SHIPPED_PACK := "res://data/pack.json"
 const SHELL_SCRIPT := "presentation/shell.gd"
+const MENU_SCENE := "res://presentation/menu.tscn"
 const GALLERY_SCENE := "res://presentation/gallery.tscn"
 const PUZZLE_SCENE := "res://presentation/puzzle.tscn"
 const RESULT_SCENE := "res://presentation/result.tscn"
@@ -144,7 +145,7 @@ func test_gallery_chrome_and_tile_labels_use_the_one_family_at_t2() -> void:
 	gallery.set_ui_theme(_ui_theme)
 	gallery.present(_pack)
 
-	for node_name in ["Greeting", "Title", "CompletionLabel", "SettingsButton"]:
+	for node_name in ["Greeting", "Title", "CompletionLabel", "MenuButton", "SettingsButton"]:
 		var control := gallery.get_node("%" + node_name) as Control
 		_assert_family(control, node_name)
 		_assert_chrome_size(control, node_name)
@@ -188,7 +189,7 @@ func test_puzzle_chrome_and_clue_labels_use_the_one_family_at_t1_and_t2() -> voi
 		_assert_family(control, node_name)
 		_assert_chrome_size(control, node_name)
 	var board := screen.get_node("%Board") as PuzzleBoard
-	_assert_family(board.row_clue_label(0), "a row clue label")
+	_assert_family(board.row_clue_labels(0)[0], "a row clue label")
 	_assert_family(board.column_clue_labels(0)[0], "a column clue label")
 	_assert_resize_wiring(screen)
 
@@ -207,13 +208,28 @@ func test_t1_clue_labels_are_half_the_laid_out_cell_side() -> void:
 		UiTheme.t1_size(board.cell_size()),
 		"the clue size is T1 of the cell side",
 	)
-	var label := board.row_clue_label(0)
+	var label: Label = board.row_clue_labels(0)[0]
 	assert_eq(
 		label.get_theme_font_size("font_size"),
 		board.clue_font_size(),
 		"the row clue label renders at the T1 size",
 	)
 	assert_same(label.get_theme_font("font"), _ui_theme.variation(), "T1 uses the one family")
+
+
+# AC1/AC3: every menu chrome control and the stamp use the one family at T2
+func test_menu_chrome_uses_the_one_family_at_t2() -> void:
+	var scene := load(MENU_SCENE) as PackedScene
+	var screen := scene.instantiate() as MenuScreen
+	add_child_autofree(screen)
+	screen.set_ui_theme(_ui_theme)
+	screen.present(BuildInfo.new())
+
+	for node_name in ["Title", "PuzzlesButton", "SettingsButton", "ExitButton", "Stamp"]:
+		var control := screen.get_node("%" + node_name) as Control
+		_assert_family(control, node_name)
+		_assert_chrome_size(control, node_name)
+	_assert_resize_wiring(screen)
 
 
 # AC1/AC3: the result screen's Back control uses the one family at T2

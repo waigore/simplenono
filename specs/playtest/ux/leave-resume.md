@@ -11,7 +11,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 
 | ID | Action |
 |----|--------|
-| S1 | From gallery, open a not-started puzzle. After Ready, fill at least one clear cell; note marks and elapsed via `DBG.2`. |
+| S1 | Cold start on `UI-menu`; activate `UI-menu.C1` to reach the gallery. From gallery, open a not-started puzzle. After Ready, fill at least one clear cell; note marks and elapsed via `DBG.2`. |
 | S2 | Leave with `UI-puzzle.C1`. Confirm gallery shows that tile in progress. |
 | S3 | Reopen the same tile with `UI-gallery.C1`. Wait through get-set-ready. |
 | S4 | Pause with `UI-puzzle.C6`, then quit the app while `UI-settings` shows. |

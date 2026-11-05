@@ -10,16 +10,17 @@ Authoring rules: [`.agents/specs/rules/ux/journeys.md`](../../../.agents/specs/r
 
 ## Entry and exit
 
-- **N1**: Starts on `UI-gallery` (session entry or resume — [`navigation.md`](../navigation.md) N1/N2)
+- **N1**: Starts on `UI-menu` for a new session, or `UI-gallery` on resume ([`navigation.md`](../navigation.md) N1/N2)
 - **N2**: Ends on `UI-gallery` after Back from result
 
 ## Steps
 
 | ID | Screen | Control | Arrives at |
 |----|--------|---------|------------|
-| S1 | `UI-gallery` | [`UI-gallery.C1`](../screens/gallery.md) | `UI-puzzle` |
-| S2 | `UI-puzzle` | Solve ([`END.W1`](../../design/end-conditions.md); nav T4) | `UI-result` |
-| S3 | `UI-result` | [`UI-result.C1`](../screens/result.md) | `UI-gallery` |
+| S1 | `UI-menu` | [`UI-menu.C1`](../screens/menu.md) | `UI-gallery` |
+| S2 | `UI-gallery` | [`UI-gallery.C1`](../screens/gallery.md) | `UI-puzzle` |
+| S3 | `UI-puzzle` | Solve ([`END.W1`](../../design/end-conditions.md); nav T4) | `UI-result` |
+| S4 | `UI-result` | [`UI-result.C1`](../screens/result.md) | `UI-gallery` |
 
 Marking cells stays on `UI-puzzle` ([`UI-puzzle.C2`](../screens/puzzle.md)); not a screen change. Result opens in Morphing, then Default before C1 ([`result.md`](../screens/result.md)).
 
@@ -29,4 +30,4 @@ None.
 
 ## Experience intent
 
-Calm free-order pick → focused Ready/mark loop → quiet two-stage morph → back to the pack.
+Quiet front door → calm free-order pick → focused Ready/mark loop → quiet two-stage morph → back to the pack.

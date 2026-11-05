@@ -8,8 +8,10 @@ Process gate: [`docs/ux-mockups.md`](../../../docs/ux-mockups.md).
 
 | ID | Kind | Spec | Mockup | State | Approver | Date | Reason |
 |----|------|------|--------|-------|----------|------|--------|
-| `MC.gallery-mobile` | screen | [`screens/gallery.md`](../screens/gallery.md) | [`screens/gallery-mobile.html`](screens/gallery-mobile.html) | approved | review-project-issue (#94) | 2026-11-02 | None |
-| `MC.gallery-desktop` | screen | [`screens/gallery.md`](../screens/gallery.md) | [`screens/gallery-desktop.html`](screens/gallery-desktop.html) | approved | review-project-issue (#94) | 2026-11-02 | None |
+| `MC.menu-mobile` | screen | [`screens/menu.md`](../screens/menu.md) | [`screens/menu-mobile.html`](screens/menu-mobile.html) | approved | product owner | 2026-11-05 | None |
+| `MC.menu-desktop` | screen | [`screens/menu.md`](../screens/menu.md) | [`screens/menu-desktop.html`](screens/menu-desktop.html) | approved | product owner | 2026-11-05 | None |
+| `MC.gallery-mobile` | screen | [`screens/gallery.md`](../screens/gallery.md) | [`screens/gallery-mobile.html`](screens/gallery-mobile.html) | approved | product owner | 2026-11-05 | None |
+| `MC.gallery-desktop` | screen | [`screens/gallery.md`](../screens/gallery.md) | [`screens/gallery-desktop.html`](screens/gallery-desktop.html) | approved | product owner | 2026-11-05 | None |
 | `MC.puzzle` | screen | [`screens/puzzle.md`](../screens/puzzle.md) | [`screens/puzzle.html`](screens/puzzle.html) | approved | product owner | 2026-11-04 | None |
 | `MC.puzzle-desktop` | screen | [`screens/puzzle.md`](../screens/puzzle.md) | [`screens/puzzle-desktop.html`](screens/puzzle-desktop.html) | draft | None | 2026-11-04 | Draws the desktop framing as `view.md`'s `Windows / macOS / Linux` bullet states: (a) capped and margined, no pan/zoom, at 1280×800; no product-owner affirmation of that framing exists yet |
 | `MC.result-mobile` | screen | [`screens/result.md`](../screens/result.md) | [`screens/result-mobile.html`](screens/result-mobile.html) | approved | review-project-issue (#95) | 2026-11-01 | None |

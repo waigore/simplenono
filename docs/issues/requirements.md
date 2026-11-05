@@ -7,7 +7,7 @@ Applies to every issue, whether filed from the GitHub form or by a skill. Index:
 - Be specific enough that an agent or human can act without guessing (paths, behaviors, environments).
 - Titles are concise and descriptive; no mandatory title prefix.
 - Every issue carries exactly one of `type:epic`, `type:task`, `type:defect`, or `type:feedback` ([feedback.md](feedback.md)).
-- Every typed issue should carry exactly one of `priority:critical`, `priority:high`, or `priority:normal`. Create defaults to `priority:normal`. Unlabeled is treated as normal. Only humans set or change priority, except [feedback.md](feedback.md).
+- Every typed issue should carry exactly one of `priority:critical`, `priority:high`, or `priority:normal`. Create defaults to `priority:normal`. Unlabeled is treated as normal. Only humans set or change priority.
 
 ## Epic
 

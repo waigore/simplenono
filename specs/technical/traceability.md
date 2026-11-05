@@ -16,7 +16,7 @@ Authoring rules: [`.agents/specs/rules/technical/traceability.md`](../../.agents
 | [ADR-0008](../adr/decisions/0008-release-asset-manifest.md) | adr | [`asset-access.md`](asset-access.md), [`components/shell.md`](components/shell.md), [`verification.md`](verification.md) |
 | Puzzle, cell, clue, solve loop, game state, end conditions | design | [`components/attempt.md`](components/attempt.md), [`components/rules.md`](components/rules.md), [`components/pack.md`](components/pack.md), [`schemata/`](schemata/), [`sequences/open.md`](sequences/open.md), [`sequences/mark.md`](sequences/mark.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
 | Haptics on/off and audio playback | view | [`components/shell.md`](components/shell.md) |
-| Gallery, puzzle, result, settings; leave-resume; pause T7–T8; gallery-reset | ux | [`components/shell.md`](components/shell.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
+| Main menu; gallery, puzzle, result, settings; N1; T9–T13; leave-resume; pause T7–T8; gallery-reset | ux | [`components/shell.md`](components/shell.md), [`contracts/build-info.md`](contracts/build-info.md), [`sequences/leave.md`](sequences/leave.md), [`sequences/pause.md`](sequences/pause.md), [`sequences/reset.md`](sequences/reset.md) |
 | Playtest Must rows plus cited Situational dump: [`DBG.1`](../playtest/tools.md)–`DBG.4`, `TEL.1`–`TEL.5`, `SIT.3` | playtest | [`verification.md`](verification.md) S1–S5 |
 | Persisted progress | definition | [`persistence.md`](persistence.md) |
 

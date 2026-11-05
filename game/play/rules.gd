@@ -8,8 +8,9 @@ extends RefCounted
 ## state (G3, [SCH-line-status] I2).
 ##
 ## Every value this component reports is derived per call. [code]GS.is-solved[/code],
-## [code]GS.row-error[/code], [code]GS.col-error[/code], and [code]GS.clue-satisfied[/code]
-## are never fields anywhere ([SCH-attempt] I1, [SCH-line-status] I2).
+## [code]GS.row-error[/code], [code]GS.col-error[/code], [code]GS.clue-satisfied[/code],
+## and [code]GS.clue-num-matched[/code] are never fields anywhere
+## ([SCH-attempt] I1, [SCH-line-status] I2).
 
 ## [code]GS.solution[/code] as the open puzzle's fixed fill set ([SCH-puzzle-def] F5).
 var _solution: Array[Vector2i] = []
@@ -61,15 +62,18 @@ func is_solved(marks: MarkGrid) -> bool:
 
 
 ## O2: one [LineStatus] per row and per column from the current fills (R2,
-## [SCH-line-status] F1-F4). The value is built for this call and the caller
-## discards it (L1-L3); the rules keep no line identity (R3).
+## [SCH-line-status] F1-F5). Every line is derived from the whole board on each call,
+## so a number that stops matching returns to unmatched (no increment or sticky state).
+## The value is built for this call and the caller discards it (L1-L3); the rules keep
+## no line identity (R3).
 func line_status(marks: MarkGrid) -> LineStatusCheck:
 	if not _lines.ok():
 		return LineStatusCheck.new(_size, _lines.error)
 	var cells := _fill_cells(marks)
 	var check := LineStatusCheck.new(_size)
 	for line in _lines.lines:
-		var result := _line_runs(_line_cells(cells, line), line)
+		var line_cells := _line_cells(cells, line)
+		var result := _line_runs(line_cells, line)
 		(
 			check
 			. statuses
@@ -81,6 +85,7 @@ func line_status(marks: MarkGrid) -> LineStatusCheck:
 						line.index,
 						result[0],
 						result[1],
+						_number_matches(line_cells, line),
 					)
 				)
 			)
@@ -151,6 +156,31 @@ static func _line_runs(fills: PackedByteArray, line: ClueLine) -> Array[bool]:
 			error = false
 			break
 	return [error, satisfied, not error]
+
+
+## [param fills] against one line's clues, per clue number ([SCH-line-status] F5,
+## [code]GS.clue-num-matched[/code], [code]E-clue[/code] P4).
+## The line's fill islands are its maximal runs of fills in line order; a clear and a
+## cross both end one (G2). Clue number `k` matches when island `k` exists and its
+## length equals that number — strict positional index, nothing shifts, so an incomplete
+## or over-long island leaves its own number unmatched and a correct prefix still dims.
+## An all-empty clue has no number, so the result is empty.
+static func _number_matches(fills: PackedByteArray, line: ClueLine) -> Array[bool]:
+	var matched: Array[bool] = []
+	for number in line.run_lengths.size():
+		matched.append(false)
+	var island := 0
+	var length := 0
+	for step in range(fills.size() + 1):
+		if step < fills.size() and fills[step] == 1:
+			length += 1
+			continue
+		if length > 0:
+			if island < line.run_lengths.size() and line.run_lengths[island] == length:
+				matched[island] = true
+			island += 1
+			length = 0
+	return matched
 
 
 ## True when [param arrangement] could still be the line. The player's outermost fills

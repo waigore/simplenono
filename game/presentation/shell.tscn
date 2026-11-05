@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://presentation/shell.gd" id="1_shell"]
+[ext_resource type="PackedScene" path="res://presentation/menu.tscn" id="8_menu"]
 [ext_resource type="PackedScene" path="res://presentation/puzzle.tscn" id="2_puzzle"]
 [ext_resource type="Script" path="res://presentation/debug_seams.gd" id="3_seams"]
 [ext_resource type="PackedScene" path="res://presentation/gallery.tscn" id="4_gallery"]
@@ -16,6 +17,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_shell")
+
+[node name="Menu" parent="." instance=ExtResource("8_menu")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [node name="Gallery" parent="." instance=ExtResource("4_gallery")]
 unique_name_in_owner = true

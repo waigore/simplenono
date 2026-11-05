@@ -150,6 +150,8 @@ func _execute(step: Dictionary) -> bool:
 	elif kind == "wait_ms":
 		await _wait_ms(int(step.get("ms", 0)))
 		result = _passed()
+	elif kind == "puzzles":
+		result = _puzzles()
 	elif kind == "open":
 		result = _open(String(step.get("puzzle", "")))
 	elif kind == "mark":
@@ -317,6 +319,20 @@ func _wait_beat(timeout_ms: int) -> bool:
 	return _failed_with("get-set-ready did not end")
 
 
+## [code]UI-menu.C1[/code]: the front door's own Puzzles control, so a protocol reaches
+## the gallery the way a player does.
+func _puzzles() -> bool:
+	if _shell == null:
+		return _failed_with("no shell")
+	# NAV.N2: a resumed session already starts on the gallery.
+	if _shell.view() == Shell.GALLERY_VIEW:
+		return _passed()
+	var pressed := _press_button(_shell.menu_screen(), "%PuzzlesButton")
+	if not pressed or _shell.view() != Shell.GALLERY_VIEW:
+		return _failed_with("menu did not open the gallery")
+	return _passed()
+
+
 func _open(puzzle_id: String) -> bool:
 	if _seams == null:
 		return _failed_with("no debug seams to open through")
@@ -450,11 +466,11 @@ func _back() -> bool:
 	var from_result := _shell != null and _shell.view() == Shell.RESULT_VIEW
 	var pressed := false
 	if from_settings:
-		pressed = _press_settings_button("%BackButton")
+		pressed = _press_button(_shell.settings_screen(), "%BackButton")
 	elif from_result:
-		pressed = _press_result_button("%BackButton")
+		pressed = _press_button(_shell.result_screen(), "%BackButton")
 	else:
-		pressed = _press_puzzle_button("%LeaveButton")
+		pressed = _press_button(_shell.puzzle_screen(), "%LeaveButton")
 		if pressed and _shell.attempt() != null:
 			return _failed_with("back did not leave through the O6 path")
 	if pressed:
@@ -463,23 +479,13 @@ func _back() -> bool:
 	return pressed
 
 
-## Result's C1 ([code]NAV.T5[/code]). The screen refuses it before [code]S1[/code]
-## ([code]US1.5b[/code]), so pressing it is only meaningful once the morph finished.
-func _press_result_button(path: String) -> bool:
-	if _shell == null:
-		return _failed_with("no shell")
-	var button := _shell.result_screen().get_node(path) as Button
-	if button == null:
-		return _failed_with("no button at %s" % path)
-	button.emit_signal("pressed")
-	return _passed()
-
-
-## Settings' C3, the screen #95 routes itself (`NAV.T6`/`T8`).
-func _press_settings_button(path: String) -> bool:
-	if _shell == null:
-		return _failed_with("no shell")
-	var button := _shell.settings_screen().get_node(path) as Button
+## One screen control by node path. Result's C1 ([code]NAV.T5[/code]) refuses before
+## [code]S1[/code] ([code]US1.5b[/code]), so pressing it is only meaningful once the
+## morph finished; settings' C3 routes itself (`NAV.T6`/`T8`).
+func _press_button(screen: Node, path: String) -> bool:
+	if screen == null:
+		return _failed_with("no screen")
+	var button := screen.get_node(path) as Button
 	if button == null:
 		return _failed_with("no button at %s" % path)
 	button.emit_signal("pressed")
@@ -496,21 +502,11 @@ func _reset() -> bool:
 	return _passed()
 
 
-func _press_puzzle_button(path: String) -> bool:
-	if _shell == null or _shell.puzzle_screen() == null:
-		return _failed_with("no puzzle screen")
-	var button := _shell.puzzle_screen().get_node(path) as Button
-	if button == null:
-		return _failed_with("no button at %s" % path)
-	button.emit_signal("pressed")
-	return _passed()
-
-
 ## C6's acknowledgement. The pause it raises is #96's; the screen and the route are
 ## #95's, so the product response this protocol times is settings showing.
 func _settings() -> bool:
 	_settings_acknowledged = false
-	var pressed := _press_puzzle_button("%SettingsButton")
+	var pressed := _press_button(_shell.puzzle_screen(), "%SettingsButton")
 	_settings_returns_to_puzzle = _shell != null and _shell.settings_returns_to_puzzle()
 	return pressed
 
@@ -615,10 +611,16 @@ func _settle_layout(gallery: GalleryScreen, screen: Vector2) -> void:
 func _probe(name: String, step: Dictionary) -> Variant:
 	var value: Variant = null
 	if name == "home_ready":
+		# NAV.N1: a new session opens on the menu; NAV.N2: a resumed one on the gallery.
 		value = (
 			_shell != null
-			and _shell.view() == Shell.GALLERY_VIEW
-			and _shell.get_node("%Gallery").is_visible_in_tree()
+			and (
+				(_shell.view() == Shell.MENU_VIEW and _shell.get_node("%Menu").is_visible_in_tree())
+				or (
+					_shell.view() == Shell.GALLERY_VIEW
+					and _shell.get_node("%Gallery").is_visible_in_tree()
+				)
+			)
 		)
 	elif name == "puzzle_ready":
 		value = _shell != null and _shell.view() == Shell.PUZZLE_VIEW
@@ -773,7 +775,7 @@ func _row(invariant_id: String) -> Dictionary:
 		"I6":
 			passed = _duration_within("time-to-playable", TIME_TO_PLAYABLE_BAR_MS)
 			observation = (
-				"cold launch to the interactive shell home (gallery): %s%s"
+				"cold launch to the interactive shell home (menu): %s%s"
 				% [_duration_text("time-to-playable"), _incomplete_text("time-to-playable")]
 			)
 			artifact = _log_artifact()

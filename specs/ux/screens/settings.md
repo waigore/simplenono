@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/rules/ux/screens.md).
 
-- **Job**: Adjust haptics and BGM mute; on mobile, choose the locked orientation; return to gallery or resume a paused puzzle
+- **Job**: Adjust haptics and BGM mute; on mobile, choose the locked orientation; return to the screen that opened settings
 - **Actors**: [`player.md`](../actors/player.md)
 - **Serves**: Calm tactile grid ([`HAP.S1`](../../view/haptics.md)); quiet focus ([`sound.md`](../../aesthetics/sound.md)); locked mobile orientation ([`view.md`](../../view/view.md) platform implications); pause cover ([`GS.paused`](../../design/game-state.md))
 - **Mockup**: [`settings-mobile.html`](../mockups/screens/settings-mobile.html), [`settings-desktop.html`](../mockups/screens/settings-desktop.html)
@@ -32,7 +32,7 @@ The desktop screen is the two toggles, C1 and C2. The mobile screen adds C4.
 | C1 | Haptics | `IN.activate` | Always | Toggle [`HAP.S1`](../../view/haptics.md) on/off |
 | C2 | Mute BGM | `IN.activate` | Always | Toggle BGM mute; mark ticks and sting stay unmuted |
 | C4 | Orientation | `IN.activate` | Mobile builds only | Switch the locked orientation between portrait and landscape (ADR-0009); the stored choice applies at once and stays on this screen |
-| C3 | Back | `IN.back` | Always | Previous screen: `UI-gallery`, or `UI-puzzle` clearing [`GS.paused`](../../design/game-state.md) |
+| C3 | Back | `IN.back` | Always | Opener: `UI-menu`, `UI-gallery`, or `UI-puzzle` clearing [`GS.paused`](../../design/game-state.md) |
 
 ## States
 
@@ -55,4 +55,4 @@ The desktop screen is the two toggles, C1 and C2. The mobile screen adds C4.
 
 ## Experience intent
 
-Slim clinical prefs — two clear toggles, plus one orientation control on mobile, no clutter; Back returns to the gallery.
+Slim clinical prefs — two clear toggles, plus one orientation control on mobile, no clutter; Back returns to whichever screen opened settings.

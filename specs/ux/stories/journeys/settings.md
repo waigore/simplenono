@@ -10,13 +10,14 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
-| N1 | Start gallery | US1.1, US1.3 |
-| N2 | End gallery | US1.1, US1.3 |
+| N1 | Start gallery or menu | US1.1, US1.3, US1.4 |
+| N2 | End gallery or menu | US1.1, US1.3, US1.4 |
 | S1 | Open settings | US1.1, US1.3 |
 | S2 | Toggle haptics | US1.1 |
 | S3 | Back to gallery | US1.1, US1.3 |
 | B1 | Mute instead of haptics | US1.2 |
 | B2 | Orientation instead of haptics (mobile) | US1.3 |
+| B3 | Menu → settings → menu | US1.4 |
 
 ## US1: Prefs detour
 
@@ -58,4 +59,16 @@ When the Player activates UI-settings.C4 instead of C1
 Then the screen stays UI-settings, locked to the new orientation
 When the Player activates UI-settings.C3
 Then UI-gallery opens
+```
+
+### US1.4: Menu branch
+
+- **Proves**: N1, N2, B3
+
+```gherkin
+Given a new session on UI-menu
+When the Player activates UI-menu.C2
+Then UI-settings opens
+When the Player activates UI-settings.C3
+Then UI-menu opens
 ```

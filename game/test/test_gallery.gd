@@ -340,6 +340,20 @@ func test_c2_reset_is_drawn_and_enabled_only_when_the_o1_facts_allow() -> void:
 	assert_true(reopened.shows_picture(), "the reopened puzzle keeps its thumbnail")
 
 
+# US1.7 / C4: Back to main menu is drawn, enabled, and raises its intent
+func test_c4_back_to_main_menu_raises_the_menu_request() -> void:
+	_present(ConfigFile.new())
+	var button := _gallery.get_node("%MenuButton") as Button
+	assert_true(button.visible, "R3: C4 is drawn")
+	assert_false(button.disabled, "R3: C4 is enabled")
+	assert_eq(button.focus_mode, Control.FOCUS_ALL, "C4 is reachable by keyboard")
+	assert_eq(button.text, GalleryScreen.COPY_MENU, "copy.menu")
+	var seen := [0]
+	_gallery.menu_requested.connect(func() -> void: seen[0] += 1)
+	button.pressed.emit()
+	assert_eq(seen[0], 1, "C4 raises the menu intent")
+
+
 # US1.4 / C3: the settings control raises its intent
 func test_c3_raises_the_settings_request() -> void:
 	_present(ConfigFile.new())

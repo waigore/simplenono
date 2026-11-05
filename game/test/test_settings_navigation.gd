@@ -30,6 +30,7 @@ func before_each() -> void:
 	_shell.progress_path = TEST_PATH
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
+	_shell.open_gallery()
 
 
 func after_each() -> void:
@@ -60,6 +61,7 @@ func _reshell(mobile: bool) -> void:
 	_shell.orientation_path = _orientation_path()
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
+	_shell.open_gallery()
 	_shell.orientation_lock().mobile = mobile
 	_shell.orientation_lock().platform_orientation = func(orientation: int) -> void:
 		_applied.append(orientation)

@@ -10,7 +10,7 @@ Authoring rules: [`.agents/specs/rules/ux/journeys.md`](../../../.agents/specs/r
 
 ## Entry and exit
 
-- **N1**: Starts on `UI-gallery` with Reset available (ever-completed or in progress)
+- **N1**: Starts on `UI-gallery` with Reset available (ever-completed or in progress). A cold start reaches the gallery through `UI-menu.C1` ([`navigation.md`](../navigation.md) N1)
 - **N2**: Ends on `UI-gallery` Default after confirm; that puzzle is new
 
 ## Steps

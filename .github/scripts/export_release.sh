@@ -27,10 +27,12 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 PROJECT="$ROOT/game"
+PROJECT_FILE="$PROJECT/project.godot"
 PRESET="$PROJECT/export_presets.cfg"
 MANIFEST="$ROOT/assets/manifest.json"
 INBUILD_DIR="$PROJECT/release"
 INBUILD="$INBUILD_DIR/asset_manifest.json"
+BUILD_INFO="$INBUILD_DIR/build_info.json"
 OUT_ROOT="${1:-$ROOT/build/release}"
 GODOT="${GODOT:-godot}"
 ALL_PRESETS=("Windows" "macOS" "Linux" "Android Release")
@@ -43,8 +45,19 @@ fail() {
 }
 
 [[ -f "$PRESET" ]] || fail "missing $PRESET"
+[[ -f "$PROJECT_FILE" ]] || fail "missing $PROJECT_FILE"
 [[ -f "$MANIFEST" ]] || fail "missing $MANIFEST; run .github/scripts/asset_manifest.py --write"
 command -v "$GODOT" >/dev/null 2>&1 || fail "godot is not on PATH (or set GODOT)"
+
+# CTR-build-info O1/O2 (specs/technical/contracts/build-info.md): the product version
+# is game/project.godot config/version; the short SHA is the checked-out commit. Both
+# are fixed into build_info.json before any export, and the export fails rather than
+# ship a build whose stamp would be empty (G2) or a non-hex SHA (G3).
+product_version="$(sed -n 's/^config\/version="\(.*\)"$/\1/p' "$PROJECT_FILE" | head -n1)"
+[[ -n "$product_version" ]] || fail "missing config/version in $PROJECT_FILE"
+short_sha="$(git -C "$ROOT" rev-parse --short=7 HEAD 2>/dev/null || true)"
+[[ "$short_sha" =~ ^[0-9a-f]{7,12}$ ]] ||
+	fail "cannot read a 7-12 hex short git SHA from $ROOT (got '$short_sha')"
 "$GODOT" --version >/dev/null 2>&1 || fail "$GODOT --version failed"
 
 # The installed template the empty custom_template paths pick up (ADR-0001).
@@ -100,8 +113,11 @@ done
 mkdir -p "$INBUILD_DIR"
 cp "$MANIFEST" "$INBUILD"
 
+# CTR-build-info: the runtime stamp document, packed by the presets' include_filter.
+printf '{"version":"%s","sha":"%s"}\n' "$product_version" "$short_sha" >"$BUILD_INFO"
+
 code="${ANDROID_VERSION_CODE:-1}"
-name="${ANDROID_VERSION_NAME:-}"
+name="${ANDROID_VERSION_NAME:-$product_version}"
 [[ "$code" =~ ^[1-9][0-9]*$ ]] || fail "ANDROID_VERSION_CODE must be a positive integer, got '$code'"
 [[ ${#name} -le 12 ]] || name="${name:0:12}"
 
@@ -112,6 +128,7 @@ cleanup() {
 	cp "$backup" "$PRESET"
 	rm -f "$backup"
 	rm -f "$INBUILD"
+	rm -f "$BUILD_INFO"
 	rmdir "$INBUILD_DIR" 2>/dev/null || true
 	exit "$status"
 }
@@ -125,6 +142,11 @@ if [[ "${presets[*]}" == *"Android Release"* ]]; then
 	rm -f "$PRESET.bak"
 	grep -q "^version/code=${code}$" "$PRESET" || fail "preset is missing version/code"
 fi
+
+# CTR-build-info O1: the presets that declare application/version (macOS, iOS) carry
+# the same product version for platform metadata. The cleanup trap restores the file.
+sed -i.bak "s|^application/version=.*|application/version=\"${product_version}\"|" "$PRESET"
+rm -f "$PRESET.bak"
 
 echo "Exporting release builds to $OUT_ROOT (presets: ${presets[*]}; templates $version)"
 "$GODOT" --headless --path "$PROJECT" --import

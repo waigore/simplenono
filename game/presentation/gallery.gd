@@ -20,6 +20,9 @@ signal reset_requested(puzzle_id: String)
 ## C3 ([code]IN.activate[/code]): the player asked for settings.
 signal settings_requested
 
+## C4 ([code]IN.activate[/code]): the player asked to return to the main menu.
+signal menu_requested
+
 ## [code]EX.confirm[/code] Confirm ([code]IN.confirm[/code]): the shell runs
 ## [b]CTR-pack[/b] O7 for [param puzzle_id] ([code]SEQ reset[/code] S2-S4).
 signal reset_confirmed(puzzle_id: String)
@@ -32,6 +35,7 @@ const COPY_COMPLETION := "Completed %d / %d"
 const COPY_GREETING := "Local pack"
 const COPY_TITLE := "Gallery"
 const COPY_SETTINGS := "Settings"
+const COPY_MENU := "Back to main menu"
 
 ## [b]UI-gallery[/b]'s page margin and tile gap at the mockups' own frame. Both mockups
 ## draw spacing as a share of the frame the way [code]UIS.T2[/code] draws type: 20 px
@@ -77,6 +81,7 @@ var _confirm: ConfirmOverlay
 @onready var _title: Label = %Title
 @onready var _completion_label: Label = %CompletionLabel
 @onready var _completion_bar: ProgressBar = %CompletionBar
+@onready var _menu_button: Button = %MenuButton
 @onready var _settings_button: Button = %SettingsButton
 
 
@@ -86,8 +91,11 @@ func _ready() -> void:
 	_completion_bar.show_percentage = false
 	_completion_bar.add_theme_stylebox_override("background", _bar_style(PresentationPalette.PAPER))
 	_completion_bar.add_theme_stylebox_override("fill", _bar_style(PresentationPalette.INK))
+	_menu_button.text = COPY_MENU
+	_style_chrome_button(_menu_button)
+	_menu_button.pressed.connect(_on_menu_pressed)
 	_settings_button.text = COPY_SETTINGS
-	_style_settings_button()
+	_style_chrome_button(_settings_button)
 	_settings_button.pressed.connect(_on_settings_pressed)
 	_build_confirm()
 	resized.connect(_update_layout)
@@ -265,9 +273,10 @@ func dismiss_reset_confirm() -> void:
 
 
 ## The screen's controls in [code]Controls[/code] table order ([code]controls.md[/code]
-## F1): C1 each tile, then C3 Settings, with each tile's C2 Reset right after it because
-## it belongs to that tile. [code]EX.confirm[/code]'s two actions are left out: while the
-## box shows, [code]IN.confirm[/code] and [code]IN.cancel[/code] reach it directly.
+## F1): C1 each tile, then C4 Back to main menu, then C3 Settings, with each tile's C2
+## Reset right after it because it belongs to that tile. [code]EX.confirm[/code]'s two
+## actions are left out: while the box shows, [code]IN.confirm[/code] and
+## [code]IN.cancel[/code] reach it directly.
 func focus_controls() -> Array[Control]:
 	var controls: Array[Control] = []
 	for entry in _entries:
@@ -275,8 +284,18 @@ func focus_controls() -> Array[Control]:
 		if target == null:
 			continue
 		controls.append_array(target.focus_controls())
+	controls.append(_menu_button)
 	controls.append(_settings_button)
 	return controls
+
+
+## C4 ([code]IN.activate[/code]): raises the main-menu intent. Returns false while
+## [code]EX.confirm[/code] blocks the screen.
+func activate_menu() -> bool:
+	if reset_confirm_showing():
+		return false
+	menu_requested.emit()
+	return true
 
 
 ## The [code]EX.confirm[/code] overlay, so the shell and tests can reach its intents.
@@ -396,6 +415,7 @@ func _refresh_type_sizes() -> void:
 	_greeting.add_theme_font_size_override("font_size", font_size)
 	_title.add_theme_font_size_override("font_size", font_size)
 	_completion_label.add_theme_font_size_override("font_size", font_size)
+	_menu_button.add_theme_font_size_override("font_size", font_size)
 	_settings_button.add_theme_font_size_override("font_size", font_size)
 	_confirm.set_chrome_font_size(font_size)
 	for target: GalleryTile in _tiles.values():
@@ -410,18 +430,22 @@ func _on_tile_reset_requested(puzzle_id: String) -> void:
 	reset_requested.emit(puzzle_id)
 
 
+func _on_menu_pressed() -> void:
+	activate_menu()
+
+
 func _on_settings_pressed() -> void:
 	settings_requested.emit()
 
 
-func _style_settings_button() -> void:
-	_settings_button.custom_minimum_size = Vector2(0.0, 36.0)
-	_settings_button.add_theme_stylebox_override("normal", _panel_style())
-	_settings_button.add_theme_stylebox_override("hover", _panel_style())
-	_settings_button.add_theme_stylebox_override("pressed", _panel_style())
-	_settings_button.add_theme_color_override("font_color", PresentationPalette.INK)
-	_settings_button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
-	_settings_button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
+func _style_chrome_button(button: Button) -> void:
+	button.custom_minimum_size = Vector2(0.0, 36.0)
+	button.add_theme_stylebox_override("normal", _panel_style())
+	button.add_theme_stylebox_override("hover", _panel_style())
+	button.add_theme_stylebox_override("pressed", _panel_style())
+	button.add_theme_color_override("font_color", PresentationPalette.INK)
+	button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
+	button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
 
 
 func _panel_style() -> StyleBoxFlat:

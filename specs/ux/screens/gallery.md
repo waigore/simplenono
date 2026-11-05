@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/rules/ux/screens.md).
 
-- **Job**: Browse the local pack; open any puzzle or settings; see pack progress
+- **Job**: Browse the local pack; open any puzzle, settings, or the main menu; see pack progress
 - **Actors**: [`player.md`](../actors/player.md)
 - **Serves**: Free-order gallery progress ([`progression.md`](../../design/progression.md)); Calm tactile grid; Cool clinical look
 - **Mockup**: [`gallery-mobile.html`](../mockups/screens/gallery-mobile.html), [`gallery-desktop.html`](../mockups/screens/gallery-desktop.html)
@@ -21,7 +21,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 |----|--------|---------|----------|
 | R1 | Pack progress | Pack completion at a glance | Completion bar; `copy.completion` |
 | R2 | Puzzle grid | Scrollable free-order tiles for all 200 puzzles | Tile: size; status; PB when set; solution thumbnail when ever-completed, else generic puzzle placeholder; C1; C2 when allowed |
-| R3 | Chrome | Open slim settings | C3 |
+| R3 | Chrome | Return to the main menu; open slim settings | C4 Back to main menu; C3 Settings |
 
 ## Controls
 
@@ -29,13 +29,14 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 |----|---------|-----------|----------------|--------|
 | C1 | Puzzle tile | `IN.activate` | Always | Open that puzzle ([`ux.md`](../ux.md) puzzle screen) |
 | C2 | Reset | `IN.activate` | Ever-completed or attempt in progress | [`EX.confirm`](../exceptions.md); on confirm [`END.O2`](../../design/end-conditions.md) |
+| C4 | Back to main menu | `IN.activate` | Always | Open [`menu.md`](menu.md) |
 | C3 | Settings | `IN.activate` | Always | Open [`settings.md`](settings.md) |
 
 ## States
 
 | ID | State | Entered when | Actor sees | Actor can |
 |----|-------|--------------|------------|-----------|
-| S1 | Default | Gallery opens | R1–R3 | C1–C3 (C2 only when allowed) |
+| S1 | Default | Gallery opens | R1–R3 | C1–C4 (C2 only when allowed) |
 | — | `EX.confirm` | After C2 | Reset confirm copy; Confirm / Cancel | Confirm → `END.O2` then S1; Cancel → S1 |
 
 ## Copy
@@ -52,6 +53,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | `copy.confirm` | Confirm | `EX.confirm` |
 | `copy.cancel` | Cancel | `EX.confirm` |
 | `copy.settings` | Settings | C3 |
+| `copy.menu` | Back to main menu | C4 |
 
 ## Experience intent
 

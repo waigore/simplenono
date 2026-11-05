@@ -10,6 +10,7 @@ Authoring rules: [`.agents/specs/rules/ux/stories.md`](../../.agents/specs/rules
 | [`navigation.md`](navigation.md) | yes | Full | [`stories/navigation.md`](stories/navigation.md) |
 | [`controls.md`](controls.md) | yes | Full | [`stories/controls.md`](stories/controls.md) (+ [`bindings.md`](stories/controls/bindings.md)) |
 | [`exceptions.md`](exceptions.md) | yes | Full | [`stories/exceptions.md`](stories/exceptions.md) |
+| [`screens/menu.md`](screens/menu.md) | yes | Full | [`stories/screens/menu.md`](stories/screens/menu.md) |
 | [`screens/gallery.md`](screens/gallery.md) | yes | Full | [`stories/screens/gallery.md`](stories/screens/gallery.md) |
 | [`screens/puzzle.md`](screens/puzzle.md) | yes | Full | [`stories/screens/puzzle.md`](stories/screens/puzzle.md) |
 | [`screens/result.md`](screens/result.md) | yes | Full | [`stories/screens/result.md`](stories/screens/result.md) |

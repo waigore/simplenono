@@ -6,6 +6,10 @@ config_version=5
 [application]
 
 config/name="simplenono"
+; CTR-build-info O1: the product version the main menu stamp shows
+; (specs/technical/contracts/build-info.md). export_release.sh copies it into
+; build_info.json and the platform presets' version metadata.
+config/version="0.1.0"
 config/features=PackedStringArray("4.7")
 config/use_custom_user_dir=true
 config/quit_on_go_back=false
