@@ -57,4 +57,4 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 
 ## Experience intent
 
-Quiet clinical pack overview — clear progress, free-order tiles, deliberate reset.
+Quiet clinical pack overview — clear progress, free-order tiles, deliberate reset. After a fling on R2, the grid coasts longer than the engine ScrollContainer default so browsing the 200-tile pack does not feel sticky; other screens keep their own scroll feel.
