@@ -91,7 +91,8 @@ func open(puzzle_id: String) -> bool:
 	_rules = Rules.new(definition)
 	_progress = _pack.progress()
 	_state = _state_for(definition.size, _progress.record(puzzle_id))
-	# Hint toggles (#651) seed this false when any are already on at open.
+	# Hint toggles (#651, [b]CMP-shell[/b] R8) seed this false at open when any assist
+	# is already on ([b]DSGN.progression[/b] PS1.8: clean means off for the whole attempt).
 	_hint_free_eligible = true
 	_beat_running = true
 	return true
@@ -204,6 +205,16 @@ func void_hint_free() -> void:
 		_pack.void_hint_free(_puzzle_id)
 	else:
 		_progress.void_hint_free(_puzzle_id)
+
+
+## Seeds [code]GS.hint-free-eligible[/code] on the freshly opened attempt ([b]CMP-shell[/b]
+## R8, #651). Seeding is not a [method void_hint_free]: O9 stays tied to an enable while
+## the attempt is active, so an assist that was already on at open only bars this
+## attempt from earning; the durable status keeps waiting for a real void or clean solve.
+func seed_hint_free_eligible(eligible: bool) -> void:
+	if _state == null or _puzzle_id.is_empty():
+		return
+	_hint_free_eligible = eligible
 
 
 ## [code]GS.hint-free-eligible[/code] for the open attempt; true before any hint enable.

@@ -2,7 +2,9 @@ extends GutTest
 ## [b]CMP-shell[/b] R8 / [b]SCH-preferences[/b] F4–F6 — specs/technical/components/shell.md,
 ## specs/technical/schemata/preferences.md, specs/technical/persistence.md M4, and
 ## ADR-0010: durable hint-assist toggles default off, restore after relaunch, and
-## enabling any while an attempt is open latches observability for hint-free.
+## enabling any while an attempt is open latches and voids that attempt's hint-free
+## ([b]CTR-pack[/b] O9), while an assist already on at open only seeds the attempt
+## ineligible ([b]DSGN.progression[/b] PS1.8).
 
 const TEST_PATH := "user://hint-prefs-test.cfg"
 const TEMP_PATH := TEST_PATH + HintPreferences.TEMP_SUFFIX
@@ -45,6 +47,18 @@ func _seed(values: Dictionary, path: String = TEST_PATH) -> void:
 	for key in values.keys():
 		seeded.set_value(HintPreferences.SECTION, key, values[key])
 	assert_eq(seeded.save(path), OK, "the seeded hint-prefs document is written")
+
+
+## Durable progress for pack-000 with a previously earned hint-free status
+## ([SCH-progress] F7), the value an enable-during-attempt void (O9) must clear. The
+## personal best keeps restore's I1/I7 normalization from dropping the status.
+func _seed_progress_hint_free_true() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value(ProgressFile.META_SECTION, ProgressFile.VERSION_KEY, ProgressFile.VERSION)
+	seeded.set_value("pack-000", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-000", ProgressFile.PERSONAL_BEST_KEY, 45)
+	seeded.set_value("pack-000", ProgressFile.HINT_FREE_KEY, true)
+	assert_eq(seeded.save(SHELL_PROGRESS_PATH), OK, "the seeded progress is written")
 
 
 func _shell() -> Shell:
@@ -161,7 +175,60 @@ func test_enabling_during_an_open_attempt_is_observable() -> void:
 	)
 
 
-# I4: enabling with no open attempt does not latch
+# I4 / CTR-pack O9 / DSGN.progression PS1.9: an enable during an open attempt voids
+# the earned hint-free status at once, even before the assist draws anything
+func test_enabling_during_an_open_attempt_voids_hint_free() -> void:
+	_seed_progress_hint_free_true()
+	var shell := _shell()
+	var record_before := shell.pack().progress().read("pack-000")
+	assert_true(record_before.hint_free, "an earned status waits for the void")
+	assert_true(shell.open_puzzle("pack-000"), "an attempt is open")
+
+	assert_true(shell.set_hint_multi_line(true), "C6 turns on during the attempt")
+	assert_true(shell.hint_assist_enabled_during_attempt(), "the enable latches")
+	assert_false(
+		shell.attempt().hint_free_eligible(),
+		"GS.hint-free-eligible drops at once",
+	)
+	assert_false(
+		shell.pack().progress().read("pack-000").hint_free,
+		"O9 voids the durable status mid-attempt",
+	)
+
+
+# PS1.9's rest: later clean attempt can re-earn, so a turn-off does not void or latch
+func test_a_turn_off_during_an_open_attempt_neither_voids_nor_latches() -> void:
+	var shell := _shell()
+	assert_true(shell.open_puzzle("pack-000"), "an attempt is open")
+
+	assert_true(shell.set_hint_single_line(false), "an off toggle stays off")
+	assert_true(shell.attempt().hint_free_eligible(), "an off write never voids")
+	assert_false(shell.hint_assist_enabled_during_attempt(), "and never latches")
+
+
+# DSGN.progression PS1.8 / CMP-shell R8: an assist already on at open seeds the
+# attempt ineligible to earn, while the durable status keeps its earned value
+func test_an_assist_on_at_open_seeds_the_attempt_ineligible() -> void:
+	_seed_progress_hint_free_true()
+	_seed(
+		{HintPreferences.KEY_SINGLE: true, HintPreferences.KEY_FILLABLE: true},
+		SHELL_HINT_PATH,
+	)
+	var shell := _shell()
+	assert_true(shell.open_puzzle("pack-000"), "an attempt opens with assists on")
+
+	assert_false(
+		shell.attempt().hint_free_eligible(),
+		"a solve now would not earn hint-free (PS1.8)",
+	)
+	assert_true(
+		shell.pack().progress().read("pack-000").hint_free,
+		"seeding is not a void: the earned status keeps waiting (O9 stays tied to an enable)",
+	)
+	assert_false(shell.hint_assist_enabled_during_attempt(), "nothing turned on after open")
+
+
+# I4: enabling with no open attempt does not latch or touch durable status
 func test_enabling_with_no_attempt_does_not_latch() -> void:
 	var shell := _shell()
 	assert_true(shell.set_hint_multi_line(true), "C6 turns on from the menu path")

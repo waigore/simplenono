@@ -53,7 +53,7 @@ N/A — see the split file.
 | Spec or element | Constraint |
 |-----------------|------------|
 | [`persistence.md`](../../technical/persistence.md) | D5 / M4 name the file, section, keys, and write point for F4–F6 |
-| [`CMP-shell`](../../technical/components/shell.md) | Sole writer; loads F4–F6 at app start; surfaces enable-during-attempt |
+| [`CMP-shell`](../../technical/components/shell.md) | Sole writer; loads F4–F6 at app start; an assist already on at open seeds the attempt ineligible to earn hint-free, and a turn-on during an open attempt voids that attempt's hint-free (O9) |
 | [`SCH-preferences`](../../technical/schemata/preferences.md) | F4–F6 are durable booleans defaulting off |
 
 ## Validation

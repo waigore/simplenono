@@ -19,7 +19,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | R5 | Hold session preferences: haptics default on, music mute default off |
 | R6 | Read the asset manifest — committed `assets/manifest.json` in dev, `res://release/asset_manifest.json` in a release build ([ADR-0008](../../adr/decisions/0008-release-asset-manifest.md)) — and resolve asset IDs for G1–G3 |
 | R7 | On iOS and Android, lock the screen to the stored orientation — portrait when none is stored — at app start ([ADR-0009](../../adr/decisions/0009-orientation-preference.md)). A device tilt does not rotate it. A settings change stores the new value ([`SCH-preferences`](../schemata/preferences.md) F3; [`persistence.md`](../persistence.md) M3). Desktop builds stay unlocked |
-| R8 | Hold durable hint-assist toggles F4–F6 ([ADR-0010](../../adr/decisions/0010-hint-preferences.md); M4). Load at app start. When any turns on while an attempt is open, expose that enable so hint-free consumers can void |
+| R8 | Hold durable hint-assist toggles F4–F6 ([ADR-0010](../../adr/decisions/0010-hint-preferences.md); M4). Load at app start. An assist already on at open seeds the attempt ineligible to earn hint-free ([progression.md](../../design/progression.md) PS1.8). Any turn-on while an attempt is open is observable: the shell voids that attempt's hint-free at once ([`CTR-pack`](../contracts/pack.md) O9) and latches the observation ([`SCH-preferences`](../schemata/preferences.md) I4) |
 
 ## Communication
 

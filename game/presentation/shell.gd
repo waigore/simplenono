@@ -25,9 +25,11 @@ extends Control
 ## ([code]game/project.godot[/code]); desktop builds stay unlocked.
 ##
 ## R8: the same start path loads durable hint-assist toggles F4–F6 through
-## [HintPreferences] (ADR-0010). Enabling any while an attempt is open latches
-## [method hint_assist_enabled_during_attempt] for hint-free consumers. Settings chrome
-## for C5–C7 waits on approved mockups ([code]docs/ux-mockups.md[/code]).
+## [HintPreferences] (ADR-0010). An assist already on at open seeds the attempt
+## ineligible to earn hint-free ([b]DSGN.progression[/b] PS1.8); enabling any while an
+## attempt is open latches the observation and voids that attempt's hint-free status at
+## once ([b]CTR-pack[/b] O9, [b]DSGN.progression[/b] PS1.9). Settings chrome for C5–C7
+## waits on approved mockups ([code]docs/ux-mockups.md[/code]).
 ##
 ## [GalleryScreen] is the no-puzzle screen ([code]SEQ-open[/code] B1 keeps it shown and
 ## [code]NAV.N1[/code] starts on it). Its C1 opens a puzzle here and its C3 opens
@@ -109,7 +111,9 @@ var _orientation: OrientationLock
 ## [b]CMP-shell[/b] R8: [b]SCH-preferences[/b] F4–F6, loaded before the first screen.
 var _hint_prefs: HintPreferences
 
-## [b]SCH-preferences[/b] I4: latched when any F4–F6 turns on while an attempt is open.
+## [b]SCH-preferences[/b] I4: latched when any F4–F6 turns on while an attempt is open;
+## that latch and [method Attempt.void_hint_free] are the observable pair ([b]CTR-pack[/b]
+## O9).
 var _hint_assist_enabled_during_attempt := false
 
 ## [code]UIS.T1[/code]/[code]T2[/code]: the one code-built UI theme and its family.
@@ -193,6 +197,10 @@ func open_puzzle(puzzle_id: String) -> bool:
 	_unbind_attempt()
 	_attempt = attempt
 	_hint_assist_enabled_during_attempt = false
+	# R8 / PS1.8: seeding only bars this attempt from earning; the durable status
+	# keeps its earned value until O9 voids it on a real enable or reset clears it.
+	if _hint_prefs.any_enabled():
+		_attempt.seed_hint_free_eligible(false)
 	_puzzle.present(attempt)
 	_show_puzzle()
 	_audio.on_attempt_open()
@@ -559,9 +567,14 @@ func set_hint_line_fillable(enabled: bool) -> bool:
 	return _hint_prefs.set_line_fillable(enabled)
 
 
-## [b]SCH-preferences[/b] I4: latch when a hint assist turns on with an open attempt.
+## [b]SCH-preferences[/b] I4: an enable while an attempt is open is observable now —
+## the latch records it and the attempt's hint-free status voids at once
+## ([b]CTR-pack[/b] O9, [b]DSGN.progression[/b] PS1.9), even if the assist stays unused.
 func _on_hint_preference_changed(_kind: String, enabled: bool) -> void:
-	if enabled and _attempt != null:
+	if not enabled:
+		return
+	if _attempt != null:
+		_attempt.void_hint_free()
 		_hint_assist_enabled_during_attempt = true
 
 
