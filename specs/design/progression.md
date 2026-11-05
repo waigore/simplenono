@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/design/progression.md`](../../.agents/specs/rules/design/progression.md).
 
-Serves free-order pack play, gallery-style completion, and personal-best scoring from the vision and definition. The [gallery](glossary.md) lists every [puzzle](entities/puzzle.md) as selectable, with attempt status, [ever completed](glossary.md) when true, [personal best](glossary.md) when one exists, and a [thumbnail](glossary.md) only when ever completed.
+Serves free-order pack play, gallery completion, personal-best scoring, and hint-free from the vision and definition. The [gallery](glossary.md) lists every [puzzle](entities/puzzle.md) with attempt status, [ever completed](glossary.md), [personal best](glossary.md), [thumbnail](glossary.md) when ever completed, and [hint-free](glossary.md) when true.
 
 ## Progression axes
 
@@ -10,6 +10,7 @@ Serves free-order pack play, gallery-style completion, and personal-best scoring
 |----|------|------|-------------|-----|
 | A1 | Puzzle completion | collection | First successful solve sets ever-completed | 200 (10×10×10, 15×15×170, 20×20×20); all available from the start |
 | A2 | Personal-best times | collection | A successful solve; a shorter time replaces the stored best | One best per puzzle |
+| A3 | Hint-free | collection | Clean solve (all hint toggles off whole attempt) sets [hint-free](glossary.md); any hint enable on an active attempt voids it | One flag per puzzle |
 
 ## Unlocks
 
@@ -24,10 +25,11 @@ None — no content gates. Every puzzle is selectable immediately.
 | P3 | Per-puzzle personal best | Sessions | Replaced only by a shorter successful solve; cleared on gallery reset |
 | P4 | In-progress cell marks (clear / fill / cross) | Sessions while attempt in progress | Cleared on successful solve or gallery reset |
 | P5 | In-progress solve elapsed | Sessions while attempt in progress | Cleared on successful solve or gallery reset; resumes on reopen |
+| P6 | Per-puzzle [hint-free](glossary.md) | Sessions | Void on hint enable in an active attempt (even unused); set on later clean solve; cleared on gallery reset |
 
 ## Committing progress
 
-- **M1**: Ever-completed, attempt status, marks, elapsed, and personal best commit when they change. After interruption, play resumes in the gallery. Opening an in-progress attempt restores marks and elapsed. Gallery reset treats that puzzle as new ([`END.O2`](end-conditions.md)).
+- **M1**: Ever-completed, attempt status, marks, elapsed, personal best, and hint-free commit when they change. After interruption, resume in the gallery. In-progress open restores marks and elapsed. Gallery reset treats the puzzle as new ([`END.O2`](end-conditions.md)).
 
 ## Failure consequences
 
@@ -41,8 +43,8 @@ None — no content gates. Every puzzle is selectable immediately.
 
 ## Attempt timing
 
-A short [get-set-ready](glossary.md) beat ([`CFG.GET_SET_READY_MS`](configuration.md), default 500 ms) prepares the player before marks are allowed. The solve timer starts when that puzzle attempt loads (board ready after get-set-ready), or resumes persisted elapsed when reopening an in-progress attempt. The timer stops when the player's fills match the solution fill set.
+A short [get-set-ready](glossary.md) beat ([`CFG.GET_SET_READY_MS`](configuration.md), default 500 ms) before marks are allowed. The solve timer starts when the board is ready after get-set-ready, or resumes persisted elapsed on reopen; it stops when fills match the solution fill set.
 
 ## Experience intent
 
-Quiet gallery progress: ever-completed and thumbnails fill in, completion rate makes pack progress clear, and chasing better times on replay stays optional.
+Quiet gallery progress: ever-completed and thumbnails fill in, a clinical hint-free star marks clean solves, completion rate shows pack progress, and better times on replay stay optional.

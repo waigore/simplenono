@@ -20,7 +20,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 | ID | Outcome |
 |----|---------|
 | P1 | Cancel leaves ever-completed / in-progress / PB unchanged. |
-| P2 | Confirm clears marks, elapsed, personal best, and ever-completed; attempt is not started; gallery returns to Default. |
+| P2 | Confirm clears marks, elapsed, personal best, ever-completed, and hint-free; attempt is not started; gallery returns to Default. |
 
 ## Fail
 

@@ -11,7 +11,7 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 | Moment | Gesture or get-set-ready | Marks blocked in get-set-ready |
 | Stage | Open attempt | Marks, elapsed, paused, marks-allowed, line errors |
 | Session | App open until quit | Open puzzle, or gallery |
-| Persistent | Across sessions | Ever-completed, attempt status, marks, elapsed, personal best |
+| Persistent | Across sessions | Ever-completed, attempt status, marks, elapsed, personal best, hint-free |
 
 ## Fields
 
@@ -36,11 +36,12 @@ Play state. Aligns with [`progression.md`](progression.md). Config: [`configurat
 - **V4**: Personal best only shrinks or stays while set.
 - **V5**: Each cell is clear, fill, or cross.
 - **V6**: Replay may be ever-completed and in progress together.
+- **V7**: Hint-free true ⇒ ever-completed; void or reset may clear hint-free while ever-completed stays.
 
 ## Hidden and visible state
 
 - **H1**: The player cannot know a puzzle's fill set while solving; the stored pixel picture becomes knowable after a successful solve, the stored generated picture (gallery thumbnail) once ever-completed.
-- **H2**: Ever-completed, attempt, marks, elapsed, paused, personal best, completion rate, line errors, clue-satisfied, clue-num-matched — knowable.
+- **H2**: Ever-completed, attempt, marks, elapsed, paused, personal best, hint-free, completion rate, line errors, clue-satisfied, clue-num-matched — knowable.
 
 ## Randomness and determinism
 

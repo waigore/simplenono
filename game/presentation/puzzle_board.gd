@@ -148,6 +148,16 @@ func content_size() -> Vector2:
 	return _content_size
 
 
+## The paper frame around the clue bars and grid after the last relayout, in this
+## control's space. Equal leftover margin on opposing sides of this rect is the
+## mobile centering hold ([code]MC.puzzle[/code] [code]place-items: center[/code]).
+func frame_rect() -> Rect2:
+	return Rect2(
+		_origin - Vector2(FRAME_PADDING, FRAME_PADDING),
+		_content_size + Vector2(FRAME_PADDING, FRAME_PADDING) * 2.0
+	)
+
+
 ## The column clue bar's height in cell units: what a cell of a given side needs
 ## above the grid, so a test can check a readability target against the rect.
 func column_clue_units() -> float:
@@ -169,9 +179,7 @@ func _notification(what: int) -> void:
 func _draw() -> void:
 	if _definition == null:
 		return
-	var frame_position := _origin - Vector2(FRAME_PADDING, FRAME_PADDING)
-	var frame_size := _content_size + Vector2(FRAME_PADDING, FRAME_PADDING) * 2.0
-	var frame := Rect2(frame_position, frame_size)
+	var frame := frame_rect()
 	draw_rect(frame, PresentationPalette.PAPER)
 	draw_rect(frame, PresentationPalette.RULE, false, 1.0)
 
@@ -280,12 +288,16 @@ func _relayout() -> void:
 	var max_cell := MAX_CELL_SIZE if _platform == PLATFORM_DESKTOP else INF
 	cell = clampf(floorf(cell), MIN_CELL_SIZE, max_cell)
 	_cell_size = cell
-	_row_clue_width = _row_clue_units * cell
-	_column_clue_height = _column_clue_units * cell
+	# Integer clue bars keep the paper frame on whole pixels so opposing leftover
+	# margins in R2 stay equal (mockup place-items: center; #645).
+	_row_clue_width = floorf(_row_clue_units * cell)
+	_column_clue_height = floorf(_column_clue_units * cell)
 	_content_size = Vector2(
 		_row_clue_width + _definition.size * cell, _column_clue_height + _definition.size * cell
 	)
-	_origin = ((size - _content_size) * 0.5).floor()
+	var frame_size := _content_size + Vector2(FRAME_PADDING, FRAME_PADDING) * 2.0
+	var frame_origin := ((size - frame_size) * 0.5).floor()
+	_origin = frame_origin + Vector2(FRAME_PADDING, FRAME_PADDING)
 	_position_children()
 	queue_redraw()
 

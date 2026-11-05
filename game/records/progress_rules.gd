@@ -4,13 +4,14 @@ extends RefCounted
 ## writes to a [ProgressRecord] ([b]CTR-pack[/b] O1, O2, O5, O6, O7).
 ##
 ## Every record change goes through [method commit], [method record_solve],
-## [method reset], and [method restore]; nothing else assigns a record's fields. That
-## is what keeps
-## [SCH-progress] I1-I6 ([code]V1[/code]-[code]V6[/code]) true:
+## [method reset], [method void_hint_free], and [method restore]; nothing else assigns
+## a record's fields. That is what keeps
+## [SCH-progress] I1-I7 ([code]V1[/code]-[code]V7[/code]) true:
 ## - I1/[code]V1[/code]: a solve sets ever-completed and a personal best together;
 ## - I3/[code]V3[/code]: not started clears marks and elapsed;
 ## - I4/[code]V4[/code]: a personal best is replaced only by a shorter time;
-## - I6/[code]V6[/code]: a new attempt leaves ever-completed alone.
+## - I6/[code]V6[/code]: a new attempt leaves ever-completed alone;
+## - I7/[code]V7[/code]: hint-free true implies ever-completed.
 ##
 ## [ProgressFile] is the only place those records leave memory ([b]CMP-pack[/b] R4,
 ## [b]CTR-pack[/b] G3). It rebuilds them through [method restore] at pack start.
@@ -98,13 +99,17 @@ func commit(puzzle_id: String, marks: MarkGrid, elapsed: int, in_progress: bool)
 	return target
 
 
-## O6: a successful solve at [param elapsed]. Sets ever-completed, clears the attempt,
-## and replaces the personal best only when the time is shorter (G1, I1, I4, [code]V1[/code]
-## and [code]V4[/code]). [code]PS1.5[/code]: with the flag set and a personal best present,
+## O6: a successful solve at [param elapsed]. Sets ever-completed, sets hint-free from
+## [param hint_free_eligible], clears the attempt, and replaces the personal best only
+## when the time is shorter (G1, I1, I4, I7, [code]V1[/code], [code]V4[/code],
+## [code]V7[/code]). [code]PS1.5[/code]: with the flag set and a personal best present,
 ## the gallery thumbnail becomes knowable.
-func record_solve(puzzle_id: String, elapsed: int) -> ProgressRecord:
+func record_solve(
+	puzzle_id: String, elapsed: int, hint_free_eligible: bool = true
+) -> ProgressRecord:
 	var target := record(puzzle_id)
 	target.ever_completed = true
+	target.hint_free = hint_free_eligible
 	target.in_progress = false
 	target.marks = null
 	target.elapsed = 0
@@ -114,30 +119,41 @@ func record_solve(puzzle_id: String, elapsed: int) -> ProgressRecord:
 	return target
 
 
+## O9: clears hint-free on [param puzzle_id] immediately (enable-void), keeping
+## ever-completed and other fields ([code]PRG.P6[/code], [code]V7[/code]).
+func void_hint_free(puzzle_id: String) -> ProgressRecord:
+	var target := record(puzzle_id)
+	target.hint_free = false
+	return target
+
+
 ## [b]CMP-pack[/b] R4: rebuilds one record from [ProgressFile] ([SCH-progress] L1).
 ## The stored fields are normalized so the schema invariants hold even for an edited
 ## file: ever-completed without a personal best is not ever-completed (I1); marks are
-## kept only while the attempt is in progress (I2, I3); and a record that is not in
-## progress has no marks and elapsed 0.
+## kept only while the attempt is in progress (I2, I3); hint-free without
+## ever-completed is dropped (I7); and a record that is not in progress has no marks
+## and elapsed 0.
 func restore(
 	puzzle_id: String,
 	ever_completed: bool,
 	in_progress: bool,
 	marks: MarkGrid,
 	elapsed: int,
-	personal_best: int
+	personal_best: int,
+	hint_free: bool = false
 ) -> ProgressRecord:
 	var target := record(puzzle_id)
 	target.ever_completed = ever_completed and personal_best >= 0
 	target.personal_best = personal_best if target.ever_completed else -1
+	target.hint_free = hint_free and target.ever_completed
 	target.in_progress = in_progress and marks != null and marks.has_any_mark()
 	target.marks = _copy_of(marks) if target.in_progress else null
 	target.elapsed = max(elapsed, 0) if target.in_progress else 0
 	return target
 
 
-## O7: gallery reset makes the puzzle new: clears marks, elapsed, personal best, and
-## ever-completed; the attempt becomes not started (I3, [code]V3[/code]).
+## O7: gallery reset makes the puzzle new: clears marks, elapsed, personal best,
+## ever-completed, and hint-free; the attempt becomes not started (I3, [code]V3[/code]).
 func reset(puzzle_id: String) -> ProgressRecord:
 	var target := record(puzzle_id)
 	target.ever_completed = false
@@ -145,6 +161,7 @@ func reset(puzzle_id: String) -> ProgressRecord:
 	target.marks = null
 	target.elapsed = 0
 	target.personal_best = -1
+	target.hint_free = false
 	return target
 
 
