@@ -25,6 +25,7 @@ One row per playtestable design story and UX journey/story under coverage mode `
 | `NAV` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
 | `IN` | #111 | Mark input in Wave 1; platform bindings continue via epic #96 in Wave 2. |
 | `EX` | #311 | `EX.confirm` show, Confirm to `END.O2`, and Cancel (`US1.1`–`US1.3`). |
+| `UI-menu` | #623 | — |
 | `UI-gallery` | #94 | `US1.6` "Then `EX.confirm` appears" is delivered by #311, whose box clauses are proved by #96. #94 proves Reset allowedness and the reset request. |
 | `UI-puzzle` | #110 | — |
 | `UI-result` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |

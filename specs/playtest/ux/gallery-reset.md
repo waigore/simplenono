@@ -11,7 +11,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 
 | ID | Action |
 |----|--------|
-| S1 | Use a puzzle that is ever-completed or in progress (solve once via `DBG.3` near-solve if needed). On gallery, activate `UI-gallery.C2` Reset. |
+| S1 | Cold start on `UI-menu`; activate `UI-menu.C1` to reach the gallery. Use a puzzle that is ever-completed or in progress (solve once via `DBG.3` near-solve if needed). On gallery, activate `UI-gallery.C2` Reset. |
 | S2 | Choose Cancel on `EX.confirm`. Inspect that puzzle’s progress via gallery / `DBG.2`. |
 | S3 | Activate Reset again; Confirm. |
 

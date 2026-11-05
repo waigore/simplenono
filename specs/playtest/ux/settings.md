@@ -11,7 +11,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 
 | ID | Action |
 |----|--------|
-| S1 | On `UI-gallery`, open settings with `UI-gallery.C3`. |
+| S1 | Cold start on `UI-menu`; activate `UI-menu.C1` to reach `UI-gallery`. On `UI-gallery`, open settings with `UI-gallery.C3`. |
 | S2 | Toggle haptics (`UI-settings.C1`) or mute (`UI-settings.C2`) once; note the new value. |
 | S3 | Back with `UI-settings.C3` to gallery. Re-open settings and confirm the toggle stuck. |
 | S4 | On a mobile build, activate `UI-settings.C4`; note the framing. |
