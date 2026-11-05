@@ -265,6 +265,10 @@ func _format_elapsed(seconds: int) -> String:
 	return "%d:%02d" % [minutes, seconds % 60]
 
 
+## [code]PAL.K1[/code]: the tool labels are Ink on Paper, and Paper on Ink while the
+## tool is the pressed selection. A focused idle button draws with
+## [code]font_focus_color[/code], and the engine's default face is near-white, so
+## leaving it unset hides the label until a press (#601).
 func _style_tool_buttons() -> void:
 	var group := ButtonGroup.new()
 	for button in [_fill_button, _cross_button, _clear_button]:
@@ -276,19 +280,27 @@ func _style_tool_buttons() -> void:
 		button.add_theme_stylebox_override("pressed", _panel_style(PresentationPalette.INK))
 		button.add_theme_stylebox_override("disabled", _panel_style(PresentationPalette.PAPER))
 		button.add_theme_color_override("font_color", PresentationPalette.INK)
+		button.add_theme_color_override("font_focus_color", PresentationPalette.INK)
 		button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
 		button.add_theme_color_override("font_pressed_color", PresentationPalette.PAPER)
 		button.add_theme_color_override("font_disabled_color", PresentationPalette.DIM)
 
 
+## [code]PAL.K1[/code] / [code]copy.leave[/code]: C1 and C6 stay Ink on Paper in every
+## drawn state. The shell focuses the first control when the puzzle is shown, and a
+## focused idle button draws with [code]font_focus_color[/code] (engine default
+## near-white), so C1's "Leave" was invisible until a press applied the pinned Ink
+## (#601).
 func _style_chrome_button(button: Button) -> void:
 	button.custom_minimum_size = Vector2(0.0, 36.0)
 	button.add_theme_stylebox_override("normal", _panel_style(PresentationPalette.PAPER))
 	button.add_theme_stylebox_override("hover", _panel_style(PresentationPalette.PAPER))
 	button.add_theme_stylebox_override("pressed", _panel_style(PresentationPalette.PAPER))
 	button.add_theme_color_override("font_color", PresentationPalette.INK)
+	button.add_theme_color_override("font_focus_color", PresentationPalette.INK)
 	button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
 	button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
+	button.add_theme_color_override("font_hover_pressed_color", PresentationPalette.INK)
 
 
 ## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied on
