@@ -1,0 +1,168 @@
+build=pr-658@9d8a7c44 engine=4.7.2-stable (official) display=Apple M5 (Apple9)
+frame: portrait requested=900x1600 got=900x1600
+capture: PASS fixture: this desktop host runs the unlocked orientation rule
+capture: PASS fixture: pack-000 opens from the gallery
+capture: PASS S1/AC portrait 10x10 (pack-000): UI-puzzle is the view
+capture: PASS AC portrait 10x10 (pack-000): equal horizontal leftover in R2 (L=3.0 R=4.0)
+capture: PASS AC portrait 10x10 (pack-000): equal vertical leftover in R2 (T=281.0 B=281.0)
+capture: PASS AC portrait 10x10 (pack-000): R2 still fills what R1 and R3 leave (board=(868.0, 1418.0) area=(868.0, 1418.0))
+center: portrait 10x10 (pack-000) frame=[P: (3.0, 281.0), S: (861.0, 856.0)] leftover L=3.0 R=4.0 T=281.0 B=281.0
+capture: PASS S1/AC portrait 10x10 (pack-000): the framed board sits inside R2 ([P: (16.0, 91.0), S: (868.0, 1418.0)])
+capture: PASS S1/AC portrait 10x10 (pack-000): the whole screen frame holds it ((900, 1600))
+capture: PASS S1/AC portrait 10x10 (pack-000): the frame has its padding all round
+capture: PASS P3/AC portrait 10x10 (pack-000): every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 10x10 (pack-000): no clue paints outside the frame (outside: 0)
+info: portrait 10x10 (pack-000) clue face 35 px, cell side 70.0 px
+capture: PASS UIS.T1 portrait 10x10 (pack-000): the clue face is 35 px, at least the 7 px floor
+capture: PASS F3 portrait 10x10 (pack-000): the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 10x10 (pack-000): the board is drawn at its own cells (100)
+capture: PASS capture: wrote 01-portrait-10x10
+colors: 01-portrait-10x10 f4f7f8ff x900
+cells: 01-portrait-10x10 sampled=100 (fills=0 clears=100) off-swatch=0 wrong-mark=0
+paint-note portrait 10x10 (pack-000): off-swatch=0 wrong-mark=0 (empty-board AA; not blocking)
+capture: PASS paint portrait 10x10 (pack-000): empty-board sample ran (100 cells)
+capture: PASS fixture: pack-010 opens from the gallery
+capture: PASS S1/AC portrait 15x15 (pack-010): UI-puzzle is the view
+capture: PASS AC portrait 15x15 (pack-010): equal horizontal leftover in R2 (L=8.0 R=8.0)
+capture: PASS AC portrait 15x15 (pack-010): equal vertical leftover in R2 (T=284.0 B=285.0)
+capture: PASS AC portrait 15x15 (pack-010): R2 still fills what R1 and R3 leave (board=(868.0, 1418.0) area=(868.0, 1418.0))
+center: portrait 15x15 (pack-010) frame=[P: (8.0, 284.0), S: (852.0, 849.0)] leftover L=8.0 R=8.0 T=284.0 B=285.0
+capture: PASS S1/AC portrait 15x15 (pack-010): the framed board sits inside R2 ([P: (16.0, 91.0), S: (868.0, 1418.0)])
+capture: PASS S1/AC portrait 15x15 (pack-010): the whole screen frame holds it ((900, 1600))
+capture: PASS S1/AC portrait 15x15 (pack-010): the frame has its padding all round
+capture: PASS P3/AC portrait 15x15 (pack-010): every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 15x15 (pack-010): no clue paints outside the frame (outside: 0)
+info: portrait 15x15 (pack-010) clue face 24 px, cell side 49.0 px
+capture: PASS UIS.T1 portrait 15x15 (pack-010): the clue face is 24 px, at least the 7 px floor
+capture: PASS F3 portrait 15x15 (pack-010): the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 15x15 (pack-010): the board is drawn at its own cells (225)
+capture: PASS capture: wrote 02-portrait-15x15
+colors: 02-portrait-15x15 f4f7f8ff x2019
+cells: 02-portrait-15x15 sampled=225 (fills=0 clears=225) off-swatch=6 wrong-mark=0
+paint-note portrait 15x15 (pack-010): off-swatch=6 wrong-mark=0 (empty-board AA; not blocking)
+capture: PASS paint portrait 15x15 (pack-010): empty-board sample ran (225 cells)
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS S1/AC portrait 20x20 (pack-180): UI-puzzle is the view
+capture: PASS AC portrait 20x20 (pack-180): equal horizontal leftover in R2 (L=0.0 R=1.0)
+capture: PASS AC portrait 20x20 (pack-180): equal vertical leftover in R2 (T=293.0 B=293.0)
+capture: PASS AC portrait 20x20 (pack-180): R2 still fills what R1 and R3 leave (board=(868.0, 1418.0) area=(868.0, 1418.0))
+center: portrait 20x20 (pack-180) frame=[P: (0.0, 293.0), S: (867.0, 832.0)] leftover L=0.0 R=1.0 T=293.0 B=293.0
+capture: PASS S1/AC portrait 20x20 (pack-180): the framed board sits inside R2 ([P: (16.0, 91.0), S: (868.0, 1418.0)])
+capture: PASS S1/AC portrait 20x20 (pack-180): the whole screen frame holds it ((900, 1600))
+capture: PASS S1/AC portrait 20x20 (pack-180): the frame has its padding all round
+capture: PASS P3/AC portrait 20x20 (pack-180): every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 20x20 (pack-180): no clue paints outside the frame (outside: 0)
+info: portrait 20x20 (pack-180) clue face 18 px, cell side 37.0 px
+capture: PASS UIS.T1 portrait 20x20 (pack-180): the clue face is 18 px, at least the 7 px floor
+capture: PASS F3 portrait 20x20 (pack-180): the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 20x20 (pack-180): the board is drawn at its own cells (400)
+capture: PASS capture: wrote 03-portrait-20x20
+colors: 03-portrait-20x20 f4f7f8ff x3581, c5d0d6ff x12
+cells: 03-portrait-20x20 sampled=400 (fills=0 clears=400) off-swatch=7 wrong-mark=4
+paint-note portrait 20x20 (pack-180): off-swatch=7 wrong-mark=4 (empty-board AA; not blocking)
+capture: PASS paint portrait 20x20 (pack-180): empty-board sample ran (400 cells)
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: opening settings from the puzzle asks for the pause
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: settings is the view
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: the attempt is paused
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: returning resumes the puzzle
+capture: PASS AC portrait 20x20 (pack-180) after the pause intent: equal horizontal leftover in R2 (L=0.0 R=1.0)
+capture: PASS AC portrait 20x20 (pack-180) after the pause intent: equal vertical leftover in R2 (T=293.0 B=293.0)
+capture: PASS AC portrait 20x20 (pack-180) after the pause intent: R2 still fills what R1 and R3 leave (board=(868.0, 1418.0) area=(868.0, 1418.0))
+center: portrait 20x20 (pack-180) after the pause intent frame=[P: (0.0, 293.0), S: (867.0, 832.0)] leftover L=0.0 R=1.0 T=293.0 B=293.0
+capture: PASS S1/AC portrait 20x20 (pack-180) after the pause intent: the framed board sits inside R2 ([P: (16.0, 91.0), S: (868.0, 1418.0)])
+capture: PASS S1/AC portrait 20x20 (pack-180) after the pause intent: the whole screen frame holds it ((900, 1600))
+capture: PASS S1/AC portrait 20x20 (pack-180) after the pause intent: the frame has its padding all round
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: no clue paints outside the frame (outside: 0)
+info: portrait 20x20 (pack-180) after the pause intent clue face 18 px, cell side 37.0 px
+capture: PASS UIS.T1 portrait 20x20 (pack-180) after the pause intent: the clue face is 18 px, at least the 7 px floor
+capture: PASS F3 portrait 20x20 (pack-180) after the pause intent: the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 20x20 (pack-180) after the pause intent: the board is drawn at its own cells (400)
+capture: PASS capture: wrote 04-portrait-20x20-paused
+colors: 04-portrait-20x20-paused f4f7f8ff x3581, c5d0d6ff x12
+cells: 04-portrait-20x20-paused sampled=400 (fills=0 clears=400) off-swatch=7 wrong-mark=4
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS P3/AC portrait 20x20 with included marks: 163 fills and a cross are drawn in their cells
+capture: PASS AC portrait 20x20 with included marks: equal horizontal leftover in R2 (L=0.0 R=1.0)
+capture: PASS AC portrait 20x20 with included marks: equal vertical leftover in R2 (T=293.0 B=293.0)
+capture: PASS AC portrait 20x20 with included marks: R2 still fills what R1 and R3 leave (board=(868.0, 1418.0) area=(868.0, 1418.0))
+center: portrait 20x20 with included marks frame=[P: (0.0, 293.0), S: (867.0, 832.0)] leftover L=0.0 R=1.0 T=293.0 B=293.0
+capture: PASS S1/AC portrait 20x20 with included marks: the framed board sits inside R2 ([P: (16.0, 91.0), S: (868.0, 1418.0)])
+capture: PASS S1/AC portrait 20x20 with included marks: the whole screen frame holds it ((900, 1600))
+capture: PASS S1/AC portrait 20x20 with included marks: the frame has its padding all round
+capture: PASS P3/AC portrait 20x20 with included marks: every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC portrait 20x20 with included marks: no clue paints outside the frame (outside: 0)
+info: portrait 20x20 with included marks clue face 18 px, cell side 37.0 px
+capture: PASS UIS.T1 portrait 20x20 with included marks: the clue face is 18 px, at least the 7 px floor
+capture: PASS F3 portrait 20x20 with included marks: the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC portrait 20x20 with included marks: the board is drawn at its own cells (400)
+capture: PASS capture: wrote 05-portrait-20x20-marks
+colors: 05-portrait-20x20-marks f4f7f8ff x2128, 1b2833ff x1467, 5c6b78ff x5
+cells: 05-portrait-20x20-marks sampled=399 (fills=163 clears=236) off-swatch=0 wrong-mark=0
+capture: PASS paint portrait 20x20 with included marks: every sampled cell interior is a C1-C4 swatch (0 of 3591 not)
+capture: PASS paint portrait 20x20 with included marks: every clear cell interior is Paper (0 of 399 not)
+capture: PASS paint portrait 20x20 with included marks: filled cell interiors show Ink (163 of 163 filled)
+frame: landscape requested=1600x900 got=1600x900
+capture: PASS S1/AC landscape: the window really turned to landscape
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS S1/AC landscape 20x20 (pack-180): UI-puzzle is the view
+capture: PASS AC landscape 20x20 (pack-180): equal horizontal leftover in R2 (L=396.0 R=397.0)
+capture: PASS AC landscape 20x20 (pack-180): equal vertical leftover in R2 (T=9.0 B=10.0)
+capture: PASS AC landscape 20x20 (pack-180): R2 still fills what R1 and R3 leave (board=(1568.0, 762.0) area=(1568.0, 762.0))
+center: landscape 20x20 (pack-180) frame=[P: (396.0, 9.0), S: (775.0, 743.0)] leftover L=396.0 R=397.0 T=9.0 B=10.0
+capture: PASS S1/AC landscape 20x20 (pack-180): the framed board sits inside R2 ([P: (16.0, 69.0), S: (1568.0, 762.0)])
+capture: PASS S1/AC landscape 20x20 (pack-180): the whole screen frame holds it ((1600, 900))
+capture: PASS S1/AC landscape 20x20 (pack-180): the frame has its padding all round
+capture: PASS P3/AC landscape 20x20 (pack-180): every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC landscape 20x20 (pack-180): no clue paints outside the frame (outside: 0)
+info: landscape 20x20 (pack-180) clue face 16 px, cell side 33.0 px
+capture: PASS UIS.T1 landscape 20x20 (pack-180): the clue face is 16 px, at least the 7 px floor
+capture: PASS F3 landscape 20x20 (pack-180): the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC landscape 20x20 (pack-180): the board is drawn at its own cells (400)
+capture: PASS capture: wrote 06-landscape-20x20
+colors: 06-landscape-20x20 f4f7f8ff x3600
+cells: 06-landscape-20x20 sampled=400 (fills=0 clears=400) off-swatch=0 wrong-mark=0
+paint-note landscape 20x20 (pack-180): off-swatch=0 wrong-mark=0 (empty-board AA; not blocking)
+capture: PASS paint landscape 20x20 (pack-180): empty-board sample ran (400 cells)
+frame: viewport 360x640 requested=360x640 got=360x640
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS AC viewport 360x640: equal horizontal leftover in R2 (L=6.0 R=7.0)
+capture: PASS AC viewport 360x640: equal vertical leftover in R2 (T=105.0 B=105.0)
+capture: PASS AC viewport 360x640: R2 still fills what R1 and R3 leave (board=(328.0, 512.0) area=(328.0, 512.0))
+center: viewport 360x640 frame=[P: (6.0, 105.0), S: (315.0, 302.0)] leftover L=6.0 R=7.0 T=105.0 B=105.0
+capture: PASS S1/AC viewport 360x640: the framed board sits inside R2 ([P: (16.0, 64.0), S: (328.0, 512.0)])
+capture: PASS S1/AC viewport 360x640: the whole screen frame holds it ((360, 640))
+capture: PASS S1/AC viewport 360x640: the frame has its padding all round
+capture: PASS P3/AC viewport 360x640: every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC viewport 360x640: no clue paints outside the frame (outside: 0)
+info: viewport 360x640 clue face 7 px, cell side 13.0 px
+capture: PASS UIS.T1 viewport 360x640: the clue face is 7 px, at least the 7 px floor
+capture: PASS F3 viewport 360x640: the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC viewport 360x640: the board is drawn at its own cells (400)
+capture: PASS capture: wrote 07-360x640-20x20
+colors: 07-360x640-20x20 f4f7f8ff x3600
+cells: 07-360x640-20x20 sampled=400 (fills=0 clears=400) off-swatch=0 wrong-mark=0
+paint-note viewport 360x640: off-swatch=0 wrong-mark=0 (empty-board AA; not blocking)
+capture: PASS paint viewport 360x640: empty-board sample ran (400 cells)
+frame: viewport 640x360 requested=640x360 got=640x360
+capture: PASS fixture: pack-180 opens from the gallery
+capture: PASS AC viewport 640x360: equal horizontal leftover in R2 (L=192.0 R=193.0)
+capture: PASS AC viewport 640x360: equal vertical leftover in R2 (T=9.0 B=9.0)
+capture: PASS AC viewport 640x360: R2 still fills what R1 and R3 leave (board=(608.0, 232.0) area=(608.0, 232.0))
+center: viewport 640x360 frame=[P: (192.0, 9.0), S: (223.0, 214.0)] leftover L=192.0 R=193.0 T=9.0 B=9.0
+capture: PASS S1/AC viewport 640x360: the framed board sits inside R2 ([P: (16.0, 64.0), S: (608.0, 232.0)])
+capture: PASS S1/AC viewport 640x360: the whole screen frame holds it ((640, 360))
+capture: PASS S1/AC viewport 640x360: the frame has its padding all round
+capture: PASS P3/AC viewport 640x360: every row and column clue fits its bar (clipped: none)
+capture: PASS P3/AC viewport 640x360: no clue paints outside the frame (outside: 0)
+info: viewport 640x360 clue face 7 px, cell side 9.0 px
+capture: PASS UIS.T1 viewport 640x360: the clue face is 7 px, at least the 7 px floor
+capture: PASS F3 viewport 640x360: the board is not scaled, scrolled or zoomed
+capture: PASS P3/AC viewport 640x360: the board is drawn at its own cells (400)
+capture: PASS capture: wrote 08-640x360-20x20
+colors: 08-640x360-20x20 f4f7f8ff x3600
+cells: 08-640x360-20x20 sampled=400 (fills=0 clears=400) off-swatch=0 wrong-mark=0
+paint-note viewport 640x360: off-swatch=0 wrong-mark=0 (empty-board AA; not blocking)
+capture: PASS paint viewport 640x360: empty-board sample ran (400 cells)
+capture: RESULT pass (8 shots, 124 checks, 0 failed)
