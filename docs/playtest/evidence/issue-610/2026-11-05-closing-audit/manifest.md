@@ -107,8 +107,13 @@ lowest-numbered pair (and, for the lighthouse scene, one per size band).
 | `pack-046/146/151` | `pack-046` | `pack-146`, `pack-151` | same `N×N` picture |
 | `pack-063/160/167` | `pack-063` | `pack-160`, `pack-167` | same `N×N` picture |
 | lighthouse coast, 10×10 | `pack-000` | `pack-002` | repeated named scene |
+| lighthouse coast, 15×15 | `pack-018` | — | kept: the only lighthouse-coast pair in the 15×15 band, so the per-band rule allows it |
 | lighthouse coast, 20×20 | `pack-182` | `pack-184`, `pack-188` | repeated named scene |
 | market awning, 15×15 | `pack-035` | `pack-137` | near-twin composition |
+
+`pack-018` is the 15×15 member of the six-pair "lighthouse coast" concentration named in the
+issue. It is the only lighthouse-coast pair in its size band, so the amended `K5` keeps it
+and no regeneration is needed; the other five are resolved in the rows above.
 
 Each regenerated pair keeps its `picture-id` / `pixel-picture-id`, raises its version,
 keeps the replaced generation in `history`, and carries a fresh `review` Pass with the
