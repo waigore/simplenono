@@ -1,6 +1,6 @@
 extends GutTest
 ## [code]UI-gallery[/code] screen — specs/ux/screens/gallery.md R1-R3, C1-C3, S1 and
-## specs/ux/stories/screens/gallery.md US1.1-US1.6b.
+## specs/ux/stories/screens/gallery.md US1.1-US1.6b, US1.8.
 ##
 ## The screen runs over the shipped pack ([b]CTR-pack[/b] O8) with a seeded
 ## [code]user://[/code] progress document, so the read side is proved without any
@@ -149,6 +149,41 @@ func test_r2_replay_shows_done_and_in_progress() -> void:
 	var target := _gallery.tile("pack-062")
 	assert_eq(target.status_text(), "Done · In progress", "R2's replay reading")
 	assert_eq(target.best_text(), "Best 9:01", "the kept personal best")
+
+
+# US1.8 / R2 / PER.R7: a hint-free tile shows the clinical star at the thumb's
+# upper-left; a solved tile without hint-free does not
+func test_r2_hint_free_tile_shows_the_star_upper_left() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-019", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-019", ProgressFile.HINT_FREE_KEY, true)
+	seeded.set_value("pack-019", ProgressFile.PERSONAL_BEST_KEY, 42)
+	seeded.set_value("pack-020", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-020", ProgressFile.PERSONAL_BEST_KEY, 60)
+	_gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return _texture())
+	_present(seeded)
+
+	var starred := _gallery.tile("pack-019")
+	assert_true(starred.shows_star(), "US1.8: the clinical star shows when hint-free")
+	var metrics := starred.star_metrics()
+	var expected_inset := _gallery.star_inset()
+	var expected_size := _gallery.star_size()
+	assert_true(
+		is_equal_approx(metrics.x, expected_inset),
+		"the held star inset is the frame rule (%s vs %s)" % [metrics.x, expected_inset],
+	)
+	assert_true(
+		is_equal_approx(metrics.y, expected_size),
+		"the held star side is the frame rule (%s vs %s)" % [metrics.y, expected_size],
+	)
+	var unstarred := _gallery.tile("pack-020")
+	assert_false(unstarred.shows_star(), "PER.R7: absent without GS.hint-free")
+
+
+# US1.8: a tile without any solved picture shows no star either
+func test_r2_unsolved_tile_shows_no_star() -> void:
+	_present(ConfigFile.new())
+	assert_false(_gallery.tile("pack-000").shows_star(), "PER.R7: absent without GS.hint-free")
 
 
 # The approved mockups' four tile states and R1 frame: palette and ground come from the

@@ -21,7 +21,30 @@ const PLACEHOLDER_MARK := "?"
 ## Mark height relative to the inset frame side, matching the mockup's ~14/24.
 const MARK_SIZE_RATIO := 14.0 / 24.0
 
+## The [code]UIS.I1[/code] star's five outer/inner vertices in the mockups' 12-unit
+## viewBox ([code].hint-free-star svg polygon[/code]), drawn pointing up.
+const STAR_VERTICES := [
+	Vector2(6.0, 0.5),
+	Vector2(7.4, 4.2),
+	Vector2(11.5, 4.2),
+	Vector2(8.2, 6.7),
+	Vector2(9.5, 10.5),
+	Vector2(6.0, 8.2),
+	Vector2(2.5, 10.5),
+	Vector2(3.8, 6.7),
+	Vector2(0.5, 4.2),
+	Vector2(4.6, 4.2),
+]
+
+## First-layout star metrics; the gallery applies the frame rule after
+## ([method set_star_metrics]).
+const STAR_INSET := 4.0
+const STAR_SIZE := 12.0
+
 var _picture: Texture2D
+var _star_visible := false
+var _star_inset := STAR_INSET
+var _star_size := STAR_SIZE
 
 
 ## Shows [param picture], or the placeholder when it is null.
@@ -29,6 +52,34 @@ func show_picture(picture: Texture2D) -> void:
 	if _picture == picture:
 		return
 	_picture = picture
+	queue_redraw()
+
+
+## Shows the [code]UIS.I1[/code] clinical hint-free star ([code]PER.R7[/code]) when
+## [param star_visible]; hides it otherwise.
+func show_star(star_visible: bool) -> void:
+	if _star_visible == star_visible:
+		return
+	_star_visible = star_visible
+	queue_redraw()
+
+
+## True when the clinical hint-free star is drawn in the square's upper-left.
+func shows_star() -> bool:
+	return _star_visible
+
+
+## The square's upper-left star inset and side, as the tile last applied
+## ([code]PER.R7[/code]).
+func star_metrics() -> Vector2:
+	return Vector2(_star_inset, _star_size)
+
+
+## Applies the frame-held star metrics ([code]UIS.I1[/code], [code]PER.R7[/code]); the
+## thumb keeps only the values, the way [code]UIS.T2[/code]'s chrome size does (#557).
+func set_star_metrics(inset: float, star_size: float) -> void:
+	_star_inset = inset
+	_star_size = star_size
 	queue_redraw()
 
 
@@ -56,6 +107,8 @@ func _draw() -> void:
 	else:
 		_draw_placeholder(box)
 	draw_rect(box, PresentationPalette.RULE, false, 1.0)
+	if _star_visible:
+		_draw_hint_free_star(box)
 
 
 ## [param box] shrunk to [method _picture]'s own proportions and centered in it, so a
@@ -67,6 +120,19 @@ func _fitted(box: Rect2) -> Rect2:
 	var scale := minf(box.size.x / source.x, box.size.y / source.y)
 	var fitted := source * scale
 	return Rect2(box.position + (box.size - fitted) * 0.5, fitted)
+
+
+## [code]PER.R7[/code] / [code]UIS.I1[/code]: the flat Ink five-point star sits at the
+## square's upper-left — inset and size are held from the gallery's frame rule, the
+## way the tile's body padding is ([#557]). Both approved mockups draw it as
+## [code].puzzle-tile .hint-free-star[/code].
+func _draw_hint_free_star(box: Rect2) -> void:
+	var points := PackedVector2Array()
+	for vertex in STAR_VERTICES:
+		points.append(
+			box.position + Vector2(_star_inset, _star_inset) + Vector2(vertex) * (_star_size / 12.0)
+		)
+	draw_colored_polygon(points, PresentationPalette.INK)
 
 
 func _draw_placeholder(box: Rect2) -> void:
