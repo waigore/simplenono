@@ -4,7 +4,7 @@ Authoring rules: [`.agents/specs/rules/design/story.md`](../../../.agents/specs/
 
 - **Design spec**: [`end-conditions.md`](../end-conditions.md)
 - **Spec key**: `END`
-- **Glossary terms**: [Solve check](../glossary.md), [Reset](../glossary.md), [Personal best](../glossary.md), [Ever completed](../glossary.md), [Thumbnail](../glossary.md)
+- **Glossary terms**: [Solve check](../glossary.md), [Reset](../glossary.md), [Personal best](../glossary.md), [Ever completed](../glossary.md), [Hint-free](../glossary.md), [Thumbnail](../glossary.md)
 
 ## Coverage
 
@@ -25,9 +25,9 @@ As a player, I win, leave, or reset so that progress and pack completion stay co
 - **Proves**: W1, P1
 
 ```gherkin
-Given marks-allowed is true, ever-completed is false, personal-best is none
+Given marks-allowed is true, ever-completed is false, personal-best is none, all hint toggles off the whole attempt
 When a mark change makes GS.is-solved true
-Then W1 outcomes apply: timer stopped; ever-completed true; attempt not started; marks and elapsed clear; personal-best set to that time
+Then W1 outcomes apply: timer stopped; ever-completed true; attempt not started; marks and elapsed clear; personal-best set to that time; hint-free true
 And O1 does not fire from that mark
 ```
 
@@ -60,9 +60,9 @@ And W1 does not fire
 - **Proves**: O2, P1
 
 ```gherkin
-Given ever-completed is true, personal-best is 20, attempt in progress with marks
+Given ever-completed is true, hint-free is true, personal-best is 20, attempt in progress with marks
 When the player resets that puzzle in the gallery
-Then marks, elapsed, personal-best, and ever-completed are cleared
+Then marks, elapsed, personal-best, ever-completed, and hint-free are cleared
 And attempt-status is not started
 And W1 and O1 do not fire
 ```

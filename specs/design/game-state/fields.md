@@ -14,4 +14,6 @@ Parent: [`../game-state.md`](../game-state.md).
 | `GS.attempt-status` | Persistent | not started or in progress | not started | First player fill or cross → in progress; solve/reset → not started | Orthogonal to ever-completed |
 | `GS.solve-elapsed` | Stage; Persistent if in progress | Elapsed this attempt | 0; restored on reopen | Ticks after ready if not paused; clear on solve/reset | ≥ 0; frozen while paused |
 | `GS.personal-best` | Persistent | Shortest successful time | none | Shorter solve; cleared on gallery reset | Never increases while set |
+| `GS.hint-free` | Persistent | Clean-solve reward for this puzzle | false | Clean [`END.W1`](../end-conditions.md); void on hint enable while attempt active; reset clears | True ⇒ ever-completed (V7) |
+| `GS.hint-free-eligible` | Stage | This attempt still qualifies for hint-free | true at open if all hint toggles off | Any hint enable → false | Cleared with the attempt |
 | `GS.solution` | Stage | Hidden correct fills | Loaded with puzzle | Never by player | Fixed per puzzle |
