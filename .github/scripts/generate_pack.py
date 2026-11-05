@@ -4,7 +4,10 @@
 The pack is the fixed local pack: 10 puzzles of 10x10, 170 of 15x15, and 20 of 20x20
 (specs/design/entities/puzzle.md, placement and availability). Layout and entry fields
 are fixed by specs/technical/contracts/pack.md (pack layout) and
-specs/technical/schemata/puzzle-def.md (F1-F7); this script only decides content.
+specs/technical/schemata/puzzle-def.md (F1-F9); this script only decides content.
+Content of F8 (single-line) and F9 (one-level) fill-hint cells follows
+specs/design/features/fill-hints.md R1-R2: the union of each line's own forcings,
+then one propagation pass with those marks known.
 
 Content method (recorded in the pull request for #105): a puzzle whose pixel picture is
 approved and catalogued derives its fills from that pixel file, which is the source
@@ -66,7 +69,18 @@ EPOCH_MS = 1_793_000_000_000  # fixed so asset ids are reproducible
 GROWTH = {10: 0.42, 15: 0.55, 20: 0.55}
 PACK_REL = Path("game") / "data" / "pack.json"
 PACK = REPO_ROOT / PACK_REL
-FIELDS = ("id", "size", "row-clues", "col-clues", "solution-fills", "picture-id", "pixel-picture-id")
+# ADR-0003: catalog entries at the repo root; cataloged files under the Godot project.
+CATALOG_ROOT = Path("assets") / "catalog"
+ASSET_ROOT = Path("game") / "assets"
+PIXEL_APPROVED = "approved"
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+PNG_CHANNELS = {2: 3, 6: 4}  # colour type -> channels; the rule accepts RGB and RGBA only
+FILL_LUMA = 128.0
+
+FIELDS = (
+    "id", "size", "row-clues", "col-clues", "solution-fills", "picture-id",
+    "pixel-picture-id", "single-fill-hint-cells", "multi-fill-hint-cells",
+)
 
 # ADR-0003: catalog entries at the repo root; cataloged files under the Godot project.
 CATALOG_ROOT = Path("assets") / "catalog"
@@ -275,11 +289,132 @@ def runs(line: list[bool]) -> list[int]:
     return out
 
 
+FILL = "fill"
+CROSS = "cross"
+
+
+def line_arrangements(
+    runs_of_line: list[int], size: int, known: dict[int, str] | None = None
+) -> list[int]:
+    """One bitmask per valid arrangement of a line's runs; bit c is that cell filled.
+
+    `known` maps crosses known at a cell (`cross`) so arrangements that ignore them
+    drop out — the second puzzle-def pass ([F9](specs/technical/schemata/puzzle-def-fields.md)).
+    A line whose known marks admit no arrangement is a pack defect.
+    """
+    states = known or {}
+    results: list[int] = []
+
+    def place(index: int, start: int, board: int) -> None:
+        if index == len(runs_of_line):
+            for cell in range(start, size):
+                board &= ~(1 << cell)
+            for cell in range(size):
+                bit = board >> cell & 1
+                if bit and states.get(cell) == CROSS:
+                    return
+                if not bit and states.get(cell) == FILL:
+                    return
+            results.append(board)
+            return
+        run_length = runs_of_line[index]
+        tail = sum(runs_of_line[index:]) + (len(runs_of_line) - index - 1)
+        for s in range(start, size - tail + 1):
+            board_next = board
+            broken = False
+            for cell in range(start, s):
+                if states.get(cell) == FILL:
+                    broken = True
+                    break
+                board_next &= ~(1 << cell)
+            if broken:
+                continue
+            for cell in range(s, s + run_length):
+                if states.get(cell) == CROSS:
+                    broken = True
+                    break
+                board_next |= 1 << cell
+            if broken:
+                continue
+            if index == len(runs_of_line) - 1:
+                ok = True
+                for cell in range(s + run_length, size):
+                    if states.get(cell) == FILL:
+                        ok = False
+                        break
+                    board_next &= ~(1 << cell)
+                if ok:
+                    results.append(board_next)
+            else:
+                if states.get(s + run_length) == FILL:
+                    continue
+                board_next &= ~(1 << (s + run_length))
+                place(index + 1, s + run_length + 1, board_next)
+
+    place(0, 0, (1 << size) - 1)
+    return results
+
+
+def line_forced(
+    runs_of_line: list[int], size: int, known: dict[int, str] | None = None
+) -> dict[int, str]:
+    """Cells one line's runs force; a mark present in all (no) arrangements is fill (cross)."""
+    arrangements = line_arrangements(runs_of_line, size, known)
+    if not arrangements:
+        raise ValueError(f"known marks admit no arrangement: {runs_of_line}")
+    total = len(arrangements)
+    marks: dict[int, str] = {}
+    for cell in range(size):
+        fills = sum(board >> cell & 1 for board in arrangements)
+        if fills == total:
+            marks[cell] = FILL
+        elif fills == 0:
+            marks[cell] = CROSS
+    return marks
+
+
+def fill_hint_cells(
+    row_clues: list[list[int]], col_clues: list[list[int]], size: int
+) -> tuple[list[list], list[list]]:
+    """The [F8](specs/technical/schemata/puzzle-def-fields.md) and F9 cell triples of one entry.
+
+    F8 unions the single-line forcings over both directions; F9 re-solves each line
+    with F8 known and keeps the additional forcings ([features/fill-hints.md](specs/design/features/fill-hints.md)).
+    Conflicting marks between two lines of an entry are a pack defect (`ValueError`).
+    """
+    def union(known: dict[tuple[int, int], str]) -> dict[tuple[int, int], str]:
+        forced: dict[tuple[int, int], str] = {}
+        for row in range(size):
+            line_known = {c: known[(row, c)] for c in range(size) if (row, c) in known}
+            for cell, mark in line_forced(row_clues[row], size, line_known).items():
+                position = (row, cell)
+                if forced.get(position, mark) != mark:
+                    raise ValueError(f"pack entry rows disagree at {position}")
+                forced[position] = mark
+        for column in range(size):
+            line_known = {r: known[(r, column)] for r in range(size) if (r, column) in known}
+            for row, mark in line_forced(col_clues[column], size, line_known).items():
+                position = (row, column)
+                if forced.get(position, mark) != mark:
+                    raise ValueError(f"pack entry columns disagree at {position}")
+                forced[position] = mark
+        return forced
+
+    single = union({})
+    base = set(single)
+    multi = {position: mark for position, mark in union(single).items() if position not in base}
+    to_cells = lambda marks: [[r, c, mark] for (r, c), mark in sorted(marks.items())]
+    return to_cells(single), to_cells(multi)
+
+
 def entry(index: int, size: int, rng: random.Random, fills: set[tuple[int, int]] | None = None) -> dict:
     cells = silhouette(size, rng) if fills is None else fills
     grid = [[(row, column) in cells for column in range(size)] for row in range(size)]
     columns = [[grid[row][column] for row in range(size)] for column in range(size)]
     picture_id, pixel_id = picture_ids(index)
+    single, multi = fill_hint_cells(
+        [runs(row) for row in grid], [runs(column) for column in columns], size
+    )
     return {
         "id": f"pack-{index:03d}",
         "size": size,
@@ -288,6 +423,8 @@ def entry(index: int, size: int, rng: random.Random, fills: set[tuple[int, int]]
         "solution-fills": sorted([row, column] for row, column in cells),
         "picture-id": picture_id,
         "pixel-picture-id": pixel_id,
+        "single-fill-hint-cells": single,
+        "multi-fill-hint-cells": multi,
     }
 
 
@@ -339,11 +476,15 @@ def derive_row(row: dict, root: Path) -> dict:
         raise PackError(f"pixel-picture-id {pixel_id} has no approved pixel; nothing to derive")
     grid = [[(r, c) in fills for c in range(size)] for r in range(size)]
     columns = [[grid[r][c] for r in range(size)] for c in range(size)]
+    row_clues, col_clues = [runs(r) for r in grid], [runs(c) for c in columns]
+    single, multi = fill_hint_cells(row_clues, col_clues, size)
     return {
         **row,
-        "row-clues": [runs(r) for r in grid],
-        "col-clues": [runs(c) for c in columns],
+        "row-clues": row_clues,
+        "col-clues": col_clues,
         "solution-fills": sorted([r, c] for r, c in fills),
+        "single-fill-hint-cells": single,
+        "multi-fill-hint-cells": multi,
     }
 
 
