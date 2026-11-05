@@ -5,6 +5,8 @@ extends RefCounted
 ## Ordered size rows then size columns, index order inside each half, the same
 ## order [ClueLinesResult] holds its lines in. Either the statuses or a mapping
 ## error naming what the definition got wrong ([SCH-puzzle-def] I1); never both.
+## Each status carries its line's error, satisfied, and per-clue-number match
+## ([SCH-line-status] F3-F5); the accessors below stay line-level.
 
 ## Why the definition could not map to lines; empty on success.
 var error: String = ""

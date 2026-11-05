@@ -15,13 +15,14 @@ Authoring rules: [`.agents/specs/rules/technical/schemata.md`](../../../.agents/
 | F1 | orientation | row or column | required | One clue line |
 | F2 | index | Integer, 0 through size − 1 | required | Which line |
 | F3 | error | Boolean | required | Fills contradict the line |
-| F4 | satisfied | Boolean | required | Fills match the line |
+| F4 | satisfied | Boolean | required | Every clue number matched and no fill island left over — the fills match the line |
+| F5 | number_matched | One Boolean per clue number, in clue order | required | Fill island `k` exists and its length equals clue number `k` |
 
 ## Invariants
 
 | ID | Invariant |
 |----|-----------|
-| I1 | F3 and F4 come from the current fills and that line's clues |
+| I1 | F3, F4, and F5 come from the current fills and that line's clues |
 | I2 | The value is not stored on the attempt |
 
 ## Lifecycle

@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | Shown in | Design element | Visible when |
 |----------|----------------|--------------|
 | R1 | [`GS.solve-elapsed`](../../design/game-state.md) | Always on this screen (frozen while paused, [`GS.paused`](../../design/game-state.md)) |
-| R2 | [`GS.cell-marks`](../../design/game-state.md); row/col clues; [`GS.row-error`](../../design/game-state.md) / [`GS.col-error`](../../design/game-state.md); [`GS.clue-satisfied`](../../design/game-state.md) | Always while open; solution image never ([`PER.R4`](../../view/perception.md)) |
+| R2 | [`GS.cell-marks`](../../design/game-state.md); row/col clues; [`GS.row-error`](../../design/game-state.md) / [`GS.col-error`](../../design/game-state.md); [`GS.clue-num-matched`](../../design/game-state.md); [`GS.clue-satisfied`](../../design/game-state.md) | Always while open; solution image never ([`PER.R4`](../../view/perception.md)) |
 | R2 | [`GS.marks-allowed`](../../design/game-state.md) | Get-set-ready or paused: marks blocked; Ready and not paused: marks allowed |
 
 ## Regions
@@ -21,7 +21,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | ID | Region | Purpose | Contents |
 |----|--------|---------|----------|
 | R1 | Chrome | Leave, pause, timing | C1 Leave; C6 Settings; elapsed (`copy.elapsed`) |
-| R2 | Board | Clue-led grid | Row/col clue chrome; cells (C2); line-error, dim cues |
+| R2 | Board | Clue-led grid | Row/col clue chrome; cells (C2); line-error, per-number dim cues |
 | R3 | Tools | Mark mode | C3 Fill; C4 Cross; C5 Clear ([`controls.md`](../controls.md)) |
 
 On mobile, R2 fills what R1 and R3 leave in either orientation: one framing, no pan/zoom, readable at 10×10, 15×15 and 20×20 ([`PRJ.V1`](../../view/projection.md), [`PRJ.UIS.T1`](../../aesthetics/ui-style.md), [`PRJ.A2`](../../view/projection.md)). Desktop keeps its cap and margin.
