@@ -23,7 +23,7 @@ Veneer for a repository **Task** (`type:task`).
 - Collect optional `parent`. Do not collect or wire `blocked_by` / `blocking`.
 - **Before create:** if the unit mixes main-tree UI with non-UI work, prefer two tasks ([`docs/ux-mockups.md`](../../../docs/ux-mockups.md)). If `parent` is set, validate depth per `hierarchy.md` and the linking reference. Abort when the new task would exceed 3 levels from epic to leaf.
 - Do not invent a parent. Attach one only when the caller names it.
-- When `create-project-feedback` is the caller, set priority and any `Supersedes #N` line per [`feedback.md`](../../../docs/issues/feedback.md).
+- When `create-project-feedback` is the caller, apply any `Supersedes #N` line per [`feedback.md`](../../../docs/issues/feedback.md). Keep default priority unless the human requested otherwise.
 - Draft acceptance criteria per [`requirements.md`](../../../docs/issues/requirements.md). If the task touches [`specs/playtest/story-rows.md`](../../../specs/playtest/story-rows.md), require epic or task owners or durable `none` reasons. Never require every `none` to name a live `type:defect`.
 
 ## Related
