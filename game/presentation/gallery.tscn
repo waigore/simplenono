@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://presentation/gallery.gd" id="1_gallery"]
+[ext_resource type="Script" path="res://presentation/gallery_r2_scroll.gd" id="2_r2_scroll"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress"]
 content_margin_left = 12.0
@@ -109,6 +110,7 @@ show_percentage = false
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+script = ExtResource("2_r2_scroll")
 
 [node name="Grid" type="GridContainer" parent="Margin/Layout/Scroll"]
 unique_name_in_owner = true
