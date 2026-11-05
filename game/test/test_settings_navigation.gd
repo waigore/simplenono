@@ -12,7 +12,6 @@ extends GutTest
 const SHELL_SCENE := "res://presentation/shell.tscn"
 const TEST_PATH := "user://progress-settings-navigation-test.cfg"
 const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
-const HINT_PATH := "user://hints-settings-navigation-test.cfg"
 
 var _shell: Shell
 
@@ -25,13 +24,10 @@ func before_each() -> void:
 	_remove(TEST_PATH)
 	_remove(_orientation_path())
 	_remove(_orientation_path() + OrientationLock.TEMP_SUFFIX)
-	_remove(HINT_PATH)
-	_remove(HINT_PATH + HintPreferences.TEMP_SUFFIX)
 	var scene := load(SHELL_SCENE) as PackedScene
 	assert_not_null(scene, "shell scene loads")
 	_shell = scene.instantiate() as Shell
 	_shell.progress_path = TEST_PATH
-	_shell.hint_prefs_path = HINT_PATH
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
 	_shell.open_gallery()
@@ -40,7 +36,6 @@ func before_each() -> void:
 func after_each() -> void:
 	_remove(TEMP_PATH)
 	_remove(TEST_PATH)
-	_remove(HINT_PATH)
 
 
 func _orientation_path() -> String:
@@ -63,7 +58,6 @@ func _reshell(mobile: bool) -> void:
 	var scene := load(SHELL_SCENE) as PackedScene
 	_shell = scene.instantiate() as Shell
 	_shell.progress_path = TEST_PATH
-	_shell.hint_prefs_path = HINT_PATH
 	_shell.orientation_path = _orientation_path()
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
@@ -295,44 +289,6 @@ func test_toggled_mute_reads_back_on_reopen() -> void:
 	assert_true(_shell.session_flags().mute_bgm(), "F2 still holds the toggled value")
 	assert_eq(screen.mute_text(), SettingsScreen.COPY_ON, "P2: C2 reads On again")
 	assert_eq(screen.haptics_text(), SettingsScreen.COPY_ON, "the haptics branch stayed untouched")
-
-
-# J-settings US1.8 / SCH-preferences L2: the hint toggles reach the shell's one durable
-# source through C5–C7, and a relaunch reads the stored choice back
-func test_hint_toggles_reach_the_shell_store() -> void:
-	_open_settings_from_gallery()
-	var screen := _shell.settings_screen()
-	screen.single_line_button().pressed.emit()
-	screen.multi_line_button().pressed.emit()
-	screen.line_fillable_button().pressed.emit()
-
-	assert_true(_shell.hint_preferences().single_line(), "F4 changed through C5")
-	assert_true(_shell.hint_preferences().multi_line(), "F5 changed through C6")
-	assert_true(_shell.hint_preferences().line_fillable(), "F6 changed through C7")
-	assert_eq(screen.single_line_text(), SettingsScreen.COPY_ON, "C5 reflects the store")
-	assert_eq(screen.multi_line_text(), SettingsScreen.COPY_ON, "C6 reflects the store")
-	assert_eq(screen.line_fillable_text(), SettingsScreen.COPY_ON, "C7 reflects the store")
-	assert_true(FileAccess.file_exists(HINT_PATH), "the choices stored durably")
-
-	var relaunched := HintPreferences.new(HINT_PATH).apply()
-	assert_true(relaunched.single_line(), "a relaunch reads F4 back")
-	assert_true(relaunched.multi_line(), "a relaunch reads F5 back")
-	assert_true(relaunched.line_fillable(), "a relaunch reads F6 back")
-
-
-# J-settings US1.8 / SCH-preferences I4: enabling a hint assist through C5 while a
-# puzzle attempt is open is observable for hint-free at once
-func test_hint_toggle_during_an_open_attempt_latches() -> void:
-	assert_true(_shell.open_puzzle("pack-000"), "a puzzle is open")
-	_shell.puzzle_screen().finish_ready_beat()
-	_shell.puzzle_screen().settings_requested.emit()
-	var attempt := _shell.attempt()
-	assert_false(_shell.hint_assist_enabled_during_attempt(), "no assist is on yet")
-
-	_shell.settings_screen().single_line_button().pressed.emit()
-
-	assert_true(_shell.hint_assist_enabled_during_attempt(), "the enable latches")
-	assert_false(attempt.hint_free_eligible(), "GS.hint-free-eligible drops at once")
 
 
 # SEQ pause B2: pausing during get-set-ready keeps the beat, and Back resumes it

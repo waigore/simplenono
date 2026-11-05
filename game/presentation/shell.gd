@@ -173,7 +173,6 @@ func _ready() -> void:
 	_settings.back_requested.connect(close_settings)
 	_settings.orientation_requested.connect(_on_orientation_requested)
 	_settings.present(_flags)
-	_settings.present_hints(_hint_prefs)
 	_settings.present_orientation(_orientation)
 	_result.back_requested.connect(close_result)
 	_result.reveal().morph_finished.connect(_on_result_morph_finished)
@@ -554,9 +553,8 @@ func hint_assist_enabled_during_attempt() -> bool:
 
 
 ## [code]UI-settings.C5[/code]–[code]C7[/code] ([b]SCH-preferences[/b] L2): durable
-## hint-assist writes. The settings screen calls these through the presented store
-## too; tests and later UI call them directly. Returns false when the store refused
-## the write.
+## hint-assist writes. Settings chrome lands after mockup re-approval; tests and later
+## UI call these. Returns false when the store refused the write.
 func set_hint_single_line(enabled: bool) -> bool:
 	return _hint_prefs.set_single_line(enabled)
 

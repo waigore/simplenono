@@ -261,17 +261,8 @@ func test_settings_chrome_uses_the_one_family_at_t2() -> void:
 		"HapticsHint",
 		"MuteLabel",
 		"MuteHint",
-		"SingleLineLabel",
-		"SingleLineHint",
-		"MultiLineLabel",
-		"MultiLineHint",
-		"LineFillableLabel",
-		"LineFillableHint",
 		"HapticsButton",
 		"MuteButton",
-		"SingleLineButton",
-		"MultiLineButton",
-		"LineFillableButton",
 		"BackButton",
 	]:
 		var control := screen.get_node("%" + node_name) as Control
@@ -326,14 +317,8 @@ func test_chrome_words_are_sentence_case() -> void:
 		SettingsScreen.COPY_TITLE,
 		SettingsScreen.COPY_HAPTICS,
 		SettingsScreen.COPY_MUTE,
-		SettingsScreen.COPY_HINT_SINGLE,
-		SettingsScreen.COPY_HINT_MULTI,
-		SettingsScreen.COPY_HINT_FILLABLE,
 		SettingsScreen.COPY_BACK,
 		SettingsScreen.HINT_HAPTICS,
 		SettingsScreen.HINT_MUTE,
-		SettingsScreen.HINT_SINGLE,
-		SettingsScreen.HINT_MULTI,
-		SettingsScreen.HINT_FILLABLE,
 	]:
 		assert_ne(text, text.to_upper(), "%s is not all caps" % text)
