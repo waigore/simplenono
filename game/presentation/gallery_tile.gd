@@ -67,6 +67,7 @@ func setup(entry: GalleryEntry, picture: Texture2D) -> void:
 	_status_label.text = status_text()
 	_best_label.text = best_text()
 	_thumb.show_picture(picture if entry.thumbnail_visible else null)
+	_thumb.show_star(entry.hint_free)
 	_reset_holder.visible = reset_allowed()
 	_reset_button.visible = reset_allowed()
 	hold_picture_square.call_deferred()
@@ -112,6 +113,23 @@ func reset_allowed() -> bool:
 ## True when the tile draws the stored picture instead of the placeholder.
 func shows_picture() -> bool:
 	return _thumb.shows_picture()
+
+
+## True when the [code]UIS.I1[/code] clinical hint-free star is drawn at the thumb's
+## upper-left ([code]PER.R7[/code]).
+func shows_star() -> bool:
+	return _thumb.shows_star()
+
+
+## The thumb's held star inset and side ([code]PER.R7[/code]), for tests.
+func star_metrics() -> Vector2:
+	return _thumb.star_metrics()
+
+
+## Applies the frame-held star metrics the way [method set_body_padding] does (#557):
+## the gallery holds the rule, the tile keeps only the values.
+func set_star_metrics(inset: float, star_size: float) -> void:
+	_thumb.set_star_metrics(inset, star_size)
 
 
 ## Width ÷ height of the drawn picture region, so a test can hold it to the mockups.

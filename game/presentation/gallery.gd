@@ -50,6 +50,13 @@ const NARROW_GRID_GAP := 10.0
 ## desktop one (#557).
 const NARROW_TILE_PAD := 8.0
 const WIDE_TILE_PAD := 12.0
+## [b]UI-gallery[/b] R2's hint-free star ([code]PER.R7[/code]): `.hint-free-star`
+## draws a 12 px star at a 4 px inset on the mobile frame and 14 px at 6 px on the
+## desktop one ([code]UIS.I1[/code]).
+const NARROW_STAR_INSET := 4.0
+const WIDE_STAR_INSET := 6.0
+const NARROW_STAR_SIZE := 12.0
+const WIDE_STAR_SIZE := 14.0
 const WIDE_PAGE_MARGIN := 32.0
 const WIDE_GRID_GAP := 20.0
 
@@ -195,6 +202,20 @@ func grid_gap() -> float:
 ## values (#557).
 func tile_padding() -> float:
 	return clampf(size.x * NARROW_TILE_PAD / NARROW_FRAME_WIDTH, NARROW_TILE_PAD, WIDE_TILE_PAD)
+
+
+## The mockup's star upper-left inset at this frame width, held between the two mockups'
+## values ([code]PER.R7[/code]).
+func star_inset() -> float:
+	return clampf(
+		size.x * NARROW_STAR_INSET / NARROW_FRAME_WIDTH, NARROW_STAR_INSET, WIDE_STAR_INSET
+	)
+
+
+## The mockup's star side at this frame width, held between the two mockups' values
+## ([code]UIS.I1[/code]).
+func star_size() -> float:
+	return clampf(size.x * NARROW_STAR_SIZE / NARROW_FRAME_WIDTH, NARROW_STAR_SIZE, WIDE_STAR_SIZE)
 
 
 ## The frame width the mockups' four columns need at this frame height. A phone reports
@@ -389,6 +410,7 @@ func _apply_frame_spacing() -> void:
 	var pad := int(roundf(tile_padding()))
 	for target: GalleryTile in _tiles.values():
 		target.set_body_padding(pad)
+		target.set_star_metrics(star_inset(), star_size())
 
 
 ## Builds [code]EX.confirm[/code] last so it sits over the whole screen ([code]S1[/code]
