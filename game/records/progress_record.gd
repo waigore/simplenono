@@ -2,12 +2,13 @@ class_name ProgressRecord
 extends RefCounted
 ## One puzzle's durable progress ([SCH-progress]).
 ##
-## Holds F1-F6 exactly as the schema names them, including an attempt status that is
+## Holds F1-F7 exactly as the schema names them, including an attempt status that is
 ## orthogonal to ever-completed ([SCH-progress] I6, [code]GS.ever-completed[/code]
-## separate from [code]GS.attempt-status[/code], [code]V6[/code]). Only [b]CMP-pack[/b]
-## writes it, through [b]CTR-pack[/b] O5-O7 ([method ProgressRules.commit],
-## [method ProgressRules.record_solve], [method ProgressRules.reset]): nothing else
-## assigns these fields, which is how [SCH-progress] I1-I6 stay true.
+## separate from [code]GS.attempt-status[/code], [code]V6[/code]) and hint-free
+## ([SCH-progress] I7, [code]V7[/code]). Only [b]CMP-pack[/b] writes it, through
+## [b]CTR-pack[/b] O5-O7 and O9 ([method ProgressRules.commit],
+## [method ProgressRules.record_solve], [method ProgressRules.reset],
+## [method ProgressRules.void_hint_free]): nothing else assigns these fields.
 
 ## F1 - the puzzle this record is for.
 var puzzle_id: String
@@ -27,6 +28,9 @@ var elapsed: int = 0
 
 ## F6 - the shortest successful solve, or -1 while absent (no solve yet, or after reset).
 var personal_best: int = -1
+
+## F7 - clean-solve reward; true only while ever-completed and not voided ([code]V7[/code]).
+var hint_free: bool = false
 
 
 func _init(record_id: String) -> void:

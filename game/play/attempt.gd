@@ -59,6 +59,8 @@ var _rules: Rules
 var _progress: ProgressRules
 ## The grid the last solve carried ([code]SEQ-mark[/code] S12); null before a solve.
 var _solved_grid: MarkGrid
+## [code]GS.hint-free-eligible[/code]: false once any hint is enabled this attempt.
+var _hint_free_eligible: bool = true
 
 var _beat_running: bool = false
 
@@ -89,6 +91,8 @@ func open(puzzle_id: String) -> bool:
 	_rules = Rules.new(definition)
 	_progress = _pack.progress()
 	_state = _state_for(definition.size, _progress.record(puzzle_id))
+	# Hint toggles (#651) seed this false when any are already on at open.
+	_hint_free_eligible = true
 	_beat_running = true
 	return true
 
@@ -177,12 +181,34 @@ func _solve(line_status: LineStatusCheck) -> MarkResult:
 	var result := MarkResult.new(solved_grid, line_status)
 	_solved_grid = solved_grid
 	# S9 keeps the elapsed value at the solve; S10 records it before S11 zeroes it.
-	_progress.record_solve(_puzzle_id, stopped_elapsed)
+	# Prefer Pack.O6 (file replace) when the pack knows the id; fixture packs without
+	# definitions fall back to the progress rules directly.
+	if _pack.definition(_puzzle_id) != null:
+		_pack.record_solve(_puzzle_id, stopped_elapsed, _hint_free_eligible)
+	else:
+		_progress.record_solve(_puzzle_id, stopped_elapsed, _hint_free_eligible)
 	# S11.
 	_state.clear_attempt()
 	# S13.
 	solved.emit(_puzzle_id, stopped_elapsed)
 	return result
+
+
+## Marks this attempt ineligible for hint-free and voids the durable flag ([b]CTR-pack[/b]
+## O9). Called when any hint toggle is enabled while the puzzle is open (#651).
+func void_hint_free() -> void:
+	if _state == null or _puzzle_id.is_empty():
+		return
+	_hint_free_eligible = false
+	if _pack.definition(_puzzle_id) != null:
+		_pack.void_hint_free(_puzzle_id)
+	else:
+		_progress.void_hint_free(_puzzle_id)
+
+
+## [code]GS.hint-free-eligible[/code] for the open attempt; true before any hint enable.
+func hint_free_eligible() -> bool:
+	return _hint_free_eligible
 
 
 ## The grid the last solve carried ([code]SEQ-mark[/code] S12), or null before a solve.
