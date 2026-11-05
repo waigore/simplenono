@@ -17,3 +17,5 @@ Authoring rules: [`.agents/specs/rules/ux/glossary.md`](../../.agents/specs/rule
 | Region | A named part of a screen that shows specific content. | the screen spec |
 | Screen | One interface surface with one job. | [`screens/`](screens/) |
 | UI action | A named interface command, such as confirm or back. | [`controls.md`](controls.md) |
+
+"Main menu" is a screen name ([`screens/menu.md`](screens/menu.md)), not a domain term; it is not defined here.

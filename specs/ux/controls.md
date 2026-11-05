@@ -15,6 +15,8 @@ Authoring rules: [`.agents/specs/rules/ux/controls.md`](../../.agents/specs/rule
 | `IN.mark-complement` | Mark complement | On a puzzle cell, apply the fill↔cross complement of the selected tool (see Mark tools). |
 | `IN.drag-paint` | Drag-paint | Apply the selected tool's mark along cells under a held drag (no per-cell toggle). |
 
+`UI-menu.C3` Exit uses `IN.activate`; no separate quit action is added. Every primary platform already binds `IN.activate` ([`controls/bindings.md`](controls/bindings.md)).
+
 ## Mark tools (puzzle)
 
 Selected tool is Fill, Cross, or Clear ([`UI-puzzle`](screens/puzzle.md) C3–C5).

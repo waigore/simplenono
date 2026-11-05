@@ -16,11 +16,12 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 | C1 | Open puzzle | US1.5 |
 | C2 | Reset when allowed / not | US1.6, US1.6b |
 | C3 | Open settings | US1.4 |
+| C4 | Back to main menu | US1.7 |
 | S1 | Default | US1.1 |
 
 ## US1: Browse pack
 
-As the Player, I browse the gallery so that I see progress and open puzzles or settings.
+As the Player, I browse the gallery so that I see progress and open puzzles, settings, or the main menu.
 
 ### US1.1: Default shows progress
 
@@ -30,7 +31,7 @@ As the Player, I browse the gallery so that I see progress and open puzzles or s
 Given UI-gallery Default and GS.completion-rate is 0.25
 When the screen is shown
 Then R1 shows completion (copy.completion) reflecting 50 / 200
-And C1–C3 are available as allowed
+And C1–C4 are available as allowed
 ```
 
 ### US1.2: Tile facts when knowable
@@ -91,4 +92,14 @@ Then EX.confirm appears
 Given P not started and never completed
 When the Player activates C2
 Then nothing changes
+```
+
+### US1.7: Back to main menu
+
+- **Proves**: C4, T12
+
+```gherkin
+Given UI-gallery Default
+When the Player activates C4
+Then UI-menu opens
 ```

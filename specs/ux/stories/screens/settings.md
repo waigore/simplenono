@@ -15,7 +15,7 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 | C1 | Toggle haptics | US1.2 |
 | C2 | Toggle mute BGM | US1.3 |
 | C4 | Switch the locked orientation (mobile) | US1.6 |
-| C3 | Back to gallery or puzzle | US1.4, US1.5 |
+| C3 | Back to menu, gallery, or puzzle | US1.4, US1.5, US1.7 |
 | S1 | Default | US1.1 |
 
 ## US1: Slim prefs
@@ -84,4 +84,14 @@ When the Player activates C4
 Then C4 shows Landscape
 And the screen stays UI-settings, locked in landscape
 And a relaunch restores the locked landscape
+```
+
+### US1.7: Back to main menu
+
+- **Proves**: C3, T13
+
+```gherkin
+Given UI-settings opened from UI-menu
+When the Player activates C3
+Then UI-menu opens
 ```

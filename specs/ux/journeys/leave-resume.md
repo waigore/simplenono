@@ -10,7 +10,7 @@ Authoring rules: [`.agents/specs/rules/ux/journeys.md`](../../../.agents/specs/r
 
 ## Entry and exit
 
-- **N1**: Starts on `UI-puzzle` with attempt in progress ([`GS.attempt-status`](../../design/game-state.md))
+- **N1**: Starts on `UI-puzzle` with attempt in progress ([`GS.attempt-status`](../../design/game-state.md)). A cold start reaches the gallery through `UI-menu.C1` before reopening the puzzle ([`navigation.md`](../navigation.md) N1)
 - **N2**: Ends on `UI-puzzle` with marks and elapsed restored
 
 ## Steps
