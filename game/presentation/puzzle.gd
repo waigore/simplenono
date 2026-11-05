@@ -62,6 +62,7 @@ func _ready() -> void:
 	_style_tool_buttons()
 	_style_chrome_button(_leave_button)
 	_style_chrome_button(_settings_button)
+	_style_elapsed_label()
 	_fill_button.pressed.connect(_select_tool.bind(CellMark.Mark.FILL))
 	_cross_button.pressed.connect(_select_tool.bind(CellMark.Mark.CROSS))
 	_clear_button.pressed.connect(_select_tool.bind(CellMark.Mark.CLEAR))
@@ -301,6 +302,13 @@ func _style_chrome_button(button: Button) -> void:
 	button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
 	button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
 	button.add_theme_color_override("font_hover_pressed_color", PresentationPalette.INK)
+
+
+## [code]PAL.K1[/code] / [code]copy.elapsed[/code]: R1's timer stays Ink on Paper. Without
+## a pinned [code]font_color[/code], the Label inherits the engine default face and can
+## read as missing on the Paper chrome (#644), same visibility class as C1 Leave (#601).
+func _style_elapsed_label() -> void:
+	_elapsed_label.add_theme_color_override("font_color", PresentationPalette.INK)
 
 
 ## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied on
