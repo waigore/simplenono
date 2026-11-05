@@ -15,7 +15,7 @@ Authoring rules: [`.agents/specs/rules/aesthetics/palette.md`](../../.agents/spe
 | C4 | Rule | `#C5D0D6` | grid | Minor cell borders |
 | C5 | Dim | `#6E7F8C` | matched clue number | Clue-number text once that number matches its fill island |
 | C6 | Contradiction | `#3A6F8F` | line error | The line-error signal only |
-| C7 | Major | `#AEBBC3` | major grid | Cell borders at every multiple of 5 |
+| C7 | Major | `#B0BBC3` | grid | Major grid lines every 5 cells on the open board |
 
 ## Palette sets
 
@@ -34,4 +34,4 @@ One style throughout ([`aesthetics.md`](aesthetics.md)). Solution pictures keep 
 | K3 | Line error uses contradiction only | Line-error signal | C6 is the only non-neutral hue, used only for that signal, and contrasts at least 4.5:1 with C1 | [`PER.R3`](../view/perception.md); line error in [`experience.md`](../design/experience.md) |
 | K4 | Matched clue numbers dim | Clue-number text | C5 is lighter than C2 and contrasts at least 3:1 with C1 | Clue satisfied in [`experience.md`](../design/experience.md); [`PER.R2`](../view/perception.md) |
 | K5 | Cool high-contrast swatches | Every swatch | C1–C5 and C7 are neutral cool grays. C6 is steel blue reserved for the line-error signal | [`AES.P1`](aesthetics.md) |
-| K6 | Major is darker than Rule | Major grid edges | C7 is darker than C4 and stays a cool neutral | [`AES.P2`](aesthetics.md) |
+| K6 | Major darker than Rule | Open-board grid edges | C7 is darker than C4 and lighter than C5; same cool neutral family | [`AES.P2`](aesthetics.md) |

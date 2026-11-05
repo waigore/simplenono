@@ -11,7 +11,7 @@
       --fg: #1B2833;
       --muted: #6E7F8C;
       --line: #C5D0D6;
-      --major: #AEBBC3;
+      --major: #B0BBC3;
       --cross: #5C6B78;
       --dim: #6E7F8C;
       --error: #3A6F8F;
@@ -242,10 +242,19 @@
       padding: 0;
       cursor: pointer;
     }
-    .cell.major-top { border-top-color: var(--major); }
-    .cell.major-right { border-right-color: var(--major); }
-    .cell.major-bottom { border-bottom-color: var(--major); }
-    .cell.major-left { border-left-color: var(--major); }
+    /* PAL.C7 Major at every multiple of 5 (SRF.O2). $="c5" also matches c15. */
+    .cell[aria-label$="c5"]:not([aria-label$="c15"]),
+    .cell[aria-label$="c10"],
+    .cell[aria-label$="c15"],
+    .cell[aria-label$="c20"] {
+      border-right-color: var(--major);
+    }
+    .cell[aria-label^="r5c"],
+    .cell[aria-label^="r10c"],
+    .cell[aria-label^="r15c"],
+    .cell[aria-label^="r20c"] {
+      border-bottom-color: var(--major);
+    }
     .cell.fill { background: var(--fg); }
     .cell.cross {
       background: var(--bg);
@@ -6737,17 +6746,6 @@
         if (!button) return;
         picker.closest(".board-wrap").dataset.show = button.dataset.pick;
       });
-    }
-    // Major edges every 5 cells (PAL.C7); minors stay Rule (PAL.C4).
-    for (const cell of document.querySelectorAll(".cell[aria-label^='r']")) {
-      const match = cell.getAttribute("aria-label").match(/^r(\d+)c(\d+)$/);
-      if (!match) continue;
-      const row = Number(match[1]);
-      const col = Number(match[2]);
-      if (row % 5 === 0) cell.classList.add("major-bottom");
-      if (col % 5 === 0) cell.classList.add("major-right");
-      if (row > 1 && (row - 1) % 5 === 0) cell.classList.add("major-top");
-      if (col > 1 && (col - 1) % 5 === 0) cell.classList.add("major-left");
     }
   </script>
 </body>
