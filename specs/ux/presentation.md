@@ -6,7 +6,7 @@ Authoring rules: [`.agents/specs/rules/ux/presentation.md`](../../.agents/specs/
 
 - **Design system**: `minimal` / `design-systems/minimal`
 - **Content root**: `~/.open-design-skill/repo` (default when `OPEN_DESIGN_ROOT` is unset)
-- **Aesthetics fit**: Open Design supplies layout structure and components only. Remap chrome to [`PAL.S1`](../aesthetics/palette.md) (Paper, Ink, Cross, Rule, Dim, Contradiction). Panels stay square with Rule borders ([`UIS.F1`](../aesthetics/ui-style.md)). Type is geometric sans ([`UIS.T1`](../aesthetics/ui-style.md), [`UIS.T2`](../aesthetics/ui-style.md)). Drop seed purple/blue accents, soft shadows, and pills — aesthetics win over the seed.
+- **Aesthetics fit**: Open Design supplies layout structure and components only. Remap chrome to [`PAL.S1`](../aesthetics/palette.md) (Paper, Ink, Cross, Rule, Dim, Contradiction, Major). Panels stay square with Rule borders ([`UIS.F1`](../aesthetics/ui-style.md)). Type is geometric sans ([`UIS.T1`](../aesthetics/ui-style.md), [`UIS.T2`](../aesthetics/ui-style.md)). Drop seed purple/blue accents, soft shadows, and pills — aesthetics win over the seed.
 - **Catalog**: [`mockups/catalog.md`](mockups/catalog.md)
 
 ## Surfaces
