@@ -13,7 +13,7 @@ Authoring rules: [`.agents/specs/rules/ux/traceability.md`](../../.agents/specs/
 | Solve loop; get-set-ready; marks; leave/pause/solve | [`loops/solve.md`](../design/loops/solve.md), [`game-state.md`](../design/game-state.md) | [`screens/puzzle.md`](screens/puzzle.md); [`controls.md`](controls.md) |
 | Win reveal morph; return to gallery | [`PER.R5`](../view/perception.md), [`MOT.E1`](../aesthetics/motion.md), [`MOT.E2`](../aesthetics/motion.md) | [`screens/result.md`](screens/result.md) |
 | Haptics toggle; mute BGM only | [`HAP.S1`](../view/haptics.md), [`sound.md`](../aesthetics/sound.md) | [`screens/settings.md`](screens/settings.md) |
-| Hint assist toggles: single-line fill, multi-line fill, line-level fillable; persisted, distinct from clues | [`design/configuration.md`](../design/configuration.md) game options, [`schemata/preferences.md`](../technical/schemata/preferences.md) | [`screens/settings.md`](screens/settings.md) (`UI-settings.C5`–`C7`) |
+| Hint assist toggles: single-line fill, multi-line fill, line-level fillable; persisted, distinct from clues | [`design/configuration.md`](../design/configuration.md) game options, [`schemata/preferences.md`](../technical/schemata/preferences.md) | [`screens/settings.md`](screens/settings.md) (`UI-settings.C5`–`C7`); [`screens/puzzle.md`](screens/puzzle.md) (`UI-puzzle` overlays + shade, [`PER.R8`](../view/perception.md)) |
 | Locked mobile orientation; portrait default; stored choice | [`view.md`](../view/view.md) platform implications (ADR-0009) | [`screens/settings.md`](screens/settings.md) (`UI-settings.C4`) |
 
 ## Topic coverage

@@ -15,6 +15,8 @@
       --cross: #5C6B78;
       --dim: #6E7F8C;
       --error: #3A6F8F;
+      --hint: #8FA2AF;
+      --shade: #C2CDD4;
       --font: "Avenir Next", "Segoe UI", system-ui, sans-serif;
       --mono: ui-monospace, "SF Mono", Menlo, monospace;
       --radius: 0;
@@ -256,6 +258,23 @@
       border-bottom-color: var(--major);
     }
     .cell.fill { background: var(--fg); }
+    /* Hint assists (features/fill-hints, features/line-fillable-shade): provisional
+       neutral tints — palette swatches land after mockup approval. Overlay darker
+       than shade (PER.R8); neither writes a mark. */
+    .hghost, .shade { position: relative; }
+    .hghost::after, .shade::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      pointer-events: none;
+    }
+    .hghost-f::after { background: var(--hint); opacity: 0.85; }
+    .hghost-x::after {
+      background-image:
+        linear-gradient(45deg, transparent 42%, var(--hint) 42%, var(--hint) 58%, transparent 58%),
+        linear-gradient(-45deg, transparent 42%, var(--hint) 42%, var(--hint) 58%, transparent 58%);
+    }
+    .shade::after { background: var(--shade); opacity: 0.55; }
     .cell.cross {
       background: var(--bg);
       background-image:
@@ -393,25 +412,25 @@
             <div class="clue row" role="rowheader" aria-label="row 3 clue 2">
               <span class="run">2</span>
             </div>
-            <button type="button" class="cell" data-control="C2" aria-label="r3c1"></button>
-            <button type="button" class="cell" data-control="C2" aria-label="r3c2"></button>
-            <button type="button" class="cell" data-control="C2" aria-label="r3c3"></button>
-            <button type="button" class="cell" data-control="C2" aria-label="r3c4"></button>
-            <button type="button" class="cell fill" data-control="C2" aria-label="r3c5"></button>
-            <button type="button" class="cell fill" data-control="C2" aria-label="r3c6"></button>
-            <button type="button" class="cell" data-control="C2" aria-label="r3c7"></button>
-            <button type="button" class="cell" data-control="C2" aria-label="r3c8"></button>
-            <button type="button" class="cell" data-control="C2" aria-label="r3c9"></button>
-            <button type="button" class="cell" data-control="C2" aria-label="r3c10"></button>
+            <button type="button" class="cell hghost hghost-x" data-control="C2" aria-label="r3c1"></button>
+            <button type="button" class="cell hghost hghost-x" data-control="C2" aria-label="r3c2"></button>
+            <button type="button" class="cell hghost hghost-x" data-control="C2" aria-label="r3c3"></button>
+            <button type="button" class="cell hghost hghost-x" data-control="C2" aria-label="r3c4"></button>
+            <button type="button" class="cell fill hghost hghost-f" data-control="C2" aria-label="r3c5"></button>
+            <button type="button" class="cell fill hghost hghost-f" data-control="C2" aria-label="r3c6"></button>
+            <button type="button" class="cell hghost hghost-x" data-control="C2" aria-label="r3c7"></button>
+            <button type="button" class="cell hghost hghost-x" data-control="C2" aria-label="r3c8"></button>
+            <button type="button" class="cell hghost hghost-x" data-control="C2" aria-label="r3c9"></button>
+            <button type="button" class="cell hghost hghost-x" data-control="C2" aria-label="r3c10"></button>
             <div class="clue row" role="rowheader" aria-label="row 4 clue 6">
               <span class="run">6</span>
             </div>
             <button type="button" class="cell" data-control="C2" aria-label="r4c1"></button>
-            <button type="button" class="cell" data-control="C2" aria-label="r4c2"></button>
-            <button type="button" class="cell fill" data-control="C2" aria-label="r4c3"></button>
-            <button type="button" class="cell fill" data-control="C2" aria-label="r4c4"></button>
-            <button type="button" class="cell fill" data-control="C2" aria-label="r4c5"></button>
-            <button type="button" class="cell fill" data-control="C2" aria-label="r4c6"></button>
+            <button type="button" class="cell shade" data-control="C2" aria-label="r4c2"></button>
+            <button type="button" class="cell shade fill" data-control="C2" aria-label="r4c3"></button>
+            <button type="button" class="cell shade fill" data-control="C2" aria-label="r4c4"></button>
+            <button type="button" class="cell shade fill" data-control="C2" aria-label="r4c5"></button>
+            <button type="button" class="cell shade fill" data-control="C2" aria-label="r4c6"></button>
             <button type="button" class="cell fill" data-control="C2" aria-label="r4c7"></button>
             <button type="button" class="cell fill" data-control="C2" aria-label="r4c8"></button>
             <button type="button" class="cell" data-control="C2" aria-label="r4c9"></button>
@@ -1370,7 +1389,7 @@
               <button type="button" class="tool" data-control="C5">Clear</button>
             </div>
           </div>
-          <figcaption class="legend">R2 328×512 · board frame 26/18/14 px cells, all inside the ~90% safe area · no scroll, pan, or zoom</figcaption>
+          <figcaption class="legend">R2 328×512 · board frame 26/18/14 px cells, all inside the ~90% safe area · no scroll, pan, or zoom · the 10×10 sample shows the hint assists with their toggles on: overlay ghosts and the lighter fillable shade from the r4c2 tap; with the toggles off neither shows</figcaption>
           <details class="measures">
             <summary>Cell side (read off this frame)</summary>
             <table>
