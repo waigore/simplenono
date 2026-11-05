@@ -1,48 +1,46 @@
 # Release exports
 
-How a release build of `game/` is produced for the five definition platforms
-([`definition.md`](../specs/definition/definition.md)). The Android **debug** APK is a
-different path: [`android-debug.md`](android-debug.md).
+Release builds of `game/` for the five definition platforms
+([`definition.md`](../specs/definition/definition.md)); the Android **debug** APK is
+separate ([`android-debug.md`](android-debug.md)).
 
 ## Presets
 
-`game/export_presets.cfg` holds one debug preset, `Android`, and five release presets
-exactly named `Windows`, `macOS`, `Linux`, `Android Release`, and `iOS`
+`game/export_presets.cfg` holds one debug preset, `Android`, and five release
+presets: `Windows`, `macOS`, `Linux`, `Android Release`, `iOS`
 ([ADR-0008](../specs/adr/decisions/0008-release-asset-manifest.md)). Every preset leaves
-`custom_template/debug` and `custom_template/release` empty, so Godot uses whatever
-template is installed for its own version ([ADR-0001](../specs/adr/decisions/0001-godot-gdscript.md)):
-an engine bump needs no preset edit.
+`custom_template/*` empty, so Godot uses the installed template for its version
+([ADR-0001](../specs/adr/decisions/0001-godot-gdscript.md)); an engine bump needs no
+preset edit.
 
-Each release preset includes two build outputs: `release/asset_manifest.json` — the
-export script's copy of the committed `assets/manifest.json` — and
-`release/build_info.json`, the main menu's build stamp. An export packs only `res://`,
-so without the copies no asset ID resolves and the stamp has no values.
+Each release preset packs `release/asset_manifest.json` (a copy of
+`assets/manifest.json`) and `release/build_info.json`, the build stamp. An export packs
+only `res://`, so without the copies no asset ID resolves and the stamp is empty.
 
 ## Build stamp
 
 `CTR-build-info` ([`build-info.md`](../specs/technical/contracts/build-info.md)) gives
-the main menu its product version and short git SHA. Before exporting, the script:
+the menu its product version and short git SHA. Before exporting, the script:
 
 - reads the product version from `game/project.godot` `config/version`;
-- reads the short SHA from the checked-out commit (`git rev-parse --short=7 HEAD`);
-- writes both to `game/release/build_info.json`, which the release presets pack;
+- reads the short SHA from the commit (`git rev-parse --short=7 HEAD`);
+- writes both to `game/release/build_info.json`, which the presets pack;
 - writes the same version into the presets' `application/version` (macOS, iOS) and
-  Android `version/name` for platform metadata, restoring the preset file on exit.
+  Android `version/name`, restoring the file after.
 
-The export fails when either value is missing or the SHA is not 7–12 lowercase hex, so
-a shipped build never shows an empty stamp. A dev run has no `build_info.json` and
-falls back to `config/version` plus a fixed 7-hex placeholder.
+The export fails when either value is missing or the SHA is not 7–12 lowercase hex, so a
+shipped build never shows an empty stamp. A dev run falls back to `config/version` plus a fixed
+7-hex placeholder.
 
 ## Templates
 
-Install the export templates for the Godot version you run, into:
+Install templates for your Godot version:
 
 - Linux (and CI): `~/.local/share/godot/export_templates/<version>.stable/`
 - macOS: `~/Library/Application Support/Godot/export_templates/<version>.stable/`
 
-The version CI exports with is the pin in `.github/workflows/unit-tests.yml`:
-**4.7.2** today, so the folder is `4.7.2.stable`. `GODOT_TEMPLATE_ROOT` overrides the
-location.
+CI pins the version in `.github/workflows/unit-tests.yml` (**4.7.2** today, so
+`4.7.2.stable`). `GODOT_TEMPLATE_ROOT` overrides the location.
 
 ## Export
 
@@ -51,7 +49,7 @@ location.
 RELEASE_PRESETS=Linux .github/scripts/export_release.sh
 ```
 
-Outputs land in `build/release/<preset>/` (git-ignored):
+Outputs land in `build/release/<preset>/`:
 
 | Preset | Output |
 |--------|--------|
@@ -60,9 +58,9 @@ Outputs land in `build/release/<preset>/` (git-ignored):
 | `Linux` | `build/release/Linux/simplenono.x86_64` |
 | `Android Release` | `build/release/Android Release/simplenono-release.apk` |
 
-The script fails loudly when a preset, a template, the JDK, the Android SDK, or the
-release keystore is missing, and it writes nothing outside `build/release/` except the
-temporary `game/release/asset_manifest.json` copy, which it removes on exit.
+The script fails loudly when a preset, template, JDK, Android SDK, or keystore is
+missing. It writes nothing outside `build/release/` except the temporary
+`game/release/asset_manifest.json` copy, removed on exit.
 
 ## Android release inputs
 
@@ -74,9 +72,9 @@ temporary `game/release/asset_manifest.json` copy, which it removes on exit.
 | `GODOT_ANDROID_KEYSTORE_RELEASE_USER` | Key alias |
 | `GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD` | Key password |
 
-Where the keystore and its credentials come from is a product-owner decision. The
-release package is `com.simplenono.game` and declares no internet permission, so the
-install plays offline; the debug APK keeps `com.simplenono.debug`.
+Keystore and credentials are a product-owner decision. The release package is
+`com.simplenono.game` with no internet permission, so it plays offline; the debug APK
+keeps `com.simplenono.debug`.
 
 ## Release asset check
 
@@ -84,15 +82,14 @@ install plays offline; the debug APK keeps `com.simplenono.debug`.
 python3 .github/scripts/check_release_assets.py
 ```
 
-Static, offline, no export: every manifest-listed path under `game/assets/` has a file
-or `.import` sidecar, every shipped ID is in the manifest, every listed catalog entry
-is approved, no shipped `.gd` file reads `res://../`, and any in-build copy matches the
-manifest. Exit 1 on any finding.
+Static, offline: every manifest path under `game/assets/` has a file or
+`.import` sidecar, every shipped ID is in the manifest, every catalog entry is approved,
+no shipped `.gd` reads `res://../`, and any in-build copy matches the manifest.
 
 ## iOS — blocked on product owner
 
-iOS export needs a macOS runner plus Apple identity, so `export_release.sh` does not
-drive it. The `iOS` preset is ready for the values:
+iOS export needs a macOS runner plus Apple identity, so `export_release.sh` skips it.
+The `iOS` preset awaits:
 
 | Input | Value |
 |-------|-------|
@@ -101,5 +98,5 @@ drive it. The `iOS` preset is ready for the values:
 | Provisioning profile (`codesign/provisioning_profile`) | PO |
 | Signing certificate and password | PO |
 
-Once those exist, export with `godot --headless --path game --export-release iOS <out.ipa>`
-on a macOS host and hand the build to Xcode for signing and upload.
+Then export with `godot --headless --path game --export-release iOS <out.ipa>` on macOS
+and hand the build to Xcode for signing and upload.
