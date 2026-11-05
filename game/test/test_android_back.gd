@@ -33,6 +33,7 @@ func before_each() -> void:
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
 	_shell.set_process(false)
+	_shell.open_gallery()
 	_keyboard = _shell.get_node("%Keyboard") as KeyboardInput
 	assert_not_null(_keyboard, "the shell carries the keyboard input node")
 	_keyboard.platform_back = _count_platform_back

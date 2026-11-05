@@ -37,6 +37,7 @@ func before_each() -> void:
 	add_child_autofree(_shell)
 	_shell.puzzle_screen().set_process(false)
 	_shell.set_process(false)
+	_shell.open_gallery()
 	await get_tree().process_frame
 
 
