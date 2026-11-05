@@ -1,6 +1,6 @@
 class_name Shell
 extends Control
-## [b]CMP-shell[/b] R1, R2, R4, R5, R6, and R7: the app's first screen, the shell →
+## [b]CMP-shell[/b] R1, R2, R4, R5, R6, R7, and R8: the app's first screen, the shell →
 ## puzzle open leg, and the presentation feedback the screens consume
 ## (specs/technical/components/shell.md; specs/technical/sequences/open.md S1–S6,
 ## [`J-play-puzzle`](specs/ux/stories/journeys/play-puzzle.md) S1).
@@ -22,8 +22,14 @@ extends Control
 ## through [OrientationLock] ([b]SCH-preferences[/b] F3, ADR-0009): portrait at a cold
 ## launch with nothing stored, otherwise the stored portrait or landscape, locked so a
 ## tilt does not rotate it. The project's handheld orientation covers the lock itself
-## ([code]game/project.godot[/code]); desktop builds stay unlocked. The settings
-## control is a later task.
+## ([code]game/project.godot[/code]); desktop builds stay unlocked.
+##
+## R8: the same start path loads durable hint-assist toggles F4–F6 through
+## [HintPreferences] (ADR-0010). An assist already on at open seeds the attempt
+## ineligible to earn hint-free ([b]DSGN.progression[/b] PS1.8); enabling any while an
+## attempt is open latches the observation and voids that attempt's hint-free status at
+## once ([b]CTR-pack[/b] O9, [b]DSGN.progression[/b] PS1.9). Settings chrome for C5–C7
+## waits on approved mockups ([code]docs/ux-mockups.md[/code]).
 ##
 ## [GalleryScreen] is the no-puzzle screen ([code]SEQ-open[/code] B1 keeps it shown and
 ## [code]NAV.N1[/code] starts on it). Its C1 opens a puzzle here and its C3 opens
@@ -73,6 +79,10 @@ var progress_path := ProgressFile.PATH
 ## document. Tests point this at a temporary path so a run never touches user data.
 var orientation_path := OrientationLock.PATH
 
+## [b]SCH-preferences[/b] F4–F6 ([constant HintPreferences.PATH]): durable hint assists.
+## Tests point this at a temporary path so a run never touches user data.
+var hint_prefs_path := HintPreferences.PATH
+
 ## The quit call C3 makes. A field so a test records the intent without ending the run;
 ## while it is not set, [method quit_app] quits the tree.
 var quit_callable: Callable
@@ -98,6 +108,14 @@ var _resolver: AssetResolver
 ## [b]CMP-shell[/b] R7: [b]SCH-preferences[/b] F3, applied before the first screen.
 var _orientation: OrientationLock
 
+## [b]CMP-shell[/b] R8: [b]SCH-preferences[/b] F4–F6, loaded before the first screen.
+var _hint_prefs: HintPreferences
+
+## [b]SCH-preferences[/b] I4: latched when any F4–F6 turns on while an attempt is open;
+## that latch and [method Attempt.void_hint_free] are the observable pair ([b]CTR-pack[/b]
+## O9).
+var _hint_assist_enabled_during_attempt := false
+
 ## [code]UIS.T1[/code]/[code]T2[/code]: the one code-built UI theme and its family.
 var _ui_theme: UiTheme
 
@@ -118,6 +136,9 @@ var _haptics: Haptics
 func _ready() -> void:
 	_orientation = OrientationLock.new(orientation_path)
 	_orientation.apply()
+	_hint_prefs = HintPreferences.new(hint_prefs_path)
+	_hint_prefs.apply()
+	_hint_prefs.changed.connect(_on_hint_preference_changed)
 	_pack = Pack.new(progress_path)
 	_resolver = AssetResolver.new()
 	_ui_theme = UiTheme.new(_resolver, UI_FONT_ASSET_ID)
@@ -175,6 +196,11 @@ func open_puzzle(puzzle_id: String) -> bool:
 		return false
 	_unbind_attempt()
 	_attempt = attempt
+	_hint_assist_enabled_during_attempt = false
+	# R8 / PS1.8: seeding only bars this attempt from earning; the durable status
+	# keeps its earned value until O9 voids it on a real enable or reset clears it.
+	if _hint_prefs.any_enabled():
+		_attempt.seed_hint_free_eligible(false)
 	_puzzle.present(attempt)
 	_show_puzzle()
 	_audio.on_attempt_open()
@@ -512,6 +538,44 @@ func session_flags() -> SessionFlags:
 ## [b]CMP-shell[/b] R7: [b]SCH-preferences[/b] F3, loaded and locked at app start.
 func orientation_lock() -> OrientationLock:
 	return _orientation
+
+
+## [b]CMP-shell[/b] R8: [b]SCH-preferences[/b] F4–F6, loaded at app start.
+func hint_preferences() -> HintPreferences:
+	return _hint_prefs
+
+
+## [b]SCH-preferences[/b] I4 / [b]CMP-shell[/b] R8: true after any hint assist turned on
+## while the current attempt was open. Cleared when a new attempt opens. Hint-free
+## consumers (#654) read this latch; earn/void rules stay theirs.
+func hint_assist_enabled_during_attempt() -> bool:
+	return _hint_assist_enabled_during_attempt
+
+
+## [code]UI-settings.C5[/code]–[code]C7[/code] ([b]SCH-preferences[/b] L2): durable
+## hint-assist writes. Settings chrome lands after mockup re-approval; tests and later
+## UI call these. Returns false when the store refused the write.
+func set_hint_single_line(enabled: bool) -> bool:
+	return _hint_prefs.set_single_line(enabled)
+
+
+func set_hint_multi_line(enabled: bool) -> bool:
+	return _hint_prefs.set_multi_line(enabled)
+
+
+func set_hint_line_fillable(enabled: bool) -> bool:
+	return _hint_prefs.set_line_fillable(enabled)
+
+
+## [b]SCH-preferences[/b] I4: an enable while an attempt is open is observable now —
+## the latch records it and the attempt's hint-free status voids at once
+## ([b]CTR-pack[/b] O9, [b]DSGN.progression[/b] PS1.9), even if the assist stays unused.
+func _on_hint_preference_changed(_kind: String, enabled: bool) -> void:
+	if not enabled:
+		return
+	if _attempt != null:
+		_attempt.void_hint_free()
+		_hint_assist_enabled_during_attempt = true
 
 
 ## [b]CMP-shell[/b] R4: the audio feedback this shell drives.

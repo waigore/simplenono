@@ -29,7 +29,7 @@ One row per playtestable design story and UX journey/story under coverage mode `
 | `UI-gallery` | #94 | `US1.6` "Then `EX.confirm` appears" is delivered by #311, whose box clauses are proved by #96. #94 proves Reset allowedness and the reset request. |
 | `UI-puzzle` | #110 | — |
 | `UI-result` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
-| `UI-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
+| `UI-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). Hint-assist toggles: `US1.8` delivered by #651. |
 
 ## Owner rules
 
