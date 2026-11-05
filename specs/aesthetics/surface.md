@@ -8,13 +8,14 @@ Authoring rules: [`.agents/specs/rules/aesthetics/surface.md`](../../.agents/spe
 
 | ID | Shading model | Light direction | Shadow and highlight color |
 |----|---------------|-----------------|----------------------------|
-| S1 | Flat, one tone | None — flat board; depth cues do not apply ([`perception.md`](../view/perception.md)) | None — each mark is one swatch: Paper ([`PAL.C1`](palette.md)), Ink ([`PAL.C2`](palette.md)), Cross ([`PAL.C3`](palette.md)); the grid edge is Rule ([`PAL.C4`](palette.md)) ([`FRM.D1`](form.md)) |
+| S1 | Flat, one tone | None — flat board; depth cues do not apply ([`perception.md`](../view/perception.md)) | None — each mark is one swatch: Paper ([`PAL.C1`](palette.md)), Ink ([`PAL.C2`](palette.md)), Cross ([`PAL.C3`](palette.md)); minor grid edges are Rule ([`PAL.C4`](palette.md)), majors every 5 cells are Major ([`PAL.C7`](palette.md)) ([`FRM.D1`](form.md)) |
 
 ## Outline
 
 | ID | Who | Width | Color rule |
 |----|-----|-------|------------|
-| O1 | Every [cell](../design/entities/cell.md) | 1/16 of the cell side, one shared edge ([`FRM.P1`](form.md)) | Rule ([`PAL.C4`](palette.md)). Half the cross stroke ([`FRM.P2`](form.md)) |
+| O1 | Every [cell](../design/entities/cell.md) — minor edge | 1/16 of the cell side, one shared edge ([`FRM.P1`](form.md)) | Rule ([`PAL.C4`](palette.md)). Half the cross stroke ([`FRM.P2`](form.md)) |
+| O2 | Open-board grid at every multiple of 5 cells, horizontal and vertical, on every puzzle size | Same width as O1, one shared edge | Major ([`PAL.C7`](palette.md)). Darker than Rule only; not a new accent hue |
 
 ## Materials
 
