@@ -15,8 +15,9 @@ Parent: [`../verification.md`](../verification.md).
 | I7 | Gallery↔puzzle, puzzle→result, and result→gallery stay within `transition-latency` | integration | Each navigation protocol |
 | I8 | Open puzzle, settings toggle, and Back acknowledge within `response-delay` | integration | Each non-paint UI protocol |
 | I9 | Open, solve, reset, and back complete without a crash (`crash-free`) | integration | Each of those flows |
-| I10 | After kill mid-puzzle, next launch is gallery and reopen restores marks/elapsed (`resume-after-failure`) | integration | Kill-and-relaunch harness |
 | I11 | Severity-tagged error/crash logs, frame/hitch samples, and story-ID telemetry events are present (`runtime-signals`) | smoke | Debug build with S4 |
 | I12 | Each `res://data/pack.json` entry is accepted or rejected exactly as [`SCH-puzzle-def`](../schemata/puzzle-def.md) I1–I8 and [`CTR-pack`](../contracts/pack.md) O8 errors say, and a rejected entry leaves the rest of the pack loadable | unit | Every run of `game/test/` via seam S6 |
+
+I10 retired: its axis `resume-after-failure` is N/A (`quality.md`; #704) and an N/A axis is not scored (`rubrics.md`). The number is not reused.
 
 An axis holds only where `quality.md` sets Applies (`rubrics.md`: an N/A axis is not scored).

@@ -14,7 +14,7 @@ Characteristics in this table are the source of truth. Each row cites one axis r
 | Load time / latency | Applies | Gallery↔puzzle, puzzle→result, and result→gallery ≤ 500 ms | all supported | `transition-latency` |
 | Load time / latency | Applies | Non-paint UI (open puzzle, settings toggle, Back) acknowledges ≤ 500 ms | all supported | `response-delay` |
 | Reliability | Applies | No crash across open, solve, reset, and back flows | all supported | `crash-free` |
-| Reliability | Applies | After kill/crash mid-puzzle, next launch is gallery; marks and elapsed restore on reopen | all supported | `resume-after-failure` |
+| Reliability | N/A — crash is best-effort; no product restore bar ([#704](https://github.com/waigore/simplenono/issues/704)) | — | — | `resume-after-failure` |
 | Observability | Applies | Local severity-tagged error/crash logs; frame/hitch timing samples; playtest telemetry events keyed to story IDs | all supported | `runtime-signals` |
 | Save durability | Applies | Committed progress (ever-completed, PB, marks, elapsed, attempt) survives quit, crash, and upgrade within the same major save schema ([ADR-0002](../adr/decisions/0002-user-data-dir.md)) | all supported | `save-survives` |
 | Save durability | Applies | A failed progress write leaves the previous commit loadable | all supported | `failed-write` |
