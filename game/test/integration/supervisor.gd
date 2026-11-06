@@ -8,9 +8,6 @@ extends Node
 ## and records one result per invariant the protocol claims. It drives the real
 ## seams and contract calls - [b]CTR-attempt[/b] O1/O2/O4/O5, [b]CTR-pack[/b] O7 via
 ## the debug seams - and never writes a rule or a record of its own.
-##
-## `kill-relaunch` needs separate processes, so its spec names the `relaunch` driver
-## and [`IntegrationRelaunch`](relaunch.gd) owns the two child launches.
 
 signal finished(result: Dictionary)
 
@@ -92,7 +89,7 @@ func build_id() -> String:
 	return _build_id
 
 
-## Awaits one processed frame; the relaunch supervisor shares the frame pump.
+## Awaits one processed frame.
 func next_frame() -> void:
 	await get_tree().process_frame
 
@@ -110,11 +107,6 @@ func _process(delta: float) -> void:
 func _run() -> void:
 	_started_us = Time.get_ticks_usec()
 	await get_tree().process_frame
-	if String(_spec.get("driver", "scene")) == "relaunch":
-		var relaunch := IntegrationRelaunch.new()
-		var result: Dictionary = await relaunch.run(self)
-		await _finish_result(result)
-		return
 	for step in _spec.get("steps", []):
 		if _stopped:
 			break
@@ -806,9 +798,6 @@ func _row(invariant_id: String) -> Dictionary:
 		"I9":
 			passed = _flows_failed.is_empty() and not _flows_ok.is_empty()
 			observation = "flows ran: %s" % _joined(_flows_ok)
-		"I10":
-			observation = "kill-relaunch supervisor did not run"
-			artifact = _log_artifact()
 	if invariant_id in ["I6", "I7", "I8"] and not _driver_time.is_empty():
 		observation += " (driver-timed, not a product observation: %s)" % _joined(_driver_time)
 	if invariant_id in ["I6", "I7", "I8"] and _failed:

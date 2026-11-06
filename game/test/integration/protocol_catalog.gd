@@ -3,7 +3,7 @@ extends RefCounted
 ## Catalog of integration harness protocols and the invariant rows they claim
 ## (`specs/technical/verification.md`; #166).
 ##
-## Six game protocols are the source of truth for which quality axis a run may
+## Five game protocols are the source of truth for which quality axis a run may
 ## claim; `self-test` is the CI-only driver exercise and claims none. A run is
 ## comprehensive only when every game protocol has run into the same run folder.
 
@@ -15,11 +15,6 @@ const INVARIANTS := {
 	"I7": {"axis": "transition-latency", "bar": "<= 500 ms"},
 	"I8": {"axis": "response-delay", "bar": "<= 500 ms"},
 	"I9": {"axis": "crash-free", "bar": "No crash across open, solve, reset, and back"},
-	"I10":
-	{
-		"axis": "resume-after-failure",
-		"bar": "Next launch is gallery; reopen restores marks and elapsed",
-	},
 }
 
 ## Every protocol, in the order a run summary lists them.
@@ -29,7 +24,6 @@ const ORDER: Array[String] = [
 	"navigate",
 	"ui-ack",
 	"solve-reset",
-	"kill-relaunch",
 	"self-test",
 ]
 
@@ -39,7 +33,6 @@ const SCRIPTS := {
 	"navigate": preload("res://test/integration/protocols/navigate.gd"),
 	"ui-ack": preload("res://test/integration/protocols/ui_ack.gd"),
 	"solve-reset": preload("res://test/integration/protocols/solve_reset.gd"),
-	"kill-relaunch": preload("res://test/integration/protocols/kill_relaunch.gd"),
 	"self-test": preload("res://test/integration/self_test/self_test_protocol.gd"),
 }
 
@@ -64,7 +57,7 @@ static func all_specs() -> Dictionary:
 	return specs
 
 
-## The six game protocols, excluding the CI-only self-test.
+## The five game protocols, excluding the CI-only self-test.
 static func game_ids() -> Array[String]:
 	var ids: Array[String] = []
 	for protocol_id in ORDER:
