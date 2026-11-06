@@ -84,6 +84,12 @@ layout_mode = 2
 focus_mode = 2
 text = "Settings"
 
+[node name="FilterButton" type="Button" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 2
+text = "Incomplete only"
+
 [node name="ProgressBlock" type="PanelContainer" parent="Margin/Layout"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_progress")
@@ -112,10 +118,22 @@ size_flags_vertical = 3
 horizontal_scroll_mode = 0
 script = ExtResource("2_r2_scroll")
 
-[node name="Grid" type="GridContainer" parent="Margin/Layout/Scroll"]
+[node name="ScrollBody" type="VBoxContainer" parent="Margin/Layout/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Grid" type="GridContainer" parent="Margin/Layout/Scroll/ScrollBody"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
+
+[node name="EmptyLabel" type="Label" parent="Margin/Layout/Scroll/ScrollBody"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
+text = "All puzzles completed"

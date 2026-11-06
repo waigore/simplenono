@@ -84,6 +84,11 @@ var orientation_path := OrientationLock.PATH
 ## Tests point this at a temporary path so a run never touches user data.
 var hint_prefs_path := HintPreferences.PATH
 
+## [b]SCH-preferences[/b] F7 ([constant GalleryPreferences.PATH]): the durable gallery
+## incomplete-only filter. Tests point this at a temporary path so a run never touches
+## user data.
+var gallery_prefs_path := GalleryPreferences.PATH
+
 ## The quit call C3 makes. A field so a test records the intent without ending the run;
 ## while it is not set, [method quit_app] quits the tree.
 var quit_callable: Callable
@@ -111,6 +116,9 @@ var _orientation: OrientationLock
 
 ## [b]CMP-shell[/b] R8: [b]SCH-preferences[/b] F4–F6, loaded before the first screen.
 var _hint_prefs: HintPreferences
+
+## [b]CMP-shell[/b] R9: [b]SCH-preferences[/b] F7, loaded before the first screen.
+var _gallery_prefs: GalleryPreferences
 
 ## [b]SCH-preferences[/b] I4: latched when any F4–F6 turns on while an attempt is open;
 ## that latch and [method Attempt.void_hint_free] are the observable pair ([b]CTR-pack[/b]
@@ -140,6 +148,8 @@ func _ready() -> void:
 	_hint_prefs = HintPreferences.new(hint_prefs_path)
 	_hint_prefs.apply()
 	_hint_prefs.changed.connect(_on_hint_preference_changed)
+	_gallery_prefs = GalleryPreferences.new(gallery_prefs_path)
+	_gallery_prefs.apply()
 	_pack = Pack.new(progress_path)
 	_resolver = AssetResolver.new()
 	_ui_theme = UiTheme.new(_resolver, UI_FONT_ASSET_ID)
@@ -147,6 +157,7 @@ func _ready() -> void:
 	_menu.set_ui_theme(_ui_theme)
 	_menu.present(_build_info)
 	_gallery.set_ui_theme(_ui_theme)
+	_gallery.present_filter(_gallery_prefs)
 	_puzzle.set_ui_theme(_ui_theme)
 	_puzzle.set_hint_overlays(_hint_prefs.single_line(), _hint_prefs.multi_line())
 	_result.set_ui_theme(_ui_theme)
@@ -548,6 +559,11 @@ func orientation_lock() -> OrientationLock:
 ## [b]CMP-shell[/b] R8: [b]SCH-preferences[/b] F4–F6, loaded at app start.
 func hint_preferences() -> HintPreferences:
 	return _hint_prefs
+
+
+## [b]CMP-shell[/b] R9: [b]SCH-preferences[/b] F7, loaded at app start.
+func gallery_preferences() -> GalleryPreferences:
+	return _gallery_prefs
 
 
 ## [b]SCH-preferences[/b] I4 / [b]CMP-shell[/b] R8: true after any hint assist turned on

@@ -4,7 +4,7 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 
 - **UX spec**: [`screens/gallery.md`](../../screens/gallery.md)
 - **Spec key**: `UI-gallery`
-- **Glossary terms**: [Player](../../glossary.md), [Gallery](../../../design/glossary.md)
+- **Glossary terms**: [Player](../../glossary.md), [Gallery](../../../design/glossary.md), [Incomplete](../../../design/glossary.md)
 
 ## Coverage
 
@@ -19,6 +19,8 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 | C4 | Back to main menu | US1.7 |
 | S1 | Default | US1.1 |
 
+The C5 filter and its S2 state are proven in [the filter stories](gallery/filter.md).
+
 ## US1: Browse pack
 
 As the Player, I browse the gallery so that I see progress and open puzzles, settings, or the main menu.
@@ -28,7 +30,7 @@ As the Player, I browse the gallery so that I see progress and open puzzles, set
 - **Proves**: R1, S1
 
 ```gherkin
-Given UI-gallery Default and GS.completion-rate is 0.25
+Given UI-gallery Default and GS.completion-rate is 0.25 (50 of 200 ever-completed)
 When the screen is shown
 Then R1 shows completion (copy.completion) reflecting 50 / 200
 And C1–C4 are available as allowed

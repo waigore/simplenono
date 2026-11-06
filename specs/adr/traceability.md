@@ -16,6 +16,7 @@ Authoring rules: [`.agents/specs/rules/adr/traceability.md`](../../.agents/specs
 | Shell / attempt / rules / pack structure | technical, design, UX | [ADR-0004](decisions/0004-shell-attempt-rules-pack.md) |
 | GDScript unit tests (CI / local) | coding conventions | [ADR-0005](decisions/0005-gut-unit-tests.md) |
 | GDScript lint and format (CI / local) | coding conventions | [ADR-0007](decisions/0007-gdscript-lint-format.md) |
+| Durable gallery incomplete-only filter (feedback #694) | UX (`screens/gallery.md` C5), technical (`SCH-preferences` F7) | [ADR-0011](decisions/0011-gallery-filter-preference.md) |
 
 ## Imposed constraints
 
@@ -28,3 +29,6 @@ Authoring rules: [`.agents/specs/rules/adr/traceability.md`](../../.agents/specs
 | [ADR-0005](decisions/0005-gut-unit-tests.md) | [`coding-conventions.md`](../../docs/coding-conventions.md) Unit tests; Libraries stack row | Cited |
 | [ADR-0006](decisions/0006-asset-manifest-generator.md) | [`asset-access.md`](../technical/asset-access.md); [`adr.md`](adr.md) Integrations row | Cited |
 | [ADR-0007](decisions/0007-gdscript-lint-format.md) | [`coding-conventions.md`](../../docs/coding-conventions.md) Rules and Tooling; [`adr.md`](adr.md) Libraries row | Cited |
+| [ADR-0009](decisions/0009-orientation-preference.md) | [`persistence.md`](../technical/persistence.md), [`CMP-shell`](../technical/components/shell.md), [`SCH-preferences`](../technical/schemata/preferences.md) | Cited |
+| [ADR-0010](decisions/0010-hint-preferences.md) | [`persistence.md`](../technical/persistence.md), [`CMP-shell`](../technical/components/shell.md), [`SCH-preferences`](../technical/schemata/preferences.md) | Cited |
+| [ADR-0011](decisions/0011-gallery-filter-preference.md) | [`persistence.md`](../technical/persistence.md), [`CMP-shell`](../technical/components/shell.md), [`SCH-preferences`](../technical/schemata/preferences.md) | Cited |

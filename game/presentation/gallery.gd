@@ -36,6 +36,11 @@ const COPY_GREETING := "Local pack"
 const COPY_TITLE := "Gallery"
 const COPY_SETTINGS := "Settings"
 const COPY_MENU := "Back to main menu"
+## [code]copy.filter-incomplete[/code]: C5's label.
+const COPY_FILTER_INCOMPLETE := "Incomplete only"
+## [code]copy.filter-empty[/code]: R2's empty state while C5 is on and every puzzle is
+## ever-completed.
+const COPY_FILTER_EMPTY := "All puzzles completed"
 
 ## [b]UI-gallery[/b]'s page margin and tile gap at the mockups' own frame. Both mockups
 ## draw spacing as a share of the frame the way [code]UIS.T2[/code] draws type: 20 px
@@ -78,20 +83,29 @@ const WIDE_WIDTH := 720.0
 const MOCKUP_FRAME_HEIGHT := 844.0
 
 var _pack: Pack
+## Every O1 entry, in pack order, before C5's filter.
+var _all_entries: Array[GalleryEntry] = []
+## The entries R2 draws: [member _all_entries] when C5 is off, only not-ever-completed
+## puzzles when it is on.
 var _entries: Array[GalleryEntry] = []
 var _tiles: Dictionary = {}
 var _picture_for := Callable()
 var _confirm: ConfirmOverlay
+## [b]SCH-preferences[/b] F7 ([GalleryPreferences], ADR-0011): the durable filter the
+## shell presents. Null keeps the filter off.
+var _filter_prefs: GalleryPreferences
 
 @onready var _background: ColorRect = %Background
 @onready var _margin: MarginContainer = $Margin
 @onready var _grid: GridContainer = %Grid
+@onready var _empty_label: Label = %EmptyLabel
 @onready var _greeting: Label = %Greeting
 @onready var _title: Label = %Title
 @onready var _completion_label: Label = %CompletionLabel
 @onready var _completion_bar: ProgressBar = %CompletionBar
 @onready var _menu_button: Button = %MenuButton
 @onready var _settings_button: Button = %SettingsButton
+@onready var _filter_button: Button = %FilterButton
 
 
 func _ready() -> void:
@@ -106,6 +120,11 @@ func _ready() -> void:
 	_settings_button.text = COPY_SETTINGS
 	_style_chrome_button(_settings_button)
 	_settings_button.pressed.connect(_on_settings_pressed)
+	_filter_button.text = COPY_FILTER_INCOMPLETE
+	_style_chrome_button(_filter_button)
+	_filter_button.pressed.connect(_on_filter_pressed)
+	_apply_filter_style()
+	_empty_label.text = COPY_FILTER_EMPTY
 	_build_confirm()
 	resized.connect(_update_layout)
 	_update_layout()
@@ -119,6 +138,14 @@ func _ready() -> void:
 ## the gallery becomes the shown screen.
 func present(pack: Pack) -> void:
 	_pack = pack
+	if is_node_ready():
+		_rebuild()
+
+
+## Presents the durable C5 filter [param prefs] the shell owns ([b]SCH-preferences[/b]
+## F7, [GalleryPreferences], ADR-0011). Null keeps the filter off.
+func present_filter(prefs: GalleryPreferences) -> void:
+	_filter_prefs = prefs
 	if is_node_ready():
 		_rebuild()
 
@@ -149,18 +176,20 @@ func completion_text() -> String:
 
 
 ## The ever-completed count R1's [code]{n}[/code] shows, read from
-## [b]CTR-pack[/b]'s O1 entries rather than rebuilt from the rate.
+## [b]CTR-pack[/b]'s O1 entries rather than rebuilt from the rate. C5 never narrows R1:
+## the count reads every entry, not only the visible ones.
 func completion_count() -> int:
 	var completed := 0
-	for entry in _entries:
+	for entry in _all_entries:
 		if entry.ever_completed:
 			completed += 1
 	return completed
 
 
 ## The pack size R1 divides by: the definitions the pack holds ([code]PRG[/code] A1).
+## C5 never narrows R1.
 func pack_size() -> int:
-	return _entries.size() if not _entries.is_empty() else ProgressRules.PACK_SIZE
+	return _all_entries.size() if not _all_entries.is_empty() else ProgressRules.PACK_SIZE
 
 
 ## [code]GS.completion-rate[/code] from O2.
@@ -178,9 +207,40 @@ func tile(puzzle_id: String) -> GalleryTile:
 	return _tiles.get(puzzle_id) as GalleryTile
 
 
-## The entries the last read returned, in pack order.
+## The entries R2 draws, in pack order: every entry when C5 is off, only
+## not-ever-completed puzzles when it is on.
 func entries() -> Array[GalleryEntry]:
 	return _entries
+
+
+## [code]SCH-preferences[/code] F7 as C5 shows it; off before a [method present_filter].
+func incomplete_only() -> bool:
+	return _filter_prefs != null and _filter_prefs.incomplete_only()
+
+
+## C5 ([code]IN.activate[/code]): stores [param enabled] through the presented filter
+## and re-reads R2 in place. Returns false and changes nothing when no filter was
+## presented or the store refused the write.
+func set_incomplete_only(enabled: bool) -> bool:
+	if _filter_prefs == null:
+		return false
+	if not _filter_prefs.set_incomplete_only(enabled):
+		return false
+	_rebuild()
+	return true
+
+
+## C5 ([code]IN.activate[/code]): flips the filter and returns the new value. Returns
+## false and changes nothing while [code]EX.confirm[/code] blocks the screen.
+func activate_incomplete_only() -> bool:
+	if reset_confirm_showing():
+		return false
+	return set_incomplete_only(not incomplete_only())
+
+
+## C5's control, for input tests.
+func filter_button() -> Button:
+	return _filter_button
 
 
 ## Tiles per row, from the screen width.
@@ -306,10 +366,10 @@ func dismiss_reset_confirm() -> void:
 
 
 ## The screen's controls in [code]Controls[/code] table order ([code]controls.md[/code]
-## F1): C1 each tile, then C4 Back to main menu, then C3 Settings, with each tile's C2
-## Reset right after it because it belongs to that tile. [code]EX.confirm[/code]'s two
-## actions are left out: while the box shows, [code]IN.confirm[/code] and
-## [code]IN.cancel[/code] reach it directly.
+## F1): C1 each tile, then C4 Back to main menu, then C3 Settings, then C5 Incomplete
+## only, with each tile's C2 Reset right after it because it belongs to that tile.
+## [code]EX.confirm[/code]'s two actions are left out: while the box shows,
+## [code]IN.confirm[/code] and [code]IN.cancel[/code] reach it directly.
 func focus_controls() -> Array[Control]:
 	var controls: Array[Control] = []
 	for entry in _entries:
@@ -319,6 +379,7 @@ func focus_controls() -> Array[Control]:
 		controls.append_array(target.focus_controls())
 	controls.append(_menu_button)
 	controls.append(_settings_button)
+	controls.append(_filter_button)
 	return controls
 
 
@@ -342,10 +403,11 @@ func reset_confirm_showing() -> bool:
 
 
 func _rebuild() -> void:
-	var entries: Array[GalleryEntry] = []
+	var all_entries: Array[GalleryEntry] = []
 	if _pack != null:
-		entries = _pack.list_entries()
-	_entries = entries
+		all_entries = _pack.list_entries()
+	_all_entries = all_entries
+	_entries = _visible_entries(all_entries)
 	var seen: Dictionary = {}
 	for entry in _entries:
 		var target := tile(entry.id)
@@ -364,8 +426,26 @@ func _rebuild() -> void:
 		stale.queue_free()
 		_tiles.erase(puzzle_id)
 	_update_completion()
+	_update_empty_state()
+	_apply_filter_style()
 	_apply_frame_spacing()
 	_refresh_type_sizes()
+
+
+## C5's filter: every entry when off, only not-ever-completed puzzles when on.
+func _visible_entries(all_entries: Array[GalleryEntry]) -> Array[GalleryEntry]:
+	if not incomplete_only():
+		return all_entries
+	var visible: Array[GalleryEntry] = []
+	for entry in all_entries:
+		if not entry.ever_completed:
+			visible.append(entry)
+	return visible
+
+
+## R2's empty state while C5 is on and every puzzle is ever-completed.
+func _update_empty_state() -> void:
+	_empty_label.visible = incomplete_only() and _entries.is_empty()
 
 
 func _update_completion() -> void:
@@ -451,6 +531,8 @@ func _refresh_type_sizes() -> void:
 	_completion_label.add_theme_font_size_override("font_size", font_size)
 	_menu_button.add_theme_font_size_override("font_size", font_size)
 	_settings_button.add_theme_font_size_override("font_size", font_size)
+	_filter_button.add_theme_font_size_override("font_size", font_size)
+	_empty_label.add_theme_font_size_override("font_size", font_size)
 	_confirm.set_chrome_font_size(font_size)
 	for target: GalleryTile in _tiles.values():
 		target.set_chrome_font_size(font_size)
@@ -472,6 +554,23 @@ func _on_settings_pressed() -> void:
 	settings_requested.emit()
 
 
+func _on_filter_pressed() -> void:
+	activate_incomplete_only()
+
+
+## C5's on/off reading: the same ink-on-paper toggle the settings screen uses, so the
+## chrome shows the filter's state without a second copy of the value.
+func _apply_filter_style() -> void:
+	var on := incomplete_only()
+	var background := PresentationPalette.INK if on else PresentationPalette.PAPER
+	var foreground := PresentationPalette.PAPER if on else PresentationPalette.INK
+	var border := PresentationPalette.INK if on else PresentationPalette.RULE
+	for state in ["normal", "hover", "pressed"]:
+		_filter_button.add_theme_stylebox_override(state, _panel_style(background, border))
+	for color in ["font_color", "font_hover_color", "font_pressed_color"]:
+		_filter_button.add_theme_color_override(color, foreground)
+
+
 func _style_chrome_button(button: Button) -> void:
 	button.custom_minimum_size = Vector2(0.0, 36.0)
 	button.add_theme_stylebox_override("normal", _panel_style())
@@ -482,10 +581,13 @@ func _style_chrome_button(button: Button) -> void:
 	button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
 
 
-func _panel_style() -> StyleBoxFlat:
+func _panel_style(
+	background: Color = PresentationPalette.PAPER,
+	border: Color = PresentationPalette.RULE,
+) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
-	style.bg_color = PresentationPalette.PAPER
-	style.border_color = PresentationPalette.RULE
+	style.bg_color = background
+	style.border_color = border
 	style.set_border_width_all(1)
 	style.content_margin_left = 12.0
 	style.content_margin_right = 12.0
