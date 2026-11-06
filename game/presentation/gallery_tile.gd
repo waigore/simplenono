@@ -4,10 +4,10 @@ extends PanelContainer
 ##
 ## Renders one [GalleryEntry] from [b]CTR-pack[/b] O1: size, attempt status,
 ## [code]copy.status.*[/code], [code]copy.best[/code] only when a best is set, and the
-## stored picture only when [code]GS.gallery-thumbnail[/code] allows it; otherwise the
-## generic placeholder (US1.2, US1.3). C1 opens the puzzle and C2 offers Reset when the
-## read facts allow it (US1.6, US1.6b). The tile raises intents only: navigation and the
-## confirm surface belong to [b]CMP-shell[/b] (#95, #96).
+## stored picture only when [code]GS.gallery-thumbnail[/code] allows it; otherwise a
+## simple box with a centered question mark (US1.2, US1.3). C1 opens the puzzle and C2
+## offers Reset when the read facts allow it (US1.6, US1.6b). The tile raises intents
+## only: navigation and the confirm surface belong to [b]CMP-shell[/b] (#95, #96).
 
 ## The strip that holds C2 belongs to C1, as both approved mockups draw the tile
 ## ([code].open { flex: 1 1 auto }[/code]): a card with no Reset has no strip, and a tap
@@ -67,6 +67,7 @@ func setup(entry: GalleryEntry, picture: Texture2D) -> void:
 	_status_label.text = status_text()
 	_best_label.text = best_text()
 	_thumb.show_picture(picture if entry.thumbnail_visible else null)
+	_thumb.show_star(entry.hint_free)
 	_reset_holder.visible = reset_allowed()
 	_reset_button.visible = reset_allowed()
 	hold_picture_square.call_deferred()
@@ -112,6 +113,23 @@ func reset_allowed() -> bool:
 ## True when the tile draws the stored picture instead of the placeholder.
 func shows_picture() -> bool:
 	return _thumb.shows_picture()
+
+
+## True when the [code]UIS.I1[/code] clinical hint-free star is drawn at the thumb's
+## upper-left ([code]PER.R7[/code]).
+func shows_star() -> bool:
+	return _thumb.shows_star()
+
+
+## The thumb's held star inset and side ([code]PER.R7[/code]), for tests.
+func star_metrics() -> Vector2:
+	return _thumb.star_metrics()
+
+
+## Applies the frame-held star metrics the way [method set_body_padding] does (#557):
+## the gallery holds the rule, the tile keeps only the values.
+func set_star_metrics(inset: float, star_size: float) -> void:
+	_thumb.set_star_metrics(inset, star_size)
 
 
 ## Width ÷ height of the drawn picture region, so a test can hold it to the mockups.

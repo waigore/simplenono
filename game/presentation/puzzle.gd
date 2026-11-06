@@ -43,6 +43,7 @@ var _attempt: Attempt
 var _selected_tool: CellMark.Mark = CellMark.Mark.FILL
 var _line_status: LineStatusCheck
 var _elapsed_remainder: float = 0.0
+var _line_fillable := false
 
 @onready var _background: ColorRect = %Background
 @onready var _leave_button: Button = %LeaveButton
@@ -62,6 +63,7 @@ func _ready() -> void:
 	_style_tool_buttons()
 	_style_chrome_button(_leave_button)
 	_style_chrome_button(_settings_button)
+	_style_elapsed_label()
 	_fill_button.pressed.connect(_select_tool.bind(CellMark.Mark.FILL))
 	_cross_button.pressed.connect(_select_tool.bind(CellMark.Mark.CROSS))
 	_clear_button.pressed.connect(_select_tool.bind(CellMark.Mark.CLEAR))
@@ -86,6 +88,7 @@ func present(attempt: Attempt) -> void:
 	_ready_timer.stop()
 	_ready_beat.visible = false
 	_selected_tool = CellMark.Mark.FILL
+	_line_fillable = false
 	_apply_tool_visuals()
 	_board.show_puzzle(attempt.definition() if attempt != null else null)
 	if attempt == null:
@@ -104,6 +107,14 @@ func set_ui_theme(ui_theme: UiTheme) -> void:
 	theme = ui_theme.theme() if ui_theme != null else null
 	if is_node_ready():
 		_refresh_type_sizes()
+
+
+## Shows the fill-hint ghosts for the enabled assists ([code]PER.R8[/code],
+## specs/design/features/fill-hints.md R3). The shell calls this at open and on every
+## toggle change, so an enable applies at once; the board keeps the toggles across
+## [method present].
+func set_hint_overlays(single_line: bool, multi_line: bool) -> void:
+	_board.set_hint_overlays(single_line, multi_line)
 
 
 ## The current state ID: [constant STATE_GET_SET_READY], [constant STATE_PAUSED],
@@ -167,6 +178,43 @@ func cell_at(row: int, column: int) -> PuzzleCell:
 	return _board.cell_at(row, column)
 
 
+## [code]features/line-fillable-shade.md[/code] R1/R4: turns the line-level toggle on
+## or off for this screen. Turning it off clears the shade (R3).
+func set_line_fillable(enabled: bool) -> void:
+	if _line_fillable == enabled:
+		return
+	_line_fillable = enabled
+	if not enabled:
+		_board.set_shade([])
+
+
+## True while the line-level fillable toggle is on for this screen.
+func line_fillable() -> bool:
+	return _line_fillable
+
+
+## R2/R3: removes the shade without touching marks.
+func clear_shade() -> void:
+	_board.set_shade([])
+
+
+## [code]features/line-fillable-shade.md[/code] R1: derives the shade for a fill-tap on
+## the cell at [param row], [param column] from the tapped line's runs, and shows it
+## (or none). Returns the shaded cells, row-major. Overlay only: no mark is written
+## (R2), so the input layer calls this beside the mark it already sends.
+func shade_for_tap(row: int, column: int) -> Array[Vector2i]:
+	var cells: Array[Vector2i] = []
+	if _definition() == null:
+		return cells
+	var size := _definition().size
+	if row < 0 or row >= size or column < 0 or column >= size:
+		return cells
+	for index in LineFillableShade.region(size, _definition().row_clues[row], column):
+		cells.append(Vector2i(row, index))
+	_board.set_shade(cells)
+	return cells
+
+
 ## Ends the beat now. The timer calls it after [code]CFG.GET_SET_READY_MS[/code];
 ## tests call it instead of waiting.
 func finish_ready_beat() -> void:
@@ -199,6 +247,9 @@ func refresh() -> void:
 		return
 	_board.set_marks(state.marks(), _line_status)
 	_board.set_marks_allowed(state.marks_allowed())
+	# R3: pause ends the shade attempt; resume starts clean.
+	if state.paused():
+		_board.set_shade([])
 	_set_tools_enabled(not beat)
 
 
@@ -244,8 +295,16 @@ func _on_settings_pressed() -> void:
 
 func _select_tool(tool: CellMark.Mark) -> void:
 	_selected_tool = tool
+	if tool != CellMark.Mark.FILL:
+		# R3: the shade is for the fill tool only.
+		_board.set_shade([])
 	_apply_tool_visuals()
 	tool_selected.emit(tool)
+
+
+## The open puzzle's definition, or null before [method present] and when null.
+func _definition() -> PuzzleDefinition:
+	return _attempt.definition() if _attempt != null else null
 
 
 func _apply_tool_visuals() -> void:
@@ -301,6 +360,13 @@ func _style_chrome_button(button: Button) -> void:
 	button.add_theme_color_override("font_hover_color", PresentationPalette.INK)
 	button.add_theme_color_override("font_pressed_color", PresentationPalette.INK)
 	button.add_theme_color_override("font_hover_pressed_color", PresentationPalette.INK)
+
+
+## [code]PAL.K1[/code] / [code]copy.elapsed[/code]: R1's timer stays Ink on Paper. Without
+## a pinned [code]font_color[/code], the Label inherits the engine default face and can
+## read as missing on the Paper chrome (#644), same visibility class as C1 Leave (#601).
+func _style_elapsed_label() -> void:
+	_elapsed_label.add_theme_color_override("font_color", PresentationPalette.INK)
 
 
 ## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied on

@@ -69,7 +69,9 @@ func drag_to_cell(row: int, column: int) -> void:
 
 
 ## Ends the stroke. A stroke that never painted is a tap ([code]IN.activate[/code])
-## and resolves through [MarkGesture.tap].
+## and resolves through [MarkGesture.tap]. A fill tap also derives the line-level
+## fillable shade ([code]features/line-fillable-shade.md[/code] R1) when its toggle is
+## on; the shade is an overlay and the mark path below is unchanged (R2).
 func release_stroke() -> void:
 	if not _stroke:
 		return
@@ -77,6 +79,7 @@ func release_stroke() -> void:
 	var was_painting := _painting
 	_reset_stroke()
 	if not was_painting and _allowed():
+		_shade_tap(origin.x, origin.y)
 		_mark(origin.x, origin.y, MarkGesture.tap(_selected_tool(), _current_mark(origin)))
 
 
@@ -224,6 +227,18 @@ func _current_mark(cell: Vector2i) -> CellMark.Mark:
 
 func _selected_tool() -> CellMark.Mark:
 	return _screen.selected_tool() if _screen != null else CellMark.Mark.FILL
+
+
+## R1: with the line-level toggle on and fill selected, the tap shades the max legal
+## run containing it (or none). Any other tool or a toggle-off leaves no shade, so a
+## stale region from an earlier tap never lingers (R2/R3).
+func _shade_tap(row: int, column: int) -> void:
+	if _screen == null:
+		return
+	if _screen.line_fillable() and _selected_tool() == CellMark.Mark.FILL:
+		_screen.shade_for_tap(row, column)
+	else:
+		_screen.clear_shade()
 
 
 ## [b]CTR-attempt[/b] G1 and [code]UI-puzzle[/code] S2: marks blocked, the Ready beat

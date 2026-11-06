@@ -20,6 +20,7 @@ One pack entry the player opens from the [gallery](../glossary.md): fixed size, 
 | P4 | Identity | Stable id in the 200-pack | Pack data |
 | P5 | Thumbnail | Stored [generated picture](../glossary.md): the gallery thumbnail once ever-completed and the final result stage | Pack data; visible in the gallery only when [ever completed](../glossary.md), and in the result stage after a solve |
 | P6 | Pixel picture | Stored [pixel picture](../glossary.md): the pack image downscaled to board size; the basis the solution fill set was derived from | Pack data; shown only in the result stage after a successful solve |
+| P7 | Fill-hint cells | Precomputed single-line and one-level multi-line forced cells ([fill hints](../glossary/hints.md)) overlay helpers rely on | Pack data |
 
 ## Lifecycle and states
 

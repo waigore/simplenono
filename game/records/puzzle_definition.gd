@@ -2,7 +2,7 @@ class_name PuzzleDefinition
 extends RefCounted
 ## One accepted pack entry ([SCH-puzzle-def]).
 ##
-## Holds the seven fields F1–F7 exactly as the pack states them. Built only by
+## Holds the nine fields F1–F9 exactly as the pack states them. Built only by
 ## [b]CMP-pack[/b] at load ([SCH-puzzle-def] L2), never changed during play (L4).
 ## Validation happens before a record exists; this type stores.
 
@@ -20,6 +20,12 @@ var solution_fills: Array[Vector2i]
 var picture_id: String
 ## F7 — stored pixel picture asset id.
 var pixel_picture_id: String
+## F8 — [member FillHintCell] mark for every single-line forced cell; read from the
+## pack ({@link https://github.com/waigore/simplenono/blob/main/specs/technical/contracts/pack.md}).
+var single_fill_hint_cells: Dictionary[Vector2i, String]
+## F9 — mark for every cell additionally forced by one-level multi-line propagation;
+## disjoint from F8 ([I8]).
+var multi_fill_hint_cells: Dictionary[Vector2i, String]
 
 
 func _init(
@@ -30,6 +36,8 @@ func _init(
 	fills: Array[Vector2i],
 	picture: String,
 	pixel_picture: String,
+	single_hints: Dictionary[Vector2i, String] = {},
+	multi_hints: Dictionary[Vector2i, String] = {},
 ) -> void:
 	id = definition_id
 	size = grid_size
@@ -38,3 +46,5 @@ func _init(
 	solution_fills = fills
 	picture_id = picture
 	pixel_picture_id = pixel_picture
+	single_fill_hint_cells = single_hints
+	multi_fill_hint_cells = multi_hints

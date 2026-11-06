@@ -4,7 +4,7 @@ Authoring rules: [`.agents/specs/rules/technical/schemata.md`](../../../.agents/
 
 - **Kind**: entity
 - **Owner**: [`CMP-pack`](../components/pack.md)
-- **Serves**: Durable per-puzzle progress ([`progression.md`](../../design/progression.md) P1–P5)
+- **Serves**: Durable per-puzzle progress ([`progression.md`](../../design/progression.md) P1–P6)
 - **Informed by**: [`game-state.md`](../../design/game-state.md) V1–V6, [`end-conditions.md`](../../design/end-conditions.md)
 - **ADRs**: [ADR-0002](../../adr/decisions/0002-user-data-dir.md)
 
@@ -18,6 +18,7 @@ Authoring rules: [`.agents/specs/rules/technical/schemata.md`](../../../.agents/
 | F4 | marks | Mark grid, or absent | required while F3 is in progress | Omitted otherwise |
 | F5 | elapsed | Elapsed value, ≥ 0 | required | 0 when not started |
 | F6 | personal-best | Elapsed value, or absent | required while F2 is true | Absent until the first solve |
+| F7 | hint-free | Boolean | required | True only after a clean solve; false after void or reset |
 
 ## Invariants
 
@@ -29,6 +30,7 @@ Authoring rules: [`.agents/specs/rules/technical/schemata.md`](../../../.agents/
 | I4 | F6 never increases while set (V4) |
 | I5 | Each stored mark is clear, fill, or cross (V5) |
 | I6 | F2 and F3 in progress may both be true (V6) |
+| I7 | F7 true implies F2 true (V7) |
 
 ## Lifecycle
 

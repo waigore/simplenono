@@ -11,7 +11,7 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../.agents/specs/r
 | Element | Summary | Scenarios |
 |---------|---------|-----------|
 | R1 | Completion rate visible | US1.1 |
-| R2 | Tile status / PB / thumbnail | US1.2, US1.3 |
+| R2 | Tile status / PB / thumbnail / hint-free star | US1.2, US1.3, US1.8 |
 | R3 | Settings chrome | US1.4 |
 | C1 | Open puzzle | US1.5 |
 | C2 | Reset when allowed / not | US1.6, US1.6b |
@@ -51,7 +51,7 @@ Then R2 shows Done, Best {time}, and the solution thumbnail
 ```gherkin
 Given puzzle P ever-completed false
 When UI-gallery shows P's tile
-Then R2 shows a generic placeholder, not the solution thumbnail
+Then R2 shows a simple box with a centered question mark, not the solution thumbnail
 ```
 
 ### US1.4: Settings
@@ -102,4 +102,14 @@ Then nothing changes
 Given UI-gallery Default
 When the Player activates C4
 Then UI-menu opens
+```
+
+### US1.8: Hint-free star upper-left
+
+- **Proves**: R2
+
+```gherkin
+Given puzzle P hint-free true
+When UI-gallery shows P's tile
+Then R2 shows the clinical star on the upper-left of the thumb
 ```

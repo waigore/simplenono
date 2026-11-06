@@ -47,6 +47,8 @@ var _column_clue_height := 0.0
 var _content_size := Vector2.ZERO
 var _origin := Vector2.ZERO
 var _platform := ""
+var _hint_single := false
+var _hint_multi := false
 
 
 ## Picks the platform framing rule now, so a test can hold it without a device.
@@ -90,6 +92,7 @@ func show_puzzle(definition: PuzzleDefinition) -> void:
 	_compute_clue_units()
 	_build_children()
 	_relayout()
+	_apply_hint_overlays()
 
 
 ## Renders [param grid]'s marks and [param status]'s line cues. A null status
@@ -105,10 +108,54 @@ func set_marks(grid: MarkGrid, status: LineStatusCheck) -> void:
 	_update_clue_styles()
 
 
+## Shows the fill-hint ghosts for the enabled assists ([code]PER.R8[/code],
+## specs/design/features/fill-hints.md R3): F8 when single-line is on, F8 together
+## with F9 when multi-line is on. Overlay only; the player's marks are untouched.
+func set_hint_overlays(single_line: bool, multi_line: bool) -> void:
+	_hint_single = single_line
+	_hint_multi = multi_line
+	_apply_hint_overlays()
+
+
 ## Blocks or allows every cell's pointer input ([code]GS.marks-allowed[/code]).
 func set_marks_allowed(allowed: bool) -> void:
 	for cell in _cells:
 		cell.set_blocked(not allowed)
+
+
+## Renders the line-level fillable shade over [param cells] (row/column pairs) and
+## replaces any earlier shade; an empty list shows none
+## ([code]features/line-fillable-shade.md[/code] R2, [code]PER.R8[/code]). Overlay
+## only: no mark changes (R2).
+func set_shade(cells: Array[Vector2i]) -> void:
+	if _definition == null:
+		return
+	var shaded := {}
+	for point in cells:
+		if _is_inside(point):
+			shaded[point] = true
+	for row in _definition.size:
+		for column in _definition.size:
+			cell_at(row, column).shade = shaded.has(Vector2i(row, column))
+
+
+## The cells currently shaded, row-major, so a test can hold R2 and R3 without
+## reading [PuzzleCell].
+func shaded_cells() -> Array[Vector2i]:
+	var cells: Array[Vector2i] = []
+	if _definition == null:
+		return cells
+	for row in _definition.size:
+		for column in _definition.size:
+			if cell_at(row, column).shade:
+				cells.append(Vector2i(row, column))
+	return cells
+
+
+func _is_inside(point: Vector2i) -> bool:
+	return (
+		point.x >= 0 and point.x < _definition.size and point.y >= 0 and point.y < _definition.size
+	)
 
 
 ## The cell at [param row] and [param column] ([code]C2[/code]).
@@ -148,6 +195,16 @@ func content_size() -> Vector2:
 	return _content_size
 
 
+## The paper frame around the clue bars and grid after the last relayout, in this
+## control's space. Equal leftover margin on opposing sides of this rect is the
+## mobile centering hold ([code]MC.puzzle[/code] [code]place-items: center[/code]).
+func frame_rect() -> Rect2:
+	return Rect2(
+		_origin - Vector2(FRAME_PADDING, FRAME_PADDING),
+		_content_size + Vector2(FRAME_PADDING, FRAME_PADDING) * 2.0
+	)
+
+
 ## The column clue bar's height in cell units: what a cell of a given side needs
 ## above the grid, so a test can check a readability target against the rect.
 func column_clue_units() -> float:
@@ -169,9 +226,7 @@ func _notification(what: int) -> void:
 func _draw() -> void:
 	if _definition == null:
 		return
-	var frame_position := _origin - Vector2(FRAME_PADDING, FRAME_PADDING)
-	var frame_size := _content_size + Vector2(FRAME_PADDING, FRAME_PADDING) * 2.0
-	var frame := Rect2(frame_position, frame_size)
+	var frame := frame_rect()
 	draw_rect(frame, PresentationPalette.PAPER)
 	draw_rect(frame, PresentationPalette.RULE, false, 1.0)
 
@@ -188,6 +243,24 @@ func _clear() -> void:
 	_cell_size = 0.0
 	_content_size = Vector2.ZERO
 	_origin = Vector2.ZERO
+
+
+## Applies the current assist toggles to every cell. Multi-line includes F8 and F9;
+## single-line includes F8 only ([code]SCH-puzzle-def[/code] F8/F9).
+func _apply_hint_overlays() -> void:
+	if _definition == null:
+		return
+	for row in _definition.size:
+		for column in _definition.size:
+			cell_at(row, column).hint = _hint_for(Vector2i(row, column))
+
+
+func _hint_for(position: Vector2i) -> String:
+	if _hint_multi and _definition.multi_fill_hint_cells.has(position):
+		return _definition.multi_fill_hint_cells[position]
+	if (_hint_single or _hint_multi) and _definition.single_fill_hint_cells.has(position):
+		return _definition.single_fill_hint_cells[position]
+	return PuzzleCell.HINT_NONE
 
 
 ## Clue bars are sized in cell units from the longest run list, so a 20x20's
@@ -280,12 +353,16 @@ func _relayout() -> void:
 	var max_cell := MAX_CELL_SIZE if _platform == PLATFORM_DESKTOP else INF
 	cell = clampf(floorf(cell), MIN_CELL_SIZE, max_cell)
 	_cell_size = cell
-	_row_clue_width = _row_clue_units * cell
-	_column_clue_height = _column_clue_units * cell
+	# Integer clue bars keep the paper frame on whole pixels so opposing leftover
+	# margins in R2 stay equal (mockup place-items: center; #645).
+	_row_clue_width = floorf(_row_clue_units * cell)
+	_column_clue_height = floorf(_column_clue_units * cell)
 	_content_size = Vector2(
 		_row_clue_width + _definition.size * cell, _column_clue_height + _definition.size * cell
 	)
-	_origin = ((size - _content_size) * 0.5).floor()
+	var frame_size := _content_size + Vector2(FRAME_PADDING, FRAME_PADDING) * 2.0
+	var frame_origin := ((size - frame_size) * 0.5).floor()
+	_origin = frame_origin + Vector2(FRAME_PADDING, FRAME_PADDING)
 	_position_children()
 	queue_redraw()
 

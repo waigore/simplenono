@@ -1,0 +1,13 @@
+{
+  "id": "hinted",
+  "size": 10,
+  "row_clues": [[3, 2], [1], [], [], [], [], [], [], [], []],
+  "col_clues": [[2], [1], [1], [], [1], [1], [], [], [], []],
+  "solution_fills": [[0, 0], [0, 1], [0, 2], [0, 4], [0, 5], [1, 0]],
+  "single_fill_hint_cells": [
+    [0, 0, "fill"], [0, 1, "fill"], [0, 2, "fill"], [0, 3, "cross"], [0, 6, "cross"]
+  ],
+  "multi_fill_hint_cells": [[0, 7, "cross"], [0, 4, "fill"]],
+  "picture_id": "picture.hinted",
+  "pixel_picture_id": "pixel_picture.hinted"
+}

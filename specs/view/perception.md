@@ -14,6 +14,8 @@ Authoring rules: [`.agents/specs/rules/view/perception.md`](../../.agents/specs/
 | R4 | Solution image | Hidden on the board while solving | all |
 | R5 | Win reveal | On the result screen after solve, fills fade into the stored pixel picture, then that picture fades into the stored generated picture (fills only; clues are not part of the morph); the second fade reads as picture-complete | all |
 | R6 | Open board | Clues + grid stay inside one readable framing on all supported platforms | all |
+| R7 | Hint-free star | When [`GS.hint-free`](../design/game-state.md) is true, a clinical star sits on the upper-left of that gallery tile’s thumb; absent otherwise | all (gallery) |
+| R8 | Hint-assist overlays | While shown, the fill-hint overlays ([`features/fill-hints.md`](../design/features/fill-hints.md) R3) and the line-level fillable shade ([`features/line-fillable-shade.md`](../design/features/line-fillable-shade.md) R2) stay visible on the fixed board and distinguishable from cell marks and from each other; the shade is lighter than the overlay colour | all (fixed board; no cameras) |
 
 ## Depth cues
 

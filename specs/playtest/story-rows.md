@@ -27,9 +27,9 @@ One row per playtestable design story and UX journey/story under coverage mode `
 | `EX` | #311 | `EX.confirm` show, Confirm to `END.O2`, and Cancel (`US1.1`–`US1.3`). |
 | `UI-menu` | #623 | — |
 | `UI-gallery` | #94 | `US1.6` "Then `EX.confirm` appears" is delivered by #311, whose box clauses are proved by #96. #94 proves Reset allowedness and the reset request. |
-| `UI-puzzle` | #110 | — |
+| `UI-puzzle` | #652 | Hint-assist overlay + line-fillable shade scenarios `US1.8`–`US1.11`; the overlay UI and its playtest steps land under #652 (shade UI under #653). |
 | `UI-result` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
-| `UI-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). |
+| `UI-settings` | none | Wave 2 — leaves filed when that wave is expanded (epic #95). Hint-assist toggles: `US1.8` delivered by #651. |
 
 ## Owner rules
 
