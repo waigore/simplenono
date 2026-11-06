@@ -13,18 +13,19 @@ Authoring rules: [`.agents/specs/rules/technical/contracts.md`](../../../.agents
 
 | ID | Name | Input | Output / effect | When |
 |----|------|-------|-----------------|------|
-| O1 | list | None | Id, size, ever-completed, attempt status, personal best, and whether the thumbnail is visible, for each puzzle | Gallery |
-| O2 | completion-rate | None | Ever-completed count ÷ 200; the pack is finished at 1 | Gallery |
-| O3 | definition | Puzzle id | Size, clues, solution fills, generated picture id, and pixel picture id | Open |
+| O1 | list | None | Id, size, ever-completed, attempt status, personal best, hint-free, thumbnail visible | Gallery |
+| O2 | completion-rate | None | Ever-completed count ÷ 200; finished at 1 | Gallery |
+| O3 | definition | Puzzle id | Size, clues, solution fills, picture ids, single-line fill-hint cells, multi-line fill-hint cells | Open |
 | O4 | progress | Puzzle id | The progress record | Open |
-| O5 | commit | Puzzle id, marks, elapsed, and attempt status | Replaces that record and the progress file | Marks or attempt status change, pause, leave |
-| O6 | record-solve | Puzzle id and elapsed | Sets ever-completed, clears the attempt, and replaces personal best only when the time is shorter | Solve |
-| O7 | reset | Puzzle id | Clears marks, elapsed, personal best, and ever-completed. Attempt becomes not started | Gallery reset |
-| O8 | load-pack | Pack path | Every entry is read and validated into [`SCH-puzzle-def`](../schemata/puzzle-def.md) records. Returns the entry count and the rejected entries | Pack start, once per launch |
+| O5 | commit | Puzzle id, marks, elapsed, attempt status | Replaces that record and the progress file | Marks / pause / leave |
+| O6 | record-solve | Puzzle id, elapsed, hint-free-eligible | Ever-completed; hint-free from eligibility; clear attempt; PB if shorter | Solve |
+| O7 | reset | Puzzle id | Clear marks, elapsed, PB, ever-completed, hint-free; attempt not started | Gallery reset |
+| O8 | load-pack | Pack path | Validate into [`SCH-puzzle-def`](../schemata/puzzle-def.md) against F1–F9 and I1–I8; return count and rejects | Pack start |
+| O9 | void-hint-free | Puzzle id | Clear hint-free; replace progress file | Hint enable while attempt active |
 
 ## Pack layout
 
-The pack is one JSON file at `res://data/pack.json`: a UTF-8 JSON array of entries keyed by [`SCH-puzzle-def`](../schemata/puzzle-def.md) field names, shipped in the export ([ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md)).
+One JSON file at `res://data/pack.json`: UTF-8 array keyed by [`SCH-puzzle-def`](../schemata/puzzle-def.md) fields ([ADR-0003](../../adr/decisions/0003-catalog-asset-roots.md)). Entries carry the precomputed F8 / F9 fill-hint cells, written once when the pack is built; packs are never recomputed during play. The pack contract requires them for new puzzles.
 
 ## Events
 
@@ -36,27 +37,29 @@ None — callers receive the return value.
 |----|-----------|
 | G1 | Personal best never increases while set |
 | G2 | An unknown id changes nothing |
-| G3 | O5, O6, and O7 replace `user://progress.cfg`. A failed write leaves the previous file |
-| G4 | O8 loads once at pack start. A rejected entry never reaches a caller of O1 or O3 |
-| G5 | A valid entry is accepted when it passes [`SCH-puzzle-def`](../schemata/puzzle-def.md) I1–I5 and no earlier accepted entry shares its F1, F6, or F7. Entry order decides which of two conflicting entries wins |
+| G3 | O5, O6, O7, and O9 replace `user://progress.cfg`; failed write leaves the previous file |
+| G4 | O8 loads once at pack start; a rejected entry never reaches O1 or O3 |
+| G5 | Accept when [`SCH-puzzle-def`](../schemata/puzzle-def.md) I1–I8 hold and no earlier entry shares F1, F6, or F7; entry order wins conflicts |
+| G6 | Fill-hint cells are read, not derived: no runtime pass recomputes F8 or F9 for any entry |
 
 ## Errors
 
 | Condition | Result |
 |-----------|--------|
 | Unknown puzzle id | No change |
-| O8: pack file missing or not valid JSON | No definitions load. The pack is empty and the error is logged with the path |
-| O8: entry is missing a required field [`SCH-puzzle-def`](../schemata/puzzle-def.md) F1–F7, fails I1–I5, or repeats an earlier F1, F6, or F7 | The entry is rejected. The rest of the pack still loads |
+| O8: missing or invalid JSON | Empty pack; error logged with path |
+| O8: bad or duplicate F1/F6/F7 entry | Reject that entry; rest still load |
+| O8: entry violates I6, I7, or I8 | Reject that entry; rest still load |
 
 ## Diagram
 
 ```mermaid
 flowchart LR
-  shell[CMP-shell] -->|O1 O2 O7| pack[CMP-pack]
+  shell[CMP-shell] -->|O1 O2 O7 O9| pack[CMP-pack]
   attempt[CMP-attempt] -->|O3 O4 O5 O6| pack
   pack -->|O8| data[res://data/pack.json]
 ```
 
 ## Verification
 
-Seam S6 ([`verification.md`](../verification.md)) drives O8 and `SCH-puzzle-def` invariants in a headless GUT run; invariant I12 is its unit-level assertion.
+Seam S6 ([`verification.md`](../verification.md)): O8 and `SCH-puzzle-def` in headless GUT; I12 is the unit assertion.

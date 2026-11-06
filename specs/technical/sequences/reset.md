@@ -16,7 +16,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 | S1 | CMP-shell | CMP-shell | internal | Show `EX.confirm` after Reset when allowed |
 | S2 | CMP-shell | CMP-shell | internal | Confirm |
 | S3 | CMP-shell | CMP-pack | CTR-pack.O7 | Reset with the puzzle id |
-| S4 | CMP-pack | CMP-pack | internal | Clear marks, elapsed, personal best, and ever-completed; attempt → not started; replace `user://progress.cfg` |
+| S4 | CMP-pack | CMP-pack | internal | Clear marks, elapsed, personal best, ever-completed, and hint-free; attempt → not started; replace `user://progress.cfg` |
 | S5 | CMP-shell | CMP-pack | CTR-pack.O1, O2 | Refresh list and completion rate |
 | S6 | CMP-shell | CMP-shell | internal | Dismiss confirm; gallery Default |
 
@@ -31,7 +31,7 @@ Authoring rules: [`.agents/specs/rules/technical/sequences.md`](../../../.agents
 ## Postconditions
 
 - The gallery is in Default.
-- That puzzle is new: not started, no marks, elapsed 0, no personal best, not ever-completed.
+- That puzzle is new: not started, no marks, elapsed 0, no personal best, not ever-completed, not hint-free.
 - `user://progress.cfg` holds that cleared record when S4 ran.
 - Completion rate and the tile match the cleared record.
 - The telemetry of the reset is [`reset-telemetry.md`](reset-telemetry.md), which realizes [`S4`](../verification.md).

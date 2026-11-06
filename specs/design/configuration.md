@@ -12,7 +12,11 @@ Authoring rules: [`.agents/specs/rules/design/configuration.md`](../../.agents/s
 
 | Option | Choices | Default | Effect on rules | Chosen by / when | Locked when |
 |--------|---------|---------|-----------------|------------------|-------------|
-| — | — | — | None — presentation prefs (haptics, mute BGM) are not rule variants; accessibility is N/A in [`quality.md`](../definition/quality.md) | — | — |
+| Single-line fill hint | on / off | off | Optional assist distinct from clues: when on, single-line forced cells may show as overlays (not board marks). Enabling during an open attempt is observable so hint-free can void | Player, any time in settings | Never |
+| Multi-line fill hint | on / off | off | Same assist class; one-level multi-line overlays only when on | Player, any time in settings | Never |
+| Line-level fillable hint | on / off | off | Same assist class; when on, fill-tool taps may shade a max legal run | Player, any time in settings | Never |
+
+Presentation prefs (haptics, mute BGM, orientation) are not rule variants. The overlay behaviour of the two fill hints is specified in [`features/fill-hints.md`](features/fill-hints.md), and the line-level shade in [`features/line-fillable-shade.md`](features/line-fillable-shade.md); the hint-free earn/void behaviour is owned by its design/UX/technical specs; this table only locks the three persisted assist options and defaults.
 
 ## Designer tunables
 

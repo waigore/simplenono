@@ -90,6 +90,7 @@ func list_entries() -> Array[GalleryEntry]:
 						record.in_progress,
 						record.personal_best,
 						_progress.thumbnail_visible(definition.id),
+						record.hint_free,
 					)
 				)
 			)
@@ -138,13 +139,35 @@ func commit(puzzle_id: String, marks: MarkGrid, elapsed: int, in_progress: bool)
 	return record
 
 
-## O7: clears [param puzzle_id]'s marks, elapsed, personal best, and ever-completed,
-## then replaces `user://progress.cfg` (G3). The attempt becomes not started. Returns
-## false and changes nothing for an unknown id (G2).
+## O6: records a successful solve at [param elapsed] with [param hint_free_eligible],
+## then replaces `user://progress.cfg` (G3). Returns null for an unknown id (G2).
+func record_solve(
+	puzzle_id: String, elapsed: int, hint_free_eligible: bool = true
+) -> ProgressRecord:
+	if definition(puzzle_id) == null:
+		return null
+	var record := _progress.record_solve(puzzle_id, elapsed, hint_free_eligible)
+	_progress_file.save(_progress, definition_ids())
+	return record
+
+
+## O7: clears [param puzzle_id]'s marks, elapsed, personal best, ever-completed, and
+## hint-free, then replaces `user://progress.cfg` (G3). The attempt becomes not started.
+## Returns false and changes nothing for an unknown id (G2).
 func reset(puzzle_id: String) -> bool:
-	if not _definitions.has(puzzle_id):
+	if definition(puzzle_id) == null:
 		return false
 	_progress.reset(puzzle_id)
+	_progress_file.save(_progress, definition_ids())
+	return true
+
+
+## O9: voids hint-free on [param puzzle_id] and replaces `user://progress.cfg` (G3).
+## Returns false for an unknown id (G2).
+func void_hint_free(puzzle_id: String) -> bool:
+	if definition(puzzle_id) == null:
+		return false
+	_progress.void_hint_free(puzzle_id)
 	_progress_file.save(_progress, definition_ids())
 	return true
 

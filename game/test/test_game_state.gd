@@ -503,5 +503,8 @@ func _pack_entry(fixture: Variant) -> Dictionary:
 	var entry: Dictionary = {}
 	for field in PackEntryValidator.FIELDS:
 		var fixture_field := field.replace("-", "_")
-		entry[field] = fixture.get(fixture_field)
+		var value: Variant = fixture.get(fixture_field)
+		if value == null and PackEntryValidator.HINT_FIELDS.has(field):
+			value = []
+		entry[field] = value
 	return entry

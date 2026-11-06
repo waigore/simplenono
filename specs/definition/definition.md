@@ -8,6 +8,7 @@ Authoring rules: [`.agents/specs/rules/definition.md`](../../.agents/specs/rules
 
 - Local puzzle pack of nonograms (10×10, 15×15, and 20×20)
 - Free-order puzzle selection; per-puzzle ever-completed and attempt status (not started / in progress), in-progress marks, personal-best solve time, and gallery thumbnail when ever-completed, persisted
+- Optional hint assists (settings-toggled; distinct from clues) and a hint-free gallery star when earned
 - Desktop and mobile play with mouse/keyboard or touch
 
 ### Out of scope

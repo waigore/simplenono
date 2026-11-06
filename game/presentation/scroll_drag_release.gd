@@ -28,6 +28,8 @@ const DRAG_THRESHOLD := 6.0
 var _pressed := false
 var _dragging := false
 var _press_position := Vector2.ZERO
+var _scroll: ScrollContainer = null
+var _last_velocity_y := 0.0
 
 
 ## Reads [param event] for [param owner], the control that owns this helper. Returns
@@ -56,6 +58,8 @@ func _is_touch_mirror(event: InputEvent) -> bool:
 func reset() -> void:
 	_pressed = false
 	_dragging = false
+	_scroll = null
+	_last_velocity_y = 0.0
 
 
 func _track_drag(drag: InputEventScreenDrag, owner: Control) -> bool:
@@ -69,9 +73,9 @@ func _track_drag(drag: InputEventScreenDrag, owner: Control) -> bool:
 		# until the matching release and drops every later tap while it waits, so the
 		# drag cancels that press the way the engine does when a scroll begins.
 		owner.notification(Control.NOTIFICATION_SCROLL_BEGIN)
-	var scroll := _enclosing_scroll(owner)
-	if scroll != null:
-		scroll.scroll_vertical -= roundi(drag.relative.y)
+	_scroll = _enclosing_scroll(owner)
+	_last_velocity_y = drag.velocity.y
+	_apply_drag_delta(_scroll, drag.relative.y)
 	return true
 
 
@@ -80,10 +84,34 @@ func _track_touch(touch: InputEventScreenTouch) -> bool:
 		_pressed = true
 		_dragging = false
 		_press_position = touch.position
+		_scroll = null
+		_last_velocity_y = 0.0
 		return false
 	var ended_a_drag := _dragging
+	var scroll := _scroll
+	var velocity_y := _last_velocity_y
 	reset()
+	if ended_a_drag:
+		_end_fling(scroll, velocity_y)
 	return ended_a_drag
+
+
+## Moves R2 with the finger. [GalleryR2Scroll] also clears any coast so a new drag does
+## not fight a leftover fling (#640).
+func _apply_drag_delta(scroll: ScrollContainer, relative_y: float) -> void:
+	if scroll == null:
+		return
+	if scroll is GalleryR2Scroll:
+		(scroll as GalleryR2Scroll).apply_finger_delta(relative_y)
+		return
+	scroll.scroll_vertical -= roundi(relative_y)
+
+
+## Hands the release velocity to [GalleryR2Scroll] so R2 coasts longer than a cold stop
+## or the engine's 1000 px/s² fling (#640).
+func _end_fling(scroll: ScrollContainer, velocity_y: float) -> void:
+	if scroll is GalleryR2Scroll:
+		(scroll as GalleryR2Scroll).fling(velocity_y)
 
 
 func _enclosing_scroll(owner: Control) -> ScrollContainer:

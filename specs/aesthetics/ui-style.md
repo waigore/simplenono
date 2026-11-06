@@ -15,7 +15,11 @@ Chrome uses the gallery, board, and chrome swatches ([`PAL.S1`](palette.md)). A 
 
 ## Iconography
 
-N/A — chrome uses type and panels. No icon set and no mascots ([`aesthetics.md`](aesthetics.md)).
+| ID | Glyph | Use | Look |
+|----|-------|-----|------|
+| I1 | Hint-free star | Gallery tile upper-left when [`GS.hint-free`](../design/game-state.md) | Flat geometric five-point star in Ink ([`PAL.C2`](palette.md)); small; no glow, sparkle, or playful flourish ([`AES.P1`](aesthetics.md)) |
+
+No other icon set and no mascots ([`aesthetics.md`](aesthetics.md)). Chrome otherwise uses type and panels.
 
 ## Panels
 

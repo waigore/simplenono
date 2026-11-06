@@ -26,6 +26,7 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 | Solved | Picture complete; ever-completed set; personal best updates when the solve is shorter | high |
 | Gallery progress | Attempt status, ever-completed, personal best, completion rate | medium |
 | Get-set-ready | Marks not allowed yet | medium |
+| Hint assist shown | Shows only; writes no cell mark | medium |
 
 ## Sensory intent
 
@@ -45,7 +46,7 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 
 ## Learning and mastery
 
-Learn by marking: clues define groups; crosses are optional; line error teaches contradiction; no forced tutorial campaign. Mastery is faster clean solves and better personal bests.
+Learn by marking: clues define groups; crosses are optional; line error teaches contradiction; no forced tutorial campaign. Mastery is faster clean solves, personal bests, and the [hint-free](glossary.md) star ([`progression.md`](progression.md)); hint assists ease the read, writing no marks.
 
 ## Experiences to avoid
 

@@ -3,34 +3,48 @@ extends Control
 ## [code]UI-gallery[/code] R2 tile thumbnail (specs/ux/screens/gallery.md R2).
 ##
 ## Draws the stored generated picture when the tile may show it
-## ([code]GS.gallery-thumbnail[/code], [b]CMP-shell[/b] R6 by asset id) and the generic
-## puzzle placeholder otherwise (US1.3). The tile decides which; this control only
-## paints what it is given, in the six-swatch palette ([code]PAL.S1[/code]).
+## ([code]GS.gallery-thumbnail[/code], [b]CMP-shell[/b] R6 by asset id) and a simple
+## box with a centered question mark otherwise (US1.3). The tile decides which; this
+## control only paints what it is given, in the six-swatch palette ([code]PAL.S1[/code]).
 ##
 ## The region is square, as the approved gallery mockups draw it
 ## ([code].puzzle-tile .thumb { aspect-ratio: 1 }[/code]). A stored picture is fitted
 ## inside that square by its own proportions, so the N×N puzzle pictures keep their
 ## shape instead of stretching into it.
 
-## The placeholder glyph is five cells square, as the approved mockup draws it.
-const GRID_CELLS := 5
-
-## Inset from the shorter side, matching the mockup glyph's 8/40 border.
+## Inset from the shorter side, matching the mockup box's 8/40 border.
 const INSET_RATIO := 0.2
 
-## The placeholder's ink cells, row then column, forming a small puzzle figure.
-const PLACEHOLDER_CELLS := [
-	Vector2i(1, 1),
-	Vector2i(2, 1),
-	Vector2i(3, 1),
-	Vector2i(2, 2),
-	Vector2i(1, 3),
-	Vector2i(2, 3),
-	Vector2i(3, 3),
-	Vector2i(2, 4),
+## Placeholder mark drawn when no picture is shown.
+const PLACEHOLDER_MARK := "?"
+
+## Mark height relative to the inset frame side, matching the mockup's ~14/24.
+const MARK_SIZE_RATIO := 14.0 / 24.0
+
+## The [code]UIS.I1[/code] star's five outer/inner vertices in the mockups' 12-unit
+## viewBox ([code].hint-free-star svg polygon[/code]), drawn pointing up.
+const STAR_VERTICES := [
+	Vector2(6.0, 0.5),
+	Vector2(7.4, 4.2),
+	Vector2(11.5, 4.2),
+	Vector2(8.2, 6.7),
+	Vector2(9.5, 10.5),
+	Vector2(6.0, 8.2),
+	Vector2(2.5, 10.5),
+	Vector2(3.8, 6.7),
+	Vector2(0.5, 4.2),
+	Vector2(4.6, 4.2),
 ]
 
+## First-layout star metrics; the gallery applies the frame rule after
+## ([method set_star_metrics]).
+const STAR_INSET := 4.0
+const STAR_SIZE := 12.0
+
 var _picture: Texture2D
+var _star_visible := false
+var _star_inset := STAR_INSET
+var _star_size := STAR_SIZE
 
 
 ## Shows [param picture], or the placeholder when it is null.
@@ -38,6 +52,34 @@ func show_picture(picture: Texture2D) -> void:
 	if _picture == picture:
 		return
 	_picture = picture
+	queue_redraw()
+
+
+## Shows the [code]UIS.I1[/code] clinical hint-free star ([code]PER.R7[/code]) when
+## [param star_visible]; hides it otherwise.
+func show_star(star_visible: bool) -> void:
+	if _star_visible == star_visible:
+		return
+	_star_visible = star_visible
+	queue_redraw()
+
+
+## True when the clinical hint-free star is drawn in the square's upper-left.
+func shows_star() -> bool:
+	return _star_visible
+
+
+## The square's upper-left star inset and side, as the tile last applied
+## ([code]PER.R7[/code]).
+func star_metrics() -> Vector2:
+	return Vector2(_star_inset, _star_size)
+
+
+## Applies the frame-held star metrics ([code]UIS.I1[/code], [code]PER.R7[/code]); the
+## thumb keeps only the values, the way [code]UIS.T2[/code]'s chrome size does (#557).
+func set_star_metrics(inset: float, star_size: float) -> void:
+	_star_inset = inset
+	_star_size = star_size
 	queue_redraw()
 
 
@@ -65,6 +107,8 @@ func _draw() -> void:
 	else:
 		_draw_placeholder(box)
 	draw_rect(box, PresentationPalette.RULE, false, 1.0)
+	if _star_visible:
+		_draw_hint_free_star(box)
 
 
 ## [param box] shrunk to [method _picture]'s own proportions and centered in it, so a
@@ -78,26 +122,51 @@ func _fitted(box: Rect2) -> Rect2:
 	return Rect2(box.position + (box.size - fitted) * 0.5, fitted)
 
 
+## [code]PER.R7[/code] / [code]UIS.I1[/code]: the flat Ink five-point star sits at the
+## square's upper-left — inset and size are held from the gallery's frame rule, the
+## way the tile's body padding is ([#557]). Both approved mockups draw it as
+## [code].puzzle-tile .hint-free-star[/code].
+func _draw_hint_free_star(box: Rect2) -> void:
+	var points := PackedVector2Array()
+	for vertex in STAR_VERTICES:
+		points.append(
+			box.position + Vector2(_star_inset, _star_inset) + Vector2(vertex) * (_star_size / 12.0)
+		)
+	draw_colored_polygon(points, PresentationPalette.INK)
+
+
 func _draw_placeholder(box: Rect2) -> void:
 	var side := minf(box.size.x, box.size.y)
 	if side <= 0.0:
 		return
 	var frame_size := side * (1.0 - 2.0 * INSET_RATIO)
 	var origin := box.position + (box.size - Vector2(frame_size, frame_size)) * 0.5
-	var cell := frame_size / GRID_CELLS
-	draw_rect(Rect2(origin, Vector2(frame_size, frame_size)), PresentationPalette.RULE, false, 1.0)
-	for index in range(1, GRID_CELLS):
-		var offset := cell * index
-		draw_line(
-			origin + Vector2(offset, 0.0),
-			origin + Vector2(offset, frame_size),
-			PresentationPalette.RULE,
+	var frame := Rect2(origin, Vector2(frame_size, frame_size))
+	draw_rect(frame, PresentationPalette.RULE, false, 1.0)
+	var font := get_theme_default_font()
+	if font == null:
+		font = ThemeDB.fallback_font
+	if font == null:
+		return
+	var font_size := maxi(1, int(roundf(frame_size * MARK_SIZE_RATIO)))
+	var mark_size := (
+		font
+		. get_string_size(
+			PLACEHOLDER_MARK,
+			HORIZONTAL_ALIGNMENT_LEFT,
+			-1,
+			font_size,
 		)
-		draw_line(
-			origin + Vector2(0.0, offset),
-			origin + Vector2(frame_size, offset),
-			PresentationPalette.RULE,
-		)
-	for cell_position: Vector2i in PLACEHOLDER_CELLS:
-		var fill_origin := origin + Vector2(cell_position) * cell
-		draw_rect(Rect2(fill_origin, Vector2(cell, cell)), PresentationPalette.INK)
+	)
+	var baseline := (
+		frame.position + (frame.size - mark_size) * 0.5 + Vector2(0.0, font.get_ascent(font_size))
+	)
+	draw_string(
+		font,
+		baseline,
+		PLACEHOLDER_MARK,
+		HORIZONTAL_ALIGNMENT_LEFT,
+		-1,
+		font_size,
+		PresentationPalette.INK,
+	)

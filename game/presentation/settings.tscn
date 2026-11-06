@@ -139,6 +139,135 @@ focus_mode = 2
 size_flags_vertical = 4
 text = "Off"
 
+[node name="SingleLineRule" type="ColorRect" parent="Margin/Layout/Options/OptionsBox"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.772549, 0.815686, 0.839216, 1)
+mouse_filter = 2
+
+[node name="SingleLineRow" type="MarginContainer" parent="Margin/Layout/Options/OptionsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 14
+
+[node name="SingleLineContent" type="HBoxContainer" parent="Margin/Layout/Options/OptionsBox/SingleLineRow"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SingleLineText" type="VBoxContainer" parent="Margin/Layout/Options/OptionsBox/SingleLineRow/SingleLineContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="SingleLineLabel" type="Label" parent="Margin/Layout/Options/OptionsBox/SingleLineRow/SingleLineContent/SingleLineText"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
+text = "Single-line hint"
+
+[node name="SingleLineHint" type="Label" parent="Margin/Layout/Options/OptionsBox/SingleLineRow/SingleLineContent/SingleLineText"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
+text = "Assist · not clues · default off"
+
+[node name="SingleLineButton" type="Button" parent="Margin/Layout/Options/OptionsBox/SingleLineRow/SingleLineContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 44)
+layout_mode = 2
+focus_mode = 2
+size_flags_vertical = 4
+text = "Off"
+
+[node name="MultiLineRule" type="ColorRect" parent="Margin/Layout/Options/OptionsBox"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.772549, 0.815686, 0.839216, 1)
+mouse_filter = 2
+
+[node name="MultiLineRow" type="MarginContainer" parent="Margin/Layout/Options/OptionsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 14
+
+[node name="MultiLineContent" type="HBoxContainer" parent="Margin/Layout/Options/OptionsBox/MultiLineRow"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MultiLineText" type="VBoxContainer" parent="Margin/Layout/Options/OptionsBox/MultiLineRow/MultiLineContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="MultiLineLabel" type="Label" parent="Margin/Layout/Options/OptionsBox/MultiLineRow/MultiLineContent/MultiLineText"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
+text = "Multi-line hint"
+
+[node name="MultiLineHint" type="Label" parent="Margin/Layout/Options/OptionsBox/MultiLineRow/MultiLineContent/MultiLineText"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
+text = "Assist · one-level · default off"
+
+[node name="MultiLineButton" type="Button" parent="Margin/Layout/Options/OptionsBox/MultiLineRow/MultiLineContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 44)
+layout_mode = 2
+focus_mode = 2
+size_flags_vertical = 4
+text = "Off"
+
+[node name="LineFillableRule" type="ColorRect" parent="Margin/Layout/Options/OptionsBox"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.772549, 0.815686, 0.839216, 1)
+mouse_filter = 2
+
+[node name="LineFillableRow" type="MarginContainer" parent="Margin/Layout/Options/OptionsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 14
+
+[node name="LineFillableContent" type="HBoxContainer" parent="Margin/Layout/Options/OptionsBox/LineFillableRow"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LineFillableText" type="VBoxContainer" parent="Margin/Layout/Options/OptionsBox/LineFillableRow/LineFillableContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="LineFillableLabel" type="Label" parent="Margin/Layout/Options/OptionsBox/LineFillableRow/LineFillableContent/LineFillableText"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882, 0.156863, 0.2, 1)
+text = "Line-fillable hint"
+
+[node name="LineFillableHint" type="Label" parent="Margin/Layout/Options/OptionsBox/LineFillableRow/LineFillableContent/LineFillableText"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
+text = "Assist · fill-tool shade · default off"
+
+[node name="LineFillableButton" type="Button" parent="Margin/Layout/Options/OptionsBox/LineFillableRow/LineFillableContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 44)
+layout_mode = 2
+focus_mode = 2
+size_flags_vertical = 4
+text = "Off"
+
 [node name="OrientationRule" type="ColorRect" parent="Margin/Layout/Options/OptionsBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 1)
