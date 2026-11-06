@@ -7,6 +7,8 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 - **Cites**: `J-play-puzzle`, `UI-gallery`, `UI-puzzle`, `UI-result`, `NAV`, `ACT-player`
 - **Situational tools**: None
 
+Hint-assist overlays and the fillable shade (`US1.8`–`US1.11`) are proved by [`play-hints`](play-hints.md).
+
 ## Steps
 
 | ID | Action |

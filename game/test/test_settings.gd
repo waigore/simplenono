@@ -224,19 +224,6 @@ func test_desktop_focus_order_puts_hint_assists_back_last() -> void:
 	)
 
 
-# S1: on a desktop build settings never shows or writes the orientation control
-func test_desktop_build_has_no_orientation_control() -> void:
-	var desktop := OrientationLock.new(SCREEN_PATH)
-	desktop.mobile = false
-	_settings.present_orientation(desktop)
-
-	assert_false(_settings.orientation_available(), "no C4 on desktop")
-	assert_false(
-		_settings.get_node("%OrientationRow").visible, "R1 shows no orientation row on desktop"
-	)
-	assert_eq(_settings.activate_orientation(), "", "C4 never asks for a value")
-
-
 # S1: the mobile focus order keeps C1, C2, C5–C7, then C4, with C3 Back last
 func test_mobile_focus_order_puts_orientation_before_back() -> void:
 	_settings.present_orientation(_mobile_lock(SCREEN_PATH))

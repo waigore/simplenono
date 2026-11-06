@@ -1,6 +1,7 @@
 extends GutTest
 ## [code]UI-puzzle[/code] screen presentation — specs/ux/screens/puzzle.md R1-R3,
-## S1-S3 and specs/ux/stories/screens/puzzle.md US1.1-US1.7.
+## S1-S3, specs/ux/stories/screens/puzzle.md US1.1-US1.9, and the fill-hint overlay
+## row of specs/design/features/fill-hints.md R3.
 ##
 ## Drives the real [PuzzleScreen], [PuzzleBoard], [PuzzleCell], and [Attempt] over
 ## the teapot fixture, so state-to-widget mapping is observed on the controls the
@@ -11,6 +12,8 @@ extends GutTest
 const SCREEN_SCENE := preload("res://presentation/puzzle.tscn")
 const TEAPOT_ID := "teapot"
 const TEAPOT_PATH := "res://test/fixtures/teapot.json"
+## A 10x10 fixture whose F8/F9 hint cells exercise both marks and both assists.
+const HINTS_PATH := "res://test/fixtures/fill-hints.json"
 const TEST_PATH := "user://progress-puzzle-screen-test.cfg"
 const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
@@ -377,3 +380,88 @@ func test_board_does_not_read_the_definition_solution():
 				CellMark.Mark.FILL,
 				"no cell is filled from a definition's solution",
 			)
+
+
+## The hinted fixture's pack, for the overlay tests.
+func _hinted_pack() -> Pack:
+	return _pack_with(_load_definition(HINTS_PATH))
+
+
+## The screen showing the hinted fixture with the given assists.
+func _hinted_shown(single_line: bool, multi_line: bool) -> Attempt:
+	var attempt := Attempt.new(_hinted_pack())
+	assert_true(attempt.open("hinted"), "the hinted puzzle opens")
+	_screen.present(attempt)
+	_screen.set_hint_overlays(single_line, multi_line)
+	_screen.finish_ready_beat()
+	return attempt
+
+
+# US1.8 / R3: single-line on ghosts F8 only, and writes no mark
+func test_single_line_on_ghosts_f8_cells_only():
+	var attempt := _hinted_shown(true, false)
+	var marks_before := attempt.state().marks().snapshot()
+
+	assert_eq(_screen.cell_at(0, 0).hint, PuzzleCell.HINT_FILL, "F8 fill ghosts")
+	assert_eq(_screen.cell_at(0, 3).hint, PuzzleCell.HINT_CROSS, "F8 cross ghosts")
+	assert_eq(_screen.cell_at(0, 7).hint, PuzzleCell.HINT_NONE, "F9 stays hidden")
+	assert_eq(
+		_screen.cell_at(5, 5).hint, PuzzleCell.HINT_NONE, "a cell with no hint ghosts nothing"
+	)
+	assert_eq(attempt.state().marks().snapshot(), marks_before, "the overlay writes no mark")
+
+
+# R3: multi-line on ghosts F8 and F9 together
+func test_multi_line_on_ghosts_f8_and_f9():
+	_hinted_shown(false, true)
+
+	assert_eq(_screen.cell_at(0, 1).hint, PuzzleCell.HINT_FILL, "single-line fills stay")
+	assert_eq(_screen.cell_at(0, 3).hint, PuzzleCell.HINT_CROSS, "single-line crosses stay")
+	assert_eq(_screen.cell_at(0, 4).hint, PuzzleCell.HINT_FILL, "F9 fill ghosts")
+	assert_eq(_screen.cell_at(0, 7).hint, PuzzleCell.HINT_CROSS, "F9 cross ghosts")
+
+
+# US1.9 / R3: both off ghosts nothing
+func test_toggles_off_ghost_nothing():
+	_hinted_shown(false, false)
+
+	for row in 10:
+		for column in 10:
+			assert_eq(
+				_screen.cell_at(row, column).hint,
+				PuzzleCell.HINT_NONE,
+				"no overlay at r%sc%s" % [row, column],
+			)
+
+
+# R3: a toggle change applies at once, on or off
+func test_toggle_changes_apply_at_once():
+	_hinted_shown(false, false)
+	assert_eq(_screen.cell_at(0, 4).hint, PuzzleCell.HINT_NONE, "nothing shows yet")
+
+	_screen.set_hint_overlays(true, true)
+	assert_eq(_screen.cell_at(0, 4).hint, PuzzleCell.HINT_FILL, "an enable applies at once")
+
+	_screen.set_hint_overlays(false, false)
+	assert_eq(_screen.cell_at(0, 4).hint, PuzzleCell.HINT_NONE, "a disable clears at once")
+
+
+# PAL.K7 / PER.R8: the ghost swatch is neutral, distinct from the marks, and sits
+# between Cross and Rule in lightness, so it reads apart from both
+func test_the_hint_swatch_is_distinct_from_marks_and_grid():
+	var hint := PresentationPalette.HINT
+	assert_ne(hint, PresentationPalette.PAPER, "C8 differs from Paper")
+	assert_ne(hint, PresentationPalette.INK, "C8 differs from Ink")
+	assert_ne(hint, PresentationPalette.CROSS, "C8 differs from Cross")
+	assert_gt(hint.get_luminance(), PresentationPalette.CROSS.get_luminance(), "lighter than Cross")
+	assert_lt(hint.get_luminance(), PresentationPalette.RULE.get_luminance(), "darker than Rule")
+
+
+# X2 / R3: the overlay sits on the player's mark without replacing it
+func test_an_overlay_leaves_the_players_mark_standing():
+	var attempt := _hinted_shown(true, false)
+	var result := attempt.mark(0, 0, CellMark.Mark.CROSS)
+	_screen.show_mark_result(result)
+
+	assert_eq(_screen.cell_at(0, 0).mark, CellMark.Mark.CROSS, "the cross mark stands")
+	assert_eq(_screen.cell_at(0, 0).hint, PuzzleCell.HINT_FILL, "the ghost still shows")

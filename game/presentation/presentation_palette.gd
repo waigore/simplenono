@@ -1,7 +1,7 @@
 class_name PresentationPalette
 extends RefCounted
 ## Palette swatches for presentation drawing ([code]PAL.S1[/code],
-## specs/aesthetics/palette.md C1-C6).
+## specs/aesthetics/palette.md C1-C9).
 ##
 ## The swatches are the only colors the board and chrome use ([code]PAL.S1[/code]),
 ## C1-C9 in specs/aesthetics/palette.md. Solution pictures keep their own pixels and
@@ -28,8 +28,9 @@ const CONTRADICTION := Color("#3A6F8F")
 ## C7 Major: major grid lines every 5 cells on the open board.
 const MAJOR := Color("#B0BBC3")
 
-## C8 Hint overlay: the single-line / multi-line fill-hint cells only ([code]PAL.K7[/code]).
-const HINT_OVERLAY := Color("#8FA2AF")
+## C8 Hint overlay: the single- and multi-line fill-hint ghosts only
+## ([code]PER.R8[/code], specs/design/features/fill-hints.md R3).
+const HINT := Color("#8FA2AF")
 
 ## C9 Fillable shade: the line-level fillable region only; lighter than C8
 ## ([code]PAL.K7[/code], [code]PER.R8[/code]).
