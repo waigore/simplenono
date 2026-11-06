@@ -29,17 +29,20 @@ static func region(size: int, runs: Array, tapped: int) -> Array[int]:
 	var longest := 0
 	for run in covering:
 		longest = maxi(longest, run.size())
-	# A Dictionary is this repo's ordered set; kept sorted below so the caller sees
-	# cells in reading order.
-	var shared: Dictionary = {}
+	# R1: where the max-length runs sit differently, the shade is only the cells they
+	# all share, so intersect them rather than unioning their cells.
+	var first := -1
+	var last := -1
 	for run in covering:
-		if run.size() == longest:
-			for cell in run:
-				shared[cell] = true
+		if run.size() != longest:
+			continue
+		var start := int(run[0])
+		var end := int(run[run.size() - 1])
+		first = start if first < 0 else maxi(first, start)
+		last = end if last < 0 else mini(last, end)
 	var cells: Array[int] = []
-	for cell in shared:
+	for cell in range(first, last + 1):
 		cells.append(cell)
-	cells.sort()
 	return cells
 
 

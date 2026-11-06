@@ -14,8 +14,8 @@ const TEAPOT_PATH := "res://test/fixtures/teapot.json"
 const TEST_PATH := "user://progress-fillable-shade-test.cfg"
 const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 
-## A teapot row whose clue is a single run of 10 on a 15-wide line: a tap anywhere
-## shades every cell, since each cell is inside some valid placement's run.
+## A teapot row whose clue is a single run of 10 on a 15-wide line: the max legal run
+## is 10 long, and a tap trims the shade to the cells every covering placement shares.
 const RUN_ROW := 7
 ## A teapot row whose clue is empty (no run, so no shade).
 const EMPTY_ROW := 0
@@ -56,7 +56,7 @@ func test_a_fill_tap_shades_the_run_and_still_marks() -> void:
 	_open()
 	_screen.set_line_fillable(true)
 	_tap(RUN_ROW, 5)
-	assert_eq(_board().shaded_cells(), _row_cells(RUN_ROW, 0, 14), "the row-wide shade shows")
+	assert_eq(_board().shaded_cells(), _row_cells(RUN_ROW, 5, 9), "the shared cells show")
 	assert_eq(_mark_of(RUN_ROW, 5), CellMark.Mark.FILL, "the tap still writes its fill (R2)")
 
 
@@ -65,11 +65,11 @@ func test_the_shade_is_recomputed_not_trimmed_by_marks() -> void:
 	_open()
 	_screen.set_line_fillable(true)
 	_tap(RUN_ROW, 7)
-	assert_eq(_board().shaded_cells(), _row_cells(RUN_ROW, 0, 14), "row 7's region is shaded")
+	assert_eq(_board().shaded_cells(), _row_cells(RUN_ROW, 5, 9), "row 7's shared cells are shaded")
 	# The same tap again turns that mark off; the shade is recomputed, not voided (R1).
 	_tap(RUN_ROW, 7)
 	assert_eq(_mark_of(RUN_ROW, 7), CellMark.Mark.CLEAR, "the toggle-off tap cleared it")
-	assert_eq(_board().shaded_cells(), _row_cells(RUN_ROW, 0, 14), "marks never void the shade")
+	assert_eq(_board().shaded_cells(), _row_cells(RUN_ROW, 5, 9), "marks never void the shade")
 
 
 # X1: a tap on a cell no arrangement fills shows no shade.
@@ -88,7 +88,7 @@ func test_a_new_tap_replaces_the_shade() -> void:
 	var first := _board().shaded_cells()
 	assert_false(first.is_empty(), "row 4 shaves its own region")
 	_tap(RUN_ROW, 5)
-	assert_eq(_board().shaded_cells(), _row_cells(RUN_ROW, 0, 14), "only the newer region shows")
+	assert_eq(_board().shaded_cells(), _row_cells(RUN_ROW, 5, 9), "only the newer region shows")
 
 
 # R3: with the toggle off, a fill tap writes its mark and shades nothing.

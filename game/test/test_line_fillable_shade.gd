@@ -47,23 +47,22 @@ func test_the_run_containing_the_tap_wins() -> void:
 
 func test_shared_cells_of_the_max_length_placements() -> void:
 	# Clue 3 on a width of 5 has three placements (0..2, 1..3, 2..4). A tap at cell 2
-	# is covered by all three, so the shade spans every cell they share.
-	assert_eq(LineFillableShade.region(5, [3], 2), _cells(0, 4), "cell 2 is shared")
-	# A tap at cell 0 is covered by placements starting 0 and 1, which share 0..2.
-	assert_eq(LineFillableShade.region(5, [3], 0), _cells(0, 2), "two placements cover 0")
+	# is covered by all three, and only cell 2 is in every one of them (R1).
+	assert_eq(LineFillableShade.region(5, [3], 2), _cells(2, 2), "cell 2 is the only shared cell")
+	# A tap at cell 0 is covered by the placement starting 0 only, so its run shows.
+	assert_eq(LineFillableShade.region(5, [3], 0), _cells(0, 2), "one placement covers 0")
 
 
 func test_sample_row_four_tap_on_the_clue_run() -> void:
 	# The approved MC.puzzle sample's row 4 is clue 6 on a 10-wide line. A tap on
-	# r4c3 (0-based column 2) is covered by placements starting 0..2; they all fill
-	# cells 0..7.
-	assert_eq(LineFillableShade.region(SAMPLE_SIZE, [6], 2), _cells(0, 7), "r4c3")
+	# r4c3 (0-based column 2) is covered by placements starting 0..2; they share 2..5.
+	assert_eq(LineFillableShade.region(SAMPLE_SIZE, [6], 2), _cells(2, 5), "r4c3")
 
 
 func test_sample_row_four_tap_at_the_line_end_trims_the_shared_cells() -> void:
 	# The same clue 6 with a tap on cell 1 is covered by placements starting 0 and 1
-	# only, which share cells 0..6: a tap further into the line trims the shade.
-	assert_eq(LineFillableShade.region(SAMPLE_SIZE, [6], 1), _cells(0, 6), "r4c2")
+	# only, which share 1..5: the approved mockup's r4c2 shade.
+	assert_eq(LineFillableShade.region(SAMPLE_SIZE, [6], 1), _cells(1, 5), "r4c2")
 
 
 func _cells(from: int, to: int) -> Array[int]:
