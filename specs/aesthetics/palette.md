@@ -18,23 +18,12 @@ Authoring rules: [`.agents/specs/rules/aesthetics/palette.md`](../../.agents/spe
 | C7 | Major | `#B0BBC3` | grid | Major grid lines every 5 cells on the open board |
 | C8 | Hint overlay | `#8FA2AF` | hint overlay | Fill-hint ghosts only ([`PER.R8`](../view/perception.md); [`fill-hints.md`](../design/features/fill-hints.md) R3) |
 | C9 | Fillable shade | `#C2CDD4` | fillable shade | Line-level fillable region; lighter than C8 ([`PER.R8`](../view/perception.md); [`line-fillable-shade.md`](../design/features/line-fillable-shade.md)) |
+| C10 | Gold | `#A67C00` | reward badge | The hint-free gallery star only ([`UIS.I1`](ui-style.md), [`PER.R7`](../view/perception.md)); the single warm chrome exception ([`PAL.K5`](palette/rules.md)) |
 
 ## Palette sets
 
-| ID | Context | Swatches | Color limit |
-|----|---------|----------|-------------|
-| S1 | Gallery, board, and chrome | C1, C2, C3, C4, C5, C6, C7, C8, C9 | 9 |
-
-One style throughout ([`aesthetics.md`](aesthetics.md)). Solution pictures keep their own pixels ([`PER.R4`](../view/perception.md), [`PER.R5`](../view/perception.md)); they sit outside S1.
+One set, S1, covers the gallery, board, and chrome. Swatches, the color limit, and the solution-picture exception: [`palette/sets.md`](palette/sets.md).
 
 ## Color rules
 
-| ID | Rule | Applies to | Test | Serves |
-|----|------|------------|------|--------|
-| K1 | Ink and cross stay readable on paper | Cell marks and active clue text on the ground | C2 and C3 each contrast at least 4.5:1 with C1 | [`PER.R1`](../view/perception.md), [`PER.R2`](../view/perception.md), [`AES.P2`](aesthetics.md) |
-| K2 | Fill, cross, and clear stay distinct | Cell marks | C3 is lighter than C2, and both differ from C1 | [`PER.R1`](../view/perception.md); clarity in [`experience.md`](../design/experience.md) |
-| K3 | Line error uses contradiction only | Line-error signal | C6 is the only non-neutral hue, used only for that signal, and contrasts at least 4.5:1 with C1 | [`PER.R3`](../view/perception.md); line error in [`experience.md`](../design/experience.md) |
-| K4 | Matched clue numbers dim | Clue-number text | C5 is lighter than C2 and contrasts at least 3:1 with C1 | Clue satisfied in [`experience.md`](../design/experience.md); [`PER.R2`](../view/perception.md) |
-| K5 | Cool high-contrast swatches | Every swatch | C1–C5 and C7–C9 are neutral cool grays; C6 is steel blue for the line-error signal | [`AES.P1`](aesthetics.md) |
-| K6 | Major darker than Rule | Open-board grid edges | C7 is darker than C4 and lighter than C5; same cool neutral family | [`AES.P2`](aesthetics.md) |
-| K7 | Hint assists stay distinct | Fill-hint overlays and fillable shade | C8, C9 differ from C1–C3; C8 sits between C3 and C4 in lightness; C9 is lighter than C8 (each RGB channel higher) | [`PER.R8`](../view/perception.md); [`fill-hints.md`](../design/features/fill-hints.md), [`line-fillable-shade.md`](../design/features/line-fillable-shade.md) |
+K1–K8 keep the swatches readable and distinct. The table: [`palette/rules.md`](palette/rules.md).

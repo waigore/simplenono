@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/aesthetics/ui-style.md`](../../.agents/specs/rules/aesthetics/ui-style.md).
 
-- **Serves**: Cool clinical look ([`AES.P1`](aesthetics.md)), grid clarity ([`AES.P2`](aesthetics.md)), and snappy restraint ([`AES.P3`](aesthetics.md)). Readable clues ([`PER.R2`](../view/perception.md)) and the line-error cue ([`PER.R3`](../view/perception.md), [`PAL.K3`](palette.md)).
+- **Serves**: Cool clinical look ([`AES.P1`](aesthetics.md)), grid clarity ([`AES.P2`](aesthetics.md)), and snappy restraint ([`AES.P3`](aesthetics.md)). Readable clues ([`PER.R2`](../view/perception.md)) and the line-error cue ([`PER.R3`](../view/perception.md), [`PAL.K3`](palette/rules.md)).
 
 Chrome uses the gallery, board, and chrome swatches ([`PAL.S1`](palette.md)). A named typeface is chosen with the assets. The UI is English ([`experience.md`](../design/experience.md)).
 
@@ -17,7 +17,7 @@ Chrome uses the gallery, board, and chrome swatches ([`PAL.S1`](palette.md)). A 
 
 | ID | Glyph | Use | Look |
 |----|-------|-----|------|
-| I1 | Hint-free star | Gallery tile upper-left when [`GS.hint-free`](../design/game-state.md) | Flat geometric five-point star in Ink ([`PAL.C2`](palette.md)); small; no glow, sparkle, or playful flourish ([`AES.P1`](aesthetics.md)) |
+| I1 | Hint-free star | Gallery tile upper-left when [`GS.hint-free`](../design/game-state.md) | Flat geometric five-point star in Gold ([`PAL.C10`](palette.md)); one eighth of the thumb's picture side on narrow frames and one sixteenth on wide frames (about 20 px and 16 px at the two mockup frames), inset one fortieth of that side; no glow, sparkle, or playful flourish ([`AES.P1`](aesthetics.md)) |
 
 No other icon set and no mascots ([`aesthetics.md`](aesthetics.md)). Chrome otherwise uses type and panels.
 
@@ -31,11 +31,11 @@ No other icon set and no mascots ([`aesthetics.md`](aesthetics.md)). Chrome othe
 
 | ID | Role | Swatch | Contrast rule |
 |----|------|--------|---------------|
-| C1 | background | [`PAL.C1`](palette.md) | [`PAL.K1`](palette.md) against text |
-| C2 | text | [`PAL.C2`](palette.md) | [`PAL.K1`](palette.md) against Paper |
-| C3 | text, satisfied clue | [`PAL.C5`](palette.md) | [`PAL.K4`](palette.md) against Paper |
-| C4 | line error | [`PAL.C6`](palette.md) | [`PAL.K3`](palette.md) against Paper |
-| C5 | focus | [`PAL.C4`](palette.md), border only | [`PAL.K3`](palette.md) — Contradiction stays the line-error signal |
+| C1 | background | [`PAL.C1`](palette.md) | [`PAL.K1`](palette/rules.md) against text |
+| C2 | text | [`PAL.C2`](palette.md) | [`PAL.K1`](palette/rules.md) against Paper |
+| C3 | text, satisfied clue | [`PAL.C5`](palette.md) | [`PAL.K4`](palette/rules.md) against Paper |
+| C4 | line error | [`PAL.C6`](palette.md) | [`PAL.K3`](palette/rules.md) against Paper |
+| C5 | focus | [`PAL.C4`](palette.md), border only | [`PAL.K3`](palette/rules.md) — Contradiction stays the line-error signal |
 
 ## Interface motion
 

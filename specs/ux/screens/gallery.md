@@ -13,14 +13,14 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | Shown in | Design element | Visible when |
 |----------|----------------|--------------|
 | R1 | [`GS.completion-rate`](../../design/game-state.md) | Always on this screen; C5 never narrows it |
-| R2 | Per puzzle: attempt status, ever-completed, personal best, gallery thumbnail, hint-free, size | Always; C5 off shows every puzzle, C5 on shows only not-ever-completed puzzles; solution thumb when ever-completed else box+?; PB when set; clinical star upper-left on thumb when hint-free ([`PER.R7`](../../view/perception.md), [`UIS.I1`](../../aesthetics/ui-style.md)) |
+| R2 | Per puzzle: attempt status, ever-completed, personal best, gallery thumbnail, hint-free, size | Always; C5 off shows every puzzle, C5 on shows only not-ever-completed puzzles; solution thumb when ever-completed else box+?; PB when set; gold star upper-left on thumb when hint-free ([`PER.R7`](../../view/perception.md), [`UIS.I1`](../../aesthetics/ui-style.md)) |
 
 ## Regions
 
 | ID | Region | Purpose | Contents |
 |----|--------|---------|----------|
 | R1 | Pack progress | Pack completion at a glance | Completion bar; `copy.completion` |
-| R2 | Puzzle grid | Scrollable free-order tiles for all 200 puzzles | Tile: size; status; PB when set; thumb or box+?; hint-free star upper-left when true; C1; C2 when allowed |
+| R2 | Puzzle grid | Scrollable free-order tiles for all 200 puzzles | Tile: size; status; PB when set; thumb or box+?; gold hint-free star upper-left when true; C1; C2 when allowed |
 | R3 | Chrome | Return to the main menu; open slim settings; narrow the grid | C4 Back to main menu; C3 Settings; C5 Incomplete only |
 
 ## Controls

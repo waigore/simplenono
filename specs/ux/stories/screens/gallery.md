@@ -113,7 +113,7 @@ Then UI-menu opens
 ```gherkin
 Given puzzle P hint-free true
 When UI-gallery shows P's tile
-Then R2 shows the clinical star on the upper-left of the thumb
+Then R2 shows the gold star on the upper-left of the thumb
 ```
 
 ### US1.9: Default filter off lists every puzzle
