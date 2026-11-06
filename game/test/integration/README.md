@@ -55,10 +55,13 @@ failure the comparison's message is the step's `detail`. A `measure` leg's time 
 only when the leg completed — its action ran and its `until` was met — so a failed leg
 fails its `I6`/`I7`/`I8` row as "not completed" with no millisecond figure. By default a
 leg's clock starts when its action returns, so the leg times action-exit →
-acknowledgement and never the driver's own call. Steps: `launch`, `wait_probe`,
-`wait_beat`, `wait_frames`, `wait_ms`, `sync`, `flow`, `sample_start`, `sample_stop`,
-`puzzles`, `open`, `mark`, `paint`, `solve`, `pause`, `resume`, `settings`, `back`,
-`reset`, `mark_start`, `mark_stop`, `measure`, `dump`, `expect`, `quit`. Two step keys
+acknowledgement and never the driver's own call. The wait then crosses one frame before
+its first probe, so a synchronous action's state is read on its drawing turn rather than
+as a `~0 ms` wall clock; that frame is the product's drawing turn, not padding. Steps:
+`launch`, `wait_probe`, `wait_beat`, `wait_frames`, `wait_ms`, `sync`, `flow`,
+`sample_start`, `sample_stop`, `puzzles`, `open`, `mark`, `paint`, `solve`, `pause`,
+`resume`, `settings`, `back`, `reset`, `mark_start`, `mark_stop`, `measure`, `dump`,
+`expect`, `quit`. Two step keys
 change what a `measure` times:
 
 - `driver_time: "<why>"` records the leg as driver-timed and says so in its row; use it
@@ -86,7 +89,8 @@ is still missing. These are product gaps, not harness errors:
   the solve is a step of its own, and the leg's `polls_action` action is the shell's
   first painted result frame. Its `result-gallery` leg is product-acknowledged: the
   result screen's C1 routes through the shell (#95). A new session opens on the menu
-  (`NAV.N1`); the protocol presses `UI-menu.C1` to reach the gallery before sampling.- `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
+  (`NAV.N1`); the protocol presses `UI-menu.C1` to reach the gallery before sampling.
+- `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
   stops when settings is showing (`NAV.T7`), and Back stops at the resumed puzzle on
   settings' C3 (`NAV.T8`). The pause inside the attempt is #96's.
 - `app-start` measures launch to the shell's interactive home, the menu on a new
