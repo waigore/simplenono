@@ -87,7 +87,8 @@ static func spec() -> Dictionary:
 				"until": {"probe": "view", "value": "result"},
 			},
 			# Both morph stages run CFG.MORPH_STAGE_MS; C1 is refused until S1 (US1.5b).
-			{"id": "result-default", "kind": "wait_ms", "ms": 900},
+			# Two 2500 ms stages at the default, plus margin, so the wait reaches S1.
+			{"id": "result-default", "kind": "wait_ms", "ms": 5500},
 			{"id": "reveal-stop", "kind": "sample_stop"},
 			{
 				"id": "result-gallery",

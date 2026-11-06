@@ -55,11 +55,11 @@ static func spec() -> Dictionary:
 				"mark": "fixture:ack",
 				"min": 1,
 			},
-			# The anti-padding proof. With the old forced `_frames(1)` in the wait, this
-			# leg read ~0 ms (the condition was already true at the action's exit); with
-			# the fix it reads one frame. The lower bound is therefore what proves the
-			# wait crosses a real drawing turn, and the upper bound catches any extra
-			# forced padding.
+			# The anti-padding proof. `_await_condition` crosses one frame before its
+			# first probe, so this leg reads one drawing turn; only removing that frame
+			# entirely would read `~0 ms`. The lower bound proves the wait crosses a real
+			# drawing turn, and the upper bound catches any extra forced padding: a
+			# re-added forced frame reads ~2.0 periods, so the bound is 1.5, not 2.0.
 			{"id": "sync", "kind": "sync"},
 			{
 				"id": "leg",
@@ -80,7 +80,7 @@ static func spec() -> Dictionary:
 				"kind": "expect",
 				"probe": "duration_ratio",
 				"mark": "fixture:frame",
-				"max": 2.0,
+				"max": 1.5,
 			},
 			{"id": "sampled", "kind": "expect", "probe": "sampled_frames", "min": 3},
 			{"id": "quit", "kind": "quit"},

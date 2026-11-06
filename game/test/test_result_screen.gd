@@ -15,9 +15,11 @@ const TEMP_PATH := TEST_PATH + ProgressFile.TEMP_SUFFIX
 var _screen: ResultScreen
 var _definition: PuzzleDefinition
 var _solved_fills: MarkGrid
+var _stage_ms: int
 
 
 func before_each() -> void:
+	_stage_ms = ResultReveal.DEFAULT_STAGE_MS
 	_definition = _shipped_definition()
 	_solved_fills = _solve_the_shipped_puzzle()
 	_screen = SCREEN_SCENE.instantiate() as ResultScreen
@@ -73,8 +75,10 @@ func _texture(color: Color) -> Texture2D:
 func _shown(
 	pixel_picture: Texture2D = null,
 	picture: Texture2D = null,
-	stage_ms: int = 300,
+	stage_ms: int = -1,
 ) -> void:
+	if stage_ms < 0:
+		stage_ms = _stage_ms
 	_screen.present(_solved_fills, pixel_picture, picture, stage_ms)
 
 
@@ -101,34 +105,42 @@ func test_us1_1_opens_on_the_fills_with_no_controls() -> void:
 	assert_false(_screen.back_button().visible, "R2 is not shown before S1")
 
 
+# CFG.MORPH_STAGE_MS: the shipped default is 2500 ms per stage, so the two equal
+# stages last at least 5 s before S1 opens C1.
+func test_default_stage_gives_a_reveal_of_at_least_five_seconds() -> void:
+	assert_eq(ResultReveal.DEFAULT_STAGE_MS, 2500, "the spec's default stage length")
+	assert_gte(ResultReveal.DEFAULT_STAGE_MS * 2, 5000, "both stages last at least 5 s")
+
+
 # MOT.T2 / MOT.E1: one stage is CFG.MORPH_STAGE_MS, linear, and ends on the pixel picture
 func test_stage_one_runs_cfg_morph_stage_ms_linearly() -> void:
 	_shown(_texture(Color.WHITE))
-	_screen.advance(150)
+	var half := _stage_ms / 2
+	_screen.advance(half)
 	assert_eq(_screen.stage(), ResultReveal.STAGE_PIXEL, "still the first stage halfway")
 	assert_almost_eq(_screen.reveal().fills_slot().opacity(), 0.5, 0.001, "half faded")
 	assert_almost_eq(_screen.reveal().pixel_slot().opacity(), 0.5, 0.001, "half revealed")
-	_screen.advance(150)
-	assert_eq(_screen.stage(), ResultReveal.STAGE_PICTURE, "300 ms ends stage one")
+	_screen.advance(_stage_ms - half)
+	assert_eq(_screen.stage(), ResultReveal.STAGE_PICTURE, "%d ms ends stage one" % _stage_ms)
 	assert_almost_eq(_screen.reveal().pixel_slot().opacity(), 1.0, 0.001, "E1 ends complete")
 
 
 # US1.4 / S3 / MOT.E2: the pixel picture then fades into the generated picture
 func test_us1_4_pixel_fades_into_the_generated_picture() -> void:
 	_shown(_texture(Color.WHITE), _texture(Color.BLACK))
-	_screen.advance(300)
-	_screen.advance(150)
+	_screen.advance(_stage_ms)
+	_screen.advance(_stage_ms / 2)
 	assert_eq(_screen.stage(), ResultReveal.STAGE_PICTURE, "still the second stage")
 	assert_almost_eq(_screen.reveal().pixel_slot().opacity(), 0.5, 0.001, "pixel fading out")
 	assert_almost_eq(_screen.reveal().picture_slot().opacity(), 0.5, 0.001, "picture fading in")
 	assert_false(_screen.can_go_back(), "still no control in S3")
 
 
-# US1.2 / S1: both stages finish at 600 ms and R2's C1 opens
+# US1.2 / S1: both stages finish at 2 x CFG.MORPH_STAGE_MS and R2's C1 opens
 func test_us1_2_default_shows_the_picture_and_opens_back() -> void:
 	_shown(_texture(Color.WHITE), _texture(Color.BLACK))
-	_screen.advance(600)
-	assert_eq(_screen.stage(), ResultReveal.STAGE_DEFAULT, "600 ms is both stages")
+	_screen.advance(_stage_ms * 2)
+	assert_eq(_screen.stage(), ResultReveal.STAGE_DEFAULT, "both stages have run")
 	assert_almost_eq(_screen.reveal().picture_slot().opacity(), 1.0, 0.001, "the picture shows")
 	assert_true(_screen.reveal().picture_slot().has_content(), "the picture is drawable")
 	assert_almost_eq(_screen.reveal().pixel_slot().opacity(), 0.0, 0.001, "the pixel layer is gone")
@@ -165,7 +177,7 @@ func test_back_label_is_ink_while_focused() -> void:
 # US1.3 / C1: C1 changes nothing while the morph runs
 func test_us1_3_back_is_blocked_while_morphing() -> void:
 	_shown(_texture(Color.WHITE), _texture(Color.BLACK))
-	_screen.advance(300)
+	_screen.advance(_stage_ms)
 	var emissions: Array = []
 	_screen.back_requested.connect(func() -> void: emissions.append(true))
 	assert_false(_screen.activate_back(), "C1 is refused in S3")
@@ -200,7 +212,7 @@ func test_the_morph_has_no_clue_chrome() -> void:
 # US1.5 / R1 / S1: a missing generated picture ends the reveal on the pixel picture
 func test_us1_5_missing_generated_picture_ends_on_the_pixel_picture() -> void:
 	_shown(_texture(Color.WHITE))
-	_screen.advance(600)
+	_screen.advance(_stage_ms * 2)
 	assert_eq(_screen.stage(), ResultReveal.STAGE_DEFAULT, "the morph completes")
 	assert_almost_eq(_screen.reveal().pixel_slot().opacity(), 1.0, 0.001, "the pixel picture shows")
 	assert_true(_screen.reveal().pixel_slot().has_content(), "the terminal layer is drawable")
@@ -213,7 +225,7 @@ func test_us1_5_missing_generated_picture_ends_on_the_pixel_picture() -> void:
 # US1.5 / R1 / S1: with both pictures absent the reveal ends on the solved fills
 func test_us1_5_missing_pictures_end_on_the_solved_fills() -> void:
 	_shown()
-	_screen.advance(600)
+	_screen.advance(_stage_ms * 2)
 	assert_eq(_screen.stage(), ResultReveal.STAGE_DEFAULT, "the morph completes")
 	assert_almost_eq(_screen.reveal().fills_slot().opacity(), 1.0, 0.001, "the fills show")
 	assert_true(_screen.reveal().fills_slot().has_content(), "the terminal layer is drawable")
@@ -226,14 +238,14 @@ func test_us1_5_missing_pictures_end_on_the_solved_fills() -> void:
 # US1.5 / R1: each remaining stage still runs CFG.MORPH_STAGE_MS when it holds
 func test_us1_5_remaining_stages_keep_cfg_morph_stage_ms() -> void:
 	_shown(_texture(Color.WHITE))
-	_screen.advance(299)
+	_screen.advance(_stage_ms - 1)
 	assert_eq(_screen.stage(), ResultReveal.STAGE_PIXEL, "S2 runs its full stage")
 	_screen.advance(1)
-	assert_eq(_screen.stage(), ResultReveal.STAGE_PICTURE, "300 ms ends S2")
-	_screen.advance(299)
+	assert_eq(_screen.stage(), ResultReveal.STAGE_PICTURE, "%d ms ends S2" % _stage_ms)
+	_screen.advance(_stage_ms - 1)
 	assert_eq(_screen.stage(), ResultReveal.STAGE_PICTURE, "S3 runs its full stage while holding")
 	_screen.advance(1)
-	assert_eq(_screen.stage(), ResultReveal.STAGE_DEFAULT, "600 ms ends the chain")
+	assert_eq(_screen.stage(), ResultReveal.STAGE_DEFAULT, "2 x %d ms ends the chain" % _stage_ms)
 
 
 # US1.5 / R1: no frame between S2 and S1 is empty, for every shipped-picture pair
@@ -241,10 +253,20 @@ func test_us1_5_no_frame_between_stages_is_empty() -> void:
 	var pixel := _texture(Color.WHITE)
 	var picture := _texture(Color.BLACK)
 	var pairs := [[null, null], [pixel, null], [pixel, picture]]
+	var half := _stage_ms / 2
 	for pair: Array in pairs:
-		_shown(pair[0], pair[1], 300)
+		_shown(pair[0], pair[1], _stage_ms)
 		var elapsed := 0
-		for at_ms: int in [0, 150, 299, 300, 301, 450, 599, 600]:
+		for at_ms: int in [
+			0,
+			half,
+			_stage_ms - 1,
+			_stage_ms,
+			_stage_ms + 1,
+			_stage_ms + half,
+			_stage_ms * 2 - 1,
+			_stage_ms * 2,
+		]:
 			_screen.advance(at_ms - elapsed)
 			elapsed = at_ms
 			_assert_a_drawable_layer_shows_at("%d ms" % at_ms)

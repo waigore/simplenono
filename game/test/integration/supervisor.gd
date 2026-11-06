@@ -223,8 +223,9 @@ func _mark_stop(step: Dictionary) -> bool:
 ## [code]until[/code] condition before stopping the clock. By default the clock starts
 ## when the action returns, so a leg times action-exit → acknowledgement and never times
 ## the driver's own synchronous call. The wait crosses exactly one frame before its first
-## check — the old forced frame of padding is gone — so a synchronous action's state is
-## caught on its drawing turn instead of reading `~0 ms`.
+## check, so a synchronous action's state is caught on its drawing turn instead of reading
+## `~0 ms`. That frame is the product's drawing turn, not padding: `_measure` no longer
+## forces a `_frames(1)` of its own, but `_await_condition` still crosses one.
 ##
 ## A step with [code]polls_action[/code] (the declared exception, `navigate`'s
 ## `puzzle-result`) starts its clock before the action instead: the action is the
@@ -279,10 +280,10 @@ func _record_lane_time(name: String, elapsed_ms: float, action_ok: bool, complet
 
 
 ## Waits until the step's [code]until[/code] condition holds, or the timeout expires.
-## It crosses one frame before the first check: the caller used to `await _frames(1)`
-## here as well, which padded every leg with a frame it did not need (#700). That frame
-## is what lets a synchronous action's state be read on its drawing turn instead of as a
-## `~0 ms` wall clock, so a leg never measures zero.
+## It crosses one frame before the first check. `_measure` used to `await _frames(1)`
+## before calling this, which padded every leg with a second frame (#700); that call is
+## gone, but this frame remains. It is what lets a synchronous action's state be read on
+## its drawing turn instead of as a `~0 ms` wall clock, so a leg never measures zero.
 func _await_condition(step: Dictionary) -> bool:
 	if not step.has("until"):
 		return true
