@@ -23,7 +23,7 @@ Presentation prefs (haptics, mute BGM, orientation) are not rule variants. The o
 | Parameter | Owner spec | Default | Range | Unit | Effect |
 |-----------|------------|---------|-------|------|--------|
 | `CFG.GET_SET_READY_MS` | [`loops/solve.md`](loops/solve.md), [`progression.md`](progression.md) | 500 | 200–1500 | ms | How long marks stay blocked after a puzzle opens |
-| `CFG.MORPH_STAGE_MS` | [`experience.md`](experience.md), [`motion.md`](../aesthetics/motion.md) | 300 | 100–800 | ms | Length of each result morph stage |
+| `CFG.MORPH_STAGE_MS` | [`experience.md`](experience.md), [`motion.md`](../aesthetics/motion.md) | 2500 | 100–3000 | ms | Length of each result morph stage; the two equal stages last at least 5 s at the default |
 
 Pack size (200) is a progression fact ([`progression.md`](progression.md)), not a tunable.
 

@@ -14,7 +14,7 @@ Authoring rules: [`.agents/specs/rules/design/experience.md`](../../.agents/spec
 
 - **Session arc**: Gallery → pick any puzzle → get-set-ready → mark until solved → the solved moment: fills become the stored pixel picture, then the stored generated picture → gallery; or leave to gallery. Often one puzzle or a few, then stop.
 - **Rhythm**: Quiet deduction; light release on clue dim and on solve (BGM sting + solve image fade). No fail pressure.
-- **Durations**: One mark = instant; each morph stage is [`CFG.MORPH_STAGE_MS`](configuration.md) (default 300 ms); one puzzle = minutes; session = one puzzle or a few.
+- **Durations**: One mark = instant; each stage is [`CFG.MORPH_STAGE_MS`](configuration.md) (default 2500 ms; ≥ 5 s total); one puzzle = minutes; session = a few puzzles.
 
 ## Feedback principles
 

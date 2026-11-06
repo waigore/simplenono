@@ -37,7 +37,7 @@ And no controls are available
 - **Proves**: R2, S1
 
 ```gherkin
-Given both stages have finished (600 ms)
+Given both stages have finished (2 × CFG.MORPH_STAGE_MS; at least 5 s at the default 2500 ms)
 When S1 Default is shown
 Then the best shipped layer is visible (the generated picture, else the pixel picture, else the solved fills)
 And C1 Back to gallery is available
