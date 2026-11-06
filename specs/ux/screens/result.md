@@ -32,8 +32,8 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 
 | ID | State | Entered when | Actor sees | Actor can |
 |----|-------|--------------|------------|-----------|
-| S2 | Pixel | Screen opens after [`END.W1`](../../design/end-conditions.md) | R1 stage 1, [`CFG.MORPH_STAGE_MS`](../../design/configuration.md) ([`MOT.T2`](../../aesthetics/motion.md)) | None (wait) |
-| S3 | Picture | S2 ends | R1 stage 2, [`CFG.MORPH_STAGE_MS`](../../design/configuration.md) ([`MOT.T3`](../../aesthetics/motion.md)); holds the best shipped layer when the generated picture is absent | None (wait) |
+| S2 | Pixel | Screen opens after [`END.W1`](../../design/end-conditions.md) | R1 stage 1, [`CFG.MORPH_STAGE_MS`](../../design/configuration.md) ([`MOT.T2`](../../aesthetics/motion.md)); 2500 ms at the default | None (wait) |
+| S3 | Picture | S2 ends | R1 stage 2, [`CFG.MORPH_STAGE_MS`](../../design/configuration.md) ([`MOT.T3`](../../aesthetics/motion.md)); holds the best shipped layer when the generated picture is absent; both stages together last at least 5 s at the default | None (wait) |
 | S1 | Default | S3 ends | Best shipped layer — the generated picture, else the pixel picture, else the solved fills; R2 | C1 |
 
 ## Copy
@@ -44,4 +44,4 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 
 ## Experience intent
 
-Quiet triumph — two short linear fades, pixel picture then generated picture, then a calm return to the gallery.
+Quiet triumph — two long linear fades, pixel picture then generated picture, at least 5 s in total at the default stage length, then a calm return to the gallery.
