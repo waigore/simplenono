@@ -1,0 +1,175 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 5413989,
+	"flows": {
+		"solve": {
+			"solution_fills": "match",
+			"solved_grid": "pass"
+		}
+	},
+	"flows_failed": [],
+	"flows_ok": [
+		"open",
+		"solve",
+		"back"
+	],
+	"log": "integration/logs/harness-1793970600-navigate.log",
+	"outcome": "fail",
+	"protocol": "navigate",
+	"reason": "I7 failed: longest transition among transition:home-puzzle, transition:puzzle-result, transition:result-gallery: 712.4 ms",
+	"rows": [
+		{
+			"artifact": "integration/samples/navigate-samples.ndjson",
+			"axis": "frame-time",
+			"bar": "<= 16.7 ms",
+			"invariant": "I1",
+			"observation": "p95 frame time gallery 10.00 ms over 72 frames, reveal 16.67 ms over 172 frames (all windows 16.67 ms) over 244 frames",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/samples/navigate-hitches.ndjson",
+			"axis": "hitch-bound",
+			"bar": "<= 100 ms",
+			"invariant": "I2",
+			"observation": "longest frame 50.00 ms over 244 frames",
+			"result": "pass"
+		},
+		{
+			"artifact": "integration/logs/harness-1793970600-navigate.log",
+			"axis": "transition-latency",
+			"bar": "<= 500 ms",
+			"invariant": "I7",
+			"observation": "longest transition among transition:home-puzzle, transition:puzzle-result, transition:result-gallery: 712.4 ms",
+			"result": "fail"
+		},
+		{
+			"artifact": "integration/results/navigate.json",
+			"axis": "crash-free",
+			"bar": "No crash across open, solve, reset, and back",
+			"invariant": "I9",
+			"observation": "flows ran: back, open, solve",
+			"result": "pass"
+		}
+	],
+	"session_id": "harness-1793970600",
+	"started_at": 1017246,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "menu-puzzles",
+			"kind": "puzzles",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-view",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-mobile",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-desktop",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-beat",
+			"kind": "wait_frames",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-start",
+			"kind": "sample_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-frames",
+			"kind": "wait_frames",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home-puzzle",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "reveal-start",
+			"kind": "sample_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "puzzle-result",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "result-default",
+			"kind": "wait_ms",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "reveal-stop",
+			"kind": "sample_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "result-gallery",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-return",
+			"kind": "wait_frames",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "gallery-stop",
+			"kind": "sample_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Gallery, puzzle, and result navigation"
+}
