@@ -42,6 +42,19 @@ const HINT_FILL_ALPHA := 0.85
 ## The ghost sits one pixel inside the cell so the mark underneath stays visible.
 const HINT_INSET := 1.0
 
+## The default edge kind: draws the minor rule ([code]PAL.C4[/code]). A cell on its
+## own, and the board's outer edge, keep this — the outer edge is the frame's own rule
+## ([code]FRM.D1[/code], [code]SRF.O1[/code]).
+const EDGE_RULE := 0
+
+## The edge draws the major swatch ([code]SRF.O2[/code], [code]PAL.C7[/code]):
+## a boundary at a multiple of 5 cells from the board edge.
+const EDGE_MAJOR := 1
+
+## The edge draws nothing: the neighbouring cell shares this edge and draws it, so
+## the same boundary is never painted twice ([code]FRM.P1[/code]).
+const EDGE_SHARED := 2
+
 ## The mark this cell shows.
 var mark: CellMark.Mark = CellMark.Mark.CLEAR:
 	set(value):
@@ -69,6 +82,31 @@ var hint: String = HINT_NONE:
 		hint = value
 		queue_redraw()
 
+## Which edge each side draws ([code]SRF.O1[/code]/[code]SRF.O2[/code]), set by
+## [PuzzleBoard] when it positions the cell: left, top, right, bottom in that order.
+## A shared edge is drawn once, by the cell that owns it.
+var edge_left := EDGE_RULE
+var edge_top := EDGE_RULE
+var edge_right := EDGE_RULE
+var edge_bottom := EDGE_RULE
+
+
+## Sets all four edge kinds at once, so the board lays the grid out in one call.
+func set_edges(left: int, top: int, right: int, bottom: int) -> void:
+	edge_left = left
+	edge_top = top
+	edge_right = right
+	edge_bottom = bottom
+	queue_redraw()
+
+
+## The color edge [param kind] draws: Major on a 5-cell multiple, Rule otherwise
+## ([code]SRF.O2[/code]). A shared or unknown kind draws nothing and has no swatch, so
+## an assert stops a caller that asks for one.
+func edge_color(kind: int) -> Color:
+	assert(kind == EDGE_MAJOR or kind == EDGE_RULE, "Edge kind %s draws no line" % kind)
+	return PresentationPalette.MAJOR if kind == EDGE_MAJOR else PresentationPalette.RULE
+
 
 ## The cell ignores pointer input while marks are blocked ([code]GS.marks-allowed[/code]).
 func set_blocked(blocked: bool) -> void:
@@ -85,7 +123,26 @@ func _draw() -> void:
 	if shade:
 		_draw_shade(box)
 	_draw_hint(box)
-	draw_rect(box, PresentationPalette.RULE, false, 1.0)
+	_draw_edges(box)
+
+
+## Draws each side in its edge's swatch: minor edges Rule, every 5-cell boundary
+## Major ([code]SRF.O1[/code]/[code]SRF.O2[/code]), and a shared edge not at all, so
+## the boundary is one line in one color ([code]FRM.P1[/code]). The strokes sit on
+## the cell rect's own sides, so the board geometry does not move.
+func _draw_edges(box: Rect2) -> void:
+	var bottom_right := box.end
+	_draw_edge(box.position, Vector2(box.position.x, bottom_right.y), edge_left, box.size.y)
+	_draw_edge(box.position, Vector2(bottom_right.x, box.position.y), edge_top, box.size.x)
+	_draw_edge(Vector2(bottom_right.x, box.position.y), bottom_right, edge_right, box.size.y)
+	_draw_edge(Vector2(box.position.x, bottom_right.y), bottom_right, edge_bottom, box.size.x)
+
+
+## One edge line in its swatch, the same 1.0 width the cell outline always drew.
+func _draw_edge(from: Vector2, to: Vector2, kind: int, length: float) -> void:
+	if kind == EDGE_SHARED or length <= 0.0:
+		return
+	draw_line(from, to, edge_color(kind), 1.0)
 
 
 ## The shade sits over the mark so it reads on a filled cell too, and inside the
