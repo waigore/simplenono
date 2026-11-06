@@ -123,6 +123,41 @@ func set_marks_allowed(allowed: bool) -> void:
 		cell.set_blocked(not allowed)
 
 
+## Renders the line-level fillable shade over [param cells] (row/column pairs) and
+## replaces any earlier shade; an empty list shows none
+## ([code]features/line-fillable-shade.md[/code] R2, [code]PER.R8[/code]). Overlay
+## only: no mark changes (R2).
+func set_shade(cells: Array[Vector2i]) -> void:
+	if _definition == null:
+		return
+	var shaded := {}
+	for point in cells:
+		if _is_inside(point):
+			shaded[point] = true
+	for row in _definition.size:
+		for column in _definition.size:
+			cell_at(row, column).shade = shaded.has(Vector2i(row, column))
+
+
+## The cells currently shaded, row-major, so a test can hold R2 and R3 without
+## reading [PuzzleCell].
+func shaded_cells() -> Array[Vector2i]:
+	var cells: Array[Vector2i] = []
+	if _definition == null:
+		return cells
+	for row in _definition.size:
+		for column in _definition.size:
+			if cell_at(row, column).shade:
+				cells.append(Vector2i(row, column))
+	return cells
+
+
+func _is_inside(point: Vector2i) -> bool:
+	return (
+		point.x >= 0 and point.x < _definition.size and point.y >= 0 and point.y < _definition.size
+	)
+
+
 ## The cell at [param row] and [param column] ([code]C2[/code]).
 func cell_at(row: int, column: int) -> PuzzleCell:
 	assert(_definition != null, "No puzzle is shown")

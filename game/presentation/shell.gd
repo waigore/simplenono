@@ -206,6 +206,7 @@ func open_puzzle(puzzle_id: String) -> bool:
 		_attempt.seed_hint_free_eligible(false)
 	_puzzle.present(attempt)
 	_puzzle.set_hint_overlays(_hint_prefs.single_line(), _hint_prefs.multi_line())
+	_puzzle.set_line_fillable(_hint_prefs.line_fillable())
 	_show_puzzle()
 	_audio.on_attempt_open()
 	_attempt.solved.connect(_on_attempt_solved)
@@ -575,9 +576,13 @@ func set_hint_line_fillable(enabled: bool) -> bool:
 ## [b]SCH-preferences[/b] I4: an enable while an attempt is open is observable now —
 ## the latch records it and the attempt's hint-free status voids at once
 ## ([b]CTR-pack[/b] O9, [b]DSGN.progression[/b] PS1.9), even if the assist stays unused.
-func _on_hint_preference_changed(_kind: String, enabled: bool) -> void:
-	# R3: the overlay follows the toggle at once, on or off.
+## The line-level toggle also reaches the open puzzle at once, so turning it off
+## clears the shade ([code]features/line-fillable-shade.md[/code] R3/R4).
+func _on_hint_preference_changed(kind: String, enabled: bool) -> void:
+	# R3: the overlays follow the toggle at once, on or off.
 	_puzzle.set_hint_overlays(_hint_prefs.single_line(), _hint_prefs.multi_line())
+	if kind == HintPreferences.KEY_FILLABLE:
+		_puzzle.set_line_fillable(enabled)
 	if not enabled:
 		return
 	if _attempt != null:

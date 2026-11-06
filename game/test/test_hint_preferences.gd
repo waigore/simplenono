@@ -249,6 +249,26 @@ func test_a_new_attempt_clears_the_latch() -> void:
 	assert_false(shell.hint_assist_enabled_during_attempt(), "open clears the latch")
 
 
+# R3/R4: the line-level toggle reaches the open puzzle at once, and turning it off
+# clears any shade (features/line-fillable-shade.md).
+func test_the_line_level_toggle_reaches_the_open_puzzle() -> void:
+	var shell := _shell()
+	assert_true(shell.open_puzzle("pack-000"), "an attempt is open")
+	assert_false(shell.puzzle_screen().line_fillable(), "F6 is off by default")
+	assert_true(shell.set_hint_line_fillable(true), "turn F6 on during the attempt")
+	assert_true(shell.puzzle_screen().line_fillable(), "the open puzzle applies it at once")
+	assert_true(shell.set_hint_line_fillable(false), "turn F6 off")
+	assert_false(shell.puzzle_screen().line_fillable(), "the open puzzle drops it at once")
+
+
+# R3: an attempt opened with F6 already on starts with the shade assist live (R4).
+func test_an_attempt_opened_with_the_toggle_on_starts_live() -> void:
+	_seed({HintPreferences.KEY_FILLABLE: true}, SHELL_HINT_PATH)
+	var shell := _shell()
+	assert_true(shell.open_puzzle("pack-000"), "an attempt opens with F6 on")
+	assert_true(shell.puzzle_screen().line_fillable(), "the screen holds the stored toggle")
+
+
 # CMP-shell R3 / R8 / features/fill-hints R3: the puzzle screen's overlays follow the
 # stored toggles at open and on every change, so an enable applies at once
 func test_the_open_puzzle_shows_overlays_for_the_enabled_assists() -> void:
