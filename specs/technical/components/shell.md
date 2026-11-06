@@ -14,12 +14,12 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 |----|----------------|
 | R1 | Show the main menu, the gallery, the open puzzle, the result, or settings |
 | R2 | Send open, mark, advance, pause, resume, and leave to the attempt |
-| R3 | Draw the grid, clues, line cues, and the result fades. Request each stored picture by asset id when the gallery or result shows it |
+| R3 | Draw the grid, clues, line cues, the enabled fill-hint overlays ([`PER.R8`](../../view/perception.md); [fill hints](../../design/features/fill-hints.md) R3), and the result fades. Request each stored picture by asset id when the gallery or result shows it |
 | R4 | Play the bed, mark ticks (fill/cross/clear), the solve sting, and the haptic click |
 | R5 | Hold session preferences: haptics default on, music mute default off |
 | R6 | Read the asset manifest — committed `assets/manifest.json` in dev, `res://release/asset_manifest.json` in a release build ([ADR-0008](../../adr/decisions/0008-release-asset-manifest.md)) — and resolve asset IDs for G1–G3 |
 | R7 | On iOS and Android, lock the screen to the stored orientation — portrait when none is stored — at app start ([ADR-0009](../../adr/decisions/0009-orientation-preference.md)). A device tilt does not rotate it. A settings change stores the new value ([`SCH-preferences`](../schemata/preferences.md) F3; [`persistence.md`](../persistence.md) M3). Desktop builds stay unlocked |
-| R8 | Hold durable hint-assist toggles F4–F6 ([ADR-0010](../../adr/decisions/0010-hint-preferences.md); M4). Load at app start. An assist already on at open seeds the attempt ineligible to earn hint-free ([progression.md](../../design/progression.md) PS1.8). Any turn-on while an attempt is open is observable: the shell voids that attempt's hint-free at once ([`CTR-pack`](../contracts/pack.md) O9) and latches the observation ([`SCH-preferences`](../schemata/preferences.md) I4) |
+| R8 | Hold durable hint-assist toggles F4–F6 ([ADR-0010](../../adr/decisions/0010-hint-preferences.md); M4). Load at app start. An assist already on at open seeds the attempt ineligible to earn hint-free ([progression.md](../../design/progression.md) PS1.8). Any turn-on while an attempt is open is observable: the shell voids that attempt's hint-free at once ([`CTR-pack`](../contracts/pack.md) O9) and latches the observation ([`SCH-preferences`](../schemata/preferences.md) I4). The fill-hint overlays follow F4/F5 at open and on every change (R3) |
 
 ## Communication
 

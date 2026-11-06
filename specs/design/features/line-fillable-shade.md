@@ -16,12 +16,12 @@ the line logic still allows through it, to plan fills without touching marks.
 
 - **R1**: With the line-level toggle on and the fill tool active, tapping a cell derives
   the shade from the tapped line's runs ([F3](../../technical/schemata/puzzle-def-fields.md),
-  [F4](../../technical/schemata/puzzle-def-fields.md)). Over the valid arrangements of that line (the set that
-  defines single-line deduction, [`features/fill-hints.md`](fill-hints.md) R1), consider those that fill the tapped
+  [F4](../../technical/schemata/puzzle-def-fields.md)). Over the valid arrangements of that line
+  ([`features/fill-hints.md`](fill-hints.md) R1), consider those that fill the tapped
   cell. If none exists, the tap shades nothing. Otherwise the covering run of maximal
   length is the max legal run; where arrangements of that maximal length place it
-  differently, the shade covers only the cells they share. The derivation reads line runs
-  only — the player's marks never trim or void it.
+  differently, the shade covers only the cells they share. It reads line runs only:
+  the player's marks never trim or void it.
 - **R2**: The shade is an overlay: it never writes or changes marks and shows at most one
   region at a time. A new tap recomputes per R1 and replaces it.
 - **R3**: The shade clears when the line-level toggle turns off, the fill tool stops
@@ -33,7 +33,8 @@ the line logic still allows through it, to plan fills without touching marks.
 
 - Line-level fillable hint option ([configuration.md](../configuration.md); default off).
 - Shade colour lighter than the fill-hint overlay colour: [palette](../../aesthetics/palette.md)
-  owns the swatch once mockups are approved.
+  owns the swatch once mockups are approved. The approved [MC.puzzle](../../ux/mockups/screens/puzzle.html)
+  legends lock it at `#C2CDD4`, lighter than the C8 overlay ([`PER.R8`](../../view/perception.md)).
 
 ## State
 
@@ -60,9 +61,9 @@ the line logic still allows through it, to plan fills without touching marks.
 
 ## Difficulty and configuration effects
 
-- **D1**: The line-level option changes only this shade display ([R1]); no option changes solve rules ([configuration.md](../configuration.md)).
+- **D1**: The line-level option changes only the shade ([R1]); no option changes solve rules ([configuration.md](../configuration.md)).
 
 ## Experience intent
 
-The player feels the shade as a quiet reading of what the line still permits — planning
-integrity without hints writing the board for them.
+The player feels the shade as a quiet reading of what the line still permits:
+planning integrity without hints writing the board.
