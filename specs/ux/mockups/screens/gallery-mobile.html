@@ -415,6 +415,13 @@
     }
     .header .settings-btn { min-height:44px; min-width:44px; padding:0 12px; border:1px solid var(--border); border-radius:var(--radius-card); background:var(--surface); color:var(--fg); font:inherit; font-size:13px; }
     .header-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    /* C5 Incomplete only: chrome toggle, off = paper/rule, on = ink/paper (same reading as settings toggles) */
+    .filter-bar { display:flex; align-items:center; gap:10px; padding: 0 20px 12px; }
+    .filter-btn { min-height:44px; padding:0 12px; border:1px solid var(--border); border-radius:var(--radius-card); background:var(--surface); color:var(--fg); font:inherit; font-size:13px; font-weight:500; }
+    .filter-btn[aria-pressed="true"] { background:var(--fg); border-color:var(--fg); color:var(--bg); }
+    .filter-hint { font-family:var(--font-mono); font-size:11px; color:var(--muted); }
+    /* S2 with every puzzle ever-completed: R2's empty state replaces the grid */
+    .empty-state { margin: 0 20px 24px; padding: 20px 12px; border:1px solid var(--border); border-radius:var(--radius-card); text-align:center; font-size:13px; color:var(--muted); }
     .confirm-overlay { position:absolute; inset:0; z-index:4; background: color-mix(in oklch, var(--fg) 35%, transparent); display:grid; place-items:end center; padding:16px; }
     .confirm-sheet { width:100%; background:var(--bg); border:1px solid var(--border); padding:20px; display:flex; flex-direction:column; gap:12px; }
     .confirm-sheet p { margin:0; font-size:15px; }
@@ -430,7 +437,7 @@
 <body>
   <div class="stage">
     <div class="caption"><strong>UI-gallery</strong> · mobile · Open Design mobile-app · aesthetics remap</div>
-    <nav class="ux-states" aria-label="States"><a href="#state-default">Default</a><a href="#ex-confirm">EX.confirm</a></nav>
+    <nav class="ux-states" aria-label="States"><a href="#state-default">Default</a><a href="#state-incomplete">Incomplete only</a><a href="#ex-confirm">EX.confirm</a></nav>
 
     <div class="device" data-od-id="device">
       <span class="btn-rail left-1"  aria-hidden></span>
@@ -484,6 +491,10 @@
                   <p class="label">Completed <span class="num">37</span> / 200</p>
                   <div class="progress-track" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
                 </section>
+                <div class="filter-bar" data-region="R3" aria-label="Filter">
+                  <button type="button" class="filter-btn" data-control="C5" aria-pressed="false">Incomplete only</button>
+                  <span class="filter-hint">Off · shows all 200</span>
+                </div>
                 <section class="puzzle-grid" data-region="R2" aria-label="Puzzle grid">
 
                   <div class="puzzle-tile">
@@ -516,6 +527,41 @@
 
                 </section>
               </section>
+              <section id="state-incomplete" data-state="S2">
+                <div class="header" data-od-id="header" data-region="R3" aria-label="Chrome">
+                  <div>
+                    <p class="greeting">Local pack</p>
+                    <h1>Gallery</h1>
+                  </div>
+                  <div class="header-actions">
+                    <button type="button" class="settings-btn" data-control="C4">Back to main menu</button>
+                    <button type="button" class="settings-btn" data-control="C3">Settings</button>
+                  </div>
+                </div>
+                <section class="progress-block" data-region="R1" aria-label="Pack progress">
+                  <p class="label">Completed <span class="num">37</span> / 200</p>
+                  <div class="progress-track" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
+                </section>
+                <div class="filter-bar" data-region="R3" aria-label="Filter">
+                  <button type="button" class="filter-btn" data-control="C5" aria-pressed="true">Incomplete only</button>
+                  <span class="filter-hint">On · hides completed</span>
+                </div>
+                <section class="puzzle-grid" data-region="R2" aria-label="Puzzle grid">
+                  <div class="puzzle-tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb placeholder" aria-hidden="true"><svg class="unsolved-placeholder" viewBox="0 0 40 40" role="img" aria-label="Unsolved puzzle"><rect width="40" height="40" fill="#F4F7F8"/><rect x="8" y="8" width="24" height="24" fill="none" stroke="#C5D0D6" stroke-width="1"/><text x="20" y="23" text-anchor="middle" fill="#1B2833" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600">?</text></svg></div>
+                      <div class="meta"><span class="title">10×10 · #001</span><span class="sub">Not started</span></div>
+                    </button>
+                  </div>
+                  <div class="puzzle-tile">
+                    <button type="button" class="open" data-control="C1">
+                      <div class="thumb placeholder" aria-hidden="true"><svg class="unsolved-placeholder" viewBox="0 0 40 40" role="img" aria-label="Unsolved puzzle"><rect width="40" height="40" fill="#F4F7F8"/><rect x="8" y="8" width="24" height="24" fill="none" stroke="#C5D0D6" stroke-width="1"/><text x="20" y="23" text-anchor="middle" fill="#1B2833" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600">?</text></svg></div>
+                      <div class="meta"><span class="title">10×10 · #002</span><span class="sub">In progress</span></div>
+                    </button>
+                    <button type="button" class="reset" data-control="C2">Reset</button>
+                  </div>
+                </section>
+              </section>
               <section id="ex-confirm" data-state="EX.confirm">
                 <div class="header" data-region="R3" aria-label="Chrome">
                   <div>
@@ -531,6 +577,10 @@
                   <p class="label">Completed <span class="num">37</span> / 200</p>
                   <div class="progress-track" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="200"><span></span></div>
                 </section>
+                <div class="filter-bar" data-region="R3" aria-label="Filter">
+                  <button type="button" class="filter-btn" data-control="C5" aria-pressed="false" disabled>Incomplete only</button>
+                  <span class="filter-hint">Off · shows all 200</span>
+                </div>
                 <div class="confirm-overlay" role="dialog" aria-labelledby="reset-title">
                   <div class="confirm-sheet">
                     <p id="reset-title">Reset this puzzle? Progress and best time will be cleared.</p>

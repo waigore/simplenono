@@ -12,8 +12,8 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 
 | Shown in | Design element | Visible when |
 |----------|----------------|--------------|
-| R1 | [`GS.completion-rate`](../../design/game-state.md) | Always on this screen |
-| R2 | Per puzzle: attempt status, ever-completed, personal best, gallery thumbnail, hint-free, size | Always; solution thumb when ever-completed else box+?; PB when set; clinical star upper-left on thumb when hint-free ([`PER.R7`](../../view/perception.md), [`UIS.I1`](../../aesthetics/ui-style.md)) |
+| R1 | [`GS.completion-rate`](../../design/game-state.md) | Always on this screen; C5 never narrows it |
+| R2 | Per puzzle: attempt status, ever-completed, personal best, gallery thumbnail, hint-free, size | Always; C5 off shows every puzzle, C5 on shows only not-ever-completed puzzles; solution thumb when ever-completed else box+?; PB when set; clinical star upper-left on thumb when hint-free ([`PER.R7`](../../view/perception.md), [`UIS.I1`](../../aesthetics/ui-style.md)) |
 
 ## Regions
 
@@ -21,7 +21,7 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 |----|--------|---------|----------|
 | R1 | Pack progress | Pack completion at a glance | Completion bar; `copy.completion` |
 | R2 | Puzzle grid | Scrollable free-order tiles for all 200 puzzles | Tile: size; status; PB when set; thumb or box+?; hint-free star upper-left when true; C1; C2 when allowed |
-| R3 | Chrome | Return to the main menu; open slim settings | C4 Back to main menu; C3 Settings |
+| R3 | Chrome | Return to the main menu; open slim settings; narrow the grid | C4 Back to main menu; C3 Settings; C5 Incomplete only |
 
 ## Controls
 
@@ -31,13 +31,15 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | C2 | Reset | `IN.activate` | Ever-completed or attempt in progress | [`EX.confirm`](../exceptions.md); on confirm [`END.O2`](../../design/end-conditions.md) |
 | C4 | Back to main menu | `IN.activate` | Always | Open [`menu.md`](menu.md) |
 | C3 | Settings | `IN.activate` | Always | Open [`settings.md`](settings.md) |
+| C5 | Incomplete only | `IN.activate` | Always | Toggle the filter: on shows only not-ever-completed puzzles in R2, off shows every puzzle; store the choice durably ([`SCH-preferences`](../../technical/schemata/preferences.md) F7) |
 
 ## States
 
 | ID | State | Entered when | Actor sees | Actor can |
 |----|-------|--------------|------------|-----------|
-| S1 | Default | Gallery opens | R1–R3 | C1–C4 (C2 only when allowed) |
-| — | `EX.confirm` | After C2 | Reset confirm copy; Confirm / Cancel | Confirm → `END.O2` then S1; Cancel → S1 |
+| S1 | Default | Gallery opens with C5 off | R1–R3; R2 lists every puzzle | C1–C5 (C2 only when allowed) |
+| S2 | Incomplete only | C5 is on | R1–R3; R2 lists only not-ever-completed puzzles; when none, R2 shows `copy.filter-empty` | C1–C5 (C2 only when allowed) |
+| — | `EX.confirm` | After C2 | Reset confirm copy; Confirm / Cancel | Confirm → `END.O2` then S1 or S2; Cancel → S1 or S2 |
 
 ## Copy
 
@@ -54,7 +56,9 @@ Authoring rules: [`.agents/specs/rules/ux/screens.md`](../../../.agents/specs/ru
 | `copy.cancel` | Cancel | `EX.confirm` |
 | `copy.settings` | Settings | C3 |
 | `copy.menu` | Back to main menu | C4 |
+| `copy.filter-incomplete` | Incomplete only | C5 |
+| `copy.filter-empty` | All puzzles completed | R2 when C5 is on and every puzzle is ever-completed |
 
 ## Experience intent
 
-Quiet clinical pack overview — clear progress, free-order tiles, deliberate reset. After a fling on R2, the grid coasts longer than the engine ScrollContainer default so browsing the 200-tile pack does not feel sticky; other screens keep their own scroll feel.
+Quiet clinical pack overview — clear progress, free-order tiles, deliberate reset. After a fling on R2, the grid coasts longer than the engine ScrollContainer default so browsing the 200-tile pack does not feel sticky; other screens keep their own scroll feel. C5 narrows the pack in place, so a player working through unfinished puzzles never leaves the gallery to find them.
