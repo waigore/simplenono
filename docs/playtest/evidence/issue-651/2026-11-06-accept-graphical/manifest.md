@@ -44,10 +44,7 @@ steps are not applicable — the same treatment as the #95 settings acceptance r
 | `MC.settings-mobile` / `MC.settings-desktop` | **pass** | labels, hint lines, default-off values, and row order C1, C2, C5–C7, C3 match; C4 is absent on this desktop build |
 
 Capture: `capture: RESULT pass` on every phase, exit 0 —
-[`logs/probe-first.log`](logs/probe-first.log),
-[`logs/probe-relaunch.log`](logs/probe-relaunch.log),
-[`logs/probe-void.log`](logs/probe-void.log),
-[`logs/probe-desktop.log`](logs/probe-desktop.log).
+[`logs/probe-first.log`, `logs/probe-relaunch.log`, `logs/probe-void.log`, and `logs/probe-desktop.log`](https://github.com/waigore/simplenono/wiki/Playtest-issue-651-2026-11-06-accept-graphical).
 
 ## Judged states (all images from this graphical run of this build)
 
