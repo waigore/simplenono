@@ -1,0 +1,129 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 4985319,
+	"flows": {
+		"solve": {
+			"solution_fills": "unfilled (2, 7), (3, 7), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (4, 8), (4, 9), (5, 0), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (5, 7), (5, 8), (5, 9), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 8), (6, 9), (7, 7), (7, 8), (7, 9), (8, 0), (8, 6), (8, 7), (8, 8), (8, 9), (9, 5), (9, 6), (9, 7), (9, 8), (9, 9)",
+			"solved_grid": "absent"
+		}
+	},
+	"flows_failed": [
+		"solve"
+	],
+	"flows_ok": [
+		"open",
+		"back",
+		"reset"
+	],
+	"log": "integration/logs/harness-1793971906-solve-reset.log",
+	"outcome": "fail",
+	"protocol": "solve-reset",
+	"reason": "solve: no solve of pack-000: no fill was written; solution cells left unfilled: (2, 7), (3, 7), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (4, 8), (4, 9), (5, 0), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (5, 7), (5, 8), (5, 9), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 8), (6, 9), (7, 7), (7, 8), (7, 9), (8, 0), (8, 6), (8, 7), (8, 8), (8, 9), (9, 5), (9, 6), (9, 7), (9, 8), (9, 9)",
+	"rows": [
+		{
+			"artifact": "integration/results/solve-reset.json",
+			"axis": "crash-free",
+			"bar": "No crash across open, solve, reset, and back",
+			"invariant": "I9",
+			"observation": "flows ran: back, open, reset",
+			"result": "fail"
+		}
+	],
+	"session_id": "harness-1793971906",
+	"started_at": 1089197,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "home",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "open",
+			"kind": "open",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "puzzle",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "no solve of pack-000: no fill was written; solution cells left unfilled: (2, 7), (3, 7), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (4, 8), (4, 9), (5, 0), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (5, 7), (5, 8), (5, 9), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 8), (6, 9), (7, 7), (7, 8), (7, 9), (8, 0), (8, 6), (8, 7), (8, 8), (8, 9), (9, 5), (9, 6), (9, 7), (9, 8), (9, 9)",
+			"id": "solve",
+			"kind": "solve",
+			"ok": false
+		},
+		{
+			"detail": "",
+			"id": "result-default",
+			"kind": "wait_ms",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "result-back",
+			"kind": "back",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "result-view",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "reopen",
+			"kind": "open",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "second-beat",
+			"kind": "wait_beat",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "mark",
+			"kind": "mark",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "reset",
+			"kind": "reset",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "back",
+			"kind": "back",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "Solve, reset, and back flows"
+}
