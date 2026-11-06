@@ -32,8 +32,8 @@ the line logic still allows through it, to plan fills without touching marks.
 ## Parameters
 
 - Line-level fillable hint option ([configuration.md](../configuration.md); default off).
-- Shade colour lighter than the fill-hint overlay colour: [palette](../../aesthetics/palette.md)
-  owns the swatch once mockups are approved.
+- Shade colour ([palette](../../aesthetics/palette.md) C9): lighter than the fill-hint
+  overlay colour (C8).
 
 ## State
 
