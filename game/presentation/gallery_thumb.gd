@@ -5,7 +5,7 @@ extends Control
 ## Draws the stored generated picture when the tile may show it
 ## ([code]GS.gallery-thumbnail[/code], [b]CMP-shell[/b] R6 by asset id) and a simple
 ## box with a centered question mark otherwise (US1.3). The tile decides which; this
-## control only paints what it is given, in the six-swatch palette ([code]PAL.S1[/code]).
+## control only paints what it is given, in the palette set ([code]PAL.S1[/code]).
 ##
 ## The region is square, as the approved gallery mockups draw it
 ## ([code].puzzle-tile .thumb { aspect-ratio: 1 }[/code]). A stored picture is fitted
@@ -22,7 +22,8 @@ const PLACEHOLDER_MARK := "?"
 const MARK_SIZE_RATIO := 14.0 / 24.0
 
 ## The [code]UIS.I1[/code] star's five outer/inner vertices in the mockups' 12-unit
-## viewBox ([code].hint-free-star svg polygon[/code]), drawn pointing up.
+## viewBox ([code].hint-free-star svg polygon[/code]), drawn pointing up. The star is
+## flat and geometric: no glow, sparkle, or playful flourish.
 const STAR_VERTICES := [
 	Vector2(6.0, 0.5),
 	Vector2(7.4, 4.2),
@@ -36,10 +37,10 @@ const STAR_VERTICES := [
 	Vector2(4.6, 4.2),
 ]
 
-## First-layout star metrics; the gallery applies the frame rule after
-## ([method set_star_metrics]).
+## First-layout star metrics, the narrow frame's values; the gallery applies the
+## thumb rule after ([method set_star_metrics]).
 const STAR_INSET := 4.0
-const STAR_SIZE := 12.0
+const STAR_SIZE := 20.0
 
 var _picture: Texture2D
 var _star_visible := false
@@ -55,7 +56,7 @@ func show_picture(picture: Texture2D) -> void:
 	queue_redraw()
 
 
-## Shows the [code]UIS.I1[/code] clinical hint-free star ([code]PER.R7[/code]) when
+## Shows the [code]UIS.I1[/code] gold hint-free star ([code]PER.R7[/code]) when
 ## [param star_visible]; hides it otherwise.
 func show_star(star_visible: bool) -> void:
 	if _star_visible == star_visible:
@@ -64,9 +65,14 @@ func show_star(star_visible: bool) -> void:
 	queue_redraw()
 
 
-## True when the clinical hint-free star is drawn in the square's upper-left.
+## True when the gold hint-free star is drawn in the square's upper-left.
 func shows_star() -> bool:
 	return _star_visible
+
+
+## The [code]UIS.I1[/code] star's fill: the Gold swatch ([code]PAL.C10[/code]).
+func star_color() -> Color:
+	return PresentationPalette.GOLD
 
 
 ## The square's upper-left star inset and side, as the tile last applied
@@ -122,8 +128,8 @@ func _fitted(box: Rect2) -> Rect2:
 	return Rect2(box.position + (box.size - fitted) * 0.5, fitted)
 
 
-## [code]PER.R7[/code] / [code]UIS.I1[/code]: the flat Ink five-point star sits at the
-## square's upper-left — inset and size are held from the gallery's frame rule, the
+## [code]PER.R7[/code] / [code]UIS.I1[/code]: the flat Gold five-point star sits at the
+## square's upper-left — inset and size are held from the gallery's thumb rule, the
 ## way the tile's body padding is ([#557]). Both approved mockups draw it as
 ## [code].puzzle-tile .hint-free-star[/code].
 func _draw_hint_free_star(box: Rect2) -> void:
@@ -132,7 +138,7 @@ func _draw_hint_free_star(box: Rect2) -> void:
 		points.append(
 			box.position + Vector2(_star_inset, _star_inset) + Vector2(vertex) * (_star_size / 12.0)
 		)
-	draw_colored_polygon(points, PresentationPalette.INK)
+	draw_colored_polygon(points, star_color())
 
 
 func _draw_placeholder(box: Rect2) -> void:

@@ -18,7 +18,7 @@ Authoring rules: [`.agents/specs/rules/aesthetics/aesthetics.md`](../../.agents/
 
 When pillars conflict, the higher ID wins (P1 over P2 over P3).
 
-**Pillar scope**: The pillars govern UI/chrome and board presentation. Puzzle-picture content is exempt from P1 — scenes are colourful, multi-element, and not required to be cool-toned or clinical (see [`kinds/puzzle-pictures.md`](../assets/kinds/puzzle-pictures.md)).
+**Pillar scope**: The pillars govern UI/chrome and board presentation. Puzzle-picture content is exempt from P1 — scenes are colourful, multi-element, and not required to be cool-toned or clinical (see [`kinds/puzzle-pictures.md`](../assets/kinds/puzzle-pictures.md)). The hint-free gallery star's Gold swatch ([`PAL.C10`](palette.md)) is the single warm chrome exception: a flat reward badge, not a warm or playful style ([`UIS.I1`](ui-style.md)).
 
 ## Content limits
 
@@ -37,6 +37,6 @@ None — one style throughout (gallery, board, chrome). Puzzle pictures change c
 
 ## Index
 
-Global specs: [`glossary.md`](glossary.md), [`ids.md`](ids.md), [`traceability.md`](traceability.md), [`palette.md`](palette.md), [`form.md`](form.md), [`surface.md`](surface.md), [`motion.md`](motion.md), [`ui-style.md`](ui-style.md), [`sound.md`](sound.md), [`references.md`](references.md).
+Global specs: [`glossary.md`](glossary.md), [`ids.md`](ids.md), [`traceability.md`](traceability.md), [`palette.md`](palette.md) ([sets](palette/sets.md), [rules](palette/rules.md)), [`form.md`](form.md), [`surface.md`](surface.md), [`motion.md`](motion.md), [`ui-style.md`](ui-style.md), [`sound.md`](sound.md), [`references.md`](references.md).
 
 - **Sheets**: [`sheets/palette.html`](sheets/palette.html) and [`sheets/lineup.html`](sheets/lineup.html) filled.

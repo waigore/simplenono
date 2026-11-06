@@ -50,13 +50,15 @@ const NARROW_GRID_GAP := 10.0
 ## desktop one (#557).
 const NARROW_TILE_PAD := 8.0
 const WIDE_TILE_PAD := 12.0
-## [b]UI-gallery[/b] R2's hint-free star ([code]PER.R7[/code]): `.hint-free-star`
-## draws a 12 px star at a 4 px inset on the mobile frame and 14 px at 6 px on the
-## desktop one ([code]UIS.I1[/code]).
-const NARROW_STAR_INSET := 4.0
-const WIDE_STAR_INSET := 6.0
-const NARROW_STAR_SIZE := 12.0
-const WIDE_STAR_SIZE := 14.0
+## [b]UI-gallery[/b] R2's hint-free star ([code]PER.R7[/code], [code]UIS.I1[/code]):
+## one eighth of the thumb's picture side on narrow frames and one sixteenth on wide
+## ones, inset one fortieth of that side. At the two mockup frames that is about 20 px
+## at 4 px on mobile and 16 px at 6 px on desktop; sizing from the thumb keeps the
+## badge readable on a physical-pixel phone frame instead of pinning it to a fixed
+## pixel count (#692).
+const NARROW_STAR_RATIO := 1.0 / 8.0
+const WIDE_STAR_RATIO := 1.0 / 16.0
+const STAR_INSET_RATIO := 1.0 / 40.0
 const WIDE_PAGE_MARGIN := 32.0
 const WIDE_GRID_GAP := 20.0
 
@@ -204,18 +206,28 @@ func tile_padding() -> float:
 	return clampf(size.x * NARROW_TILE_PAD / NARROW_FRAME_WIDTH, NARROW_TILE_PAD, WIDE_TILE_PAD)
 
 
-## The mockup's star upper-left inset at this frame width, held between the two mockups'
-## values ([code]PER.R7[/code]).
+## The star's upper-left inset at this frame: one fortieth of the thumb's picture side
+## ([code]PER.R7[/code]).
 func star_inset() -> float:
-	return clampf(
-		size.x * NARROW_STAR_INSET / NARROW_FRAME_WIDTH, NARROW_STAR_INSET, WIDE_STAR_INSET
-	)
+	return _tile_width() * STAR_INSET_RATIO
 
 
-## The mockup's star side at this frame width, held between the two mockups' values
-## ([code]UIS.I1[/code]).
+## The star's side at this frame: one eighth of the thumb's picture side on narrow
+## frames, one sixteenth on wide ones ([code]UIS.I1[/code]).
 func star_size() -> float:
-	return clampf(size.x * NARROW_STAR_SIZE / NARROW_FRAME_WIDTH, NARROW_STAR_SIZE, WIDE_STAR_SIZE)
+	var ratio := WIDE_STAR_RATIO if columns() >= WIDE_COLUMNS else NARROW_STAR_RATIO
+	return _tile_width() * ratio
+
+
+## The drawn tile width at this frame: the frame less the page margins and gaps,
+## shared by the current column count. The star is sized from the thumb it sits on, so
+## a physical-pixel phone frame scales it with the tile (#692).
+func _tile_width() -> float:
+	var count := columns()
+	if count <= 0:
+		count = NARROW_COLUMNS
+	var room := size.x - 2.0 * page_margin() - float(count - 1) * grid_gap()
+	return maxf(room / float(count), GalleryTile.TILE_WIDTH)
 
 
 ## The frame width the mockups' four columns need at this frame height. A phone reports
