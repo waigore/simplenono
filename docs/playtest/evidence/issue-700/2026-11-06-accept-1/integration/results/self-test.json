@@ -1,0 +1,125 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"driver_time": [],
+	"finished_at": 1400092,
+	"flows": {
+		"self-test": {
+			"fixture_frames": 2
+		}
+	},
+	"flows_failed": [],
+	"flows_ok": [
+		"self-test"
+	],
+	"legs": {
+		"fixture:ack": 6.866,
+		"fixture:frame": 6.761
+	},
+	"log": "integration/logs/harness-1793976518-self-test.log",
+	"outcome": "pass",
+	"protocol": "self-test",
+	"reason": "",
+	"rows": [],
+	"session_id": "harness-1793976518",
+	"started_at": 1063985,
+	"steps": [
+		{
+			"detail": "",
+			"id": "launch",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "ready",
+			"kind": "wait_probe",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "sample-start",
+			"kind": "sample_start",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "flow",
+			"kind": "flow",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "measure",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "frames",
+			"kind": "wait_ms",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "sample-stop",
+			"kind": "sample_stop",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "ticked",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "painted",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "measured",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "sync",
+			"kind": "sync",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "leg",
+			"kind": "measure",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "rest-span",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "unpadded",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "sampled",
+			"kind": "expect",
+			"ok": true
+		},
+		{
+			"detail": "",
+			"id": "quit",
+			"kind": "quit",
+			"ok": true
+		}
+	],
+	"title": "CI-only harness fixture"
+}
