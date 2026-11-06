@@ -18,7 +18,6 @@ Authoring rules: [`.agents/specs/rules/design/glossary.md`](../../.agents/specs/
 | Generated picture | Stored full-resolution pack image (1024×1024): gallery [thumbnail](entities/puzzle.md) and final result stage. | [`entities/puzzle.md`](entities/puzzle.md) |
 | Get-set-ready | Short prep beat before marks are allowed on a puzzle attempt. | [`progression.md`](progression.md), [`loops/solve.md`](loops/solve.md) |
 | In progress | Attempt status with persisted marks not yet solved this attempt. | [`progression.md`](progression.md) |
-| Incomplete | Not ever completed: a puzzle that is not started or in progress. The gallery incomplete-only filter shows only these. | [`progression.md`](progression.md), [`screens/gallery.md`](../ux/screens/gallery.md) |
 | Line error | Per-row or per-column signal that fills contradict that line’s [clues](entities/clue.md); off when incomplete but still possible. | [`game-state.md`](game-state.md), [`entities/clue.md`](entities/clue.md) |
 | Mark | The one state a [cell](entities/cell.md) holds: clear, fill, or cross. | [`entities/cell.md`](entities/cell.md) |
 | Not started | Attempt status with no current marks (fresh, after solve clear, or after reset). | [`progression.md`](progression.md) |

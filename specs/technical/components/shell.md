@@ -20,7 +20,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | R6 | Read the asset manifest — committed `assets/manifest.json` in dev, `res://release/asset_manifest.json` in a release build ([ADR-0008](../../adr/decisions/0008-release-asset-manifest.md)) — and resolve asset IDs for G1–G3 |
 | R7 | On iOS and Android, lock the screen to the stored orientation — portrait when none is stored — at app start ([ADR-0009](../../adr/decisions/0009-orientation-preference.md)). A device tilt does not rotate it. A settings change stores the new value ([`SCH-preferences`](../schemata/preferences.md) F3; [`persistence.md`](../persistence.md) M3). Desktop builds stay unlocked |
 | R8 | Hold durable hint-assist toggles F4–F6 ([ADR-0010](../../adr/decisions/0010-hint-preferences.md); M4). Load at app start. An assist already on at open seeds the attempt ineligible to earn hint-free ([progression.md](../../design/progression.md) PS1.8). Any turn-on while an attempt is open is observable: the shell voids that attempt's hint-free at once ([`CTR-pack`](../contracts/pack.md) O9) and latches the observation ([`SCH-preferences`](../schemata/preferences.md) I4). The fill-hint overlays follow F4/F5 at open and on every change (R3) |
-| R9 | Hold the durable gallery incomplete-only filter F7 ([ADR-0011](../../adr/decisions/0011-gallery-filter-preference.md); M5). Load at app start and present it to the gallery. When on, the gallery lists only not-ever-completed puzzles; a change stores at once and re-filters the visible set without leaving the gallery. R1's completion rate always reads the whole pack |
+| R9 | Hold the durable gallery filter F7 ([ADR-0011](../../adr/decisions/0011-gallery-filter-preference.md); M5). Load at app start, present it to the gallery, and store a change at once ([filter](../../ux/screens/gallery/filter.md)) |
 
 ## Communication
 
@@ -35,9 +35,7 @@ Authoring rules: [`.agents/specs/rules/technical/components.md`](../../../.agent
 | Schema or state | Access |
 |-----------------|--------|
 | [`SCH-preferences`](../schemata/preferences.md) | writes |
-| `user://orientation.cfg` — F3 ([ADR-0009](../../adr/decisions/0009-orientation-preference.md)) | sole writer (M3) |
-| `user://hint-prefs.cfg` — F4–F6 ([ADR-0010](../../adr/decisions/0010-hint-preferences.md)) | sole writer (M4) |
-| `user://gallery-prefs.cfg` — F7 ([ADR-0011](../../adr/decisions/0011-gallery-filter-preference.md)) | sole writer (M5) |
+| `user://orientation.cfg` — F3; `user://hint-prefs.cfg` — F4–F6; `user://gallery-prefs.cfg` — F7 | sole writer (M3–M5) |
 
 ## Diagram
 
@@ -50,4 +48,4 @@ flowchart LR
 
 ## Failure / concurrency / persistence
 
-Failure and concurrency: N/A — a rejected call changes nothing on the contracts. Persistence: F1–F2 last for the session; F3 on `user://orientation.cfg`; F4–F6 on `user://hint-prefs.cfg`; F7 on `user://gallery-prefs.cfg`; none enter `user://progress.cfg`.
+Failure and concurrency: N/A — a rejected call changes nothing. F1–F2 last for the session; F3–F7 persist in their own files; none enter `user://progress.cfg`.

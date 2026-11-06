@@ -2,7 +2,7 @@
 
 Authoring rules: [`.agents/specs/rules/technical/persistence.md`](../../.agents/specs/rules/technical/persistence.md).
 
-- **Serves**: Persisted ever-completed status, attempt status, marks, elapsed time, personal best, and hint-free ([`definition.md`](../definition/definition.md), [`progression.md`](../design/progression.md) P1–P6); durable mobile orientation ([`view.md`](../view/view.md)); durable hint-assist toggles ([`configuration.md`](../design/configuration.md)); the durable gallery incomplete-only filter ([`screens/gallery.md`](../ux/screens/gallery.md) C5).
+- **Serves**: Persisted ever-completed status, attempt status, marks, elapsed time, personal best, and hint-free ([`definition.md`](../definition/definition.md), [`progression.md`](../design/progression.md) P1–P6); durable mobile orientation ([`view.md`](../view/view.md)); durable hint-assist toggles ([`configuration.md`](../design/configuration.md)); the durable gallery filter ([`screens/gallery.md`](../ux/screens/gallery.md) C5).
 - **Informed by**: [`game-state.md`](../design/game-state.md), [`end-conditions.md`](../design/end-conditions.md), [`progression.md`](../design/progression.md) M1, [`schemata/preferences.md`](schemata/preferences.md) F3–F7
 - **ADRs**: [ADR-0002](../adr/decisions/0002-user-data-dir.md), [ADR-0009](../adr/decisions/0009-orientation-preference.md), [ADR-0010](../adr/decisions/0010-hint-preferences.md), [ADR-0011](../adr/decisions/0011-gallery-filter-preference.md)
 
@@ -37,4 +37,4 @@ Solve and gallery reset write M1 as well. A failed M1, M3, M4, or M5 write leave
 
 ## Diagram
 
-None — four files, one writer each for progress vs shell prefs, each loaded once at start.
+None — four files, one writer each, loaded once at start.
