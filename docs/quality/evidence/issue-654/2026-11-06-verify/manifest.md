@@ -11,7 +11,7 @@
   `4.7.2.stable.official.ed1daf0bf` on Linux x86_64, headless.
 - **Observation source:** `game/` unit suite via `godot --headless --path game -s
   addons/gut/gut_cmdln.gd -gdir=res://test -gexit` — 37 scripts, 440 tests, 440 passing, 0 failing
-  ([`logs/gut-suite.log`](logs/gut-suite.log), gitignored; the log is kept uncommitted beside this
+  (`logs/gut-suite.log`, gitignored; the log is kept uncommitted beside this
   record the way earlier runs keep `integration/logs/`).
 
 The deliverable adds a durable per-puzzle `hint_free` field to `user://progress.cfg`
@@ -27,8 +27,8 @@ deletions), so this is a fresh run rather than a reuse.
 
 | Axis | Evaluator | Observation | Bar | Result | Blocked reason | Evidence path |
 |------|-----------|-------------|-----|--------|----------------|---------------|
-| `save-survives` | deterministic | I4: O6 (`Pack.record_solve`) writes hint-free and a fresh `Pack` re-reads it (`test_clean_solve_earns_hint_free`, `test_void_and_re_earn`), O9 (`Pack.void_hint_free`) persists the cleared value (`test_void_and_re_earn`), O7 (`Pack.reset`) persists the cleared value (`test_reset_clears_hint_free`), and the pre-existing O7 round-trip still replaces the file with one section per id (`test_o7_clears_the_record_and_replaces_the_file`). Marks and elapsed round-trip through `ProgressFile` (`test_progress_file_round_trips_marks_row_major`). Unit level; the restart leg is I10. | Committed progress survives quit, crash, and upgrade | pass | — | `game/test/test_hint_free.gd`, `game/test/test_pack_progress.gd`; [`logs/gut-suite.log`](logs/gut-suite.log) |
-| `failed-write` | deterministic | I4: `test_a_failed_write_leaves_the_previous_file` fails the temp write and the next read loads the previous commit byte-identically; the same G3 temp-then-rename path carries the new hint-free key, so a failed write leaves hint-free at its previous commit. | A failed write leaves the previous commit loadable | pass | — | `game/test/test_pack_progress.gd`; [`logs/gut-suite.log`](logs/gut-suite.log) |
+| `save-survives` | deterministic | I4: O6 (`Pack.record_solve`) writes hint-free and a fresh `Pack` re-reads it (`test_clean_solve_earns_hint_free`, `test_void_and_re_earn`), O9 (`Pack.void_hint_free`) persists the cleared value (`test_void_and_re_earn`), O7 (`Pack.reset`) persists the cleared value (`test_reset_clears_hint_free`), and the pre-existing O7 round-trip still replaces the file with one section per id (`test_o7_clears_the_record_and_replaces_the_file`). Marks and elapsed round-trip through `ProgressFile` (`test_progress_file_round_trips_marks_row_major`). Unit level; the restart leg is I10. | Committed progress survives quit, crash, and upgrade | pass | — | `game/test/test_hint_free.gd`, `game/test/test_pack_progress.gd`; `logs/gut-suite.log` |
+| `failed-write` | deterministic | I4: `test_a_failed_write_leaves_the_previous_file` fails the temp write and the next read loads the previous commit byte-identically; the same G3 temp-then-rename path carries the new hint-free key, so a failed write leaves hint-free at its previous commit. | A failed write leaves the previous commit loadable | pass | — | `game/test/test_pack_progress.gd`; `logs/gut-suite.log` |
 
 ## Not selected
 
