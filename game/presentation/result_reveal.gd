@@ -38,8 +38,8 @@ const STAGE_PICTURE := "S3"
 const STAGE_DEFAULT := "S1"
 
 ## [code]CFG.MORPH_STAGE_MS[/code] default, used when the shell presents no configuration
-## (the spec's default for each stage).
-const DEFAULT_STAGE_MS := 300
+## (the spec's default for each stage; two equal stages last at least 5 s).
+const DEFAULT_STAGE_MS := 2500
 
 var _fills: ResultMorphSlot
 var _pixel: ResultMorphSlot

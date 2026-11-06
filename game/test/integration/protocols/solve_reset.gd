@@ -28,7 +28,8 @@ static func spec() -> Dictionary:
 			# UI-result's C1 (`NAV.T5`) is refused until the morph reaches `S1`
 			# (US1.5b), so wait for both `CFG.MORPH_STAGE_MS` stages first as
 			# `navigate.gd` does; a bare back would be a no-op that still reports ok.
-			{"id": "result-default", "kind": "wait_ms", "ms": 900},
+			# Two 2500 ms stages at the default, plus margin, so the wait reaches S1.
+			{"id": "result-default", "kind": "wait_ms", "ms": 5500},
 			{"id": "result-back", "kind": "back"},
 			{"id": "result-view", "kind": "expect", "probe": "view", "value": "gallery"},
 			{"id": "reopen", "kind": "open", "puzzle": "pack-000"},
