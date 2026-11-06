@@ -1,0 +1,38 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"finished_at": 31169633,
+	"flows_failed": [],
+	"flows_ok": [],
+	"log": "integration/logs/harness-1793956733-kill-relaunch.log",
+	"outcome": "fail",
+	"protocol": "kill-relaunch",
+	"reason": "the mark phase never held",
+	"rows": [
+		{
+			"artifact": "integration/logs/relaunch-verify.json",
+			"axis": "resume-after-failure",
+			"bar": "Next launch is gallery; reopen restores marks and elapsed",
+			"invariant": "I10",
+			"observation": "the mark phase never held",
+			"result": "fail"
+		}
+	],
+	"session_id": "harness-1793956733",
+	"started_at": 31169633,
+	"steps": [
+		{
+			"detail": "pid 1619112",
+			"id": "spawn-mark",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "/tmp/opencode/qe693c/run/integration/logs/relaunch-mark.json",
+			"id": "mark-hold",
+			"kind": "wait",
+			"ok": false
+		}
+	],
+	"title": "Kill mid-puzzle, relaunch, restore"
+}
