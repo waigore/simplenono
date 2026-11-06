@@ -39,7 +39,7 @@ a missing protocol leaves its axes unobserved.
 |----------|--------|------------|------------|
 | `app-start` | Launch to the first interactive screen, hold, quit | I6 | `time-to-playable` (≤ 3 s) |
 | `paint` | Open, fill every row then cross every column, one mark per frame, pause/resume, quit | I1, I2, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `crash-free` |
-| `navigate` | Gallery→puzzle, then solve across the result's morph stages, result→gallery, back; samples the gallery and reveal windows and checks the tile layout at both edge widths, once the grid has re-laid itself out | I1, I2, I7, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `transition-latency` (≤ 500 ms), `crash-free` |
+| `navigate` | Gallery→puzzle, then solve, result, result→gallery, back; samples the gallery and reveal windows and checks the tile layout at both edge widths, once the grid has re-laid itself out | I1, I2, I7, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `transition-latency` (≤ 500 ms), `crash-free` |
 | `ui-ack` | Open, settings, back to the puzzle | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
 | `solve-reset` | Open, solve, result, back; open, mark, reset, back | I9 | `crash-free` |
 | `self-test` | CI-only fixture with no S1–S5 | none | none (never a quality run) |
@@ -53,7 +53,23 @@ empty grid after a refused fill no longer passes. Each run records
 `flows.solve` = `{solved_grid, solution_fills}` in `results/<protocol>.json`; on
 failure the comparison's message is the step's `detail`. A `measure` leg's time counts
 only when the leg completed — its action ran and its `until` was met — so a failed leg
-fails its `I6`/`I7`/`I8` row as "not completed" with no millisecond figure.
+fails its `I6`/`I7`/`I8` row as "not completed" with no millisecond figure. By default a
+leg's clock starts when its action returns, so the leg times action-exit →
+acknowledgement and never the driver's own call. Steps: `launch`, `wait_probe`,
+`wait_beat`, `wait_frames`, `wait_ms`, `sync`, `flow`, `sample_start`, `sample_stop`,
+`puzzles`, `open`, `mark`, `paint`, `solve`, `pause`, `resume`, `settings`, `back`,
+`reset`, `mark_start`, `mark_stop`, `measure`, `dump`, `expect`, `quit`. Two step keys
+change what a `measure` times:
+
+- `driver_time: "<why>"` records the leg as driver-timed and says so in its row; use it
+  only when the action sets the state the probe reads.
+- `polls_action: true` opens the clock before the action, for a leg whose action is the
+  product's own drawing turn (`navigate`'s `puzzle-result` is the only user). Never wrap
+  an action that does driver work with it.
+
+`sync` and `flow` are fixture-only (`self-test`): `sync` is a bare synchronous beat that
+crosses no frame, and `flow` records its probe reading under `flows.<name>` in
+`results/<protocol>.json` the way a game protocol's own flow step does.
 
 ### Known gaps on current `main`
 
@@ -61,14 +77,16 @@ The game protocols drive what exists today and fail honestly where a screen or f
 is still missing. These are product gaps, not harness errors:
 
 - `navigate` samples two named windows — `gallery` (the home screen's frames, including
-  the `refresh()` the shell runs on return) and `reveal` (the solve and the three-layer
-  result morph) — so `frame-time` and `hitch-bound` ("grid paint and navigation",
+  the `refresh()` the shell runs on return and the winning fill's frame) and `reveal`
+  (from after the solve: the acknowledged first result frame and the three-layer result
+  morph) — so `frame-time` and `hitch-bound` ("grid paint and navigation",
   `paint`'s window plus these) no longer rest on `paint` alone. Each window's p95 is
   named in the I1 observation and tagged per frame in `samples/navigate-samples.ndjson`.
-  Its `result-gallery` leg is product-acknowledged: the result screen's C1 routes
-  through the shell (#95). A new session opens on the menu (`NAV.N1`); the protocol
-  presses `UI-menu.C1` to reach the gallery before sampling.
-- `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
+  Its `puzzle-result` leg times the page transition into the result view, not the solve:
+  the solve is a step of its own, and the leg's `polls_action` action is the shell's
+  first painted result frame. Its `result-gallery` leg is product-acknowledged: the
+  result screen's C1 routes through the shell (#95). A new session opens on the menu
+  (`NAV.N1`); the protocol presses `UI-menu.C1` to reach the gallery before sampling.- `ui-ack` now times C6 through the settings screen #95 delivers: the settings leg
   stops when settings is showing (`NAV.T7`), and Back stops at the resumed puzzle on
   settings' C3 (`NAV.T8`). The pause inside the attempt is #96's.
 - `app-start` measures launch to the shell's interactive home, the menu on a new

@@ -11,11 +11,10 @@ extends Node
 
 signal finished(result: Dictionary)
 
-## `quality.md` `time-to-playable` target, in milliseconds.
-const TIME_TO_PLAYABLE_BAR_MS := 3000.0
-
-## `quality.md` `transition-latency` and `response-delay` target, in milliseconds.
-const ACK_BAR_MS := 500.0
+## `quality.md` `transition-latency` and `response-delay` target, in milliseconds. A leg
+## times action-exit → acknowledgement, or action-start → acknowledgement when it sets
+## `polls_action` ([method _measure]). The row wording is [code]IntegrationRows[/code]'s.
+const ACK_BAR_MS := IntegrationRows.ACK_BAR_MS
 
 ## Upper bound for a probe or beat wait, so a broken build fails instead of hanging.
 const DEFAULT_TIMEOUT_MS := 10000
@@ -142,6 +141,9 @@ func _execute(step: Dictionary) -> bool:
 	elif kind == "wait_ms":
 		await _wait_ms(int(step.get("ms", 0)))
 		result = _passed()
+	elif kind == "sync" or kind == "flow":
+		# Fixture-only arms (`self-test`); no game protocol uses them (#700).
+		result = IntegrationSelfTestSteps.run(kind, self, step)
 	elif kind == "puzzles":
 		result = _puzzles()
 	elif kind == "open":
@@ -217,10 +219,17 @@ func _mark_stop(step: Dictionary) -> bool:
 	return _passed()
 
 
-## One measured action: runs [code]action[/code], crosses at least one processed frame,
-## then waits for the product to reach the [code]until[/code] condition before stopping
-## the clock. The step that awaits the acknowledgement owns the measurement, so a
-## latency row never times the driver's own synchronous call.
+## One measured action: runs [code]action[/code], then waits for the product to reach the
+## [code]until[/code] condition before stopping the clock. By default the clock starts
+## when the action returns, so a leg times action-exit → acknowledgement and never times
+## the driver's own synchronous call. The wait crosses exactly one frame before its first
+## check — the old forced frame of padding is gone — so a synchronous action's state is
+## caught on its drawing turn instead of reading `~0 ms`.
+##
+## A step with [code]polls_action[/code] (the declared exception, `navigate`'s
+## `puzzle-result`) starts its clock before the action instead: the action is the
+## product's own drawing turn and the leg polls when that turn has been drawn. It must
+## not wrap an action that does driver work, or the leg times the driver.
 ##
 ## A step with [code]driver_time[/code] still runs and is still measured, but its mark
 ## is recorded as driver-timed: the action sets the state the probe reads, so the leg
@@ -235,10 +244,13 @@ func _measure(step: Dictionary) -> bool:
 	var action: Dictionary = step.get("action", {})
 	if action.is_empty():
 		return _failed_with("a measure step needs an action")
-	var start := 0 if bool(step.get("from_start", false)) else Time.get_ticks_usec()
+	var polls_action := bool(step.get("polls_action", false))
+	var from_start := bool(step.get("from_start", false))
+	var start := 0 if from_start or not polls_action else Time.get_ticks_usec()
 	var action_ok: bool = await _execute(action)
 	var action_detail := _detail
-	await _frames(1)
+	if not polls_action and not from_start:
+		start = Time.get_ticks_usec()
 	var acknowledged := await _await_condition(step)
 	var elapsed_ms := float(Time.get_ticks_usec() - start) / 1000.0
 	var completed := _record_lane_time(name, elapsed_ms, action_ok, acknowledged)
@@ -267,11 +279,15 @@ func _record_lane_time(name: String, elapsed_ms: float, action_ok: bool, complet
 
 
 ## Waits until the step's [code]until[/code] condition holds, or the timeout expires.
-## A measure step with no condition only has to cross a frame.
+## It crosses one frame before the first check: the caller used to `await _frames(1)`
+## here as well, which padded every leg with a frame it did not need (#700). That frame
+## is what lets a synchronous action's state be read on its drawing turn instead of as a
+## `~0 ms` wall clock, so a leg never measures zero.
 func _await_condition(step: Dictionary) -> bool:
 	if not step.has("until"):
 		return true
 	var condition: Dictionary = step["until"]
+	await get_tree().process_frame
 	var deadline := Time.get_ticks_msec() + int(step.get("timeout_ms", ACK_TIMEOUT_MS))
 	while Time.get_ticks_msec() < deadline:
 		if _probe_met(condition):
@@ -535,6 +551,12 @@ func _expect(step: Dictionary) -> bool:
 		if not _matches(actual, step["value"]):
 			return _failed_with("%s is %s, expected %s" % [probe, str(actual), str(step["value"])])
 		return _passed()
+	return _expect_bounds(probe, actual, step)
+
+
+## The numeric [code]min[/code] / [code]max[/code] half of an `expect` step (#700 adds
+## `max` so the `self-test` can bound an unpadded leg against the sampled frame period).
+func _expect_bounds(probe: String, actual: Variant, step: Dictionary) -> bool:
 	if step.has("min"):
 		if not _numeric(actual):
 			return _failed_with("%s is not numeric: %s" % [probe, str(actual)])
@@ -542,6 +564,14 @@ func _expect(step: Dictionary) -> bool:
 		if float(actual) < minimum:
 			return _failed_with(
 				"%s is %s, expected at least %s" % [probe, str(actual), str(minimum)]
+			)
+	if step.has("max"):
+		if not _numeric(actual):
+			return _failed_with("%s is not numeric: %s" % [probe, str(actual)])
+		var maximum := float(step["max"])
+		if float(actual) > maximum:
+			return _failed_with(
+				"%s is %s, expected at most %s" % [probe, str(actual), str(maximum)]
 			)
 	return _passed()
 
@@ -600,6 +630,34 @@ func _settle_layout(gallery: GalleryScreen, screen: Vector2) -> void:
 		previous = current
 
 
+## The sampled frame period a leg is compared with: the p95 of the protocol's main
+## window frames (`self-test` states its `duration_ratio` bound against it).
+func frame_period_ms() -> float:
+	return _sampler.window_frame_time_p95_ms(IntegrationSampler.MAIN_WINDOW)
+
+
+## The hooks the fixture-only step arms and probes use
+## ([code]IntegrationSelfTestSteps[/code], #700). Game protocols never call them.
+func probe(name: String, step: Dictionary) -> Variant:
+	return _probe(name, step)
+
+
+func record_flow(name: String, ok: bool) -> void:
+	_record_flow(name, ok)
+
+
+func flows() -> Dictionary:
+	return _flows
+
+
+func failed_with(message: String) -> bool:
+	return _failed_with(message)
+
+
+func duration_ms(mark: String) -> float:
+	return float(_durations.get(mark, -1.0))
+
+
 func _probe(name: String, step: Dictionary) -> Variant:
 	var value: Variant = null
 	if name == "home_ready":
@@ -649,6 +707,8 @@ func _probe(name: String, step: Dictionary) -> Variant:
 		value = float(_durations.get(String(step.get("mark", "")), -1.0))
 	elif name == "sampled_frames":
 		value = _sampler.sample_count()
+	else:
+		value = IntegrationSelfTestSteps.probe(self, name, step)
 	return value
 
 
@@ -678,6 +738,9 @@ func _finish() -> void:
 		"flows_failed": _flows_failed,
 		"flows": _flows,
 		"driver_time": _driver_time,
+		# Every measured leg's wall clock, so a verifier cites the figure (and, for #700,
+		# the before → after on the same leg) from the raw result rather than the log.
+		"legs": _durations,
 		"crashed": false,
 	}
 	result["log_lines"] = log_lines
@@ -728,211 +791,37 @@ func _telemetry_lines() -> Array[String]:
 
 
 func _rows() -> Array[Dictionary]:
-	var rows: Array[Dictionary] = []
-	for invariant in _spec.get("invariants", []):
-		rows.append(_row(String(invariant)))
-	return rows
+	return IntegrationRows.new(bundle()).all()
 
 
+## One invariant row, built by [code]IntegrationRows[/code] from [method bundle].
 func _row(invariant_id: String) -> Dictionary:
-	var axis := IntegrationProtocols.invariant_axis(invariant_id)
-	var bar := IntegrationProtocols.invariant_bar(invariant_id)
-	var observation := ""
-	var passed := false
-	var artifact := (
-		"%s/%s/%s.json"
-		% [
-			IntegrationRunFolder.FOLDER,
-			IntegrationRunFolder.RESULTS_FOLDER,
-			String(_spec.get("id", "")),
-		]
-	)
-	match invariant_id:
-		"I1":
-			passed = _sampler.frame_time_meets_bar()
-			observation = (
-				"p95 frame time %s over %d frames" % [_window_p95_text(), _sampler.sample_count()]
-			)
-			artifact = _sample_artifact(false)
-		"I2":
-			passed = _sampler.hitch_meets_bar()
-			observation = (
-				"longest frame %.2f ms over %d frames"
-				% [
-					_sampler.hitch_max_ms(),
-					_sampler.sample_count(),
-				]
-			)
-			artifact = _sample_artifact(true)
-		"I6":
-			passed = _duration_within("time-to-playable", TIME_TO_PLAYABLE_BAR_MS)
-			observation = (
-				"cold launch to the interactive shell home (menu): %s%s"
-				% [_duration_text("time-to-playable"), _incomplete_text("time-to-playable")]
-			)
-			artifact = _log_artifact()
-		"I7":
-			var transitions := _duration_names("transition:")
-			passed = _durations_within("transition:", ACK_BAR_MS)
-			observation = (
-				"longest transition among %s: %s%s"
-				% [
-					", ".join(PackedStringArray(transitions)),
-					_duration_text(_longest("transition:")),
-					_incomplete_text("transition:"),
-				]
-			)
-			artifact = _log_artifact()
-		"I8":
-			var acks := _duration_names("ack:")
-			passed = _durations_within("ack:", ACK_BAR_MS)
-			observation = (
-				"longest acknowledgement among %s: %s%s"
-				% [
-					", ".join(PackedStringArray(acks)),
-					_duration_text(_longest("ack:")),
-					_incomplete_text("ack:"),
-				]
-			)
-			artifact = _log_artifact()
-		"I9":
-			passed = _flows_failed.is_empty() and not _flows_ok.is_empty()
-			observation = "flows ran: %s" % _joined(_flows_ok)
-	if invariant_id in ["I6", "I7", "I8"] and not _driver_time.is_empty():
-		observation += " (driver-timed, not a product observation: %s)" % _joined(_driver_time)
-	if invariant_id in ["I6", "I7", "I8"] and _failed:
-		passed = false
-		if not _failure.is_empty():
-			observation += "; protocol failed: " + _failure
+	return IntegrationRows.new(bundle()).of(invariant_id)
+
+
+## Everything [code]IntegrationRows[/code] needs to render, read-only.
+func bundle() -> Dictionary:
 	return {
-		"invariant": invariant_id,
-		"axis": axis,
-		"observation": observation,
-		"bar": bar,
-		"result": "pass" if passed else "fail",
-		"artifact": artifact,
+		"protocol": String(_spec.get("id", "")),
+		"session_id": _session_id,
+		"invariants": _spec.get("invariants", []),
+		"failed": _failed,
+		"failure": _failure,
+		"sampler": _sampler,
+		"durations": _durations,
+		"incomplete": _incomplete,
+		"driver_time": _driver_time,
+		"flows_ok": _flows_ok,
+		"flows_failed": _flows_failed,
 	}
 
 
 func _outcome_passes() -> bool:
-	if _failed:
-		return false
-	for row in _rows():
-		if String(row["invariant"]) != "I9" and String(row["result"]) != "pass":
-			return false
-	return true
+	return IntegrationRows.new(bundle()).outcome_passes()
 
 
 func _row_failure() -> String:
-	for row in _rows():
-		if String(row["invariant"]) != "I9" and String(row["result"]) != "pass":
-			return "%s failed: %s" % [row["invariant"], row["observation"]]
-	return ""
-
-
-func _duration_within(name: String, bar_ms: float) -> bool:
-	if not _durations.has(name):
-		return false
-	return float(_durations[name]) <= bar_ms
-
-
-func _duration_text(name: String) -> String:
-	if name.is_empty() or not _durations.has(name):
-		return "not measured"
-	return "%.1f ms" % float(_durations[name])
-
-
-## The I1 observation's p95, naming each sampling window when a protocol opened several
-## (e.g. `navigate`'s gallery and reveal windows) and the overall figure otherwise.
-func _window_p95_text() -> String:
-	var names := _sampler.windows()
-	if names.size() <= 1:
-		return "%.2f ms" % _sampler.frame_time_p95_ms()
-	var parts: PackedStringArray = []
-	for name in names:
-		parts.append(
-			(
-				"%s %.2f ms over %d frames"
-				% [
-					name,
-					_sampler.window_frame_time_p95_ms(name),
-					_sampler.window_sample_count(name)
-				]
-			)
-		)
-	return "%s (all windows %.2f ms)" % [", ".join(parts), _sampler.frame_time_p95_ms()]
-
-
-## The legs named [param prefix] that were measured but did not complete
-## ([method _record_lane_time]): their action failed or their `until` timed out. They
-## carry no time, so the row names them as not completed instead of printing a wall
-## clock a verifier could cite (#550).
-func _incomplete_text(prefix: String) -> String:
-	var names: Array[String] = []
-	for key in _incomplete.keys():
-		var name := String(key)
-		if name.begins_with(prefix) and not _durations.has(name):
-			names.append(name)
-	names.sort()
-	if names.is_empty():
-		return ""
-	return "; not completed: %s" % ", ".join(names)
-
-
-func _durations_within(prefix: String, bar_ms: float) -> bool:
-	var names := _duration_names(prefix)
-	if names.is_empty():
-		return false
-	for name in names:
-		if float(_durations[name]) > bar_ms:
-			return false
-	return true
-
-
-func _duration_names(prefix: String) -> Array[String]:
-	var names: Array[String] = []
-	for key in _durations.keys():
-		if String(key).begins_with(prefix):
-			names.append(String(key))
-	names.sort()
-	return names
-
-
-func _longest(prefix: String) -> String:
-	var name := ""
-	var longest := -1.0
-	for key in _duration_names(prefix):
-		if float(_durations[key]) > longest:
-			longest = float(_durations[key])
-			name = key
-	return name
-
-
-func _sample_artifact(hitches: bool) -> String:
-	var suffix := (
-		IntegrationSampler.HITCHES_SUFFIX if hitches else IntegrationSampler.SAMPLES_SUFFIX
-	)
-	return (
-		"%s/%s/%s%s"
-		% [
-			IntegrationRunFolder.FOLDER,
-			IntegrationSampler.SAMPLES_FOLDER,
-			String(_spec.get("id", "")),
-			suffix,
-		]
-	)
-
-
-func _log_artifact() -> String:
-	return (
-		"%s/%s/%s-%s.log"
-		% [
-			IntegrationRunFolder.FOLDER,
-			IntegrationRunFolder.LOGS_FOLDER,
-			_session_id,
-			String(_spec.get("id", "")),
-		]
-	)
+	return IntegrationRows.new(bundle()).row_failure()
 
 
 func _record_flow(name: String, ok: bool) -> void:
@@ -963,14 +852,6 @@ func _matches(actual: Variant, expected: Variant) -> bool:
 
 func _numeric(value: Variant) -> bool:
 	return typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT
-
-
-func _joined(values: Array) -> String:
-	var names: Array[String] = []
-	for value in values:
-		names.append(String(value))
-	names.sort()
-	return ", ".join(names) if not names.is_empty() else "none"
 
 
 func _relative(path: String, root: String) -> String:
