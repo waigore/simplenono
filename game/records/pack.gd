@@ -128,14 +128,15 @@ func progress() -> ProgressRules:
 
 
 ## O5: replaces [param puzzle_id]'s record and `user://progress.cfg` (G3) with
-## [param marks], [param elapsed], and [param in_progress]. The marks are copied, so
-## later changes to [param marks] do not reach the record. An unknown id changes
-## nothing (G2) and returns null.
+## [param marks], [param elapsed], and [param in_progress]. Only this puzzle's section
+## is regenerated; every other section is written as it was loaded. The marks are
+## copied, so later changes to [param marks] do not reach the record. An unknown id
+## changes nothing (G2) and returns null.
 func commit(puzzle_id: String, marks: MarkGrid, elapsed: int, in_progress: bool) -> ProgressRecord:
 	if not _definitions.has(puzzle_id):
 		return null
 	var record := _progress.commit(puzzle_id, marks, elapsed, in_progress)
-	_progress_file.save(_progress, definition_ids())
+	_progress_file.save(_progress, definition_ids(), [puzzle_id])
 	return record
 
 
@@ -147,7 +148,7 @@ func record_solve(
 	if definition(puzzle_id) == null:
 		return null
 	var record := _progress.record_solve(puzzle_id, elapsed, hint_free_eligible)
-	_progress_file.save(_progress, definition_ids())
+	_progress_file.save(_progress, definition_ids(), [puzzle_id])
 	return record
 
 
@@ -158,7 +159,7 @@ func reset(puzzle_id: String) -> bool:
 	if definition(puzzle_id) == null:
 		return false
 	_progress.reset(puzzle_id)
-	_progress_file.save(_progress, definition_ids())
+	_progress_file.save(_progress, definition_ids(), [puzzle_id])
 	return true
 
 
@@ -168,7 +169,7 @@ func void_hint_free(puzzle_id: String) -> bool:
 	if definition(puzzle_id) == null:
 		return false
 	_progress.void_hint_free(puzzle_id)
-	_progress_file.save(_progress, definition_ids())
+	_progress_file.save(_progress, definition_ids(), [puzzle_id])
 	return true
 
 

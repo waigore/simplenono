@@ -429,3 +429,70 @@ func test_progress_file_round_trips_marks_row_major() -> void:
 	assert_eq(record.marks.mark_at(0, 0), CellMark.Mark.FILL, "the first fill reads back")
 	assert_eq(record.marks.mark_at(9, 9), CellMark.Mark.CROSS, "the last cross reads back")
 	assert_eq(record.marks.mark_at(5, 5), CellMark.Mark.CLEAR, "an unmarked cell stays clear")
+
+
+# M1 / G3: a write regenerates only the puzzle it changed; every other stored section
+# is written as it was loaded, so another puzzle keeps its marks, elapsed, best, and
+# ever-completed. A reset puzzle round-trips as an empty section (no marks, no best).
+func test_a_commit_keeps_the_other_stored_sections_intact() -> void:
+	var size: int = _pack().definition("pack-000").size
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-001", ProgressFile.IN_PROGRESS_KEY, true)
+	seeded.set_value("pack-001", ProgressFile.ELAPSED_KEY, 17)
+	seeded.set_value("pack-001", ProgressFile.MARKS_KEY, _row_major_fill(size))
+	seeded.set_value("pack-002", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-002", ProgressFile.PERSONAL_BEST_KEY, 252)
+	seeded.set_value("pack-003", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-003", ProgressFile.PERSONAL_BEST_KEY, 90)
+	assert_eq(seeded.save(TEST_PATH), OK, "the seeded progress document is written")
+
+	var pack := _pack()
+	var ids := pack.definition_ids()
+	var grid := MarkGrid.new(size, true)
+	assert_true(grid.apply_mark(0, 0, CellMark.Mark.FILL), "the fixture commit fill applies")
+	assert_not_null(pack.commit("pack-000", grid, 5, true), "O5 commits the changed puzzle")
+	assert_true(pack.reset("pack-003"), "O7 resets one stored puzzle")
+
+	var written := ConfigFile.new()
+	assert_eq(written.load(TEST_PATH), OK, "the replaced progress file reads")
+	assert_eq(written.get_sections().size(), 201, "M1: one section per puzzle id plus meta")
+	var kept_marks: Array = written.get_value("pack-001", ProgressFile.MARKS_KEY, [])
+	assert_eq(written.get_value("pack-001", ProgressFile.ELAPSED_KEY, -1), 17, "F5: kept elapsed")
+	assert_eq(kept_marks, _row_major_fill(size), "F4: kept marks, row for row")
+	assert_true(written.get_value("pack-002", ProgressFile.EVER_COMPLETED_KEY, false), "F2 kept")
+	assert_eq(written.get_value("pack-002", ProgressFile.PERSONAL_BEST_KEY, -1), 252, "F6 kept")
+	assert_true(
+		written.get_value("pack-000", ProgressFile.IN_PROGRESS_KEY, false),
+		"F3: the changed puzzle is in progress",
+	)
+	assert_false(
+		written.has_section_key("pack-003", ProgressFile.MARKS_KEY),
+		"O7: a reset puzzle stores no marks",
+	)
+	assert_false(
+		written.has_section_key("pack-003", ProgressFile.PERSONAL_BEST_KEY),
+		"O7: a reset puzzle stores no personal best",
+	)
+	assert_false(
+		written.get_value("pack-003", ProgressFile.EVER_COMPLETED_KEY, true),
+		"O7: a reset puzzle is not ever-completed",
+	)
+
+	var reread := ProgressRules.new()
+	var file := ProgressFile.new(TEST_PATH)
+	assert_true(file.load_into(reread, ids), "the kept document reloads")
+	var other := reread.record("pack-001")
+	assert_true(other.in_progress, "F3: the other in-progress attempt survives")
+	assert_eq(other.elapsed, 17, "F5: its elapsed survives")
+	assert_eq(other.marks.mark_at(0, 0), CellMark.Mark.FILL, "F4: its marks survive")
+
+
+## A [param size] × [param size] stored grid (M2) with one fill at the origin.
+func _row_major_fill(size: int) -> Array:
+	var rows: Array = []
+	for row in size:
+		var cells: Array = []
+		for column in size:
+			cells.append("fill" if row == 0 and column == 0 else "clear")
+		rows.append(cells)
+	return rows
