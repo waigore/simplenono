@@ -25,7 +25,7 @@ Game protocols need the debug build and the S1–S5 seam flag delivered by #163
 
 All protocols are invoked by the `Integration harness` CI job, which runs the
 CI-only `self-test`; see [`docs/coding-conventions.md`](../../../docs/coding-conventions.md).
-The seams from #163 have merged, so the six game protocols run today, but they are
+The seams from #163 have merged, so the five game protocols run today, but they are
 not CI-required: their product rows are red until the gallery, result, settings, and
 persistence work lands (#94–#96).
 
@@ -42,7 +42,6 @@ a missing protocol leaves its axes unobserved.
 | `navigate` | Gallery→puzzle, then solve across the result's morph stages, result→gallery, back; samples the gallery and reveal windows and checks the tile layout at both edge widths, once the grid has re-laid itself out | I1, I2, I7, I9 | `frame-time` (≤ 16.7 ms), `hitch-bound` (≤ 100 ms), `transition-latency` (≤ 500 ms), `crash-free` |
 | `ui-ack` | Open, settings, back to the puzzle | I8, I9 | `response-delay` (≤ 500 ms), `crash-free` |
 | `solve-reset` | Open, solve, result, back; open, mark, reset, back | I9 | `crash-free` |
-| `kill-relaunch` | Open, mark, hold, kill, relaunch, reopen | I10 | `resume-after-failure` |
 | `self-test` | CI-only fixture with no S1–S5 | none | none (never a quality run) |
 
 `crash-free` is run-level: every I9 flow (open, solve, reset, back) must have run in
@@ -76,6 +75,11 @@ is still missing. These are product gaps, not harness errors:
   session since #623 (`NAV.N1`). It claims I6 only: I9 needs one of the
   open/solve/reset/back flows recorded, and reaching home records none.
 
+Crash restore is not observed: `resume-after-failure` is N/A in
+[`quality.md`](../../../specs/definition/quality.md) (crash is best-effort, no product
+restore bar; #704), so no protocol claims it and I10 is retired. This is not a pending
+gap.
+
 ## Run folder
 
 One invocation writes only below `<run-dir>/integration/`:
@@ -104,6 +108,5 @@ folder's manifest stay the playtest record.
 | [`sampler.gd`](sampler.gd) | Per-frame capture and p95 / hitch reduction |
 | [`run_folder.gd`](run_folder.gd) | Run-folder writer and `results.md` summary |
 | [`protocol_catalog.gd`](protocol_catalog.gd) | Protocol ids, invariant → axis → bar table |
-| [`relaunch.gd`](relaunch.gd), [`relaunch_child.gd`](relaunch_child.gd) | Kill-and-relaunch supervisor and its two child phases |
-| [`protocols/`](protocols/) | The six game drive lists |
+| [`protocols/`](protocols/) | The five game drive lists |
 | [`self_test/`](self_test/) | CI fixture and `self-test` protocol |

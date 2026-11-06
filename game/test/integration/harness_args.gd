@@ -1,7 +1,7 @@
 class_name IntegrationArgs
 extends RefCounted
-## Launch arguments for the integration harness (`run_protocol.gd`,
-## `relaunch_child.gd`), parsed from the user arguments after `--`.
+## Launch arguments for the integration harness (`run_protocol.gd`), parsed from
+## the user arguments after `--`.
 ##
 ## Both `--key=value` and `--key value` are accepted, so the command in
 ## `specs/technical/verification.md` can be written either way. A bare `--key`
@@ -18,12 +18,6 @@ const SESSION_ID := "session-id"
 
 ## `TEL.3`: the build id written next to every telemetry event.
 const BUILD_ID := "build-id"
-
-## `relaunch_child.gd`: `mark` (hold for the kill) or `verify` (assert restore).
-const PHASE := "phase"
-
-## `relaunch_child.gd`: the puzzle id both phases open.
-const PUZZLE_ID := "puzzle-id"
 
 
 ## Every user argument as a dictionary keyed without the leading `--`.
