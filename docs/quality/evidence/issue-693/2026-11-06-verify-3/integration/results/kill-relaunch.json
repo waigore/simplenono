@@ -1,0 +1,56 @@
+{
+	"build_id": "4.7.2-stable (official)",
+	"crashed": false,
+	"finished_at": 6201751,
+	"flows_failed": [],
+	"flows_ok": [],
+	"log": "integration/logs/harness-1793962926-kill-relaunch.log",
+	"outcome": "pass",
+	"protocol": "kill-relaunch",
+	"reason": "",
+	"rows": [
+		{
+			"artifact": "integration/logs/relaunch-verify.json",
+			"axis": "resume-after-failure",
+			"bar": "Next launch is gallery; reopen restores marks and elapsed",
+			"invariant": "I10",
+			"observation": "launch entry: gallery stand-in (shell home); reopened: true; marks restored: true; elapsed restored: true",
+			"result": "pass"
+		}
+	],
+	"session_id": "harness-1793962926",
+	"started_at": 6201751,
+	"steps": [
+		{
+			"detail": "pid 1648609",
+			"id": "spawn-mark",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "/tmp/opencode/verify-693/run/integration/logs/relaunch-mark.json",
+			"id": "mark-hold",
+			"kind": "wait",
+			"ok": true
+		},
+		{
+			"detail": "pid 1648609",
+			"id": "kill",
+			"kind": "kill",
+			"ok": true
+		},
+		{
+			"detail": "pid 1648657",
+			"id": "spawn-verify",
+			"kind": "launch",
+			"ok": true
+		},
+		{
+			"detail": "exit code 0",
+			"id": "verify-exit",
+			"kind": "exit",
+			"ok": true
+		}
+	],
+	"title": "Kill mid-puzzle, relaunch, restore"
+}
