@@ -107,6 +107,14 @@ func set_ui_theme(ui_theme: UiTheme) -> void:
 		_refresh_type_sizes()
 
 
+## Shows the fill-hint ghosts for the enabled assists ([code]PER.R8[/code],
+## specs/design/features/fill-hints.md R3). The shell calls this at open and on every
+## toggle change, so an enable applies at once; the board keeps the toggles across
+## [method present].
+func set_hint_overlays(single_line: bool, multi_line: bool) -> void:
+	_board.set_hint_overlays(single_line, multi_line)
+
+
 ## The current state ID: [constant STATE_GET_SET_READY], [constant STATE_PAUSED],
 ## [constant STATE_READY], or empty when no puzzle is shown.
 func state_id() -> String:

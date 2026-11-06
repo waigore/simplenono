@@ -1,9 +1,9 @@
 class_name PresentationPalette
 extends RefCounted
 ## Palette swatches for presentation drawing ([code]PAL.S1[/code],
-## specs/aesthetics/palette.md C1-C6).
+## specs/aesthetics/palette.md C1-C6 and C8).
 ##
-## The six swatches are the only colors the board and chrome use. Solution
+## These swatches are the only colors the board and chrome use. Solution
 ## pictures keep their own pixels and sit outside this set ([code]PER.R4[/code]);
 ## no screen in this module draws them yet.
 
@@ -24,3 +24,7 @@ const DIM := Color("#6E7F8C")
 
 ## C6 Contradiction: the line-error signal only.
 const CONTRADICTION := Color("#3A6F8F")
+
+## C8 Hint overlay: the single- and multi-line fill-hint ghosts only
+## ([code]PER.R8[/code], specs/design/features/fill-hints.md R3).
+const HINT := Color("#8FA2AF")

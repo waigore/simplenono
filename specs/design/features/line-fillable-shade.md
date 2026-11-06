@@ -33,7 +33,9 @@ the line logic still allows through it, to plan fills without touching marks.
 
 - Line-level fillable hint option ([configuration.md](../configuration.md); default off).
 - Shade colour lighter than the fill-hint overlay colour: [palette](../../aesthetics/palette.md)
-  owns the swatch once mockups are approved.
+  owns the swatch once mockups are approved. The approved [MC.puzzle](../../ux/mockups/screens/puzzle.html)
+  legends lock it at `#C2CDD4`, lighter than the C8 overlay ([`PER.R8`](../../view/perception.md));
+  the palette swatch stays pending.
 
 ## State
 

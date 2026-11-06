@@ -247,3 +247,38 @@ func test_a_new_attempt_clears_the_latch() -> void:
 	shell.leave_puzzle()
 	assert_true(shell.open_puzzle("pack-000"), "second attempt")
 	assert_false(shell.hint_assist_enabled_during_attempt(), "open clears the latch")
+
+
+# CMP-shell R3 / R8 / features/fill-hints R3: the puzzle screen's overlays follow the
+# stored toggles at open and on every change, so an enable applies at once
+func test_the_open_puzzle_shows_overlays_for_the_enabled_assists() -> void:
+	_seed(
+		{HintPreferences.KEY_SINGLE: true, HintPreferences.KEY_MULTI: false},
+		SHELL_HINT_PATH,
+	)
+	var shell := _shell()
+	assert_true(shell.open_puzzle("pack-000"), "an attempt is open")
+	var screen := shell.puzzle_screen()
+	var f8_only := _first_f8_only_cell(shell.pack().definition("pack-000"))
+
+	assert_eq(screen.cell_at(0, 0).hint, PuzzleCell.HINT_CROSS, "F4 on at open ghosts F8")
+	assert_eq(screen.cell_at(f8_only.x, f8_only.y).hint, PuzzleCell.HINT_NONE, "F5 off hides F9")
+
+	assert_true(shell.set_hint_single_line(false), "F4 turns off")
+	assert_eq(screen.cell_at(0, 0).hint, PuzzleCell.HINT_NONE, "the overlay clears at once")
+
+	assert_true(shell.set_hint_multi_line(true), "C6 turns on during the attempt")
+	assert_eq(
+		screen.cell_at(f8_only.x, f8_only.y).hint,
+		PuzzleCell.HINT_CROSS,
+		"an F9 ghost applies at once",
+	)
+
+
+## The first F9 cell of [param definition], which single-line alone never ghosts.
+func _first_f8_only_cell(definition: PuzzleDefinition) -> Vector2i:
+	for position in definition.multi_fill_hint_cells.keys():
+		if not definition.single_fill_hint_cells.has(position):
+			return position
+	fail_test("The pack's first puzzle carries no F9-only cell")
+	return Vector2i.ZERO

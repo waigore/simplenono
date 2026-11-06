@@ -16,6 +16,8 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 | S3 | Wait through get-set-ready until marks are allowed on `UI-puzzle`. |
 | S4 | Place the last needed fill(s) with `UI-puzzle.C2` / fill tool until the app leaves for `UI-result`. |
 | S5 | After morph reaches Default, use `UI-result.C1` Back. |
+| S6 | Open the 10×10 sample board again and wait through get-set-ready. In `UI-settings` turn `copy.hint-single` on and return: note which cells R2 now ghosts (`US1.8`), and that no cell gained a mark. Turn `copy.hint-multi` on too and note the additional ghosts; turn both off and note that no ghost remains (`US1.9`). |
+| S7 | With `copy.hint-fillable` on and Fill selected, tap a cell: note the lighter shade on the max legal run containing it, and that the tap wrote no mark (`US1.10`). Turn `copy.hint-fillable` off in `UI-settings` and return: note the shade is gone with the marks unchanged (`US1.11`). |
 
 ## Pass
 
@@ -24,6 +26,7 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 | P1 | Gallery → puzzle → result → gallery completes without stuck screens. |
 | P2 | After solve, gallery shows that puzzle as ever-completed (Done / thumbnail when applicable). |
 | P3 | On mobile, R2 shows each of 10×10, 15×15, and 20×20 in one framing in portrait and landscape, with no scroll, pan, or pinch-zoom affordance, and every clue legible. |
+| P4 | Hint assists apply at once on toggle: each assist ghosts its cells (or shades the tapped run) without writing a mark, the overlay and shade colours read as distinct, and turning an assist off removes it. |
 
 ## Fail
 
@@ -32,7 +35,8 @@ Authoring rules: [`.agents/specs/rules/playtest/protocol.md`](../../../.agents/s
 | F1 | Cannot open a puzzle from the gallery, or solve does not reach `UI-result`. | yes |
 | F2 | Back from result does not return to `UI-gallery`, or ever-completed does not stick. | yes |
 | F3 | On mobile, R2 scrolls, pans, or zooms, leaves part of the clue-led board out of frame, or a clue is not legible in portrait or landscape. | yes |
+| F4 | A hint assist writes a board mark, does not show on enable, does not clear on disable, or its colour is indistinguishable from the shade or from the cell marks. | yes |
 
 ## Evidence
 
-Default evidence rules. Screenshot gallery after return (judged ever-completed tile). For P3/F3, one screenshot per orientation at the largest tested size (20×20), portrait and landscape.
+Default evidence rules. Screenshot gallery after return (judged ever-completed tile). For P3/F3, one screenshot per orientation at the largest tested size (20×20), portrait and landscape. For P4/F4, one screenshot of the 10×10 sample with the single- and multi-line overlays on, and one with the fillable shade showing.

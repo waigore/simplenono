@@ -33,7 +33,8 @@ never touches board state.
 ## Parameters
 
 - Single-line fill hint, multi-line fill hint, line-level fillable hint options ([configuration.md](../configuration.md) game options; defaults off).
-- Overlay colour distinct from the fillable-region shade: [palette](../../aesthetics/palette.md) owns the swatch once mockups are approved.
+- Overlay colour distinct from the fillable-region shade: [palette](../../aesthetics/palette.md) C8 owns the
+  swatch ([K7](../../aesthetics/palette.md)).
 
 ## State
 

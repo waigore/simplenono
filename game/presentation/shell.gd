@@ -28,8 +28,9 @@ extends Control
 ## [HintPreferences] (ADR-0010). An assist already on at open seeds the attempt
 ## ineligible to earn hint-free ([b]DSGN.progression[/b] PS1.8); enabling any while an
 ## attempt is open latches the observation and voids that attempt's hint-free status at
-## once ([b]CTR-pack[/b] O9, [b]DSGN.progression[/b] PS1.9). Settings chrome for C5–C7
-## waits on approved mockups ([code]docs/ux-mockups.md[/code]).
+## once ([b]CTR-pack[/b] O9, [b]DSGN.progression[/b] PS1.9). The puzzle screen's
+## fill-hint overlays follow the same toggles at open and on every change
+## ([code]PER.R8[/code], specs/design/features/fill-hints.md R3).
 ##
 ## [GalleryScreen] is the no-puzzle screen ([code]SEQ-open[/code] B1 keeps it shown and
 ## [code]NAV.N1[/code] starts on it). Its C1 opens a puzzle here and its C3 opens
@@ -147,6 +148,7 @@ func _ready() -> void:
 	_menu.present(_build_info)
 	_gallery.set_ui_theme(_ui_theme)
 	_puzzle.set_ui_theme(_ui_theme)
+	_puzzle.set_hint_overlays(_hint_prefs.single_line(), _hint_prefs.multi_line())
 	_result.set_ui_theme(_ui_theme)
 	_settings.set_ui_theme(_ui_theme)
 	_audio = AudioFeedback.new(_resolver, _flags)
@@ -203,6 +205,7 @@ func open_puzzle(puzzle_id: String) -> bool:
 	if _hint_prefs.any_enabled():
 		_attempt.seed_hint_free_eligible(false)
 	_puzzle.present(attempt)
+	_puzzle.set_hint_overlays(_hint_prefs.single_line(), _hint_prefs.multi_line())
 	_show_puzzle()
 	_audio.on_attempt_open()
 	_attempt.solved.connect(_on_attempt_solved)
@@ -573,6 +576,8 @@ func set_hint_line_fillable(enabled: bool) -> bool:
 ## the latch records it and the attempt's hint-free status voids at once
 ## ([b]CTR-pack[/b] O9, [b]DSGN.progression[/b] PS1.9), even if the assist stays unused.
 func _on_hint_preference_changed(_kind: String, enabled: bool) -> void:
+	# R3: the overlay follows the toggle at once, on or off.
+	_puzzle.set_hint_overlays(_hint_prefs.single_line(), _hint_prefs.multi_line())
 	if not enabled:
 		return
 	if _attempt != null:
