@@ -12,7 +12,7 @@ Parent: [`../verification.md`](../verification.md).
 | I4 | Personal best never increases while set, and a committed record survives quit ([`CTR-pack.G1`](../contracts/pack.md), [`persistence.md`](../persistence.md) M1; `save-survives`, `failed-write`) | integration | Each solve, reset, and quit round-trip |
 | I5 | [`SCH-progress`](../schemata/progress.md) I1–I6 hold after every committed step | smoke | Per run step |
 | I6 | Cold launch to interactive gallery stays within `time-to-playable` | integration | App-start harness |
-| I7 | Gallery↔puzzle, puzzle→result, and result→gallery stay within `transition-latency` | integration | Each navigation protocol |
+| I7 | Gallery↔puzzle, puzzle→result, and result→gallery stay within `transition-latency`; puzzle→result is the page transition to the result view acknowledged (not solve fill time, not morph-complete / `S1` Default) | integration | Each navigation protocol |
 | I8 | Open puzzle, settings toggle, and Back acknowledge within `response-delay` | integration | Each non-paint UI protocol |
 | I9 | Open, solve, reset, and back complete without a crash (`crash-free`) | integration | Each of those flows |
 | I11 | Severity-tagged error/crash logs, frame/hitch samples, and story-ID telemetry events are present (`runtime-signals`) | smoke | Debug build with S4 |
