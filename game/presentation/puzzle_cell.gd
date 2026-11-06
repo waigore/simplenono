@@ -20,6 +20,10 @@ signal pressed
 ## Cross stroke is 1/8 of the cell side ([code]P3[/code]).
 const CROSS_STROKE_RATIO := 0.125
 
+## Shade opacity, as in the approved [code]MC.puzzle[/code] mockup: the mark under
+## it stays readable ([code]features/line-fillable-shade.md[/code] X2).
+const SHADE_ALPHA := 0.55
+
 ## Shade covers the cell inside its grid rule, as the approved mockup's inset does.
 const SHADE_INSET := 1.0
 
@@ -90,7 +94,7 @@ func _draw_shade(box: Rect2) -> void:
 	var inset := box.grow(-SHADE_INSET)
 	if inset.size.x <= 0.0 or inset.size.y <= 0.0:
 		return
-	draw_rect(inset, PresentationPalette.FILLABLE_SHADE)
+	draw_rect(inset, Color(PresentationPalette.FILLABLE_SHADE, SHADE_ALPHA))
 
 
 ## Draws the fill-hint ghost over the mark, never instead of it ([code]PER.R8[/code]).
