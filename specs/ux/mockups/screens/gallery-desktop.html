@@ -381,7 +381,7 @@
 <body>
   <div class="container">
     <p class="doc-cap"><strong>UI-gallery</strong> · desktop · Open Design web-prototype · aesthetics remap</p>
-    <nav class="ux-states" aria-label="States"><a href="#state-default">Default</a><a href="#state-incomplete">Incomplete only</a><a href="#ex-confirm">EX.confirm</a></nav>
+    <nav class="ux-states" aria-label="States"><a href="#state-default">Default</a><a href="#state-incomplete">Incomplete only</a><a href="#state-incomplete-all-done">Incomplete only · all done</a><a href="#ex-confirm">EX.confirm</a></nav>
   </div>
   <article data-screen="UI-gallery">
     <div class="states">
@@ -504,6 +504,33 @@
                 <button type="button" class="reset" data-control="C2">Reset</button>
               </div>
             </section>
+          </main>
+        </div>
+      </section>
+      <section id="state-incomplete-all-done" data-state="S2">
+        <div class="gallery-shell">
+          <header class="topnav" data-region="R3" aria-label="Chrome">
+            <div class="container topnav-inner">
+              <div>
+                <p class="eyebrow" style="margin:0 0 4px; color:var(--muted);">Local pack</p>
+                <span class="logo">Gallery</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button type="button" class="btn btn-secondary" data-control="C4">Back to main menu</button>
+                <button type="button" class="btn btn-secondary" data-control="C3">Settings</button>
+              </div>
+            </div>
+          </header>
+          <main class="container" style="padding-block: 28px 64px;">
+            <section class="progress-block" data-region="R1" aria-label="Pack progress">
+              <p class="label">Completed <span class="num">200</span> / 200</p>
+              <div class="progress-track" role="progressbar" aria-valuenow="200" aria-valuemin="0" aria-valuemax="200"><span style="width:100%"></span></div>
+            </section>
+            <div class="filter-bar" data-region="R3" aria-label="Filter">
+              <button type="button" class="filter-btn" data-control="C5" aria-pressed="true">Incomplete only</button>
+              <span class="filter-hint">On · hides completed</span>
+            </div>
+            <p class="empty-state" data-region="R2" role="status">All puzzles completed</p>
           </main>
         </div>
       </section>

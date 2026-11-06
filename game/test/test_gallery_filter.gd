@@ -257,8 +257,57 @@ func test_c5_is_drawn_with_its_copy_and_flips_on_press() -> void:
 	assert_eq(button.focus_mode, Control.FOCUS_ALL, "C5 is reachable by keyboard")
 	assert_eq(button.text, "Incomplete only", "copy.filter-incomplete")
 	assert_true(_gallery.focus_controls().has(button), "C5 is in the focus order")
+	assert_true(
+		_gallery.get_node("%FilterBar").is_ancestor_of(button), "C5 sits in R3's filter bar"
+	)
 	button.pressed.emit()
 	assert_true(_gallery.incomplete_only(), "a press turns the filter on")
+
+
+# US1.14 / R3: the hint beside C5 reads the filter's state and the whole pack's size
+func test_r3_hint_reads_the_filter_state() -> void:
+	_present(EMPTY_PROGRESS_PATH, _prefs().apply())
+	var hint := _gallery.get_node("%FilterHint") as Label
+	assert_eq(hint.text, "Off · shows all 200", "copy.filter-hint-off with the pack size")
+	assert_true(_gallery.activate_incomplete_only(), "C5 turns on")
+	assert_eq(hint.text, "On · hides completed", "copy.filter-hint-on")
+	assert_true(_gallery.activate_incomplete_only(), "C5 turns off")
+	assert_eq(hint.text, "Off · shows all 200", "the hint follows back")
+
+
+# US1.14 / EX.confirm: the chrome behind the reset confirm draws disabled
+func test_c5_and_chrome_draw_disabled_under_the_reset_confirm() -> void:
+	var pack := _present(PROGRESS_PATH, _prefs().apply())
+	for entry in pack.list_entries():
+		assert_not_null(pack.record_solve(entry.id, 60), "the puzzle is resettable")
+	_gallery.refresh()
+	var filter := _gallery.filter_button()
+	var menu := _gallery.get_node("%MenuButton") as Button
+	var settings := _gallery.get_node("%SettingsButton") as Button
+	assert_true(_gallery.present_reset_confirm("pack-000"), "EX.confirm shows")
+	assert_true(filter.disabled, "C5 draws disabled")
+	assert_true(menu.disabled, "C4 draws disabled")
+	assert_true(settings.disabled, "C3 draws disabled")
+	assert_false(_gallery.activate_incomplete_only(), "C5 changes nothing while blocked")
+	_gallery.dismiss_reset_confirm()
+	assert_false(filter.disabled, "C5 is live again after Cancel")
+	assert_false(menu.disabled, "C4 is live again")
+	assert_false(settings.disabled, "C3 is live again")
+
+
+# CONT / C5: a tile the filter hides leaves the focus order at once
+func test_a_hidden_tile_leaves_the_focus_order_at_once() -> void:
+	var pack := _present(PROGRESS_PATH, _prefs().apply())
+	for entry in pack.list_entries():
+		assert_not_null(pack.record_solve(entry.id, 60), "the puzzle is resettable")
+	_gallery.refresh()
+	var hidden_tile := _gallery.tile("pack-000")
+	var open := hidden_tile.open_button()
+	assert_true(_gallery.focus_controls().has(open), "the tile is in the focus order before")
+	assert_true(_gallery.activate_incomplete_only(), "C5 hides the ever-completed puzzles")
+	assert_false(_gallery.focus_controls().has(open), "the hidden tile is out of the focus order")
+	for control in _gallery.focus_controls():
+		assert_true(control.is_visible_in_tree(), "every focus target is visible")
 
 
 # C5: with no presented store the toggle changes nothing

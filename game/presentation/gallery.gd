@@ -41,6 +41,10 @@ const COPY_FILTER_INCOMPLETE := "Incomplete only"
 ## [code]copy.filter-empty[/code]: R2's empty state while C5 is on and every puzzle is
 ## ever-completed.
 const COPY_FILTER_EMPTY := "All puzzles completed"
+## [code]copy.filter-hint-off[/code]: R3's hint beside C5 while the filter is off.
+const COPY_FILTER_HINT_OFF := "Off · shows all %d"
+## [code]copy.filter-hint-on[/code]: R3's hint beside C5 while the filter is on.
+const COPY_FILTER_HINT_ON := "On · hides completed"
 
 ## [b]UI-gallery[/b]'s page margin and tile gap at the mockups' own frame. Both mockups
 ## draw spacing as a share of the frame the way [code]UIS.T2[/code] draws type: 20 px
@@ -106,6 +110,7 @@ var _filter_prefs: GalleryPreferences
 @onready var _menu_button: Button = %MenuButton
 @onready var _settings_button: Button = %SettingsButton
 @onready var _filter_button: Button = %FilterButton
+@onready var _filter_hint: Label = %FilterHint
 
 
 func _ready() -> void:
@@ -123,6 +128,7 @@ func _ready() -> void:
 	_filter_button.text = COPY_FILTER_INCOMPLETE
 	_style_chrome_button(_filter_button)
 	_filter_button.pressed.connect(_on_filter_pressed)
+	_filter_hint.text = _filter_hint_text()
 	_apply_filter_style()
 	_empty_label.text = COPY_FILTER_EMPTY
 	_build_confirm()
@@ -356,6 +362,7 @@ func present_reset_confirm(puzzle_id: String) -> bool:
 	if target == null or not target.reset_allowed():
 		return false
 	_confirm.show_for(puzzle_id)
+	_set_chrome_blocked(true)
 	return true
 
 
@@ -363,6 +370,15 @@ func present_reset_confirm(puzzle_id: String) -> bool:
 ## gallery to Default.
 func dismiss_reset_confirm() -> void:
 	_confirm.dismiss()
+	_set_chrome_blocked(false)
+
+
+## [code]EX.confirm[/code] blocks the screen, so the chrome behind it draws as disabled
+## (both mockups' `EX.confirm` frames): C4, C3, and C5 read and focus as not live until
+## the box closes.
+func _set_chrome_blocked(blocked: bool) -> void:
+	for button in [_menu_button, _settings_button, _filter_button]:
+		button.disabled = blocked
 
 
 ## The screen's controls in [code]Controls[/code] table order ([code]controls.md[/code]
@@ -374,7 +390,9 @@ func focus_controls() -> Array[Control]:
 	var controls: Array[Control] = []
 	for entry in _entries:
 		var target := tile(entry.id)
-		if target == null:
+		# C5 hides a filtered tile from _tiles at once; skip any node already hidden so
+		# keyboard focus never lands on a puzzle R2 no longer shows.
+		if target == null or not target.visible:
 			continue
 		controls.append_array(target.focus_controls())
 	controls.append(_menu_button)
@@ -423,6 +441,11 @@ func _rebuild() -> void:
 		if seen.has(puzzle_id):
 			continue
 		var stale: GalleryTile = _tiles[puzzle_id]
+		# Hide and detach this frame. queue_free() alone leaves the node visible and
+		# focusable until the frame ends, so C5's re-filter would hand keyboard focus
+		# to a puzzle it just hid (#693 verification).
+		_grid.remove_child(stale)
+		stale.visible = false
 		stale.queue_free()
 		_tiles.erase(puzzle_id)
 	_update_completion()
@@ -512,6 +535,9 @@ func _build_confirm() -> void:
 	add_child(_confirm)
 	_confirm.confirmed.connect(_on_confirm_confirmed)
 	_confirm.cancelled.connect(_on_confirm_cancelled)
+	# The overlay also dismisses itself on Confirm and Cancel, so follow its visibility
+	# instead of only the gallery's own show/dismiss calls.
+	_confirm.visibility_changed.connect(_sync_chrome_blocked)
 
 
 func _on_confirm_confirmed(puzzle_id: String) -> void:
@@ -520,6 +546,10 @@ func _on_confirm_confirmed(puzzle_id: String) -> void:
 
 func _on_confirm_cancelled(puzzle_id: String) -> void:
 	reset_cancelled.emit(puzzle_id)
+
+
+func _sync_chrome_blocked() -> void:
+	_set_chrome_blocked(reset_confirm_showing())
 
 
 ## [code]UIS.T2[/code]: chrome type is 1/40 of the current frame height, re-applied on
@@ -562,6 +592,7 @@ func _on_filter_pressed() -> void:
 ## chrome shows the filter's state without a second copy of the value.
 func _apply_filter_style() -> void:
 	var on := incomplete_only()
+	_filter_hint.text = _filter_hint_text()
 	var background := PresentationPalette.INK if on else PresentationPalette.PAPER
 	var foreground := PresentationPalette.PAPER if on else PresentationPalette.INK
 	var border := PresentationPalette.INK if on else PresentationPalette.RULE
@@ -569,6 +600,14 @@ func _apply_filter_style() -> void:
 		_filter_button.add_theme_stylebox_override(state, _panel_style(background, border))
 	for color in ["font_color", "font_hover_color", "font_pressed_color"]:
 		_filter_button.add_theme_color_override(color, foreground)
+
+
+## R3's hint beside C5, from the mockups' `filter-hint` line: the off state reads the
+## whole pack's size, the on state says what it hides.
+func _filter_hint_text() -> String:
+	if incomplete_only():
+		return COPY_FILTER_HINT_ON
+	return COPY_FILTER_HINT_OFF % pack_size()
 
 
 func _style_chrome_button(button: Button) -> void:

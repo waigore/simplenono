@@ -12,8 +12,8 @@ Authoring rules: [`.agents/specs/rules/ux/story.md`](../../../../../.agents/spec
 |---------|---------|-----------|
 | R1 | Completion rate stays whole-pack | US1.10 |
 | R2 | Filtered list, tiles, empty state | US1.9, US1.10, US1.12, US1.13 |
-| R3 | C5 in the chrome filter bar | US1.9 |
-| C5 | Toggle, durable, in place | US1.9, US1.10, US1.11, US1.13 |
+| R3 | C5 and its hint in the chrome filter bar | US1.9, US1.14 |
+| C5 | Toggle, durable, in place, disabled under EX.confirm | US1.9, US1.10, US1.11, US1.13, US1.14 |
 | S1 | Default (C5 off) | US1.9 |
 | S2 | Incomplete only | US1.10, US1.12 |
 
@@ -30,6 +30,21 @@ Given UI-gallery Default and the stored incomplete-only filter is off
 When the screen is shown
 Then R3 shows C5 Incomplete only in its off state
 And R2 lists all 200 puzzles
+```
+
+### US1.14: R3 reads the filter's state and blocks while a reset confirm shows
+
+- **Proves**: R3, C5, S1, S2
+
+```gherkin
+Given UI-gallery Default with C5 off
+Then R3 shows copy.filter-hint-off with the whole pack's size
+When the Player turns C5 on
+Then R3 shows copy.filter-hint-on
+When the Player raises C2 for a resettable puzzle
+Then C4, C3, and C5 draw disabled while EX.confirm shows
+When the Player cancels the reset
+Then C4, C3, and C5 are live again
 ```
 
 ### US1.10: Turning the filter on narrows R2 in place

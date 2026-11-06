@@ -84,12 +84,6 @@ layout_mode = 2
 focus_mode = 2
 text = "Settings"
 
-[node name="FilterButton" type="Button" parent="Margin/Layout/Header"]
-unique_name_in_owner = true
-layout_mode = 2
-focus_mode = 2
-text = "Incomplete only"
-
 [node name="ProgressBlock" type="PanelContainer" parent="Margin/Layout"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_progress")
@@ -111,6 +105,23 @@ layout_mode = 2
 max_value = 200.0
 value = 0.0
 show_percentage = false
+
+[node name="FilterBar" type="HBoxContainer" parent="Margin/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FilterButton" type="Button" parent="Margin/Layout/FilterBar"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 2
+text = "Incomplete only"
+
+[node name="FilterHint" type="Label" parent="Margin/Layout/FilterBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431373, 0.498039, 0.54902, 1)
+text = "Off · shows all 200"
 
 [node name="Scroll" type="ScrollContainer" parent="Margin/Layout"]
 layout_mode = 2
