@@ -25,6 +25,10 @@ const FRAME_PADDING := 8.0
 const MIN_CELL_SIZE := 8.0
 const MAX_CELL_SIZE := 40.0
 
+## The open board draws a major line on every multiple of this many cells from the
+## board edge, horizontally and vertically ([code]SRF.O2[/code], [code]PAL.C7[/code]).
+const MAJOR_EVERY := 5
+
 ## Desktop (Windows / macOS / Linux) keeps the comfortable cap: unused margin is
 ## fine there. A test drives it without a real window.
 const PLATFORM_DESKTOP := "desktop"
@@ -182,6 +186,31 @@ func column_clue_labels(column: int) -> Array:
 ## The current cell side, so a test can hold [code]T1[/code] to half of it.
 func cell_size() -> float:
 	return _cell_size
+
+
+## The grid's top-left corner in this control's space after the last relayout, so a
+## test can locate the 5-cell boundaries the board assigns ([code]SRF.O2[/code]).
+func grid_origin() -> Vector2:
+	return _origin + Vector2(_row_clue_width, _column_clue_height)
+
+
+## Whether the grid boundary [param index] cells from the board edge is a major one
+## ([code]SRF.O2[/code], [code]PAL.C7[/code]): a multiple of [constant MAJOR_EVERY]
+## strictly inside the board. The outer edge stays [constant PuzzleCell.EDGE_RULE]:
+## the frame's edge is the board's own rule ([code]FRM.D1[/code], [code]SRF.O1[/code]).
+static func is_major_boundary(index: int, size: int) -> bool:
+	return index > 0 and index < size and index % MAJOR_EVERY == 0
+
+
+## Which side of the cell before boundary [param index] draws it
+## ([code]SRF.O2[/code], [code]FRM.P1[/code]): the right side for a column, the
+## bottom side for a row. A boundary on a 5-cell multiple is Major, every other one
+## Rule. The board's outer edge ([param index] equal to [param size]) keeps the cell
+## rule, so the grid never draws over the frame.
+static func edge_at_boundary(index: int, size: int) -> int:
+	if is_major_boundary(index, size):
+		return PuzzleCell.EDGE_MAJOR
+	return PuzzleCell.EDGE_RULE
 
 
 ## The clue size [code]T1[/code] currently applies ([method UiTheme.t1_size]).
@@ -396,7 +425,19 @@ func _position_children() -> void:
 				)
 			)
 			cell.size = Vector2(_cell_size, _cell_size)
+			_assign_edges(cell, row, column)
 	_update_clue_styles()
+
+
+## Gives [param cell] the kind of each of its four sides ([code]SRF.O2[/code],
+## [code]FRM.P1[/code]). Each interior boundary is owned by the cell before it (its
+## right side, or its bottom side), so a shared edge is drawn once. The board's outer
+## edge keeps the cell rule; the frame draws the board's own edge ([code]FRM.D1[/code]).
+func _assign_edges(cell: PuzzleCell, row: int, column: int) -> void:
+	var size := _definition.size
+	var left := PuzzleCell.EDGE_SHARED if column > 0 else PuzzleCell.EDGE_RULE
+	var top := PuzzleCell.EDGE_SHARED if row > 0 else PuzzleCell.EDGE_RULE
+	cell.set_edges(left, top, edge_at_boundary(column + 1, size), edge_at_boundary(row + 1, size))
 
 
 ## Error wins over dim, as in the approved mockup's error row; within a line each clue
