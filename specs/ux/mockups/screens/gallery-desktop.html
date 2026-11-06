@@ -28,6 +28,7 @@
       --muted:   #6E7F8C;   /* secondary text, captions */
       --border:  #C5D0D6;   /* hairlines, dividers */
       --accent:  #1B2833;   /* one accent — used at most 2× per screen */
+      --gold:    #A67C00;   /* hint-free star only (PAL.C10) */
 
       /* derived — do not change */
       --accent-soft: color-mix(in oklch, var(--accent) 14%, transparent);
@@ -323,9 +324,9 @@
       position: absolute;
       top: 6px;
       left: 6px;
-      width: 14px;
-      height: 14px;
-      color: var(--fg);
+      width: 16px;
+      height: 16px;
+      color: var(--gold);
       pointer-events: none;
       z-index: 1;
     }

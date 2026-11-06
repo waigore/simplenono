@@ -164,7 +164,8 @@ func test_r2_hint_free_tile_shows_the_star_upper_left() -> void:
 	_present(seeded)
 
 	var starred := _gallery.tile("pack-019")
-	assert_true(starred.shows_star(), "US1.8: the clinical star shows when hint-free")
+	assert_true(starred.shows_star(), "US1.8: the gold star shows when hint-free")
+	_assert_color(starred.star_color(), PresentationPalette.GOLD, "UIS.I1: the star is Gold")
 	var metrics := starred.star_metrics()
 	var expected_inset := _gallery.star_inset()
 	var expected_size := _gallery.star_size()
@@ -184,6 +185,54 @@ func test_r2_hint_free_tile_shows_the_star_upper_left() -> void:
 func test_r2_unsolved_tile_shows_no_star() -> void:
 	_present(ConfigFile.new())
 	assert_false(_gallery.tile("pack-000").shows_star(), "PER.R7: absent without GS.hint-free")
+
+
+# US1.8 / UIS.I1 / PAL.C10 (#692): the hint-free star is Gold and visibly larger than
+# the old 12 px Ink star on a narrow frame.
+func test_r2_hint_free_star_is_gold_and_larger_on_narrow() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-019", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-019", ProgressFile.HINT_FREE_KEY, true)
+	seeded.set_value("pack-019", ProgressFile.PERSONAL_BEST_KEY, 42)
+	_gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return _texture())
+	_present(seeded)
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	var starred := _gallery.tile("pack-019")
+	_assert_color(starred.star_color(), PresentationPalette.GOLD, "UIS.I1: the star is Gold")
+	assert_gt(starred.star_metrics().y, 12.0, "UIS.I1: larger than the old 12 px star")
+	assert_gt(starred.star_metrics().y, 18.0, "UIS.I1: visibly larger on a narrow frame")
+
+
+# UIS.I1 (#692): on a wide frame the star stays Gold and near today's 14 px scale.
+func test_r2_hint_free_star_stays_near_todays_scale_on_wide() -> void:
+	var seeded := ConfigFile.new()
+	seeded.set_value("pack-019", ProgressFile.EVER_COMPLETED_KEY, true)
+	seeded.set_value("pack-019", ProgressFile.HINT_FREE_KEY, true)
+	seeded.set_value("pack-019", ProgressFile.PERSONAL_BEST_KEY, 42)
+	_gallery.set_picture_provider(func(_asset_id: String) -> Texture2D: return _texture())
+	_present(seeded)
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(1080.0, 900.0)
+	await _settle()
+	var starred := _gallery.tile("pack-019")
+	_assert_color(starred.star_color(), PresentationPalette.GOLD, "UIS.I1: the star is Gold")
+	assert_between(starred.star_metrics().y, 14.0, 18.0, "UIS.I1: near today's 14 px scale")
+
+
+# UIS.I1 (#692): the narrow frame's star is larger than the wide frame's, so the badge
+# reads on a small thumb without growing on desktop.
+func test_r2_hint_free_star_is_larger_on_narrow_than_wide() -> void:
+	_present(ConfigFile.new())
+	_gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	_gallery.size = Vector2(390.0, 844.0)
+	await _settle()
+	var narrow := _gallery.star_size()
+	_gallery.size = Vector2(1080.0, 900.0)
+	await _settle()
+	var wide := _gallery.star_size()
+	assert_gt(narrow, wide, "UIS.I1: the narrow frame's star is larger")
 
 
 # The approved mockups' four tile states and R1 frame: palette and ground come from the

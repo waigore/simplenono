@@ -115,10 +115,15 @@ func shows_picture() -> bool:
 	return _thumb.shows_picture()
 
 
-## True when the [code]UIS.I1[/code] clinical hint-free star is drawn at the thumb's
+## True when the [code]UIS.I1[/code] gold hint-free star is drawn at the thumb's
 ## upper-left ([code]PER.R7[/code]).
 func shows_star() -> bool:
 	return _thumb.shows_star()
+
+
+## The star's fill ([code]UIS.I1[/code], [code]PAL.C10[/code]), for tests.
+func star_color() -> Color:
+	return _thumb.star_color()
 
 
 ## The thumb's held star inset and side ([code]PER.R7[/code]), for tests.
